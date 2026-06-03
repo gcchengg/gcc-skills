@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">
+  <title>先准备 这 3 件事</title>
+  
+  <rect width="1080" height="1440" rx="0" fill="#f7f8f4"/>
+  <circle cx="960" cy="132" r="110" fill="#dcefe4" opacity=".75"/>
+  <circle cx="110" cy="1260" r="150" fill="#e9eee9" opacity=".9"/>
+  <path d="M0 1120 C220 1040 360 1190 560 1110 C760 1030 880 1090 1080 1010 L1080 1440 L0 1440 Z" fill="#eef2ec" opacity=".8"/>
+  
+  
+  <rect x="70" y="64" width="178" height="38" rx="19" fill="#112018"/>
+  <text x="159" y="89" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#e9fff0">03/09</text>
+  <text x="70" y="148" font-family="Arial, PingFang SC, sans-serif" font-size="22" font-weight="800" fill="#188a54" letter-spacing="2">使用前准备</text>
+  
+  
+    <text x="74" y="242" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="72" font-weight="900" fill="#111827" letter-spacing="0"><tspan x="74" dy="0">先准备</tspan><tspan x="74" dy="81.35999999999999">这 3 件事</tspan></text>
+    <text x="74" y="398" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="34" font-weight="500" fill="#52605a" letter-spacing="0"><tspan x="74" dy="0">两端登录同一个账号，电脑端保持 Codex</tspan><tspan x="74" dy="48.28"> 正在运行</tspan></text>
+    
+    <rect x="80" y="558" width="920" height="118" rx="30" fill="#ffffff" stroke="#dde5dc" stroke-width="2"/>
+    <circle cx="138" cy="617" r="28" fill="#188a54"/>
+    <text x="138" y="627" text-anchor="middle" font-family="Arial" font-size="28" font-weight="800" fill="#ffffff">1</text>
+    <text x="188" y="607" font-family="PingFang SC, Arial, sans-serif" font-size="30" font-weight="800" fill="#111827">Mac 端</text>
+    <text x="188" y="644" font-family="PingFang SC, Arial, sans-serif" font-size="24" font-weight="500" fill="#5b665f">打开 Codex 桌面 App，并开始一个任务</text>
+    
+    <rect x="80" y="710" width="920" height="118" rx="30" fill="#ffffff" stroke="#dde5dc" stroke-width="2"/>
+    <circle cx="138" cy="769" r="28" fill="#188a54"/>
+    <text x="138" y="779" text-anchor="middle" font-family="Arial" font-size="28" font-weight="800" fill="#ffffff">2</text>
+    <text x="188" y="759" font-family="PingFang SC, Arial, sans-serif" font-size="30" font-weight="800" fill="#111827">手机端</text>
+    <text x="188" y="796" font-family="PingFang SC, Arial, sans-serif" font-size="24" font-weight="500" fill="#5b665f">更新 ChatGPT App，进入 Codex 相关入口</text>
+    
+    <rect x="80" y="862" width="920" height="118" rx="30" fill="#ffffff" stroke="#dde5dc" stroke-width="2"/>
+    <circle cx="138" cy="921" r="28" fill="#188a54"/>
+    <text x="138" y="931" text-anchor="middle" font-family="Arial" font-size="28" font-weight="800" fill="#ffffff">3</text>
+    <text x="188" y="911" font-family="PingFang SC, Arial, sans-serif" font-size="30" font-weight="800" fill="#111827">同账号</text>
+    <text x="188" y="948" font-family="PingFang SC, Arial, sans-serif" font-size="24" font-weight="500" fill="#5b665f">两端登录同一个 OpenAI / ChatGPT 账号</text>
+    
+    <rect x="80" y="1100" width="920" height="152" rx="34" fill="#111827"/>
+    <text x="124" y="1160" font-family="PingFang SC, Arial, sans-serif" font-size="32" font-weight="900" fill="#ffffff">重点提醒</text>
+    <text x="124" y="1210" font-family="PingFang SC, Arial, sans-serif" font-size="26" font-weight="600" fill="#d8f8df">目前官方说明是手机端连接 macOS 上运行的 Codex。</text>
+    
+</svg>

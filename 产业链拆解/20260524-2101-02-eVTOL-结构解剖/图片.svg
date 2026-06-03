@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3072" height="4096" viewBox="0 0 1080 1440">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="8" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#35495e"/>
+    </marker>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6f4ec"/>
+      <stop offset="0.55" stop-color="#edf3ef"/>
+      <stop offset="1" stop-color="#e4ecec"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#b9c7c5" stroke-width="0.7" opacity="0.22"/>
+    </pattern>
+  </defs>
+  <rect width="1080" height="1440" fill="url(#paper)"/>
+  <rect width="1080" height="1440" fill="url(#grid)"/>
+  <rect x="34" y="34" width="1012" height="1372" rx="18" fill="none" stroke="#263b42" stroke-width="3"/>
+  <text x="72" y="92" font-size="28" font-weight="700" fill="#34474d">TECH INDUSTRY ANATOMY 02</text>
+  <text x="72" y="162" font-size="58" font-weight="900" fill="#102a32">eVTOL</text>
+  <text x="72" y="260" font-size="28" font-weight="800" fill="#287066">产品架构 · 结构解剖图</text>
+  <g opacity="0.55">
+    <path d="M280 282 H800" stroke="#233" stroke-width="2"/>
+    <path d="M280 1214 H800" stroke="#233" stroke-width="2"/>
+  </g>
+  <g>
+      <rect x="318" y="308" width="444" height="56" rx="8" fill="#1f5f8b" opacity="0.97"/>
+      <text x="540" y="344" text-anchor="middle" font-size="28" font-weight="800" fill="#ffffff">气动机体</text>
+      <path d="M540 370 L540 388" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="394" width="444" height="56" rx="8" fill="#267b72" opacity="0.97"/>
+      <text x="540" y="430" text-anchor="middle" font-size="28" font-weight="800" fill="#ffffff">电池系统</text>
+      <path d="M540 456 L540 474" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="480" width="444" height="56" rx="8" fill="#4b6b8f" opacity="0.97"/>
+      <text x="540" y="516" text-anchor="middle" font-size="28" font-weight="800" fill="#ffffff">电机电控</text>
+      <path d="M540 542 L540 560" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="566" width="444" height="56" rx="8" fill="#6f7d4f" opacity="0.97"/>
+      <text x="540" y="602" text-anchor="middle" font-size="28" font-weight="800" fill="#ffffff">飞控航电</text>
+      <path d="M540 628 L540 646" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="652" width="444" height="56" rx="8" fill="#2f766d" opacity="0.97"/>
+      <text x="540" y="688" text-anchor="middle" font-size="28" font-weight="800" fill="#ffffff">通信监管</text>
+      <path d="M540 714 L540 732" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="738" width="444" height="56" rx="8" fill="#735f91" opacity="0.97"/>
+      <text x="540" y="774" text-anchor="middle" font-size="28" font-weight="800" fill="#ffffff">起降运维</text>
+      <path d="M540 800 L540 818" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="824" width="444" height="56" rx="8" fill="#5c7483" opacity="0.97"/>
+      <text x="540" y="860" text-anchor="middle" font-size="28" font-weight="800" fill="#ffffff">载客服务</text>
+      <path d="M540 886 L540 904" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="910" width="444" height="56" rx="8" fill="#8a6a3d" opacity="0.97"/>
+      <text x="540" y="946" text-anchor="middle" font-size="28" font-weight="800" fill="#ffffff">认证瓶颈</text>
+      
+    </g>
+  <g>
+    <rect x="66" y="348" width="218" height="330" rx="10" fill="#fffdf8" stroke="#cfdbd8" stroke-width="2"/>
+    <rect x="66" y="348" width="218" height="50" rx="10" fill="#eaf3ef"/>
+    <text x="90" y="382" font-size="24" font-weight="800" fill="#183d3b">对象边界</text>
+    <text x="90" y="436" font-size="22" font-weight="400" fill="#263238">产品架构</text>
+<text x="90" y="468" font-size="22" font-weight="400" fill="#263238">只拆结构、价值</text>
+<text x="90" y="500" font-size="22" font-weight="400" fill="#263238">流、成本与风险</text>
+<text x="90" y="532" font-size="22" font-weight="400" fill="#263238">，不做公司排名</text>
+<text x="90" y="564" font-size="22" font-weight="400" fill="#263238">或投资判断。</text>
+  </g>
+  <g>
+    <rect x="796" y="348" width="218" height="410" rx="10" fill="#fffdf8" stroke="#cfdbd8" stroke-width="2"/>
+    <rect x="796" y="348" width="218" height="50" rx="10" fill="#eaf3ef"/>
+    <text x="820" y="382" font-size="24" font-weight="800" fill="#183d3b">商业洞察</text>
+    <text x="820" y="436" font-size="22" font-weight="400" fill="#263238">把机体、电池、</text>
+<text x="820" y="468" font-size="22" font-weight="400" fill="#263238">电机、飞控、航</text>
+<text x="820" y="500" font-size="22" font-weight="400" fill="#263238">电、适航和运营</text>
+<text x="820" y="532" font-size="22" font-weight="400" fill="#263238">拆成一套飞行产</text>
+<text x="820" y="564" font-size="22" font-weight="400" fill="#263238">品架构</text>
+<text x="820" y="596" font-size="22" font-weight="400" fill="#263238">eVTOL的难点不</text>
+<text x="820" y="628" font-size="22" font-weight="400" fill="#263238">只在飞起来，而</text>
+<text x="820" y="660" font-size="22" font-weight="400" fill="#263238">在同时满足安全</text>
+<text x="820" y="692" font-size="22" font-weight="400" fill="#263238">冗余、续航载重</text>
+<text x="820" y="724" font-size="22" font-weight="400" fill="#263238">、适航认证和商</text>
+<text x="820" y="756" font-size="22" font-weight="400" fill="#263238">业运营。</text>
+  </g>
+  <g>
+    <rect x="66" y="724" width="218" height="310" rx="10" fill="#fffdf8" stroke="#cfdbd8" stroke-width="2"/>
+    <rect x="66" y="724" width="218" height="50" rx="10" fill="#eaf3ef"/>
+    <text x="90" y="758" font-size="24" font-weight="800" fill="#183d3b">价值流动</text>
+    <text x="90" y="812" font-size="22" font-weight="400" fill="#263238">部件提供推力</text>
+<text x="90" y="844" font-size="22" font-weight="400" fill="#263238">飞控保障稳定</text>
+<text x="90" y="876" font-size="22" font-weight="400" fill="#263238">运营组织运力</text>
+<text x="90" y="908" font-size="22" font-weight="400" fill="#263238">城市交通付费</text>
+  </g>
+  <g>
+    <rect x="796" y="804" width="218" height="300" rx="10" fill="#fffdf8" stroke="#cfdbd8" stroke-width="2"/>
+    <rect x="796" y="804" width="218" height="50" rx="10" fill="#eaf3ef"/>
+    <text x="820" y="838" font-size="24" font-weight="800" fill="#183d3b">成本结构</text>
+    <text x="820" y="892" font-size="22" font-weight="400" fill="#263238">电池重量</text>
+<text x="820" y="924" font-size="22" font-weight="400" fill="#263238">冗余设计</text>
+<text x="820" y="956" font-size="22" font-weight="400" fill="#263238">维护检测</text>
+<text x="820" y="988" font-size="22" font-weight="400" fill="#263238">起降网络</text>
+<text x="820" y="1020" font-size="22" font-weight="400" fill="#263238">认证周期</text>
+  </g>
+  <g>
+    <rect x="108" y="1138" width="864" height="132" rx="12" fill="#102a32" opacity="0.95"/>
+    <text x="144" y="1184" font-size="27" font-weight="800" fill="#e7fff8">一句话看懂</text>
+    <text x="144" y="1228" font-size="25" fill="#ffffff">eVTOL的难点不只在飞起来，而在同时满足安全冗余、续航载</text>
+<text x="144" y="1262" font-size="25" fill="#ffffff">重、适航认证和商业运营。</text>
+  </g>
+  <g>
+    <rect x="108" y="1294" width="864" height="72" rx="10" fill="#fffdf8" stroke="#b8c8c5" stroke-width="2"/>
+    <text x="140" y="1338" font-size="22" font-weight="800" fill="#653232">真实瓶颈：续航载重 / 噪声控制 / 安全冗余 / 适航认证 / 单位</text>
+<text x="140" y="1368" font-size="22" font-weight="800" fill="#653232">成本</text>
+  </g>
+</svg>

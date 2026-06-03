@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">
+  <title>先在电脑端 让 Codex 开始工作</title>
+  
+  <rect width="1080" height="1440" rx="0" fill="#f7f8f4"/>
+  <circle cx="960" cy="132" r="110" fill="#dcefe4" opacity=".75"/>
+  <circle cx="110" cy="1260" r="150" fill="#e9eee9" opacity=".9"/>
+  <path d="M0 1120 C220 1040 360 1190 560 1110 C760 1030 880 1090 1080 1010 L1080 1440 L0 1440 Z" fill="#eef2ec" opacity=".8"/>
+  
+  
+  <rect x="70" y="64" width="178" height="38" rx="19" fill="#112018"/>
+  <text x="159" y="89" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#e9fff0">04/09</text>
+  <text x="70" y="148" font-family="Arial, PingFang SC, sans-serif" font-size="22" font-weight="800" fill="#188a54" letter-spacing="2">第 1 步</text>
+  
+  
+    <text x="74" y="242" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="72" font-weight="900" fill="#111827" letter-spacing="0"><tspan x="74" dy="0">先在电脑端</tspan><tspan x="74" dy="81.35999999999999">让 Codex 开始工作</tspan></text>
+    <text x="74" y="398" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="34" font-weight="500" fill="#52605a" letter-spacing="0"><tspan x="74" dy="0">修 bug、读项目、跑测试、生成文档，都先</tspan><tspan x="74" dy="48.28">交给电脑环境执行</tspan></text>
+    
+  <rect x="82" y="540" width="916" height="560" rx="34" fill="#202722"/>
+  <rect x="102" y="560" width="876" height="520" rx="20" fill="#fcfdf9"/>
+  <rect x="134" y="598" width="812" height="72" rx="18" fill="#111827"/>
+  <text x="164" y="645" font-family="Arial, PingFang SC, sans-serif" font-size="30" font-weight="800" fill="#e9fff0">Codex 桌面端</text>
+  <rect x="134" y="700" width="812" height="92" rx="20" fill="#e9f5ed"/>
+  <text x="164" y="754" font-family="PingFang SC, Arial, sans-serif" font-size="26" font-weight="700" fill="#176b43">正在读取项目、修改文件、运行测试</text>
+  <rect x="134" y="822" width="812" height="170" rx="20" fill="#101612"/>
+  <text x="164" y="870" font-family="Menlo, Monaco, monospace" font-size="22" fill="#92f0b0">$ npm test</text>
+  <text x="164" y="912" font-family="Menlo, Monaco, monospace" font-size="22" fill="#d8f8df">✓ 24 tests passed</text>
+  <text x="164" y="954" font-family="Menlo, Monaco, monospace" font-size="22" fill="#f8e3a2">review diff before commit</text>
+  <rect x="283.52" y="1108" width="512.96" height="22" rx="11" fill="#202722"/>
+  
+    
+  <rect x="126" y="1158" width="430" height="62" rx="31" fill="#fff7df" stroke="#f0d98b" stroke-width="2"/>
+  <text x="154" y="1198" font-family="PingFang SC, Arial, sans-serif" font-size="23" font-weight="800" fill="#8a6a11">这里可替换为你的真实截图</text>
+  
+    <rect x="594" y="1160" width="284" height="58" rx="29" fill="#e9f5ed"/><text x="616" y="1198" font-family="PingFang SC, Arial, sans-serif" font-size="25" font-weight="800" fill="#176b43">任务先从这里开始</text>
+    
+</svg>

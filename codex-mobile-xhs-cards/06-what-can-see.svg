@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">
+  <title>不是简化版 关键状态都能看</title>
+  
+  <rect width="1080" height="1440" rx="0" fill="#f7f8f4"/>
+  <circle cx="960" cy="132" r="110" fill="#dcefe4" opacity=".75"/>
+  <circle cx="110" cy="1260" r="150" fill="#e9eee9" opacity=".9"/>
+  <path d="M0 1120 C220 1040 360 1190 560 1110 C760 1030 880 1090 1080 1010 L1080 1440 L0 1440 Z" fill="#eef2ec" opacity=".8"/>
+  
+  
+  <rect x="70" y="64" width="178" height="38" rx="19" fill="#112018"/>
+  <text x="159" y="89" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#e9fff0">06/09</text>
+  <text x="70" y="148" font-family="Arial, PingFang SC, sans-serif" font-size="22" font-weight="800" fill="#188a54" letter-spacing="2">手机端能看什么</text>
+  
+  
+    <text x="74" y="242" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="72" font-weight="900" fill="#111827" letter-spacing="0"><tspan x="74" dy="0">不是简化版</tspan><tspan x="74" dy="81.35999999999999">关键状态都能看</tspan></text>
+    <text x="74" y="398" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="34" font-weight="500" fill="#52605a" letter-spacing="0"><tspan x="74" dy="0">终端输出、测试结果、截图、diff、审批，</tspan><tspan x="74" dy="48.28">都适合在手机上快速判断</tspan></text>
+    
+  <rect x="76" y="530" width="430" height="178" rx="30" fill="#ffffff" stroke="#dde5dc" stroke-width="2"/>
+  <text x="110" y="588" font-family="PingFang SC, Arial, sans-serif" font-size="31" font-weight="800" fill="#111827">终端输出</text>
+  <text x="110" y="630" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="500" fill="#5d6762" letter-spacing="0"><tspan x="110" dy="0">$ npm test 的结</tspan><tspan x="110" dy="30.72">果</tspan></text>
+  
+    
+  <rect x="576" y="530" width="430" height="178" rx="30" fill="#ffffff" stroke="#dde5dc" stroke-width="2"/>
+  <text x="610" y="588" font-family="PingFang SC, Arial, sans-serif" font-size="31" font-weight="800" fill="#111827">测试结果</text>
+  <text x="610" y="630" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="500" fill="#5d6762" letter-spacing="0"><tspan x="610" dy="0">通过、失败、错误位置</tspan></text>
+  
+    
+  <rect x="76" y="760" width="430" height="178" rx="30" fill="#ffffff" stroke="#dde5dc" stroke-width="2"/>
+  <text x="110" y="818" font-family="PingFang SC, Arial, sans-serif" font-size="31" font-weight="800" fill="#111827">代码 diff</text>
+  <text x="110" y="860" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="500" fill="#5d6762" letter-spacing="0"><tspan x="110" dy="0">看它具体改了什么</tspan></text>
+  
+    
+  <rect x="576" y="760" width="430" height="178" rx="30" fill="#ffffff" stroke="#dde5dc" stroke-width="2"/>
+  <text x="610" y="818" font-family="PingFang SC, Arial, sans-serif" font-size="31" font-weight="800" fill="#111827">截图预览</text>
+  <text x="610" y="860" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="500" fill="#5d6762" letter-spacing="0"><tspan x="610" dy="0">确认 UI 是否正常</tspan></text>
+  
+    
+  <rect x="76" y="990" width="430" height="178" rx="30" fill="#ffffff" stroke="#dde5dc" stroke-width="2"/>
+  <text x="110" y="1048" font-family="PingFang SC, Arial, sans-serif" font-size="31" font-weight="800" fill="#111827">审批操作</text>
+  <text x="110" y="1090" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="500" fill="#5d6762" letter-spacing="0"><tspan x="110" dy="0">批准命令或暂停任务</tspan></text>
+  
+    
+  <rect x="576" y="990" width="430" height="178" rx="30" fill="#ffffff" stroke="#dde5dc" stroke-width="2"/>
+  <text x="610" y="1048" font-family="PingFang SC, Arial, sans-serif" font-size="31" font-weight="800" fill="#111827">继续对话</text>
+  <text x="610" y="1090" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="24" font-weight="500" fill="#5d6762" letter-spacing="0"><tspan x="610" dy="0">补充需求和边界</tspan></text>
+  
+    <text x="80" y="1285" font-family="PingFang SC, Arial, sans-serif" font-size="28" font-weight="700" fill="#52605a">适合快速判断，不适合在手机上逐行审复杂代码。</text>
+    
+</svg>

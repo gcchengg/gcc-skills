@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fbf3e7"/>
+      <stop offset="100%" stop-color="#efe2d0"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#8a6b51" flood-opacity="0.13"/>
+    </filter>
+  </defs>
+  <rect width="1080" height="1440" fill="url(#bg)"/>
+  <circle cx="944" cy="128" r="92" fill="#d9b996" opacity="0.23"/>
+  <circle cx="128" cy="1290" r="112" fill="#c98983" opacity="0.15"/>
+  <rect x="64" y="64" width="952" height="1312" rx="34" fill="#fff8ee" opacity="0.86" filter="url(#shadow)"/>
+  <rect x="92" y="92" width="896" height="1256" rx="26" fill="none" stroke="#d8c4ad" stroke-width="2"/>
+  <text x="108" y="165" font-size="24" font-weight="800" letter-spacing="3" fill="#a27d60">STYLE PROMPT</text>
+  <text x="108" y="265" font-size="66" font-weight="900" fill="#2b2521">风格分析这样写</text>
+  <text x="108" y="325" font-size="32" font-weight="500" fill="#806d5f">适合生成穿搭风格建议图</text>
+  <line x1="108" y1="384" x2="972" y2="384" stroke="#d8c4ad" stroke-width="2"/>
+  <rect x="108" y="412" width="138" height="34" rx="17" fill="#2d2723"/>
+  <text x="177" y="436" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">文字教学图</text>
+  <rect x="264" y="412" width="148" height="34" rx="17" fill="#b88a6b"/>
+  <text x="338" y="436" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">小红书3:4</text>
+  
+      <text x="108" y="478" font-size="30" font-weight="800" fill="#2d2723">复制这段提示词</text>
+      <rect x="108" y="510" width="864" height="500" rx="22" fill="#fffaf2" stroke="#dac9b5" stroke-width="2"/>
+      <text x="148" y="568" font-size="28" font-weight="500" fill="#3d342e">请基于我上传的自拍，保持同一身份、</text>
+<text x="148" y="611.4" font-size="28" font-weight="500" fill="#3d342e">五官气质和真实质感，</text>
+<text x="148" y="654.8" font-size="28" font-weight="500" fill="#3d342e">为我生成一张女生穿搭风格分析面板。内容包含：</text>
+<text x="148" y="698.2" font-size="28" font-weight="500" fill="#3d342e">最佳风格、避免风格、剪裁指南、基础单品、</text>
+<text x="148" y="741.6" font-size="28" font-weight="500" fill="#3d342e">完整穿搭、配饰、整体风格关键词。画面要高级、</text>
+<text x="148" y="785" font-size="28" font-weight="500" fill="#3d342e">清晰、有杂志感，不要夸张网红风。</text>
+      <text x="108" y="1075" font-size="30" font-weight="800" fill="#2d2723">效果会包含</text>
+      
+    <rect x="108" y="1110" width="172" height="50" rx="25" fill="#B88A6B" opacity="0.92"/>
+    <text x="194" y="1143" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">适合风格</text>
+
+    <rect x="313" y="1110" width="172" height="50" rx="25" fill="#C99691" opacity="0.92"/>
+    <text x="399" y="1143" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">避开风格</text>
+
+    <rect x="518" y="1110" width="172" height="50" rx="25" fill="#A5A879" opacity="0.92"/>
+    <text x="604" y="1143" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">剪裁方向</text>
+
+    <rect x="108" y="1182" width="172" height="50" rx="25" fill="#917A67" opacity="0.92"/>
+    <text x="194" y="1215" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">基础单品</text>
+
+    <rect x="313" y="1182" width="172" height="50" rx="25" fill="#D1B28C" opacity="0.92"/>
+    <text x="399" y="1215" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">整体气质关键词</text>
+    
+  
+  <text x="934" y="1328" text-anchor="end" font-size="22" fill="#a89583">06 / 07</text>
+</svg>

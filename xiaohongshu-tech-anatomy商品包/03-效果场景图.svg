@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1242" height="1660" viewBox="0 0 1242 1660">
+  <rect width="1242" height="1660" fill="#f7f7f2"/>
+  <text x="86" y="150" font-family="Arial, 'PingFang SC', sans-serif" font-size="68" font-weight="900" fill="#111">它能帮你做什么？</text>
+  <text x="90" y="218" font-family="Arial, 'PingFang SC', sans-serif" font-size="31" font-weight="600" fill="#475569">把复杂科技话题，变成有结构、有洞察的小红书图文</text>
+
+  <g transform="translate(86 310)" font-family="Arial, 'PingFang SC', sans-serif">
+    <rect width="1070" height="310" rx="24" fill="#ffffff" stroke="#111" stroke-width="2"/>
+    <text x="44" y="75" font-size="42" font-weight="900" fill="#111">输入一个主题</text>
+    <text x="44" y="135" font-size="31" font-weight="700" fill="#0f766e">例如：AI Agent / GPU / 向量数据库 / 机器人产业链</text>
+    <line x1="44" y1="185" x2="1020" y2="185" stroke="#111" stroke-width="2"/>
+    <text x="44" y="245" font-size="33" font-weight="800" fill="#111">输出：图像 Prompt + 标题 + 正文 + 标签</text>
+  </g>
+
+  <g transform="translate(86 700)" font-family="Arial, 'PingFang SC', sans-serif">
+    <rect width="500" height="360" rx="24" fill="#e0f2fe" stroke="#111" stroke-width="2"/>
+    <text x="34" y="70" font-size="39" font-weight="900" fill="#111">拆结构</text>
+    <text x="34" y="130" font-size="29" font-weight="700" fill="#334155">底层资源</text>
+    <text x="34" y="180" font-size="29" font-weight="700" fill="#334155">核心技术</text>
+    <text x="34" y="230" font-size="29" font-weight="700" fill="#334155">应用场景</text>
+    <text x="34" y="280" font-size="29" font-weight="700" fill="#334155">商业路径</text>
+
+    <rect x="570" width="500" height="360" rx="24" fill="#dcfce7" stroke="#111" stroke-width="2"/>
+    <text x="604" y="70" font-size="39" font-weight="900" fill="#111">讲清楚</text>
+    <text x="604" y="130" font-size="29" font-weight="700" fill="#334155">这是什么</text>
+    <text x="604" y="180" font-size="29" font-weight="700" fill="#334155">靠什么运转</text>
+    <text x="604" y="230" font-size="29" font-weight="700" fill="#334155">钱从哪里来</text>
+    <text x="604" y="280" font-size="29" font-weight="700" fill="#334155">瓶颈在哪里</text>
+  </g>
+
+  <g transform="translate(86 1138)" font-family="Arial, 'PingFang SC', sans-serif">
+    <rect width="1070" height="260" rx="24" fill="#111827"/>
+    <text x="44" y="72" font-size="38" font-weight="900" fill="#fff">适合持续产出的栏目定位</text>
+    <text x="44" y="132" font-size="30" font-weight="700" fill="#e5e7eb">用人体解剖图的方式，一寸一寸拆开技术、产品和产业链。</text>
+    <text x="44" y="190" font-size="30" font-weight="700" fill="#e5e7eb">看清底层资源、核心模块、价值流向和真正的瓶颈。</text>
+  </g>
+
+  <text x="86" y="1508" font-family="Arial, 'PingFang SC', sans-serif" font-size="34" font-weight="800" fill="#111">说明：本商品为模板与教程，不承诺流量、涨粉或收益。</text>
+</svg>

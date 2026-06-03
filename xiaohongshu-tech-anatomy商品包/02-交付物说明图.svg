@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1242" height="1660" viewBox="0 0 1242 1660">
+  <rect width="1242" height="1660" fill="#edf3f0"/>
+  <text x="90" y="155" font-family="Arial, 'PingFang SC', sans-serif" font-size="70" font-weight="900" fill="#111">你会收到什么？</text>
+  <text x="94" y="222" font-family="Arial, 'PingFang SC', sans-serif" font-size="32" font-weight="600" fill="#475569">不是单条提示词，而是一套可复用内容工作流</text>
+
+  <g font-family="Arial, 'PingFang SC', sans-serif">
+    <g transform="translate(90 315)">
+      <rect width="1062" height="150" rx="18" fill="#ffffff" stroke="#111" stroke-width="2"/>
+      <text x="42" y="62" font-size="34" font-weight="900" fill="#111">01  Skill 工作流文件</text>
+      <text x="42" y="108" font-size="28" font-weight="600" fill="#475569">用于固定生成逻辑：选题、边界、图像 Prompt、文案结构</text>
+    </g>
+    <g transform="translate(90 505)">
+      <rect width="1062" height="150" rx="18" fill="#ffffff" stroke="#111" stroke-width="2"/>
+      <text x="42" y="62" font-size="34" font-weight="900" fill="#111">02  科技解剖图 Prompt 模板</text>
+      <text x="42" y="108" font-size="28" font-weight="600" fill="#475569">适配 3:4 竖版小红书图，强调结构、价值流、瓶颈</text>
+    </g>
+    <g transform="translate(90 695)">
+      <rect width="1062" height="150" rx="18" fill="#ffffff" stroke="#111" stroke-width="2"/>
+      <text x="42" y="62" font-size="34" font-weight="900" fill="#111">03  标题 / 正文 / 标签模板</text>
+      <text x="42" y="108" font-size="28" font-weight="600" fill="#475569">按小红书科技内容节奏输出 5 个标题、正文、标签</text>
+    </g>
+    <g transform="translate(90 885)">
+      <rect width="1062" height="150" rx="18" fill="#ffffff" stroke="#111" stroke-width="2"/>
+      <text x="42" y="62" font-size="34" font-weight="900" fill="#111">04  主题分类方法</text>
+      <text x="42" y="108" font-size="28" font-weight="600" fill="#475569">技术系统 / 产业链 / 产品架构 / 商业模式 / 基础设施</text>
+    </g>
+    <g transform="translate(90 1075)">
+      <rect width="1062" height="150" rx="18" fill="#ffffff" stroke="#111" stroke-width="2"/>
+      <text x="42" y="62" font-size="34" font-weight="900" fill="#111">05  示例选题与使用说明</text>
+      <text x="42" y="108" font-size="28" font-weight="600" fill="#475569">AI芯片、RAG、Agent、云计算、机器人、储能等方向</text>
+    </g>
+  </g>
+
+  <rect x="90" y="1325" width="1062" height="185" rx="24" fill="#111827"/>
+  <text x="135" y="1395" font-family="Arial, 'PingFang SC', sans-serif" font-size="36" font-weight="900" fill="#fff">交付形式</text>
+  <text x="135" y="1455" font-family="Arial, 'PingFang SC', sans-serif" font-size="30" font-weight="600" fill="#dbeafe">虚拟数字资料｜付款后发送文件与说明文档｜不发实物</text>
+</svg>

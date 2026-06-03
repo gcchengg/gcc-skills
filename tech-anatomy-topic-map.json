@@ -1,0 +1,260 @@
+{
+  "name": "小红书科技解剖选题库",
+  "description": "用于按大模块管理技术、产业链、产品架构、基础设施和应用生态类小红书解剖图选题。",
+  "version": "1.0.0",
+  "modules": [
+    {
+      "module": "AI / 大模型",
+      "anatomy_types": ["技术系统", "产业链", "产品架构", "应用生态"],
+      "submodules": [
+        "GPU--done",
+        "AI芯片--done",
+        "大模型训练流程--done",
+        "大模型推理系统--done",
+        "RAG系统--done",
+        "AI Agent--done",
+        "向量数据库--done",
+        "MLOps--done",
+        "数据标注产业--done",
+        "合成数据--done",
+        "模型评测--done",
+        "模型安全--done",
+        "多模态模型--done",
+        "AI编程助手--done",
+        "AI搜索--done",
+        "AI工作流平台--done",
+        "企业私有化大模型--done",
+        "AI应用商业化--done"
+      ]
+    },
+
+    {
+      "module": "云计算 / 数据中心",
+      "anatomy_types": ["基础设施", "技术系统", "产业链"],
+      "submodules": [
+        "数据中心结构--done",
+        "云计算架构--done",
+        "公有云商业模式--done",
+        "私有云--done",
+        "混合云--done",
+        "容器与Kubernetes--done",
+        "Serverless--done",
+        "云存储--done",
+        "CDN--done",
+        "边缘计算--done",
+        "数据中心冷却系统--done",
+        "数据中心供电系统--done",
+        "光模块--done",
+        "高速网络交换机--done",
+        "云安全--done",
+        "云成本优化--done"
+      ]
+    },
+
+    {
+      "module": "半导体 / 芯片",
+      "anatomy_types": ["产业链", "技术系统", "基础设施"],
+      "submodules": [
+        "半导体产业链--done",
+        "晶圆制造流程--done",
+        "光刻机--done",
+        "EDA软件--done",
+        "IP核--done",
+        "CPU-done",
+        "GPU--done",
+        "NPU--done",
+        "FPGA--done",
+        "存储芯片--done",
+        "功率半导体--done",
+        "模拟芯片--done",
+        "封装测试--done",
+        "Chiplet-done",
+        "先进封装-done",
+        "碳化硅-done",
+        "车规芯片-done"
+      ]
+    },
+
+    {
+      "module": "机器人 / 具身智能",
+      "anatomy_types": ["产业链", "技术系统", "产品架构", "应用生态"],
+      "submodules": [
+        "机器人产业链-done",
+        "人形机器人-done",
+        "机械臂-done",
+        "灵巧手-done",
+        "伺服电机-done",
+        "减速器-done",
+        "传感器-done",
+        "机器人控制器-done",
+        "运动规划-done",
+        "视觉感知-done",
+        "SLAM-done",
+        "具身智能大模型-done",
+        "仓储机器人-done",
+        "服务机器人-done",
+        "工业机器人-done",
+        "机器人商业化瓶颈-done"
+      ]
+    },
+    {
+      "module": "自动驾驶 / 智能汽车",
+      "anatomy_types": ["技术系统", "产品架构", "产业链"],
+      "submodules": [
+        "自动驾驶系统-done",
+        "激光雷达-done",
+        "毫米波雷达-done",
+        "车载摄像头-done",
+        "域控制器-done",
+        "智能座舱-done",
+        "高精地图-done",
+        "端到端自动驾驶-done",
+        "车路协同-done",
+        "电动汽车三电系统-done",
+        "动力电池-done",
+        "电驱系统-done",
+        "电控系统-done",
+        "充电桩-done",
+        "换电模式-done",
+        "车载芯片-done"
+      ]
+    },
+    {
+      "module": "新能源 / 储能",
+      "anatomy_types": ["产业链", "基础设施", "技术系统"],
+      "submodules": [
+        "光伏产业链-done",
+        "风电产业链-done",
+        "储能产业链-done",
+        "锂电池结构-done",
+        "钠电池-done",
+        "固态电池-done",
+        "BMS电池管理系统-done",
+        "PCS储能变流器-done",
+        "逆变器-done",
+        "虚拟电厂-done",
+        "智能电网-done",
+        "充电网络-done",
+        "氢能产业链-done",
+        "碳交易系统-done"
+      ]
+    },
+    {
+      "module": "低空经济 / 航空航天",
+      "anatomy_types": ["产业链", "基础设施", "应用生态"],
+      "submodules": [
+        "低空经济产业链-done",
+        "eVTOL-done",
+        "无人机产业链-done",
+        "飞控系统-done",
+        "电机与电池系统-done",
+        "空域管理-done",
+        "低空通信导航-done",
+        "卫星互联网-done",
+        "卫星制造-done",
+        "火箭发射产业链-done",
+        "遥感卫星-done",
+        "商业航天-done",
+        "北斗导航应用-done"
+      ]
+    },
+    {
+      "module": "AR / VR / 空间计算",
+      "anatomy_types": ["产品架构", "技术系统", "应用生态"],
+      "submodules": [
+        "AR眼镜-done",
+        "VR头显-done",
+        "智能眼镜-done",
+        "光波导-done",
+        "Micro OLED-done",
+        "空间计算系统-done",
+        "手势识别-done",
+        "眼动追踪-done",
+        "3D内容生产-done",
+        "虚拟人-done",
+        "元宇宙基础设施-done",
+        "XR应用生态-done"
+      ]
+    },
+    {
+      "module": "SaaS / 企业软件",
+      "anatomy_types": ["公司商业模式", "产品架构", "应用生态"],
+      "submodules": [
+        "SaaS商业模式done",
+        "CRMdone",
+        "ERPdone",
+        "HR SaaSdone",
+        "财税SaaSdone",
+        "协同办公-done",
+        "BI数据分析-done",
+        "低代码平台",
+        "API经济",
+        "企业微信生态",
+        "PLG增长模式",
+        "私有化部署",
+        "客户成功体系",
+        "SaaS续费模型"
+      ]
+    },
+需要提示词请前往下方链接查看：
+
+https://pan.quark.cn/s/0e671f9b35e2?pwd=dd1S
+
+提取码：dd1S
+    {
+      "module": "网络安全 / 数据安全",
+      "anatomy_types": ["技术系统", "产业链", "基础设施"],
+      "submodules": [
+        "网络安全产业链",
+        "零信任架构",
+        "身份认证IAM",
+        "终端安全",
+        "云安全",
+        "数据安全",
+        "隐私计算",
+        "密码技术",
+        "安全运营中心SOC",
+        "攻防演练",
+        "大模型安全",
+        "API安全",
+        "供应链安全"
+      ]
+    },
+    {
+      "module": "金融科技 / 支付",
+      "anatomy_types": ["技术系统", "产品架构", "产业链"],
+      "submodules": [
+        "支付系统",
+        "清算系统",
+        "数字人民币",
+        "互联网银行",
+        "风控系统",
+        "反欺诈系统",
+        "信贷科技",
+        "量化交易系统",
+        "区块链基础设施",
+        "稳定币",
+        "RWA",
+        "保险科技"
+      ]
+    },
+    {
+      "module": "消费科技 / 平台生态",
+      "anatomy_types": ["应用生态", "产品架构", "公司商业模式"],
+      "submodules": [
+        "短视频推荐系统",
+        "直播电商",
+        "内容分发算法",
+        "本地生活平台",
+        "外卖调度系统",
+        "网约车派单系统",
+        "游戏引擎",
+        "广告投放系统",
+        "会员订阅体系",
+        "社交产品增长模型",
+        "跨境电商平台",
+        "物流履约系统"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">
+  <title>我发现 Codex 可以用手机控制了</title>
+  
+  <rect width="1080" height="1440" rx="0" fill="#f7f8f4"/>
+  <circle cx="960" cy="132" r="110" fill="#dcefe4" opacity=".75"/>
+  <circle cx="110" cy="1260" r="150" fill="#e9eee9" opacity=".9"/>
+  <path d="M0 1120 C220 1040 360 1190 560 1110 C760 1030 880 1090 1080 1010 L1080 1440 L0 1440 Z" fill="#eef2ec" opacity=".8"/>
+  
+  
+  <rect x="70" y="64" width="178" height="38" rx="19" fill="#112018"/>
+  <text x="159" y="89" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#e9fff0">01/09</text>
+  <text x="70" y="148" font-family="Arial, PingFang SC, sans-serif" font-size="22" font-weight="800" fill="#188a54" letter-spacing="2">CODEX MOBILE WORKFLOW</text>
+  
+  
+    <text x="74" y="242" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="78" font-weight="900" fill="#111827" letter-spacing="0"><tspan x="74" dy="0">我发现 Codex</tspan><tspan x="74" dy="88.13999999999999">可以用手机控制了</tspan></text>
+    <text x="74" y="398" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="34" font-weight="500" fill="#52605a" letter-spacing="0"><tspan x="74" dy="0">电脑负责执行，手机随时接管</tspan></text>
+    
+  <rect x="74" y="560" width="570" height="420" rx="34" fill="#202722"/>
+  <rect x="94" y="580" width="530" height="380" rx="20" fill="#fcfdf9"/>
+  <rect x="126" y="618" width="466" height="72" rx="18" fill="#111827"/>
+  <text x="156" y="665" font-family="Arial, PingFang SC, sans-serif" font-size="30" font-weight="800" fill="#e9fff0">Codex on Mac</text>
+  <rect x="126" y="720" width="466" height="92" rx="20" fill="#e9f5ed"/>
+  <text x="156" y="774" font-family="PingFang SC, Arial, sans-serif" font-size="26" font-weight="700" fill="#176b43">正在读取项目、修改文件、运行测试</text>
+  <rect x="126" y="842" width="466" height="170" rx="20" fill="#101612"/>
+  <text x="156" y="890" font-family="Menlo, Monaco, monospace" font-size="22" fill="#92f0b0">$ npm test</text>
+  <text x="156" y="932" font-family="Menlo, Monaco, monospace" font-size="22" fill="#d8f8df">✓ 24 tests passed</text>
+  <text x="156" y="974" font-family="Menlo, Monaco, monospace" font-size="22" fill="#f8e3a2">review diff before commit</text>
+  <rect x="199.4" y="988" width="319.20000000000005" height="22" rx="11" fill="#202722"/>
+  
+    
+  <rect x="682" y="495" width="282" height="590" rx="28.200000000000003" fill="#101612"/>
+  <rect x="697" y="510" width="252" height="560" rx="21.15" fill="#fbfcf9"/>
+  <rect x="780.7" y="525" width="84.6" height="12" rx="6" fill="#101612"/>
+  <text x="724" y="583" font-family="Arial, PingFang SC, sans-serif" font-size="30" font-weight="800" fill="#111827">ChatGPT</text>
+  <rect x="718" y="619" width="240" height="88" rx="22" fill="#e9f5ed"/>
+  <text x="744" y="672" font-family="PingFang SC, Arial, sans-serif" font-size="25" font-weight="700" fill="#176b43">查看 Codex 进度</text>
+  <rect x="718" y="727" width="240" height="98" rx="22" fill="#111827"/>
+  <text x="744" y="786" font-family="PingFang SC, Arial, sans-serif" font-size="25" font-weight="700" fill="#ffffff">批准下一步</text>
+  <rect x="718" y="845" width="240" height="88" rx="22" fill="#f0f2ee"/>
+  <text x="744" y="898" font-family="PingFang SC, Arial, sans-serif" font-size="25" font-weight="700" fill="#38413c">继续补充指令</text>
+  <rect x="718" y="987" width="240" height="54" rx="27" fill="#edf0ec"/>
+  <text x="744" y="1022" font-family="PingFang SC, Arial, sans-serif" font-size="21" fill="#68736d">给 Codex 补充一句指令...</text>
+  
+    
+  <path d="M620 780 C651 700, 651 840, 682 760" stroke="#188a54" stroke-width="10" fill="none" stroke-linecap="round"/>
+  <path d="M654 750 L682 760 L664 784" stroke="#188a54" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+    <rect x="74" y="1162" width="224" height="58" rx="29" fill="#e9f5ed"/><text x="96" y="1200" font-family="PingFang SC, Arial, sans-serif" font-size="25" font-weight="800" fill="#176b43">真实截图教程</text>
+    <rect x="340" y="1162" width="224" height="58" rx="29" fill="#111827"/><text x="362" y="1200" font-family="PingFang SC, Arial, sans-serif" font-size="25" font-weight="800" fill="#ffffff">9 张收藏版</text>
+    <text x="74" y="1285" font-family="PingFang SC, Arial, sans-serif" font-size="30" font-weight="700" fill="#52605a">不用守在电脑前，也能远程调度正在工作的 Codex</text>
+    
+</svg>

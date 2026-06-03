@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fbf3e7"/>
+      <stop offset="100%" stop-color="#efe2d0"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#8a6b51" flood-opacity="0.13"/>
+    </filter>
+  </defs>
+  <rect width="1080" height="1440" fill="url(#bg)"/>
+  <circle cx="944" cy="128" r="92" fill="#d9b996" opacity="0.23"/>
+  <circle cx="128" cy="1290" r="112" fill="#c98983" opacity="0.15"/>
+  <rect x="64" y="64" width="952" height="1312" rx="34" fill="#fff8ee" opacity="0.86" filter="url(#shadow)"/>
+  <rect x="92" y="92" width="896" height="1256" rx="26" fill="none" stroke="#d8c4ad" stroke-width="2"/>
+  <text x="108" y="165" font-size="24" font-weight="800" letter-spacing="3" fill="#a27d60">UNIVERSAL FORMULA</text>
+  <text x="108" y="265" font-size="66" font-weight="900" fill="#2b2521">万能提示词公式</text>
+  <text x="108" y="325" font-size="32" font-weight="500" fill="#806d5f">把这 6 句组合起来就能用</text>
+  <line x1="108" y1="384" x2="972" y2="384" stroke="#d8c4ad" stroke-width="2"/>
+  <rect x="108" y="412" width="138" height="34" rx="17" fill="#2d2723"/>
+  <text x="177" y="436" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">文字教学图</text>
+  <rect x="264" y="412" width="148" height="34" rx="17" fill="#b88a6b"/>
+  <text x="338" y="436" text-anchor="middle" font-size="20" font-weight="700" fill="#fff">小红书3:4</text>
+  
+          <rect x="108" y="500" width="864" height="90" rx="20" fill="#fffaf2" stroke="#dac9b5" stroke-width="2"/>
+          <circle cx="152" cy="545" r="16" fill="#B88A6B"/>
+          <text x="190" y="540" font-size="28" font-weight="800" fill="#2d2723">1  基于上传自拍</text>
+          <text x="190" y="574" font-size="24" fill="#6f6259">请基于我上传的自拍/照片</text>
+
+          <rect x="108" y="618" width="864" height="90" rx="20" fill="#fffaf2" stroke="#dac9b5" stroke-width="2"/>
+          <circle cx="152" cy="663" r="16" fill="#C99691"/>
+          <text x="190" y="658" font-size="28" font-weight="800" fill="#2d2723">2  保持同一身份</text>
+          <text x="190" y="692" font-size="24" fill="#6f6259">五官比例、肤色气质、真实质感不变</text>
+
+          <rect x="108" y="736" width="864" height="90" rx="20" fill="#fffaf2" stroke="#dac9b5" stroke-width="2"/>
+          <circle cx="152" cy="781" r="16" fill="#A5A879"/>
+          <text x="190" y="776" font-size="28" font-weight="800" fill="#2d2723">3  指定分析主题</text>
+          <text x="190" y="810" font-size="24" fill="#6f6259">女生妆容 / 发型 / 色彩 / 穿搭风格</text>
+
+          <rect x="108" y="854" width="864" height="90" rx="20" fill="#fffaf2" stroke="#dac9b5" stroke-width="2"/>
+          <circle cx="152" cy="899" r="16" fill="#917A67"/>
+          <text x="190" y="894" font-size="28" font-weight="800" fill="#2d2723">4  说明画面风格</text>
+          <text x="190" y="928" font-size="24" fill="#6f6259">高级美妆杂志感，象牙色背景</text>
+
+          <rect x="108" y="972" width="864" height="90" rx="20" fill="#fffaf2" stroke="#dac9b5" stroke-width="2"/>
+          <circle cx="152" cy="1017" r="16" fill="#D1B28C"/>
+          <text x="190" y="1012" font-size="28" font-weight="800" fill="#2d2723">5  列出分析模块</text>
+          <text x="190" y="1046" font-size="24" fill="#6f6259">色板、小图标、局部特写、推荐/避免</text>
+
+          <rect x="108" y="1090" width="864" height="90" rx="20" fill="#fffaf2" stroke="#dac9b5" stroke-width="2"/>
+          <circle cx="152" cy="1135" r="16" fill="#B88A6B"/>
+          <text x="190" y="1130" font-size="28" font-weight="800" fill="#2d2723">6  加上限制要求</text>
+          <text x="190" y="1164" font-size="24" fill="#6f6259">自然高级，不廉价，不要品牌logo</text>
+  <rect x="108" y="1250" width="864" height="74" rx="18" fill="#f2e5d5" opacity="0.85"/>
+        <text x="136" y="1282" font-size="23" font-weight="600" fill="#6b584d">公式：</text>
+<text x="136" y="1313.05" font-size="23" font-weight="600" fill="#6b584d">上传对象 + 身份保留 + 主题模块 + 视觉风格 + 输出内容 + 禁止事项</text>
+  <text x="934" y="1328" text-anchor="end" font-size="22" fill="#a89583">02 / 07</text>
+</svg>

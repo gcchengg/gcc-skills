@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1440" viewBox="0 0 1080 1440">
+  <title>电脑干重活 手机管方向</title>
+  
+  <rect width="1080" height="1440" rx="0" fill="#f7f8f4"/>
+  <circle cx="960" cy="132" r="110" fill="#dcefe4" opacity=".75"/>
+  <circle cx="110" cy="1260" r="150" fill="#e9eee9" opacity=".9"/>
+  <path d="M0 1120 C220 1040 360 1190 560 1110 C760 1030 880 1090 1080 1010 L1080 1440 L0 1440 Z" fill="#eef2ec" opacity=".8"/>
+  
+  
+  <rect x="70" y="64" width="178" height="38" rx="19" fill="#112018"/>
+  <text x="159" y="89" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#e9fff0">09/09</text>
+  <text x="70" y="148" font-family="Arial, PingFang SC, sans-serif" font-size="22" font-weight="800" fill="#188a54" letter-spacing="2">一句话总结</text>
+  
+  
+    <text x="74" y="242" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="78" font-weight="900" fill="#111827" letter-spacing="0"><tspan x="74" dy="0">电脑干重活</tspan><tspan x="74" dy="88.13999999999999">手机管方向</tspan></text>
+    <text x="74" y="398" text-anchor="start" font-family="PingFang SC, Noto Sans CJK SC, Microsoft YaHei, Arial, sans-serif" font-size="34" font-weight="500" fill="#52605a" letter-spacing="0"><tspan x="74" dy="0">Codex 手机端的意义，不是把手机变成 </tspan><tspan x="74" dy="48.28">IDE，而是把手机变成远程指挥台</tspan></text>
+    <rect x="92" y="555" width="896" height="430" rx="44" fill="#111827"/>
+    <text x="540" y="675" text-anchor="middle" font-family="PingFang SC, Arial, sans-serif" font-size="48" font-weight="900" fill="#ffffff">手机不是 IDE</text>
+    <text x="540" y="760" text-anchor="middle" font-family="PingFang SC, Arial, sans-serif" font-size="48" font-weight="900" fill="#d8f8df">手机是指挥台</text>
+    <text x="540" y="865" text-anchor="middle" font-family="PingFang SC, Arial, sans-serif" font-size="30" font-weight="600" fill="#b9c9bf">电脑继续执行，手机随时接管方向</text>
+    <rect x="110" y="1082" width="404" height="58" rx="29" fill="#e9f5ed"/><text x="132" y="1120" font-family="PingFang SC, Arial, sans-serif" font-size="25" font-weight="800" fill="#176b43">你会用它修 bug 吗？</text>
+    <rect x="110" y="1168" width="284" height="58" rx="29" fill="#e9f5ed"/><text x="132" y="1206" font-family="PingFang SC, Arial, sans-serif" font-size="25" font-weight="800" fill="#176b43">写文档？跑测试？</text>
+    <text x="110" y="1290" font-family="PingFang SC, Arial, sans-serif" font-size="26" font-weight="700" fill="#52605a">评论区可以直接分享你的 Codex 手机端用法。</text>
+    
+</svg>

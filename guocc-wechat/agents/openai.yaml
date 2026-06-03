@@ -1,0 +1,6 @@
+interface:
+  display_name: "Guocc WeChat"
+  short_description: "Folder content to WeChat-ready Markdown"
+  default_prompt: "Use $guocc-wechat to scan this folder, create a WeChat-ready Markdown draft, and prepare it for publishing."
+policy:
+  allow_implicit_invocation: true

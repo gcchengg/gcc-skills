@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3072" height="4096" viewBox="0 0 1080 1440">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="8" refY="6" orient="auto">
+      <path d="M2,2 L10,6 L2,10 Z" fill="#35495e"/>
+    </marker>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7f4ec"/>
+      <stop offset="1" stop-color="#e9f0ed"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1440" fill="url(#paper)"/>
+  <rect x="34" y="34" width="1012" height="1372" rx="18" fill="none" stroke="#283b42" stroke-width="3"/>
+  <text x="72" y="92" font-size="28" font-weight="700" fill="#345">TECH BUSINESS ANATOMY 03</text>
+  <text x="72" y="165" font-size="60" font-weight="900" fill="#102a32">ERP</text>
+  <text x="72" y="260" font-size="28" font-weight="700" fill="#287066">产品架构 解剖图</text>
+  <g opacity="0.55">
+    <path d="M282 282 H798" stroke="#233" stroke-width="2"/>
+    <path d="M282 1248 H798" stroke="#233" stroke-width="2"/>
+  </g>
+  <g>
+      <rect x="318" y="310" width="444" height="56" rx="8" fill="#1f5f8b" opacity="0.96"/>
+      <text x="540" y="346" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">业务流程</text>
+      <path d="M540 372 L540 392" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="398" width="444" height="56" rx="8" fill="#267b72" opacity="0.96"/>
+      <text x="540" y="434" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">主数据</text>
+      <path d="M540 460 L540 480" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="486" width="444" height="56" rx="8" fill="#4b6b8f" opacity="0.96"/>
+      <text x="540" y="522" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">财务核算</text>
+      <path d="M540 548 L540 568" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="574" width="444" height="56" rx="8" fill="#6f7d4f" opacity="0.96"/>
+      <text x="540" y="610" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">采购库存</text>
+      <path d="M540 636 L540 656" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="662" width="444" height="56" rx="8" fill="#2f766d" opacity="0.96"/>
+      <text x="540" y="698" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">生产计划</text>
+      <path d="M540 724 L540 744" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="750" width="444" height="56" rx="8" fill="#735f91" opacity="0.96"/>
+      <text x="540" y="786" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">供应链协同</text>
+      <path d="M540 812 L540 832" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="838" width="444" height="56" rx="8" fill="#5c7483" opacity="0.96"/>
+      <text x="540" y="874" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">经营分析</text>
+      <path d="M540 900 L540 920" stroke="#35495e" stroke-width="3" marker-end="url(#arrow)"/>
+    </g>
+<g>
+      <rect x="318" y="926" width="444" height="56" rx="8" fill="#8a6a3d" opacity="0.96"/>
+      <text x="540" y="962" text-anchor="middle" font-size="28" font-weight="700" fill="#fff">权限合规</text>
+      
+    </g>
+  <g>
+    <rect x="66" y="348" width="218" height="318" rx="10" fill="#ffffff" stroke="#d6dedc" stroke-width="2"/>
+    <rect x="66" y="348" width="218" height="48" rx="10" fill="#eef5f1"/>
+    <text x="90" y="380" font-size="24" font-weight="800" fill="#1f3d3b">对象边界</text>
+    <text x="90" y="436" font-size="22" fill="#263238">产品架构</text>
+<text x="90" y="468" font-size="22" fill="#263238">只拆企业服务中</text>
+<text x="90" y="500" font-size="22" fill="#263238">的产品结构、价</text>
+<text x="90" y="532" font-size="22" fill="#263238">值流、成本与风</text>
+<text x="90" y="564" font-size="22" fill="#263238">险，不做公司排</text>
+<text x="90" y="596" font-size="22" fill="#263238">名。</text>
+  </g>
+  <g>
+    <rect x="796" y="348" width="218" height="396" rx="10" fill="#ffffff" stroke="#d6dedc" stroke-width="2"/>
+    <rect x="796" y="348" width="218" height="48" rx="10" fill="#eef5f1"/>
+    <text x="820" y="380" font-size="24" font-weight="800" fill="#1f3d3b">商业洞察</text>
+    <text x="820" y="436" font-size="22" fill="#263238">把财务、采购、</text>
+<text x="820" y="468" font-size="22" fill="#263238">库存、生产、供</text>
+<text x="820" y="500" font-size="22" fill="#263238">应链和经营数据</text>
+<text x="820" y="532" font-size="22" fill="#263238">拆开</text>
+<text x="820" y="564" font-size="22" fill="#263238">ERP不是一个软</text>
+<text x="820" y="596" font-size="22" fill="#263238">件模块集合，而</text>
+<text x="820" y="628" font-size="22" fill="#263238">是企业经营流程</text>
+<text x="820" y="660" font-size="22" fill="#263238">和财务事实的统</text>
+<text x="820" y="692" font-size="22" fill="#263238">一底座。</text>
+  </g>
+  <g>
+    <rect x="66" y="710" width="218" height="338" rx="10" fill="#ffffff" stroke="#d6dedc" stroke-width="2"/>
+    <rect x="66" y="710" width="218" height="48" rx="10" fill="#eef5f1"/>
+    <text x="90" y="742" font-size="24" font-weight="800" fill="#1f3d3b">价值流动</text>
+    <text x="90" y="798" font-size="22" fill="#263238">需求进入产品</text>
+<text x="90" y="830" font-size="22" fill="#263238">产品沉淀数据</text>
+<text x="90" y="862" font-size="22" fill="#263238">使用形成粘性</text>
+<text x="90" y="894" font-size="22" fill="#263238">续费带来收入</text>
+  </g>
+  <g>
+    <rect x="796" y="790" width="218" height="300" rx="10" fill="#ffffff" stroke="#d6dedc" stroke-width="2"/>
+    <rect x="796" y="790" width="218" height="48" rx="10" fill="#eef5f1"/>
+    <text x="820" y="822" font-size="24" font-weight="800" fill="#1f3d3b">成本结构</text>
+    <text x="820" y="878" font-size="22" fill="#263238">研发投入</text>
+<text x="820" y="910" font-size="22" fill="#263238">云资源成本</text>
+<text x="820" y="942" font-size="22" fill="#263238">销售获客</text>
+<text x="820" y="974" font-size="22" fill="#263238">实施交付</text>
+<text x="820" y="1006" font-size="22" fill="#263238">客户成功</text>
+  </g>
+  <g>
+    <rect x="108" y="1138" width="864" height="132" rx="12" fill="#102a32" opacity="0.94"/>
+    <text x="144" y="1184" font-size="27" font-weight="800" fill="#e7fff8">一句话看懂</text>
+    <text x="144" y="1228" font-size="25" fill="#ffffff">ERP不是一个软件模块集合，而是企业经营流程和财</text>
+<text x="144" y="1262" font-size="25" fill="#ffffff">务事实的统一底座。</text>
+  </g>
+  <g>
+    <rect x="108" y="1294" width="864" height="72" rx="10" fill="#ffffff" stroke="#b8c8c5" stroke-width="2"/>
+    <text x="140" y="1338" font-size="22" font-weight="700" fill="#5a2d2d">真实瓶颈：实施周期 / 流程重构 / 主数据治</text>
+<text x="140" y="1368" font-size="22" font-weight="700" fill="#5a2d2d">理 / 跨部门协同 / 定制成本</text>
+  </g>
+</svg>
