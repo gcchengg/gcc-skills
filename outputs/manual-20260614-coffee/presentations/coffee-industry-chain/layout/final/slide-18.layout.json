@@ -1,0 +1,634 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/m58z25kb",
+    "id": "m58z25kb",
+    "slide": 19,
+    "layoutId": "/ppt/slideLayouts/slideLayout21.xml",
+    "layoutName": "ONE_COLUMN_TEXT",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#B3A29A",
+      "accent2": "#EAE5E1",
+      "accent3": "#B3A29A",
+      "accent4": "#E6CEBC",
+      "accent5": "#AA9185",
+      "accent6": "#834D31",
+      "dk1": "#2E1B11",
+      "lt1": "#F4F4F4",
+      "dk2": "#595959",
+      "lt2": "#EEEEEE",
+      "hlink": "#772E08",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Abel",
+      "Arial",
+      "Open Sans Light"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout21.xml",
+      "name": "ONE_COLUMN_TEXT",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout21.xml/128",
+          "id": "128",
+          "name": "Google Shape;128;p22",
+          "bbox": [
+            67.41,
+            115.13,
+            468.6,
+            355.43
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout21.xml/129",
+          "id": "129",
+          "name": "Google Shape;129;p22",
+          "bbox": [
+            64.09,
+            39.03,
+            459.02,
+            99.34
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            32.72,
+            46.72,
+            894.55,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            32.72,
+            120.99,
+            894.55,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x4nap4r6",
+      "id": "1148",
+      "name": "Google Shape;1148;p53",
+      "bbox": [
+        58.41,
+        110.8,
+        366.27,
+        492.91
+      ],
+      "rotation": 90,
+      "horizontalFlip": true,
+      "geometry": "snip1Rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "accent2"
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8jqh0fep",
+      "id": "1149",
+      "name": "Google Shape;1149;p53",
+      "bbox": [
+        75.59,
+        113.27,
+        380.6,
+        355.43
+      ],
+      "geometry": "rect",
+      "text": "ICO｜World Coffee Statistics\nWCR｜Coffee Varieties Catalog\nEU｜Deforestation-free Products\nWorld Bank｜Commodity Markets\n访问日期｜2026-06-14",
+      "textPreview": "ICO｜World Coffee Statistics | WCR｜Coffee Varieties Catalog | EU｜Deforestation-free Products | World Bank｜Commodity Markets | 访问日期｜2026-06-14",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 24,
+        "typeface": "Open Sans Light",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 10,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          },
+          {
+            "index": 2,
+            "text": "ICO｜World Coffee Statistics"
+          },
+          {
+            "index": 3,
+            "text": ""
+          },
+          {
+            "index": 4,
+            "text": "WCR｜Coffee Varieties Catalog"
+          },
+          {
+            "index": 5,
+            "text": ""
+          },
+          {
+            "index": 6,
+            "text": "EU｜Deforestation-free Products"
+          },
+          {
+            "index": 7,
+            "text": ""
+          },
+          {
+            "index": 8,
+            "text": "World Bank｜Commodity"
+          },
+          {
+            "index": 9,
+            "text": "Markets"
+          },
+          {
+            "index": 10,
+            "text": "⬣ 访问日期｜2026-06-14"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "ICO｜World Coffee Statistics",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 100000,
+          "spaceBefore": 300,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "ICO｜World Coffee Statistics",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 2,
+          "text": "WCR｜Coffee Varieties Catalog",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 300,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "WCR｜Coffee Varieties Catalog",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 3,
+          "text": "EU｜Deforestation-free Products",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 300,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "EU｜Deforestation-free Products",
+              "fontSize": 18.67,
+              "typeface": "Abel",
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 4,
+          "text": "World Bank｜Commodity Markets",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 300,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "World Bank｜Commodity Markets",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 5,
+          "text": "访问日期｜2026-06-14",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "访问日期｜2026-06-14",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2t83itgf",
+      "id": "1150",
+      "name": "Google Shape;1150;p53",
+      "bbox": [
+        64.09,
+        39.03,
+        459.02,
+        99.34
+      ],
+      "geometry": "rect",
+      "text": "资料来源",
+      "textPreview": "资料来源",
+      "resolvedFontSize": 29.33,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 29.33,
+        "typeface": "Abel",
+        "color": "dk1",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "资料来源"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "资料来源",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "资料来源",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/re1w7mp0",
+      "id": "1151",
+      "name": "Google Shape;1151;p53",
+      "bbox": [
+        512.59,
+        233.44,
+        380.6,
+        260.03
+      ],
+      "geometry": "rect",
+      "text": "研究边界：种苗、种植、采收、生豆加工、跨境贸易、烘焙、产品制造与终端消费。\n\n不深入拆解：咖啡机制造、门店装修、乳制品、糖等外围产业。\n\n完整底稿：产业链研究底稿.md",
+      "textPreview": "研究边界：种苗、种植、采收、生豆加工、跨境贸易、烘焙、产品制造与终端消费。 |  | 不深入拆解：咖啡机制造、门店装修、乳制品、糖等外围产业。 |  | 完整底稿：产业链研究底稿.md",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 24,
+        "typeface": "Open Sans Light",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 11,
+        "lines": [
+          {
+            "index": 1,
+            "text": "⬣ "
+          },
+          {
+            "index": 2,
+            "text": "研究边界：种苗、种植、采收、生豆加工、跨境贸"
+          },
+          {
+            "index": 3,
+            "text": "易、烘焙、产品制造与终端消费。"
+          },
+          {
+            "index": 4,
+            "text": "⬣ "
+          },
+          {
+            "index": 5,
+            "text": "⬣ "
+          },
+          {
+            "index": 6,
+            "text": "不深入拆解：咖啡机制造、门店装修、乳制品、糖"
+          },
+          {
+            "index": 7,
+            "text": "等外围产业。"
+          },
+          {
+            "index": 8,
+            "text": ""
+          },
+          {
+            "index": 9,
+            "text": ""
+          },
+          {
+            "index": 10,
+            "text": ""
+          },
+          {
+            "index": 11,
+            "text": "完整底稿：产业链研究底稿.md"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "研究边界：种苗、种植、采收、生豆加工、跨境贸易、烘焙、产品制造与终端消费。",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "研究边界：种苗、种植、采收、生豆加工、跨境贸易、烘焙、产品制造与终端消费。",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 3,
+          "text": "不深入拆解：咖啡机制造、门店装修、乳制品、糖等外围产业。",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "不深入拆解：咖啡机制造、门店装修、乳制品、糖等外围产业。",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 5,
+          "text": "完整底稿：产业链研究底稿.md",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 300,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "完整底稿：产业链研究底稿.md",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        }
+      ]
+    }
+  ],
+  "composeRuns": []
+}

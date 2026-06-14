@@ -1,0 +1,844 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/bq1oryts",
+    "id": "bq1oryts",
+    "slide": 25,
+    "layoutId": "/ppt/slideLayouts/slideLayout21.xml",
+    "layoutName": "ONE_COLUMN_TEXT",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#B3A29A",
+      "accent2": "#EAE5E1",
+      "accent3": "#B3A29A",
+      "accent4": "#E6CEBC",
+      "accent5": "#AA9185",
+      "accent6": "#834D31",
+      "dk1": "#2E1B11",
+      "lt1": "#F4F4F4",
+      "dk2": "#595959",
+      "lt2": "#EEEEEE",
+      "hlink": "#772E08",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Abel",
+      "Arial",
+      "Open Sans Light"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout21.xml",
+      "name": "ONE_COLUMN_TEXT",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout21.xml/128",
+          "id": "128",
+          "name": "Google Shape;128;p22",
+          "bbox": [
+            67.41,
+            115.13,
+            468.6,
+            355.43
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout21.xml/129",
+          "id": "129",
+          "name": "Google Shape;129;p22",
+          "bbox": [
+            64.09,
+            39.03,
+            459.02,
+            99.34
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            32.72,
+            46.72,
+            894.55,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            32.72,
+            120.99,
+            894.55,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c3ylc7u5",
+      "id": "1148",
+      "name": "Google Shape;1148;p53",
+      "bbox": [
+        58.41,
+        110.8,
+        366.27,
+        492.91
+      ],
+      "rotation": 90,
+      "horizontalFlip": true,
+      "geometry": "snip1Rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "accent2"
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1kre1w7m",
+      "id": "1149",
+      "name": "Google Shape;1149;p53",
+      "bbox": [
+        75.59,
+        113.27,
+        380.6,
+        355.43
+      ],
+      "geometry": "rect",
+      "text": "Did you like the resources on this template? Get them for free at our other websites.\n\nPHOTOS\n\nModern brick building skyline\nGroup of engineers working\nNice drafting table\nModern building with closed windows\nLow angle modern building design\nSide view of business persons on stairs\nThree architects in front of modern building\nTwo architects planning new project at workplace\nBusinessman holding level",
+      "textPreview": "Did you like the resources on this template? Get them for free at our other websites. |  | PHOTOS |  | Modern brick building skyline | Gr...",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 24,
+        "typeface": "Open Sans Light",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 18,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          },
+          {
+            "index": 2,
+            "text": "Did you like the resources on this template? Get them"
+          },
+          {
+            "index": 3,
+            "text": "for free at our other websites."
+          },
+          {
+            "index": 4,
+            "text": ""
+          },
+          {
+            "index": 5,
+            "text": ""
+          },
+          {
+            "index": 6,
+            "text": ""
+          },
+          {
+            "index": 7,
+            "text": "PHOTOS"
+          },
+          {
+            "index": 8,
+            "text": ""
+          },
+          {
+            "index": 9,
+            "text": ""
+          },
+          {
+            "index": 10,
+            "text": "⬣ Modern brick building skyline"
+          },
+          {
+            "index": 11,
+            "text": "⬣ Group of engineers working"
+          },
+          {
+            "index": 12,
+            "text": "⬣ Nice drafting table"
+          },
+          {
+            "index": 13,
+            "text": "⬣ Modern building with closed windows"
+          },
+          {
+            "index": 14,
+            "text": "⬣ Low angle modern building design"
+          },
+          {
+            "index": 15,
+            "text": "⬣ Side view of business persons on stairs"
+          },
+          {
+            "index": 16,
+            "text": "⬣ Three architects in front of modern building"
+          },
+          {
+            "index": 17,
+            "text": "⬣ Two architects planning new project at workplace"
+          },
+          {
+            "index": 18,
+            "text": "⬣ Businessman holding level"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Did you like the resources on this template? Get them for free at our other websites.",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 100000,
+          "spaceBefore": 300,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Did you like the resources on this template? Get them for free at our other websites.",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 3,
+          "text": "PHOTOS",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 300,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "PHOTOS",
+              "fontSize": 18.67,
+              "typeface": "Abel",
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 5,
+          "text": "Modern brick building skyline",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Modern brick building skyline",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 6,
+          "text": "Group of engineers working",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Group of engineers working",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 7,
+          "text": "Nice drafting table",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Nice drafting table",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 8,
+          "text": "Modern building with closed windows",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Modern building with closed windows",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 9,
+          "text": "Low angle modern building design",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Low angle modern building design",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 10,
+          "text": "Side view of business persons on stairs",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Side view of business persons on stairs",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 11,
+          "text": "Three architects in front of modern building",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Three architects in front of modern building",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 12,
+          "text": "Two architects planning new project at workplace",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Two architects planning new project at workplace",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 13,
+          "text": "Businessman holding level",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Businessman holding leve",
+              "fontSize": 14.67,
+              "color": "dk1"
+            },
+            {
+              "index": 2,
+              "text": "l",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/re1w7mp0",
+      "id": "1150",
+      "name": "Google Shape;1150;p53",
+      "bbox": [
+        64.09,
+        39.03,
+        459.02,
+        99.34
+      ],
+      "geometry": "rect",
+      "text": "RESOURCES",
+      "textPreview": "RESOURCES",
+      "resolvedFontSize": 29.33,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 29.33,
+        "typeface": "Abel",
+        "color": "dk1",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "RESOURCES"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "RESOURCES",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "RESOURCES",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2t83itgf",
+      "id": "1151",
+      "name": "Google Shape;1151;p53",
+      "bbox": [
+        512.59,
+        233.44,
+        380.6,
+        260.03
+      ],
+      "geometry": "rect",
+      "text": "Portrait of young female architect working on clipboard at architectural project\nSerious young man working on laptop at office\nStone modern building with windows\nICONS\n\nPack Architecture 22\n",
+      "textPreview": "Portrait of young female architect working on clipboard at architectural project | Serious young man working on laptop at office | Stone ...",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 24,
+        "typeface": "Open Sans Light",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 11,
+        "lines": [
+          {
+            "index": 1,
+            "text": "⬣ Portrait of young female architect working on"
+          },
+          {
+            "index": 2,
+            "text": "clipboard at architectural project"
+          },
+          {
+            "index": 3,
+            "text": "⬣ Serious young man working on laptop at office"
+          },
+          {
+            "index": 4,
+            "text": "⬣ Stone modern building with windows"
+          },
+          {
+            "index": 5,
+            "text": ""
+          },
+          {
+            "index": 6,
+            "text": "ICONS"
+          },
+          {
+            "index": 7,
+            "text": ""
+          },
+          {
+            "index": 8,
+            "text": ""
+          },
+          {
+            "index": 9,
+            "text": "⬣ Pack Architecture 22"
+          },
+          {
+            "index": 10,
+            "text": ""
+          },
+          {
+            "index": 11,
+            "text": ""
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Portrait of young female architect working on clipboard at architectural project",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Portrait of young female architect working on clipboard at architectural project",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 2,
+          "text": "Serious young man working on laptop at office",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Serious young man working on laptop at office",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 3,
+          "text": "Stone modern building with windows",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Stone modern building with windows",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 4,
+          "text": "ICONS",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 1600,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "ICONS",
+              "fontSize": 18.67,
+              "typeface": "Abel",
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 6,
+          "text": "Pack Architecture 22",
+          "bulletCharacter": "⬣",
+          "marginLeft": 241300,
+          "indent": -196850,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Pack Architecture 22",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        }
+      ]
+    }
+  ],
+  "composeRuns": []
+}

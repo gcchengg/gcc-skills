@@ -1,0 +1,20 @@
+Task mode: template-following
+Primary profile: template-following
+Secondary profile: strategy / industry research
+
+Source deck:
+- 36 slides total.
+- Slides 1-21 are the reusable company-profile narrative.
+- Slides 22-36 are template resources and instructions.
+- Visual system: warm white canvas, dark brown text, taupe geometric panels,
+  large architectural photography, Abel/Open Sans typography.
+
+Reuse plan:
+- Reuse slides 1, 3, 4, 7, 10, 13, 17, 18, 19, 21, and 24.
+- Repeat structured layouts where the coffee research has parallel categories.
+- Preserve all source geometry, imagery, colors, and positioning.
+- Replace only inherited text objects.
+
+Known constraint:
+- The supplied source images are architecture-themed. They are retained to
+  preserve exact template fidelity; the user requested content replacement.

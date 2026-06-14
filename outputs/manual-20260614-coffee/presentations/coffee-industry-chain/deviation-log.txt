@@ -1,0 +1,6 @@
+Intentional deviations:
+- Source Latin typography is retained through existing text box styling, but
+  Chinese glyphs may resolve through the system CJK fallback font.
+- Source slide 21 attribution text is preserved while its heading and contact
+  block are adapted for the research deck.
+- Source slide 24 resource-list layout is repurposed for research sources.

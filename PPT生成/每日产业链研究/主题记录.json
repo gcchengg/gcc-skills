@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "topics": [
+    {
+      "topic": "咖啡产业链",
+      "normalized_topic": "咖啡",
+      "status": "completed",
+      "reserved_at": "2026-06-14T15:57:37+08:00",
+      "completed_at": "2026-06-14T15:59:36+08:00",
+      "file": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260614-咖啡产业链/产业链研究底稿.md"
+    },
+    {
+      "topic": "半导体产业链",
+      "normalized_topic": "半导体",
+      "status": "completed",
+      "reserved_at": "2026-06-14T21:29:08+08:00",
+      "completed_at": "2026-06-14T21:30:59+08:00",
+      "file": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260614-半导体产业链/产业链研究底稿.md"
+    }
+  ]
+}

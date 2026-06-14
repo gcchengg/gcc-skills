@@ -1,0 +1,805 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/pg3ex0nu",
+    "id": "pg3ex0nu",
+    "slide": 3,
+    "layoutId": "/ppt/slideLayouts/slideLayout21.xml",
+    "layoutName": "ONE_COLUMN_TEXT",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#B3A29A",
+      "accent2": "#EAE5E1",
+      "accent3": "#B3A29A",
+      "accent4": "#E6CEBC",
+      "accent5": "#AA9185",
+      "accent6": "#834D31",
+      "dk1": "#2E1B11",
+      "lt1": "#F4F4F4",
+      "dk2": "#595959",
+      "lt2": "#EEEEEE",
+      "hlink": "#772E08",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Abel",
+      "Arial",
+      "Open Sans Light",
+      "Open Sans SemiBold"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout21.xml",
+      "name": "ONE_COLUMN_TEXT",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout21.xml/128",
+          "id": "128",
+          "name": "Google Shape;128;p22",
+          "bbox": [
+            67.41,
+            115.13,
+            468.6,
+            355.43
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout21.xml/129",
+          "id": "129",
+          "name": "Google Shape;129;p22",
+          "bbox": [
+            64.09,
+            39.03,
+            459.02,
+            99.34
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            32.72,
+            46.72,
+            894.55,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            32.72,
+            120.99,
+            894.55,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u54zidon",
+      "id": "157",
+      "name": "Google Shape;157;p31",
+      "bbox": [
+        703.94,
+        348.52,
+        256.06,
+        195.91
+      ],
+      "horizontalFlip": true,
+      "geometry": "snip1Rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "accent2"
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5wjudg7a",
+      "id": "158",
+      "name": "Google Shape;158;p31",
+      "bbox": [
+        67.41,
+        115.13,
+        660.63,
+        409.73
+      ],
+      "geometry": "rect",
+      "text": "Here’s what you’ll find in this Slidesgo template: \n\nA slide structure based on a Company Profile presentation, which you can easily adapt to your needs. For more info on how to edit the template, please visit Slidesgo School or read our FAQs.\nAn assortment of illustrations to use in the presentation can be found in the alternative resources slide.\nA thanks slide, which you must keep so that proper credits for our design are given.\nA resources slide, where you’ll find links to all the elements used in the template.\nInstructions for use.\nFinal slides with: \nThe fonts and colors used in the template.\nMore infographic resources, whose size and color can be edited. \nSets of customizable icons of the following themes: general, business, avatar, creative process, education, help & support, medical, nature, performing arts, SEO & marketing, and teamwork\n\n\nYou can delete this slide when you’re done editing the presentation.",
+      "textPreview": "Here’s what you’ll find in this Slidesgo template:  |  | A slide structure based on a Company Profile presentation, which you can easily ...",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 24,
+        "typeface": "Open Sans Light",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 20,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Here’s what you’ll find in this Slidesgo template:"
+          },
+          {
+            "index": 2,
+            "text": ""
+          },
+          {
+            "index": 3,
+            "text": ""
+          },
+          {
+            "index": 4,
+            "text": "1. A slide structure based on a Company Profile presentation, which you can easily adapt to your"
+          },
+          {
+            "index": 5,
+            "text": "needs. For more info on how to edit the template, please visit Slidesgo School or read our FAQs."
+          },
+          {
+            "index": 6,
+            "text": "2. An assortment of illustrations to use in the presentation can be found in the alternative resources"
+          },
+          {
+            "index": 7,
+            "text": "slide."
+          },
+          {
+            "index": 8,
+            "text": "3. A thanks slide, which you must keep so that proper credits for our design are given."
+          },
+          {
+            "index": 9,
+            "text": "4. A resources slide, where you’ll find links to all the elements used in the template."
+          },
+          {
+            "index": 10,
+            "text": "5. Instructions for use."
+          },
+          {
+            "index": 11,
+            "text": "6. Final slides with:"
+          },
+          {
+            "index": 12,
+            "text": "● The fonts and colors used in the template."
+          },
+          {
+            "index": 13,
+            "text": "● More infographic resources, whose size and color can be edited."
+          },
+          {
+            "index": 14,
+            "text": "● Sets of customizable icons of the following themes: general, business, avatar, creative"
+          },
+          {
+            "index": 15,
+            "text": "process, education, help & support, medical, nature, performing arts, SEO & marketing,"
+          },
+          {
+            "index": 16,
+            "text": "and teamwork"
+          },
+          {
+            "index": 17,
+            "text": ""
+          },
+          {
+            "index": 18,
+            "text": ""
+          },
+          {
+            "index": 19,
+            "text": ""
+          },
+          {
+            "index": 20,
+            "text": "You can delete this slide when you’re done editing the presentation."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Here’s what you’ll find in this Slidesgo template: ",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Here’s what you’ll find in this ",
+              "fontSize": 13.33,
+              "color": "dk1"
+            },
+            {
+              "index": 2,
+              "text": "Slidesgo",
+              "fontSize": 13.33,
+              "typeface": "Open Sans SemiBold",
+              "color": "dk1"
+            },
+            {
+              "index": 3,
+              "text": " template: ",
+              "fontSize": 13.33,
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 3,
+          "text": "A slide structure based on a Company Profile presentation, which you can easily adapt to your needs. For more info on how to edit the template, please visit Slidesgo School or read our FAQs.",
+          "marginLeft": 457200,
+          "indent": -292100,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A slide structure based on a Company Profile presentation, which you can easily adapt to your needs. For more info on how to edit the template, please visit ",
+              "fontSize": 13.33,
+              "color": "dk1"
+            },
+            {
+              "index": 2,
+              "text": "Slidesgo School",
+              "fontSize": 13.33,
+              "typeface": "Open Sans SemiBold",
+              "color": "dk1"
+            },
+            {
+              "index": 3,
+              "text": " ",
+              "fontSize": 13.33,
+              "typeface": "Open Sans SemiBold",
+              "color": "dk1"
+            },
+            {
+              "index": 4,
+              "text": "or read our ",
+              "fontSize": 13.33,
+              "color": "dk1"
+            },
+            {
+              "index": 5,
+              "text": "FAQs",
+              "fontSize": 13.33,
+              "typeface": "Open Sans SemiBold",
+              "color": "dk1"
+            },
+            {
+              "index": 6,
+              "text": ".",
+              "fontSize": 13.33,
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 4,
+          "text": "An assortment of illustrations to use in the presentation can be found in the alternative resources slide.",
+          "marginLeft": 457200,
+          "indent": -292100,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "An assortment of illustrations to use in the presentation can be found in the ",
+              "fontSize": 13.33,
+              "color": "dk1"
+            },
+            {
+              "index": 2,
+              "text": "alternative resources",
+              "fontSize": 13.33,
+              "typeface": "Open Sans SemiBold",
+              "color": "dk1"
+            },
+            {
+              "index": 3,
+              "text": " slide.",
+              "fontSize": 13.33,
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 5,
+          "text": "A thanks slide, which you must keep so that proper credits for our design are given.",
+          "marginLeft": 457200,
+          "indent": -292100,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A ",
+              "fontSize": 13.33,
+              "color": "dk1"
+            },
+            {
+              "index": 2,
+              "text": "thanks ",
+              "fontSize": 13.33,
+              "typeface": "Open Sans SemiBold",
+              "color": "dk1"
+            },
+            {
+              "index": 3,
+              "text": "slide, which you must keep so that proper credits for our design are given.",
+              "fontSize": 13.33,
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 6,
+          "text": "A resources slide, where you’ll find links to all the elements used in the template.",
+          "marginLeft": 457200,
+          "indent": -292100,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "A ",
+              "fontSize": 13.33,
+              "color": "dk1"
+            },
+            {
+              "index": 2,
+              "text": "resources ",
+              "fontSize": 13.33,
+              "typeface": "Open Sans SemiBold",
+              "color": "dk1"
+            },
+            {
+              "index": 3,
+              "text": "slide, where you’ll find links to all the elements used in the template.",
+              "fontSize": 13.33,
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 7,
+          "text": "Instructions for use.",
+          "marginLeft": 457200,
+          "indent": -292100,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Instructions for use",
+              "fontSize": 13.33,
+              "typeface": "Open Sans SemiBold",
+              "color": "dk1"
+            },
+            {
+              "index": 2,
+              "text": ".",
+              "fontSize": 13.33,
+              "typeface": "Open Sans SemiBold",
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 8,
+          "text": "Final slides with: ",
+          "marginLeft": 457200,
+          "indent": -292100,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Final slides with: ",
+              "fontSize": 13.33,
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        },
+        {
+          "index": 9,
+          "text": "The fonts and colors used in the template.",
+          "bulletCharacter": "●",
+          "marginLeft": 914400,
+          "indent": -292100,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "The",
+              "fontSize": 13.33,
+              "color": "dk1"
+            },
+            {
+              "index": 2,
+              "text": " fonts and colors",
+              "fontSize": 13.33,
+              "typeface": "Open Sans SemiBold",
+              "color": "dk1"
+            },
+            {
+              "index": 3,
+              "text": " used in the template.",
+              "fontSize": 13.33,
+              "color": "dk1"
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "text": "More infographic resources, whose size and color can be edited. ",
+          "bulletCharacter": "●",
+          "marginLeft": 914400,
+          "indent": -292100,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "More",
+              "fontSize": 13.33,
+              "color": "dk1"
+            },
+            {
+              "index": 2,
+              "text": " infographic resources",
+              "fontSize": 13.33,
+              "typeface": "Open Sans SemiBold",
+              "color": "dk1"
+            },
+            {
+              "index": 3,
+              "text": ", whose size and color can be edited. ",
+              "fontSize": 13.33,
+              "color": "dk1"
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "text": "Sets of customizable icons of the following themes: general, business, avatar, creative process, education, help & support, medical, nature, performing arts, SEO & marketing, and teamwork",
+          "bulletCharacter": "●",
+          "marginLeft": 914400,
+          "indent": -292100,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Sets of ",
+              "fontSize": 13.33,
+              "color": "dk1"
+            },
+            {
+              "index": 2,
+              "text": "customizable icons",
+              "fontSize": 13.33,
+              "typeface": "Open Sans SemiBold",
+              "color": "dk1"
+            },
+            {
+              "index": 3,
+              "text": " of the following themes: general, business, avatar, creative process, education, help & support, medical, nature, performing arts, SEO & marketing, and teamwork",
+              "fontSize": 13.33,
+              "color": "dk1"
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "text": "You can delete this slide when you’re done editing the presentation.",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 100000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "You can delete this slide when you’re done editing the presentation.",
+              "fontSize": 13.33,
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣"
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gbq1oryt",
+      "id": "159",
+      "name": "Google Shape;159;p31",
+      "bbox": [
+        64.09,
+        39.03,
+        459.02,
+        68.28
+      ],
+      "geometry": "rect",
+      "text": "CONTENTS OF THIS TEMPLATE",
+      "textPreview": "CONTENTS OF THIS TEMPLATE",
+      "resolvedFontSize": 29.33,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 29.33,
+        "typeface": "Abel",
+        "color": "dk1",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CONTENTS OF THIS"
+          },
+          {
+            "index": 2,
+            "text": "TEMPLATE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CONTENTS OF THIS TEMPLATE",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CONTENTS OF THIS TEMPLATE",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cj6tovah",
+      "id": "160",
+      "name": "Google Shape;160;p31",
+      "bbox": [
+        81.08,
+        -2.5,
+        0,
+        46.99
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "accent1",
+      "lineWidth": 2
+    }
+  ],
+  "composeRuns": []
+}

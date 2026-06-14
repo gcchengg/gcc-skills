@@ -1,0 +1,7 @@
+interface:
+  display_name: "每日产业链研究"
+  short_description: "每天生成一个不重复、可供下游技能复用的产业链文字研究底稿"
+  default_prompt: "使用 $daily-industry-chain-research 生成今日不重复的产业链研究底稿。"
+
+policy:
+  allow_implicit_invocation: true

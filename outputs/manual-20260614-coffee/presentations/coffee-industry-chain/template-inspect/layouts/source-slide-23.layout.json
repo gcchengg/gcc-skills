@@ -1,0 +1,619 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/crmhk3q5",
+    "id": "crmhk3q5",
+    "slide": 24,
+    "layoutId": "/ppt/slideLayouts/slideLayout21.xml",
+    "layoutName": "ONE_COLUMN_TEXT",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#B3A29A",
+      "accent2": "#EAE5E1",
+      "accent3": "#B3A29A",
+      "accent4": "#E6CEBC",
+      "accent5": "#AA9185",
+      "accent6": "#834D31",
+      "dk1": "#2E1B11",
+      "lt1": "#F4F4F4",
+      "dk2": "#595959",
+      "lt2": "#EEEEEE",
+      "hlink": "#772E08",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Abel",
+      "Arial",
+      "Open Sans Light"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout21.xml",
+      "name": "ONE_COLUMN_TEXT",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout21.xml/128",
+          "id": "128",
+          "name": "Google Shape;128;p22",
+          "bbox": [
+            67.41,
+            115.13,
+            468.6,
+            355.43
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout21.xml/129",
+          "id": "129",
+          "name": "Google Shape;129;p22",
+          "bbox": [
+            64.09,
+            39.03,
+            459.02,
+            99.34
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            32.72,
+            46.72,
+            894.55,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            32.72,
+            120.99,
+            894.55,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/czed8v6p",
+      "id": "1141",
+      "name": "Google Shape;1141;p52",
+      "bbox": [
+        643.5,
+        238.06,
+        212.98,
+        421.98
+      ],
+      "rotation": -90,
+      "geometry": "snip1Rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "accent2"
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/neloj2t8",
+      "id": "1142",
+      "name": "Google Shape;1142;p52",
+      "bbox": [
+        67.41,
+        123.13,
+        571.59,
+        355.43
+      ],
+      "geometry": "rect",
+      "text": "Here’s an assortment of alternative pictures within the same style of this template. \nModern brick building skyline\nLow angle of rusted building\nSupplies and helmet on blueprint\nCrop woman making blueprints\nFemale architect having conversation with her colleague\nCrop people working with plans on tablet\nMan carefully making drafts\nCrop hands making blueprints\nView of stone building with coarse plaster surface\nDesign of building with brick wall and pipe",
+      "textPreview": "Here’s an assortment of alternative pictures within the same style of this template.  | Modern brick building skyline | Low angle of rust...",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 24,
+        "typeface": "Open Sans Light",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 12,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Here’s an assortment of alternative pictures within the same style of this template."
+          },
+          {
+            "index": 2,
+            "text": ""
+          },
+          {
+            "index": 3,
+            "text": "⬣ Modern brick building skyline"
+          },
+          {
+            "index": 4,
+            "text": "⬣ Low angle of rusted building"
+          },
+          {
+            "index": 5,
+            "text": "⬣ Supplies and helmet on blueprint"
+          },
+          {
+            "index": 6,
+            "text": "⬣ Crop woman making blueprints"
+          },
+          {
+            "index": 7,
+            "text": "⬣ Female architect having conversation with her colleague"
+          },
+          {
+            "index": 8,
+            "text": "⬣ Crop people working with plans on tablet"
+          },
+          {
+            "index": 9,
+            "text": "⬣ Man carefully making drafts"
+          },
+          {
+            "index": 10,
+            "text": "⬣ Crop hands making blueprints"
+          },
+          {
+            "index": 11,
+            "text": "⬣ View of stone building with coarse plaster surface"
+          },
+          {
+            "index": 12,
+            "text": "⬣ Design of building with brick wall and pipe"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Here’s an assortment of alternative pictures within the same style of this template. ",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Here’s an assortment of alternative pictures within the same style of this template. ",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "bulletCharacter": "⬣",
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 2,
+          "text": "Modern brick building skyline",
+          "bulletCharacter": "⬣",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 1600,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Modern brick building skyline",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 3,
+          "text": "Low angle of rusted building",
+          "bulletCharacter": "⬣",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Low angle of rusted building",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 4,
+          "text": "Supplies and helmet on blueprint",
+          "bulletCharacter": "⬣",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Supplies and helmet on blueprint",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 5,
+          "text": "Crop woman making blueprints",
+          "bulletCharacter": "⬣",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Crop woman making blueprints",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 6,
+          "text": "Female architect having conversation with her colleague",
+          "bulletCharacter": "⬣",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Female architect having conversation with her colleague",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 7,
+          "text": "Crop people working with plans on tablet",
+          "bulletCharacter": "⬣",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Crop people working with plans on tablet",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 8,
+          "text": "Man carefully making drafts",
+          "bulletCharacter": "⬣",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Man carefully making drafts",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 9,
+          "text": "Crop hands making blueprints",
+          "bulletCharacter": "⬣",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Crop hands making blueprints",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 10,
+          "text": "View of stone building with coarse plaster surface",
+          "bulletCharacter": "⬣",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "View of stone building with coarse plaster surface",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        },
+        {
+          "index": 11,
+          "text": "Design of building with brick wall and pipe",
+          "bulletCharacter": "⬣",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Design of building with brick wall and pipe",
+              "fontSize": 14.67,
+              "color": "dk1"
+            }
+          ],
+          "lineSpacingPercent": 150000
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ytsvu9kn",
+      "id": "1143",
+      "name": "Google Shape;1143;p52",
+      "bbox": [
+        64.09,
+        39.03,
+        459.02,
+        99.34
+      ],
+      "geometry": "rect",
+      "text": "ALTERNATIVE RESOURCES",
+      "textPreview": "ALTERNATIVE RESOURCES",
+      "resolvedFontSize": 29.33,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 29.33,
+        "typeface": "Abel",
+        "color": "dk1",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "ALTERNATIVE RESOURCES"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "ALTERNATIVE RESOURCES",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "ALTERNATIVE RESOURCES",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    }
+  ],
+  "composeRuns": []
+}

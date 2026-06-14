@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "checkedAt": "2026-06-14T08:53:12.494Z",
+  "workspace": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260614-coffee/presentations/coffee-industry-chain",
+  "finalPptx": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260614-咖啡产业链/咖啡产业链研究.pptx",
+  "starterPptx": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260614-coffee/presentations/coffee-industry-chain/template-starter.pptx",
+  "mapPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260614-coffee/presentations/coffee-industry-chain/template-frame-map.json",
+  "starterLayoutDir": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260614-coffee/presentations/coffee-industry-chain/template-starter-layout",
+  "finalLayoutDir": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260614-coffee/presentations/coffee-industry-chain/layout/final",
+  "editDir": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260614-coffee/presentations/coffee-industry-chain",
+  "issueCount": 0,
+  "issues": []
+}
