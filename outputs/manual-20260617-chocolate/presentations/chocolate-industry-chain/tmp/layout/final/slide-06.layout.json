@@ -1,0 +1,859 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/58z25kb6",
+    "id": "58z25kb6",
+    "slide": 6,
+    "layoutId": "/ppt/slideLayouts/slideLayout4.xml",
+    "layoutName": "TITLE_AND_TWO_COLUMNS",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#FFFFFF",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#252525",
+      "lt1": "#F0F0F0",
+      "dk2": "#B43B13",
+      "lt2": "#FFFFFF",
+      "hlink": "#252525",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Ancizar Sans",
+      "Arial",
+      "Baskervville"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout4.xml",
+      "name": "TITLE_AND_TWO_COLUMNS",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "image",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/27",
+          "id": "27",
+          "name": "Google Shape;21;p5",
+          "bbox": [
+            0,
+            0.23,
+            960,
+            539.53
+          ],
+          "contentType": "image/png",
+          "asset": {
+            "assetId": "/ppt/media/image.png",
+            "contentType": "image/png",
+            "byteLength": 6345401
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image.png",
+            "contentType": "image/png",
+            "byteLength": 6345401
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/22",
+          "id": "22",
+          "name": "Google Shape;22;p5",
+          "bbox": [
+            10.02,
+            15.69,
+            912.03,
+            72.66
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/23",
+          "id": "23",
+          "name": "Google Shape;23;p5",
+          "bbox": [
+            92.64,
+            235.74,
+            334.74,
+            248.76
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/24",
+          "id": "24",
+          "name": "Google Shape;24;p5",
+          "bbox": [
+            505.44,
+            235.74,
+            334.74,
+            248.76
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/25",
+          "id": "25",
+          "name": "Google Shape;25;p5",
+          "bbox": [
+            640.34,
+            165.68,
+            64.94,
+            48.13
+          ],
+          "geometry": "rect",
+          "text": "xx%",
+          "textPreview": "xx%",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "xx%",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "xx%"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 6,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/26",
+          "id": "26",
+          "name": "Google Shape;26;p5",
+          "bbox": [
+            227.6,
+            165.68,
+            64.82,
+            48.13
+          ],
+          "geometry": "rect",
+          "text": "xx%",
+          "textPreview": "xx%",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "xx%",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "xx%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            74.88,
+            46.72,
+            810.24,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            74.88,
+            120.99,
+            810.24,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/032lszqt",
+      "id": "237",
+      "name": "Google Shape;237;p34",
+      "bbox": [
+        10.02,
+        15.69,
+        912.03,
+        72.66
+      ],
+      "geometry": "rect",
+      "text": "上游与中游：两类能力",
+      "textPreview": "上游与中游：两类能力",
+      "resolvedFontSize": 34.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 34.67,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "上游与中游：两类能力"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "上游与中游：两类能力",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "上游与中游：两类能力",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/b6xkf6dc",
+      "id": "238",
+      "name": "Google Shape;238;p34",
+      "bbox": [
+        92.64,
+        235.74,
+        334.74,
+        248.76
+      ],
+      "geometry": "rect",
+      "text": "上游｜可可来源\n• 种植、采收、发酵、干燥决定风味基础\n• 价值来自产地风味、批次稳定和可追溯\n• 风险集中在天气、病害、农户收益与毁林合规",
+      "textPreview": "上游｜可可来源 | • 种植、采收、发酵、干燥决定风味基础 | • 价值来自产地风味、批次稳定和可追溯 | • 风险集中在天气、病害、农户收益与毁林合规",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 10,
+        "lines": [
+          {
+            "index": 1,
+            "text": "● 上游｜可可来源"
+          },
+          {
+            "index": 2,
+            "text": "● •"
+          },
+          {
+            "index": 3,
+            "text": "种植、采收、发酵、干燥决定风味基"
+          },
+          {
+            "index": 4,
+            "text": "础"
+          },
+          {
+            "index": 5,
+            "text": "● •"
+          },
+          {
+            "index": 6,
+            "text": "价值来自产地风味、批次稳定和可追"
+          },
+          {
+            "index": 7,
+            "text": "溯"
+          },
+          {
+            "index": 8,
+            "text": "● •"
+          },
+          {
+            "index": 9,
+            "text": "风险集中在天气、病害、农户收益与"
+          },
+          {
+            "index": 10,
+            "text": "毁林合规"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "上游｜可可来源",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "上游｜可可来源",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 2,
+          "text": "• 种植、采收、发酵、干燥决定风味基础",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 种植、采收、发酵、干燥决定风味基础",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 3,
+          "text": "• 价值来自产地风味、批次稳定和可追溯",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 价值来自产地风味、批次稳定和可追溯",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 4,
+          "text": "• 风险集中在天气、病害、农户收益与毁林合规",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 风险集中在天气、病害、农户收益与毁林合规",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/il0rqd4v",
+      "id": "239",
+      "name": "Google Shape;239;p34",
+      "bbox": [
+        505.44,
+        235.74,
+        334.74,
+        248.76
+      ],
+      "geometry": "rect",
+      "text": "中游｜加工制造\n• 研磨压榨形成液块、可可脂和可可粉\n• 工业巧克力提供配方、口感、融点和流变性\n• 壁垒来自规模、食品安全、套保和客户认证",
+      "textPreview": "中游｜加工制造 | • 研磨压榨形成液块、可可脂和可可粉 | • 工业巧克力提供配方、口感、融点和流变性 | • 壁垒来自规模、食品安全、套保和客户认证",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 8,
+        "lines": [
+          {
+            "index": 1,
+            "text": "● 中游｜加工制造"
+          },
+          {
+            "index": 2,
+            "text": "● • 研磨压榨形成液块、可可脂和可可粉"
+          },
+          {
+            "index": 3,
+            "text": "● •"
+          },
+          {
+            "index": 4,
+            "text": "工业巧克力提供配方、口感、融点和"
+          },
+          {
+            "index": 5,
+            "text": "流变性"
+          },
+          {
+            "index": 6,
+            "text": "● •"
+          },
+          {
+            "index": 7,
+            "text": "壁垒来自规模、食品安全、套保和客"
+          },
+          {
+            "index": 8,
+            "text": "户认证"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "中游｜加工制造",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "中游｜加工制造",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 2,
+          "text": "• 研磨压榨形成液块、可可脂和可可粉",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 研磨压榨形成液块、可可脂和可可粉",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 3,
+          "text": "• 工业巧克力提供配方、口感、融点和流变性",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 工业巧克力提供配方、口感、融点和流变性",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 4,
+          "text": "• 壁垒来自规模、食品安全、套保和客户认证",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 壁垒来自规模、食品安全、套保和客户认证",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2p8nqxs7",
+      "id": "240",
+      "name": "Google Shape;240;p34",
+      "bbox": [
+        640.34,
+        165.68,
+        64.94,
+        48.13
+      ],
+      "geometry": "rect",
+      "text": "01",
+      "textPreview": "01",
+      "resolvedFontSize": 33.33,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 33.33,
+        "typeface": "Baskervville",
+        "color": "accent2",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "01"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "01",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "01",
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ra5gbq1o",
+      "id": "241",
+      "name": "Google Shape;241;p34",
+      "bbox": [
+        227.6,
+        165.68,
+        64.82,
+        48.13
+      ],
+      "geometry": "rect",
+      "text": "02",
+      "textPreview": "02",
+      "resolvedFontSize": 33.33,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 33.33,
+        "typeface": "Baskervville",
+        "color": "accent2",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "02"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "02",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "02",
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/25kb6xkf",
+      "id": "248",
+      "name": "Google Shape;242;p34",
+      "bbox": [
+        -2.66,
+        88.23,
+        965.32,
+        0.13
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "lt1",
+      "lineWidth": 1
+    }
+  ],
+  "composeRuns": []
+}

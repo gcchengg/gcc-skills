@@ -1,0 +1,646 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/8z25kb6x",
+    "id": "8z25kb6x",
+    "slide": 16,
+    "layoutId": "/ppt/slideLayouts/slideLayout20.xml",
+    "layoutName": "CUSTOM_3_1",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#FFFFFF",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#252525",
+      "lt1": "#F0F0F0",
+      "dk2": "#B43B13",
+      "lt2": "#FFFFFF",
+      "hlink": "#252525",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Ancizar Sans",
+      "Arial",
+      "Open Sans"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout20.xml",
+      "name": "CUSTOM_3_1",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "image",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout20.xml/117",
+          "id": "117",
+          "name": "Google Shape;113;p21",
+          "bbox": [
+            0,
+            0.23,
+            960,
+            539.53
+          ],
+          "contentType": "image/png",
+          "imageCrop": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          "asset": {
+            "assetId": "/ppt/media/image2.png",
+            "contentType": "image/png",
+            "byteLength": 3049716
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image2.png",
+            "contentType": "image/png",
+            "byteLength": 3049716
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout20.xml/114",
+          "id": "114",
+          "name": "Google Shape;114;p21",
+          "bbox": [
+            10.02,
+            16.27,
+            652.66,
+            111.15
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "verticalAlignment": "bottom",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout20.xml/115",
+          "id": "115",
+          "name": "Google Shape;115;p21",
+          "bbox": [
+            10.93,
+            164.91,
+            466.99,
+            129.32
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout20.xml/116",
+          "id": "116",
+          "name": "Google Shape;116;p21",
+          "bbox": [
+            10.93,
+            299.99,
+            343.62,
+            58.39
+          ],
+          "geometry": "rect",
+          "text": "CREDITS: This presentation template was created by Slidesgo, and includes icons, infographics & images by Freepik ",
+          "textPreview": "CREDITS: This presentation template was created by Slidesgo, and includes icons, infographics & images by Freepik",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "CREDITS: This presentation template was created by Slidesgo, and includes icons, infographics & images by Freepik ",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "CREDITS:",
+                  "fontSize": 13.33,
+                  "typeface": "Open Sans",
+                  "color": "dk2",
+                  "bold": true
+                },
+                {
+                  "index": 2,
+                  "text": " This presentation template was created by ",
+                  "fontSize": 13.33,
+                  "typeface": "Open Sans",
+                  "color": "dk2"
+                },
+                {
+                  "index": 3,
+                  "text": "Slidesgo",
+                  "fontSize": 13.33,
+                  "typeface": "Open Sans",
+                  "color": "dk2",
+                  "bold": true
+                },
+                {
+                  "index": 4,
+                  "text": ", and includes icons, infographics & images by ",
+                  "fontSize": 13.33,
+                  "typeface": "Open Sans",
+                  "color": "dk2"
+                },
+                {
+                  "index": 5,
+                  "text": "Freepik",
+                  "fontSize": 13.33,
+                  "typeface": "Open Sans",
+                  "color": "dk2",
+                  "bold": true
+                },
+                {
+                  "index": 6,
+                  "text": " ",
+                  "fontSize": 13.33,
+                  "typeface": "Open Sans",
+                  "color": "dk2"
+                }
+              ]
+            }
+          ],
+          "lineWidth": 0
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            74.88,
+            46.72,
+            810.24,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            74.88,
+            120.99,
+            810.24,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s36hcrmh",
+      "id": "267",
+      "name": "Google Shape;267;p37",
+      "bbox": [
+        10.02,
+        16.27,
+        652.66,
+        111.15
+      ],
+      "geometry": "rect",
+      "text": "谢谢",
+      "textPreview": "谢谢",
+      "resolvedFontSize": 80,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 80,
+        "typeface": "Ancizar Sans",
+        "color": "dk2",
+        "alignment": "left",
+        "verticalAlignment": "bottom",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "谢谢"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "谢谢",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "谢谢",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3m94fu18",
+      "id": "268",
+      "name": "Google Shape;268;p37",
+      "bbox": [
+        10.93,
+        164.91,
+        466.99,
+        129.32
+      ],
+      "geometry": "rect",
+      "text": "巧克力产业链研究\n生成日期：2026-06-17\n基于公开资料与产业链研究底稿整理\n\nCREDITS: This presentation template was created by Slidesgo, and includes icons, infographics & images by Freepik.\n\nPlease keep this slide for attribution",
+      "textPreview": "巧克力产业链研究 | 生成日期：2026-06-17 | 基于公开资料与产业链研究底稿整理 |  | CREDITS: This presentation template was created by Slidesgo, and includes icons, infog...",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18.67,
+        "typeface": "Ancizar Sans",
+        "color": "dk2",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 10,
+        "lines": [
+          {
+            "index": 1,
+            "text": "巧克力产业链研究"
+          },
+          {
+            "index": 2,
+            "text": ""
+          },
+          {
+            "index": 3,
+            "text": "生成日期：2026-06-17"
+          },
+          {
+            "index": 4,
+            "text": "基于公开资料与产业链研究底稿整理"
+          },
+          {
+            "index": 5,
+            "text": ""
+          },
+          {
+            "index": 6,
+            "text": "CREDITS: This presentation template was created by"
+          },
+          {
+            "index": 7,
+            "text": "Slidesgo, and includes icons, infographics & images"
+          },
+          {
+            "index": 8,
+            "text": "by Freepik."
+          },
+          {
+            "index": 9,
+            "text": ""
+          },
+          {
+            "index": 10,
+            "text": "Please keep this slide for attribution"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "巧克力产业链研究",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "巧克力产业链研究",
+              "color": "dk2",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 2,
+          "text": "生成日期：2026-06-17",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 1000,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "生成日期：2026-06-17",
+              "color": "dk2"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 3,
+          "text": "基于公开资料与产业链研究底稿整理",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "基于公开资料与产业链研究底稿整理",
+              "color": "dk2"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 5,
+          "text": "CREDITS: This presentation template was created by Slidesgo, and includes icons, infographics & images by Freepik.",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CREDITS: This presentation template was created by Slidesgo, and includes icons, infographics & images by Freepik.",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 7,
+          "text": "Please keep this slide for attribution",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Please keep this slide for attribution",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lszqtcj6",
+      "id": "288",
+      "name": "Google Shape;284;p37",
+      "bbox": [
+        -1.36,
+        129.04,
+        962.55,
+        0.13
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "dk2",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s36hcrmh",
+      "id": "285",
+      "name": "Google Shape;285;p37",
+      "bbox": [
+        10.93,
+        383.83,
+        375.43,
+        50.83
+      ],
+      "geometry": "rect",
+      "text": "保留此页用于模板署名",
+      "textPreview": "保留此页用于模板署名",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "保留此页用于模板署名"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "保留此页用于模板署名",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "保留此页用于模板署名",
+              "fontSize": 13.33,
+              "typeface": "Ancizar Sans",
+              "color": "dk2"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

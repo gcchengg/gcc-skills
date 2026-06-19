@@ -1,0 +1,1164 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/8z25kb6x",
+    "id": "8z25kb6x",
+    "slide": 17,
+    "layoutId": "/ppt/slideLayouts/slideLayout17.xml",
+    "layoutName": "TITLE_ONLY_8",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#999999",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#DAD5D5",
+      "dk2": "#434343",
+      "lt2": "#666666",
+      "hlink": "#191919",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Albert Sans",
+      "Arial",
+      "Red Hat Display"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout17.xml",
+      "name": "TITLE_ONLY_8",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout17.xml/151",
+          "id": "151",
+          "name": "Google Shape;151;p18",
+          "bbox": [
+            74.88,
+            56.64,
+            810.24,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "verticalAlignment": "bottom",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout17.xml/152",
+          "id": "152",
+          "name": "Google Shape;152;p18",
+          "bbox": [
+            611.48,
+            186.3,
+            362.22,
+            363.33
+          ],
+          "geometry": "custom",
+          "fillColor": "dk2"
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout17.xml/154",
+          "id": "154",
+          "name": "Google Shape;154;p18",
+          "bbox": [
+            812.45,
+            224.55,
+            296.88,
+            296.88
+          ],
+          "rotation": 0,
+          "geometry": "diamond",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "fillColor": "rgba(153, 153, 153, 0.0692)"
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout17.xml/155",
+          "id": "155",
+          "name": "Google Shape;155;p18",
+          "bbox": [
+            651.61,
+            384.35,
+            296.88,
+            296.88
+          ],
+          "rotation": 0,
+          "geometry": "diamond",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "fillColor": "rgba(153, 153, 153, 0.0692)"
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            74.88,
+            56.64,
+            810.24,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "verticalAlignment": "bottom",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            74.88,
+            130.91,
+            810.24,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/rqd4vmtw",
+      "id": "470",
+      "name": "Google Shape;463;p48",
+      "bbox": [
+        76.3,
+        194.6,
+        379.51,
+        230.6
+      ],
+      "text": "AGE | 35-50 years old\nGENDER | Male and female\nOCCUPATION | Employees \nSITUATION | Single and married people\nINCOME | $50,000/year",
+      "textPreview": "AGE | 35-50 years old | GENDER | Male and female | OCCUPATION | Employees  | SITUATION | Single and married people | INCOME | $50,000/year",
+      "rows": 5,
+      "cols": 2,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            76.3,
+            194.6,
+            140.2,
+            45.02
+          ],
+          "text": "AGE",
+          "textPreview": "AGE",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "AGE",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "AGE",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            216.49,
+            194.6,
+            239.32,
+            45.02
+          ],
+          "text": "35-50 years old",
+          "textPreview": "35-50 years old",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "35-50 years old",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "35",
+                  "fontSize": 16,
+                  "typeface": "Albert Sans",
+                  "color": "#142723"
+                },
+                {
+                  "index": 2,
+                  "text": "-50 years old",
+                  "fontSize": 16,
+                  "typeface": "Albert Sans",
+                  "color": "#142723"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            76.3,
+            239.62,
+            140.2,
+            47.22
+          ],
+          "text": "GENDER",
+          "textPreview": "GENDER",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "GENDER",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "GENDER",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            216.49,
+            239.62,
+            239.32,
+            47.22
+          ],
+          "text": "Male and female",
+          "textPreview": "Male and female",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Male and female",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Male and female",
+                  "fontSize": 16,
+                  "typeface": "Albert Sans",
+                  "color": "#142723"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            76.3,
+            286.84,
+            140.2,
+            45.02
+          ],
+          "text": "OCCUPATION",
+          "textPreview": "OCCUPATION",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "OCCUPATION",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "OCCUPATION",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            216.49,
+            286.84,
+            239.32,
+            45.02
+          ],
+          "text": "Employees ",
+          "textPreview": "Employees",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Employees ",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Employees ",
+                  "fontSize": 16,
+                  "typeface": "Albert Sans",
+                  "color": "#142723"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            76.3,
+            331.86,
+            140.2,
+            47.22
+          ],
+          "text": "SITUATION",
+          "textPreview": "SITUATION",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "SITUATION",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "SITUATION",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            216.49,
+            331.86,
+            239.32,
+            47.22
+          ],
+          "text": "Single and married people",
+          "textPreview": "Single and married people",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Single and married people",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Single and married people",
+                  "fontSize": 16,
+                  "typeface": "Albert Sans",
+                  "color": "#142723"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "row": 5,
+          "column": 1,
+          "bbox": [
+            76.3,
+            379.08,
+            140.2,
+            46.12
+          ],
+          "text": "INCOME",
+          "textPreview": "INCOME",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "INCOME",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "INCOME",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "row": 5,
+          "column": 2,
+          "bbox": [
+            216.49,
+            379.08,
+            239.32,
+            46.12
+          ],
+          "text": "$50,000/year",
+          "textPreview": "$50,000/year",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "$50,000/year",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "$50,000/year",
+                  "fontSize": 16,
+                  "typeface": "Albert Sans",
+                  "color": "#142723"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/25kb6xkf",
+      "id": "471",
+      "name": "Google Shape;464;p48",
+      "bbox": [
+        475.51,
+        348.4,
+        289.26,
+        75.62
+      ],
+      "text": "REGION | Europe, America\nAREA | Urban",
+      "textPreview": "REGION | Europe, America | AREA | Urban",
+      "rows": 2,
+      "cols": 2,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            475.51,
+            348.4,
+            98.81,
+            38.25
+          ],
+          "text": "REGION",
+          "textPreview": "REGION",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "REGION",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "REGION",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            574.32,
+            348.4,
+            190.45,
+            38.25
+          ],
+          "text": "Europe, America",
+          "textPreview": "Europe, America",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Europe, America",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Europe, America",
+                  "fontSize": 16,
+                  "typeface": "Albert Sans",
+                  "color": "#142723"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            475.51,
+            386.66,
+            98.81,
+            37.36
+          ],
+          "text": "AREA",
+          "textPreview": "AREA",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "AREA",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "AREA",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            574.32,
+            386.66,
+            190.45,
+            37.36
+          ],
+          "text": "Urban",
+          "textPreview": "Urban",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Urban",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Urban",
+                  "fontSize": 16,
+                  "typeface": "Albert Sans",
+                  "color": "#142723"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/crmhk3q5",
+      "id": "465",
+      "name": "Google Shape;465;p48",
+      "bbox": [
+        74.88,
+        56.64,
+        810.24,
+        60.13
+      ],
+      "geometry": "rect",
+      "text": "TARGET INFOGRAPHICS",
+      "textPreview": "TARGET INFOGRAPHICS",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 32,
+        "typeface": "Red Hat Display",
+        "color": "dk2",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "bottom",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "TARGET INFOGRAPHICS"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "TARGET INFOGRAPHICS",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "T",
+              "alignment": "left"
+            },
+            {
+              "index": 2,
+              "text": "ARGET INFOGRAPHICS",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/j6tovaho",
+      "id": "466",
+      "name": "Google Shape;466;p48",
+      "bbox": [
+        475.51,
+        290.06,
+        381.92,
+        41.89
+      ],
+      "geometry": "rect",
+      "text": "GEOGRAPHIC",
+      "textPreview": "GEOGRAPHIC",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 7.68,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "GEOGRAPHIC"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "GEOGRAPHIC",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "GEOGRAPHIC",
+              "fontSize": 24,
+              "typeface": "Red Hat Display",
+              "color": "dk2",
+              "bold": true
+            }
+          ],
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ulwval87",
+      "id": "467",
+      "name": "Google Shape;467;p48",
+      "bbox": [
+        76.3,
+        140.2,
+        324.25,
+        38.99
+      ],
+      "geometry": "rect",
+      "text": "DEMOGRAPHIC",
+      "textPreview": "DEMOGRAPHIC",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 16,
+        "typeface": "Albert Sans",
+        "color": "dk1",
+        "alignment": "left",
+        "verticalAlignment": "bottom",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "DEMOGRAPHIC"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "DEMOGRAPHIC",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "DEMOGRAPHIC",
+              "fontSize": 24,
+              "typeface": "Red Hat Display",
+              "color": "dk2",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/18jqh0fe",
+      "id": "468",
+      "name": "Google Shape;468;p48",
+      "bbox": [
+        475.51,
+        186.07,
+        408.19,
+        92.19
+      ],
+      "geometry": "rect",
+      "text": "Mercury is the closest planet to the Sun and it’s also the smallest one\nVenus has a beautiful name",
+      "textPreview": "Mercury is the closest planet to the Sun and it’s also the smallest one | Venus has a beautiful name",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Albert Sans",
+        "color": "dk1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "● Mercury is the closest planet to the Sun and it’s"
+          },
+          {
+            "index": 2,
+            "text": "also the smallest one"
+          },
+          {
+            "index": 3,
+            "text": ""
+          },
+          {
+            "index": 4,
+            "text": "● Venus has a beautiful name"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Mercury is the closest planet to the Sun and it’s also the smallest one",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -304800,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Mercury is the closest planet to the Sun and it’s also the smallest one",
+              "color": "#142723"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 2,
+          "text": "Venus has a beautiful name",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -304800,
+          "spaceBefore": 1000,
+          "spaceAfter": 1000,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Venus has a beautiful name",
+              "color": "#142723"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8nqxs72x",
+      "id": "469",
+      "name": "Google Shape;469;p48",
+      "bbox": [
+        475.51,
+        140.2,
+        381.92,
+        38.99
+      ],
+      "geometry": "rect",
+      "text": "BEHAVIOR",
+      "textPreview": "BEHAVIOR",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 16,
+        "typeface": "Albert Sans",
+        "color": "dk1",
+        "alignment": "left",
+        "verticalAlignment": "bottom",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "BEHAVIOR"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "BEHAVIOR",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "BEHAVIOR",
+              "fontSize": 24,
+              "typeface": "Red Hat Display",
+              "color": "dk2",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    }
+  ],
+  "composeRuns": []
+}

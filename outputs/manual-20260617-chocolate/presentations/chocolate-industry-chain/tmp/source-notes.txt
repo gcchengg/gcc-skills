@@ -1,0 +1,15 @@
+Content source:
+- /Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260617-巧克力产业链/产业链研究底稿.md
+- /Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260617-巧克力产业链/小红书发布文案.md
+
+External sources:
+- International Cocoa Organization, May 2026 Quarterly Bulletin of Cocoa Statistics, https://www.icco.org/may-2026-quarterly-bulletin-of-cocoa-statistics/, used for 2025/26 production, grindings, stocks, and supply balance claims.
+- International Cocoa Organization statistics page, https://www.icco.org/statistics/, accessed 2026-06-17, used for source authority.
+- European Commission EUDR implementation page, https://green-business.ec.europa.eu/deforestation-regulation-implementation_en, accessed 2026-06-17, used for no-deforestation due diligence and cocoa coverage.
+- World Cocoa Foundation, https://www.worldcocoafoundation.org/, accessed 2026-06-17, used for sustainability, farmer livelihood, forest, and community context.
+- Barry Callebaut industrial chocolate page, https://www.barry-callebaut.com/en/manufacturers/industrial-chocolate, accessed 2026-06-17, used for B2B industrial chocolate product/application framing.
+
+Generated image assets:
+- Cacao pods and beans editorial image: generated with Codex imagegen, used on cover / upstream slides.
+- Chocolate factory editorial image: generated with Codex imagegen, used on processing slides.
+- Chocolate bars and ingredients editorial image: generated with Codex imagegen, used on downstream / value slides.

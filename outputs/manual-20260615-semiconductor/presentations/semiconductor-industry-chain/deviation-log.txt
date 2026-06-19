@@ -1,0 +1,4 @@
+Intentional deviations:
+- Chinese glyphs may use the system CJK fallback while preserving inherited text-box styling.
+- Metal-material photography is retained as an industrial visual metaphor for semiconductor manufacturing.
+- Resource page is repurposed for research sources while keeping the source layout.

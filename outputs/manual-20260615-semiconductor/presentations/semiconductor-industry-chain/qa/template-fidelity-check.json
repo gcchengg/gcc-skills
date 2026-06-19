@@ -1,0 +1,12 @@
+{
+  "status": "pass",
+  "checkedAt": "2026-06-15T12:12:18.469Z",
+  "workspace": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain",
+  "finalPptx": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260614-半导体产业链/半导体产业链研究.pptx",
+  "starterPptx": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-starter.pptx",
+  "mapPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-frame-map.json",
+  "finalLayoutDir": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/layout/final",
+  "editDir": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain",
+  "issueCount": 0,
+  "issues": []
+}

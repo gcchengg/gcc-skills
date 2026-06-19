@@ -1,0 +1,662 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/bq1oryts",
+    "id": "bq1oryts",
+    "slide": 25,
+    "layoutId": "/ppt/slideLayouts/slideLayout27.xml",
+    "layoutName": "CUSTOM",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster2.xml",
+    "masterLayoutName": "simple-light-2",
+    "backgroundColor": "#0E2A47",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#999999",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#DAD5D5",
+      "dk2": "#434343",
+      "lt2": "#666666",
+      "hlink": "#191919",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Arial"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout27.xml",
+      "name": "CUSTOM",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster2.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout27.xml/246",
+          "id": "246",
+          "name": "Google Shape;246;p29",
+          "bbox": [
+            75.24,
+            53.64,
+            809.51,
+            50.65
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster2.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "#0E2A47",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster2.xml/242",
+          "id": "242",
+          "name": "Google Shape;242;p27",
+          "bbox": [
+            112.14,
+            98,
+            739.87,
+            50.65
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster2.xml/243",
+          "id": "243",
+          "name": "Google Shape;243;p27",
+          "bbox": [
+            112.14,
+            178,
+            739.87,
+            262.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/l87ed8ba",
+      "id": "579",
+      "name": "Google Shape;579;p56",
+      "bbox": [
+        75.25,
+        124.72,
+        809.51,
+        361.64
+      ],
+      "geometry": "rect",
+      "text": "As a Premium user, you can use this template without attributing Slidesgo or keeping the \"Thanks\" slide.\nYou are allowed to:\nModify this template.\nUse it for both personal and commercial purposes.\nHide or delete the “Thanks” slide and the mention to Slidesgo in the credits.\nShare this template in an editable format with people who are not part of your team.\nYou are not allowed to:\nSublicense, sell or rent this Slidesgo Template (or a modified version of this Slidesgo Template).\nDistribute this Slidesgo Template (or a modified version of this Slidesgo Template) or include it in a database or in any other product or service that offers downloadable images, icons or presentations that may be subject to distribution or resale.\nUse any of the elements that are part of this Slidesgo Template in an isolated and separated way from this Template.\nRegister any of the elements that are part of this template as a trademark or logo, or register it as a work in an intellectual property registry or similar.\n\nFor more information about editing slides, please read our FAQs or visit our blog:\nhttps://slidesgo.com/faqs and https://slidesgo.com/slidesgo-school",
+      "textPreview": "As a Premium user, you can use this template without attributing Slidesgo or keeping the \"Thanks\" slide. | You are allowed to: | Modify t...",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 20,
+        "lines": [
+          {
+            "index": 1,
+            "text": "As a Premium user, you can use this template without attributing Slidesgo or keeping the \"Thanks\" slide."
+          },
+          {
+            "index": 2,
+            "text": ""
+          },
+          {
+            "index": 3,
+            "text": "You are allowed to:"
+          },
+          {
+            "index": 4,
+            "text": "● Modify this template."
+          },
+          {
+            "index": 5,
+            "text": "● Use it for both personal and commercial purposes."
+          },
+          {
+            "index": 6,
+            "text": "● Hide or delete the “Thanks” slide and the mention to Slidesgo in the credits."
+          },
+          {
+            "index": 7,
+            "text": "● Share this template in an editable format with people who are not part of your team."
+          },
+          {
+            "index": 8,
+            "text": ""
+          },
+          {
+            "index": 9,
+            "text": "You are not allowed to:"
+          },
+          {
+            "index": 10,
+            "text": "● Sublicense, sell or rent this Slidesgo Template (or a modified version of this Slidesgo Template)."
+          },
+          {
+            "index": 11,
+            "text": "● Distribute this Slidesgo Template (or a modified version of this Slidesgo Template) or include it in a database or in"
+          },
+          {
+            "index": 12,
+            "text": "any other product or service that offers downloadable images, icons or presentations that may be subject to"
+          },
+          {
+            "index": 13,
+            "text": "distribution or resale."
+          },
+          {
+            "index": 14,
+            "text": "● Use any of the elements that are part of this Slidesgo Template in an isolated and separated way from this"
+          },
+          {
+            "index": 15,
+            "text": "Template."
+          },
+          {
+            "index": 16,
+            "text": "● Register any of the elements that are part of this template as a trademark or logo, or register it as a work in an"
+          },
+          {
+            "index": 17,
+            "text": "intellectual property registry or similar."
+          },
+          {
+            "index": 18,
+            "text": ""
+          },
+          {
+            "index": 19,
+            "text": "For more information about editing slides, please read our FAQs or visit our blog:"
+          },
+          {
+            "index": 20,
+            "text": "https://slidesgo.com/faqs and https://slidesgo.com/slidesgo-school"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "As a Premium user, you can use this template without attributing Slidesgo or keeping the \"Thanks\" slide.",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "As a Premium user, you can use this template without attributing ",
+              "fontSize": 14.67,
+              "color": "lt1"
+            },
+            {
+              "index": 2,
+              "text": "Slidesgo",
+              "fontSize": 14.67,
+              "color": "hlink",
+              "bold": true
+            },
+            {
+              "index": 3,
+              "text": " ",
+              "fontSize": 14.67,
+              "color": "hlink",
+              "bold": true
+            },
+            {
+              "index": 4,
+              "text": "or keeping the \"",
+              "fontSize": 14.67,
+              "color": "lt1"
+            },
+            {
+              "index": 5,
+              "text": "Thanks",
+              "fontSize": 14.67,
+              "color": "hlink",
+              "bold": true
+            },
+            {
+              "index": 6,
+              "text": "\" slide.",
+              "fontSize": 14.67,
+              "color": "lt1"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 2,
+          "text": "You are allowed to:",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 1000,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "You are allowed to:",
+              "fontSize": 14.67,
+              "color": "hlink",
+              "bold": true
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 3,
+          "text": "Modify this template.",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Modify this template.",
+              "fontSize": 14.67,
+              "color": "lt1"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 4,
+          "text": "Use it for both personal and commercial purposes.",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Use it for both personal and commercial purposes.",
+              "fontSize": 14.67,
+              "color": "lt1"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 5,
+          "text": "Hide or delete the “Thanks” slide and the mention to Slidesgo in the credits.",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Hide or delete the “Thanks” slide and the mention to Slidesgo in the credits.",
+              "fontSize": 14.67,
+              "color": "lt1"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 6,
+          "text": "Share this template in an editable format with people who are not part of your team.",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Share this template in an editable format with people who are not part of your team.",
+              "fontSize": 14.67,
+              "color": "lt1"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 7,
+          "text": "You are not allowed to:",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 1000,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "You are not allowed to:",
+              "fontSize": 14.67,
+              "color": "hlink",
+              "bold": true
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 8,
+          "text": "Sublicense, sell or rent this Slidesgo Template (or a modified version of this Slidesgo Template).",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Sublicense, sell or rent this Slidesgo Template (or a modified version of this Slidesgo Template).",
+              "fontSize": 14.67,
+              "color": "lt1"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 9,
+          "text": "Distribute this Slidesgo Template (or a modified version of this Slidesgo Template) or include it in a database or in any other product or service that offers downloadable images, icons or presentations that may be subject to distribution or resale.",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Distribute this Slidesgo Template (or a modified version of this Slidesgo Template) or include it in a database or in any other product or service that offers downloadable images, icons or presentations that may be subject to distribution or resale.",
+              "fontSize": 14.67,
+              "color": "lt1"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 10,
+          "text": "Use any of the elements that are part of this Slidesgo Template in an isolated and separated way from this Template.",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Use any of the elements that are part of this Slidesgo Template in an isolated and separated way from this Template.",
+              "fontSize": 14.67,
+              "color": "lt1"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 11,
+          "text": "Register any of the elements that are part of this template as a trademark or logo, or register it as a work in an intellectual property registry or similar.",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -298450,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Register any of the elements that are part of this template as a trademark or logo, or register it as a work in an intellectual property registry or similar.",
+              "fontSize": 14.67,
+              "color": "lt1"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 13,
+          "text": "For more information about editing slides, please read our FAQs or visit our blog:",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "For more information about editing slides, please read our FAQs or visit our blog:",
+              "fontSize": 14.67,
+              "color": "lt1"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 14,
+          "text": "https://slidesgo.com/faqs and https://slidesgo.com/slidesgo-school",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "https://slidesgo.com/faqs",
+              "fontSize": 14.67,
+              "color": "hlink",
+              "bold": true
+            },
+            {
+              "index": 2,
+              "text": " and ",
+              "fontSize": 14.67,
+              "color": "lt1"
+            },
+            {
+              "index": 3,
+              "text": "https://slidesgo.com/slidesgo-school",
+              "fontSize": 14.67,
+              "color": "hlink",
+              "bold": true
+            }
+          ],
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/18jqh0fe",
+      "id": "580",
+      "name": "Google Shape;580;p56",
+      "bbox": [
+        75.24,
+        53.64,
+        809.51,
+        50.65
+      ],
+      "geometry": "rect",
+      "text": "Instructions for use (premium users)",
+      "textPreview": "Instructions for use (premium users)",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 32,
+        "typeface": "Arial",
+        "color": "lt1",
+        "alignment": "center",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Instructions for use (premium users)"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Instructions for use (premium users)",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Instructions for use (premium users)",
+              "color": "lt1"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    }
+  ],
+  "composeRuns": []
+}

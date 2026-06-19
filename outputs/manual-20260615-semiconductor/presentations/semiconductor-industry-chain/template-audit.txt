@@ -1,0 +1,6 @@
+Task mode: template-following
+Source deck: Metal Materials Company Profile by Slidesgo, 40 slides.
+Reusable narrative slides: 1, 3-10, 15, 20, 22.
+Visual system: industrial gray, charcoal surfaces, diamond geometry, metal textures.
+Editing contract: duplicate source slides, replace inherited text only, preserve imagery and geometry.
+Output narrative: 21-slide semiconductor industry-chain research deck.

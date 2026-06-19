@@ -1,0 +1,468 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/s72x4nap",
+    "id": "s72x4nap",
+    "slide": 3,
+    "layoutId": "/ppt/slideLayouts/slideLayout14.xml",
+    "layoutName": "ONE_COLUMN_TEXT_1",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#FFFFFF",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#252525",
+      "lt1": "#F0F0F0",
+      "dk2": "#B43B13",
+      "lt2": "#FFFFFF",
+      "hlink": "#252525",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Ancizar Sans",
+      "Arial",
+      "Baskervville"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout14.xml",
+      "name": "ONE_COLUMN_TEXT_1",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "image",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout14.xml/75",
+          "id": "75",
+          "name": "Google Shape;71;p15",
+          "bbox": [
+            0,
+            0.23,
+            960,
+            539.53
+          ],
+          "contentType": "image/png",
+          "asset": {
+            "assetId": "/ppt/media/image.png",
+            "contentType": "image/png",
+            "byteLength": 6345401
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image.png",
+            "contentType": "image/png",
+            "byteLength": 6345401
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout14.xml/72",
+          "id": "72",
+          "name": "Google Shape;72;p15",
+          "bbox": [
+            8.95,
+            13.11,
+            619.46,
+            101.17
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout14.xml/73",
+          "id": "73",
+          "name": "Google Shape;73;p15",
+          "bbox": [
+            664,
+            136.76,
+            279.84,
+            388.66
+          ],
+          "geometry": "roundRect",
+          "lineWidth": 0
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout14.xml/74",
+          "id": "74",
+          "name": "Google Shape;74;p15",
+          "bbox": [
+            24,
+            236.62,
+            484.54,
+            241.89
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "verticalAlignment": "bottom",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            74.88,
+            46.72,
+            810.24,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            74.88,
+            120.99,
+            810.24,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ex0nuxc3",
+      "id": "215",
+      "name": "Google Shape;215;p31",
+      "bbox": [
+        10.02,
+        16.27,
+        619.46,
+        101.17
+      ],
+      "geometry": "rect",
+      "text": "一块巧克力，\n是一条全球供应链",
+      "textPreview": "一块巧克力， | 是一条全球供应链",
+      "resolvedFontSize": 40,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 40,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "一块巧克力，"
+          },
+          {
+            "index": 2,
+            "text": "是一条全球供应链"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "一块巧克力，",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "一块巧克力，",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 2,
+          "text": "是一条全球供应链",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "是一条全球供应链",
+              "typeface": "Baskervville",
+              "italic": true
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 90000
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/w3m94fu1",
+      "id": "217",
+      "name": "Google Shape;217;p31",
+      "bbox": [
+        10.02,
+        236.62,
+        484.54,
+        241.89
+      ],
+      "geometry": "rect",
+      "text": "巧克力产业链把热带地区的可可豆，通过发酵、干燥、贸易、研磨、压榨、精炼、调温和品牌化，转化为零食、礼品、烘焙原料、饮品配料和食品工业原料。\n\n真正的瓶颈不只在制造端，更在可可原料的气候、病害、农户收益、可追溯合规和价格波动。",
+      "textPreview": "巧克力产业链把热带地区的可可豆，通过发酵、干燥、贸易、研磨、压榨、精炼、调温和品牌化，转化为零食、礼品、烘焙原料、饮品配料和食品工业原料。 |  | 真正的瓶颈不只在制造端，更在可可原料的气候、病害、农户收益、可追溯合规和价格波动。",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 16,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "bottom",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 6,
+        "lines": [
+          {
+            "index": 1,
+            "text": "巧克力产业链把热带地区的可可豆，通过发酵、干燥、贸易、研磨"
+          },
+          {
+            "index": 2,
+            "text": "、压榨、精炼、调温和品牌化，转化为零食、礼品、烘焙原料、饮"
+          },
+          {
+            "index": 3,
+            "text": "品配料和食品工业原料。"
+          },
+          {
+            "index": 4,
+            "text": ""
+          },
+          {
+            "index": 5,
+            "text": "真正的瓶颈不只在制造端，更在可可原料的气候、病害、农户收益"
+          },
+          {
+            "index": 6,
+            "text": "、可追溯合规和价格波动。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "巧克力产业链把热带地区的可可豆，通过发酵、干燥、贸易、研磨、压榨、精炼、调温和品牌化，转化为零食、礼品、烘焙原料、饮品配料和食品工业原料。",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "巧克力产业链把热带地区的可可豆，通过发酵、干燥、贸易、研磨、压榨、精炼、调温和品牌化，转化为零食、礼品、烘焙原料、饮品配料和食品工业原料。",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 3,
+          "text": "真正的瓶颈不只在制造端，更在可可原料的气候、病害、农户收益、可追溯合规和价格波动。",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "真正的瓶颈不只在制造端，更在可可原料的气候、病害、农户收益、可追溯合规和价格波动。",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tovahoza",
+      "id": "223",
+      "name": "Google Shape;218;p31",
+      "bbox": [
+        -2.66,
+        121.07,
+        965.32,
+        0.13
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "lt1",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/7qpg3ex0",
+      "id": "224",
+      "bbox": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "geometry": "roundRect",
+      "alt": "Chocolate production line",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect"
+      },
+      "asset": {
+        "assetId": "b87aed47-cd6e-43c8-bfee-b76ddaf09cf5",
+        "contentType": "image/png",
+        "byteLength": 2035235
+      }
+    }
+  ],
+  "composeRuns": []
+}

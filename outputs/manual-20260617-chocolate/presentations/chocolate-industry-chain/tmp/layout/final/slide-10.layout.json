@@ -1,0 +1,955 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/29gr2p8n",
+    "id": "29gr2p8n",
+    "slide": 10,
+    "layoutId": "/ppt/slideLayouts/slideLayout4.xml",
+    "layoutName": "TITLE_AND_TWO_COLUMNS",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#FFFFFF",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#252525",
+      "lt1": "#F0F0F0",
+      "dk2": "#B43B13",
+      "lt2": "#FFFFFF",
+      "hlink": "#252525",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Ancizar Sans",
+      "Arial",
+      "Baskervville"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout4.xml",
+      "name": "TITLE_AND_TWO_COLUMNS",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "image",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/27",
+          "id": "27",
+          "name": "Google Shape;21;p5",
+          "bbox": [
+            0,
+            0.23,
+            960,
+            539.53
+          ],
+          "contentType": "image/png",
+          "asset": {
+            "assetId": "/ppt/media/image.png",
+            "contentType": "image/png",
+            "byteLength": 6345401
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image.png",
+            "contentType": "image/png",
+            "byteLength": 6345401
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/22",
+          "id": "22",
+          "name": "Google Shape;22;p5",
+          "bbox": [
+            10.02,
+            15.69,
+            912.03,
+            72.66
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/23",
+          "id": "23",
+          "name": "Google Shape;23;p5",
+          "bbox": [
+            92.64,
+            235.74,
+            334.74,
+            248.76
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/24",
+          "id": "24",
+          "name": "Google Shape;24;p5",
+          "bbox": [
+            505.44,
+            235.74,
+            334.74,
+            248.76
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/25",
+          "id": "25",
+          "name": "Google Shape;25;p5",
+          "bbox": [
+            640.34,
+            165.68,
+            64.94,
+            48.13
+          ],
+          "geometry": "rect",
+          "text": "xx%",
+          "textPreview": "xx%",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "xx%",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "xx%"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 6,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/26",
+          "id": "26",
+          "name": "Google Shape;26;p5",
+          "bbox": [
+            227.6,
+            165.68,
+            64.82,
+            48.13
+          ],
+          "geometry": "rect",
+          "text": "xx%",
+          "textPreview": "xx%",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "xx%",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "xx%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            74.88,
+            46.72,
+            810.24,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            74.88,
+            120.99,
+            810.24,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bq1oryts",
+      "id": "237",
+      "name": "Google Shape;237;p34",
+      "bbox": [
+        10.02,
+        15.69,
+        912.03,
+        72.66
+      ],
+      "geometry": "rect",
+      "text": "价值不是只在“做甜食”",
+      "textPreview": "价值不是只在“做甜食”",
+      "resolvedFontSize": 34.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 34.67,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "价值不是只在“做甜食”"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "价值不是只在“做甜食”",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "价值不是只在“做甜食”",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/47y1kre1",
+      "id": "238",
+      "name": "Google Shape;238;p34",
+      "bbox": [
+        92.64,
+        235.74,
+        334.74,
+        248.76
+      ],
+      "geometry": "rect",
+      "text": "价值增加\n• 原料豆变成稳定可用的可可制品\n• 工业巧克力变成适配不同产品的配方\n• 品牌和渠道把口感包装成礼品、零食与情绪消费\n\n规模驱动\n• 研磨、工业巧克力、大众品牌与商超供应",
+      "textPreview": "价值增加 | • 原料豆变成稳定可用的可可制品 | • 工业巧克力变成适配不同产品的配方 | • 品牌和渠道把口感包装成礼品、零食与情绪消费 |  | 规模驱动 | • 研磨、工业巧克力、大众品牌与商超供应",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 9,
+        "lines": [
+          {
+            "index": 1,
+            "text": "● 价值增加"
+          },
+          {
+            "index": 2,
+            "text": "● • 原料豆变成稳定可用的可可制品"
+          },
+          {
+            "index": 3,
+            "text": "● • 工业巧克力变成适配不同产品的配方"
+          },
+          {
+            "index": 4,
+            "text": "● •"
+          },
+          {
+            "index": 5,
+            "text": "品牌和渠道把口感包装成礼品、零食"
+          },
+          {
+            "index": 6,
+            "text": "与情绪消费"
+          },
+          {
+            "index": 7,
+            "text": ""
+          },
+          {
+            "index": 8,
+            "text": "规模驱动"
+          },
+          {
+            "index": 9,
+            "text": "• 研磨、工业巧克力、大众品牌与商超供应"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "价值增加",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "价值增加",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 2,
+          "text": "• 原料豆变成稳定可用的可可制品",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 原料豆变成稳定可用的可可制品",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 3,
+          "text": "• 工业巧克力变成适配不同产品的配方",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 工业巧克力变成适配不同产品的配方",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 4,
+          "text": "• 品牌和渠道把口感包装成礼品、零食与情绪消费",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 品牌和渠道把口感包装成礼品、零食与情绪消费",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 6,
+          "text": "规模驱动",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "规模驱动",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 7,
+          "text": "• 研磨、工业巧克力、大众品牌与商超供应",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 研磨、工业巧克力、大众品牌与商超供应",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tsvu9kni",
+      "id": "239",
+      "name": "Google Shape;239;p34",
+      "bbox": [
+        505.44,
+        235.74,
+        334.74,
+        248.76
+      ],
+      "geometry": "rect",
+      "text": "核心壁垒\n• 稳定产地网络和可追溯可可豆\n• 发酵、焙炒、精炼、调温与流变控制\n• 食品安全认证、EUDR 等合规能力\n• 终端品牌、节日场景和货架渠道\n\n弱势环节\n• 分散农户、小型收购商和同质化代工",
+      "textPreview": "核心壁垒 | • 稳定产地网络和可追溯可可豆 | • 发酵、焙炒、精炼、调温与流变控制 | • 食品安全认证、EUDR 等合规能力 | • 终端品牌、节日场景和货架渠道 |  | 弱势环节 | • 分散农户、小型收购商和同质化代工",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 8,
+        "lines": [
+          {
+            "index": 1,
+            "text": "● 核心壁垒"
+          },
+          {
+            "index": 2,
+            "text": "● • 稳定产地网络和可追溯可可豆"
+          },
+          {
+            "index": 3,
+            "text": "● • 发酵、焙炒、精炼、调温与流变控制"
+          },
+          {
+            "index": 4,
+            "text": "● • 食品安全认证、EUDR 等合规能力"
+          },
+          {
+            "index": 5,
+            "text": "• 终端品牌、节日场景和货架渠道"
+          },
+          {
+            "index": 6,
+            "text": ""
+          },
+          {
+            "index": 7,
+            "text": "弱势环节"
+          },
+          {
+            "index": 8,
+            "text": "• 分散农户、小型收购商和同质化代工"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "核心壁垒",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "核心壁垒",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 2,
+          "text": "• 稳定产地网络和可追溯可可豆",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 稳定产地网络和可追溯可可豆",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 3,
+          "text": "• 发酵、焙炒、精炼、调温与流变控制",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 发酵、焙炒、精炼、调温与流变控制",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 4,
+          "text": "• 食品安全认证、EUDR 等合规能力",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 食品安全认证、EUDR 等合规能力",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 5,
+          "text": "• 终端品牌、节日场景和货架渠道",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 终端品牌、节日场景和货架渠道",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 7,
+          "text": "弱势环节",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "弱势环节",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 8,
+          "text": "• 分散农户、小型收购商和同质化代工",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 分散农户、小型收购商和同质化代工",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pg3ex0nu",
+      "id": "240",
+      "name": "Google Shape;240;p34",
+      "bbox": [
+        640.34,
+        165.68,
+        64.94,
+        48.13
+      ],
+      "geometry": "rect",
+      "text": "01",
+      "textPreview": "01",
+      "resolvedFontSize": 33.33,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 33.33,
+        "typeface": "Baskervville",
+        "color": "accent2",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "01"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "01",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "01",
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wval87ed",
+      "id": "241",
+      "name": "Google Shape;241;p34",
+      "bbox": [
+        227.6,
+        165.68,
+        64.82,
+        48.13
+      ],
+      "geometry": "rect",
+      "text": "02",
+      "textPreview": "02",
+      "resolvedFontSize": 33.33,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 33.33,
+        "typeface": "Baskervville",
+        "color": "accent2",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "02"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "02",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "02",
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/l0rqd4vm",
+      "id": "248",
+      "name": "Google Shape;242;p34",
+      "bbox": [
+        -2.66,
+        88.23,
+        965.32,
+        0.13
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "lt1",
+      "lineWidth": 1
+    }
+  ],
+  "composeRuns": []
+}

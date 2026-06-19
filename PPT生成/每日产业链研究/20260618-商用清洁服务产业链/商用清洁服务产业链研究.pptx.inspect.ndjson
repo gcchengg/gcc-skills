@@ -1,0 +1,193 @@
+{"kind":"deck","id":"pr/rm71ep","name":"Deck"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"","type":"master","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"BLANK","type":"blank","placeholders":[{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout2.xml","name":"TITLE","type":"title","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"picture","type":"picture"},{"name":"picture","type":"picture"},{"name":"picture","type":"picture"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout3.xml","name":"OBJECT","type":"obj","placeholders":[{"name":"picture","type":"picture"},{"name":"title","type":"title"},{"name":"body","type":"body"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout4.xml","name":"SECTION_HEADER","type":"secHead","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"body","type":"body"},{"name":"body","type":"body"},{"name":"picture","type":"picture"},{"name":"picture","type":"picture"},{"name":"picture","type":"picture"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout5.xml","name":"TWO_OBJECTS","type":"twoObj","placeholders":[{"name":"picture","type":"picture"},{"name":"picture","type":"picture"},{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"title","type":"title"},{"name":"body","type":"body"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout6.xml","name":"TWO_OBJECTS_WITH_TEXT","type":"twoTxTwoObj","placeholders":[{"name":"title","type":"title"},{"name":"picture","type":"picture"},{"name":"body","type":"body"},{"name":"body","type":"body"},{"name":"body","type":"body"},{"name":"body","type":"body"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout7.xml","name":"TITLE_ONLY","type":"titleOnly","placeholders":[{"name":"title","type":"title"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout8.xml","name":"OBJECT_WITH_CAPTION_TEXT","type":"objTx","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout9.xml","name":"PICTURE_WITH_CAPTION_TEXT","type":"picTx","placeholders":[{"name":"title","type":"title"},{"name":"picture","type":"picture"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout10.xml","name":"VERTICAL_TEXT","type":"vertTx","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout11.xml","name":"VERTICAL_TITLE_AND_VERTICAL_TEXT","type":"vertTitleAndTx","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"dateTime","type":"dateTime"},{"name":"footer","type":"footer"},{"name":"slideNumber","type":"slideNumber","textPreview":"‹#›"}]}
+{"kind":"slide","id":"sl/2x4nap4r","slide":1,"title":"INDUSTRY CHAIN RESEARCH","textShapes":3}
+{"kind":"shape","id":"sh/36hcrmhk","slide":1,"name":"Google Shape;94;p13","bbox":[1215.94,850.19,137.99,0]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":1,"name":"Google Shape;95;p13","text":"INDUSTRY CHAIN RESEARCH","textPreview":"INDUSTRY CHAIN RESEARCH","textChars":23,"textLines":1,"bbox":[43.62,771.03,660.45,53.74]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":1,"name":"Google Shape;96;p13","text":"从药剂、设备、劳动力到现场交付与续约","textPreview":"从药剂、设备、劳动力到现场交付与续约","textChars":18,"textLines":1,"bbox":[1215.94,873.62,596.06,77.57]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":1,"name":"Google Shape;97;p13","text":"商用清洁服务\n产业链研究","textPreview":"商用清洁服务 | 产业链研究","textChars":12,"textLines":2,"bbox":[43.62,851.8,980.91,186.14]}
+{"kind":"image","id":"im/wjudg7ad","slide":1,"name":"Google Shape;98;p13","bbox":[0,32,698.2,691.59]}
+{"kind":"image","id":"im/p4r65wju","slide":1,"name":"Google Shape;99;p13","bbox":[736.52,32,446.95,691.59]}
+{"kind":"image","id":"im/m1cfa9w3","slide":1,"name":"Google Shape;100;p13","bbox":[1221.8,32,698.2,691.59]}
+{"kind":"notes","id":"nt/2x4nap4r","slide":1,"text":""}
+{"kind":"slide","id":"sl/pg3ex0nu","slide":2,"title":"目录","textShapes":1}
+{"kind":"textbox","id":"sh/0je9cvix","slide":2,"name":"Google Shape;106;p14","text":"目录","textPreview":"目录","textChars":2,"textLines":1,"bbox":[839.96,154.02,994.05,110.4]}
+{"kind":"table","id":"tb/gfmlkjm1","slide":2,"name":"Google Shape;105;p14","rows":7,"cols":2,"preview":"问题与需求 | 03","bbox":[839.96,290.04,314.96,314.96]}
+{"kind":"image","id":"im/nyd0z610","slide":2,"name":"Google Shape;107;p14","geometry":"roundRect","bbox":[36.23,44.72,697.54,990.55]}
+{"kind":"notes","id":"nt/pg3ex0nu","slide":2,"text":""}
+{"kind":"slide","id":"sl/s72x4nap","slide":3,"title":"问题与需求","textShapes":2}
+{"kind":"textbox","id":"sh/cfa9w3m9","slide":3,"name":"Google Shape;121;p15","text":"问题与需求","textPreview":"问题与需求","textChars":5,"textLines":1,"bbox":[43.62,721.27,740.44,128.78]}
+{"kind":"textbox","id":"sh/judg7ads","slide":3,"name":"Google Shape;122;p15","text":"商用清洁不是简单“找人打扫”。客户真正购买的是稳定空间体验、低投诉、安全记录和可追责的服务交付。","textPreview":"商用清洁不是简单“找人打扫”。客户真正购买的是稳定空间体验、低投诉、安全记录和可追责的服务交付。","textChars":48,"textLines":1,"bbox":[43.62,862,832.94,165.6]}
+{"kind":"notes","id":"nt/s72x4nap","slide":3,"text":""}
+{"kind":"slide","id":"sl/val87ed8","slide":4,"title":"产业链全景","textShapes":7}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":4,"name":"Google Shape;130;p16","text":"产业链全景","textPreview":"产业链全景","textChars":5,"textLines":1,"bbox":[77.52,96.85,1044.28,119.04]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":4,"name":"Google Shape;131;p16","text":"主要链路：药剂/设备/耗材 → 劳动力与培训 → 服务商/设施管理商 → 现场交付与质检 → 物业和企业客户。","textPreview":"主要链路：药剂/设备/耗材 → 劳动力与培训 → 服务商/设施管理商 → 现场交付与质检 → 物业和企业客户。","textChars":55,"textLines":1,"bbox":[1193.12,88.79,644.31,121.44]}
+{"kind":"textbox","id":"sh/mp0bi9s3","slide":4,"name":"Google Shape;132;p16","text":"投入端","textPreview":"投入端","textChars":3,"textLines":1,"bbox":[144.53,410.7,1731.85,138.22]}
+{"kind":"shape","id":"sh/bat47y1k","slide":4,"name":"Google Shape;133;p16","bbox":[43.62,572.19,1832.76,0]}
+{"kind":"shape","id":"sh/47y1kre1","slide":4,"name":"Google Shape;134;p16","bbox":[43.62,768.06,1832.76,0]}
+{"kind":"textbox","id":"sh/tsvu9kni","slide":4,"name":"Google Shape;135;p16","text":"运营端","textPreview":"运营端","textChars":3,"textLines":1,"bbox":[144.53,611.52,1731.85,138.22]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":4,"name":"Google Shape;136;p16","text":"客户场景","textPreview":"客户场景","textChars":4,"textLines":1,"bbox":[144.53,812.28,1731.85,138.22]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":4,"name":"Google Shape;137;p16","text":"三条主线：","textPreview":"三条主线：","textChars":5,"textLines":1,"bbox":[43.62,317.39,379.29,52.78]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":4,"name":"Google Shape;147;p16","text":"产业链研究","textPreview":"产业链研究","textChars":5,"textLines":1,"bbox":[43.62,1022.2,453,33.28]}
+{"kind":"shape","id":"sh/90je9cvi","slide":4,"name":"Google Shape;148;p16","bbox":[43.62,963.94,1832.76,0]}
+{"kind":"notes","id":"nt/val87ed8","slide":4,"text":""}
+{"kind":"slide","id":"sl/mlkjm1cf","slide":5,"title":"成本结构与风险","textShapes":8}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":5,"name":"Google Shape;156;p17","text":"成本结构与风险","textPreview":"成本结构与风险","textChars":7,"textLines":1,"bbox":[758.92,406.78,541.56,266.44]}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":5,"name":"Google Shape;163;p17","text":"当服务失控时：","textPreview":"当服务失控时：","textChars":7,"textLines":1,"bbox":[43.62,378.12,621.86,226.2]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":5,"name":"Google Shape;164;p17","text":"产业链研究","textPreview":"产业链研究","textChars":5,"textLines":1,"bbox":[43.62,646.71,692.38,67.2]}
+{"kind":"textbox","id":"sh/0je9cvix","slide":5,"name":"Google Shape;165;p17","text":"成本结构与风险","textPreview":"成本结构与风险","textChars":7,"textLines":1,"bbox":[43.62,1022.2,453,33.28]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":5,"name":"Google Shape;171;p17","text":"人工、耗材、设备和管理成本共同决定利润质量。","textPreview":"人工、耗材、设备和管理成本共同决定利润质量。","textChars":22,"textLines":1,"bbox":[758.92,406.78,541.59,266.45]}
+{"kind":"textbox","id":"sh/at47y1kr","slide":5,"name":"Google Shape;178;p17","text":"产业链研究","textPreview":"产业链研究","textChars":5,"textLines":1,"bbox":[43.62,378.12,621.86,226.2]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":5,"name":"Google Shape;179;p17","text":"When cleaning falls short:","textPreview":"When cleaning falls short:","textChars":26,"textLines":1,"bbox":[43.62,646.71,692.38,48.47]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":5,"name":"Google Shape;180;p17","text":"产业链研究","textPreview":"产业链研究","textChars":5,"textLines":1,"bbox":[43.62,1022.2,453.01,33.28]}
+{"kind":"image","id":"im/fu18jqh0","slide":5,"name":"Google Shape;166;p17","geometry":"roundRect","bbox":[1335.83,108.68,538.17,266.43]}
+{"kind":"image","id":"im/4fu18jqh","slide":5,"name":"Google Shape;167;p17","geometry":"roundRect","bbox":[1335.83,704.89,541.61,266.8]}
+{"kind":"image","id":"im/x0nuxc3y","slide":5,"name":"Google Shape;181;p17","geometry":"roundRect","bbox":[1335.83,108.68,538.17,266.43]}
+{"kind":"image","id":"im/qxs72x4n","slide":5,"name":"Google Shape;182;p17","geometry":"roundRect","bbox":[1335.83,704.89,541.61,266.8]}
+{"kind":"notes","id":"nt/mlkjm1cf","slide":5,"text":""}
+{"kind":"slide","id":"sl/58z25kb6","slide":6,"title":"把清洁从低价劳务，升级为稳定、可审计、可追责的设施服务。","textShapes":5}
+{"kind":"textbox","id":"sh/mhk3q5o7","slide":6,"name":"Google Shape;187;p18","text":"把清洁从低价劳务，升级为稳定、可审计、可追责的设施服务。","textPreview":"把清洁从低价劳务，升级为稳定、可审计、可追责的设施服务。","textChars":28,"textLines":1,"bbox":[44.71,841.87,694.9,110.4]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":6,"name":"Google Shape;188;p18","text":"价值主张：","textPreview":"价值主张：","textChars":5,"textLines":1,"bbox":[43.62,720.36,696,115.2]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":6,"name":"Google Shape;189;p18","text":"核心目标：","textPreview":"核心目标：","textChars":5,"textLines":1,"bbox":[970.3,720.36,696,115.2]}
+{"kind":"textbox","id":"sh/epkzupwb","slide":6,"name":"Google Shape;190;p18","text":"降低投诉、稳定出勤、减少耗材浪费，并提升客户续约概率。","textPreview":"降低投诉、稳定出勤、减少耗材浪费，并提升客户续约概率。","textChars":27,"textLines":1,"bbox":[970.3,841.87,841.7,110.4]}
+{"kind":"textbox","id":"sh/7adsji5s","slide":6,"name":"Google Shape;191;p18","text":"产业链研究","textPreview":"产业链研究","textChars":5,"textLines":1,"bbox":[43.62,1022.2,453,33.28]}
+{"kind":"image","id":"im/xkf6dcbu","slide":6,"name":"Google Shape;192;p18","bbox":[44.71,40.86,841.7,624.32]}
+{"kind":"image","id":"im/4zidonyd","slide":6,"name":"Google Shape;193;p18","bbox":[970.3,40.86,859.39,624.32]}
+{"kind":"notes","id":"nt/58z25kb6","slide":6,"text":""}
+{"kind":"slide","id":"sl/0z61032l","slide":7,"title":"交付流程","textShapes":3}
+{"kind":"shape","id":"sh/ixczed8v","slide":7,"name":"Google Shape;210;p19","bbox":[43.62,760.57,1832.76,0]}
+{"kind":"shape","id":"sh/bi9s36hc","slide":7,"name":"Google Shape;211;p19","bbox":[43.62,962.21,1832.76,0]}
+{"kind":"textbox","id":"sh/032lszqt","slide":7,"name":"Google Shape;212;p19","text":"交付流程","textPreview":"交付流程","textChars":4,"textLines":1,"bbox":[43.62,30.93,633.29,134.38]}
+{"kind":"textbox","id":"sh/tovahoza","slide":7,"name":"Google Shape;213;p19","text":"现场勘查 → 方案与报价 → 人员培训 → 日常交付 → 巡检复盘 → 客户续约。关键不是一次性打扫，而是每天稳定。","textPreview":"现场勘查 → 方案与报价 → 人员培训 → 日常交付 → 巡检复盘 → 客户续约。关键不是一次性打扫，而是每天稳定。","textChars":58,"textLines":1,"bbox":[43.62,156.2,633.29,275.91]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":7,"name":"Google Shape;226;p19","text":"产业链研究","textPreview":"产业链研究","textChars":5,"textLines":1,"bbox":[43.62,1022.2,453,33.28]}
+{"kind":"image","id":"im/hwfyxobm","slide":7,"name":"Google Shape;227;p19","bbox":[836.46,41.18,1039.92,431.99]}
+{"kind":"notes","id":"nt/0z61032l","slide":7,"text":""}
+{"kind":"slide","id":"sl/fu18jqh0","slide":8,"title":"客户如何评价价值","textShapes":11}
+{"kind":"shape","id":"sh/h0fepkzu","slide":8,"name":"Google Shape;232;p20","bbox":[675.21,30.93,381.16,599.23]}
+{"kind":"shape","id":"sh/hcrmhk3q","slide":8,"name":"Google Shape;236;p20","bbox":[701.45,876.89,81.13,78.29]}
+{"kind":"shape","id":"sh/orytsvu9","slide":8,"name":"Google Shape;237;p20","bbox":[1495.22,30.93,381.16,599.23]}
+{"kind":"shape","id":"sh/vu9knih4","slide":8,"name":"Google Shape;241;p20","bbox":[1521.47,876.89,81.13,78.29]}
+{"kind":"shape","id":"sh/kf6dcbul","slide":8,"name":"Google Shape;242;p20","bbox":[1085.21,30.93,381.16,599.23]}
+{"kind":"shape","id":"sh/knih4byh","slide":8,"name":"Google Shape;246;p20","bbox":[1111.46,876.89,81.13,78.29]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":8,"name":"Google Shape;295;p20","text":"客户如何评价价值","textPreview":"客户如何评价价值","textChars":8,"textLines":1,"bbox":[43.62,416,572,226.2]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":8,"name":"Google Shape;296;p20","text":"“清洁服务的价值，是投诉少、响应快、责任清楚。”","textPreview":"“清洁服务的价值，是投诉少、响应快、责任清楚。”","textChars":24,"textLines":1,"bbox":[701.45,683.73,328.66,90.65]}
+{"kind":"textbox","id":"sh/61032lsz","slide":8,"name":"Google Shape;297;p20","text":"“不是只看地面亮不亮，而是空间体验能否稳定。”","textPreview":"“不是只看地面亮不亮，而是空间体验能否稳定。”","textChars":23,"textLines":1,"bbox":[1521.47,683.73,328.66,90.65]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":8,"name":"Google Shape;298;p20","text":"“数据化巡检和替班机制，比低价更能支撑续约。”","textPreview":"“数据化巡检和替班机制，比低价更能支撑续约。”","textChars":23,"textLines":1,"bbox":[1111.46,683.73,328.66,90.65]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":8,"name":"Google Shape;299;p20","text":"物业方","textPreview":"物业方","textChars":3,"textLines":1,"bbox":[805.27,874.58,213.86,34.56]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":8,"name":"Google Shape;300;p20","text":"关注投诉率与公共区形象","textPreview":"关注投诉率与公共区形象","textChars":11,"textLines":1,"bbox":[805.27,905.58,213.86,61.44]}
+{"kind":"textbox","id":"sh/u54zidon","slide":8,"name":"Google Shape;301;p20","text":"企业行政","textPreview":"企业行政","textChars":4,"textLines":1,"bbox":[1625.28,874.58,213.86,34.56]}
+{"kind":"textbox","id":"sh/5sneloj2","slide":8,"name":"Google Shape;302;p20","text":"关注员工体验与预算稳定","textPreview":"关注员工体验与预算稳定","textChars":11,"textLines":1,"bbox":[1625.28,905.58,213.86,61.44]}
+{"kind":"textbox","id":"sh/cbulwval","slide":8,"name":"Google Shape;303;p20","text":"服务商","textPreview":"服务商","textChars":3,"textLines":1,"bbox":[1215.27,874.58,213.86,34.56]}
+{"kind":"textbox","id":"sh/neloj2t8","slide":8,"name":"Google Shape;304;p20","text":"关注人效、耗材与项目密度","textPreview":"关注人效、耗材与项目密度","textChars":12,"textLines":1,"bbox":[1215.27,905.58,213.86,61.44]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":8,"name":"Google Shape;305;p20","text":"产业链研究","textPreview":"产业链研究","textChars":5,"textLines":1,"bbox":[43.62,1022.2,453,33.28]}
+{"kind":"notes","id":"nt/fu18jqh0","slide":8,"text":""}
+{"kind":"slide","id":"sl/qh0fepkz","slide":9,"title":"服务","textShapes":8}
+{"kind":"textbox","id":"sh/xs72x4na","slide":9,"name":"Google Shape;313;p21","text":"服务\n场景","textPreview":"服务 | 场景","textChars":5,"textLines":2,"bbox":[43.62,415.24,452.82,226.2]}
+{"kind":"textbox","id":"sh/qtcj6tov","slide":9,"name":"Google Shape;314;p21","text":"日常保洁","textPreview":"日常保洁","textChars":4,"textLines":1,"bbox":[1473.47,52.95,382.47,282.89]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":9,"name":"Google Shape;318;p21","text":"地面养护","textPreview":"地面养护","textChars":4,"textLines":1,"bbox":[1014.98,52.95,382.47,282.89]}
+{"kind":"textbox","id":"sh/9knih4by","slide":9,"name":"Google Shape;322;p21","text":"卫生间与高频接触面","textPreview":"卫生间与高频接触面","textChars":9,"textLines":1,"bbox":[557.09,52.95,382.47,282.89]}
+{"kind":"textbox","id":"sh/2hwfyxob","slide":9,"name":"Google Shape;329;p21","text":"专项深度清洁","textPreview":"专项深度清洁","textChars":6,"textLines":1,"bbox":[1473.17,548.26,382.47,282.89]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":9,"name":"Google Shape;333;p21","text":"耗材补给","textPreview":"耗材补给","textChars":4,"textLines":1,"bbox":[1014.67,548.26,382.47,282.89]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":9,"name":"Google Shape;337;p21","text":"消毒相关服务","textPreview":"消毒相关服务","textChars":6,"textLines":1,"bbox":[556.78,548.26,382.47,282.89]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":9,"name":"Google Shape;353;p21","text":"产业链研究","textPreview":"产业链研究","textChars":5,"textLines":1,"bbox":[43.62,1022.2,453,33.28]}
+{"kind":"notes","id":"nt/qh0fepkz","slide":9,"text":""}
+{"kind":"slide","id":"sl/29gr2p8n","slide":10,"title":"公共区域","textShapes":3}
+{"kind":"textbox","id":"sh/j6tovaho","slide":10,"name":"Google Shape;361;p22","text":"公共区域","textPreview":"公共区域","textChars":4,"textLines":1,"bbox":[76.83,73.17,835.05,88]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":10,"name":"Google Shape;362;p22","text":"办公与共享空间","textPreview":"办公与共享空间","textChars":7,"textLines":1,"bbox":[1025.93,73.17,801,88]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":10,"name":"Google Shape;363;p22","text":"卫生间与\n高频接触面","textPreview":"卫生间与 | 高频接触面","textChars":10,"textLines":2,"bbox":[75.26,590.64,836.62,176]}
+{"kind":"image","id":"im/32lszqtc","slide":10,"name":"Google Shape;358;p22","bbox":[49.81,559.64,922.04,471.64]}
+{"kind":"image","id":"im/ahoza1gv","slide":10,"name":"Google Shape;359;p22","bbox":[997.15,38.46,878.47,992.83]}
+{"kind":"image","id":"im/l87ed8ba","slide":10,"name":"Google Shape;360;p22","bbox":[49.81,38.46,922.04,500.58]}
+{"kind":"notes","id":"nt/29gr2p8n","slide":10,"text":""}
+{"kind":"slide","id":"sl/re1w7mp0","slide":11,"title":"从服务商视角看三步增长","textShapes":11}
+{"kind":"textbox","id":"sh/loj2t83i","slide":11,"name":"Google Shape;377;p23","text":"从服务商视角看三步增长","textPreview":"从服务商视角看三步增长","textChars":11,"textLines":1,"bbox":[43.62,57,1832.76,122.86]}
+{"kind":"textbox","id":"sh/at47y1kr","slide":11,"name":"Google Shape;378;p23","text":"做准现场方案","textPreview":"做准现场方案","textChars":6,"textLines":1,"bbox":[70,664.68,500,76.78]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":11,"name":"Google Shape;379;p23","text":"面积、材质、客流和时间窗决定交付模型。","textPreview":"面积、材质、客流和时间窗决定交付模型。","textChars":19,"textLines":1,"bbox":[70,743.79,500,105.6]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":11,"name":"Google Shape;380;p23","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[70,485.24,401.39,158]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":11,"name":"Google Shape;381;p23","text":"管住成本结构","textPreview":"管住成本结构","textChars":6,"textLines":1,"bbox":[705.68,664.68,504.32,76.78]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":11,"name":"Google Shape;382;p23","text":"人工、耗材、设备、替班和巡检都要进入报价。","textPreview":"人工、耗材、设备、替班和巡检都要进入报价。","textChars":21,"textLines":1,"bbox":[705.68,743.68,504.32,105.6]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":11,"name":"Google Shape;383;p23","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[705.68,485.24,421,158]}
+{"kind":"textbox","id":"sh/7u54zido","slide":11,"name":"Google Shape;384;p23","text":"形成续约证据","textPreview":"形成续约证据","textChars":6,"textLines":1,"bbox":[1350,664.56,500,76.78]}
+{"kind":"textbox","id":"sh/ed8bat47","slide":11,"name":"Google Shape;385;p23","text":"用工单、照片、投诉闭环和安全记录支撑续约。","textPreview":"用工单、照片、投诉闭环和安全记录支撑续约。","textChars":21,"textLines":1,"bbox":[1350,743.68,500,105.6]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":11,"name":"Google Shape;386;p23","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1350,485.13,421,158]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":11,"name":"Google Shape;387;p23","text":"产业链研究","textPreview":"产业链研究","textChars":5,"textLines":1,"bbox":[43.62,1022.2,453,33.28]}
+{"kind":"notes","id":"nt/re1w7mp0","slide":11,"text":""}
+{"kind":"slide","id":"sl/4fu18jqh","slide":12,"title":"真正的差异来自标准化、人员管理、设备效率、绿色合规和客户信任。","textShapes":3}
+{"kind":"textbox","id":"sh/zidonyd0","slide":12,"name":"Google Shape;401;p24","text":"真正的差异来自标准化、人员管理、设备效率、绿色合规和客户信任。","textPreview":"真正的差异来自标准化、人员管理、设备效率、绿色合规和客户信任。","textChars":31,"textLines":1,"bbox":[43.62,619.74,916.38,295.63]}
+{"kind":"shape","id":"sh/s36hcrmh","slide":12,"name":"Google Shape;402;p24","bbox":[43.62,30.93,1832.76,541.2]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":12,"name":"Google Shape;403;p24","text":"商用清洁的竞争力，不只是低价。","textPreview":"商用清洁的竞争力，不只是低价。","textChars":15,"textLines":1,"bbox":[70,73.85,1557.04,371.59]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":12,"name":"Google Shape;404;p24","text":"COMMERCIAL CLEANING CHAIN","textPreview":"COMMERCIAL CLEANING CHAIN","textChars":25,"textLines":1,"bbox":[43.62,930.17,660.45,53.74]}
+{"kind":"notes","id":"nt/4fu18jqh","slide":12,"text":""}
+{"kind":"slide","id":"sl/lwval87e","slide":13,"title":"已验证来源：","textShapes":12}
+{"kind":"textbox","id":"sh/87ed8bat","slide":13,"name":"Google Shape;436;p25","text":"已验证来源：\nBLS / EPA / OSHA / CDC","textPreview":"已验证来源： | BLS / EPA / OSHA / CDC","textChars":29,"textLines":2,"bbox":[91.72,416.7,438.98,66.37]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":13,"name":"Google Shape;437;p25","text":"重点合规：化学品安全、消毒产品声明、绿色清洁、员工防护。","textPreview":"重点合规：化学品安全、消毒产品声明、绿色清洁、员工防护。","textChars":28,"textLines":1,"bbox":[85.74,741.41,458.59,66.37]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":13,"name":"Google Shape;438;p25","text":"BLS 职业信息","textPreview":"BLS 职业信息","textChars":8,"textLines":1,"bbox":[145.83,557.14,330.76,44.45]}
+{"kind":"textbox","id":"sh/fyxobm58","slide":13,"name":"Google Shape;439;p25","text":"EPA / OSHA / CDC","textPreview":"EPA / OSHA / CDC","textChars":16,"textLines":1,"bbox":[128.56,660.96,365.29,34.56]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":13,"name":"Google Shape;440;p25","text":"劳动供给","textPreview":"劳动供给","textChars":4,"textLines":1,"bbox":[212.05,524.28,198.33,26.32]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":13,"name":"Google Shape;441;p25","text":"绿色与安全","textPreview":"绿色与安全","textChars":5,"textLines":1,"bbox":[212.05,629.34,198.33,26.32]}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":13,"name":"Google Shape;442;p25","text":"#074B04","textPreview":"#074B04","textChars":7,"textLines":1,"bbox":[127.14,982.61,76.21,20]}
+{"kind":"textbox","id":"sh/svu9knih","slide":13,"name":"Google Shape;443;p25","text":"#9ED88C","textPreview":"#9ED88C","textChars":7,"textLines":1,"bbox":[224.65,982.61,76.21,20]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":13,"name":"Google Shape;444;p25","text":"#D7EB9D","textPreview":"#D7EB9D","textChars":7,"textLines":1,"bbox":[321.86,982.61,76.21,20]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":13,"name":"Google Shape;445;p25","text":"#F4F3EE","textPreview":"#F4F3EE","textChars":7,"textLines":1,"bbox":[419.07,982.61,76.21,20]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":13,"name":"Google Shape;449;p25","text":"本页已由模板资源页改为资料来源页。","textPreview":"本页已由模板资源页改为资料来源页。","textChars":17,"textLines":1,"bbox":[1169.43,94.56,642.57,75]}
+{"kind":"textbox","id":"sh/k3q5o7qp","slide":13,"name":"Google Shape;450;p25","text":"资料来源与合规索引","textPreview":"资料来源与合规索引","textChars":9,"textLines":1,"bbox":[108,93.53,771.45,102.38]}
+{"kind":"shape","id":"sh/donyd0z6","slide":13,"name":"Google Shape;451;p25","bbox":[693.92,883.97,45.74,84.98]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":13,"name":"Google Shape;452;p25","bbox":[1606.6,591.27,80.31,69.06]}
+{"kind":"shape","id":"sh/vixczed8","slide":13,"name":"Google Shape;453;p25","bbox":[1759.75,733.84,57.08,78.88]}
+{"kind":"shape","id":"sh/kre1w7mp","slide":13,"name":"Google Shape;454;p25","bbox":[1662.66,738.04,47.02,70.47]}
+{"kind":"shape","id":"sh/dcbulwva","slide":13,"name":"Google Shape;455;p25","bbox":[1745.13,891.22,77.99,70.47]}
+{"kind":"shape","id":"sh/6psfil0r","slide":13,"name":"Google Shape;456;p25","bbox":[1745.13,442.7,70.47,70.47]}
+{"kind":"shape","id":"sh/val87ed8","slide":13,"name":"Google Shape;457;p25","bbox":[1607.66,448.31,96.42,59.25]}
+{"kind":"shape","id":"sh/knih4byh","slide":13,"name":"Google Shape;458;p25","bbox":[1737.95,586.36,78.88,78.88]}
+{"kind":"shape","id":"sh/d8bat47y","slide":13,"name":"Google Shape;459;p25","bbox":[1634.74,887.02,54.93,78.88]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":13,"name":"Google Shape;460;p25","bbox":[1249.59,438.5,69.27,78.88]}
+{"kind":"shape","id":"sh/oj2t83it","slide":13,"name":"Google Shape;461;p25","bbox":[1475.15,450.75,91.45,54.37]}
+{"kind":"shape","id":"sh/vy90je9c","slide":13,"name":"Google Shape;462;p25","bbox":[793.07,442.7,70.47,70.47]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":13,"name":"Google Shape;463;p25","bbox":[681.55,442.7,70.47,70.47]}
+{"kind":"shape","id":"sh/dsji5sne","slide":13,"name":"Google Shape;464;p25","bbox":[1130.33,440.61,78.21,74.65]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":13,"name":"Google Shape;465;p25","bbox":[904.6,438.5,78.3,78.88]}
+{"kind":"shape","id":"sh/vmtwra5g","slide":13,"name":"Google Shape;466;p25","bbox":[1023.96,438.11,65.31,79.65]}
+{"kind":"shape","id":"sh/61032lsz","slide":13,"name":"Google Shape;467;p25","bbox":[1359.91,440.64,74.18,74.59]}
+{"kind":"shape","id":"sh/dg7adsji","slide":13,"name":"Google Shape;468;p25","bbox":[1350.7,586.36,63.67,78.88]}
+{"kind":"shape","id":"sh/ovahoza1","slide":13,"name":"Google Shape;469;p25","bbox":[1213.92,586.36,85.74,78.88]}
+{"kind":"shape","id":"sh/yxobm58z","slide":13,"name":"Google Shape;470;p25","bbox":[1465.42,599.91,90.14,51.79]}
+{"kind":"shape","id":"sh/nih4byhg","slide":13,"name":"Google Shape;471;p25","bbox":[954.23,586.36,78.88,78.88]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":13,"name":"Google Shape;472;p25","bbox":[681.55,586.36,91.72,78.88]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":13,"name":"Google Shape;473;p25","bbox":[1084.15,586.36,78.73,78.88]}
+{"kind":"shape","id":"sh/ylc7u54z","slide":13,"name":"Google Shape;474;p25","bbox":[824.31,586.36,78.88,78.88]}
+{"kind":"shape","id":"sh/r65wjudg","slide":13,"name":"Google Shape;475;p25","bbox":[1289.6,739.17,86.44,68.21]}
+{"kind":"shape","id":"sh/gr2p8nqx","slide":13,"name":"Google Shape;476;p25","bbox":[1150.38,746.45,89.15,53.65]}
+{"kind":"shape","id":"sh/9cvixcze","slide":13,"name":"Google Shape;477;p25","bbox":[927.04,734.18,73.36,78.19]}
+{"kind":"shape","id":"sh/yd0z6103","slide":13,"name":"Google Shape;478;p25","bbox":[1050.46,739.17,49.86,68.21]}
+{"kind":"shape","id":"sh/rytsvu9k","slide":13,"name":"Google Shape;479;p25","bbox":[819.97,734.18,57.01,78.19]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":13,"name":"Google Shape;480;p25","bbox":[1544.39,739.17,68.21,68.21]}
+{"kind":"shape","id":"sh/yhgn29gr","slide":13,"name":"Google Shape;481;p25","bbox":[1426.11,739.17,68.21,68.21]}
+{"kind":"shape","id":"sh/58z25kb6","slide":13,"name":"Google Shape;482;p25","bbox":[681.55,733.84,88.35,78.88]}
+{"kind":"shape","id":"sh/gn29gr2p","slide":13,"name":"Google Shape;483;p25","bbox":[1511.76,887.85,67.53,77.21]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":13,"name":"Google Shape;484;p25","bbox":[1375,898,81.3,56.91]}
+{"kind":"shape","id":"sh/y90je9cv","slide":13,"name":"Google Shape;485;p25","bbox":[1249.98,898,69.55,56.91]}
+{"kind":"shape","id":"sh/5wjudg7a","slide":13,"name":"Google Shape;486;p25","bbox":[1043.27,887.85,38.89,77.21]}
+{"kind":"shape","id":"sh/gbq1oryt","slide":13,"name":"Google Shape;487;p25","bbox":[1137.61,898,56.91,56.91]}
+{"kind":"shape","id":"sh/nqxs72x4","slide":13,"name":"Google Shape;488;p25","bbox":[795.11,880.91,70.55,91.09]}
+{"kind":"shape","id":"sh/u54zidon","slide":13,"name":"Google Shape;489;p25","bbox":[921.12,887.85,66.69,77.21]}
+{"kind":"notes","id":"nt/lwval87e","slide":13,"text":""}
+{"kind":"slide","id":"sl/25kb6xkf","slide":14,"title":"商用清洁服务产业链，是把劳动、化学品、设备、耗材、流程和客户体验整合成可复制交付能力。","textShapes":6}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":14,"name":"Google Shape;503;p26","text":"商用清洁服务产业链，是把劳动、化学品、设备、耗材、流程和客户体验整合成可复制交付能力。","textPreview":"商用清洁服务产业链，是把劳动、化学品、设备、耗材、流程和客户体验整合成可复制交付能力。","textChars":43,"textLines":1,"bbox":[665.56,326.7,1210.82,92.13]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":14,"name":"Google Shape;504;p26","text":"产业链研究 / 2026-06-18","textPreview":"产业链研究 / 2026-06-18","textChars":18,"textLines":1,"bbox":[638.84,952.87,642.32,63.98]}
+{"kind":"textbox","id":"sh/ulwval87","slide":14,"name":"Google Shape;505;p26","text":"结论","textPreview":"结论","textChars":2,"textLines":1,"bbox":[43.62,299.22,424.61,102.38]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":14,"name":"Google Shape;506;p26","text":"核心壁垒：稳定招人、班组长、培训 SOP、巡检数据、耗材管理和客户续约。","textPreview":"核心壁垒：稳定招人、班组长、培训 SOP、巡检数据、耗材管理和客户续约。","textChars":36,"textLines":1,"bbox":[1156.76,583.95,566.73,439.92]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":14,"name":"Google Shape;507;p26","text":"适合继续拆解：清洁机器人、商用洗地机、清洁剂与消毒剂、设施管理、商用纸品耗材。","textPreview":"适合继续拆解：清洁机器人、商用洗地机、清洁剂与消毒剂、设施管理、商用纸品耗材。","textChars":39,"textLines":1,"bbox":[1098.4,774.15,683.45,92.13]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":14,"name":"Google Shape;508;p26","text":"资料来源见第 13 页","textPreview":"资料来源见第 13 页","textChars":11,"textLines":1,"bbox":[138.15,774.15,683.45,46.06]}
+{"kind":"shape","id":"sh/qh0fepkz","slide":14,"name":"Google Shape;509;p26","bbox":[43.62,-25.93,1832.76,278.17]}
+{"kind":"image","id":"im/dg7adsji","slide":14,"name":"Google Shape;510;p26","bbox":[196.64,598.28,566.73,132.33]}
+{"kind":"notes","id":"nt/25kb6xkf","slide":14,"text":""}

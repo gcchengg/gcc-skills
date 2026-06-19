@@ -1,0 +1,179 @@
+{"kind":"deck","id":"pr/0cdi7x","name":"Deck"}
+{"kind":"layout","layoutId":"1da37430-5c48-40f9-8f00-368dc5e03f04","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"dd4a036c-54a9-49cd-8227-8d746178579f","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/jg1let","slide":1,"title":"SUN","textShapes":26}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":1,"text":"SUN","textPreview":"SUN","textChars":3,"textLines":1,"bbox":[420,82,55,24]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":1,"text":"MON","textPreview":"MON","textChars":3,"textLines":1,"bbox":[525,82,60,24]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":1,"text":"TUE","textPreview":"TUE","textChars":3,"textLines":1,"bbox":[632,82,55,24]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":1,"text":"WED","textPreview":"WED","textChars":3,"textLines":1,"bbox":[735,82,60,24]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":1,"text":"THU","textPreview":"THU","textChars":3,"textLines":1,"bbox":[845,82,55,24]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":1,"text":"FRI","textPreview":"FRI","textChars":3,"textLines":1,"bbox":[955,82,55,24]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":1,"text":"SAT","textPreview":"SAT","textChars":3,"textLines":1,"bbox":[1050,82,55,24]}
+{"kind":"shape","id":"sh/re1w7mp0","slide":1,"bbox":[400,120,95,86]}
+{"kind":"shape","id":"sh/bulwval8","slide":1,"bbox":[495,120,95,86]}
+{"kind":"shape","id":"sh/i9s36hcr","slide":1,"bbox":[590,120,95,86]}
+{"kind":"shape","id":"sh/p0bi9s36","slide":1,"bbox":[685,120,95,86]}
+{"kind":"shape","id":"sh/0fepkzup","slide":1,"bbox":[780,120,95,86]}
+{"kind":"shape","id":"sh/bi9s36hc","slide":1,"bbox":[875,120,95,86]}
+{"kind":"shape","id":"sh/ixczed8v","slide":1,"bbox":[970,120,95,86]}
+{"kind":"shape","id":"sh/tovahoza","slide":1,"bbox":[400,206,95,86]}
+{"kind":"shape","id":"sh/032lszqt","slide":1,"bbox":[495,206,95,86]}
+{"kind":"shape","id":"sh/b6xkf6dc","slide":1,"bbox":[590,206,95,86]}
+{"kind":"shape","id":"sh/il0rqd4v","slide":1,"bbox":[685,206,95,86]}
+{"kind":"shape","id":"sh/ulwval87","slide":1,"bbox":[780,206,95,86]}
+{"kind":"shape","id":"sh/j6tovaho","slide":1,"bbox":[875,206,95,86]}
+{"kind":"shape","id":"sh/crmhk3q5","slide":1,"bbox":[970,206,95,86]}
+{"kind":"shape","id":"sh/1cfa9w3m","slide":1,"bbox":[400,292,95,86]}
+{"kind":"shape","id":"sh/uxc3ylc7","slide":1,"bbox":[495,292,95,86]}
+{"kind":"shape","id":"sh/ji5snelo","slide":1,"bbox":[590,292,95,86]}
+{"kind":"shape","id":"sh/c3ylc7u5","slide":1,"bbox":[685,292,95,86]}
+{"kind":"shape","id":"sh/1kre1w7m","slide":1,"bbox":[780,292,95,86]}
+{"kind":"shape","id":"sh/q5o7qpg3","slide":1,"bbox":[875,292,95,86]}
+{"kind":"shape","id":"sh/jqh0fepk","slide":1,"bbox":[970,292,95,86]}
+{"kind":"shape","id":"sh/p8nqxs72","slide":1,"bbox":[400,378,95,86]}
+{"kind":"shape","id":"sh/0nuxc3yl","slide":1,"bbox":[495,378,95,86]}
+{"kind":"shape","id":"sh/72x4nap4","slide":1,"bbox":[590,378,95,86]}
+{"kind":"shape","id":"sh/ih4byhgn","slide":1,"bbox":[685,378,95,86]}
+{"kind":"shape","id":"sh/pkzupwb2","slide":1,"bbox":[780,378,95,86]}
+{"kind":"shape","id":"sh/0z61032l","slide":1,"bbox":[875,378,95,86]}
+{"kind":"shape","id":"sh/7ed8bat4","slide":1,"bbox":[970,378,95,86]}
+{"kind":"shape","id":"sh/itgfmlkj","slide":1,"bbox":[400,464,95,86]}
+{"kind":"shape","id":"sh/pwb2hwfy","slide":1,"bbox":[495,464,95,86]}
+{"kind":"shape","id":"sh/0bi9s36h","slide":1,"bbox":[590,464,95,86]}
+{"kind":"shape","id":"sh/4fu18jqh","slide":1,"bbox":[685,464,95,86]}
+{"kind":"shape","id":"sh/x0nuxc3y","slide":1,"bbox":[780,464,95,86]}
+{"kind":"shape","id":"sh/m94fu18j","slide":1,"bbox":[875,464,95,86]}
+{"kind":"shape","id":"sh/fu18jqh0","slide":1,"bbox":[970,464,95,86]}
+{"kind":"textbox","id":"sh/83itgfml","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[410,130,44,18]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":1,"text":"纸张","textPreview":"纸张","textChars":2,"textLines":1,"bbox":[425,166,54,24]}
+{"kind":"textbox","id":"sh/qxs72x4n","slide":1,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[600,130,44,18]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":1,"text":"印刷","textPreview":"印刷","textChars":2,"textLines":1,"bbox":[615,166,54,24]}
+{"kind":"textbox","id":"sh/4zidonyd","slide":1,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[410,216,44,18]}
+{"kind":"textbox","id":"sh/xkf6dcbu","slide":1,"text":"装订","textPreview":"装订","textChars":2,"textLines":1,"bbox":[425,252,54,24]}
+{"kind":"textbox","id":"sh/jm1cfa9w","slide":1,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[790,216,44,18]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":1,"text":"IP","textPreview":"IP","textChars":2,"textLines":1,"bbox":[805,252,54,24]}
+{"kind":"textbox","id":"sh/1orytsvu","slide":1,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[600,302,44,18]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":1,"text":"社群","textPreview":"社群","textChars":2,"textLines":1,"bbox":[615,338,54,24]}
+{"kind":"textbox","id":"sh/judg7ads","slide":1,"text":"20","textPreview":"20","textChars":2,"textLines":1,"bbox":[885,302,44,18]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":1,"text":"渠道","textPreview":"渠道","textChars":2,"textLines":1,"bbox":[900,338,54,24]}
+{"kind":"textbox","id":"sh/1032lszq","slide":1,"text":"25","textPreview":"25","textChars":2,"textLines":1,"bbox":[695,388,44,18]}
+{"kind":"textbox","id":"sh/cfa9w3m9","slide":1,"text":"库存","textPreview":"库存","textChars":2,"textLines":1,"bbox":[710,424,54,24]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":1,"text":"28","textPreview":"28","textChars":2,"textLines":1,"bbox":[980,388,44,18]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":1,"text":"合规","textPreview":"合规","textChars":2,"textLines":1,"bbox":[995,424,54,24]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":1,"text":"手账文具","textPreview":"手账文具","textChars":4,"textLines":1,"bbox":[650,575,430,72]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":1,"text":"产业链研究","textPreview":"产业链研究","textChars":5,"textLines":1,"bbox":[652,650,395,58]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":1,"text":"纸张 · 印刷装订 · 设计/IP · 渠道社群","textPreview":"纸张 · 印刷装订 · 设计/IP · 渠道社群","textChars":24,"textLines":1,"bbox":[650,716,420,28]}
+{"kind":"image","id":"im/e9cvixcz","slide":1,"name":"","geometry":"roundRect","alt":"手账文具桌面平铺图","bbox":[38,88,324,560]}
+{"kind":"notes","id":"nt/jg1let","slide":1,"text":""}
+{"kind":"slide","id":"sl/6q3w65","slide":2,"title":"2026 产业链","textShapes":16}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":2,"text":"2026 产业链","textPreview":"2026 产业链","textChars":8,"textLines":1,"bbox":[45,40,190,30]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":2,"text":"WEEK #1 PLANS","textPreview":"WEEK #1 PLANS","textChars":13,"textLines":1,"bbox":[410,45,230,26]}
+{"kind":"shape","id":"sh/61032lsz","slide":2,"bbox":[54,112,245,165]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":2,"text":"01 上游材料","textPreview":"01 上游材料","textChars":7,"textLines":1,"bbox":[72,130,200,28]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":2,"text":"纸浆/特种纸/封面材料\n油墨/胶黏剂/线圈/贴纸膜材","textPreview":"纸浆/特种纸/封面材料 | 油墨/胶黏剂/线圈/贴纸膜材","textChars":26,"textLines":2,"bbox":[72,174,205,78]}
+{"kind":"shape","id":"sh/vy90je9c","slide":2,"bbox":[346,112,245,165]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":2,"text":"02 中游制造","textPreview":"02 中游制造","textChars":7,"textLines":1,"bbox":[364,130,200,28]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":2,"text":"版式策划/打样/印刷\n覆膜/烫金/模切/装订/组包","textPreview":"版式策划/打样/印刷 | 覆膜/烫金/模切/装订/组包","textChars":25,"textLines":2,"bbox":[364,174,205,78]}
+{"kind":"shape","id":"sh/onyd0z61","slide":2,"bbox":[54,324,245,165]}
+{"kind":"textbox","id":"sh/epkzupwb","slide":2,"text":"03 下游渠道","textPreview":"03 下游渠道","textChars":7,"textLines":1,"bbox":[72,342,200,28]}
+{"kind":"textbox","id":"sh/7adsji5s","slide":2,"text":"文具店/书店/电商平台\n企业定制/手账社群/内容平台","textPreview":"文具店/书店/电商平台 | 企业定制/手账社群/内容平台","textChars":26,"textLines":2,"bbox":[72,386,205,78]}
+{"kind":"shape","id":"sh/wval87ed","slide":2,"bbox":[346,324,245,165]}
+{"kind":"textbox","id":"sh/pg3ex0nu","slide":2,"text":"04 提醒事项","textPreview":"04 提醒事项","textChars":7,"textLines":1,"bbox":[364,342,200,28]}
+{"kind":"textbox","id":"sh/e1w7mp0b","slide":2,"text":"日期版 SKU 有硬季节性\n过季库存折价明显","textPreview":"日期版 SKU 有硬季节性 | 过季库存折价明显","textChars":22,"textLines":2,"bbox":[364,386,205,78]}
+{"kind":"shape","id":"sh/7mp0bi9s","slide":2,"bbox":[54,550,535,130]}
+{"kind":"textbox","id":"sh/w7mp0bi9","slide":2,"text":"核心判断","textPreview":"核心判断","textChars":4,"textLines":1,"bbox":[78,573,120,26]}
+{"kind":"textbox","id":"sh/psfil0rq","slide":2,"text":"它不是卖纸，而是卖计划感、审美、书写体验和持续打卡。","textPreview":"它不是卖纸，而是卖计划感、审美、书写体验和持续打卡。","textChars":26,"textLines":1,"bbox":[78,610,455,48]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":2,"text":"HIGHLIGHTS","textPreview":"HIGHLIGHTS","textChars":10,"textLines":1,"bbox":[735,48,270,50]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":2,"text":"纸感与装订体验","textPreview":"纸感与装订体验","textChars":7,"textLines":1,"bbox":[670,304,180,24]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":2,"text":"设计/IP 溢价","textPreview":"设计/IP 溢价","textChars":8,"textLines":1,"bbox":[906,304,160,24]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":2,"text":"内容社区生成需求","textPreview":"内容社区生成需求","textChars":8,"textLines":1,"bbox":[750,632,230,24]}
+{"kind":"image","id":"im/94fu18jq","slide":2,"name":"","geometry":"roundRect","alt":"手账材料","bbox":[665,130,160,150]}
+{"kind":"image","id":"im/kjm1cfa9","slide":2,"name":"","geometry":"roundRect","alt":"印刷装订","bbox":[890,130,160,150]}
+{"kind":"image","id":"im/wfyxobm5","slide":2,"name":"","geometry":"roundRect","alt":"文具零售与社群","bbox":[735,440,230,170]}
+{"kind":"notes","id":"nt/6q3w65","slide":2,"text":""}
+{"kind":"slide","id":"sl/9z5u1u","slide":3,"title":"价值来源","textShapes":11}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":3,"text":"价值来源","textPreview":"价值来源","textChars":4,"textLines":1,"bbox":[250,570,430,62]}
+{"kind":"shape","id":"sh/8v6psfil","slide":3,"bbox":[35,120,95,86]}
+{"kind":"shape","id":"sh/xczed8v6","slide":3,"bbox":[130,120,95,86]}
+{"kind":"shape","id":"sh/qd4vmtwr","slide":3,"bbox":[225,120,95,86]}
+{"kind":"shape","id":"sh/fyxobm58","slide":3,"bbox":[320,120,95,86]}
+{"kind":"shape","id":"sh/8jqh0fep","slide":3,"bbox":[415,120,95,86]}
+{"kind":"shape","id":"sh/x4nap4r6","slide":3,"bbox":[510,120,95,86]}
+{"kind":"shape","id":"sh/q1orytsv","slide":3,"bbox":[605,120,95,86]}
+{"kind":"shape","id":"sh/fmlkjm1c","slide":3,"bbox":[35,206,95,86]}
+{"kind":"shape","id":"sh/jqh0fepk","slide":3,"bbox":[130,206,95,86]}
+{"kind":"shape","id":"sh/q5o7qpg3","slide":3,"bbox":[225,206,95,86]}
+{"kind":"shape","id":"sh/1w7mp0bi","slide":3,"bbox":[320,206,95,86]}
+{"kind":"shape","id":"sh/8bat47y1","slide":3,"bbox":[415,206,95,86]}
+{"kind":"shape","id":"sh/j2t83itg","slide":3,"bbox":[510,206,95,86]}
+{"kind":"shape","id":"sh/qh0fepkz","slide":3,"bbox":[605,206,95,86]}
+{"kind":"shape","id":"sh/18jqh0fe","slide":3,"bbox":[35,292,95,86]}
+{"kind":"shape","id":"sh/8nqxs72x","slide":3,"bbox":[130,292,95,86]}
+{"kind":"shape","id":"sh/j6tovaho","slide":3,"bbox":[225,292,95,86]}
+{"kind":"shape","id":"sh/ulwval87","slide":3,"bbox":[320,292,95,86]}
+{"kind":"shape","id":"sh/ed8v6psf","slide":3,"bbox":[415,292,95,86]}
+{"kind":"shape","id":"sh/7y1kre1w","slide":3,"bbox":[510,292,95,86]}
+{"kind":"shape","id":"sh/wjudg7ad","slide":3,"bbox":[605,292,95,86]}
+{"kind":"shape","id":"sh/p4r65wju","slide":3,"bbox":[35,378,95,86]}
+{"kind":"shape","id":"sh/i5sneloj","slide":3,"bbox":[130,378,95,86]}
+{"kind":"shape","id":"sh/7qpg3ex0","slide":3,"bbox":[225,378,95,86]}
+{"kind":"shape","id":"sh/0bi9s36h","slide":3,"bbox":[320,378,95,86]}
+{"kind":"shape","id":"sh/pwb2hwfy","slide":3,"bbox":[415,378,95,86]}
+{"kind":"shape","id":"sh/itgfmlkj","slide":3,"bbox":[510,378,95,86]}
+{"kind":"shape","id":"sh/7ed8bat4","slide":3,"bbox":[605,378,95,86]}
+{"kind":"shape","id":"sh/xkf6dcbu","slide":3,"bbox":[35,464,95,86]}
+{"kind":"shape","id":"sh/4zidonyd","slide":3,"bbox":[130,464,95,86]}
+{"kind":"shape","id":"sh/fepkzupw","slide":3,"bbox":[225,464,95,86]}
+{"kind":"shape","id":"sh/mtwra5gb","slide":3,"bbox":[320,464,95,86]}
+{"kind":"shape","id":"sh/xc3ylc7u","slide":3,"bbox":[415,464,95,86]}
+{"kind":"shape","id":"sh/4r65wjud","slide":3,"bbox":[510,464,95,86]}
+{"kind":"shape","id":"sh/f6dcbulw","slide":3,"bbox":[605,464,95,86]}
+{"kind":"textbox","id":"sh/mlkjm1cf","slide":3,"text":"DESIGN WEEK!","textPreview":"DESIGN WEEK!","textChars":12,"textLines":1,"bbox":[250,385,340,48]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":3,"text":"纸感","textPreview":"纸感","textChars":2,"textLines":1,"bbox":[748,247,160,24]}
+{"kind":"textbox","id":"sh/svu9knih","slide":3,"text":"洇墨控制、翻页手感、厚度与书写阻尼","textPreview":"洇墨控制、翻页手感、厚度与书写阻尼","textChars":17,"textLines":1,"bbox":[742,275,170,58]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":3,"text":"装订","textPreview":"装订","textChars":2,"textLines":1,"bbox":[888,247,160,24]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":3,"text":"能否平摊书写，是体验与复购的关键","textPreview":"能否平摊书写，是体验与复购的关键","textChars":16,"textLines":1,"bbox":[882,275,170,58]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":3,"text":"IP 联名","textPreview":"IP 联名","textChars":5,"textLines":1,"bbox":[748,547,160,24]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":3,"text":"插画师、节日主题、限定款形成审美溢价","textPreview":"插画师、节日主题、限定款形成审美溢价","textChars":18,"textLines":1,"bbox":[742,575,170,58]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":3,"text":"社群复购","textPreview":"社群复购","textChars":4,"textLines":1,"bbox":[888,547,160,24]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":3,"text":"晒图、打卡、教程带动贴纸胶带追加消费","textPreview":"晒图、打卡、教程带动贴纸胶带追加消费","textChars":18,"textLines":1,"bbox":[882,575,170,58]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":3,"text":"一本文具手账的价值，不在纸价本身，而在“材料体验 + 版式设计 + IP 审美 + 社群内容”的叠加。","textPreview":"一本文具手账的价值，不在纸价本身，而在“材料体验 + 版式设计 + IP 审美 + 社群内容”的叠加。","textChars":51,"textLines":1,"bbox":[60,672,610,42]}
+{"kind":"image","id":"im/ylc7u54z","slide":3,"name":"","geometry":"roundRect","alt":"纸感","bbox":[760,105,138,130]}
+{"kind":"image","id":"im/ixczed8v","slide":3,"name":"","geometry":"roundRect","alt":"装订","bbox":[900,105,138,130]}
+{"kind":"image","id":"im/bulwval8","slide":3,"name":"","geometry":"roundRect","alt":"IP 联名","bbox":[760,405,138,130]}
+{"kind":"image","id":"im/0fepkzup","slide":3,"name":"","geometry":"roundRect","alt":"社群复购","bbox":[900,405,138,130]}
+{"kind":"notes","id":"nt/9z5u1u","slide":3,"text":""}
+{"kind":"slide","id":"sl/xaoumu","slide":4,"title":"风险与合规","textShapes":13}
+{"kind":"textbox","id":"sh/t47y1kre","slide":4,"text":"风险与合规","textPreview":"风险与合规","textChars":5,"textLines":1,"bbox":[365,70,390,56]}
+{"kind":"textbox","id":"sh/idonyd0z","slide":4,"text":"纸品、文具和儿童使用场景需要提前准备认证、材料与授权文件。","textPreview":"纸品、文具和儿童使用场景需要提前准备认证、材料与授权文件。","textChars":29,"textLines":1,"bbox":[285,130,560,24]}
+{"kind":"shape","id":"sh/byhgn29g","slide":4,"bbox":[80,210,455,405]}
+{"kind":"shape","id":"sh/0rqd4vmt","slide":4,"bbox":[590,210,455,405]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":4,"text":"SUPPLY RISKS","textPreview":"SUPPLY RISKS","textChars":12,"textLines":1,"bbox":[115,240,260,28]}
+{"kind":"shape","id":"sh/il0rqd4v","slide":4,"bbox":[115,306,13,13]}
+{"kind":"textbox","id":"sh/b6xkf6dc","slide":4,"text":"原纸与包装材料价格波动","textPreview":"原纸与包装材料价格波动","textChars":11,"textLines":1,"bbox":[139,300,390,32]}
+{"kind":"shape","id":"sh/032lszqt","slide":4,"bbox":[115,364,13,13]}
+{"kind":"textbox","id":"sh/tovahoza","slide":4,"text":"日期版库存过季折价","textPreview":"日期版库存过季折价","textChars":9,"textLines":1,"bbox":[139,358,390,32]}
+{"kind":"shape","id":"sh/l87ed8ba","slide":4,"bbox":[115,422,13,13]}
+{"kind":"textbox","id":"sh/sneloj2t","slide":4,"text":"平台低价款压缩品牌溢价","textPreview":"平台低价款压缩品牌溢价","textChars":11,"textLines":1,"bbox":[139,416,390,32]}
+{"kind":"shape","id":"sh/32lszqtc","slide":4,"bbox":[115,480,13,13]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":4,"text":"小批量补货不及时会错过热度","textPreview":"小批量补货不及时会错过热度","textChars":13,"textLines":1,"bbox":[139,474,390,32]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":4,"text":"COMPLIANCE","textPreview":"COMPLIANCE","textChars":10,"textLines":1,"bbox":[625,240,260,28]}
+{"kind":"shape","id":"sh/szqtcj6t","slide":4,"bbox":[625,306,13,13]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":4,"text":"FSC / PEFC 产销监管链","textPreview":"FSC / PEFC 产销监管链","textChars":16,"textLines":1,"bbox":[649,300,390,32]}
+{"kind":"shape","id":"sh/at47y1kr","slide":4,"bbox":[625,364,13,13]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":4,"text":"REACH 化学品限制","textPreview":"REACH 化学品限制","textChars":11,"textLines":1,"bbox":[649,358,390,32]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":4,"bbox":[625,422,13,13]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":4,"text":"儿童文具安全要求","textPreview":"儿童文具安全要求","textChars":8,"textLines":1,"bbox":[649,416,390,32]}
+{"kind":"shape","id":"sh/lszqtcj6","slide":4,"bbox":[625,480,13,13]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":4,"text":"字体、插画、IP 授权","textPreview":"字体、插画、IP 授权","textChars":11,"textLines":1,"bbox":[649,474,390,32]}
+{"kind":"textbox","id":"sh/3m94fu18","slide":4,"text":"SOURCE: FSC / PEFC / ECHA / NRF","textPreview":"SOURCE: FSC / PEFC / ECHA / NRF","textChars":31,"textLines":1,"bbox":[420,700,300,18]}
+{"kind":"notes","id":"nt/xaoumu","slide":4,"text":""}
+{"kind":"slide","id":"sl/o4jsv4","slide":5,"title":"发版摘要","textShapes":6}
+{"kind":"textbox","id":"sh/0fepkzup","slide":5,"text":"发版摘要","textPreview":"发版摘要","textChars":4,"textLines":1,"bbox":[385,150,360,58]}
+{"kind":"textbox","id":"sh/bulwval8","slide":5,"text":"一本文具手账，背后是纸张、印刷装订、设计/IP、渠道和内容社区共同驱动的轻制造消费链。","textPreview":"一本文具手账，背后是纸张、印刷装订、设计/IP、渠道和内容社区共同驱动的轻制造消费链。","textChars":43,"textLines":1,"bbox":[185,230,760,50]}
+{"kind":"shape","id":"sh/i9s36hcr","slide":5,"bbox":[180,325,760,86]}
+{"kind":"textbox","id":"sh/tovahoza","slide":5,"text":"小红书标题：一本文具手账，背后竟然是一条完整产业链","textPreview":"小红书标题：一本文具手账，背后竟然是一条完整产业链","textChars":25,"textLines":1,"bbox":[220,352,690,30]}
+{"kind":"textbox","id":"sh/032lszqt","slide":5,"text":"#产业链拆解 #手账 #文具控 #效率工具 #纸品设计 #供应链","textPreview":"#产业链拆解 #手账 #文具控 #效率工具 #纸品设计 #供应链","textChars":32,"textLines":1,"bbox":[215,450,720,28]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":5,"text":"评论引导：你买手账本最看重纸感、版式、封面、IP，还是能不能平摊书写？","textPreview":"评论引导：你买手账本最看重纸感、版式、封面、IP，还是能不能平摊书写？","textChars":35,"textLines":1,"bbox":[190,510,760,34]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":5,"text":"纸感 + 版式 + IP + 社群","textPreview":"纸感 + 版式 + IP + 社群","textChars":17,"textLines":1,"bbox":[355,610,420,36]}
+{"kind":"notes","id":"nt/o4jsv4","slide":5,"text":""}

@@ -1,0 +1,3 @@
+1. Office/work-life source images are replaced with cacao and chocolate imagery because the requested deck is an industry-chain deck, not a workplace deck.
+2. Source instruction, fonts, colors, and editable-resource slides are omitted because they are template documentation, not narrative content.
+3. The Slidesgo thanks slide is retained to preserve attribution requirements.

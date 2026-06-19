@@ -1,0 +1,1583 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/pg3ex0nu",
+    "id": "pg3ex0nu",
+    "slide": 2,
+    "layoutId": "/ppt/slideLayouts/slideLayout5.xml",
+    "layoutName": "TITLE_ONLY",
+    "layoutType": "titleOnly",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#FFFFFF",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#252525",
+      "lt1": "#F0F0F0",
+      "dk2": "#B43B13",
+      "lt2": "#FFFFFF",
+      "hlink": "#252525",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Ancizar Sans",
+      "Arial",
+      "Baskervville",
+      "Inter"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout5.xml",
+      "name": "TITLE_ONLY",
+      "type": "titleOnly",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "image",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout5.xml/30",
+          "id": "30",
+          "name": "Google Shape;28;p6",
+          "bbox": [
+            0,
+            0.23,
+            960,
+            539.53
+          ],
+          "contentType": "image/png",
+          "imageCrop": {
+            "left": 0,
+            "top": 0,
+            "right": 0,
+            "bottom": 0
+          },
+          "asset": {
+            "assetId": "/ppt/media/image1.png",
+            "contentType": "image/png",
+            "byteLength": 3049716
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image1.png",
+            "contentType": "image/png",
+            "byteLength": 3049716
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout5.xml/29",
+          "id": "29",
+          "name": "Google Shape;29;p6",
+          "bbox": [
+            10.02,
+            16.27,
+            808.82,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            74.88,
+            46.72,
+            810.24,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            74.88,
+            120.99,
+            810.24,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qpg3ex0n",
+      "id": "144",
+      "name": "Google Shape;144;p29",
+      "bbox": [
+        10.02,
+        16.27,
+        808.82,
+        60.13
+      ],
+      "geometry": "rect",
+      "text": "CONTENTS of this TEMPLATE",
+      "textPreview": "CONTENTS of this TEMPLATE",
+      "resolvedFontSize": 34.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 34.67,
+        "typeface": "Ancizar Sans",
+        "color": "dk1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CONTENTS of this TEMPLATE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CONTENTS of this TEMPLATE",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CONTENTS ",
+              "color": "dk2"
+            },
+            {
+              "index": 2,
+              "text": "of this",
+              "typeface": "Baskervville",
+              "color": "dk2",
+              "italic": true
+            },
+            {
+              "index": 3,
+              "text": " ",
+              "color": "dk2"
+            },
+            {
+              "index": 4,
+              "text": "TEMPLATE",
+              "color": "dk2"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fa9w3m94",
+      "id": "145",
+      "name": "Google Shape;145;p29",
+      "bbox": [
+        546.91,
+        425.4,
+        283.65,
+        42.61
+      ],
+      "geometry": "roundRect",
+      "text": "You can delete this slide when you’re done editing the presentation",
+      "textPreview": "You can delete this slide when you’re done editing the presentation",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "You can delete this slide when you’re done"
+          },
+          {
+            "index": 2,
+            "text": "editing the presentation"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "You can delete this slide when you’re done editing the presentation",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "You can delete this slide when you’re done editing the presentation",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "dk1"
+            }
+          ]
+        }
+      ],
+      "lineColor": "dk2",
+      "lineWidth": 1
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8v6psfil",
+      "id": "146",
+      "name": "Google Shape;146;p29",
+      "bbox": [
+        87.17,
+        167.62,
+        144.03,
+        42.61
+      ],
+      "geometry": "roundRect",
+      "text": "Fonts",
+      "textPreview": "Fonts",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Fonts"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Fonts",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Fonts",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "dk1",
+              "bold": true
+            }
+          ],
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineColor": "dk2",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xczed8v6",
+      "id": "147",
+      "name": "Google Shape;147;p29",
+      "bbox": [
+        52.26,
+        220.16,
+        213.86,
+        60.13
+      ],
+      "geometry": "rect",
+      "text": "To view this template correctly in PowerPoint, download and install the fonts we used",
+      "textPreview": "To view this template correctly in PowerPoint, download and install the fonts we used",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "To view this template correctly in"
+          },
+          {
+            "index": 2,
+            "text": "PowerPoint, download and"
+          },
+          {
+            "index": 3,
+            "text": "install the fonts we used"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "To view this template correctly in PowerPoint, download and install the fonts we used",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 1600,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "To view this template correctly in PowerPoint, ",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919"
+            },
+            {
+              "index": 2,
+              "text": "download and install",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            },
+            {
+              "index": 3,
+              "text": " the fonts we used",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919"
+            }
+          ]
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qtcj6tov",
+      "id": "148",
+      "name": "Google Shape;148;p29",
+      "bbox": [
+        0,
+        508.99,
+        960,
+        35.91
+      ],
+      "geometry": "rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "#F3F3F3",
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/lszqtcj6",
+      "id": "182",
+      "name": "Google Shape;149;p29",
+      "bbox": [
+        851.11,
+        520.03,
+        90.47,
+        13.82
+      ],
+      "contentType": "image/png",
+      "asset": {
+        "assetId": "/ppt/media/image5.png",
+        "contentType": "image/png",
+        "byteLength": 10647
+      },
+      "fillImage": {
+        "assetId": "/ppt/media/image5.png",
+        "contentType": "image/png",
+        "byteLength": 10647
+      }
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5kb6xkf6",
+      "id": "150",
+      "name": "Google Shape;150;p29",
+      "bbox": [
+        301.05,
+        167.63,
+        144.03,
+        42.61
+      ],
+      "geometry": "roundRect",
+      "text": "Colors",
+      "textPreview": "Colors",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Colors"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Colors",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Colors",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "dk1",
+              "bold": true
+            }
+          ],
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineColor": "dk2",
+      "lineWidth": 1
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/czed8v6p",
+      "id": "151",
+      "name": "Google Shape;151;p29",
+      "bbox": [
+        266.13,
+        220.16,
+        213.86,
+        60.13
+      ],
+      "geometry": "rect",
+      "text": "You can see on the link all the colors used in this presentation",
+      "textPreview": "You can see on the link all the colors used in this presentation",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "You can see on the link all the"
+          },
+          {
+            "index": 2,
+            "text": "colors used in this presentation"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "You can see on the link all the colors used in this presentation",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 1600,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "You can see on the link ",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919"
+            },
+            {
+              "index": 2,
+              "text": "all the colors",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            },
+            {
+              "index": 3,
+              "text": " used in this presentation",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919"
+            }
+          ]
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/neloj2t8",
+      "id": "152",
+      "name": "Google Shape;152;p29",
+      "bbox": [
+        514.92,
+        167.63,
+        144.03,
+        42.61
+      ],
+      "geometry": "roundRect",
+      "text": "Thanks slide",
+      "textPreview": "Thanks slide",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Thanks slide"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Thanks slide",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Thanks slide",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "dk1",
+              "bold": true
+            }
+          ],
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineColor": "dk2",
+      "lineWidth": 1
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ytsvu9kn",
+      "id": "153",
+      "name": "Google Shape;153;p29",
+      "bbox": [
+        480.01,
+        220.16,
+        213.86,
+        60.13
+      ],
+      "geometry": "rect",
+      "text": "You must keep it so that proper credits for our design are given",
+      "textPreview": "You must keep it so that proper credits for our design are given",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "You must keep it so that proper"
+          },
+          {
+            "index": 2,
+            "text": "credits for our design are given"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "You must keep it so that proper credits for our design are given",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 1600,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "You ",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919"
+            },
+            {
+              "index": 2,
+              "text": "must keep it",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            },
+            {
+              "index": 3,
+              "text": " so that proper ",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919"
+            },
+            {
+              "index": 4,
+              "text": "credits for our design ",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            },
+            {
+              "index": 5,
+              "text": "are given",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919"
+            }
+          ]
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5sneloj2",
+      "id": "154",
+      "name": "Google Shape;154;p29",
+      "bbox": [
+        728.8,
+        167.63,
+        144.03,
+        42.61
+      ],
+      "geometry": "roundRect",
+      "text": "Icons and infographics",
+      "textPreview": "Icons and infographics",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Icons and"
+          },
+          {
+            "index": 2,
+            "text": "infographics"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Icons and infographics",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Icons",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "dk1",
+              "bold": true
+            },
+            {
+              "index": 2,
+              "text": " and ",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "dk1",
+              "bold": true
+            },
+            {
+              "index": 3,
+              "text": "infographics",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "dk1",
+              "bold": true
+            }
+          ],
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineColor": "dk2",
+      "lineWidth": 1
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cbulwval",
+      "id": "155",
+      "name": "Google Shape;155;p29",
+      "bbox": [
+        693.88,
+        220.16,
+        213.86,
+        60.13
+      ],
+      "geometry": "rect",
+      "text": "These can be used in the template, and their size and color can be edited",
+      "textPreview": "These can be used in the template, and their size and color can be edited",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "These can be used in the"
+          },
+          {
+            "index": 2,
+            "text": "template, and their size and"
+          },
+          {
+            "index": 3,
+            "text": "color can be edited"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "These can be used in the template, and their size and color can be edited",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 1600,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "These can be used in the template, and their size and color ",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919"
+            },
+            {
+              "index": 2,
+              "text": "can be edited",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nqxs72x4",
+      "id": "156",
+      "name": "Google Shape;156;p29",
+      "bbox": [
+        585.44,
+        353.43,
+        265.67,
+        35.91
+      ],
+      "geometry": "rect",
+      "text": "You can edit the master slides easily. For more info, click here",
+      "textPreview": "You can edit the master slides easily. For more info, click here",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "You can edit the master slides easily. For"
+          },
+          {
+            "index": 2,
+            "text": "more info, click here"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "You can edit the master slides easily. For more info, click here",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 1600,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "You can edit the master slides easily. For more info, click ",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919"
+            },
+            {
+              "index": 2,
+              "text": "here",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u54zidon",
+      "id": "157",
+      "name": "Google Shape;157;p29",
+      "bbox": [
+        147.46,
+        342.89,
+        356.72,
+        46.58
+      ],
+      "geometry": "rect",
+      "text": "For more info:\nSLIDESGO | SLIDESGO AI TOOLS | BLOG | FAQs",
+      "textPreview": "For more info: | SLIDESGO | SLIDESGO AI TOOLS | BLOG | FAQs",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "For more info:"
+          },
+          {
+            "index": 2,
+            "text": "SLIDESGO | SLIDESGO AI TOOLS | BLOG | FAQs"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "For more info:\nSLIDESGO | SLIDESGO AI TOOLS | BLOG | FAQs",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "For more info:",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919"
+            },
+            {
+              "index": 2,
+              "text": "\n",
+              "alignment": "left"
+            },
+            {
+              "index": 3,
+              "text": "SLIDESGO",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            },
+            {
+              "index": 4,
+              "text": " | ",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            },
+            {
+              "index": 5,
+              "text": "SLIDESGO AI TOOLS",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            },
+            {
+              "index": 6,
+              "text": " | ",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            },
+            {
+              "index": 7,
+              "text": "BLOG",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            },
+            {
+              "index": 8,
+              "text": " | ",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            },
+            {
+              "index": 9,
+              "text": "FAQs",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5wjudg7a",
+      "id": "158",
+      "name": "Google Shape;158;p29",
+      "bbox": [
+        147.46,
+        419.88,
+        356.72,
+        46.58
+      ],
+      "geometry": "rect",
+      "text": "You can visit our sister projects:\nFREEPIK AI TOOLS | FREEPIK LIBRARY RESOURCES",
+      "textPreview": "You can visit our sister projects: | FREEPIK AI TOOLS | FREEPIK LIBRARY RESOURCES",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "You can visit our sister projects:"
+          },
+          {
+            "index": 2,
+            "text": "FREEPIK AI TOOLS | FREEPIK LIBRARY"
+          },
+          {
+            "index": 3,
+            "text": "RESOURCES"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "You can visit our sister projects:\nFREEPIK AI TOOLS | FREEPIK LIBRARY RESOURCES",
+          "marginLeft": 0,
+          "indent": 0,
+          "lineSpacingPercent": 115000,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "You can visit our sister projects:",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919"
+            },
+            {
+              "index": 2,
+              "text": "\n",
+              "alignment": "left"
+            },
+            {
+              "index": 3,
+              "text": "FREEPIK AI TOOLS",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            },
+            {
+              "index": 4,
+              "text": " | ",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            },
+            {
+              "index": 5,
+              "text": "FREEPIK LIBRARY RESOURCES",
+              "fontSize": 13.33,
+              "typeface": "Inter",
+              "color": "#191919",
+              "bold": true
+            }
+          ]
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gbq1oryt",
+      "id": "159",
+      "name": "Google Shape;159;p29",
+      "bbox": [
+        70.9,
+        319.71,
+        818.2,
+        0
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "dk2",
+      "lineWidth": 1
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cj6tovah",
+      "id": "160",
+      "name": "Google Shape;160;p29",
+      "bbox": [
+        147.74,
+        123.99,
+        22.89,
+        22.89
+      ],
+      "geometry": "custom",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "dk2",
+      "lineWidth": 0
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nap4r65w",
+      "id": "167",
+      "name": "Google Shape;167;p29",
+      "bbox": [
+        106.1,
+        432.06,
+        25.36,
+        21.64
+      ],
+      "geometry": "custom",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "dk2",
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2lszqtcj",
+      "id": "180",
+      "name": "Google Shape;180;p29",
+      "bbox": [
+        789.62,
+        123.77,
+        24.03,
+        23.33
+      ],
+      "geometry": "custom",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "dk2",
+      "lineWidth": 0
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v6psfil0",
+      "id": "181",
+      "name": "Google Shape;181;p29",
+      "bbox": [
+        -1.36,
+        84.13,
+        962.55,
+        0.13
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "dk2",
+      "lineWidth": 1
+    }
+  ],
+  "composeRuns": []
+}

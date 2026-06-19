@@ -1,0 +1,350 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/62midq",
+    "id": "62midq",
+    "slide": 3,
+    "layoutId": "69ae9028-0382-4383-bc8b-664cc77631c3",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "f999abc4-ac0b-4fc2-bc72-c15bfbc192b3",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#B63A19",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Arial"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "69ae9028-0382-4383-bc8b-664cc77631c3",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "f999abc4-ac0b-4fc2-bc72-c15bfbc192b3",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "f999abc4-ac0b-4fc2-bc72-c15bfbc192b3",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9gr2p8nq",
+      "id": "1",
+      "bbox": [
+        24,
+        682,
+        160,
+        24
+      ],
+      "geometry": "rect",
+      "text": "每日产业链",
+      "textPreview": "每日产业链",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "Arial",
+        "color": "#FFFFFF",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "每日产业链"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "每日产业链",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Arial",
+            "color": "#FFFFFF"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "每日产业链",
+              "fontSize": 14,
+              "typeface": "Arial",
+              "color": "#FFFFFF"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2p8nqxs7",
+      "id": "2",
+      "bbox": [
+        1040,
+        22,
+        210,
+        44
+      ],
+      "geometry": "rect",
+      "text": "巧克力产业链研究",
+      "textPreview": "巧克力产业链研究",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "Arial",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "巧克力产业链研究"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "巧克力产业链研究",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "typeface": "Arial",
+            "color": "#FFFFFF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "巧克力产业链研究",
+              "fontSize": 18,
+              "typeface": "Arial",
+              "color": "#FFFFFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ra5gbq1o",
+      "id": "3",
+      "bbox": [
+        54,
+        52,
+        760,
+        74
+      ],
+      "geometry": "rect",
+      "text": "一块巧克力，是一条全球供应链",
+      "textPreview": "一块巧克力，是一条全球供应链",
+      "resolvedFontSize": 44,
+      "resolvedTextStyle": {
+        "fontSize": 44,
+        "typeface": "Arial",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "一块巧克力，是一条全球供应链"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "一块巧克力，是一条全球供应链",
+          "resolvedTextStyle": {
+            "fontSize": 44,
+            "typeface": "Arial",
+            "color": "#FFFFFF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "一块巧克力，是一条全球供应链",
+              "fontSize": 44,
+              "typeface": "Arial",
+              "color": "#FFFFFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kjm1cfa9",
+      "id": "4",
+      "bbox": [
+        60,
+        440,
+        740,
+        120
+      ],
+      "geometry": "rect",
+      "text": "它把热带地区的可可豆，通过发酵、干燥、贸易、研磨、压榨、精炼、调温和品牌化，转化为零食、礼品、烘焙原料、饮品配料和食品工业原料。",
+      "textPreview": "它把热带地区的可可豆，通过发酵、干燥、贸易、研磨、压榨、精炼、调温和品牌化，转化为零食、礼品、烘焙原料、饮品配料和食品工业原料。",
+      "resolvedFontSize": 26,
+      "resolvedTextStyle": {
+        "fontSize": 26,
+        "typeface": "Arial",
+        "color": "#FFFFFF",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "它把热带地区的可可豆，通过发酵、干燥、贸易、研磨、压榨"
+          },
+          {
+            "index": 2,
+            "text": "、精炼、调温和品牌化，转化为零食、礼品、烘焙原料、饮品"
+          },
+          {
+            "index": 3,
+            "text": "配料和食品工业原料。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "它把热带地区的可可豆，通过发酵、干燥、贸易、研磨、压榨、精炼、调温和品牌化，转化为零食、礼品、烘焙原料、饮品配料和食品工业原料。",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "typeface": "Arial",
+            "color": "#FFFFFF"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "它把热带地区的可可豆，通过发酵、干燥、贸易、研磨、压榨、精炼、调温和品牌化，转化为零食、礼品、烘焙原料、饮品配料和食品工业原料。",
+              "fontSize": 26,
+              "typeface": "Arial",
+              "color": "#FFFFFF"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/8z25kb6x",
+      "id": "5",
+      "bbox": [
+        850,
+        130,
+        350,
+        420
+      ],
+      "geometry": "roundRect",
+      "alt": "Chocolate industry visual",
+      "contentType": "image/png",
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect",
+        "adjustmentList": [
+          {
+            "name": "adj",
+            "formula": "val 6857"
+          }
+        ]
+      },
+      "asset": {
+        "assetId": "2b342d96-5afd-45e6-8f6d-c0525c52731f",
+        "contentType": "image/png",
+        "byteLength": 2450235
+      }
+    }
+  ],
+  "composeRuns": []
+}

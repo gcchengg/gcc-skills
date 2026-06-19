@@ -1,0 +1,193 @@
+{"kind":"deck","id":"pr/ybw42m","name":"Deck"}
+{"kind":"layout","layoutId":"f685618e-90c6-49db-afaa-0c2805abd618","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"5dc95d06-33b2-41b7-bd01-f859dffb4b99","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/g15pce","slide":1,"title":"SAAS CHAIN","textShapes":4}
+{"kind":"shape","id":"sh/lwval87e","slide":1,"bbox":[-220,90,680,680]}
+{"kind":"shape","id":"sh/e9cvixcz","slide":1,"bbox":[85,190,480,480]}
+{"kind":"shape","id":"sh/3q5o7qpg","slide":1,"bbox":[1120,110,640,760]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":1,"text":"SAAS CHAIN","textPreview":"SAAS CHAIN","textChars":10,"textLines":1,"bbox":[1220,156,360,48]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":1,"text":"企业级 SaaS 软件\n产业链研究","textPreview":"企业级 SaaS 软件 | 产业链研究","textChars":17,"textLines":2,"bbox":[1220,300,560,240]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":1,"text":"从云基础设施、软件工程到客户成功与订阅续约","textPreview":"从云基础设施、软件工程到客户成功与订阅续约","textChars":21,"textLines":1,"bbox":[1220,700,520,42]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":1,"text":"2026-06-18","textPreview":"2026-06-18","textChars":10,"textLines":1,"bbox":[1580,970,240,28]}
+{"kind":"notes","id":"nt/g15pce","slide":1,"text":""}
+{"kind":"slide","id":"sl/se230j","slide":2,"title":"Overview","textShapes":19}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":2,"text":"Overview","textPreview":"Overview","textChars":8,"textLines":1,"bbox":[70,430,520,100]}
+{"kind":"textbox","id":"sh/upwb2hwf","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1110,110,70,40]}
+{"kind":"textbox","id":"sh/nap4r65w","slide":2,"text":"一句话理解","textPreview":"一句话理解","textChars":5,"textLines":1,"bbox":[1210,107,560,42]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1110,200,70,40]}
+{"kind":"textbox","id":"sh/54zidony","slide":2,"text":"客户与需求","textPreview":"客户与需求","textChars":5,"textLines":1,"bbox":[1210,197,560,42]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":2,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1110,290,70,40]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":2,"text":"挑战与方案","textPreview":"挑战与方案","textChars":5,"textLines":1,"bbox":[1210,287,560,42]}
+{"kind":"textbox","id":"sh/cfa9w3m9","slide":2,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1110,380,70,40]}
+{"kind":"textbox","id":"sh/1032lszq","slide":2,"text":"SaaS 如何工作","textPreview":"SaaS 如何工作","textChars":9,"textLines":1,"bbox":[1210,377,560,42]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":2,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1110,470,70,40]}
+{"kind":"textbox","id":"sh/87ed8bat","slide":2,"text":"竞争与替代","textPreview":"竞争与替代","textChars":5,"textLines":1,"bbox":[1210,467,560,42]}
+{"kind":"textbox","id":"sh/fmlkjm1c","slide":2,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1110,560,70,40]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":2,"text":"客户成功","textPreview":"客户成功","textChars":4,"textLines":1,"bbox":[1210,557,560,42]}
+{"kind":"textbox","id":"sh/1gvy90je","slide":2,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1110,650,70,40]}
+{"kind":"textbox","id":"sh/8z25kb6x","slide":2,"text":"实施时间线","textPreview":"实施时间线","textChars":5,"textLines":1,"bbox":[1210,647,560,42]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":2,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1110,740,70,40]}
+{"kind":"textbox","id":"sh/qtcj6tov","slide":2,"text":"价值与收费","textPreview":"价值与收费","textChars":5,"textLines":1,"bbox":[1210,737,560,42]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":2,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1110,830,70,40]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":2,"text":"下一步","textPreview":"下一步","textChars":3,"textLines":1,"bbox":[1210,827,560,42]}
+{"kind":"notes","id":"nt/se230j","slide":2,"text":""}
+{"kind":"slide","id":"sl/y1sddo","slide":3,"title":"SaaS ≠ 代码上云","textShapes":7}
+{"kind":"shape","id":"sh/ytsvu9kn","slide":3,"bbox":[80,280,720,470]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":3,"text":"SaaS ≠ 代码上云","textPreview":"SaaS ≠ 代码上云","textChars":11,"textLines":1,"bbox":[960,300,780,80]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":3,"text":"企业级 SaaS 卖的是持续可用、可升级、可集成、可审计的业务系统。它把云资源、软件工程、业务流程、安全合规和客户成功封装为订阅服务。","textPreview":"企业级 SaaS 卖的是持续可用、可升级、可集成、可审计的业务系统。它把云资源、软件工程、业务流程、安全合规和客户成功封装为订阅服务。","textChars":67,"textLines":1,"bbox":[960,450,770,160]}
+{"kind":"shape","id":"sh/nqxs72x4","slide":3,"bbox":[140,360,160,48]}
+{"kind":"textbox","id":"sh/u54zidon","slide":3,"text":"云资源","textPreview":"云资源","textChars":3,"textLines":1,"bbox":[160,371,120,24]}
+{"kind":"shape","id":"sh/5sneloj2","slide":3,"bbox":[330,450,190,48]}
+{"kind":"textbox","id":"sh/cbulwval","slide":3,"text":"业务流程","textPreview":"业务流程","textChars":4,"textLines":1,"bbox":[350,461,150,24]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":3,"bbox":[520,540,190,48]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":3,"text":"安全合规","textPreview":"安全合规","textChars":4,"textLines":1,"bbox":[540,551,150,24]}
+{"kind":"shape","id":"sh/oza1gvy9","slide":3,"bbox":[240,625,190,48]}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":3,"text":"客户成功","textPreview":"客户成功","textChars":4,"textLines":1,"bbox":[260,636,150,24]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":3,"text":"企业级 SaaS 软件产业链研究","textPreview":"企业级 SaaS 软件产业链研究","textChars":16,"textLines":1,"bbox":[40,1010,520,30]}
+{"kind":"notes","id":"nt/y1sddo","slide":3,"text":""}
+{"kind":"slide","id":"sl/2ceabj","slide":4,"title":"客户与需求","textShapes":9}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":4,"text":"客户与需求","textPreview":"客户与需求","textChars":5,"textLines":1,"bbox":[60,70,950,92]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":4,"text":"企业客户买的是流程落地、权限清楚、审计可查、系统可集成","textPreview":"企业客户买的是流程落地、权限清楚、审计可查、系统可集成","textChars":27,"textLines":1,"bbox":[62,160,900,42]}
+{"kind":"shape","id":"sh/zed8v6ps","slide":4,"bbox":[80,345,510,330]}
+{"kind":"textbox","id":"sh/obm58z25","slide":4,"text":"核心用户","textPreview":"核心用户","textChars":4,"textLines":1,"bbox":[120,390,430,50]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":4,"text":"业务部门、IT、安全、采购、法务、管理层","textPreview":"业务部门、IT、安全、采购、法务、管理层","textChars":20,"textLines":1,"bbox":[120,475,410,120]}
+{"kind":"shape","id":"sh/65wjudg7","slide":4,"bbox":[670,345,510,330]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":4,"text":"需求来源","textPreview":"需求来源","textChars":4,"textLines":1,"bbox":[710,390,430,50]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":4,"text":"流程线上化、远程协作、数据可视化、合规审计","textPreview":"流程线上化、远程协作、数据可视化、合规审计","textChars":21,"textLines":1,"bbox":[710,475,410,120]}
+{"kind":"shape","id":"sh/h0fepkzu","slide":4,"bbox":[1260,345,510,330]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":4,"text":"最终产品","textPreview":"最终产品","textChars":4,"textLines":1,"bbox":[1300,390,430,50]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":4,"text":"CRM、ERP、HRM、财务、协同、BI、安全、垂直 SaaS","textPreview":"CRM、ERP、HRM、财务、协同、BI、安全、垂直 SaaS","textChars":31,"textLines":1,"bbox":[1300,475,410,120]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":4,"text":"企业级 SaaS 软件产业链研究","textPreview":"企业级 SaaS 软件产业链研究","textChars":16,"textLines":1,"bbox":[40,1010,520,30]}
+{"kind":"notes","id":"nt/2ceabj","slide":4,"text":""}
+{"kind":"slide","id":"sl/culrk0","slide":5,"title":"挑战与方案","textShapes":10}
+{"kind":"textbox","id":"sh/dsji5sne","slide":5,"text":"挑战与方案","textPreview":"挑战与方案","textChars":5,"textLines":1,"bbox":[60,70,950,92]}
+{"kind":"textbox","id":"sh/61032lsz","slide":5,"text":"挑战","textPreview":"挑战","textChars":2,"textLines":1,"bbox":[250,265,200,42]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":5,"text":"方案","textPreview":"方案","textChars":2,"textLines":1,"bbox":[1270,265,200,42]}
+{"kind":"shape","id":"sh/oj2t83it","slide":5,"bbox":[170,400,15,15]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":5,"text":"云成本与供应商锁定","textPreview":"云成本与供应商锁定","textChars":9,"textLines":1,"bbox":[204,390,586,44]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":5,"bbox":[170,505,15,15]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":5,"text":"开源依赖与供应链漏洞","textPreview":"开源依赖与供应链漏洞","textChars":10,"textLines":1,"bbox":[204,495,586,44]}
+{"kind":"shape","id":"sh/onyd0z61","slide":5,"bbox":[170,610,15,15]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":5,"text":"企业安全审查周期长","textPreview":"企业安全审查周期长","textChars":9,"textLines":1,"bbox":[204,600,586,44]}
+{"kind":"shape","id":"sh/twra5gbq","slide":5,"bbox":[1080,400,15,15]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":5,"text":"云成本治理与可观测性","textPreview":"云成本治理与可观测性","textChars":10,"textLines":1,"bbox":[1114,390,616,44]}
+{"kind":"shape","id":"sh/bq1oryts","slide":5,"bbox":[1080,505,15,15]}
+{"kind":"textbox","id":"sh/m58z25kb","slide":5,"text":"SBOM、扫描、发布治理","textPreview":"SBOM、扫描、发布治理","textChars":12,"textLines":1,"bbox":[1114,495,616,44]}
+{"kind":"shape","id":"sh/t83itgfm","slide":5,"bbox":[1080,610,15,15]}
+{"kind":"textbox","id":"sh/4nap4r65","slide":5,"text":"权限、审计、加密、合规材料","textPreview":"权限、审计、加密、合规材料","textChars":13,"textLines":1,"bbox":[1114,600,616,44]}
+{"kind":"shape","id":"sh/b2hwfyxo","slide":5,"bbox":[960,300,0,520]}
+{"kind":"textbox","id":"sh/mhk3q5o7","slide":5,"text":"企业级 SaaS 软件产业链研究","textPreview":"企业级 SaaS 软件产业链研究","textChars":16,"textLines":1,"bbox":[40,1010,520,30]}
+{"kind":"notes","id":"nt/culrk0","slide":5,"text":""}
+{"kind":"slide","id":"sl/mvq5fh","slide":6,"title":"SaaS 如何工作","textShapes":11}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":6,"text":"SaaS 如何工作","textPreview":"SaaS 如何工作","textChars":9,"textLines":1,"bbox":[60,70,950,92]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":6,"text":"从产品研发到客户成功，是持续运营而不是一次性交付","textPreview":"从产品研发到客户成功，是持续运营而不是一次性交付","textChars":24,"textLines":1,"bbox":[62,160,900,42]}
+{"kind":"shape","id":"sh/loj2t83i","slide":6,"bbox":[780,240,900,105]}
+{"kind":"textbox","id":"sh/e9cvixcz","slide":6,"text":"Step 1","textPreview":"Step 1","textChars":6,"textLines":1,"bbox":[815,270,150,30]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":6,"text":"云基础设施与数据底座","textPreview":"云基础设施与数据底座","textChars":10,"textLines":1,"bbox":[1010,265,600,38]}
+{"kind":"shape","id":"sh/wb2hwfyx","slide":6,"bbox":[780,420,900,105]}
+{"kind":"textbox","id":"sh/lwval87e","slide":6,"text":"Step 2","textPreview":"Step 2","textChars":6,"textLines":1,"bbox":[815,450,150,30]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":6,"text":"产品研发、多租户与权限模型","textPreview":"产品研发、多租户与权限模型","textChars":13,"textLines":1,"bbox":[1010,445,600,38]}
+{"kind":"shape","id":"sh/32lszqtc","slide":6,"bbox":[780,600,900,105]}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":6,"text":"Step 3","textPreview":"Step 3","textChars":6,"textLines":1,"bbox":[815,630,150,30]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":6,"text":"实施集成、迁移与培训","textPreview":"实施集成、迁移与培训","textChars":10,"textLines":1,"bbox":[1010,625,600,38]}
+{"kind":"shape","id":"sh/9w3m94fu","slide":6,"bbox":[780,780,900,105]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":6,"text":"Step 4","textPreview":"Step 4","textChars":6,"textLines":1,"bbox":[815,810,150,30]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":6,"text":"客户成功、续约与扩容","textPreview":"客户成功、续约与扩容","textChars":10,"textLines":1,"bbox":[1010,805,600,38]}
+{"kind":"shape","id":"sh/2t83itgf","slide":6,"bbox":[80,480,360,360]}
+{"kind":"shape","id":"sh/9knih4by","slide":6,"bbox":[170,565,260,260]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":6,"text":"企业级 SaaS 软件产业链研究","textPreview":"企业级 SaaS 软件产业链研究","textChars":16,"textLines":1,"bbox":[40,1010,520,30]}
+{"kind":"notes","id":"nt/mvq5fh","slide":6,"text":""}
+{"kind":"slide","id":"sl/t33uaw","slide":7,"title":"竞争与替代","textShapes":2}
+{"kind":"textbox","id":"sh/tcj6tova","slide":7,"text":"竞争与替代","textPreview":"竞争与替代","textChars":5,"textLines":1,"bbox":[60,70,950,92]}
+{"kind":"textbox","id":"sh/b6xkf6dc","slide":7,"text":"企业级 SaaS 软件产业链研究","textPreview":"企业级 SaaS 软件产业链研究","textChars":16,"textLines":1,"bbox":[40,1010,520,30]}
+{"kind":"table","id":"tb/vu9knih4","slide":7,"name":"","rows":6,"cols":3,"preview":"关键维度 | 传统软件/项目制 | 企业级 SaaS","bbox":[90,260,1740,520]}
+{"kind":"notes","id":"nt/t33uaw","slide":7,"text":""}
+{"kind":"slide","id":"sl/12m1e6","slide":8,"title":"客户成功决定续约","textShapes":9}
+{"kind":"textbox","id":"sh/032lszqt","slide":8,"text":"客户成功决定续约","textPreview":"客户成功决定续约","textChars":8,"textLines":1,"bbox":[60,70,950,92]}
+{"kind":"textbox","id":"sh/bi9s36hc","slide":8,"text":"续约比新签更能反映产品真实价值","textPreview":"续约比新签更能反映产品真实价值","textChars":15,"textLines":1,"bbox":[62,160,900,42]}
+{"kind":"shape","id":"sh/ixczed8v","slide":8,"bbox":[100,350,500,360]}
+{"kind":"textbox","id":"sh/p0bi9s36","slide":8,"text":"业务部门","textPreview":"业务部门","textChars":4,"textLines":1,"bbox":[140,405,410,44]}
+{"kind":"textbox","id":"sh/0fepkzup","slide":8,"text":"看流程是否真的跑起来，报表是否可用。","textPreview":"看流程是否真的跑起来，报表是否可用。","textChars":18,"textLines":1,"bbox":[140,500,390,130]}
+{"kind":"shape","id":"sh/bulwval8","slide":8,"bbox":[700,350,500,360]}
+{"kind":"textbox","id":"sh/i9s36hcr","slide":8,"text":"IT / 安全","textPreview":"IT / 安全","textChars":7,"textLines":1,"bbox":[740,405,410,44]}
+{"kind":"textbox","id":"sh/t47y1kre","slide":8,"text":"看权限、审计、集成、备份和风险响应。","textPreview":"看权限、审计、集成、备份和风险响应。","textChars":18,"textLines":1,"bbox":[740,500,390,130]}
+{"kind":"shape","id":"sh/0je9cvix","slide":8,"bbox":[1300,350,500,360]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":8,"text":"采购 / 财务","textPreview":"采购 / 财务","textChars":7,"textLines":1,"bbox":[1340,405,410,44]}
+{"kind":"textbox","id":"sh/3m94fu18","slide":8,"text":"看合同、用量、续费、扩容和 ROI 证据。","textPreview":"看合同、用量、续费、扩容和 ROI 证据。","textChars":21,"textLines":1,"bbox":[1340,500,390,130]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":8,"text":"企业级 SaaS 软件产业链研究","textPreview":"企业级 SaaS 软件产业链研究","textChars":16,"textLines":1,"bbox":[40,1010,520,30]}
+{"kind":"notes","id":"nt/12m1e6","slide":8,"text":""}
+{"kind":"slide","id":"sl/d6wc7q","slide":9,"title":"实施时间线","textShapes":10}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":9,"text":"实施时间线","textPreview":"实施时间线","textChars":5,"textLines":1,"bbox":[60,70,950,92]}
+{"kind":"shape","id":"sh/58z25kb6","slide":9,"bbox":[150,630,1600,0]}
+{"kind":"shape","id":"sh/gn29gr2p","slide":9,"bbox":[150,607,46,46]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":9,"text":"Week 1","textPreview":"Week 1","textChars":6,"textLines":1,"bbox":[145,515,180,46]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":9,"text":"需求确认与数据盘点","textPreview":"需求确认与数据盘点","textChars":9,"textLines":1,"bbox":[145,700,330,70]}
+{"kind":"shape","id":"sh/5wjudg7a","slide":9,"bbox":[660,607,46,46]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":9,"text":"Week 2","textPreview":"Week 2","textChars":6,"textLines":1,"bbox":[655,515,180,46]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":9,"text":"权限、流程与安全策略","textPreview":"权限、流程与安全策略","textChars":10,"textLines":1,"bbox":[655,700,330,70]}
+{"kind":"shape","id":"sh/u54zidon","slide":9,"bbox":[1170,607,46,46]}
+{"kind":"textbox","id":"sh/cbulwval","slide":9,"text":"Week 3","textPreview":"Week 3","textChars":6,"textLines":1,"bbox":[1165,515,180,46]}
+{"kind":"textbox","id":"sh/5sneloj2","slide":9,"text":"系统集成与培训","textPreview":"系统集成与培训","textChars":7,"textLines":1,"bbox":[1165,700,330,70]}
+{"kind":"shape","id":"sh/u54zidon","slide":9,"bbox":[1680,607,46,46]}
+{"kind":"textbox","id":"sh/nqxs72x4","slide":9,"text":"Week 4","textPreview":"Week 4","textChars":6,"textLines":1,"bbox":[1675,515,180,46]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":9,"text":"上线、监控与优化","textPreview":"上线、监控与优化","textChars":8,"textLines":1,"bbox":[1675,700,330,70]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":9,"text":"企业级 SaaS 软件产业链研究","textPreview":"企业级 SaaS 软件产业链研究","textChars":16,"textLines":1,"bbox":[40,1010,520,30]}
+{"kind":"notes","id":"nt/d6wc7q","slide":9,"text":""}
+{"kind":"slide","id":"sl/hwip7x","slide":10,"title":"价值与收费","textShapes":7}
+{"kind":"textbox","id":"sh/v6psfil0","slide":10,"text":"价值与收费","textPreview":"价值与收费","textChars":5,"textLines":1,"bbox":[570,95,760,80]}
+{"kind":"shape","id":"sh/knih4byh","slide":10,"bbox":[210,310,420,130]}
+{"kind":"textbox","id":"sh/d8bat47y","slide":10,"text":"按席位订阅","textPreview":"按席位订阅","textChars":5,"textLines":1,"bbox":[255,352,340,44]}
+{"kind":"shape","id":"sh/29gr2p8n","slide":10,"bbox":[730,310,420,130]}
+{"kind":"textbox","id":"sh/vu9knih4","slide":10,"text":"按模块收费","textPreview":"按模块收费","textChars":5,"textLines":1,"bbox":[775,352,340,44]}
+{"kind":"shape","id":"sh/kf6dcbul","slide":10,"bbox":[1250,310,420,130]}
+{"kind":"textbox","id":"sh/d0z61032","slide":10,"text":"按用量计费","textPreview":"按用量计费","textChars":5,"textLines":1,"bbox":[1295,352,340,44]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":10,"bbox":[210,540,420,130]}
+{"kind":"textbox","id":"sh/vixczed8","slide":10,"text":"企业年约","textPreview":"企业年约","textChars":4,"textLines":1,"bbox":[255,582,340,44]}
+{"kind":"shape","id":"sh/vmtwra5g","slide":10,"bbox":[730,540,420,130]}
+{"kind":"textbox","id":"sh/61032lsz","slide":10,"text":"实施服务","textPreview":"实施服务","textChars":4,"textLines":1,"bbox":[775,582,340,44]}
+{"kind":"shape","id":"sh/dsji5sne","slide":10,"bbox":[1250,540,420,130]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":10,"text":"生态分成","textPreview":"生态分成","textChars":4,"textLines":1,"bbox":[1295,582,340,44]}
+{"kind":"notes","id":"nt/hwip7x","slide":10,"text":""}
+{"kind":"slide","id":"sl/5fxb0l","slide":11,"title":"下一步","textShapes":10}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":11,"text":"下一步","textPreview":"下一步","textChars":3,"textLines":1,"bbox":[60,70,950,92]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":11,"bbox":[160,420,300,220]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":11,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[205,465,120,60]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":11,"text":"确认业务场景","textPreview":"确认业务场景","textChars":6,"textLines":1,"bbox":[205,560,220,42]}
+{"kind":"shape","id":"sh/dg7adsji","slide":11,"bbox":[590,420,300,220]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":11,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[635,465,120,60]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":11,"text":"评估安全与集成","textPreview":"评估安全与集成","textChars":7,"textLines":1,"bbox":[635,560,220,42]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":11,"bbox":[1020,420,300,220]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":11,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1065,465,120,60]}
+{"kind":"textbox","id":"sh/pwb2hwfy","slide":11,"text":"试点上线","textPreview":"试点上线","textChars":4,"textLines":1,"bbox":[1065,560,220,42]}
+{"kind":"shape","id":"sh/0bi9s36h","slide":11,"bbox":[1450,420,300,220]}
+{"kind":"textbox","id":"sh/7qpg3ex0","slide":11,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1495,465,120,60]}
+{"kind":"textbox","id":"sh/i5sneloj","slide":11,"text":"续约扩容","textPreview":"续约扩容","textChars":4,"textLines":1,"bbox":[1495,560,220,42]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":11,"text":"企业级 SaaS 软件产业链研究","textPreview":"企业级 SaaS 软件产业链研究","textChars":16,"textLines":1,"bbox":[40,1010,520,30]}
+{"kind":"notes","id":"nt/5fxb0l","slide":11,"text":""}
+{"kind":"slide","id":"sl/ca46bu","slide":12,"title":"SaaS 的壁垒","textShapes":3}
+{"kind":"shape","id":"sh/bulwval8","slide":12,"bbox":[-80,-120,760,760]}
+{"kind":"textbox","id":"sh/0fepkzup","slide":12,"text":"SaaS 的壁垒\n不是上线，\n而是持续被使用。","textPreview":"SaaS 的壁垒 | 不是上线， | 而是持续被使用。","textChars":23,"textLines":3,"bbox":[880,240,780,300]}
+{"kind":"textbox","id":"sh/p0bi9s36","slide":12,"text":"产品复用 · 安全合规 · 数据沉淀 · 客户成功 · 生态集成","textPreview":"产品复用 · 安全合规 · 数据沉淀 · 客户成功 · 生态集成","textChars":32,"textLines":1,"bbox":[885,660,760,42]}
+{"kind":"textbox","id":"sh/ixczed8v","slide":12,"text":"企业级 SaaS 软件产业链研究","textPreview":"企业级 SaaS 软件产业链研究","textChars":16,"textLines":1,"bbox":[40,1010,520,30]}
+{"kind":"notes","id":"nt/ca46bu","slide":12,"text":""}
+{"kind":"slide","id":"sl/gwndkg","slide":13,"title":"资料来源与合规索引","textShapes":7}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":13,"text":"资料来源与合规索引","textPreview":"资料来源与合规索引","textChars":9,"textLines":1,"bbox":[90,80,900,68]}
+{"kind":"shape","id":"sh/vmtwra5g","slide":13,"bbox":[120,260,15,15]}
+{"kind":"textbox","id":"sh/61032lsz","slide":13,"text":"NIST SP 800-145：云计算与 SaaS 定义","textPreview":"NIST SP 800-145：云计算与 SaaS 定义","textChars":28,"textLines":1,"bbox":[154,250,1406,44]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":13,"bbox":[120,348,15,15]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":13,"text":"CISA Secure by Design：软件厂商安全责任","textPreview":"CISA Secure by Design：软件厂商安全责任","textChars":30,"textLines":1,"bbox":[154,338,1406,44]}
+{"kind":"shape","id":"sh/vy90je9c","slide":13,"bbox":[120,436,15,15]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":13,"text":"OWASP SCVS：软件组件与供应链安全","textPreview":"OWASP SCVS：软件组件与供应链安全","textChars":21,"textLines":1,"bbox":[154,426,1406,44]}
+{"kind":"shape","id":"sh/d8v6psfi","slide":13,"bbox":[120,524,15,15]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":13,"text":"FASB Topic 606：订阅合同与收入确认框架","textPreview":"FASB Topic 606：订阅合同与收入确认框架","textChars":26,"textLines":1,"bbox":[154,514,1406,44]}
+{"kind":"shape","id":"sh/epkzupwb","slide":13,"bbox":[120,612,15,15]}
+{"kind":"textbox","id":"sh/7adsji5s","slide":13,"text":"Cloud Security Alliance：SaaS 安全治理参考","textPreview":"Cloud Security Alliance：SaaS 安全治理参考","textChars":35,"textLines":1,"bbox":[154,602,1406,44]}
+{"kind":"textbox","id":"sh/wval87ed","slide":13,"text":"重点关注：身份权限、审计日志、数据治理、开源依赖、云成本和客户续约。","textPreview":"重点关注：身份权限、审计日志、数据治理、开源依赖、云成本和客户续约。","textChars":34,"textLines":1,"bbox":[120,830,1420,44]}
+{"kind":"notes","id":"nt/gwndkg","slide":13,"text":""}
+{"kind":"slide","id":"sl/hjbjpe","slide":14,"title":"结论","textShapes":5}
+{"kind":"textbox","id":"sh/psfil0rq","slide":14,"text":"结论","textPreview":"结论","textChars":2,"textLines":1,"bbox":[120,150,480,90]}
+{"kind":"textbox","id":"sh/e1w7mp0b","slide":14,"text":"企业级 SaaS 是云基础设施、软件工程、业务流程、安全合规和客户经营共同组成的产业链。","textPreview":"企业级 SaaS 是云基础设施、软件工程、业务流程、安全合规和客户经营共同组成的产业链。","textChars":44,"textLines":1,"bbox":[120,310,1050,110]}
+{"kind":"textbox","id":"sh/7mp0bi9s","slide":14,"text":"可继续拆解：云基础设施、低代码、企业安全软件、CRM、BI、AI Agent、API 集成平台。","textPreview":"可继续拆解：云基础设施、低代码、企业安全软件、CRM、BI、AI Agent、API 集成平台。","textChars":48,"textLines":1,"bbox":[120,520,1100,80]}
+{"kind":"textbox","id":"sh/wval87ed","slide":14,"text":"小红书标题：SaaS 软件背后的产业链","textPreview":"小红书标题：SaaS 软件背后的产业链","textChars":19,"textLines":1,"bbox":[120,700,860,48]}
+{"kind":"textbox","id":"sh/pg3ex0nu","slide":14,"text":"#SaaS产业链 #企业软件 #云计算 #软件商业模式 #客户成功","textPreview":"#SaaS产业链 #企业软件 #云计算 #软件商业模式 #客户成功","textChars":33,"textLines":1,"bbox":[120,780,1120,44]}
+{"kind":"notes","id":"nt/hjbjpe","slide":14,"text":""}

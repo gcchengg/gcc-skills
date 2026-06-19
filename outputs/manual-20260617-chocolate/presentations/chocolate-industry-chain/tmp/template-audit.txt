@@ -1,0 +1,26 @@
+Task mode: template-following
+Template: /Users/apple/Documents/GitHub/gcc-skills/PPT生成/Work-Life Integration by Slidesgo.pptx
+
+Preserve:
+- 16:9 slide size, orange-red grain texture, white/cream text system, large typographic hierarchy.
+- Rounded image frames on cover and content slides.
+- Slidesgo attribution slide as final slide.
+
+Reusable patterns:
+- Slide 1: cover with large title and rounded hero image.
+- Slide 3: table of contents list.
+- Slide 4: title plus body and rounded image.
+- Slide 5: numbered section divider.
+- Slide 6: large title plus short explanatory bullets.
+- Slide 7: two-column idea slide.
+- Slide 9: key metrics slide.
+- Slide 10: thanks/attribution slide.
+
+Intentional deviations:
+- Replace office/life-balance narrative text with chocolate industry-chain content.
+- Replace major business-lifestyle images with generated cacao/chocolate editorial images.
+- Keep final thanks/credits slide for template attribution.
+
+Placeholder handling:
+- All visible sample headings and body copy on selected slides are rewritten.
+- Final attribution slide retains credits while replacing contact fields with topic/date.

@@ -1,0 +1,234 @@
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/2x4nap4r","slide":1,"title":"slidesmania.com","textShapes":5}
+{"kind":"shape","id":"sh/nap4r65w","slide":1,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/cvixczed","slide":1,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/5gbq1ory","slide":1,"text":"think","textPreview":"think","textChars":5,"textLines":1,"bbox":[330,330,360,105]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":1,"text":"BIPV","textPreview":"BIPV","textChars":4,"textLines":1,"bbox":[330,470,560,130]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":1,"text":"♻ 建筑会发电  ♻ 绿色外壳  ♻ 分布式能源","textPreview":"♻ 建筑会发电  ♻ 绿色外壳  ♻ 分布式能源","textChars":24,"textLines":1,"bbox":[330,710,760,60]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":1,"text":"建筑光伏一体化产业链研究","textPreview":"建筑光伏一体化产业链研究","textChars":12,"textLines":1,"bbox":[330,630,780,50]}
+{"kind":"image","id":"im/4byhgn29","slide":1,"name":"","bbox":[1190,499.94,360,240.12]}
+{"kind":"image","id":"im/bm58z25k","slide":1,"name":"","bbox":[770,355,110,110]}
+{"kind":"slide","id":"sl/pg3ex0nu","slide":2,"title":"slidesmania.com","textShapes":16}
+{"kind":"shape","id":"sh/yxobm58z","slide":2,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":2,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1660,900,110,50]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":2,"text":"table of\ncontents","textPreview":"table of | contents","textChars":17,"textLines":2,"bbox":[190,130,980,95]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":2,"text":"这套 PPT 用绿色建筑视角拆解 BIPV 的价值链。","textPreview":"这套 PPT 用绿色建筑视角拆解 BIPV 的价值链。","textChars":27,"textLines":1,"bbox":[195,220,1100,48]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":2,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[220,350,52,52]}
+{"kind":"textbox","id":"sh/gr2p8nqx","slide":2,"text":"最终产品与需求","textPreview":"最终产品与需求","textChars":7,"textLines":1,"bbox":[300,356,520,52]}
+{"kind":"textbox","id":"sh/rytsvu9k","slide":2,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[920,350,52,52]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":2,"text":"产业链全景","textPreview":"产业链全景","textChars":5,"textLines":1,"bbox":[1000,356,520,52]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":2,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[220,505,52,52]}
+{"kind":"textbox","id":"sh/lwval87e","slide":2,"text":"上游核心投入","textPreview":"上游核心投入","textChars":6,"textLines":1,"bbox":[300,511,520,52]}
+{"kind":"textbox","id":"sh/e9cvixcz","slide":2,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[920,505,52,52]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":2,"text":"中游集成壁垒","textPreview":"中游集成壁垒","textChars":6,"textLines":1,"bbox":[1000,511,520,52]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":2,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[220,660,52,52]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":2,"text":"下游场景与商业模式","textPreview":"下游场景与商业模式","textChars":9,"textLines":1,"bbox":[300,666,520,52]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":2,"text":"6","textPreview":"6","textChars":1,"textLines":1,"bbox":[920,660,52,52]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":2,"text":"风险与结论","textPreview":"风险与结论","textChars":5,"textLines":1,"bbox":[1000,666,520,52]}
+{"kind":"image","id":"im/rqd4vmtw","slide":2,"name":"","bbox":[1430,520.1,220,329.8]}
+{"kind":"slide","id":"sl/s72x4nap","slide":3,"title":"slidesmania.com","textShapes":8}
+{"kind":"shape","id":"sh/vmtwra5g","slide":3,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":3,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1660,900,110,50]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":3,"text":"did you\nknow?","textPreview":"did you | know?","textChars":13,"textLines":2,"bbox":[190,130,980,95]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":3,"text":"BIPV 的重点不只是发电效率。","textPreview":"BIPV 的重点不只是发电效率。","textChars":16,"textLines":1,"bbox":[195,220,1100,48]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":3,"text":"BIPV 是把太阳能直接集成进建筑材料：屋面、窗户、立面、采光顶或遮阳构件。","textPreview":"BIPV 是把太阳能直接集成进建筑材料：屋面、窗户、立面、采光顶或遮阳构件。","textChars":38,"textLines":1,"bbox":[245,360,1030,110]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":3,"text":"它必须同时满足建筑围护、安全验收、外观设计和发电运行要求，因此产业链横跨光伏、建材、建筑工程和能源运营。","textPreview":"它必须同时满足建筑围护、安全验收、外观设计和发电运行要求，因此产业链横跨光伏、建材、建筑工程和能源运营。","textChars":52,"textLines":1,"bbox":[245,515,980,150]}
+{"kind":"shape","id":"sh/6hcrmhk3","slide":3,"bbox":[1290,330,300,300]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":3,"text":"建筑外壳\n+\n发电资产","textPreview":"建筑外壳 | + | 发电资产","textChars":11,"textLines":3,"bbox":[1330,400,220,160]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":3,"text":"定义参考：U.S. DOE Solar Photovoltaic System Design Basics","textPreview":"定义参考：U.S. DOE Solar Photovoltaic System Design Basics","textChars":53,"textLines":1,"bbox":[190,955,1250,30]}
+{"kind":"slide","id":"sl/val87ed8","slide":4,"title":"slidesmania.com","textShapes":16}
+{"kind":"shape","id":"sh/1gvy90je","slide":4,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/qtcj6tov","slide":4,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1660,900,110,50]}
+{"kind":"textbox","id":"sh/87ed8bat","slide":4,"text":"产业链\n全景","textPreview":"产业链 | 全景","textChars":6,"textLines":2,"bbox":[190,130,980,95]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":4,"text":"一条链路，两套专业语言。","textPreview":"一条链路，两套专业语言。","textChars":12,"textLines":1,"bbox":[195,220,1100,48]}
+{"kind":"shape","id":"sh/q1orytsv","slide":4,"bbox":[205,390,295,210]}
+{"kind":"textbox","id":"sh/fmlkjm1c","slide":4,"text":"材料","textPreview":"材料","textChars":2,"textLines":1,"bbox":[233,420,230,55]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":4,"text":"硅料/玻璃/胶膜/金属/电气元件","textPreview":"硅料/玻璃/胶膜/金属/电气元件","textChars":16,"textLines":1,"bbox":[235,500,230,90]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[505,455,60,60]}
+{"kind":"shape","id":"sh/1w7mp0bi","slide":4,"bbox":[565,390,295,210]}
+{"kind":"textbox","id":"sh/8bat47y1","slide":4,"text":"组件","textPreview":"组件","textChars":2,"textLines":1,"bbox":[593,420,230,55]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":4,"text":"电池片、封装、BIPV 专用部品","textPreview":"电池片、封装、BIPV 专用部品","textChars":16,"textLines":1,"bbox":[595,500,230,90]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[865,455,60,60]}
+{"kind":"shape","id":"sh/18jqh0fe","slide":4,"bbox":[925,390,295,210]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":4,"text":"建筑","textPreview":"建筑","textChars":2,"textLines":1,"bbox":[953,420,230,55]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":4,"text":"设计、结构、防水、消防、施工","textPreview":"设计、结构、防水、消防、施工","textChars":14,"textLines":1,"bbox":[955,500,230,90]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[1225,455,60,60]}
+{"kind":"shape","id":"sh/1cfa9w3m","slide":4,"bbox":[1285,390,295,210]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":4,"text":"能源","textPreview":"能源","textChars":2,"textLines":1,"bbox":[1313,420,230,55]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":4,"text":"逆变、并网、储能、能管、运维","textPreview":"逆变、并网、储能、能管、运维","textChars":14,"textLines":1,"bbox":[1315,500,230,90]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":4,"text":"真正的价值发生在“组件产品”变成“建筑系统”的那一刻。","textPreview":"真正的价值发生在“组件产品”变成“建筑系统”的那一刻。","textChars":27,"textLines":1,"bbox":[245,725,1250,58]}
+{"kind":"slide","id":"sl/mlkjm1cf","slide":5,"title":"slidesmania.com","textShapes":15}
+{"kind":"shape","id":"sh/vahoza1g","slide":5,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":5,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1660,900,110,50]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":5,"text":"上游：\n核心投入","textPreview":"上游： | 核心投入","textChars":8,"textLines":2,"bbox":[190,130,980,95]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":5,"text":"光伏材料 + 建筑材料 + 电力电子。","textPreview":"光伏材料 + 建筑材料 + 电力电子。","textChars":19,"textLines":1,"bbox":[195,220,1100,48]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":5,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,360,45,42]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":5,"text":"晶硅链条：多晶硅、硅片、电池片、组件封装","textPreview":"晶硅链条：多晶硅、硅片、电池片、组件封装","textChars":20,"textLines":1,"bbox":[315,362,1195,80]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":5,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,450,45,42]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":5,"text":"建筑材料：夹胶玻璃、金属屋面、防水层、龙骨","textPreview":"建筑材料：夹胶玻璃、金属屋面、防水层、龙骨","textChars":21,"textLines":1,"bbox":[315,452,1195,80]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":5,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,540,45,42]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":5,"text":"电力电子：逆变器、汇流、线缆、监控和安全关断","textPreview":"电力电子：逆变器、汇流、线缆、监控和安全关断","textChars":22,"textLines":1,"bbox":[315,542,1195,80]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":5,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,630,45,42]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":5,"text":"价值来源：效率、寿命、外观、认证和项目适配","textPreview":"价值来源：效率、寿命、外观、认证和项目适配","textChars":21,"textLines":1,"bbox":[315,632,1195,80]}
+{"kind":"textbox","id":"sh/n29gr2p8","slide":5,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,720,45,42]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":5,"text":"主要风险：材料波动、消防防水、跨专业协同不足","textPreview":"主要风险：材料波动、消防防水、跨专业协同不足","textChars":22,"textLines":1,"bbox":[315,722,1195,80]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":5,"text":"制造链参考：IEA Solar PV；系统构成参考：DOE","textPreview":"制造链参考：IEA Solar PV；系统构成参考：DOE","textChars":29,"textLines":1,"bbox":[190,955,1250,30]}
+{"kind":"image","id":"im/gfmlkjm1","slide":5,"name":"","bbox":[1390,593.24,220,293.52]}
+{"kind":"slide","id":"sl/58z25kb6","slide":6,"title":"slidesmania.com","textShapes":12}
+{"kind":"shape","id":"sh/9cvixcze","slide":6,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":6,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1660,900,110,50]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":6,"text":"中游：\n集成壁垒","textPreview":"中游： | 集成壁垒","textChars":8,"textLines":2,"bbox":[190,130,980,95]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":6,"text":"BIPV 的难点在接口管理。","textPreview":"BIPV 的难点在接口管理。","textChars":14,"textLines":1,"bbox":[195,220,1100,48]}
+{"kind":"shape","id":"sh/yxobm58z","slide":6,"bbox":[250,345,570,155]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":6,"text":"组件制造","textPreview":"组件制造","textChars":4,"textLines":1,"bbox":[285,369,230,45]}
+{"kind":"textbox","id":"sh/g7adsji5","slide":6,"text":"尺寸、颜色、透光率、衰减和封装可靠性","textPreview":"尺寸、颜色、透光率、衰减和封装可靠性","textChars":18,"textLines":1,"bbox":[285,428,490,55]}
+{"kind":"shape","id":"sh/9s36hcrm","slide":6,"bbox":[900,345,570,155]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":6,"text":"建筑设计","textPreview":"建筑设计","textChars":4,"textLines":1,"bbox":[935,369,230,45]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":6,"text":"立面、荷载、防水、消防和检修通道","textPreview":"立面、荷载、防水、消防和检修通道","textChars":16,"textLines":1,"bbox":[935,428,490,55]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":6,"bbox":[250,565,570,155]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":6,"text":"工程施工","textPreview":"工程施工","textChars":4,"textLines":1,"bbox":[285,589,230,45]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":6,"text":"总包、幕墙、光伏 EPC 的责任边界","textPreview":"总包、幕墙、光伏 EPC 的责任边界","textChars":18,"textLines":1,"bbox":[285,648,490,55]}
+{"kind":"shape","id":"sh/ovahoza1","slide":6,"bbox":[900,565,570,155]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":6,"text":"并网运维","textPreview":"并网运维","textChars":4,"textLines":1,"bbox":[935,589,230,45]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":6,"text":"逆变、计量、储能、能管和安全联动","textPreview":"逆变、计量、储能、能管和安全联动","textChars":16,"textLines":1,"bbox":[935,648,490,55]}
+{"kind":"slide","id":"sl/0z61032l","slide":7,"title":"slidesmania.com","textShapes":16}
+{"kind":"shape","id":"sh/qd4vmtwr","slide":7,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":7,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1660,900,110,50]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":7,"text":"下游：\n应用场景","textPreview":"下游： | 应用场景","textChars":8,"textLines":2,"bbox":[190,130,980,95]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":7,"text":"谁更适合先用 BIPV？","textPreview":"谁更适合先用 BIPV？","textChars":12,"textLines":1,"bbox":[195,220,1100,48]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":7,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[245,330,55,55]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":7,"text":"工业厂房/园区","textPreview":"工业厂房/园区","textChars":7,"textLines":1,"bbox":[310,330,350,50]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":7,"text":"屋顶大、负荷稳定、经济性更容易测算","textPreview":"屋顶大、负荷稳定、经济性更容易测算","textChars":17,"textLines":1,"bbox":[680,334,780,50]}
+{"kind":"textbox","id":"sh/qtcj6tov","slide":7,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[245,455,55,55]}
+{"kind":"textbox","id":"sh/svu9knih","slide":7,"text":"公共建筑","textPreview":"公共建筑","textChars":4,"textLines":1,"bbox":[310,455,350,50]}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":7,"text":"绿色建筑评级、形象展示、低碳示范","textPreview":"绿色建筑评级、形象展示、低碳示范","textChars":16,"textLines":1,"bbox":[680,459,780,50]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":7,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[245,580,55,55]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":7,"text":"商业综合体","textPreview":"商业综合体","textChars":5,"textLines":1,"bbox":[310,580,350,50]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":7,"text":"立面审美、运营能耗、品牌低碳叙事","textPreview":"立面审美、运营能耗、品牌低碳叙事","textChars":16,"textLines":1,"bbox":[680,584,780,50]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":7,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[245,705,55,55]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":7,"text":"交通市政","textPreview":"交通市政","textChars":4,"textLines":1,"bbox":[310,705,350,50]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":7,"text":"车站、机场、停车棚、公交场站","textPreview":"车站、机场、停车棚、公交场站","textChars":14,"textLines":1,"bbox":[680,709,780,50]}
+{"kind":"image","id":"im/b2hwfyxo","slide":7,"name":"","bbox":[1430,661.59,170,226.81]}
+{"kind":"slide","id":"sl/fu18jqh0","slide":8,"title":"slidesmania.com","textShapes":5}
+{"kind":"shape","id":"sh/1032lszq","slide":8,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":8,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/judg7ads","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1660,900,110,50]}
+{"kind":"textbox","id":"sh/c7u54zid","slide":8,"text":"Clearly, BIPV is not just a solar product.","textPreview":"Clearly, BIPV is not just a solar product.","textChars":42,"textLines":1,"bbox":[270,335,1210,80]}
+{"kind":"textbox","id":"sh/1orytsvu","slide":8,"text":"它更像是一种会发电的建筑外壳：价值来自材料替代、长期电力、绿色认证和运营数据。","textPreview":"它更像是一种会发电的建筑外壳：价值来自材料替代、长期电力、绿色认证和运营数据。","textChars":39,"textLines":1,"bbox":[310,470,1120,135]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":8,"text":"― 产业链判断","textPreview":"― 产业链判断","textChars":7,"textLines":1,"bbox":[690,650,540,50]}
+{"kind":"slide","id":"sl/qh0fepkz","slide":9,"title":"slidesmania.com","textShapes":20}
+{"kind":"shape","id":"sh/vahoza1g","slide":9,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/ovahoza1","slide":9,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1660,900,110,50]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":9,"text":"价值分配","textPreview":"价值分配","textChars":4,"textLines":1,"bbox":[190,130,980,95]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":9,"text":"标准组件看规模，BIPV 看集成。","textPreview":"标准组件看规模，BIPV 看集成。","textChars":17,"textLines":1,"bbox":[195,220,1100,48]}
+{"kind":"shape","id":"sh/onyd0z61","slide":9,"bbox":[220,330,300,88]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":9,"text":"环节","textPreview":"环节","textChars":2,"textLines":1,"bbox":[245,355,250,40]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":9,"bbox":[520,330,540,88]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":9,"text":"价值来源","textPreview":"价值来源","textChars":4,"textLines":1,"bbox":[545,355,490,40]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":9,"bbox":[1060,330,520,88]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":9,"text":"议价关键","textPreview":"议价关键","textChars":4,"textLines":1,"bbox":[1085,355,470,40]}
+{"kind":"shape","id":"sh/5wjudg7a","slide":9,"bbox":[220,418,300,88]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":9,"text":"组件/辅材","textPreview":"组件/辅材","textChars":5,"textLines":1,"bbox":[244,443,255,38]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":9,"bbox":[520,418,540,88]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":9,"text":"效率、寿命、成本","textPreview":"效率、寿命、成本","textChars":8,"textLines":1,"bbox":[544,443,495,38]}
+{"kind":"shape","id":"sh/58z25kb6","slide":9,"bbox":[1060,418,520,88]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":9,"text":"规模与质量","textPreview":"规模与质量","textChars":5,"textLines":1,"bbox":[1084,443,475,38]}
+{"kind":"shape","id":"sh/neloj2t8","slide":9,"bbox":[220,506,300,88]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":9,"text":"建筑部品","textPreview":"建筑部品","textChars":4,"textLines":1,"bbox":[244,531,255,38]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":9,"bbox":[520,506,540,88]}
+{"kind":"textbox","id":"sh/vixczed8","slide":9,"text":"外观、结构、防水","textPreview":"外观、结构、防水","textChars":8,"textLines":1,"bbox":[544,531,495,38]}
+{"kind":"shape","id":"sh/k3q5o7qp","slide":9,"bbox":[1060,506,520,88]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":9,"text":"认证与定制","textPreview":"认证与定制","textChars":5,"textLines":1,"bbox":[1084,531,475,38]}
+{"kind":"shape","id":"sh/6psfil0r","slide":9,"bbox":[220,594,300,88]}
+{"kind":"textbox","id":"sh/val87ed8","slide":9,"text":"设计施工","textPreview":"设计施工","textChars":4,"textLines":1,"bbox":[244,619,255,38]}
+{"kind":"shape","id":"sh/kre1w7mp","slide":9,"bbox":[520,594,540,88]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":9,"text":"跨专业协调","textPreview":"跨专业协调","textChars":5,"textLines":1,"bbox":[544,619,495,38]}
+{"kind":"shape","id":"sh/2lszqtcj","slide":9,"bbox":[1060,594,520,88]}
+{"kind":"textbox","id":"sh/v6psfil0","slide":9,"text":"项目经验","textPreview":"项目经验","textChars":4,"textLines":1,"bbox":[1084,619,475,38]}
+{"kind":"shape","id":"sh/h4byhgn2","slide":9,"bbox":[220,682,300,88]}
+{"kind":"textbox","id":"sh/sji5snel","slide":9,"text":"能源运营","textPreview":"能源运营","textChars":4,"textLines":1,"bbox":[244,707,255,38]}
+{"kind":"shape","id":"sh/3ylc7u54","slide":9,"bbox":[520,682,540,88]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":9,"text":"发电数据、消纳","textPreview":"发电数据、消纳","textChars":7,"textLines":1,"bbox":[544,707,495,38]}
+{"kind":"shape","id":"sh/lszqtcj6","slide":9,"bbox":[1060,682,520,88]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":9,"text":"长期服务","textPreview":"长期服务","textChars":4,"textLines":1,"bbox":[1084,707,475,38]}
+{"kind":"textbox","id":"sh/3m94fu18","slide":9,"text":"分析归纳：基于 DOE / IEA / NREL 资料与产业链逻辑","textPreview":"分析归纳：基于 DOE / IEA / NREL 资料与产业链逻辑","textChars":33,"textLines":1,"bbox":[190,955,1250,30]}
+{"kind":"slide","id":"sl/29gr2p8n","slide":10,"title":"slidesmania.com","textShapes":13}
+{"kind":"shape","id":"sh/2p8nqxs7","slide":10,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":10,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1660,900,110,50]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":10,"text":"成本结构","textPreview":"成本结构","textChars":4,"textLines":1,"bbox":[190,130,980,95]}
+{"kind":"textbox","id":"sh/2hwfyxob","slide":10,"text":"组件降价，不代表项目同步便宜。","textPreview":"组件降价，不代表项目同步便宜。","textChars":15,"textLines":1,"bbox":[195,220,1100,48]}
+{"kind":"shape","id":"sh/94fu18jq","slide":10,"bbox":[1065,430,370,135]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":10,"text":"固定成本","textPreview":"固定成本","textChars":4,"textLines":1,"bbox":[1100,448,300,40]}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":10,"text":"研发、认证、模具、设计团队、测试平台","textPreview":"研发、认证、模具、设计团队、测试平台","textChars":18,"textLines":1,"bbox":[1095,492,310,60]}
+{"kind":"shape","id":"sh/25kb6xkf","slide":10,"bbox":[635,640,370,135]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":10,"text":"可变成本","textPreview":"可变成本","textChars":4,"textLines":1,"bbox":[670,658,300,40]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":10,"text":"电池片、玻璃、胶膜、逆变器、施工安装","textPreview":"电池片、玻璃、胶膜、逆变器、施工安装","textChars":18,"textLines":1,"bbox":[665,702,310,60]}
+{"kind":"shape","id":"sh/m94fu18j","slide":10,"bbox":[205,430,370,135]}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":10,"text":"波动成本","textPreview":"波动成本","textChars":4,"textLines":1,"bbox":[240,448,300,40]}
+{"kind":"textbox","id":"sh/83itgfml","slide":10,"text":"组件、玻璃、铝材、电价、融资和人工","textPreview":"组件、玻璃、铝材、电价、融资和人工","textChars":17,"textLines":1,"bbox":[235,492,310,60]}
+{"kind":"shape","id":"sh/xobm58z2","slide":10,"bbox":[635,220,370,135]}
+{"kind":"textbox","id":"sh/qxs72x4n","slide":10,"text":"隐性成本","textPreview":"隐性成本","textChars":4,"textLines":1,"bbox":[670,238,300,40]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":10,"text":"消防、防水、结构复核、清洗检修、长期质保","textPreview":"消防、防水、结构复核、清洗检修、长期质保","textChars":20,"textLines":1,"bbox":[665,282,310,60]}
+{"kind":"textbox","id":"sh/4zidonyd","slide":10,"text":"BIPV","textPreview":"BIPV","textChars":4,"textLines":1,"bbox":[720,470,200,80]}
+{"kind":"slide","id":"sl/re1w7mp0","slide":11,"title":"slidesmania.com","textShapes":14}
+{"kind":"shape","id":"sh/dg7adsji","slide":11,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/6tovahoz","slide":11,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1660,900,110,50]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":11,"text":"瓶颈与风险","textPreview":"瓶颈与风险","textChars":5,"textLines":1,"bbox":[190,130,980,95]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":11,"text":"技术、建筑和收益三类风险叠加。","textPreview":"技术、建筑和收益三类风险叠加。","textChars":15,"textLines":1,"bbox":[195,220,1100,48]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":11,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,350,45,42]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":11,"text":"供应链：标准组件成熟，不等于定制建筑部品成熟","textPreview":"供应链：标准组件成熟，不等于定制建筑部品成熟","textChars":22,"textLines":1,"bbox":[315,352,1175,76]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":11,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,436,45,42]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":11,"text":"技术：阴影、热斑、弱光、衰减、防火和防水","textPreview":"技术：阴影、热斑、弱光、衰减、防火和防水","textChars":20,"textLines":1,"bbox":[315,438,1175,76]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":11,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,522,45,42]}
+{"kind":"textbox","id":"sh/sji5snel","slide":11,"text":"需求：建筑决策链条长，项目周期慢于普通分布式光伏","textPreview":"需求：建筑决策链条长，项目周期慢于普通分布式光伏","textChars":24,"textLines":1,"bbox":[315,524,1175,76]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":11,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,608,45,42]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":11,"text":"合规：消防、并网、绿色建筑评价口径存在地方差异","textPreview":"合规：消防、并网、绿色建筑评价口径存在地方差异","textChars":23,"textLines":1,"bbox":[315,610,1175,76]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":11,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,694,45,42]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":11,"text":"替代：传统屋顶光伏、采购绿电、储能和能效改造","textPreview":"替代：传统屋顶光伏、采购绿电、储能和能效改造","textChars":22,"textLines":1,"bbox":[315,696,1175,76]}
+{"kind":"slide","id":"sl/4fu18jqh","slide":12,"title":"slidesmania.com","textShapes":10}
+{"kind":"shape","id":"sh/3m94fu18","slide":12,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":12,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1660,900,110,50]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":12,"text":"三个容易被\n忽略的事实","textPreview":"三个容易被 | 忽略的事实","textChars":11,"textLines":2,"bbox":[190,130,980,95]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":12,"text":"发电只是 BIPV 的一部分。","textPreview":"发电只是 BIPV 的一部分。","textChars":15,"textLines":1,"bbox":[195,220,1100,48]}
+{"kind":"textbox","id":"sh/sji5snel","slide":12,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[270,365,75,75]}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":12,"text":"难点不是能不能发电，而是能不能像建筑材料一样验收、维护和质保。","textPreview":"难点不是能不能发电，而是能不能像建筑材料一样验收、维护和质保。","textChars":31,"textLines":1,"bbox":[380,360,1050,88]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":12,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[270,530,75,75]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":12,"text":"越早进入建筑设计阶段，越容易兼顾外观、安全和收益。","textPreview":"越早进入建筑设计阶段，越容易兼顾外观、安全和收益。","textChars":25,"textLines":1,"bbox":[380,525,1050,88]}
+{"kind":"textbox","id":"sh/z61032ls","slide":12,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[270,695,75,75]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":12,"text":"最高发电量和最好建筑效果，不总是同一个方案。","textPreview":"最高发电量和最好建筑效果，不总是同一个方案。","textChars":22,"textLines":1,"bbox":[380,690,1050,88]}
+{"kind":"image","id":"im/ulwval87","slide":12,"name":"","bbox":[1470,730,130,130]}
+{"kind":"slide","id":"sl/lwval87e","slide":13,"title":"slidesmania.com","textShapes":14}
+{"kind":"shape","id":"sh/ed8bat47","slide":13,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/l0rqd4vm","slide":13,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1660,900,110,50]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":13,"text":"资料来源","textPreview":"资料来源","textChars":4,"textLines":1,"bbox":[190,130,980,95]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":13,"text":"用于支撑定义、系统构成和行业判断。","textPreview":"用于支撑定义、系统构成和行业判断。","textChars":17,"textLines":1,"bbox":[195,220,1100,48]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":13,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,350,45,42]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":13,"text":"U.S. DOE：BIPV 定义、系统构成、逆变和储能","textPreview":"U.S. DOE：BIPV 定义、系统构成、逆变和储能","textChars":27,"textLines":1,"bbox":[315,352,1185,78]}
+{"kind":"textbox","id":"sh/7adsji5s","slide":13,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,438,45,42]}
+{"kind":"textbox","id":"sh/epkzupwb","slide":13,"text":"IEA Solar PV：光伏制造链、分布式光伏和电网挑战","textPreview":"IEA Solar PV：光伏制造链、分布式光伏和电网挑战","textChars":29,"textLines":1,"bbox":[315,440,1185,78]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":13,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,526,45,42]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":13,"text":"IEA Buildings：建筑能耗与零碳建筑背景","textPreview":"IEA Buildings：建筑能耗与零碳建筑背景","textChars":25,"textLines":1,"bbox":[315,528,1185,78]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":13,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,614,45,42]}
+{"kind":"textbox","id":"sh/fyxobm58","slide":13,"text":"IEA PVPS Task 15：BIPV 专项研究、消防与数字化议题","textPreview":"IEA PVPS Task 15：BIPV 专项研究、消防与数字化议题","textChars":35,"textLines":1,"bbox":[315,616,1185,78]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":13,"text":"♻","textPreview":"♻","textChars":1,"textLines":1,"bbox":[260,702,45,42]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":13,"text":"NREL：光伏系统成本模型与项目经济性分析工具","textPreview":"NREL：光伏系统成本模型与项目经济性分析工具","textChars":23,"textLines":1,"bbox":[315,704,1185,78]}
+{"kind":"slide","id":"sl/25kb6xkf","slide":14,"title":"slidesmania.com","textShapes":5}
+{"kind":"shape","id":"sh/val87ed8","slide":14,"bbox":[110,75,1700,930]}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":14,"text":"slidesmania.com","textPreview":"slidesmania.com","textChars":15,"textLines":1,"bbox":[7,890,40,150]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":14,"text":"thank","textPreview":"thank","textChars":5,"textLines":1,"bbox":[330,340,430,105]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":14,"text":"you!","textPreview":"you!","textChars":4,"textLines":1,"bbox":[330,465,430,120]}
+{"kind":"textbox","id":"sh/vixczed8","slide":14,"text":"Do you have any questions?","textPreview":"Do you have any questions?","textChars":26,"textLines":1,"bbox":[335,640,670,50]}
+{"kind":"textbox","id":"sh/k3q5o7qp","slide":14,"text":"下一条产业链：光伏玻璃 / 储能 / 零碳园区？","textPreview":"下一条产业链：光伏玻璃 / 储能 / 零碳园区？","textChars":24,"textLines":1,"bbox":[335,730,820,55]}
+{"kind":"image","id":"im/cbulwval","slide":14,"name":"","bbox":[1190,474.94,360,240.12]}

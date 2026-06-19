@@ -1,0 +1,841 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/bat47y1k",
+    "id": "bat47y1k",
+    "slide": 19,
+    "layoutId": "/ppt/slideLayouts/slideLayout23.xml",
+    "layoutName": "BLANK",
+    "layoutType": "blank",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster2.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#FFFFFF",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#252525",
+      "lt1": "#F0F0F0",
+      "dk2": "#B43B13",
+      "lt2": "#FFFFFF",
+      "hlink": "#252525",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Arial",
+      "Inter"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout23.xml",
+      "name": "BLANK",
+      "type": "blank",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster2.xml",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster2.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "dk1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster2.xml/120",
+          "id": "120",
+          "name": "Google Shape;120;p24",
+          "bbox": [
+            74.88,
+            56.64,
+            810.24,
+            50.65
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster2.xml/121",
+          "id": "121",
+          "name": "Google Shape;121;p24",
+          "bbox": [
+            112.14,
+            178,
+            739.87,
+            262.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/r65wjudg",
+      "id": "1773",
+      "name": "Google Shape;1620;p46",
+      "bbox": [
+        74.52,
+        56.55,
+        171.8,
+        0.66
+      ],
+      "text": "6/10 | 8/10 | 7/10 | 4/10",
+      "textPreview": "6/10 | 8/10 | 7/10 | 4/10",
+      "rows": 11,
+      "cols": 4,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            74.52,
+            56.55,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            117.47,
+            56.55,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "bbox": [
+            160.42,
+            56.55,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 4,
+          "row": 1,
+          "column": 4,
+          "bbox": [
+            203.37,
+            56.55,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 5,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            74.52,
+            56.61,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 6,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            117.47,
+            56.61,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 7,
+          "row": 2,
+          "column": 3,
+          "bbox": [
+            160.42,
+            56.61,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 8,
+          "row": 2,
+          "column": 4,
+          "bbox": [
+            203.37,
+            56.61,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 9,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            74.52,
+            56.67,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 10,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            117.47,
+            56.67,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 11,
+          "row": 3,
+          "column": 3,
+          "bbox": [
+            160.42,
+            56.67,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 12,
+          "row": 3,
+          "column": 4,
+          "bbox": [
+            203.37,
+            56.67,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 13,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            74.52,
+            56.73,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 14,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            117.47,
+            56.73,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 15,
+          "row": 4,
+          "column": 3,
+          "bbox": [
+            160.42,
+            56.73,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 16,
+          "row": 4,
+          "column": 4,
+          "bbox": [
+            203.37,
+            56.73,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 17,
+          "row": 5,
+          "column": 1,
+          "bbox": [
+            74.52,
+            56.79,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 18,
+          "row": 5,
+          "column": 2,
+          "bbox": [
+            117.47,
+            56.79,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 19,
+          "row": 5,
+          "column": 3,
+          "bbox": [
+            160.42,
+            56.79,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 20,
+          "row": 5,
+          "column": 4,
+          "bbox": [
+            203.37,
+            56.79,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 21,
+          "row": 6,
+          "column": 1,
+          "bbox": [
+            74.52,
+            56.85,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 22,
+          "row": 6,
+          "column": 2,
+          "bbox": [
+            117.47,
+            56.85,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 23,
+          "row": 6,
+          "column": 3,
+          "bbox": [
+            160.42,
+            56.85,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 24,
+          "row": 6,
+          "column": 4,
+          "bbox": [
+            203.37,
+            56.85,
+            42.95,
+            0.06
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 25,
+          "row": 7,
+          "column": 1,
+          "bbox": [
+            74.52,
+            56.91,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 26,
+          "row": 7,
+          "column": 2,
+          "bbox": [
+            117.47,
+            56.91,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 27,
+          "row": 7,
+          "column": 3,
+          "bbox": [
+            160.42,
+            56.91,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 28,
+          "row": 7,
+          "column": 4,
+          "bbox": [
+            203.37,
+            56.91,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 29,
+          "row": 8,
+          "column": 1,
+          "bbox": [
+            74.52,
+            56.97,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 30,
+          "row": 8,
+          "column": 2,
+          "bbox": [
+            117.47,
+            56.97,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 31,
+          "row": 8,
+          "column": 3,
+          "bbox": [
+            160.42,
+            56.97,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 32,
+          "row": 8,
+          "column": 4,
+          "bbox": [
+            203.37,
+            56.97,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 33,
+          "row": 9,
+          "column": 1,
+          "bbox": [
+            74.52,
+            57.03,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 34,
+          "row": 9,
+          "column": 2,
+          "bbox": [
+            117.47,
+            57.03,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 35,
+          "row": 9,
+          "column": 3,
+          "bbox": [
+            160.42,
+            57.03,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 36,
+          "row": 9,
+          "column": 4,
+          "bbox": [
+            203.37,
+            57.03,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 37,
+          "row": 10,
+          "column": 1,
+          "bbox": [
+            74.52,
+            57.09,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 38,
+          "row": 10,
+          "column": 2,
+          "bbox": [
+            117.47,
+            57.09,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 39,
+          "row": 10,
+          "column": 3,
+          "bbox": [
+            160.42,
+            57.09,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 40,
+          "row": 10,
+          "column": 4,
+          "bbox": [
+            203.37,
+            57.09,
+            42.95,
+            0.06
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 41,
+          "row": 11,
+          "column": 1,
+          "bbox": [
+            74.52,
+            57.15,
+            42.95,
+            0.06
+          ],
+          "text": "6/10",
+          "textPreview": "6/10",
+          "fillColor": "accent3",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "6/10",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "6/10",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 42,
+          "row": 11,
+          "column": 2,
+          "bbox": [
+            117.47,
+            57.15,
+            42.95,
+            0.06
+          ],
+          "text": "8/10",
+          "textPreview": "8/10",
+          "fillColor": "accent3",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "8/10",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "8/10",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 43,
+          "row": 11,
+          "column": 3,
+          "bbox": [
+            160.42,
+            57.15,
+            42.95,
+            0.06
+          ],
+          "text": "7/10",
+          "textPreview": "7/10",
+          "fillColor": "accent3",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "7/10",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "7/10",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 44,
+          "row": 11,
+          "column": 4,
+          "bbox": [
+            203.37,
+            57.15,
+            42.95,
+            0.06
+          ],
+          "text": "4/10",
+          "textPreview": "4/10",
+          "fillColor": "accent3",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "4/10",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "4/10",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6tovahoz",
+      "id": "1735",
+      "name": "Google Shape;1735;p46",
+      "bbox": [
+        672.77,
+        346.8,
+        61.23,
+        137.04
+      ],
+      "geometry": "roundRect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "dk2",
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dg7adsji",
+      "id": "1736",
+      "name": "Google Shape;1736;p46",
+      "bbox": [
+        703.38,
+        346.8,
+        0,
+        137.04
+      ],
+      "rotation": 180,
+      "geometry": "straightConnector1",
+      "lineColor": "lt1",
+      "lineWidth": 2
+    }
+  ],
+  "composeRuns": []
+}

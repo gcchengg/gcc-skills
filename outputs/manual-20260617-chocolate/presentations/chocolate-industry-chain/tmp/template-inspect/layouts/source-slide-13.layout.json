@@ -1,0 +1,615 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/lwval87e",
+    "id": "lwval87e",
+    "slide": 13,
+    "layoutId": "/ppt/slideLayouts/slideLayout24.xml",
+    "layoutName": "CUSTOM_2_1",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster2.xml",
+    "masterLayoutName": "simple-light-2",
+    "backgroundColor": "dk1",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#FFFFFF",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#252525",
+      "lt1": "#F0F0F0",
+      "dk2": "#B43B13",
+      "lt2": "#FFFFFF",
+      "hlink": "#252525",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Arial",
+      "Inter"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout24.xml",
+      "name": "CUSTOM_2_1",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster2.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout24.xml/124",
+          "id": "124",
+          "name": "Google Shape;124;p26",
+          "bbox": [
+            -0.01,
+            -1.08,
+            960,
+            123.97
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "fillColor": "accent2",
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout24.xml/125",
+          "id": "125",
+          "name": "Google Shape;125;p26",
+          "bbox": [
+            74.88,
+            56.64,
+            810.24,
+            50.65
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster2.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "dk1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster2.xml/120",
+          "id": "120",
+          "name": "Google Shape;120;p24",
+          "bbox": [
+            74.88,
+            56.64,
+            810.24,
+            50.65
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster2.xml/121",
+          "id": "121",
+          "name": "Google Shape;121;p24",
+          "bbox": [
+            112.14,
+            178,
+            739.87,
+            262.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s36hcrmh",
+      "id": "379",
+      "name": "Google Shape;379;p40",
+      "bbox": [
+        74.88,
+        56.64,
+        810.24,
+        50.65
+      ],
+      "geometry": "rect",
+      "text": "Presentation Maker",
+      "textPreview": "Presentation Maker",
+      "resolvedFontSize": 29.33,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 29.33,
+        "typeface": "Inter",
+        "color": "lt1",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Presentation Maker"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Presentation Maker",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Presentation Maker",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/byhgn29g",
+      "id": "386",
+      "name": "Google Shape;380;p40",
+      "bbox": [
+        474.37,
+        143.22,
+        313.48,
+        176.35
+      ],
+      "geometry": "roundRect",
+      "contentType": "image/png",
+      "imageCrop": {
+        "left": 0.15472,
+        "top": 0.09885,
+        "right": 0.10608,
+        "bottom": 0.231
+      },
+      "imageMask": {
+        "geometry": "roundRect"
+      },
+      "asset": {
+        "assetId": "/ppt/media/image7.png",
+        "contentType": "image/png",
+        "byteLength": 68041
+      },
+      "fillImage": {
+        "assetId": "/ppt/media/image7.png",
+        "contentType": "image/png",
+        "byteLength": 68041
+      }
+    },
+    {
+      "order": 3,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/idonyd0z",
+      "id": "387",
+      "name": "Google Shape;381;p40",
+      "bbox": [
+        172.15,
+        162.16,
+        143.06,
+        80.5
+      ],
+      "geometry": "roundRect",
+      "contentType": "image/png",
+      "imageCrop": {
+        "left": 0.19756,
+        "top": 0.20518,
+        "right": 0,
+        "bottom": 0.58024
+      },
+      "imageMask": {
+        "geometry": "roundRect"
+      },
+      "asset": {
+        "assetId": "/ppt/media/image4.png",
+        "contentType": "image/png",
+        "byteLength": 80114
+      },
+      "fillImage": {
+        "assetId": "/ppt/media/image4.png",
+        "contentType": "image/png",
+        "byteLength": 80114
+      }
+    },
+    {
+      "order": 4,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/p0bi9s36",
+      "id": "388",
+      "name": "Google Shape;382;p40",
+      "bbox": [
+        245.62,
+        231.94,
+        162.9,
+        91.62
+      ],
+      "geometry": "roundRect",
+      "contentType": "image/png",
+      "imageCrop": {
+        "left": 0,
+        "top": 0.53087,
+        "right": 0,
+        "bottom": 0
+      },
+      "imageMask": {
+        "geometry": "roundRect"
+      },
+      "asset": {
+        "assetId": "/ppt/media/image3.png",
+        "contentType": "image/png",
+        "byteLength": 83701
+      },
+      "fillImage": {
+        "assetId": "/ppt/media/image3.png",
+        "contentType": "image/png",
+        "byteLength": 83701
+      }
+    },
+    {
+      "order": 5,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/0fepkzup",
+      "id": "389",
+      "name": "Google Shape;383;p40",
+      "bbox": [
+        343.73,
+        162.16,
+        173.07,
+        97.35
+      ],
+      "geometry": "roundRect",
+      "contentType": "image/png",
+      "imageCrop": {
+        "left": 0.03892,
+        "top": 0.22371,
+        "right": 0.03883,
+        "bottom": 0.15832
+      },
+      "imageMask": {
+        "geometry": "roundRect"
+      },
+      "asset": {
+        "assetId": "/ppt/media/image6.png",
+        "contentType": "image/png",
+        "byteLength": 46084
+      },
+      "fillImage": {
+        "assetId": "/ppt/media/image6.png",
+        "contentType": "image/png",
+        "byteLength": 46084
+      }
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/g3ex0nux",
+      "id": "384",
+      "name": "Google Shape;384;p40",
+      "bbox": [
+        61.37,
+        355.5,
+        837.26,
+        64.22
+      ],
+      "geometry": "rect",
+      "text": "Slidesgo introduces its latest feature: the Presentation Maker. Enjoy two main functionalities - firstly, with a few clicks, create marvelous presentations with Artificial Intelligence that adapt to your needs. And it's completely free",
+      "textPreview": "Slidesgo introduces its latest feature: the Presentation Maker. Enjoy two main functionalities - firstly, with a few clicks, create marve...",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Slidesgo introduces its latest feature: the Presentation Maker. Enjoy two main functionalities - firstly, with a few clicks,"
+          },
+          {
+            "index": 2,
+            "text": "create marvelous presentations with Artificial Intelligence that adapt to your needs. And it's completely free"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Slidesgo introduces its latest feature: the Presentation Maker. Enjoy two main functionalities - firstly, with a few clicks, create marvelous presentations with Artificial Intelligence that adapt to your needs. And it's completely free",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 1000,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Slidesgo introduces its ",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "lt1"
+            },
+            {
+              "index": 2,
+              "text": "latest feature",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "lt1",
+              "bold": true
+            },
+            {
+              "index": 3,
+              "text": ": the ",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "lt1"
+            },
+            {
+              "index": 4,
+              "text": "Presentation Maker",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "lt1",
+              "bold": true
+            },
+            {
+              "index": 5,
+              "text": ". Enjoy ",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "lt1"
+            },
+            {
+              "index": 6,
+              "text": "two main functionalities",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "lt1",
+              "bold": true
+            },
+            {
+              "index": 7,
+              "text": " - ",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "lt1"
+            },
+            {
+              "index": 8,
+              "text": "firstly",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "lt1",
+              "bold": true
+            },
+            {
+              "index": 9,
+              "text": ", with a few clicks, ",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "lt1"
+            },
+            {
+              "index": 10,
+              "text": "create marvelous presentations with Artificial Intelligence",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "lt1",
+              "bold": true
+            },
+            {
+              "index": 11,
+              "text": " that adapt to your needs. And it's completely free",
+              "fontSize": 14.67,
+              "typeface": "Inter",
+              "color": "lt1"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5o7qpg3e",
+      "id": "385",
+      "name": "Google Shape;385;p40",
+      "bbox": [
+        333.15,
+        441.24,
+        293.7,
+        42.61
+      ],
+      "geometry": "roundRect",
+      "text": "Generate AI Presentation",
+      "textPreview": "Generate AI Presentation",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Generate AI Presentation"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Generate AI Presentation",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Generate AI Presentation",
+              "fontSize": 17.33,
+              "typeface": "Inter",
+              "color": "dk1",
+              "bold": true
+            }
+          ],
+          "lineSpacingPercent": 100000
+        }
+      ],
+      "fillColor": "dk2",
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

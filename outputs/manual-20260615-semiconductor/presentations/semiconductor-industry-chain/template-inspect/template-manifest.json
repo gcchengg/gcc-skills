@@ -1,0 +1,536 @@
+{
+  "sourcePptx": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/Metal Materials Company Profile by Slidesgo.pptx",
+  "workspace": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain",
+  "outDir": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect",
+  "generatedAt": "2026-06-15T11:49:48.592Z",
+  "slideCount": 40,
+  "slideArtifacts": [
+    {
+      "slide": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-01.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-01.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-01.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-01.layout.json"
+    },
+    {
+      "slide": 2,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-02.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-02.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-02.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-02.layout.json"
+    },
+    {
+      "slide": 3,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-03.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-03.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-03.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-03.layout.json"
+    },
+    {
+      "slide": 4,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-04.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-04.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-04.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-04.layout.json"
+    },
+    {
+      "slide": 5,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-05.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-05.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-05.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-05.layout.json"
+    },
+    {
+      "slide": 6,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-06.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-06.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-06.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-06.layout.json"
+    },
+    {
+      "slide": 7,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-07.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-07.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-07.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-07.layout.json"
+    },
+    {
+      "slide": 8,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-08.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-08.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-08.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-08.layout.json"
+    },
+    {
+      "slide": 9,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-09.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-09.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-09.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-09.layout.json"
+    },
+    {
+      "slide": 10,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-10.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-10.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-10.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-10.layout.json"
+    },
+    {
+      "slide": 11,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-11.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-11.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-11.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-11.layout.json"
+    },
+    {
+      "slide": 12,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-12.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-12.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-12.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-12.layout.json"
+    },
+    {
+      "slide": 13,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-13.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-13.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-13.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-13.layout.json"
+    },
+    {
+      "slide": 14,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-14.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-14.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-14.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-14.layout.json"
+    },
+    {
+      "slide": 15,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-15.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-15.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-15.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-15.layout.json"
+    },
+    {
+      "slide": 16,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-16.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-16.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-16.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-16.layout.json"
+    },
+    {
+      "slide": 17,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-17.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-17.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-17.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-17.layout.json"
+    },
+    {
+      "slide": 18,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-18.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-18.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-18.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-18.layout.json"
+    },
+    {
+      "slide": 19,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-19.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-19.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-19.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-19.layout.json"
+    },
+    {
+      "slide": 20,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-20.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-20.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-20.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-20.layout.json"
+    },
+    {
+      "slide": 21,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-21.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-21.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-21.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-21.layout.json"
+    },
+    {
+      "slide": 22,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-22.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-22.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-22.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-22.layout.json"
+    },
+    {
+      "slide": 23,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-23.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-23.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-23.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-23.layout.json"
+    },
+    {
+      "slide": 24,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-24.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-24.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-24.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-24.layout.json"
+    },
+    {
+      "slide": 25,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-25.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-25.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-25.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-25.layout.json"
+    },
+    {
+      "slide": 26,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-26.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-26.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-26.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-26.layout.json"
+    },
+    {
+      "slide": 27,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-27.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-27.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-27.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-27.layout.json"
+    },
+    {
+      "slide": 28,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-28.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-28.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-28.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-28.layout.json"
+    },
+    {
+      "slide": 29,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-29.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-29.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-29.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-29.layout.json"
+    },
+    {
+      "slide": 30,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-30.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-30.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-30.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-30.layout.json"
+    },
+    {
+      "slide": 31,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-31.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-31.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-31.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-31.layout.json"
+    },
+    {
+      "slide": 32,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-32.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-32.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-32.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-32.layout.json"
+    },
+    {
+      "slide": 33,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-33.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-33.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-33.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-33.layout.json"
+    },
+    {
+      "slide": 34,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-34.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-34.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-34.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-34.layout.json"
+    },
+    {
+      "slide": 35,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-35.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-35.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-35.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-35.layout.json"
+    },
+    {
+      "slide": 36,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-36.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-36.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-36.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-36.layout.json"
+    },
+    {
+      "slide": 37,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-37.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-37.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-37.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-37.layout.json"
+    },
+    {
+      "slide": 38,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-38.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-38.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-38.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-38.layout.json"
+    },
+    {
+      "slide": 39,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-39.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-39.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-39.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-39.layout.json"
+    },
+    {
+      "slide": 40,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/source-slides/source-slide-40.png",
+      "previewRelativePath": "template-inspect/source-slides/source-slide-40.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/layouts/source-slide-40.layout.json",
+      "layoutRelativePath": "template-inspect/layouts/source-slide-40.layout.json"
+    }
+  ],
+  "inspectPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/template-inspect.ndjson",
+  "inspectRelativePath": "template-inspect/template-inspect.ndjson",
+  "inspectTruncated": true,
+  "inspectMetadata": {
+    "revision": "50aohl",
+    "target": {
+      "id": "pr/bo3qde"
+    },
+    "kind": {
+      "requested": "slide,textbox,shape,image,table,chart",
+      "tokens": [
+        "slide",
+        "textbox",
+        "shape",
+        "image",
+        "table",
+        "chart"
+      ]
+    },
+    "include": {
+      "tokens": []
+    },
+    "exclude": {
+      "tokens": []
+    },
+    "notices": []
+  },
+  "extractedMedia": [
+    {
+      "entry": "ppt/media/image3.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image3.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image3.jpg",
+      "bytes": 584717
+    },
+    {
+      "entry": "ppt/media/image25.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image25.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image25.jpg",
+      "bytes": 277531
+    },
+    {
+      "entry": "ppt/media/image4.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image4.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image4.jpg",
+      "bytes": 275216
+    },
+    {
+      "entry": "ppt/media/image16.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image16.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image16.jpg",
+      "bytes": 575059
+    },
+    {
+      "entry": "ppt/media/image18.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image18.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image18.jpg",
+      "bytes": 836994
+    },
+    {
+      "entry": "ppt/media/image12.png",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image12.png",
+      "relativePath": "template-inspect/assets/ppt/media/image12.png",
+      "bytes": 373955
+    },
+    {
+      "entry": "ppt/media/image26.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image26.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image26.jpg",
+      "bytes": 324796
+    },
+    {
+      "entry": "ppt/media/image17.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image17.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image17.jpg",
+      "bytes": 774454
+    },
+    {
+      "entry": "ppt/media/image21.png",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image21.png",
+      "relativePath": "template-inspect/assets/ppt/media/image21.png",
+      "bytes": 320446
+    },
+    {
+      "entry": "ppt/media/image10.png",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image10.png",
+      "relativePath": "template-inspect/assets/ppt/media/image10.png",
+      "bytes": 380866
+    },
+    {
+      "entry": "ppt/media/image27.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image27.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image27.jpg",
+      "bytes": 1002038
+    },
+    {
+      "entry": "ppt/media/image11.png",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image11.png",
+      "relativePath": "template-inspect/assets/ppt/media/image11.png",
+      "bytes": 373564
+    },
+    {
+      "entry": "ppt/media/image14.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image14.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image14.jpg",
+      "bytes": 712872
+    },
+    {
+      "entry": "ppt/media/image9.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image9.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image9.jpg",
+      "bytes": 359956
+    },
+    {
+      "entry": "ppt/media/image28.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image28.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image28.jpg",
+      "bytes": 340651
+    },
+    {
+      "entry": "ppt/media/image23.png",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image23.png",
+      "relativePath": "template-inspect/assets/ppt/media/image23.png",
+      "bytes": 20365
+    },
+    {
+      "entry": "ppt/media/image8.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image8.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image8.jpg",
+      "bytes": 612544
+    },
+    {
+      "entry": "ppt/media/image20.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image20.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image20.jpg",
+      "bytes": 903675
+    },
+    {
+      "entry": "ppt/media/image22.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image22.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image22.jpg",
+      "bytes": 1158407
+    },
+    {
+      "entry": "ppt/media/image2.png",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image2.png",
+      "relativePath": "template-inspect/assets/ppt/media/image2.png",
+      "bytes": 105408
+    },
+    {
+      "entry": "ppt/media/image7.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image7.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image7.jpg",
+      "bytes": 595370
+    },
+    {
+      "entry": "ppt/media/image13.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image13.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image13.jpg",
+      "bytes": 993328
+    },
+    {
+      "entry": "ppt/media/image1.png",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image1.png",
+      "relativePath": "template-inspect/assets/ppt/media/image1.png",
+      "bytes": 37994
+    },
+    {
+      "entry": "ppt/media/image15.png",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image15.png",
+      "relativePath": "template-inspect/assets/ppt/media/image15.png",
+      "bytes": 482341
+    },
+    {
+      "entry": "ppt/media/image6.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image6.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image6.jpg",
+      "bytes": 321734
+    },
+    {
+      "entry": "ppt/media/image24.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image24.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image24.jpg",
+      "bytes": 306637
+    },
+    {
+      "entry": "ppt/media/image19.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image19.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image19.jpg",
+      "bytes": 1002156
+    },
+    {
+      "entry": "ppt/media/image5.jpg",
+      "path": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260615-semiconductor/presentations/semiconductor-industry-chain/template-inspect/assets/ppt/media/image5.jpg",
+      "relativePath": "template-inspect/assets/ppt/media/image5.jpg",
+      "bytes": 259917
+    }
+  ],
+  "fonts": [
+    "Albert Sans",
+    "Amatic SC",
+    "Angsana New",
+    "Arial",
+    "Bebas Neue",
+    "Calibri",
+    "Cordia New",
+    "DM Serif Display",
+    "DaunPenh",
+    "DokChampa",
+    "Estrangelo Edessa",
+    "Euphemia",
+    "Fredoka One",
+    "Gautami",
+    "Iskoola Pota",
+    "Kalinga",
+    "Kartika",
+    "Latha",
+    "MV Boli",
+    "Mangal",
+    "Microsoft Himalaya",
+    "Microsoft Uighur",
+    "Microsoft Yi Baiti",
+    "Mongolian Baiti",
+    "MoolBoran",
+    "Nunito Light",
+    "Nyala",
+    "Plantagenet Cherokee",
+    "Proxima Nova",
+    "Raavi",
+    "Red Hat Display",
+    "Red Hat Display Black",
+    "Roboto Medium",
+    "Shruti",
+    "Sylfaen",
+    "Times New Roman",
+    "Tunga",
+    "Vrinda",
+    "宋体",
+    "新細明體",
+    "맑은 고딕",
+    "ＭＳ Ｐゴシック"
+  ],
+  "packageParts": {
+    "mediaCount": 28,
+    "slideXmlCount": 40,
+    "chartCount": 0,
+    "tableSlideCount": 5
+  }
+}

@@ -1,0 +1,971 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/fu18jqh0",
+    "id": "fu18jqh0",
+    "slide": 8,
+    "layoutId": "/ppt/slideLayouts/slideLayout4.xml",
+    "layoutName": "TITLE_AND_TWO_COLUMNS",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#FFFFFF",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#252525",
+      "lt1": "#F0F0F0",
+      "dk2": "#B43B13",
+      "lt2": "#FFFFFF",
+      "hlink": "#252525",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Ancizar Sans",
+      "Arial",
+      "Baskervville"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout4.xml",
+      "name": "TITLE_AND_TWO_COLUMNS",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "image",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/27",
+          "id": "27",
+          "name": "Google Shape;21;p5",
+          "bbox": [
+            0,
+            0.23,
+            960,
+            539.53
+          ],
+          "contentType": "image/png",
+          "asset": {
+            "assetId": "/ppt/media/image.png",
+            "contentType": "image/png",
+            "byteLength": 6345401
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image.png",
+            "contentType": "image/png",
+            "byteLength": 6345401
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/22",
+          "id": "22",
+          "name": "Google Shape;22;p5",
+          "bbox": [
+            10.02,
+            15.69,
+            912.03,
+            72.66
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/23",
+          "id": "23",
+          "name": "Google Shape;23;p5",
+          "bbox": [
+            92.64,
+            235.74,
+            334.74,
+            248.76
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/24",
+          "id": "24",
+          "name": "Google Shape;24;p5",
+          "bbox": [
+            505.44,
+            235.74,
+            334.74,
+            248.76
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/25",
+          "id": "25",
+          "name": "Google Shape;25;p5",
+          "bbox": [
+            640.34,
+            165.68,
+            64.94,
+            48.13
+          ],
+          "geometry": "rect",
+          "text": "xx%",
+          "textPreview": "xx%",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "xx%",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "xx%"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "order": 6,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout4.xml/26",
+          "id": "26",
+          "name": "Google Shape;26;p5",
+          "bbox": [
+            227.6,
+            165.68,
+            64.82,
+            48.13
+          ],
+          "geometry": "rect",
+          "text": "xx%",
+          "textPreview": "xx%",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "xx%",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "xx%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            74.88,
+            46.72,
+            810.24,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            74.88,
+            120.99,
+            810.24,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/orytsvu9",
+      "id": "237",
+      "name": "Google Shape;237;p34",
+      "bbox": [
+        10.02,
+        15.69,
+        912.03,
+        72.66
+      ],
+      "geometry": "rect",
+      "text": "四种流动决定利润分配",
+      "textPreview": "四种流动决定利润分配",
+      "resolvedFontSize": 34.67,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 34.67,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "四种流动决定利润分配"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "四种流动决定利润分配",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "四种流动决定利润分配",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zed8v6ps",
+      "id": "238",
+      "name": "Google Shape;238;p34",
+      "bbox": [
+        92.64,
+        235.74,
+        334.74,
+        248.76
+      ],
+      "geometry": "rect",
+      "text": "货物与服务流\n• 可可豆跨境进入加工厂，再转为原料和终端产品\n• B 端应用需要稳定交付、冷链和配方服务\n\n信息流\n• 终端口味、价格接受度和合规要求向上游传导\n• 产地质量、认证和可追溯数据向下游传导",
+      "textPreview": "货物与服务流 | • 可可豆跨境进入加工厂，再转为原料和终端产品 | • B 端应用需要稳定交付、冷链和配方服务 |  | 信息流 | • 终端口味、价格接受度和合规要求向上游传导 | • 产地质量、认证和可追溯数据向下游传导",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 13,
+        "lines": [
+          {
+            "index": 1,
+            "text": "● 货物与服务流"
+          },
+          {
+            "index": 2,
+            "text": "● •"
+          },
+          {
+            "index": 3,
+            "text": "可可豆跨境进入加工厂，再转为原料"
+          },
+          {
+            "index": 4,
+            "text": "和终端产品"
+          },
+          {
+            "index": 5,
+            "text": "● • B"
+          },
+          {
+            "index": 6,
+            "text": "端应用需要稳定交付、冷链和配方服"
+          },
+          {
+            "index": 7,
+            "text": "务"
+          },
+          {
+            "index": 8,
+            "text": "● "
+          },
+          {
+            "index": 9,
+            "text": "信息流"
+          },
+          {
+            "index": 10,
+            "text": "•"
+          },
+          {
+            "index": 11,
+            "text": "终端口味、价格接受度和合规要求向上游传"
+          },
+          {
+            "index": 12,
+            "text": "导"
+          },
+          {
+            "index": 13,
+            "text": "• 产地质量、认证和可追溯数据向下游传导"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "货物与服务流",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "货物与服务流",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 2,
+          "text": "• 可可豆跨境进入加工厂，再转为原料和终端产品",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 可可豆跨境进入加工厂，再转为原料和终端产品",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 3,
+          "text": "• B 端应用需要稳定交付、冷链和配方服务",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• B 端应用需要稳定交付、冷链和配方服务",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 5,
+          "text": "信息流",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "信息流",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 6,
+          "text": "• 终端口味、价格接受度和合规要求向上游传导",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 终端口味、价格接受度和合规要求向上游传导",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 7,
+          "text": "• 产地质量、认证和可追溯数据向下游传导",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 产地质量、认证和可追溯数据向下游传导",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6xkf6dcb",
+      "id": "239",
+      "name": "Google Shape;239;p34",
+      "bbox": [
+        505.44,
+        235.74,
+        334.74,
+        248.76
+      ],
+      "geometry": "rect",
+      "text": "资金与定价流\n• 贸易、加工和品牌端使用合同、库存和套保管理价格风险\n• 短期价格受可可豆供需和期货价格影响更明显\n\n议价权\n• 品牌与渠道拥有消费者触达\n• 上游分散农户议价弱，但合规可追溯会提高优质产地价值",
+      "textPreview": "资金与定价流 | • 贸易、加工和品牌端使用合同、库存和套保管理价格风险 | • 短期价格受可可豆供需和期货价格影响更明显 |  | 议价权 | • 品牌与渠道拥有消费者触达 | • 上游分散农户议价弱，但合规可追溯会提高优质产地价值",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 16,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 13,
+        "lines": [
+          {
+            "index": 1,
+            "text": "● 资金与定价流"
+          },
+          {
+            "index": 2,
+            "text": "● •"
+          },
+          {
+            "index": 3,
+            "text": "贸易、加工和品牌端使用合同、库存"
+          },
+          {
+            "index": 4,
+            "text": "和套保管理价格风险"
+          },
+          {
+            "index": 5,
+            "text": "● •"
+          },
+          {
+            "index": 6,
+            "text": "短期价格受可可豆供需和期货价格影"
+          },
+          {
+            "index": 7,
+            "text": "响更明显"
+          },
+          {
+            "index": 8,
+            "text": "● "
+          },
+          {
+            "index": 9,
+            "text": "议价权"
+          },
+          {
+            "index": 10,
+            "text": "• 品牌与渠道拥有消费者触达"
+          },
+          {
+            "index": 11,
+            "text": "•"
+          },
+          {
+            "index": 12,
+            "text": "上游分散农户议价弱，但合规可追溯会提高"
+          },
+          {
+            "index": 13,
+            "text": "优质产地价值"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "资金与定价流",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "资金与定价流",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 2,
+          "text": "• 贸易、加工和品牌端使用合同、库存和套保管理价格风险",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 贸易、加工和品牌端使用合同、库存和套保管理价格风险",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 3,
+          "text": "• 短期价格受可可豆供需和期货价格影响更明显",
+          "bulletCharacter": "●",
+          "marginLeft": 457200,
+          "indent": -317500,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 短期价格受可可豆供需和期货价格影响更明显",
+              "alignment": "left"
+            }
+          ],
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 5,
+          "text": "议价权",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "议价权",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 6,
+          "text": "• 品牌与渠道拥有消费者触达",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 品牌与渠道拥有消费者触达",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        },
+        {
+          "index": 7,
+          "text": "• 上游分散农户议价弱，但合规可追溯会提高优质产地价值",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "• 上游分散农户议价弱，但合规可追溯会提高优质产地价值",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/29gr2p8n",
+      "id": "240",
+      "name": "Google Shape;240;p34",
+      "bbox": [
+        640.34,
+        165.68,
+        64.94,
+        48.13
+      ],
+      "geometry": "rect",
+      "text": "01",
+      "textPreview": "01",
+      "resolvedFontSize": 33.33,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 33.33,
+        "typeface": "Baskervville",
+        "color": "accent2",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "01"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "01",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "01",
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vu9knih4",
+      "id": "241",
+      "name": "Google Shape;241;p34",
+      "bbox": [
+        227.6,
+        165.68,
+        64.82,
+        48.13
+      ],
+      "geometry": "rect",
+      "text": "02",
+      "textPreview": "02",
+      "resolvedFontSize": 33.33,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 33.33,
+        "typeface": "Baskervville",
+        "color": "accent2",
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "02"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "02",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "02",
+              "alignment": "center"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6psfil0r",
+      "id": "248",
+      "name": "Google Shape;242;p34",
+      "bbox": [
+        -2.66,
+        88.23,
+        965.32,
+        0.13
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "lt1",
+      "lineWidth": 1
+    }
+  ],
+  "composeRuns": []
+}

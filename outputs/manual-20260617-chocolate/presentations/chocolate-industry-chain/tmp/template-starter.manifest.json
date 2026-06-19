@@ -1,0 +1,189 @@
+{
+  "sourcePptx": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/Work-Life Integration by Slidesgo.pptx",
+  "mapPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-frame-map.json",
+  "output": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter.pptx",
+  "outputBytes": 10449418,
+  "sourceSlideCount": 20,
+  "slideCount": 16,
+  "previewDir": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview",
+  "layoutDir": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout",
+  "contactSheet": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-contact-sheet.png",
+  "slides": [
+    {
+      "outputSlide": 1,
+      "sourceSlide": 1,
+      "narrativeRole": "opening thesis",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 2,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-01.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-01.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-01.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-01.layout.json"
+    },
+    {
+      "outputSlide": 2,
+      "sourceSlide": 3,
+      "narrativeRole": "table of contents",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-02.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-02.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-02.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-02.layout.json"
+    },
+    {
+      "outputSlide": 3,
+      "sourceSlide": 4,
+      "narrativeRole": "one sentence understanding",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-03.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-03.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-03.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-03.layout.json"
+    },
+    {
+      "outputSlide": 4,
+      "sourceSlide": 5,
+      "narrativeRole": "section divider panorama",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-04.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-04.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-04.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-04.layout.json"
+    },
+    {
+      "outputSlide": 5,
+      "sourceSlide": 6,
+      "narrativeRole": "industry chain panorama",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-05.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-05.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-05.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-05.layout.json"
+    },
+    {
+      "outputSlide": 6,
+      "sourceSlide": 7,
+      "narrativeRole": "upstream and midstream summary",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-06.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-06.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-06.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-06.layout.json"
+    },
+    {
+      "outputSlide": 7,
+      "sourceSlide": 5,
+      "narrativeRole": "section divider flows",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-07.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-07.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-07.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-07.layout.json"
+    },
+    {
+      "outputSlide": 8,
+      "sourceSlide": 7,
+      "narrativeRole": "flows and pricing power",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-08.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-08.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-08.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-08.layout.json"
+    },
+    {
+      "outputSlide": 9,
+      "sourceSlide": 5,
+      "narrativeRole": "section divider value",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-09.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-09.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-09.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-09.layout.json"
+    },
+    {
+      "outputSlide": 10,
+      "sourceSlide": 7,
+      "narrativeRole": "value and barriers",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-10.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-10.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-10.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-10.layout.json"
+    },
+    {
+      "outputSlide": 11,
+      "sourceSlide": 5,
+      "narrativeRole": "section divider risks",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-11.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-11.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-11.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-11.layout.json"
+    },
+    {
+      "outputSlide": 12,
+      "sourceSlide": 9,
+      "narrativeRole": "key metrics",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-12.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-12.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-12.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-12.layout.json"
+    },
+    {
+      "outputSlide": 13,
+      "sourceSlide": 6,
+      "narrativeRole": "risk map",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-13.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-13.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-13.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-13.layout.json"
+    },
+    {
+      "outputSlide": 14,
+      "sourceSlide": 6,
+      "narrativeRole": "overlooked facts and adjacent chains",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-14.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-14.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-14.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-14.layout.json"
+    },
+    {
+      "outputSlide": 15,
+      "sourceSlide": 6,
+      "narrativeRole": "sources",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-15.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-15.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-15.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-15.layout.json"
+    },
+    {
+      "outputSlide": 16,
+      "sourceSlide": 10,
+      "narrativeRole": "thanks and attribution",
+      "reuseMode": "duplicate-slide",
+      "editTargetCount": 1,
+      "previewPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-preview/starter-slide-16.png",
+      "previewRelativePath": "template-starter-preview/starter-slide-16.png",
+      "layoutPath": "/Users/apple/Documents/GitHub/gcc-skills/outputs/manual-20260617-chocolate/presentations/chocolate-industry-chain/tmp/template-starter-layout/starter-slide-16.layout.json",
+      "layoutRelativePath": "template-starter-layout/starter-slide-16.layout.json"
+    }
+  ]
+}

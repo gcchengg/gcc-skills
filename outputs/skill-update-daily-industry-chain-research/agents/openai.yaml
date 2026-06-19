@@ -1,0 +1,7 @@
+interface:
+  display_name: "每日产业链研究"
+  short_description: "生成产业链底稿、小红书文案，并可继续制作模板化PPT与高清图片"
+  default_prompt: "使用 $daily-industry-chain-research 生成今日不重复的产业链研究底稿与小红书发布文案，并在完成后询问我是否提供模板继续生成PPT。"
+
+policy:
+  allow_implicit_invocation: true

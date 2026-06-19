@@ -1,0 +1,406 @@
+{
+  "outputSlides": [
+    {
+      "outputSlide": 1,
+      "sourceSlide": 1,
+      "narrativeRole": "opening thesis",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": []
+        }
+      ]
+    },
+    {
+      "outputSlide": 2,
+      "sourceSlide": 9,
+      "narrativeRole": "research agenda",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/zqtcj6to",
+            "sh/65wjudg7",
+            "sh/hwfyxobm",
+            "sh/obm58z25",
+            "sh/zupwb2hw",
+            "sh/a9w3m94f",
+            "sh/0rqd4vmt",
+            "sh/tcj6tova",
+            "sh/il0rqd4v"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 3,
+      "sourceSlide": 4,
+      "narrativeRole": "one sentence understanding",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/x4nap4r6",
+            "sh/qd4vmtwr",
+            "sh/fyxobm58",
+            "sh/8v6psfil",
+            "sh/xczed8v6",
+            "sh/qpg3ex0n",
+            "sh/fa9w3m94",
+            "sh/8z25kb6x",
+            "sh/1gvy90je",
+            "sh/nqxs72x4",
+            "sh/u54zidon",
+            "sh/5sneloj2",
+            "sh/cbulwval"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 4,
+      "sourceSlide": 5,
+      "narrativeRole": "section panorama",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/5kb6xkf6",
+            "sh/czed8v6p"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 5,
+      "sourceSlide": 9,
+      "narrativeRole": "industry chain panorama",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/zqtcj6to",
+            "sh/65wjudg7",
+            "sh/hwfyxobm",
+            "sh/obm58z25",
+            "sh/zupwb2hw",
+            "sh/a9w3m94f",
+            "sh/0rqd4vmt",
+            "sh/tcj6tova",
+            "sh/il0rqd4v"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 6,
+      "sourceSlide": 8,
+      "narrativeRole": "organization models",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/za1gvy90",
+            "sh/ap4r65wj",
+            "sh/hoza1gvy",
+            "sh/s36hcrmh",
+            "sh/zidonyd0",
+            "sh/a1gvy90j",
+            "sh/lszqtcj6"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 7,
+      "sourceSlide": 5,
+      "narrativeRole": "section upstream",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/5kb6xkf6",
+            "sh/czed8v6p"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 8,
+      "sourceSlide": 7,
+      "narrativeRole": "upstream analysis",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/xkf6dcbu",
+            "sh/4zidonyd",
+            "sh/fepkzupw",
+            "sh/mtwra5gb",
+            "sh/xc3ylc7u"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 9,
+      "sourceSlide": 5,
+      "narrativeRole": "section midstream",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/5kb6xkf6",
+            "sh/czed8v6p"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 10,
+      "sourceSlide": 8,
+      "narrativeRole": "midstream analysis",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/za1gvy90",
+            "sh/ap4r65wj",
+            "sh/hoza1gvy",
+            "sh/s36hcrmh",
+            "sh/zidonyd0",
+            "sh/a1gvy90j",
+            "sh/lszqtcj6"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 11,
+      "sourceSlide": 5,
+      "narrativeRole": "section downstream",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/5kb6xkf6",
+            "sh/czed8v6p"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 12,
+      "sourceSlide": 8,
+      "narrativeRole": "downstream applications",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/za1gvy90",
+            "sh/ap4r65wj",
+            "sh/hoza1gvy",
+            "sh/s36hcrmh",
+            "sh/zidonyd0",
+            "sh/a1gvy90j",
+            "sh/lszqtcj6"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 13,
+      "sourceSlide": 8,
+      "narrativeRole": "four flows",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/za1gvy90",
+            "sh/ap4r65wj",
+            "sh/hoza1gvy",
+            "sh/s36hcrmh",
+            "sh/zidonyd0",
+            "sh/a1gvy90j",
+            "sh/lszqtcj6"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 14,
+      "sourceSlide": 8,
+      "narrativeRole": "value and business models",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/za1gvy90",
+            "sh/ap4r65wj",
+            "sh/hoza1gvy",
+            "sh/s36hcrmh",
+            "sh/zidonyd0",
+            "sh/a1gvy90j",
+            "sh/lszqtcj6"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 15,
+      "sourceSlide": 9,
+      "narrativeRole": "core barriers",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/zqtcj6to",
+            "sh/65wjudg7",
+            "sh/hwfyxobm",
+            "sh/obm58z25",
+            "sh/zupwb2hw",
+            "sh/a9w3m94f",
+            "sh/0rqd4vmt",
+            "sh/tcj6tova",
+            "sh/il0rqd4v"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 16,
+      "sourceSlide": 8,
+      "narrativeRole": "cost structure",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/za1gvy90",
+            "sh/ap4r65wj",
+            "sh/hoza1gvy",
+            "sh/s36hcrmh",
+            "sh/zidonyd0",
+            "sh/a1gvy90j",
+            "sh/lszqtcj6"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 17,
+      "sourceSlide": 8,
+      "narrativeRole": "risk map",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/za1gvy90",
+            "sh/ap4r65wj",
+            "sh/hoza1gvy",
+            "sh/s36hcrmh",
+            "sh/zidonyd0",
+            "sh/a1gvy90j",
+            "sh/lszqtcj6"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 18,
+      "sourceSlide": 9,
+      "narrativeRole": "participant map",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/zqtcj6to",
+            "sh/65wjudg7",
+            "sh/hwfyxobm",
+            "sh/obm58z25",
+            "sh/zupwb2hw",
+            "sh/a9w3m94f",
+            "sh/0rqd4vmt",
+            "sh/tcj6tova",
+            "sh/il0rqd4v"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 19,
+      "sourceSlide": 7,
+      "narrativeRole": "overlooked facts",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/xkf6dcbu",
+            "sh/4zidonyd",
+            "sh/fepkzupw",
+            "sh/mtwra5gb",
+            "sh/xc3ylc7u"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 20,
+      "sourceSlide": 6,
+      "narrativeRole": "outlook",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": [
+            "sh/87ed8bat",
+            "sh/xs72x4na"
+          ]
+        }
+      ]
+    },
+    {
+      "outputSlide": 21,
+      "sourceSlide": 22,
+      "narrativeRole": "research sources",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": []
+        }
+      ]
+    },
+    {
+      "outputSlide": 22,
+      "sourceSlide": 20,
+      "narrativeRole": "closing and attribution",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {
+          "action": "rewrite",
+          "shapeIds": []
+        }
+      ]
+    }
+  ],
+  "omittedSourceSlides": []
+}

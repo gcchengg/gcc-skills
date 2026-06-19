@@ -1,0 +1,34 @@
+{
+  "outputSlides": [
+    { "outputSlide": 1, "sourceSlide": 1, "narrativeRole": "opening thesis", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/65wjudg7", "sh/zqtcj6to", "sh/obm58z25", "sh/a9w3m94f"] }, { "action": "replace", "sourceElementIds": ["im/epkzupwb"] }] },
+    { "outputSlide": 2, "sourceSlide": 3, "narrativeRole": "table of contents", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/58z25kb6", "sh/gn29gr2p", "sh/neloj2t8", "sh/ytsvu9kn", "sh/4zidonyd", "sh/xkf6dcbu", "sh/mtwra5gb", "sh/fepkzupw", "sh/4r65wjud", "sh/xc3ylc7u", "sh/mlkjm1cf", "sh/f6dcbulw", "sh/4fu18jqh", "sh/x0nuxc3y", "sh/onyd0z61", "sh/d8v6psfi", "sh/6hcrmhk3"] }] },
+    { "outputSlide": 3, "sourceSlide": 4, "narrativeRole": "one sentence understanding", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/s36hcrmh", "sh/a1gvy90j"] }] },
+    { "outputSlide": 4, "sourceSlide": 5, "narrativeRole": "section divider panorama", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/1kre1w7m", "sh/ulwval87"] }] },
+    { "outputSlide": 5, "sourceSlide": 6, "narrativeRole": "industry chain panorama", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/bulwval8", "sh/i9s36hcr"] }] },
+    { "outputSlide": 6, "sourceSlide": 7, "narrativeRole": "upstream and midstream summary", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/vahoza1g", "sh/o7qpg3ex", "sh/dsji5sne", "sh/9w3m94fu", "sh/kb6xkf6d"] }] },
+    { "outputSlide": 7, "sourceSlide": 5, "narrativeRole": "section divider flows", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/1kre1w7m", "sh/ulwval87"] }] },
+    { "outputSlide": 8, "sourceSlide": 7, "narrativeRole": "flows and pricing power", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/vahoza1g", "sh/o7qpg3ex", "sh/dsji5sne", "sh/9w3m94fu", "sh/kb6xkf6d"] }] },
+    { "outputSlide": 9, "sourceSlide": 5, "narrativeRole": "section divider value", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/1kre1w7m", "sh/ulwval87"] }] },
+    { "outputSlide": 10, "sourceSlide": 7, "narrativeRole": "value and barriers", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/vahoza1g", "sh/o7qpg3ex", "sh/dsji5sne", "sh/9w3m94fu", "sh/kb6xkf6d"] }] },
+    { "outputSlide": 11, "sourceSlide": 5, "narrativeRole": "section divider risks", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/1kre1w7m", "sh/ulwval87"] }] },
+    { "outputSlide": 12, "sourceSlide": 9, "narrativeRole": "key metrics", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/sji5snel", "sh/3m94fu18", "sh/a5gbq1or", "sh/lszqtcj6", "sh/s72x4nap", "sh/zidonyd0", "sh/a1gvy90j", "sh/ylc7u54z"] }] },
+    { "outputSlide": 13, "sourceSlide": 6, "narrativeRole": "risk map", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/bulwval8", "sh/i9s36hcr"] }] },
+    { "outputSlide": 14, "sourceSlide": 6, "narrativeRole": "overlooked facts and adjacent chains", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/bulwval8", "sh/i9s36hcr"] }] },
+    { "outputSlide": 15, "sourceSlide": 6, "narrativeRole": "sources", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/bulwval8", "sh/i9s36hcr"] }] },
+    { "outputSlide": 16, "sourceSlide": 10, "narrativeRole": "thanks and attribution", "reuseMode": "duplicate-slide", "editTargets": [{ "action": "rewrite", "sourceElementIds": ["sh/gr2p8nqx", "sh/rytsvu9k", "sh/kre1w7mp"] }] }
+  ],
+  "omittedSourceSlides": [
+    { "sourceSlide": 2, "reason": "template documentation" },
+    { "sourceSlide": 8, "reason": "image-only placeholder not needed" },
+    { "sourceSlide": 11, "reason": "license instructions, not story content" },
+    { "sourceSlide": 12, "reason": "fonts/colors documentation" },
+    { "sourceSlide": 13, "reason": "Slidesgo product promo" },
+    { "sourceSlide": 14, "reason": "editable resources catalog" },
+    { "sourceSlide": 15, "reason": "icon sheet" },
+    { "sourceSlide": 16, "reason": "blank/icon sheet" },
+    { "sourceSlide": 17, "reason": "data table samples not needed" },
+    { "sourceSlide": 18, "reason": "icon sample" },
+    { "sourceSlide": 19, "reason": "timeline sample not needed" },
+    { "sourceSlide": 20, "reason": "logo-only end card; source slide 10 is required thanks slide" }
+  ]
+}

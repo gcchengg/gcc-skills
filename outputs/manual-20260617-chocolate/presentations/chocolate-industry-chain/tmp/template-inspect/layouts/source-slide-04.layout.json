@@ -1,0 +1,474 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/val87ed8",
+    "id": "val87ed8",
+    "slide": 4,
+    "layoutId": "/ppt/slideLayouts/slideLayout14.xml",
+    "layoutName": "ONE_COLUMN_TEXT_1",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#FFFFFF",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#252525",
+      "lt1": "#F0F0F0",
+      "dk2": "#B43B13",
+      "lt2": "#FFFFFF",
+      "hlink": "#252525",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Ancizar Sans",
+      "Arial",
+      "Baskervville"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout14.xml",
+      "name": "ONE_COLUMN_TEXT_1",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "image",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout14.xml/75",
+          "id": "75",
+          "name": "Google Shape;71;p15",
+          "bbox": [
+            0,
+            0.23,
+            960,
+            539.53
+          ],
+          "contentType": "image/png",
+          "asset": {
+            "assetId": "/ppt/media/image2.png",
+            "contentType": "image/png",
+            "byteLength": 6345401
+          },
+          "fillImage": {
+            "assetId": "/ppt/media/image2.png",
+            "contentType": "image/png",
+            "byteLength": 6345401
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout14.xml/72",
+          "id": "72",
+          "name": "Google Shape;72;p15",
+          "bbox": [
+            8.95,
+            13.11,
+            619.46,
+            101.17
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout14.xml/73",
+          "id": "73",
+          "name": "Google Shape;73;p15",
+          "bbox": [
+            664,
+            136.76,
+            279.84,
+            388.66
+          ],
+          "geometry": "roundRect",
+          "lineWidth": 0
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout14.xml/74",
+          "id": "74",
+          "name": "Google Shape;74;p15",
+          "bbox": [
+            24,
+            236.62,
+            484.54,
+            241.89
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "verticalAlignment": "bottom",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            74.88,
+            46.72,
+            810.24,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            74.88,
+            120.99,
+            810.24,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s36hcrmh",
+      "id": "215",
+      "name": "Google Shape;215;p31",
+      "bbox": [
+        10.02,
+        16.27,
+        619.46,
+        101.17
+      ],
+      "geometry": "rect",
+      "text": "YOU CAN write \nhere YOUR TITLE",
+      "textPreview": "YOU CAN write  | here YOUR TITLE",
+      "resolvedFontSize": 40,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 40,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "YOU CAN write"
+          },
+          {
+            "index": 2,
+            "text": "here YOUR TITLE"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "YOU CAN write ",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "YOU CAN",
+              "alignment": "left"
+            },
+            {
+              "index": 2,
+              "text": " ",
+              "alignment": "left"
+            },
+            {
+              "index": 3,
+              "text": "write ",
+              "typeface": "Baskervville",
+              "italic": true
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 90000
+        },
+        {
+          "index": 2,
+          "text": "here YOUR TITLE",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "here ",
+              "typeface": "Baskervville",
+              "italic": true
+            },
+            {
+              "index": 2,
+              "text": "YOUR TITLE",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 90000
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/hk3q5o7q",
+      "id": "219",
+      "name": "Google Shape;216;p31",
+      "bbox": [
+        664,
+        136.76,
+        279.84,
+        388.66
+      ],
+      "geometry": "roundRect",
+      "contentType": "image/jpeg",
+      "imageCrop": {
+        "left": 0.19351,
+        "top": 0,
+        "right": 0.31283,
+        "bottom": 0
+      },
+      "imageMask": {
+        "geometry": "roundRect"
+      },
+      "asset": {
+        "assetId": "/ppt/media/image11.jpg",
+        "contentType": "image/jpeg",
+        "byteLength": 357165
+      },
+      "fillImage": {
+        "assetId": "/ppt/media/image11.jpg",
+        "contentType": "image/jpeg",
+        "byteLength": 357165
+      }
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a1gvy90j",
+      "id": "217",
+      "name": "Google Shape;217;p31",
+      "bbox": [
+        10.02,
+        236.62,
+        484.54,
+        241.89
+      ],
+      "geometry": "rect",
+      "text": "Mercury is the closest planet to the Sun and the smallest one in the entire Solar System. This planet’s name has nothing to do with the liquid metal, since Despite being closer to the Sun than Venus, its temperatures aren't as terribly hot as that planet’s. Its surface is quite similar to that of Earth’s Moon, which means there are a lot of craters and plains",
+      "textPreview": "Mercury is the closest planet to the Sun and the smallest one in the entire Solar System. This planet’s name has nothing to do with the l...",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 16,
+        "typeface": "Ancizar Sans",
+        "color": "lt1",
+        "alignment": "left",
+        "verticalAlignment": "bottom",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 6,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Mercury is the closest planet to the Sun and the smallest one in"
+          },
+          {
+            "index": 2,
+            "text": "the entire Solar System. This planet’s name has nothing to do"
+          },
+          {
+            "index": 3,
+            "text": "with the liquid metal, since Despite being closer to the Sun than"
+          },
+          {
+            "index": 4,
+            "text": "Venus, its temperatures aren't as terribly hot as that planet’s. Its"
+          },
+          {
+            "index": 5,
+            "text": "surface is quite similar to that of Earth’s Moon, which means"
+          },
+          {
+            "index": 6,
+            "text": "there are a lot of craters and plains"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Mercury is the closest planet to the Sun and the smallest one in the entire Solar System. This planet’s name has nothing to do with the liquid metal, since Despite being closer to the Sun than Venus, its temperatures aren't as terribly hot as that planet’s. Its surface is quite similar to that of Earth’s Moon, which means there are a lot of craters and plains",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Mercury is the closest planet to the Sun and the smallest one in the entire Solar System. This planet’s name has nothing to do with the liquid metal, since Despite being closer to the Sun than Venus, its temperatures aren't as terribly hot as that planet’s. Its surface is quite similar to that of Earth’s Moon, which means there are a lot of craters and plains",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "●",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lszqtcj6",
+      "id": "218",
+      "name": "Google Shape;218;p31",
+      "bbox": [
+        -2.66,
+        121.07,
+        965.32,
+        0.13
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "lt1",
+      "lineWidth": 1
+    }
+  ],
+  "composeRuns": []
+}

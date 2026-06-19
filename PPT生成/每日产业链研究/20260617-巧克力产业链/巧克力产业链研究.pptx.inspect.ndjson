@@ -1,0 +1,166 @@
+{"kind":"deck","id":"pr/s1vngt","name":"Deck"}
+{"kind":"layout","layoutId":"f999abc4-ac0b-4fc2-bc72-c15bfbc192b3","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"69ae9028-0382-4383-bc8b-664cc77631c3","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/8ejb33","slide":1,"title":"每日产业链","textShapes":4}
+{"kind":"textbox","id":"sh/pwb2hwfy","slide":1,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/i5sneloj","slide":1,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":1,"text":"巧克力产业链｜\n2026.06.17","textPreview":"巧克力产业链｜ | 2026.06.17","textChars":18,"textLines":2,"bbox":[515,382,700,190]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":1,"text":"从可可种植、贸易加工到品牌零售与食品工业应用","textPreview":"从可可种植、贸易加工到品牌零售与食品工业应用","textChars":22,"textLines":1,"bbox":[515,585,610,36]}
+{"kind":"image","id":"im/eloj2t83","slide":1,"name":"","geometry":"roundRect","alt":"Chocolate industry visual","bbox":[28,28,390,455]}
+{"kind":"notes","id":"nt/8ejb33","slide":1,"text":""}
+{"kind":"slide","id":"sl/r0pjbx","slide":2,"title":"每日产业链","textShapes":11}
+{"kind":"textbox","id":"sh/83itgfml","slide":2,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":2,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/qxs72x4n","slide":2,"text":"目录","textPreview":"目录","textChars":2,"textLines":1,"bbox":[72,54,220,70]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":2,"text":"01 核心理解","textPreview":"01 核心理解","textChars":7,"textLines":1,"bbox":[110,155,430,42]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":2,"text":"02 产业链全景","textPreview":"02 产业链全景","textChars":8,"textLines":1,"bbox":[630,155,430,42]}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":2,"text":"03 上游：可可来源","textPreview":"03 上游：可可来源","textChars":10,"textLines":1,"bbox":[110,251,430,42]}
+{"kind":"textbox","id":"sh/m94fu18j","slide":2,"text":"04 中游：加工制造","textPreview":"04 中游：加工制造","textChars":10,"textLines":1,"bbox":[630,251,430,42]}
+{"kind":"textbox","id":"sh/xc3ylc7u","slide":2,"text":"05 下游：品牌与应用","textPreview":"05 下游：品牌与应用","textChars":11,"textLines":1,"bbox":[110,347,430,42]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":2,"text":"06 流动与定价权","textPreview":"06 流动与定价权","textChars":9,"textLines":1,"bbox":[630,347,430,42]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":2,"text":"07 价值与壁垒","textPreview":"07 价值与壁垒","textChars":8,"textLines":1,"bbox":[110,443,430,42]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":2,"text":"08 风险与趋势","textPreview":"08 风险与趋势","textChars":8,"textLines":1,"bbox":[630,443,430,42]}
+{"kind":"notes","id":"nt/r0pjbx","slide":2,"text":""}
+{"kind":"slide","id":"sl/62midq","slide":3,"title":"每日产业链","textShapes":4}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":3,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":3,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/ra5gbq1o","slide":3,"text":"一块巧克力，是一条全球供应链","textPreview":"一块巧克力，是一条全球供应链","textChars":14,"textLines":1,"bbox":[54,52,760,74]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":3,"text":"它把热带地区的可可豆，通过发酵、干燥、贸易、研磨、压榨、精炼、调温和品牌化，转化为零食、礼品、烘焙原料、饮品配料和食品工业原料。","textPreview":"它把热带地区的可可豆，通过发酵、干燥、贸易、研磨、压榨、精炼、调温和品牌化，转化为零食、礼品、烘焙原料、饮品配料和食品工业原料。","textChars":64,"textLines":1,"bbox":[60,440,740,120]}
+{"kind":"image","id":"im/8z25kb6x","slide":3,"name":"","geometry":"roundRect","alt":"Chocolate industry visual","bbox":[850,130,350,420]}
+{"kind":"notes","id":"nt/62midq","slide":3,"text":""}
+{"kind":"slide","id":"sl/5bq7i6","slide":4,"title":"每日产业链","textShapes":4}
+{"kind":"textbox","id":"sh/il0rqd4v","slide":4,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/tcj6tova","slide":4,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/0rqd4vmt","slide":4,"text":"01.","textPreview":"01.","textChars":3,"textLines":1,"bbox":[70,70,200,90]}
+{"kind":"textbox","id":"sh/byhgn29g","slide":4,"text":"产业链全景","textPreview":"产业链全景","textChars":5,"textLines":1,"bbox":[430,450,780,90]}
+{"kind":"notes","id":"nt/5bq7i6","slide":4,"text":""}
+{"kind":"slide","id":"sl/taeb8u","slide":5,"title":"每日产业链","textShapes":6}
+{"kind":"textbox","id":"sh/zidonyd0","slide":5,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":5,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":5,"text":"从可可豆到消费场景","textPreview":"从可可豆到消费场景","textChars":9,"textLines":1,"bbox":[60,60,760,60]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":5,"text":"可可种植与采收 → 发酵干燥与分级 → 合作社/贸易商 → 仓储运输 → 研磨压榨 → 可可液块/可可脂/可可粉 → 工业巧克力 → 品牌包装与渠道 → 零售、餐饮、烘焙和食品工业应用","textPreview":"可可种植与采收 → 发酵干燥与分级 → 合作社/贸易商 → 仓储运输 → 研磨压榨 → 可可液块/可可脂/可可粉 → 工业巧克力 → 品牌包装与渠道 → 零售、餐饮、烘焙和食品工业应用","textChars":92,"textLines":1,"bbox":[70,190,1120,190]}
+{"kind":"shape","id":"sh/za1gvy90","slide":5,"bbox":[70,450,1040,130]}
+{"kind":"textbox","id":"sh/svu9knih","slide":5,"text":"关键判断","textPreview":"关键判断","textChars":4,"textLines":1,"bbox":[94,470,992,32]}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":5,"text":"每个环节都在把“不稳定农产品”转化为“稳定可交付的风味、口感、配方和品牌体验”。","textPreview":"每个环节都在把“不稳定农产品”转化为“稳定可交付的风味、口感、配方和品牌体验”。","textChars":40,"textLines":1,"bbox":[94,512,992,50]}
+{"kind":"notes","id":"nt/taeb8u","slide":5,"text":""}
+{"kind":"slide","id":"sl/k9a4lr","slide":6,"title":"每日产业链","textShapes":4}
+{"kind":"textbox","id":"sh/7y1kre1w","slide":6,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":6,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":6,"text":"02.","textPreview":"02.","textChars":3,"textLines":1,"bbox":[70,70,200,90]}
+{"kind":"textbox","id":"sh/i5sneloj","slide":6,"text":"上游与中游","textPreview":"上游与中游","textChars":5,"textLines":1,"bbox":[430,450,780,90]}
+{"kind":"notes","id":"nt/k9a4lr","slide":6,"text":""}
+{"kind":"slide","id":"sl/s7gtw2","slide":7,"title":"每日产业链","textShapes":8}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":7,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":7,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":7,"text":"两类核心能力","textPreview":"两类核心能力","textChars":6,"textLines":1,"bbox":[56,54,520,60]}
+{"kind":"shape","id":"sh/z61032ls","slide":7,"bbox":[80,180,500,190]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":7,"text":"上游｜可可来源","textPreview":"上游｜可可来源","textChars":7,"textLines":1,"bbox":[104,200,452,32]}
+{"kind":"textbox","id":"sh/hcrmhk3q","slide":7,"text":"种植、采收、发酵、干燥决定风味基础；价值来自产地风味、批次稳定和可追溯。","textPreview":"种植、采收、发酵、干燥决定风味基础；价值来自产地风味、批次稳定和可追溯。","textChars":36,"textLines":1,"bbox":[104,242,452,110]}
+{"kind":"shape","id":"sh/orytsvu9","slide":7,"bbox":[700,180,500,190]}
+{"kind":"textbox","id":"sh/zed8v6ps","slide":7,"text":"中游｜加工制造","textPreview":"中游｜加工制造","textChars":7,"textLines":1,"bbox":[724,200,452,32]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":7,"text":"研磨压榨形成液块、可可脂和可可粉；工业巧克力提供配方、融点和流变性。","textPreview":"研磨压榨形成液块、可可脂和可可粉；工业巧克力提供配方、融点和流变性。","textChars":34,"textLines":1,"bbox":[724,242,452,110]}
+{"kind":"textbox","id":"sh/8z25kb6x","slide":7,"text":"共同风险：天气、病害、农户收益、食品安全、套保能力和客户认证。","textPreview":"共同风险：天气、病害、农户收益、食品安全、套保能力和客户认证。","textChars":31,"textLines":1,"bbox":[120,500,960,42]}
+{"kind":"notes","id":"nt/s7gtw2","slide":7,"text":""}
+{"kind":"slide","id":"sl/hkb6sq","slide":8,"title":"每日产业链","textShapes":4}
+{"kind":"textbox","id":"sh/h4byhgn2","slide":8,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":8,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":8,"text":"03.","textPreview":"03.","textChars":3,"textLines":1,"bbox":[70,70,200,90]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":8,"text":"流动与定价权","textPreview":"流动与定价权","textChars":6,"textLines":1,"bbox":[430,450,780,90]}
+{"kind":"notes","id":"nt/hkb6sq","slide":8,"text":""}
+{"kind":"slide","id":"sl/ozhgfk","slide":9,"title":"每日产业链","textShapes":11}
+{"kind":"textbox","id":"sh/zidonyd0","slide":9,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":9,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/hoza1gvy","slide":9,"text":"四种流动决定利润分配","textPreview":"四种流动决定利润分配","textChars":10,"textLines":1,"bbox":[58,54,720,60]}
+{"kind":"shape","id":"sh/ap4r65wj","slide":9,"bbox":[70,150,360,150]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":9,"text":"货物与服务流","textPreview":"货物与服务流","textChars":6,"textLines":1,"bbox":[94,170,312,32]}
+{"kind":"textbox","id":"sh/svu9knih","slide":9,"text":"可可豆跨境进入加工厂，再转为原料和终端产品。","textPreview":"可可豆跨境进入加工厂，再转为原料和终端产品。","textChars":22,"textLines":1,"bbox":[94,212,312,70]}
+{"kind":"shape","id":"sh/hgn29gr2","slide":9,"bbox":[460,150,360,150]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":9,"text":"信息流","textPreview":"信息流","textChars":3,"textLines":1,"bbox":[484,170,312,32]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":9,"text":"终端口味、价格接受度和合规要求向上游传导。","textPreview":"终端口味、价格接受度和合规要求向上游传导。","textChars":21,"textLines":1,"bbox":[484,212,312,70]}
+{"kind":"shape","id":"sh/bat47y1k","slide":9,"bbox":[850,150,360,150]}
+{"kind":"textbox","id":"sh/mp0bi9s3","slide":9,"text":"资金流","textPreview":"资金流","textChars":3,"textLines":1,"bbox":[874,170,312,32]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":9,"text":"合同、库存和套保贯穿贸易与加工环节。","textPreview":"合同、库存和套保贯穿贸易与加工环节。","textChars":18,"textLines":1,"bbox":[874,212,312,70]}
+{"kind":"shape","id":"sh/4vmtwra5","slide":9,"bbox":[265,390,750,160]}
+{"kind":"textbox","id":"sh/bm58z25k","slide":9,"text":"定价权","textPreview":"定价权","textChars":3,"textLines":1,"bbox":[289,410,702,32]}
+{"kind":"textbox","id":"sh/m1cfa9w3","slide":9,"text":"短期受可可豆供需和期货价格影响，品牌端再选择提价、缩规格或调配方。","textPreview":"短期受可可豆供需和期货价格影响，品牌端再选择提价、缩规格或调配方。","textChars":33,"textLines":1,"bbox":[289,452,702,80]}
+{"kind":"notes","id":"nt/ozhgfk","slide":9,"text":""}
+{"kind":"slide","id":"sl/tiny9v","slide":10,"title":"每日产业链","textShapes":4}
+{"kind":"textbox","id":"sh/xs72x4na","slide":10,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":10,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/fmlkjm1c","slide":10,"text":"04.","textPreview":"04.","textChars":3,"textLines":1,"bbox":[70,70,200,90]}
+{"kind":"textbox","id":"sh/8z25kb6x","slide":10,"text":"价值与壁垒","textPreview":"价值与壁垒","textChars":5,"textLines":1,"bbox":[430,450,780,90]}
+{"kind":"notes","id":"nt/tiny9v","slide":10,"text":""}
+{"kind":"slide","id":"sl/qyv7mg","slide":11,"title":"每日产业链","textShapes":9}
+{"kind":"textbox","id":"sh/twra5gbq","slide":11,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/m58z25kb","slide":11,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/bq1oryts","slide":11,"text":"价值不是只在“做甜食”","textPreview":"价值不是只在“做甜食”","textChars":11,"textLines":1,"bbox":[60,54,760,60]}
+{"kind":"shape","id":"sh/4nap4r65","slide":11,"bbox":[70,150,540,180]}
+{"kind":"textbox","id":"sh/t83itgfm","slide":11,"text":"价值增加","textPreview":"价值增加","textChars":4,"textLines":1,"bbox":[94,170,492,32]}
+{"kind":"textbox","id":"sh/mhk3q5o7","slide":11,"text":"原料豆变成稳定可用的可可制品；工业巧克力变成适配不同产品的配方。","textPreview":"原料豆变成稳定可用的可可制品；工业巧克力变成适配不同产品的配方。","textChars":32,"textLines":1,"bbox":[94,212,492,100]}
+{"kind":"shape","id":"sh/b2hwfyxo","slide":11,"bbox":[670,150,540,180]}
+{"kind":"textbox","id":"sh/4vmtwra5","slide":11,"text":"核心壁垒","textPreview":"核心壁垒","textChars":4,"textLines":1,"bbox":[694,170,492,32]}
+{"kind":"textbox","id":"sh/tgfmlkjm","slide":11,"text":"稳定产地网络、可追溯可可豆、发酵焙炒工艺、食品安全认证和品牌渠道。","textPreview":"稳定产地网络、可追溯可可豆、发酵焙炒工艺、食品安全认证和品牌渠道。","textChars":33,"textLines":1,"bbox":[694,212,492,100]}
+{"kind":"shape","id":"sh/xc3ylc7u","slide":11,"bbox":[370,410,540,160]}
+{"kind":"textbox","id":"sh/4r65wjud","slide":11,"text":"弱势环节","textPreview":"弱势环节","textChars":4,"textLines":1,"bbox":[394,430,492,32]}
+{"kind":"textbox","id":"sh/f6dcbulw","slide":11,"text":"分散农户、小型收购商和同质化代工，通常缺少议价能力和风控能力。","textPreview":"分散农户、小型收购商和同质化代工，通常缺少议价能力和风控能力。","textChars":31,"textLines":1,"bbox":[394,472,492,80]}
+{"kind":"notes","id":"nt/qyv7mg","slide":11,"text":""}
+{"kind":"slide","id":"sl/txf4e9","slide":12,"title":"每日产业链","textShapes":11}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":12,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/p8nqxs72","slide":12,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/0nuxc3yl","slide":12,"text":"关键数据","textPreview":"关键数据","textChars":4,"textLines":1,"bbox":[60,58,300,60]}
+{"kind":"textbox","id":"sh/7ed8bat4","slide":12,"text":"ICCO 2026.05｜2025/26 年度预测","textPreview":"ICCO 2026.05｜2025/26 年度预测","textChars":25,"textLines":1,"bbox":[60,130,540,34]}
+{"kind":"shape","id":"sh/itgfmlkj","slide":12,"bbox":[80,250,330,150]}
+{"kind":"textbox","id":"sh/pkzupwb2","slide":12,"text":"4.84 百万吨","textPreview":"4.84 百万吨","textChars":8,"textLines":1,"bbox":[104,270,282,32]}
+{"kind":"textbox","id":"sh/0z61032l","slide":12,"text":"预计全球可可豆产量","textPreview":"预计全球可可豆产量","textChars":9,"textLines":1,"bbox":[104,312,282,70]}
+{"kind":"shape","id":"sh/7qpg3ex0","slide":12,"bbox":[475,250,330,150]}
+{"kind":"textbox","id":"sh/i5sneloj","slide":12,"text":"4.743 百万吨","textPreview":"4.743 百万吨","textChars":9,"textLines":1,"bbox":[499,270,282,32]}
+{"kind":"textbox","id":"sh/0nuxc3yl","slide":12,"text":"预计全球可可研磨量","textPreview":"预计全球可可研磨量","textChars":9,"textLines":1,"bbox":[499,312,282,70]}
+{"kind":"shape","id":"sh/p8nqxs72","slide":12,"bbox":[870,250,330,150]}
+{"kind":"textbox","id":"sh/ih4byhgn","slide":12,"text":"1.353 百万吨","textPreview":"1.353 百万吨","textChars":9,"textLines":1,"bbox":[894,270,282,32]}
+{"kind":"textbox","id":"sh/72x4nap4","slide":12,"text":"预计期末库存","textPreview":"预计期末库存","textChars":6,"textLines":1,"bbox":[894,312,282,70]}
+{"kind":"textbox","id":"sh/0z61032l","slide":12,"text":"注：数据来自 International Cocoa Organization 2026 年 5 月季度公报。","textPreview":"注：数据来自 International Cocoa Organization 2026 年 5 月季度公报。","textChars":55,"textLines":1,"bbox":[90,520,980,36]}
+{"kind":"notes","id":"nt/txf4e9","slide":12,"text":""}
+{"kind":"slide","id":"sl/70hmza","slide":13,"title":"每日产业链","textShapes":4}
+{"kind":"textbox","id":"sh/1gvy90je","slide":13,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/qtcj6tov","slide":13,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":13,"text":"05.","textPreview":"05.","textChars":3,"textLines":1,"bbox":[70,70,200,90]}
+{"kind":"textbox","id":"sh/87ed8bat","slide":13,"text":"风险与趋势","textPreview":"风险与趋势","textChars":5,"textLines":1,"bbox":[430,450,780,90]}
+{"kind":"notes","id":"nt/70hmza","slide":13,"text":""}
+{"kind":"slide","id":"sl/8rgcav","slide":14,"title":"每日产业链","textShapes":11}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":14,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":14,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":14,"text":"四类风险需要持续跟踪","textPreview":"四类风险需要持续跟踪","textChars":10,"textLines":1,"bbox":[58,54,720,60]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":14,"bbox":[70,150,360,150]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":14,"text":"供应链","textPreview":"供应链","textChars":3,"textLines":1,"bbox":[94,170,312,32]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":14,"text":"西非主产区天气、病害、农户收益和港口/融资扰动。","textPreview":"西非主产区天气、病害、农户收益和港口/融资扰动。","textChars":24,"textLines":1,"bbox":[94,212,312,70]}
+{"kind":"shape","id":"sh/d4vmtwra","slide":14,"bbox":[460,150,360,150]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":14,"text":"需求与周期","textPreview":"需求与周期","textChars":5,"textLines":1,"bbox":[484,170,312,32]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":14,"text":"高价格可能传导为涨价、缩小规格、可可含量调整或替代。","textPreview":"高价格可能传导为涨价、缩小规格、可可含量调整或替代。","textChars":26,"textLines":1,"bbox":[484,212,312,70]}
+{"kind":"shape","id":"sh/vy90je9c","slide":14,"bbox":[850,150,360,150]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":14,"text":"技术与质量","textPreview":"技术与质量","textChars":5,"textLines":1,"bbox":[874,170,312,32]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":14,"text":"发酵干燥、焙炒曲线、流变性和食品安全影响客户使用。","textPreview":"发酵干燥、焙炒曲线、流变性和食品安全影响客户使用。","textChars":25,"textLines":1,"bbox":[874,212,312,70]}
+{"kind":"shape","id":"sh/oj2t83it","slide":14,"bbox":[265,390,750,160]}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":14,"text":"政策合规","textPreview":"政策合规","textChars":4,"textLines":1,"bbox":[289,410,702,32]}
+{"kind":"textbox","id":"sh/61032lsz","slide":14,"text":"EUDR 将可可纳入无毁林尽调范围，抬高产地数据和供应商管理门槛。","textPreview":"EUDR 将可可纳入无毁林尽调范围，抬高产地数据和供应商管理门槛。","textChars":33,"textLines":1,"bbox":[289,452,702,80]}
+{"kind":"notes","id":"nt/8rgcav","slide":14,"text":""}
+{"kind":"slide","id":"sl/rsh000","slide":15,"title":"每日产业链","textShapes":6}
+{"kind":"textbox","id":"sh/vmtwra5g","slide":15,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/o7qpg3ex","slide":15,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":15,"text":"三个容易被忽略的事实","textPreview":"三个容易被忽略的事实","textChars":10,"textLines":1,"bbox":[60,58,760,60]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":15,"text":"1. 可可豆不是普通农产品，采后发酵直接决定风味上限。","textPreview":"1. 可可豆不是普通农产品，采后发酵直接决定风味上限。","textChars":27,"textLines":1,"bbox":[90,180,980,70]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":15,"text":"2. 工业巧克力商不只卖原料，也卖稳定配方、应用研发和客户认证能力。","textPreview":"2. 工业巧克力商不只卖原料，也卖稳定配方、应用研发和客户认证能力。","textChars":34,"textLines":1,"bbox":[90,295,980,70]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":15,"text":"3. 巧克力涨价不一定只看标价，也可能体现为规格变小、可可含量调整或替代配方。","textPreview":"3. 巧克力涨价不一定只看标价，也可能体现为规格变小、可可含量调整或替代配方。","textChars":39,"textLines":1,"bbox":[90,410,980,70]}
+{"kind":"notes","id":"nt/rsh000","slide":15,"text":""}
+{"kind":"slide","id":"sl/xzy9qu","slide":16,"title":"每日产业链","textShapes":4}
+{"kind":"textbox","id":"sh/onyd0z61","slide":16,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":16,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":16,"text":"资料来源","textPreview":"资料来源","textChars":4,"textLines":1,"bbox":[60,58,420,60]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":16,"text":"International Cocoa Organization｜May 2026 Quarterly Bulletin of Cocoa Statistics\nEuropean Commission｜Deforestation Regulation implementation\nWorld Cocoa Foundation｜cocoa sustainability context\nBarry Callebaut｜industrial chocolate applications\n\n完整底稿：产业链研究底稿.md","textPreview":"International Cocoa Organization｜May 2026 Quarterly Bulletin of Cocoa Statistics | European Commission｜Deforestation Regulation implement...","textChars":259,"textLines":6,"bbox":[80,160,1030,360]}
+{"kind":"notes","id":"nt/xzy9qu","slide":16,"text":""}
+{"kind":"slide","id":"sl/q9whg3","slide":17,"title":"每日产业链","textShapes":5}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":17,"text":"每日产业链","textPreview":"每日产业链","textChars":5,"textLines":1,"bbox":[24,682,160,24]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":17,"text":"巧克力产业链研究","textPreview":"巧克力产业链研究","textChars":8,"textLines":1,"bbox":[1040,22,210,44]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":17,"text":"谢谢","textPreview":"谢谢","textChars":2,"textLines":1,"bbox":[60,60,420,88]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":17,"text":"巧克力产业链研究\n生成日期：2026-06-17\n基于公开资料与产业链研究底稿整理","textPreview":"巧克力产业链研究 | 生成日期：2026-06-17 | 基于公开资料与产业链研究底稿整理","textChars":41,"textLines":3,"bbox":[70,230,540,140]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":17,"text":"CREDITS: Template visual direction follows Slidesgo Work-Life Integration style. Original Slidesgo template credits should be retained when reusing template assets.","textPreview":"CREDITS: Template visual direction follows Slidesgo Work-Life Integration style. Original Slidesgo template credits should be retained wh...","textChars":164,"textLines":1,"bbox":[70,510,900,60]}
+{"kind":"notes","id":"nt/q9whg3","slide":17,"text":""}

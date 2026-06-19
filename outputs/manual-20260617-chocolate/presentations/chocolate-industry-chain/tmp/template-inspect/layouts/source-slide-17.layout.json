@@ -1,0 +1,4225 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/54zidony",
+    "id": "54zidony",
+    "slide": 17,
+    "layoutId": "/ppt/slideLayouts/slideLayout23.xml",
+    "layoutName": "BLANK",
+    "layoutType": "blank",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster2.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#FFFFFF",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#252525",
+      "lt1": "#F0F0F0",
+      "dk2": "#B43B13",
+      "lt2": "#FFFFFF",
+      "hlink": "#252525",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Arial",
+      "Inter"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout23.xml",
+      "name": "BLANK",
+      "type": "blank",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster2.xml",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster2.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "dk1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster2.xml/120",
+          "id": "120",
+          "name": "Google Shape;120;p24",
+          "bbox": [
+            74.88,
+            56.64,
+            810.24,
+            50.65
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster2.xml/121",
+          "id": "121",
+          "name": "Google Shape;121;p24",
+          "bbox": [
+            112.14,
+            178,
+            739.87,
+            262.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "lineWidth": 0
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/3ex0nuxc",
+      "id": "1383",
+      "name": "Google Shape;1352;p44",
+      "bbox": [
+        354.08,
+        213.6,
+        251.39,
+        112.8
+      ],
+      "rows": 4,
+      "cols": 6,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            354.08,
+            213.6,
+            41.9,
+            26.2
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            395.98,
+            213.6,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "bbox": [
+            437.88,
+            213.6,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 4,
+          "row": 1,
+          "column": 4,
+          "bbox": [
+            479.78,
+            213.6,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 5,
+          "row": 1,
+          "column": 5,
+          "bbox": [
+            521.67,
+            213.6,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 6,
+          "row": 1,
+          "column": 6,
+          "bbox": [
+            563.57,
+            213.6,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 7,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            354.08,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 8,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            395.98,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 9,
+          "row": 2,
+          "column": 3,
+          "bbox": [
+            437.88,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 10,
+          "row": 2,
+          "column": 4,
+          "bbox": [
+            479.78,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 11,
+          "row": 2,
+          "column": 5,
+          "bbox": [
+            521.67,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 12,
+          "row": 2,
+          "column": 6,
+          "bbox": [
+            563.57,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 13,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            354.08,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 14,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            395.98,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 15,
+          "row": 3,
+          "column": 3,
+          "bbox": [
+            437.88,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 16,
+          "row": 3,
+          "column": 4,
+          "bbox": [
+            479.78,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 17,
+          "row": 3,
+          "column": 5,
+          "bbox": [
+            521.67,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 18,
+          "row": 3,
+          "column": 6,
+          "bbox": [
+            563.57,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 19,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            354.08,
+            297.53,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 20,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            395.98,
+            297.53,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 21,
+          "row": 4,
+          "column": 3,
+          "bbox": [
+            437.88,
+            297.53,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 22,
+          "row": 4,
+          "column": 4,
+          "bbox": [
+            479.78,
+            297.53,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 23,
+          "row": 4,
+          "column": 5,
+          "bbox": [
+            521.67,
+            297.53,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 24,
+          "row": 4,
+          "column": 6,
+          "bbox": [
+            563.57,
+            297.53,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/sneloj2t",
+      "id": "1384",
+      "name": "Google Shape;1353;p44",
+      "bbox": [
+        74.81,
+        68.18,
+        251.39,
+        112.81
+      ],
+      "rows": 4,
+      "cols": 6,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            74.81,
+            68.18,
+            41.9,
+            28.2
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            116.71,
+            68.18,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "bbox": [
+            158.61,
+            68.18,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 4,
+          "row": 1,
+          "column": 4,
+          "bbox": [
+            200.5,
+            68.18,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 5,
+          "row": 1,
+          "column": 5,
+          "bbox": [
+            242.4,
+            68.18,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 6,
+          "row": 1,
+          "column": 6,
+          "bbox": [
+            284.3,
+            68.18,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 7,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            74.81,
+            96.39,
+            41.9,
+            28.2
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 8,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            116.71,
+            96.39,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 9,
+          "row": 2,
+          "column": 3,
+          "bbox": [
+            158.61,
+            96.39,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 10,
+          "row": 2,
+          "column": 4,
+          "bbox": [
+            200.5,
+            96.39,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 11,
+          "row": 2,
+          "column": 5,
+          "bbox": [
+            242.4,
+            96.39,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 12,
+          "row": 2,
+          "column": 6,
+          "bbox": [
+            284.3,
+            96.39,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 13,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            74.81,
+            124.59,
+            41.9,
+            28.2
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 14,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            116.71,
+            124.59,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 15,
+          "row": 3,
+          "column": 3,
+          "bbox": [
+            158.61,
+            124.59,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 16,
+          "row": 3,
+          "column": 4,
+          "bbox": [
+            200.5,
+            124.59,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 17,
+          "row": 3,
+          "column": 5,
+          "bbox": [
+            242.4,
+            124.59,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3",
+          "ownedElementAids": [
+            "sh/54zidony"
+          ]
+        },
+        {
+          "index": 18,
+          "row": 3,
+          "column": 6,
+          "bbox": [
+            284.3,
+            124.59,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 19,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            74.81,
+            152.79,
+            41.9,
+            28.2
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 20,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            116.71,
+            152.79,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 21,
+          "row": 4,
+          "column": 3,
+          "bbox": [
+            158.61,
+            152.79,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 22,
+          "row": 4,
+          "column": 4,
+          "bbox": [
+            200.5,
+            152.79,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 23,
+          "row": 4,
+          "column": 5,
+          "bbox": [
+            242.4,
+            152.79,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 24,
+          "row": 4,
+          "column": 6,
+          "bbox": [
+            284.3,
+            152.79,
+            41.9,
+            28.2
+          ],
+          "fillColor": "accent3"
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cj6tovah",
+      "id": "1354",
+      "name": "Google Shape;1354;p44",
+      "bbox": [
+        158.61,
+        116.78,
+        83.81,
+        7.81
+      ],
+      "geometry": "rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "dk2",
+      "lineColor": "dk1",
+      "lineWidth": 2
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/54zidony",
+      "id": "1355",
+      "name": "Google Shape;1355;p44",
+      "bbox": [
+        242.42,
+        144.98,
+        41.89,
+        7.81
+      ],
+      "geometry": "rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "lt2",
+      "lineColor": "dk1",
+      "lineWidth": 2,
+      "tableCell": {
+        "tableAid": "tb/sneloj2t",
+        "cellIndex": 17,
+        "row": 3,
+        "column": 5,
+        "overlap": 1
+      }
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/udg7adsj",
+      "id": "1356",
+      "name": "Google Shape;1356;p44",
+      "bbox": [
+        242.39,
+        173.18,
+        83.81,
+        7.81
+      ],
+      "geometry": "rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "accent1",
+      "lineColor": "dk1",
+      "lineWidth": 2
+    },
+    {
+      "order": 6,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/l87ed8ba",
+      "id": "1385",
+      "name": "Google Shape;1357;p44",
+      "bbox": [
+        354.08,
+        68.18,
+        251.39,
+        112.81
+      ],
+      "text": "Jan | Feb | Mar | Apr | Jun\nTask 1\nTask 2\nTask 3",
+      "textPreview": "Jan | Feb | Mar | Apr | Jun | Task 1 | Task 2 | Task 3",
+      "rows": 4,
+      "cols": 6,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            354.08,
+            68.18,
+            41.9,
+            26.2
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            395.98,
+            68.18,
+            42.1,
+            26.2
+          ],
+          "text": "Jan",
+          "textPreview": "Jan",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Jan",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Jan",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "bbox": [
+            438.08,
+            68.18,
+            41.69,
+            26.2
+          ],
+          "text": "Feb",
+          "textPreview": "Feb",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Feb",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Feb",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "row": 1,
+          "column": 4,
+          "bbox": [
+            479.78,
+            68.18,
+            41.9,
+            26.2
+          ],
+          "text": "Mar",
+          "textPreview": "Mar",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Mar",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Mar",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "row": 1,
+          "column": 5,
+          "bbox": [
+            521.67,
+            68.18,
+            41.9,
+            26.2
+          ],
+          "text": "Apr",
+          "textPreview": "Apr",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Apr",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Apr",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "row": 1,
+          "column": 6,
+          "bbox": [
+            563.57,
+            68.18,
+            41.9,
+            26.2
+          ],
+          "text": "Jun",
+          "textPreview": "Jun",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Jun",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Jun",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            354.08,
+            94.39,
+            41.9,
+            28.87
+          ],
+          "text": "Task 1",
+          "textPreview": "Task 1",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Task 1",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Task 1",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            395.98,
+            94.39,
+            42.1,
+            28.87
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 9,
+          "row": 2,
+          "column": 3,
+          "bbox": [
+            438.08,
+            94.39,
+            41.69,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 10,
+          "row": 2,
+          "column": 4,
+          "bbox": [
+            479.78,
+            94.39,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 11,
+          "row": 2,
+          "column": 5,
+          "bbox": [
+            521.67,
+            94.39,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 12,
+          "row": 2,
+          "column": 6,
+          "bbox": [
+            563.57,
+            94.39,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 13,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            354.08,
+            123.25,
+            41.9,
+            28.87
+          ],
+          "text": "Task 2",
+          "textPreview": "Task 2",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Task 2",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Task 2",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            395.98,
+            123.25,
+            42.1,
+            28.87
+          ],
+          "fillColor": "dk2"
+        },
+        {
+          "index": 15,
+          "row": 3,
+          "column": 3,
+          "bbox": [
+            438.08,
+            123.25,
+            41.69,
+            28.87
+          ],
+          "fillColor": "dk2"
+        },
+        {
+          "index": 16,
+          "row": 3,
+          "column": 4,
+          "bbox": [
+            479.78,
+            123.25,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 17,
+          "row": 3,
+          "column": 5,
+          "bbox": [
+            521.67,
+            123.25,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 18,
+          "row": 3,
+          "column": 6,
+          "bbox": [
+            563.57,
+            123.25,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 19,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            354.08,
+            152.12,
+            41.9,
+            28.87
+          ],
+          "text": "Task 3",
+          "textPreview": "Task 3",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Task 3",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Task 3",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 20,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            395.98,
+            152.12,
+            42.1,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 21,
+          "row": 4,
+          "column": 3,
+          "bbox": [
+            438.08,
+            152.12,
+            41.69,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 22,
+          "row": 4,
+          "column": 4,
+          "bbox": [
+            479.78,
+            152.12,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 23,
+          "row": 4,
+          "column": 5,
+          "bbox": [
+            521.67,
+            152.12,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 24,
+          "row": 4,
+          "column": 6,
+          "bbox": [
+            563.57,
+            152.12,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/ahoza1gv",
+      "id": "1386",
+      "name": "Google Shape;1358;p44",
+      "bbox": [
+        633.35,
+        68.18,
+        251.39,
+        112.81
+      ],
+      "rows": 4,
+      "cols": 6,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            633.35,
+            68.18,
+            41.9,
+            26.2
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            675.25,
+            68.18,
+            41.9,
+            26.2
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "bbox": [
+            717.15,
+            68.18,
+            41.9,
+            26.2
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 4,
+          "row": 1,
+          "column": 4,
+          "bbox": [
+            759.05,
+            68.18,
+            41.9,
+            26.2
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 5,
+          "row": 1,
+          "column": 5,
+          "bbox": [
+            800.94,
+            68.18,
+            41.9,
+            26.2
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 6,
+          "row": 1,
+          "column": 6,
+          "bbox": [
+            842.84,
+            68.18,
+            41.9,
+            26.2
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 7,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            633.35,
+            94.39,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 8,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            675.25,
+            94.39,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 9,
+          "row": 2,
+          "column": 3,
+          "bbox": [
+            717.15,
+            94.39,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 10,
+          "row": 2,
+          "column": 4,
+          "bbox": [
+            759.05,
+            94.39,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 11,
+          "row": 2,
+          "column": 5,
+          "bbox": [
+            800.94,
+            94.39,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 12,
+          "row": 2,
+          "column": 6,
+          "bbox": [
+            842.84,
+            94.39,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 13,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            633.35,
+            123.25,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 14,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            675.25,
+            123.25,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 15,
+          "row": 3,
+          "column": 3,
+          "bbox": [
+            717.15,
+            123.25,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 16,
+          "row": 3,
+          "column": 4,
+          "bbox": [
+            759.05,
+            123.25,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 17,
+          "row": 3,
+          "column": 5,
+          "bbox": [
+            800.94,
+            123.25,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 18,
+          "row": 3,
+          "column": 6,
+          "bbox": [
+            842.84,
+            123.25,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 19,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            633.35,
+            152.12,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 20,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            675.25,
+            152.12,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 21,
+          "row": 4,
+          "column": 3,
+          "bbox": [
+            717.15,
+            152.12,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 22,
+          "row": 4,
+          "column": 4,
+          "bbox": [
+            759.05,
+            152.12,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 23,
+          "row": 4,
+          "column": 5,
+          "bbox": [
+            800.94,
+            152.12,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 24,
+          "row": 4,
+          "column": 6,
+          "bbox": [
+            842.84,
+            152.12,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        }
+      ]
+    },
+    {
+      "order": 8,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/32lszqtc",
+      "id": "1387",
+      "name": "Google Shape;1359;p44",
+      "bbox": [
+        75.41,
+        213.6,
+        251.39,
+        112.81
+      ],
+      "rows": 4,
+      "cols": 6,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            75.41,
+            213.6,
+            41.9,
+            26.2
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            117.3,
+            213.6,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "bbox": [
+            159.2,
+            213.6,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 4,
+          "row": 1,
+          "column": 4,
+          "bbox": [
+            201.1,
+            213.6,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 5,
+          "row": 1,
+          "column": 5,
+          "bbox": [
+            243,
+            213.6,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 6,
+          "row": 1,
+          "column": 6,
+          "bbox": [
+            284.9,
+            213.6,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 7,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            75.41,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 8,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            117.3,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "dk2"
+        },
+        {
+          "index": 9,
+          "row": 2,
+          "column": 3,
+          "bbox": [
+            159.2,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "dk2"
+        },
+        {
+          "index": 10,
+          "row": 2,
+          "column": 4,
+          "bbox": [
+            201.1,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "dk2"
+        },
+        {
+          "index": 11,
+          "row": 2,
+          "column": 5,
+          "bbox": [
+            243,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "dk2"
+        },
+        {
+          "index": 12,
+          "row": 2,
+          "column": 6,
+          "bbox": [
+            284.9,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "dk2"
+        },
+        {
+          "index": 13,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            75.41,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "dk2"
+        },
+        {
+          "index": 14,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            117.3,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 15,
+          "row": 3,
+          "column": 3,
+          "bbox": [
+            159.2,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 16,
+          "row": 3,
+          "column": 4,
+          "bbox": [
+            201.1,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 17,
+          "row": 3,
+          "column": 5,
+          "bbox": [
+            243,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 18,
+          "row": 3,
+          "column": 6,
+          "bbox": [
+            284.9,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 19,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            75.41,
+            297.54,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 20,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            117.3,
+            297.54,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 21,
+          "row": 4,
+          "column": 3,
+          "bbox": [
+            159.2,
+            297.54,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 22,
+          "row": 4,
+          "column": 4,
+          "bbox": [
+            201.1,
+            297.54,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 23,
+          "row": 4,
+          "column": 5,
+          "bbox": [
+            243,
+            297.54,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 24,
+          "row": 4,
+          "column": 6,
+          "bbox": [
+            284.9,
+            297.54,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/wb2hwfyx",
+      "id": "1388",
+      "name": "Google Shape;1369;p44",
+      "bbox": [
+        632.76,
+        213.6,
+        250.57,
+        112.8
+      ],
+      "rows": 4,
+      "cols": 6,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            632.76,
+            213.6,
+            43.23,
+            26.2
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            675.99,
+            213.6,
+            40.57,
+            26.2
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "bbox": [
+            716.56,
+            213.6,
+            41.9,
+            26.2
+          ]
+        },
+        {
+          "index": 4,
+          "row": 1,
+          "column": 4,
+          "bbox": [
+            758.45,
+            213.6,
+            41.9,
+            26.2
+          ]
+        },
+        {
+          "index": 5,
+          "row": 1,
+          "column": 5,
+          "bbox": [
+            800.35,
+            213.6,
+            41.9,
+            26.2
+          ]
+        },
+        {
+          "index": 6,
+          "row": 1,
+          "column": 6,
+          "bbox": [
+            842.25,
+            213.6,
+            41.08,
+            26.2
+          ]
+        },
+        {
+          "index": 7,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            632.76,
+            239.8,
+            43.23,
+            28.87
+          ]
+        },
+        {
+          "index": 8,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            675.99,
+            239.8,
+            40.57,
+            28.87
+          ],
+          "fillColor": "dk2"
+        },
+        {
+          "index": 9,
+          "row": 2,
+          "column": 3,
+          "bbox": [
+            716.56,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "dk2"
+        },
+        {
+          "index": 10,
+          "row": 2,
+          "column": 4,
+          "bbox": [
+            758.45,
+            239.8,
+            41.9,
+            28.87
+          ],
+          "fillColor": "dk2"
+        },
+        {
+          "index": 11,
+          "row": 2,
+          "column": 5,
+          "bbox": [
+            800.35,
+            239.8,
+            41.9,
+            28.87
+          ]
+        },
+        {
+          "index": 12,
+          "row": 2,
+          "column": 6,
+          "bbox": [
+            842.25,
+            239.8,
+            41.08,
+            28.87
+          ]
+        },
+        {
+          "index": 13,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            632.76,
+            268.67,
+            43.23,
+            28.87
+          ]
+        },
+        {
+          "index": 14,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            675.99,
+            268.67,
+            40.57,
+            28.87
+          ]
+        },
+        {
+          "index": 15,
+          "row": 3,
+          "column": 3,
+          "bbox": [
+            716.56,
+            268.67,
+            41.9,
+            28.87
+          ]
+        },
+        {
+          "index": 16,
+          "row": 3,
+          "column": 4,
+          "bbox": [
+            758.45,
+            268.67,
+            41.9,
+            28.87
+          ]
+        },
+        {
+          "index": 17,
+          "row": 3,
+          "column": 5,
+          "bbox": [
+            800.35,
+            268.67,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 18,
+          "row": 3,
+          "column": 6,
+          "bbox": [
+            842.25,
+            268.67,
+            41.08,
+            28.87
+          ]
+        },
+        {
+          "index": 19,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            632.76,
+            297.53,
+            43.23,
+            28.87
+          ]
+        },
+        {
+          "index": 20,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            675.99,
+            297.53,
+            40.57,
+            28.87
+          ]
+        },
+        {
+          "index": 21,
+          "row": 4,
+          "column": 3,
+          "bbox": [
+            716.56,
+            297.53,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 22,
+          "row": 4,
+          "column": 4,
+          "bbox": [
+            758.45,
+            297.53,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 23,
+          "row": 4,
+          "column": 5,
+          "bbox": [
+            800.35,
+            297.53,
+            41.9,
+            28.87
+          ]
+        },
+        {
+          "index": 24,
+          "row": 4,
+          "column": 6,
+          "bbox": [
+            842.25,
+            297.53,
+            41.08,
+            28.87
+          ],
+          "fillColor": "accent1"
+        }
+      ]
+    },
+    {
+      "order": 10,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/lwval87e",
+      "id": "1389",
+      "name": "Google Shape;1370;p44",
+      "bbox": [
+        75.82,
+        359.01,
+        251.38,
+        112.81
+      ],
+      "text": "No | Yes  | Yes | No | Yes\nYes | No | Yes | No | Yes\nYes | Yes | No | Yes | No",
+      "textPreview": "No | Yes  | Yes | No | Yes | Yes | No | Yes | No | Yes | Yes | Yes | No | Yes | No",
+      "rows": 4,
+      "cols": 6,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            75.82,
+            359.01,
+            41.9,
+            26.2
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            117.71,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "bbox": [
+            159.61,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "fillColor": "dk2"
+        },
+        {
+          "index": 4,
+          "row": 1,
+          "column": 4,
+          "bbox": [
+            201.51,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 5,
+          "row": 1,
+          "column": 5,
+          "bbox": [
+            243.41,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 6,
+          "row": 1,
+          "column": 6,
+          "bbox": [
+            285.3,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "fillColor": "lt1"
+        },
+        {
+          "index": 7,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            75.82,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 8,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            117.71,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "text": "No",
+          "textPreview": "No",
+          "fillColor": "lt1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "No",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "No",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "row": 2,
+          "column": 3,
+          "bbox": [
+            159.61,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "text": "Yes ",
+          "textPreview": "Yes",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Yes ",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Yes ",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "row": 2,
+          "column": 4,
+          "bbox": [
+            201.51,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "text": "Yes",
+          "textPreview": "Yes",
+          "fillColor": "lt2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Yes",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Yes",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "row": 2,
+          "column": 5,
+          "bbox": [
+            243.41,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "text": "No",
+          "textPreview": "No",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "No",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "No",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "row": 2,
+          "column": 6,
+          "bbox": [
+            285.3,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "text": "Yes",
+          "textPreview": "Yes",
+          "fillColor": "lt1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Yes",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Yes",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            75.82,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 14,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            117.71,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "text": "Yes",
+          "textPreview": "Yes",
+          "fillColor": "lt1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Yes",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Yes",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 15,
+          "row": 3,
+          "column": 3,
+          "bbox": [
+            159.61,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "text": "No",
+          "textPreview": "No",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "No",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "No",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 16,
+          "row": 3,
+          "column": 4,
+          "bbox": [
+            201.51,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "text": "Yes",
+          "textPreview": "Yes",
+          "fillColor": "lt2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Yes",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Yes",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 17,
+          "row": 3,
+          "column": 5,
+          "bbox": [
+            243.41,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "text": "No",
+          "textPreview": "No",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "No",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "No",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 18,
+          "row": 3,
+          "column": 6,
+          "bbox": [
+            285.3,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "text": "Yes",
+          "textPreview": "Yes",
+          "fillColor": "lt1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Yes",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Yes",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 19,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            75.82,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 20,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            117.71,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "text": "Yes",
+          "textPreview": "Yes",
+          "fillColor": "lt1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Yes",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Yes",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 21,
+          "row": 4,
+          "column": 3,
+          "bbox": [
+            159.61,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "text": "Yes",
+          "textPreview": "Yes",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Yes",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Yes",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 22,
+          "row": 4,
+          "column": 4,
+          "bbox": [
+            201.51,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "text": "No",
+          "textPreview": "No",
+          "fillColor": "lt2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "No",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "No",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 23,
+          "row": 4,
+          "column": 5,
+          "bbox": [
+            243.41,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "text": "Yes",
+          "textPreview": "Yes",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Yes",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Yes",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 24,
+          "row": 4,
+          "column": 6,
+          "bbox": [
+            285.3,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "text": "No",
+          "textPreview": "No",
+          "fillColor": "lt1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "No",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "No",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/bq1oryts",
+      "id": "1390",
+      "name": "Google Shape;1371;p44",
+      "bbox": [
+        354.29,
+        359.01,
+        251.39,
+        112.81
+      ],
+      "rows": 4,
+      "cols": 6,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            354.29,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            396.19,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "bbox": [
+            438.08,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 4,
+          "row": 1,
+          "column": 4,
+          "bbox": [
+            479.98,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 5,
+          "row": 1,
+          "column": 5,
+          "bbox": [
+            521.88,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 6,
+          "row": 1,
+          "column": 6,
+          "bbox": [
+            563.78,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 7,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            354.29,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 8,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            396.19,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 9,
+          "row": 2,
+          "column": 3,
+          "bbox": [
+            438.08,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 10,
+          "row": 2,
+          "column": 4,
+          "bbox": [
+            479.98,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 11,
+          "row": 2,
+          "column": 5,
+          "bbox": [
+            521.88,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 12,
+          "row": 2,
+          "column": 6,
+          "bbox": [
+            563.78,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 13,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            354.29,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 14,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            396.19,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 15,
+          "row": 3,
+          "column": 3,
+          "bbox": [
+            438.08,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 16,
+          "row": 3,
+          "column": 4,
+          "bbox": [
+            479.98,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 17,
+          "row": 3,
+          "column": 5,
+          "bbox": [
+            521.88,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 18,
+          "row": 3,
+          "column": 6,
+          "bbox": [
+            563.78,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 19,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            354.29,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent1"
+        },
+        {
+          "index": 20,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            396.19,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 21,
+          "row": 4,
+          "column": 3,
+          "bbox": [
+            438.08,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 22,
+          "row": 4,
+          "column": 4,
+          "bbox": [
+            479.98,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 23,
+          "row": 4,
+          "column": 5,
+          "bbox": [
+            521.88,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 24,
+          "row": 4,
+          "column": 6,
+          "bbox": [
+            563.78,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "fillColor": "lt2"
+        }
+      ]
+    },
+    {
+      "order": 12,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/m58z25kb",
+      "id": "1391",
+      "name": "Google Shape;1372;p44",
+      "bbox": [
+        632.76,
+        359.01,
+        251.39,
+        112.81
+      ],
+      "text": "Jan | Feb | Mar | Apr | Jun\nTask 1\nTask 2\nTask 3",
+      "textPreview": "Jan | Feb | Mar | Apr | Jun | Task 1 | Task 2 | Task 3",
+      "rows": 4,
+      "cols": 6,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            632.76,
+            359.01,
+            41.9,
+            26.2
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            674.66,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "text": "Jan",
+          "textPreview": "Jan",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Jan",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Jan",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "bbox": [
+            716.56,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "text": "Feb",
+          "textPreview": "Feb",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Feb",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Feb",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "row": 1,
+          "column": 4,
+          "bbox": [
+            758.45,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "text": "Mar",
+          "textPreview": "Mar",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Mar",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Mar",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "row": 1,
+          "column": 5,
+          "bbox": [
+            800.35,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "text": "Apr",
+          "textPreview": "Apr",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Apr",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Apr",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "row": 1,
+          "column": 6,
+          "bbox": [
+            842.25,
+            359.01,
+            41.9,
+            26.2
+          ],
+          "text": "Jun",
+          "textPreview": "Jun",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Jun",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Jun",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            632.76,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "text": "Task 1",
+          "textPreview": "Task 1",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Task 1",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Task 1",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            674.66,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3",
+          "ownedElementAids": [
+            "sh/8jqh0fep"
+          ]
+        },
+        {
+          "index": 9,
+          "row": 2,
+          "column": 3,
+          "bbox": [
+            716.56,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3",
+          "ownedElementAids": [
+            "sh/x4nap4r6"
+          ]
+        },
+        {
+          "index": 10,
+          "row": 2,
+          "column": 4,
+          "bbox": [
+            758.45,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3",
+          "ownedElementAids": [
+            "sh/q1orytsv"
+          ]
+        },
+        {
+          "index": 11,
+          "row": 2,
+          "column": 5,
+          "bbox": [
+            800.35,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 12,
+          "row": 2,
+          "column": 6,
+          "bbox": [
+            842.25,
+            385.21,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 13,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            632.76,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "text": "Task 2",
+          "textPreview": "Task 2",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Task 2",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Task 2",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            674.66,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3",
+          "ownedElementAids": [
+            "sh/fmlkjm1c"
+          ]
+        },
+        {
+          "index": 15,
+          "row": 3,
+          "column": 3,
+          "bbox": [
+            716.56,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 16,
+          "row": 3,
+          "column": 4,
+          "bbox": [
+            758.45,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 17,
+          "row": 3,
+          "column": 5,
+          "bbox": [
+            800.35,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 18,
+          "row": 3,
+          "column": 6,
+          "bbox": [
+            842.25,
+            414.08,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 19,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            632.76,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "text": "Task 3",
+          "textPreview": "Task 3",
+          "fillColor": "accent1",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Task 3",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Task 3",
+                  "fontSize": 5.33,
+                  "typeface": "Inter",
+                  "color": "dk1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 20,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            674.66,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 21,
+          "row": 4,
+          "column": 3,
+          "bbox": [
+            716.56,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3",
+          "ownedElementAids": [
+            "sh/fu18jqh0"
+          ]
+        },
+        {
+          "index": 22,
+          "row": 4,
+          "column": 4,
+          "bbox": [
+            758.45,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3",
+          "ownedElementAids": [
+            "sh/m94fu18j"
+          ]
+        },
+        {
+          "index": 23,
+          "row": 4,
+          "column": 5,
+          "bbox": [
+            800.35,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        },
+        {
+          "index": 24,
+          "row": 4,
+          "column": 6,
+          "bbox": [
+            842.25,
+            442.95,
+            41.9,
+            28.87
+          ],
+          "fillColor": "accent3"
+        }
+      ]
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xczed8v6",
+      "id": "1373",
+      "name": "Google Shape;1373;p44",
+      "bbox": [
+        675.99,
+        400.47,
+        207.34,
+        0
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "lt1",
+      "lineWidth": 2
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qd4vmtwr",
+      "id": "1374",
+      "name": "Google Shape;1374;p44",
+      "bbox": [
+        675.99,
+        427.84,
+        207.34,
+        0
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "dk2",
+      "lineWidth": 2
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fyxobm58",
+      "id": "1375",
+      "name": "Google Shape;1375;p44",
+      "bbox": [
+        675.99,
+        455.2,
+        207.34,
+        0
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "lt2",
+      "lineWidth": 2
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8jqh0fep",
+      "id": "1376",
+      "name": "Google Shape;1376;p44",
+      "bbox": [
+        675.25,
+        396.57,
+        41.89,
+        7.81
+      ],
+      "geometry": "rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "lt1",
+      "lineColor": "dk1",
+      "lineWidth": 2,
+      "tableCell": {
+        "tableAid": "tb/m58z25kb",
+        "cellIndex": 8,
+        "row": 2,
+        "column": 2,
+        "overlap": 0.99
+      }
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x4nap4r6",
+      "id": "1377",
+      "name": "Google Shape;1377;p44",
+      "bbox": [
+        717.15,
+        396.57,
+        41.89,
+        7.81
+      ],
+      "geometry": "rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "lt1",
+      "lineColor": "dk1",
+      "lineWidth": 2,
+      "tableCell": {
+        "tableAid": "tb/m58z25kb",
+        "cellIndex": 9,
+        "row": 2,
+        "column": 3,
+        "overlap": 0.99
+      }
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q1orytsv",
+      "id": "1378",
+      "name": "Google Shape;1378;p44",
+      "bbox": [
+        758.71,
+        396.57,
+        41.89,
+        7.81
+      ],
+      "geometry": "rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "lt1",
+      "lineColor": "dk1",
+      "lineWidth": 2,
+      "tableCell": {
+        "tableAid": "tb/m58z25kb",
+        "cellIndex": 10,
+        "row": 2,
+        "column": 4,
+        "overlap": 0.99
+      }
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fmlkjm1c",
+      "id": "1379",
+      "name": "Google Shape;1379;p44",
+      "bbox": [
+        675.25,
+        423.93,
+        41.89,
+        7.81
+      ],
+      "geometry": "rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "dk2",
+      "lineColor": "dk1",
+      "lineWidth": 2,
+      "tableCell": {
+        "tableAid": "tb/m58z25kb",
+        "cellIndex": 14,
+        "row": 3,
+        "column": 2,
+        "overlap": 0.99
+      }
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fu18jqh0",
+      "id": "1380",
+      "name": "Google Shape;1380;p44",
+      "bbox": [
+        717.15,
+        451.3,
+        41.89,
+        7.81
+      ],
+      "geometry": "rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "lt2",
+      "lineColor": "dk1",
+      "lineWidth": 2,
+      "tableCell": {
+        "tableAid": "tb/m58z25kb",
+        "cellIndex": 21,
+        "row": 4,
+        "column": 3,
+        "overlap": 0.99
+      }
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/m94fu18j",
+      "id": "1381",
+      "name": "Google Shape;1381;p44",
+      "bbox": [
+        758.71,
+        451.3,
+        41.89,
+        7.81
+      ],
+      "geometry": "rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "lt2",
+      "lineColor": "dk1",
+      "lineWidth": 2,
+      "tableCell": {
+        "tableAid": "tb/m58z25kb",
+        "cellIndex": 22,
+        "row": 4,
+        "column": 4,
+        "overlap": 0.99
+      }
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x0nuxc3y",
+      "id": "1382",
+      "name": "Google Shape;1382;p44",
+      "bbox": [
+        201.51,
+        88.58,
+        124.69,
+        7.81
+      ],
+      "geometry": "rect",
+      "resolvedFontSize": 18.67,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18.67,
+        "typeface": "Arial",
+        "color": "#000000",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": ""
+          }
+        ]
+      },
+      "fillColor": "lt1",
+      "lineColor": "dk1",
+      "lineWidth": 2
+    }
+  ],
+  "composeRuns": []
+}

@@ -1,0 +1,428 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/q9whg3",
+    "id": "q9whg3",
+    "slide": 17,
+    "layoutId": "69ae9028-0382-4383-bc8b-664cc77631c3",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "f999abc4-ac0b-4fc2-bc72-c15bfbc192b3",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F4EEE4",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Arial"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "69ae9028-0382-4383-bc8b-664cc77631c3",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "f999abc4-ac0b-4fc2-bc72-c15bfbc192b3",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "f999abc4-ac0b-4fc2-bc72-c15bfbc192b3",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/rqd4vmtw",
+      "id": "1",
+      "bbox": [
+        24,
+        682,
+        160,
+        24
+      ],
+      "geometry": "rect",
+      "text": "每日产业链",
+      "textPreview": "每日产业链",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "Arial",
+        "color": "#FFFFFF",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "每日产业链"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "每日产业链",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "typeface": "Arial",
+            "color": "#FFFFFF"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "每日产业链",
+              "fontSize": 14,
+              "typeface": "Arial",
+              "color": "#FFFFFF"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kb6xkf6d",
+      "id": "2",
+      "bbox": [
+        1040,
+        22,
+        210,
+        44
+      ],
+      "geometry": "rect",
+      "text": "巧克力产业链研究",
+      "textPreview": "巧克力产业链研究",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "fontSize": 18,
+        "typeface": "Arial",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "巧克力产业链研究"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "巧克力产业链研究",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "typeface": "Arial",
+            "color": "#FFFFFF",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "巧克力产业链研究",
+              "fontSize": 18,
+              "typeface": "Arial",
+              "color": "#FFFFFF",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9w3m94fu",
+      "id": "3",
+      "bbox": [
+        60,
+        60,
+        420,
+        88
+      ],
+      "geometry": "rect",
+      "text": "谢谢",
+      "textPreview": "谢谢",
+      "resolvedFontSize": 70,
+      "resolvedTextStyle": {
+        "fontSize": 70,
+        "typeface": "Arial",
+        "color": "#B63A19",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "谢谢"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "谢谢",
+          "resolvedTextStyle": {
+            "fontSize": 70,
+            "typeface": "Arial",
+            "color": "#B63A19",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "谢谢",
+              "fontSize": 70,
+              "typeface": "Arial",
+              "color": "#B63A19",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2t83itgf",
+      "id": "4",
+      "bbox": [
+        70,
+        230,
+        540,
+        140
+      ],
+      "geometry": "rect",
+      "text": "巧克力产业链研究\n生成日期：2026-06-17\n基于公开资料与产业链研究底稿整理",
+      "textPreview": "巧克力产业链研究 | 生成日期：2026-06-17 | 基于公开资料与产业链研究底稿整理",
+      "resolvedFontSize": 26,
+      "resolvedTextStyle": {
+        "fontSize": 26,
+        "typeface": "Arial",
+        "color": "#B63A19",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "巧克力产业链研究"
+          },
+          {
+            "index": 2,
+            "text": "生成日期：2026-06-17"
+          },
+          {
+            "index": 3,
+            "text": "基于公开资料与产业链研究底稿整理"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "巧克力产业链研究",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "typeface": "Arial",
+            "color": "#B63A19",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "巧克力产业链研究",
+              "fontSize": 26,
+              "typeface": "Arial",
+              "color": "#B63A19",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "生成日期：2026-06-17",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "typeface": "Arial",
+            "color": "#B63A19",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "生成日期：2026-06-17",
+              "fontSize": 26,
+              "typeface": "Arial",
+              "color": "#B63A19",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "基于公开资料与产业链研究底稿整理",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "typeface": "Arial",
+            "color": "#B63A19",
+            "bold": true
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "基于公开资料与产业链研究底稿整理",
+              "fontSize": 26,
+              "typeface": "Arial",
+              "color": "#B63A19",
+              "bold": true
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/re1w7mp0",
+      "id": "5",
+      "bbox": [
+        70,
+        510,
+        900,
+        60
+      ],
+      "geometry": "rect",
+      "text": "CREDITS: Template visual direction follows Slidesgo Work-Life Integration style. Original Slidesgo template credits should be retained when reusing template assets.",
+      "textPreview": "CREDITS: Template visual direction follows Slidesgo Work-Life Integration style. Original Slidesgo template credits should be retained wh...",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "Arial",
+        "color": "#B63A19",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CREDITS: Template visual direction follows Slidesgo Work-Life Integration style. Original Slidesgo template credits should"
+          },
+          {
+            "index": 2,
+            "text": "be retained when reusing template assets."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CREDITS: Template visual direction follows Slidesgo Work-Life Integration style. Original Slidesgo template credits should be retained when reusing template assets.",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "typeface": "Arial",
+            "color": "#B63A19"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CREDITS: Template visual direction follows Slidesgo Work-Life Integration style. Original Slidesgo template credits should be retained when reusing template assets.",
+              "fontSize": 16,
+              "typeface": "Arial",
+              "color": "#B63A19"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

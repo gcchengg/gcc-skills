@@ -1,0 +1,2113 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/m58z25kb",
+    "id": "m58z25kb",
+    "slide": 19,
+    "layoutId": "/ppt/slideLayouts/slideLayout13.xml",
+    "layoutName": "TITLE_ONLY_1",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "simple-light-2",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 960,
+      "height": 540
+    }
+  },
+  "theme": {
+    "colorSchemeName": "Simple Light",
+    "colors": {
+      "accent1": "#999999",
+      "accent2": "#FFFFFF",
+      "accent3": "#FFFFFF",
+      "accent4": "#FFFFFF",
+      "accent5": "#FFFFFF",
+      "accent6": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#DAD5D5",
+      "dk2": "#434343",
+      "lt2": "#666666",
+      "hlink": "#191919",
+      "folHlink": "#0097A7"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Arial"
+      },
+      "minorFont": {
+        "latinTypeface": "Arial"
+      }
+    },
+    "typefaces": [
+      "Albert Sans",
+      "Arial",
+      "Red Hat Display"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout13.xml",
+      "name": "TITLE_ONLY_1",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout13.xml/117",
+          "id": "117",
+          "name": "Google Shape;117;p14",
+          "bbox": [
+            74.88,
+            56.64,
+            810.24,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "verticalAlignment": "bottom",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout13.xml/118",
+          "id": "118",
+          "name": "Google Shape;118;p14",
+          "bbox": [
+            763.72,
+            -30.9,
+            213.53,
+            215.12
+          ],
+          "geometry": "custom",
+          "fillColor": "dk2"
+        },
+        {
+          "order": 3,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout13.xml/120",
+          "id": "120",
+          "name": "Google Shape;120;p14",
+          "bbox": [
+            773.42,
+            93.27,
+            296.88,
+            296.88
+          ],
+          "rotation": 0,
+          "geometry": "diamond",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "fillColor": "rgba(153, 153, 153, 0.0692)"
+        },
+        {
+          "order": 4,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout13.xml/121",
+          "id": "121",
+          "name": "Google Shape;121;p14",
+          "bbox": [
+            613.67,
+            -67,
+            296.88,
+            296.88
+          ],
+          "rotation": 0,
+          "geometry": "diamond",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "fillColor": "rgba(153, 153, 153, 0.0692)"
+        },
+        {
+          "order": 5,
+          "kind": "shape",
+          "scope": "layout",
+          "aid": "template/layout//ppt/slideLayouts/slideLayout13.xml/122",
+          "id": "122",
+          "name": "Google Shape;122;p14",
+          "bbox": [
+            613.67,
+            253.54,
+            296.88,
+            296.88
+          ],
+          "rotation": 0,
+          "geometry": "diamond",
+          "resolvedTextStyle": {
+            "anchor": 2,
+            "verticalAlignment": "middle",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          },
+          "fillColor": "rgba(153, 153, 153, 0.0692)"
+        }
+      ]
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "simple-light-2",
+      "type": "master",
+      "backgroundColor": "lt1",
+      "elements": [
+        {
+          "order": 1,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/6",
+          "id": "6",
+          "name": "Google Shape;6;p1",
+          "bbox": [
+            74.88,
+            56.64,
+            810.24,
+            60.13
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 3,
+            "verticalAlignment": "bottom",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        },
+        {
+          "order": 2,
+          "kind": "shape",
+          "scope": "master",
+          "aid": "template/master//ppt/slideMasters/slideMaster1.xml/7",
+          "id": "7",
+          "name": "Google Shape;7;p1",
+          "bbox": [
+            74.88,
+            130.91,
+            810.24,
+            358.68
+          ],
+          "geometry": "rect",
+          "resolvedTextStyle": {
+            "anchor": 1,
+            "verticalAlignment": "top",
+            "wrap": "square",
+            "autoFit": "none",
+            "insets": {
+              "top": 9.6,
+              "right": 9.6,
+              "bottom": 9.6,
+              "left": 9.6
+            },
+            "useParagraphSpacing": true
+          }
+        }
+      ]
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4r65wjud",
+      "id": "511",
+      "name": "Google Shape;511;p50",
+      "bbox": [
+        74.88,
+        56.64,
+        810.24,
+        60.13
+      ],
+      "geometry": "rect",
+      "text": "ROADMAP INFOGRAPHIC",
+      "textPreview": "ROADMAP INFOGRAPHIC",
+      "resolvedFontSize": 32,
+      "resolvedTextStyle": {
+        "anchor": 3,
+        "fontSize": 32,
+        "typeface": "Red Hat Display",
+        "color": "dk2",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "bottom",
+        "textTransform": "none",
+        "wrap": "square",
+        "autoFit": "none",
+        "insets": {
+          "top": 9.6,
+          "right": 9.6,
+          "bottom": 9.6,
+          "left": 9.6
+        },
+        "useParagraphSpacing": true
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "ROADMAP INFOGRAPHIC"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "ROADMAP INFOGRAPHIC",
+          "marginLeft": 0,
+          "indent": 0,
+          "spaceBefore": 0,
+          "spaceAfter": 0,
+          "resolvedTextStyle": {
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "R",
+              "alignment": "left"
+            },
+            {
+              "index": 2,
+              "text": "OADMAP INFOGRAPHIC",
+              "alignment": "left"
+            }
+          ],
+          "bulletCharacter": "",
+          "lineSpacingPercent": 100000
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/6dcbulwv",
+      "id": "512",
+      "name": "Google Shape;512;p50",
+      "bbox": [
+        75.59,
+        149.62,
+        808.82,
+        330.34
+      ],
+      "text": "INITIATIVE | OBJECTIVE | JAN | FEB | MAR | APR | MAY | JUN | JUL | AUG | SEP | OCT | NOV | DEC\nVenus is very hot | Venus has a nice name and is the second planet from the Sun\nEarth has life | Earth is the beautiful planet on which humans live\nMars is very cold | Despite being red, Mars is actually a cold place\nJupiter is a gas giant | Jupiter is the biggest planet in the Solar System\nSaturn has rings | Saturn is a gas giant and has\nseveral rings\nMercury is small | Mercury is the closest planet to the Sun and the smallest one",
+      "textPreview": "INITIATIVE | OBJECTIVE | JAN | FEB | MAR | APR | MAY | JUN | JUL | AUG | SEP | OCT | NOV | DEC | Venus is very hot | Venus has a nice nam...",
+      "rows": 7,
+      "cols": 14,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            75.59,
+            149.62,
+            145.1,
+            47.19
+          ],
+          "text": "INITIATIVE",
+          "textPreview": "INITIATIVE",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "INITIATIVE",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "INITIATIVE",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            220.69,
+            149.62,
+            209.24,
+            47.19
+          ],
+          "text": "OBJECTIVE",
+          "textPreview": "OBJECTIVE",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "OBJECTIVE",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "OBJECTIVE",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "row": 1,
+          "column": 3,
+          "bbox": [
+            429.92,
+            149.62,
+            37.87,
+            47.19
+          ],
+          "text": "JAN",
+          "textPreview": "JAN",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "JAN",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "JAN",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "row": 1,
+          "column": 4,
+          "bbox": [
+            467.8,
+            149.62,
+            37.87,
+            47.19
+          ],
+          "text": "FEB",
+          "textPreview": "FEB",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "FEB",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "FEB",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "row": 1,
+          "column": 5,
+          "bbox": [
+            505.67,
+            149.62,
+            37.87,
+            47.19
+          ],
+          "text": "MAR",
+          "textPreview": "MAR",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "MAR",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "MAR",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "row": 1,
+          "column": 6,
+          "bbox": [
+            543.54,
+            149.62,
+            37.87,
+            47.19
+          ],
+          "text": "APR",
+          "textPreview": "APR",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "APR",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "APR",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "row": 1,
+          "column": 7,
+          "bbox": [
+            581.42,
+            149.62,
+            37.87,
+            47.19
+          ],
+          "text": "MAY",
+          "textPreview": "MAY",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "MAY",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "MAY",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "row": 1,
+          "column": 8,
+          "bbox": [
+            619.29,
+            149.62,
+            37.87,
+            47.19
+          ],
+          "text": "JUN",
+          "textPreview": "JUN",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "JUN",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "JUN",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "row": 1,
+          "column": 9,
+          "bbox": [
+            657.17,
+            149.62,
+            37.87,
+            47.19
+          ],
+          "text": "JUL",
+          "textPreview": "JUL",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "JUL",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "JUL",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "row": 1,
+          "column": 10,
+          "bbox": [
+            695.04,
+            149.62,
+            37.87,
+            47.19
+          ],
+          "text": "AUG",
+          "textPreview": "AUG",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "AUG",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "AUG",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "row": 1,
+          "column": 11,
+          "bbox": [
+            732.91,
+            149.62,
+            37.87,
+            47.19
+          ],
+          "text": "SEP",
+          "textPreview": "SEP",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "SEP",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "SEP",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "row": 1,
+          "column": 12,
+          "bbox": [
+            770.79,
+            149.62,
+            37.87,
+            47.19
+          ],
+          "text": "OCT",
+          "textPreview": "OCT",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "OCT",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "OCT",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "row": 1,
+          "column": 13,
+          "bbox": [
+            808.66,
+            149.62,
+            37.87,
+            47.19
+          ],
+          "text": "NOV",
+          "textPreview": "NOV",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "NOV",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "NOV",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "row": 1,
+          "column": 14,
+          "bbox": [
+            846.54,
+            149.62,
+            37.87,
+            47.19
+          ],
+          "text": "DEC",
+          "textPreview": "DEC",
+          "fillColor": "dk2",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "DEC",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "center"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "DEC",
+                  "fontSize": 16,
+                  "typeface": "Red Hat Display",
+                  "color": "lt1",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 15,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            75.59,
+            196.81,
+            145.1,
+            47.19
+          ],
+          "text": "Venus is very hot",
+          "textPreview": "Venus is very hot",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Venus is very hot",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Venus is very hot",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans",
+                  "color": "dk1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 16,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            220.69,
+            196.81,
+            209.24,
+            47.19
+          ],
+          "text": "Venus has a nice name and is the second planet from the Sun",
+          "textPreview": "Venus has a nice name and is the second planet from the Sun",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Venus has a nice name and is the second planet from the Sun",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Venus has a nice name and is the second planet from the Sun",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 17,
+          "row": 2,
+          "column": 3,
+          "bbox": [
+            429.92,
+            196.81,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 18,
+          "row": 2,
+          "column": 4,
+          "bbox": [
+            467.8,
+            196.81,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 19,
+          "row": 2,
+          "column": 5,
+          "bbox": [
+            505.67,
+            196.81,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 20,
+          "row": 2,
+          "column": 6,
+          "bbox": [
+            543.54,
+            196.81,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 21,
+          "row": 2,
+          "column": 7,
+          "bbox": [
+            581.42,
+            196.81,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 22,
+          "row": 2,
+          "column": 8,
+          "bbox": [
+            619.29,
+            196.81,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 23,
+          "row": 2,
+          "column": 9,
+          "bbox": [
+            657.17,
+            196.81,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 24,
+          "row": 2,
+          "column": 10,
+          "bbox": [
+            695.04,
+            196.81,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 25,
+          "row": 2,
+          "column": 11,
+          "bbox": [
+            732.91,
+            196.81,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 26,
+          "row": 2,
+          "column": 12,
+          "bbox": [
+            770.79,
+            196.81,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 27,
+          "row": 2,
+          "column": 13,
+          "bbox": [
+            808.66,
+            196.81,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 28,
+          "row": 2,
+          "column": 14,
+          "bbox": [
+            846.54,
+            196.81,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 29,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            75.59,
+            244,
+            145.1,
+            47.19
+          ],
+          "text": "Earth has life",
+          "textPreview": "Earth has life",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Earth has life",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Earth has life",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 30,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            220.69,
+            244,
+            209.24,
+            47.19
+          ],
+          "text": "Earth is the beautiful planet on which humans live",
+          "textPreview": "Earth is the beautiful planet on which humans live",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Earth is the beautiful planet on which humans live",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Earth is the beautiful planet on which humans live",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 31,
+          "row": 3,
+          "column": 3,
+          "bbox": [
+            429.92,
+            244,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 32,
+          "row": 3,
+          "column": 4,
+          "bbox": [
+            467.8,
+            244,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 33,
+          "row": 3,
+          "column": 5,
+          "bbox": [
+            505.67,
+            244,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 34,
+          "row": 3,
+          "column": 6,
+          "bbox": [
+            543.54,
+            244,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 35,
+          "row": 3,
+          "column": 7,
+          "bbox": [
+            581.42,
+            244,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 36,
+          "row": 3,
+          "column": 8,
+          "bbox": [
+            619.29,
+            244,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 37,
+          "row": 3,
+          "column": 9,
+          "bbox": [
+            657.17,
+            244,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 38,
+          "row": 3,
+          "column": 10,
+          "bbox": [
+            695.04,
+            244,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 39,
+          "row": 3,
+          "column": 11,
+          "bbox": [
+            732.91,
+            244,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 40,
+          "row": 3,
+          "column": 12,
+          "bbox": [
+            770.79,
+            244,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 41,
+          "row": 3,
+          "column": 13,
+          "bbox": [
+            808.66,
+            244,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 42,
+          "row": 3,
+          "column": 14,
+          "bbox": [
+            846.54,
+            244,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 43,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            75.59,
+            291.19,
+            145.1,
+            47.19
+          ],
+          "text": "Mars is very cold",
+          "textPreview": "Mars is very cold",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Mars is very cold",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Mars is very cold",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 44,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            220.69,
+            291.19,
+            209.24,
+            47.19
+          ],
+          "text": "Despite being red, Mars is actually a cold place",
+          "textPreview": "Despite being red, Mars is actually a cold place",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Despite being red, Mars is actually a cold place",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Despite being red, Mars is actually a cold place",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 45,
+          "row": 4,
+          "column": 3,
+          "bbox": [
+            429.92,
+            291.19,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 46,
+          "row": 4,
+          "column": 4,
+          "bbox": [
+            467.8,
+            291.19,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 47,
+          "row": 4,
+          "column": 5,
+          "bbox": [
+            505.67,
+            291.19,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 48,
+          "row": 4,
+          "column": 6,
+          "bbox": [
+            543.54,
+            291.19,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 49,
+          "row": 4,
+          "column": 7,
+          "bbox": [
+            581.42,
+            291.19,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 50,
+          "row": 4,
+          "column": 8,
+          "bbox": [
+            619.29,
+            291.19,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 51,
+          "row": 4,
+          "column": 9,
+          "bbox": [
+            657.17,
+            291.19,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 52,
+          "row": 4,
+          "column": 10,
+          "bbox": [
+            695.04,
+            291.19,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 53,
+          "row": 4,
+          "column": 11,
+          "bbox": [
+            732.91,
+            291.19,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 54,
+          "row": 4,
+          "column": 12,
+          "bbox": [
+            770.79,
+            291.19,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 55,
+          "row": 4,
+          "column": 13,
+          "bbox": [
+            808.66,
+            291.19,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 56,
+          "row": 4,
+          "column": 14,
+          "bbox": [
+            846.54,
+            291.19,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 57,
+          "row": 5,
+          "column": 1,
+          "bbox": [
+            75.59,
+            338.38,
+            145.1,
+            47.19
+          ],
+          "text": "Jupiter is a gas giant",
+          "textPreview": "Jupiter is a gas giant",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Jupiter is a gas giant",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Jupiter is a gas giant",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 58,
+          "row": 5,
+          "column": 2,
+          "bbox": [
+            220.69,
+            338.38,
+            209.24,
+            47.19
+          ],
+          "text": "Jupiter is the biggest planet in the Solar System",
+          "textPreview": "Jupiter is the biggest planet in the Solar System",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Jupiter is the biggest planet in the Solar System",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Jupiter is the biggest planet in the Solar System",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans",
+                  "color": "#191919"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 59,
+          "row": 5,
+          "column": 3,
+          "bbox": [
+            429.92,
+            338.38,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 60,
+          "row": 5,
+          "column": 4,
+          "bbox": [
+            467.8,
+            338.38,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 61,
+          "row": 5,
+          "column": 5,
+          "bbox": [
+            505.67,
+            338.38,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 62,
+          "row": 5,
+          "column": 6,
+          "bbox": [
+            543.54,
+            338.38,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 63,
+          "row": 5,
+          "column": 7,
+          "bbox": [
+            581.42,
+            338.38,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 64,
+          "row": 5,
+          "column": 8,
+          "bbox": [
+            619.29,
+            338.38,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 65,
+          "row": 5,
+          "column": 9,
+          "bbox": [
+            657.17,
+            338.38,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 66,
+          "row": 5,
+          "column": 10,
+          "bbox": [
+            695.04,
+            338.38,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 67,
+          "row": 5,
+          "column": 11,
+          "bbox": [
+            732.91,
+            338.38,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 68,
+          "row": 5,
+          "column": 12,
+          "bbox": [
+            770.79,
+            338.38,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 69,
+          "row": 5,
+          "column": 13,
+          "bbox": [
+            808.66,
+            338.38,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 70,
+          "row": 5,
+          "column": 14,
+          "bbox": [
+            846.54,
+            338.38,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 71,
+          "row": 6,
+          "column": 1,
+          "bbox": [
+            75.59,
+            385.57,
+            145.1,
+            47.19
+          ],
+          "text": "Saturn has rings",
+          "textPreview": "Saturn has rings",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Saturn has rings",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Saturn has rings",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 72,
+          "row": 6,
+          "column": 2,
+          "bbox": [
+            220.69,
+            385.57,
+            209.24,
+            47.19
+          ],
+          "text": "Saturn is a gas giant and has\nseveral rings",
+          "textPreview": "Saturn is a gas giant and has | several rings",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Saturn is a gas giant and has",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Saturn is a gas giant and has",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans",
+                  "color": "#191919"
+                }
+              ]
+            },
+            {
+              "index": 2,
+              "text": "several rings",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "several rings",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans",
+                  "color": "#191919"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 73,
+          "row": 6,
+          "column": 3,
+          "bbox": [
+            429.92,
+            385.57,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 74,
+          "row": 6,
+          "column": 4,
+          "bbox": [
+            467.8,
+            385.57,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 75,
+          "row": 6,
+          "column": 5,
+          "bbox": [
+            505.67,
+            385.57,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 76,
+          "row": 6,
+          "column": 6,
+          "bbox": [
+            543.54,
+            385.57,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 77,
+          "row": 6,
+          "column": 7,
+          "bbox": [
+            581.42,
+            385.57,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 78,
+          "row": 6,
+          "column": 8,
+          "bbox": [
+            619.29,
+            385.57,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 79,
+          "row": 6,
+          "column": 9,
+          "bbox": [
+            657.17,
+            385.57,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 80,
+          "row": 6,
+          "column": 10,
+          "bbox": [
+            695.04,
+            385.57,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 81,
+          "row": 6,
+          "column": 11,
+          "bbox": [
+            732.91,
+            385.57,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 82,
+          "row": 6,
+          "column": 12,
+          "bbox": [
+            770.79,
+            385.57,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 83,
+          "row": 6,
+          "column": 13,
+          "bbox": [
+            808.66,
+            385.57,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        },
+        {
+          "index": 84,
+          "row": 6,
+          "column": 14,
+          "bbox": [
+            846.54,
+            385.57,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 85,
+          "row": 7,
+          "column": 1,
+          "bbox": [
+            75.59,
+            432.77,
+            145.1,
+            47.19
+          ],
+          "text": "Mercury is small",
+          "textPreview": "Mercury is small",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Mercury is small",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Mercury is small",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 86,
+          "row": 7,
+          "column": 2,
+          "bbox": [
+            220.69,
+            432.77,
+            209.24,
+            47.19
+          ],
+          "text": "Mercury is the closest planet to the Sun and the smallest one",
+          "textPreview": "Mercury is the closest planet to the Sun and the smallest one",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Mercury is the closest planet to the Sun and the smallest one",
+              "marginLeft": 0,
+              "indent": 0,
+              "spaceBefore": 0,
+              "spaceAfter": 0,
+              "resolvedTextStyle": {
+                "alignment": "left"
+              },
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Mercury is the closest planet to the Sun and the smallest one",
+                  "fontSize": 13.33,
+                  "typeface": "Albert Sans",
+                  "color": "#191919"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 87,
+          "row": 7,
+          "column": 3,
+          "bbox": [
+            429.92,
+            432.77,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 88,
+          "row": 7,
+          "column": 4,
+          "bbox": [
+            467.8,
+            432.77,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 89,
+          "row": 7,
+          "column": 5,
+          "bbox": [
+            505.67,
+            432.77,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 90,
+          "row": 7,
+          "column": 6,
+          "bbox": [
+            543.54,
+            432.77,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 91,
+          "row": 7,
+          "column": 7,
+          "bbox": [
+            581.42,
+            432.77,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 92,
+          "row": 7,
+          "column": 8,
+          "bbox": [
+            619.29,
+            432.77,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 93,
+          "row": 7,
+          "column": 9,
+          "bbox": [
+            657.17,
+            432.77,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 94,
+          "row": 7,
+          "column": 10,
+          "bbox": [
+            695.04,
+            432.77,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 95,
+          "row": 7,
+          "column": 11,
+          "bbox": [
+            732.91,
+            432.77,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 96,
+          "row": 7,
+          "column": 12,
+          "bbox": [
+            770.79,
+            432.77,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 97,
+          "row": 7,
+          "column": 13,
+          "bbox": [
+            808.66,
+            432.77,
+            37.87,
+            47.19
+          ]
+        },
+        {
+          "index": 98,
+          "row": 7,
+          "column": 14,
+          "bbox": [
+            846.54,
+            432.77,
+            37.87,
+            47.19
+          ],
+          "fillColor": "lt2"
+        }
+      ]
+    }
+  ],
+  "composeRuns": []
+}
