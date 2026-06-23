@@ -64,9 +64,9 @@ fi
 if command -v yt-dlp >/dev/null 2>&1; then
   YT_DLP="$(command -v yt-dlp)"
 else
-  if [[ ! -x "${VENV_DIR}/bin/yt-dlp" ]]; then
-    python3 -m venv "${VENV_DIR}"
-    "${VENV_DIR}/bin/pip" install yt-dlp
+  if [[ ! -x "${VENV_DIR}/bin/yt-dlp" || ! -x "${VENV_DIR}/bin/python" ]]; then
+    python3 -m venv --clear "${VENV_DIR}"
+    "${VENV_DIR}/bin/python" -m pip install yt-dlp
   fi
   YT_DLP="${VENV_DIR}/bin/yt-dlp"
 fi

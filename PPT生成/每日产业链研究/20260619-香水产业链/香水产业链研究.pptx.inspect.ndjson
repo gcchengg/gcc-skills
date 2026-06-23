@@ -1,0 +1,178 @@
+{"kind":"deck","id":"pr/sbqs3t","name":"Deck"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"simple-light-2","type":"master","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"TITLE","type":"title","placeholders":[{"name":"title","type":"title"},{"name":"subtitle","type":"subtitle"},{"name":"picture","type":"picture"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout2.xml","name":"SECTION_HEADER","type":"secHead","placeholders":[{"name":"title","type":"title"},{"name":"title","type":"title","textPreview":"xx%"},{"name":"subtitle","type":"subtitle"},{"name":"picture","type":"picture"},{"name":"picture","type":"picture"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout3.xml","name":"TITLE_AND_BODY","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout4.xml","name":"TITLE_AND_TWO_COLUMNS","placeholders":[{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout5.xml","name":"TITLE_ONLY","type":"titleOnly","placeholders":[{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout6.xml","name":"ONE_COLUMN_TEXT","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"},{"name":"picture","type":"picture"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout7.xml","name":"MAIN_POINT","placeholders":[{"name":"picture","type":"picture"},{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout8.xml","name":"SECTION_TITLE_AND_DESCRIPTION","placeholders":[{"name":"title","type":"title"},{"name":"subtitle","type":"subtitle"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout9.xml","name":"CAPTION_ONLY","placeholders":[{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout10.xml","name":"BIG_NUMBER","placeholders":[{"name":"title","type":"title","textPreview":"xx%"},{"name":"subtitle","type":"subtitle"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout11.xml","name":"BLANK","type":"blank"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout12.xml","name":"BLANK_1","placeholders":[{"name":"title","type":"title","textPreview":"xx%"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title","textPreview":"xx%"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title","textPreview":"xx%"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title","textPreview":"xx%"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout13.xml","name":"BLANK_1_1","placeholders":[{"name":"title","type":"title"},{"name":"subtitle","type":"subtitle"},{"name":"picture","type":"picture"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout14.xml","name":"CUSTOM_3","placeholders":[{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"},{"name":"picture","type":"picture"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout15.xml","name":"CUSTOM_1_1","placeholders":[{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout16.xml","name":"CUSTOM_1_1_1","placeholders":[{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout17.xml","name":"CUSTOM_1_1_1_1","placeholders":[{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout18.xml","name":"CUSTOM_1_1_1_1_1","placeholders":[{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout19.xml","name":"TITLE_AND_TWO_COLUMNS_1","placeholders":[{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout20.xml","name":"TITLE_AND_TWO_COLUMNS_1_1_1","placeholders":[{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout21.xml","name":"BLANK_1_1_1_2","placeholders":[{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout22.xml","name":"BLANK_1_1_1_2_1","placeholders":[{"name":"title","type":"title"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout23.xml","name":"BLANK_1_1_1_1","placeholders":[{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout24.xml","name":"BLANK_1_1_1_1_1","placeholders":[{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout25.xml","name":"BLANK_1_1_1_1_1_1","placeholders":[{"name":"title","type":"title","textPreview":"xx%"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title","textPreview":"xx%"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title","textPreview":"xx%"},{"name":"subtitle","type":"subtitle"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout26.xml","name":"BLANK_1_1_1_1_1_1_3","placeholders":[{"name":"title","type":"title","textPreview":"xx%"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title","textPreview":"xx%"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title","textPreview":"xx%"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"subtitle","type":"subtitle"},{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout27.xml","name":"CUSTOM_2","placeholders":[{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout28.xml","name":"CUSTOM_2_1","placeholders":[{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout29.xml","name":"CUSTOM_2_1_1","placeholders":[{"name":"title","type":"title"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout30.xml","name":"BLANK_1_1_1_1_1_1_2","placeholders":[{"name":"title","type":"title"},{"name":"subtitle","type":"subtitle"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout31.xml","name":"BLANK_1_1_1_1_1_1_1"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout32.xml","name":"BLANK_1_1_1_1_1_1_1_1"}
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster2.xml","name":"simple-light-2","type":"master","placeholders":[{"name":"title","type":"title"},{"name":"body","type":"body"}]}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout33.xml","name":"BLANK","type":"blank"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout34.xml","name":"CUSTOM","placeholders":[{"name":"title","type":"title"}]}
+{"kind":"slide","id":"sl/2x4nap4r","slide":1,"title":"香水产业链","textShapes":3}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":1,"name":"Google Shape;273;p37","placeholder":"title","text":"香水产业链\n研究","textPreview":"香水产业链 | 研究","textChars":8,"textLines":2,"bbox":[75.08,183.01,549.57,249.86]}
+{"kind":"textbox","id":"sh/1032lszq","slide":1,"name":"Google Shape;274;p37","placeholder":"subtitle","text":"从香原料、调香配方到品牌渠道的一瓶香旅程","textPreview":"从香原料、调香配方到品牌渠道的一瓶香旅程","textChars":20,"textLines":1,"bbox":[75.08,436.98,536.28,42.99]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":1,"name":"Google Shape;279;p37","text":"Scent map","textPreview":"Scent map","textChars":9,"textLines":1,"bbox":[534.21,169.83,145.01,51.49]}
+{"kind":"image","id":"im/lc7u54zi","slide":1,"name":"Google Shape;272;p37","alt":"unbranded perfume scrapbook still life","bbox":[-76.21,108.71,760.22,458.43]}
+{"kind":"image","id":"im/wra5gbq1","slide":1,"name":"Google Shape;275;p37","bbox":[492.53,2.46,170.57,313.86]}
+{"kind":"image","id":"im/36hcrmhk","slide":1,"name":"Google Shape;276;p37","alt":"perfume raw materials scrapbook still life","bbox":[630.35,96.01,292.6,313.25]}
+{"kind":"image","id":"im/eloj2t83","slide":1,"name":"Google Shape;277;p37","alt":"perfume formulation lab bench still life","bbox":[690.17,151.25,172.57,204.83]}
+{"kind":"image","id":"im/l0rqd4vm","slide":1,"name":"Google Shape;278;p37","bbox":[759.18,320.08,154.35,163.75]}
+{"kind":"image","id":"im/wfyxobm5","slide":1,"name":"Google Shape;280;p37","bbox":[89.37,4.48,252.14,183.64]}
+{"kind":"notes","id":"nt/2x4nap4r","slide":1,"text":""}
+{"kind":"slide","id":"sl/pg3ex0nu","slide":2,"title":"研究目录","textShapes":14}
+{"kind":"textbox","id":"sh/nyd0z610","slide":2,"name":"Google Shape;295;p39","placeholder":"subtitle","text":"研究目录","textPreview":"研究目录","textChars":4,"textLines":1,"bbox":[75.08,199.47,257.32,50.9]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":2,"name":"Google Shape;296;p39","placeholder":"title","text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[75.62,137.17,140.44,62.3]}
+{"kind":"textbox","id":"sh/54zidony","slide":2,"name":"Google Shape;297;p39","placeholder":"subtitle","text":"从原料到成品：先看一瓶香水的主要链路","textPreview":"从原料到成品：先看一瓶香水的主要链路","textChars":18,"textLines":1,"bbox":[75.62,239.22,257.32,60.13]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":2,"name":"Google Shape;298;p39","placeholder":"title","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[357.35,137.17,140.47,62.3]}
+{"kind":"textbox","id":"sh/judg7ads","slide":2,"name":"Google Shape;299;p39","placeholder":"subtitle","text":"天然香料、合成分子、酒精与包材","textPreview":"天然香料、合成分子、酒精与包材","textChars":15,"textLines":1,"bbox":[357.35,239.22,257.32,60.13]}
+{"kind":"textbox","id":"sh/k3q5o7qp","slide":2,"name":"Google Shape;300;p39","placeholder":"title","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[75.62,310.24,140.44,62.3]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":2,"name":"Google Shape;301;p39","placeholder":"subtitle","text":"调香、稳定性测试、合规与灌装","textPreview":"调香、稳定性测试、合规与灌装","textChars":14,"textLines":1,"bbox":[75.62,412.76,257.32,60.13]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":2,"name":"Google Shape;302;p39","placeholder":"title","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[357.35,310.24,140.47,62.3]}
+{"kind":"textbox","id":"sh/vixczed8","slide":2,"name":"Google Shape;303;p39","placeholder":"subtitle","text":"品牌、试香、渠道、礼赠和复购","textPreview":"品牌、试香、渠道、礼赠和复购","textChars":14,"textLines":1,"bbox":[357.35,412.76,257.32,60.13]}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":2,"name":"Google Shape;304;p39","placeholder":"title","text":"Table of contents","textPreview":"Table of contents","textChars":17,"textLines":1,"bbox":[75.59,46.72,808.82,60.13]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":2,"name":"Google Shape;305;p39","placeholder":"subtitle","text":"产业链","textPreview":"产业链","textChars":3,"textLines":1,"bbox":[357.35,199.47,257.32,50.9]}
+{"kind":"textbox","id":"sh/6psfil0r","slide":2,"name":"Google Shape;306;p39","placeholder":"subtitle","text":"中游","textPreview":"中游","textChars":2,"textLines":1,"bbox":[75.08,372.54,257.32,50.9]}
+{"kind":"textbox","id":"sh/val87ed8","slide":2,"name":"Google Shape;307;p39","placeholder":"subtitle","text":"下游","textPreview":"下游","textChars":2,"textLines":1,"bbox":[357.35,372.54,257.32,50.9]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":2,"name":"Google Shape;310;p39","text":"从闻到买","textPreview":"从闻到买","textChars":4,"textLines":1,"bbox":[663.97,155.1,134.84,89.59]}
+{"kind":"image","id":"im/32lszqtc","slide":2,"name":"Google Shape;308;p39","bbox":[636.83,101.4,247.18,300.78]}
+{"kind":"image","id":"im/sneloj2t","slide":2,"name":"Google Shape;309;p39","bbox":[614.68,275.48,250.99,179.05]}
+{"kind":"image","id":"im/l87ed8ba","slide":2,"name":"Google Shape;311;p39","bbox":[757.17,228.84,198.68,300.01]}
+{"kind":"notes","id":"nt/pg3ex0nu","slide":2,"text":""}
+{"kind":"slide","id":"sl/s72x4nap","slide":3,"title":"原料","textShapes":7}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":3,"name":"Google Shape;381;p45","placeholder":"subtitle","text":"原料","textPreview":"原料","textChars":2,"textLines":1,"bbox":[75.59,274.81,245.29,52.44]}
+{"kind":"textbox","id":"sh/j6tovaho","slide":3,"name":"Google Shape;382;p45","placeholder":"subtitle","text":"配方","textPreview":"配方","textChars":2,"textLines":1,"bbox":[357.35,274.81,245.29,52.44]}
+{"kind":"textbox","id":"sh/ulwval87","slide":3,"name":"Google Shape;383;p45","placeholder":"subtitle","text":"消费","textPreview":"消费","textChars":2,"textLines":1,"bbox":[639.12,274.81,245.29,52.44]}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":3,"name":"Google Shape;384;p45","placeholder":"title","text":"香水产业链全景","textPreview":"香水产业链全景","textChars":7,"textLines":1,"bbox":[75.59,46.72,808.82,60.13]}
+{"kind":"textbox","id":"sh/c3ylc7u5","slide":3,"name":"Google Shape;385;p45","placeholder":"subtitle","text":"天然花材、柑橘、木材、树脂与合成香料分子，决定气味底子与稳定性。","textPreview":"天然花材、柑橘、木材、树脂与合成香料分子，决定气味底子与稳定性。","textChars":32,"textLines":1,"bbox":[75.59,323.68,245.29,94.3]}
+{"kind":"textbox","id":"sh/ji5snelo","slide":3,"name":"Google Shape;386;p45","placeholder":"subtitle","text":"调香师按品牌 brief 复配香精，并完成安全、过敏原、稳定性与瓶器测试。","textPreview":"调香师按品牌 brief 复配香精，并完成安全、过敏原、稳定性与瓶器测试。","textChars":37,"textLines":1,"bbox":[357.35,323.68,245.29,94.3]}
+{"kind":"textbox","id":"sh/uxc3ylc7","slide":3,"name":"Google Shape;387;p45","placeholder":"subtitle","text":"品牌把气味转化为名字、瓶器、故事、小样和渠道体验，降低闻不到的购买不确定性。","textPreview":"品牌把气味转化为名字、瓶器、故事、小样和渠道体验，降低闻不到的购买不确定性。","textChars":38,"textLines":1,"bbox":[639.12,323.68,245.29,94.3]}
+{"kind":"image","id":"im/svu9knih","slide":3,"name":"Google Shape;413;p45","bbox":[827.06,56.17,90.75,94.3]}
+{"kind":"image","id":"im/hgn29gr2","slide":3,"name":"Google Shape;414;p45","bbox":[-15.49,129.34,155.69,132.44]}
+{"kind":"notes","id":"nt/s72x4nap","slide":3,"text":""}
+{"kind":"slide","id":"sl/val87ed8","slide":4,"title":"天然香原料","textShapes":9}
+{"kind":"textbox","id":"sh/61032lsz","slide":4,"name":"Google Shape;419;p46","placeholder":"subtitle","text":"天然香原料","textPreview":"天然香原料","textChars":5,"textLines":1,"bbox":[163.02,171.83,229.86,54.61]}
+{"kind":"textbox","id":"sh/e9cvixcz","slide":4,"name":"Google Shape;420;p46","placeholder":"subtitle","text":"产地、季节、采收和提取工艺决定复杂度，也带来波动。","textPreview":"产地、季节、采收和提取工艺决定复杂度，也带来波动。","textChars":25,"textLines":1,"bbox":[163.02,226.44,229.86,65.39]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":4,"name":"Google Shape;421;p46","placeholder":"subtitle","text":"补足天然原料不稳定、成本高或受限的问题。","textPreview":"补足天然原料不稳定、成本高或受限的问题。","textChars":20,"textLines":1,"bbox":[503.27,226.44,229.86,65.39]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":4,"name":"Google Shape;422;p46","placeholder":"title","text":"上游：气味从哪里来","textPreview":"上游：气味从哪里来","textChars":9,"textLines":1,"bbox":[75.59,46.72,808.82,60.13]}
+{"kind":"textbox","id":"sh/lwval87e","slide":4,"name":"Google Shape;423;p46","placeholder":"subtitle","text":"酒精与助剂","textPreview":"酒精与助剂","textChars":5,"textLines":1,"bbox":[163.02,342.38,229.86,54.61]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":4,"name":"Google Shape;424;p46","placeholder":"subtitle","text":"影响挥发、溶解、肤感和成品稳定。","textPreview":"影响挥发、溶解、肤感和成品稳定。","textChars":16,"textLines":1,"bbox":[163.02,396.99,229.86,65.39]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":4,"name":"Google Shape;425;p46","placeholder":"subtitle","text":"玻璃瓶、喷泵、外盒和印刷共同塑造感知价值。","textPreview":"玻璃瓶、喷泵、外盒和印刷共同塑造感知价值。","textChars":21,"textLines":1,"bbox":[503.27,396.99,229.86,65.39]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":4,"name":"Google Shape;426;p46","placeholder":"subtitle","text":"合成香料分子","textPreview":"合成香料分子","textChars":6,"textLines":1,"bbox":[503.27,171.83,229.86,54.61]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":4,"name":"Google Shape;427;p46","placeholder":"subtitle","text":"包材原料","textPreview":"包材原料","textChars":4,"textLines":1,"bbox":[503.27,342.38,229.86,54.61]}
+{"kind":"shape","id":"sh/at47y1kr","slide":4,"name":"Google Shape;428;p46","bbox":[440.12,356.81,39.42,48.33]}
+{"kind":"shape","id":"sh/83itgfml","slide":4,"name":"Google Shape;440;p46","bbox":[97.98,188.14,47.25,42.59]}
+{"kind":"image","id":"im/g3ex0nux","slide":4,"name":"Google Shape;441;p46","alt":"perfume botanical raw materials flat lay","bbox":[785.31,162.69,131.05,241.15]}
+{"kind":"image","id":"im/nih4byhg","slide":4,"name":"Google Shape;442;p46","bbox":[691.42,9.02,186.09,135.53]}
+{"kind":"notes","id":"nt/val87ed8","slide":4,"text":""}
+{"kind":"slide","id":"sl/mlkjm1cf","slide":5,"title":"香精创作","textShapes":13}
+{"kind":"textbox","id":"sh/54zidony","slide":5,"name":"Google Shape;447;p47","placeholder":"subtitle","text":"香精创作","textPreview":"香精创作","textChars":4,"textLines":1,"bbox":[75.08,174.59,245.29,53.39]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":5,"name":"Google Shape;448;p47","placeholder":"subtitle","text":"混配、熟化、过滤、灌装、装泵、贴标和追溯。","textPreview":"混配、熟化、过滤、灌装、装泵、贴标和追溯。","textChars":21,"textLines":1,"bbox":[75.08,387.02,245.29,65.35]}
+{"kind":"textbox","id":"sh/judg7ads","slide":5,"name":"Google Shape;449;p47","placeholder":"subtitle","text":"批次一致性和资料留存是复购体验的底层保障。","textPreview":"批次一致性和资料留存是复购体验的底层保障。","textChars":21,"textLines":1,"bbox":[357.35,387.02,245.29,65.35]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":5,"name":"Google Shape;450;p47","placeholder":"subtitle","text":"调香师把数十种原料组合成有辨识度的香气结构。","textPreview":"调香师把数十种原料组合成有辨识度的香气结构。","textChars":22,"textLines":1,"bbox":[75.08,227.72,245.29,65.35]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":5,"name":"Google Shape;451;p47","placeholder":"subtitle","text":"灌装包装","textPreview":"灌装包装","textChars":4,"textLines":1,"bbox":[75.08,333.41,245.29,53.39]}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":5,"name":"Google Shape;452;p47","placeholder":"title","text":"中游：把气味做成商品","textPreview":"中游：把气味做成商品","textChars":10,"textLines":1,"bbox":[75.59,46.72,808.82,60.13]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":5,"name":"Google Shape;453;p47","placeholder":"subtitle","text":"法规筛查","textPreview":"法规筛查","textChars":4,"textLines":1,"bbox":[357.35,174.59,245.29,53.39]}
+{"kind":"textbox","id":"sh/9knih4by","slide":5,"name":"Google Shape;454;p47","placeholder":"subtitle","text":"稳定性测试","textPreview":"稳定性测试","textChars":5,"textLines":1,"bbox":[639.63,174.59,245.29,53.39]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":5,"name":"Google Shape;455;p47","placeholder":"subtitle","text":"IFRA 标准、过敏原披露和各地化妆品规则影响配方。","textPreview":"IFRA 标准、过敏原披露和各地化妆品规则影响配方。","textChars":26,"textLines":1,"bbox":[357.35,227.72,245.29,65.35]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":5,"name":"Google Shape;456;p47","placeholder":"subtitle","text":"验证变色、沉淀、喷泵兼容、光照和运输温度。","textPreview":"验证变色、沉淀、喷泵兼容、光照和运输温度。","textChars":21,"textLines":1,"bbox":[639.63,227.72,245.29,65.35]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":5,"name":"Google Shape;457;p47","placeholder":"subtitle","text":"名称、故事、容量、小样和上市节奏决定商业化效率。","textPreview":"名称、故事、容量、小样和上市节奏决定商业化效率。","textChars":24,"textLines":1,"bbox":[639.63,387.02,245.29,65.35]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":5,"name":"Google Shape;458;p47","placeholder":"subtitle","text":"品牌开发","textPreview":"品牌开发","textChars":4,"textLines":1,"bbox":[357.35,333.41,245.29,53.39]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":5,"name":"Google Shape;459;p47","placeholder":"subtitle","text":"质量追溯","textPreview":"质量追溯","textChars":4,"textLines":1,"bbox":[639.63,333.41,245.29,53.39]}
+{"kind":"image","id":"im/x4nap4r6","slide":5,"name":"Google Shape;460;p47","bbox":[-40.8,11.78,192.16,198.24]}
+{"kind":"notes","id":"nt/mlkjm1cf","slide":5,"text":""}
+{"kind":"slide","id":"sl/58z25kb6","slide":6,"title":"百货专柜","textShapes":13}
+{"kind":"textbox","id":"sh/j2t83itg","slide":6,"name":"Google Shape;447;p47","placeholder":"subtitle","text":"百货专柜","textPreview":"百货专柜","textChars":4,"textLines":1,"bbox":[75.08,174.59,245.29,53.39]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":6,"name":"Google Shape;448;p47","placeholder":"subtitle","text":"礼盒和套装强，但受旅游客流、汇率与政策影响。","textPreview":"礼盒和套装强，但受旅游客流、汇率与政策影响。","textChars":22,"textLines":1,"bbox":[75.08,387.02,245.29,65.35]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":6,"name":"Google Shape;449;p47","placeholder":"subtitle","text":"香水交易的核心仍是亲自闻到后的信任感。","textPreview":"香水交易的核心仍是亲自闻到后的信任感。","textChars":19,"textLines":1,"bbox":[357.35,387.02,245.29,65.35]}
+{"kind":"textbox","id":"sh/7y1kre1w","slide":6,"name":"Google Shape;450;p47","placeholder":"subtitle","text":"试香、导购和礼赠体验强，但依赖柜位和客流。","textPreview":"试香、导购和礼赠体验强，但依赖柜位和客流。","textChars":21,"textLines":1,"bbox":[75.08,227.72,245.29,65.35]}
+{"kind":"textbox","id":"sh/ed8v6psf","slide":6,"name":"Google Shape;451;p47","placeholder":"subtitle","text":"免税旅行","textPreview":"免税旅行","textChars":4,"textLines":1,"bbox":[75.08,333.41,245.29,53.39]}
+{"kind":"textbox","id":"sh/p4r65wju","slide":6,"name":"Google Shape;452;p47","placeholder":"title","text":"下游：从闻到买","textPreview":"下游：从闻到买","textChars":7,"textLines":1,"bbox":[75.59,46.72,808.82,60.13]}
+{"kind":"textbox","id":"sh/wjudg7ad","slide":6,"name":"Google Shape;453;p47","placeholder":"subtitle","text":"集合店","textPreview":"集合店","textChars":3,"textLines":1,"bbox":[357.35,174.59,245.29,53.39]}
+{"kind":"textbox","id":"sh/7qpg3ex0","slide":6,"name":"Google Shape;454;p47","placeholder":"subtitle","text":"内容电商","textPreview":"内容电商","textChars":4,"textLines":1,"bbox":[639.63,174.59,245.29,53.39]}
+{"kind":"textbox","id":"sh/i5sneloj","slide":6,"name":"Google Shape;455;p47","placeholder":"subtitle","text":"适合发现式消费，小众香依赖选品和试香动线。","textPreview":"适合发现式消费，小众香依赖选品和试香动线。","textChars":21,"textLines":1,"bbox":[357.35,227.72,245.29,65.35]}
+{"kind":"textbox","id":"sh/pwb2hwfy","slide":6,"name":"Google Shape;456;p47","placeholder":"subtitle","text":"用香调语言、小样和达人测评解决线上闻不到。","textPreview":"用香调语言、小样和达人测评解决线上闻不到。","textChars":21,"textLines":1,"bbox":[639.63,227.72,245.29,65.35]}
+{"kind":"textbox","id":"sh/0bi9s36h","slide":6,"name":"Google Shape;457;p47","placeholder":"subtitle","text":"节日礼赠、季节香和补充装推动持续消费。","textPreview":"节日礼赠、季节香和补充装推动持续消费。","textChars":19,"textLines":1,"bbox":[639.63,387.02,245.29,65.35]}
+{"kind":"textbox","id":"sh/7ed8bat4","slide":6,"name":"Google Shape;458;p47","placeholder":"subtitle","text":"会员复购","textPreview":"会员复购","textChars":4,"textLines":1,"bbox":[357.35,333.41,245.29,53.39]}
+{"kind":"textbox","id":"sh/itgfmlkj","slide":6,"name":"Google Shape;459;p47","placeholder":"subtitle","text":"线下体验","textPreview":"线下体验","textChars":4,"textLines":1,"bbox":[639.63,333.41,245.29,53.39]}
+{"kind":"image","id":"im/judg7ads","slide":6,"name":"Google Shape;460;p47","bbox":[-40.8,11.78,192.16,198.24]}
+{"kind":"notes","id":"nt/58z25kb6","slide":6,"text":""}
+{"kind":"slide","id":"sl/0z61032l","slide":7,"title":"货物流","textShapes":7}
+{"kind":"textbox","id":"sh/1w7mp0bi","slide":7,"name":"Google Shape;381;p45","placeholder":"subtitle","text":"货物流","textPreview":"货物流","textChars":3,"textLines":1,"bbox":[75.59,274.81,245.29,52.44]}
+{"kind":"textbox","id":"sh/q5o7qpg3","slide":7,"name":"Google Shape;382;p45","placeholder":"subtitle","text":"资金流","textPreview":"资金流","textChars":3,"textLines":1,"bbox":[357.35,274.81,245.29,52.44]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":7,"name":"Google Shape;383;p45","placeholder":"subtitle","text":"信息流","textPreview":"信息流","textChars":3,"textLines":1,"bbox":[639.12,274.81,245.29,52.44]}
+{"kind":"textbox","id":"sh/8nqxs72x","slide":7,"name":"Google Shape;384;p45","placeholder":"title","text":"四种流动关系","textPreview":"四种流动关系","textChars":6,"textLines":1,"bbox":[75.59,46.72,808.82,60.13]}
+{"kind":"textbox","id":"sh/18jqh0fe","slide":7,"name":"Google Shape;385;p45","placeholder":"subtitle","text":"原料商 → 香精公司 → 灌装包材 → 品牌 → 渠道 → 消费者。","textPreview":"原料商 → 香精公司 → 灌装包材 → 品牌 → 渠道 → 消费者。","textChars":34,"textLines":1,"bbox":[75.59,323.68,245.29,94.3]}
+{"kind":"textbox","id":"sh/qh0fepkz","slide":7,"name":"Google Shape;386;p45","placeholder":"subtitle","text":"消费者付款经渠道回到品牌，再分配给香精、包材、灌装和营销。","textPreview":"消费者付款经渠道回到品牌，再分配给香精、包材、灌装和营销。","textChars":29,"textLines":1,"bbox":[357.35,323.68,245.29,94.3]}
+{"kind":"textbox","id":"sh/j2t83itg","slide":7,"name":"Google Shape;387;p45","placeholder":"subtitle","text":"试香反馈、热词、复购数据回流，影响下一轮 brief 和新品方向。","textPreview":"试香反馈、热词、复购数据回流，影响下一轮 brief 和新品方向。","textChars":33,"textLines":1,"bbox":[639.12,323.68,245.29,94.3]}
+{"kind":"image","id":"im/pwb2hwfy","slide":7,"name":"Google Shape;413;p45","bbox":[827.06,56.17,90.75,94.3]}
+{"kind":"image","id":"im/0bi9s36h","slide":7,"name":"Google Shape;414;p45","bbox":[-15.49,129.34,155.69,132.44]}
+{"kind":"notes","id":"nt/0z61032l","slide":7,"text":""}
+{"kind":"slide","id":"sl/fu18jqh0","slide":8,"title":"气味设计","textShapes":9}
+{"kind":"textbox","id":"sh/2p8nqxs7","slide":8,"name":"Google Shape;419;p46","placeholder":"subtitle","text":"气味设计","textPreview":"气味设计","textChars":4,"textLines":1,"bbox":[163.02,171.83,229.86,54.61]}
+{"kind":"textbox","id":"sh/qd4vmtwr","slide":8,"name":"Google Shape;420;p46","placeholder":"subtitle","text":"调香把原料变成可识别结构，是香水差异化的核心。","textPreview":"调香把原料变成可识别结构，是香水差异化的核心。","textChars":23,"textLines":1,"bbox":[163.02,226.44,229.86,65.39]}
+{"kind":"textbox","id":"sh/fyxobm58","slide":8,"name":"Google Shape;421;p46","placeholder":"subtitle","text":"名字、瓶器、故事和内容把气味转成身份符号。","textPreview":"名字、瓶器、故事和内容把气味转成身份符号。","textChars":21,"textLines":1,"bbox":[503.27,226.44,229.86,65.39]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":8,"name":"Google Shape;422;p46","placeholder":"title","text":"价值分配：香水贵在哪里","textPreview":"价值分配：香水贵在哪里","textChars":11,"textLines":1,"bbox":[75.59,46.72,808.82,60.13]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":8,"name":"Google Shape;423;p46","placeholder":"subtitle","text":"渠道体验","textPreview":"渠道体验","textChars":4,"textLines":1,"bbox":[163.02,342.38,229.86,54.61]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":8,"name":"Google Shape;424;p46","placeholder":"subtitle","text":"专柜试香、导购、小样和礼盒降低购买不确定性。","textPreview":"专柜试香、导购、小样和礼盒降低购买不确定性。","textChars":22,"textLines":1,"bbox":[163.02,396.99,229.86,65.39]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":8,"name":"Google Shape;425;p46","placeholder":"subtitle","text":"试香体系、退换货、陈列、法规资料和库存滞销常被低估。","textPreview":"试香体系、退换货、陈列、法规资料和库存滞销常被低估。","textChars":26,"textLines":1,"bbox":[503.27,396.99,229.86,65.39]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":8,"name":"Google Shape;426;p46","placeholder":"subtitle","text":"品牌叙事","textPreview":"品牌叙事","textChars":4,"textLines":1,"bbox":[503.27,171.83,229.86,54.61]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":8,"name":"Google Shape;427;p46","placeholder":"subtitle","text":"隐性成本","textPreview":"隐性成本","textChars":4,"textLines":1,"bbox":[503.27,342.38,229.86,54.61]}
+{"kind":"shape","id":"sh/qtcj6tov","slide":8,"name":"Google Shape;428;p46","bbox":[440.12,356.81,39.42,48.33]}
+{"kind":"shape","id":"sh/knih4byh","slide":8,"name":"Google Shape;440;p46","bbox":[97.98,188.14,47.25,42.59]}
+{"kind":"image","id":"im/s72x4nap","slide":8,"name":"Google Shape;441;p46","alt":"perfume formulation lab bench still life","bbox":[785.31,162.69,131.05,241.15]}
+{"kind":"image","id":"im/3m94fu18","slide":8,"name":"Google Shape;442;p46","bbox":[691.42,9.02,186.09,135.53]}
+{"kind":"notes","id":"nt/fu18jqh0","slide":8,"text":""}
+{"kind":"slide","id":"sl/qh0fepkz","slide":9,"title":"原料波动","textShapes":13}
+{"kind":"textbox","id":"sh/54zidony","slide":9,"name":"Google Shape;447;p47","placeholder":"subtitle","text":"原料波动","textPreview":"原料波动","textChars":4,"textLines":1,"bbox":[75.08,174.59,245.29,53.39]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":9,"name":"Google Shape;448;p47","placeholder":"subtitle","text":"禁限用和过敏原披露变化可能带来重配方。","textPreview":"禁限用和过敏原披露变化可能带来重配方。","textChars":19,"textLines":1,"bbox":[75.08,387.02,245.29,65.35]}
+{"kind":"textbox","id":"sh/judg7ads","slide":9,"name":"Google Shape;449;p47","placeholder":"subtitle","text":"身体喷雾、家居香氛和低价小样会分流预算。","textPreview":"身体喷雾、家居香氛和低价小样会分流预算。","textChars":20,"textLines":1,"bbox":[357.35,387.02,245.29,65.35]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":9,"name":"Google Shape;450;p47","placeholder":"subtitle","text":"天气、产地和可持续采购会影响天然原料供应。","textPreview":"天气、产地和可持续采购会影响天然原料供应。","textChars":21,"textLines":1,"bbox":[75.08,227.72,245.29,65.35]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":9,"name":"Google Shape;451;p47","placeholder":"subtitle","text":"配方重做","textPreview":"配方重做","textChars":4,"textLines":1,"bbox":[75.08,333.41,245.29,53.39]}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":9,"name":"Google Shape;452;p47","placeholder":"title","text":"壁垒与风险：不只看香味","textPreview":"壁垒与风险：不只看香味","textChars":11,"textLines":1,"bbox":[75.59,46.72,808.82,60.13]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":9,"name":"Google Shape;453;p47","placeholder":"subtitle","text":"包材交期","textPreview":"包材交期","textChars":4,"textLines":1,"bbox":[357.35,174.59,245.29,53.39]}
+{"kind":"textbox","id":"sh/9knih4by","slide":9,"name":"Google Shape;454;p47","placeholder":"subtitle","text":"需求波动","textPreview":"需求波动","textChars":4,"textLines":1,"bbox":[639.63,174.59,245.29,53.39]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":9,"name":"Google Shape;455;p47","placeholder":"subtitle","text":"特殊玻璃瓶、喷泵和外盒工艺会拖慢上市。","textPreview":"特殊玻璃瓶、喷泵和外盒工艺会拖慢上市。","textChars":19,"textLines":1,"bbox":[357.35,227.72,245.29,65.35]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":9,"name":"Google Shape;456;p47","placeholder":"subtitle","text":"流行香调、社交热度、礼赠季和旅游零售都影响销量。","textPreview":"流行香调、社交热度、礼赠季和旅游零售都影响销量。","textChars":24,"textLines":1,"bbox":[639.63,227.72,245.29,65.35]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":9,"name":"Google Shape;457;p47","placeholder":"subtitle","text":"闻不到让线上转化依赖小样、描述和评价体系。","textPreview":"闻不到让线上转化依赖小样、描述和评价体系。","textChars":21,"textLines":1,"bbox":[639.63,387.02,245.29,65.35]}
+{"kind":"textbox","id":"sh/9gr2p8nq","slide":9,"name":"Google Shape;458;p47","placeholder":"subtitle","text":"线上试香","textPreview":"线上试香","textChars":4,"textLines":1,"bbox":[357.35,333.41,245.29,53.39]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":9,"name":"Google Shape;459;p47","placeholder":"subtitle","text":"替代分流","textPreview":"替代分流","textChars":4,"textLines":1,"bbox":[639.63,333.41,245.29,53.39]}
+{"kind":"image","id":"im/5kb6xkf6","slide":9,"name":"Google Shape;460;p47","bbox":[-40.8,11.78,192.16,198.24]}
+{"kind":"notes","id":"nt/qh0fepkz","slide":9,"text":""}
+{"kind":"slide","id":"sl/29gr2p8n","slide":10,"title":"结论","textShapes":3}
+{"kind":"textbox","id":"sh/za1gvy90","slide":10,"name":"Google Shape;273;p37","placeholder":"title","text":"结论","textPreview":"结论","textChars":2,"textLines":1,"bbox":[75.08,183.01,549.57,249.86]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":10,"name":"Google Shape;274;p37","placeholder":"subtitle","text":"一瓶香水卖的不是单一味道，而是供应、设计、合规、品牌与渠道体验的组合。","textPreview":"一瓶香水卖的不是单一味道，而是供应、设计、合规、品牌与渠道体验的组合。","textChars":35,"textLines":1,"bbox":[75.08,436.98,536.28,42.99]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":10,"name":"Google Shape;279;p37","text":"香水产业链","textPreview":"香水产业链","textChars":5,"textLines":1,"bbox":[534.21,169.83,145.01,51.49]}
+{"kind":"image","id":"im/wra5gbq1","slide":10,"name":"Google Shape;272;p37","alt":"unbranded perfume scrapbook still life","bbox":[-76.21,108.71,760.22,458.43]}
+{"kind":"image","id":"im/lc7u54zi","slide":10,"name":"Google Shape;275;p37","bbox":[492.53,2.46,170.57,313.86]}
+{"kind":"image","id":"im/eloj2t83","slide":10,"name":"Google Shape;276;p37","alt":"perfume raw materials scrapbook still life","bbox":[630.35,96.01,292.6,313.25]}
+{"kind":"image","id":"im/36hcrmhk","slide":10,"name":"Google Shape;277;p37","alt":"perfume formulation lab bench still life","bbox":[690.17,151.25,172.57,204.83]}
+{"kind":"image","id":"im/wfyxobm5","slide":10,"name":"Google Shape;278;p37","bbox":[759.18,320.08,154.35,163.75]}
+{"kind":"image","id":"im/l0rqd4vm","slide":10,"name":"Google Shape;280;p37","bbox":[89.37,4.48,252.14,183.64]}
+{"kind":"notes","id":"nt/29gr2p8n","slide":10,"text":""}

@@ -1,0 +1,249 @@
+{"kind":"layout","layoutId":"/ppt/slideMasters/slideMaster1.xml","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"/ppt/slideLayouts/slideLayout1.xml","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/2x4nap4r","slide":1,"title":"高考专题","textShapes":4}
+{"kind":"shape","id":"sh/nap4r65w","slide":1,"bbox":[-150,740,440,440]}
+{"kind":"shape","id":"sh/cvixczed","slide":1,"bbox":[1540,-120,390,360]}
+{"kind":"shape","id":"sh/5gbq1ory","slide":1,"bbox":[1530,80,170,38]}
+{"kind":"textbox","id":"sh/udg7adsj","slide":1,"text":"高考专题","textPreview":"高考专题","textChars":4,"textLines":1,"bbox":[1544,88,142,22]}
+{"kind":"textbox","id":"sh/nyd0z610","slide":1,"text":"高考产业链","textPreview":"高考产业链","textChars":5,"textLines":1,"bbox":[210,255,690,145]}
+{"kind":"textbox","id":"sh/cj6tovah","slide":1,"text":"从备考、考务、志愿填报到高校录取","textPreview":"从备考、考务、志愿填报到高校录取","textChars":16,"textLines":1,"bbox":[215,425,780,45]}
+{"kind":"textbox","id":"sh/54zidony","slide":1,"text":"规则可信 · 信息匹配 · 家庭决策","textPreview":"规则可信 · 信息匹配 · 家庭决策","textChars":18,"textLines":1,"bbox":[215,520,720,45]}
+{"kind":"image","id":"im/bm58z25k","slide":1,"name":"","geometry":"roundRect","bbox":[1160,420,480,300]}
+{"kind":"slide","id":"sl/pg3ex0nu","slide":2,"title":"Table of contents","textShapes":20}
+{"kind":"shape","id":"sh/yxobm58z","slide":2,"bbox":[1600,700,430,430]}
+{"kind":"shape","id":"sh/5o7qpg3e","slide":2,"bbox":[-85,-120,310,300]}
+{"kind":"textbox","id":"sh/g3ex0nux","slide":2,"text":"Table of contents","textPreview":"Table of contents","textChars":17,"textLines":1,"bbox":[205,105,980,80]}
+{"kind":"textbox","id":"sh/r65wjudg","slide":2,"text":"按原模板目录页的五点布局，压缩高考产业链叙事。","textPreview":"按原模板目录页的五点布局，压缩高考产业链叙事。","textChars":23,"textLines":1,"bbox":[208,198,1120,42]}
+{"kind":"textbox","id":"sh/ylc7u54z","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1618,108,120,70]}
+{"kind":"textbox","id":"sh/9cvixcze","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[360,355,100,52]}
+{"kind":"textbox","id":"sh/gr2p8nqx","slide":2,"text":"产业链全景","textPreview":"产业链全景","textChars":5,"textLines":1,"bbox":[270,423,280,35]}
+{"kind":"textbox","id":"sh/rytsvu9k","slide":2,"text":"看清从学习到录取的主链路","textPreview":"看清从学习到录取的主链路","textChars":12,"textLines":1,"bbox":[240,465,340,45]}
+{"kind":"textbox","id":"sh/yd0z6103","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[760,355,100,52]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":2,"text":"上游资源","textPreview":"上游资源","textChars":4,"textLines":1,"bbox":[670,423,280,35]}
+{"kind":"textbox","id":"sh/lwval87e","slide":2,"text":"课程、规则、数据和安全系统","textPreview":"课程、规则、数据和安全系统","textChars":13,"textLines":1,"bbox":[640,465,340,45]}
+{"kind":"textbox","id":"sh/e9cvixcz","slide":2,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1160,355,100,52]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":2,"text":"中游交付","textPreview":"中游交付","textChars":4,"textLines":1,"bbox":[1070,423,280,35]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":2,"text":"备考、考务、志愿服务","textPreview":"备考、考务、志愿服务","textChars":10,"textLines":1,"bbox":[1040,465,340,45]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":2,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[560,610,100,52]}
+{"kind":"textbox","id":"sh/ex0nuxc3","slide":2,"text":"价值分配","textPreview":"价值分配","textChars":4,"textLines":1,"bbox":[470,678,280,35]}
+{"kind":"textbox","id":"sh/3itgfmlk","slide":2,"text":"学习效率与信息匹配","textPreview":"学习效率与信息匹配","textChars":9,"textLines":1,"bbox":[440,720,340,45]}
+{"kind":"textbox","id":"sh/szqtcj6t","slide":2,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[960,610,100,52]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":2,"text":"风险边界","textPreview":"风险边界","textChars":4,"textLines":1,"bbox":[870,678,280,35]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":2,"text":"焦虑营销与录取承诺","textPreview":"焦虑营销与录取承诺","textChars":9,"textLines":1,"bbox":[840,720,340,45]}
+{"kind":"textbox","id":"sh/wra5gbq1","slide":2,"text":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textPreview":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textChars":37,"textLines":1,"bbox":[190,1010,1180,28]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1715,987,80,45]}
+{"kind":"slide","id":"sl/s72x4nap","slide":3,"title":"01","textShapes":3}
+{"kind":"shape","id":"sh/vmtwra5g","slide":3,"bbox":[1600,700,430,430]}
+{"kind":"shape","id":"sh/o7qpg3ex","slide":3,"bbox":[-85,-120,310,300]}
+{"kind":"textbox","id":"sh/dsji5sne","slide":3,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1120,360,170,90]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":3,"text":"产业链全景","textPreview":"产业链全景","textChars":5,"textLines":1,"bbox":[730,455,600,80]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":3,"text":"高考不是两天考试，而是一套长周期选拔与信息匹配系统。","textPreview":"高考不是两天考试，而是一套长周期选拔与信息匹配系统。","textChars":26,"textLines":1,"bbox":[720,555,620,48]}
+{"kind":"slide","id":"sl/val87ed8","slide":4,"title":"高考产业链定义","textShapes":7}
+{"kind":"shape","id":"sh/1gvy90je","slide":4,"bbox":[1610,-150,395,395]}
+{"kind":"shape","id":"sh/qtcj6tov","slide":4,"bbox":[-130,820,330,330]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":4,"text":"高考产业链定义","textPreview":"高考产业链定义","textChars":7,"textLines":1,"bbox":[205,105,980,80]}
+{"kind":"textbox","id":"sh/87ed8bat","slide":4,"text":"围绕规则、评价、信息和升学结果展开。","textPreview":"围绕规则、评价、信息和升学结果展开。","textChars":18,"textLines":1,"bbox":[208,198,1120,42]}
+{"kind":"textbox","id":"sh/xs72x4na","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1618,108,120,70]}
+{"kind":"textbox","id":"sh/q1orytsv","slide":4,"text":"高考产业链不是只有“考生考试”这一天，而是从高中学习、报名资格、命题考务、评卷成绩、志愿填报，到高校录取和入学衔接的连续系统。","textPreview":"高考产业链不是只有“考生考试”这一天，而是从高中学习、报名资格、命题考务、评卷成绩、志愿填报，到高校录取和入学衔接的连续系统。","textChars":63,"textLines":1,"bbox":[250,385,610,230]}
+{"kind":"textbox","id":"sh/fmlkjm1c","slide":4,"text":"它的核心价值来自规则可信、评价标准、信息匹配和升学结果。越靠近录取，越需要清晰的服务边界：提供辅助决策，但不能承诺录取结果。","textPreview":"它的核心价值来自规则可信、评价标准、信息匹配和升学结果。越靠近录取，越需要清晰的服务边界：提供辅助决策，但不能承诺录取结果。","textChars":62,"textLines":1,"bbox":[1000,385,610,230]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":4,"text":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textPreview":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textChars":37,"textLines":1,"bbox":[190,1010,1180,28]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1715,987,80,45]}
+{"kind":"slide","id":"sl/mlkjm1cf","slide":5,"title":"产业链全景","textShapes":17}
+{"kind":"shape","id":"sh/vahoza1g","slide":5,"bbox":[-150,740,440,440]}
+{"kind":"shape","id":"sh/ovahoza1","slide":5,"bbox":[1540,-120,390,360]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":5,"text":"产业链全景","textPreview":"产业链全景","textChars":5,"textLines":1,"bbox":[205,105,980,80]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":5,"text":"从学习资源到录取结果，信息在每个节点被重新加工。","textPreview":"从学习资源到录取结果，信息在每个节点被重新加工。","textChars":24,"textLines":1,"bbox":[208,198,1120,42]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1618,108,120,70]}
+{"kind":"shape","id":"sh/onyd0z61","slide":5,"bbox":[138,420,225,145]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":5,"text":"高中教学\n备考资源","textPreview":"高中教学 | 备考资源","textChars":9,"textLines":2,"bbox":[156,455,190,78]}
+{"kind":"textbox","id":"sh/6dcbulwv","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[370,455,55,60]}
+{"kind":"shape","id":"sh/vy90je9c","slide":5,"bbox":[420,420,225,145]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":5,"text":"报名资格\n考试组织","textPreview":"报名资格 | 考试组织","textChars":9,"textLines":2,"bbox":[438,455,190,78]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[652,455,55,60]}
+{"kind":"shape","id":"sh/5wjudg7a","slide":5,"bbox":[702,420,225,145]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":5,"text":"命题制卷\n考务安保","textPreview":"命题制卷 | 考务安保","textChars":9,"textLines":2,"bbox":[720,455,190,78]}
+{"kind":"textbox","id":"sh/n29gr2p8","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[934,455,55,60]}
+{"kind":"shape","id":"sh/yhgn29gr","slide":5,"bbox":[984,420,225,145]}
+{"kind":"textbox","id":"sh/58z25kb6","slide":5,"text":"阅卷成绩\n分数位次","textPreview":"阅卷成绩 | 分数位次","textChars":9,"textLines":2,"bbox":[1002,455,190,78]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[1216,455,55,60]}
+{"kind":"shape","id":"sh/neloj2t8","slide":5,"bbox":[1266,420,225,145]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":5,"text":"志愿填报\n招生匹配","textPreview":"志愿填报 | 招生匹配","textChars":9,"textLines":2,"bbox":[1284,455,190,78]}
+{"kind":"textbox","id":"sh/2x4nap4r","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[1498,455,55,60]}
+{"kind":"shape","id":"sh/vixczed8","slide":5,"bbox":[1548,420,225,145]}
+{"kind":"textbox","id":"sh/k3q5o7qp","slide":5,"text":"高校录取\n入学衔接","textPreview":"高校录取 | 入学衔接","textChars":9,"textLines":2,"bbox":[1566,455,190,78]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":5,"text":"底层支撑：政策规则、考试安全、招生计划、院校专业数据、技术系统、家庭决策","textPreview":"底层支撑：政策规则、考试安全、招生计划、院校专业数据、技术系统、家庭决策","textChars":36,"textLines":1,"bbox":[265,700,1290,50]}
+{"kind":"textbox","id":"sh/6psfil0r","slide":5,"text":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textPreview":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textChars":37,"textLines":1,"bbox":[190,1010,1180,28]}
+{"kind":"textbox","id":"sh/val87ed8","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1715,987,80,45]}
+{"kind":"slide","id":"sl/58z25kb6","slide":6,"title":"考试组织是高考链条的制度核心","textShapes":3}
+{"kind":"shape","id":"sh/ylc7u54z","slide":6,"bbox":[520,-250,460,460]}
+{"kind":"shape","id":"sh/r65wjudg","slide":6,"bbox":[1730,625,430,430]}
+{"kind":"shape","id":"sh/g3ex0nux","slide":6,"bbox":[545,742,520,155]}
+{"kind":"textbox","id":"sh/5o7qpg3e","slide":6,"text":"考试组织是高考链条的制度核心","textPreview":"考试组织是高考链条的制度核心","textChars":14,"textLines":1,"bbox":[585,777,445,72]}
+{"kind":"textbox","id":"sh/yxobm58z","slide":6,"text":"图片：AI 生成的高考考场示意图；不含真实考生身份信息","textPreview":"图片：AI 生成的高考考场示意图；不含真实考生身份信息","textChars":27,"textLines":1,"bbox":[190,1010,1180,28]}
+{"kind":"textbox","id":"sh/nih4byhg","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1715,987,80,45]}
+{"kind":"image","id":"im/5wjudg7a","slide":6,"name":"","bbox":[0,0,1920,1080]}
+{"kind":"slide","id":"sl/0z61032l","slide":7,"title":"上游：资源与规则","textShapes":14}
+{"kind":"shape","id":"sh/qd4vmtwr","slide":7,"bbox":[1600,700,430,430]}
+{"kind":"shape","id":"sh/x4nap4r6","slide":7,"bbox":[-85,-120,310,300]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":7,"text":"上游：资源与规则","textPreview":"上游：资源与规则","textChars":8,"textLines":1,"bbox":[205,105,980,80]}
+{"kind":"textbox","id":"sh/fa9w3m94","slide":7,"text":"教材、题库、招生规则和数据入口构成供给基础。","textPreview":"教材、题库、招生规则和数据入口构成供给基础。","textChars":22,"textLines":1,"bbox":[208,198,1120,42]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1618,108,120,70]}
+{"kind":"shape","id":"sh/xczed8v6","slide":7,"bbox":[195,330,360,220]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":7,"text":"课程与教辅","textPreview":"课程与教辅","textChars":5,"textLines":1,"bbox":[223,354,304,38]}
+{"kind":"textbox","id":"sh/je9cvixc","slide":7,"text":"高中课程、教材、模拟题、真题解析、校内评价。","textPreview":"高中课程、教材、模拟题、真题解析、校内评价。","textChars":22,"textLines":1,"bbox":[223,405,304,132]}
+{"kind":"shape","id":"sh/qtcj6tov","slide":7,"bbox":[610,330,360,220]}
+{"kind":"textbox","id":"sh/svu9knih","slide":7,"text":"招生规则","textPreview":"招生规则","textChars":4,"textLines":1,"bbox":[638,354,304,38]}
+{"kind":"textbox","id":"sh/hgn29gr2","slide":7,"text":"报名资格、招生章程、专业限制、特殊类型招生。","textPreview":"报名资格、招生章程、专业限制、特殊类型招生。","textChars":22,"textLines":1,"bbox":[638,405,304,132]}
+{"kind":"shape","id":"sh/ap4r65wj","slide":7,"bbox":[1025,330,360,220]}
+{"kind":"textbox","id":"sh/za1gvy90","slide":7,"text":"数据资源","textPreview":"数据资源","textChars":4,"textLines":1,"bbox":[1053,354,304,38]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":7,"text":"招生计划、专业目录、历年分数、位次、选科要求。","textPreview":"招生计划、专业目录、历年分数、位次、选科要求。","textChars":23,"textLines":1,"bbox":[1053,405,304,132]}
+{"kind":"shape","id":"sh/hoza1gvy","slide":7,"bbox":[1440,330,300,220]}
+{"kind":"textbox","id":"sh/a1gvy90j","slide":7,"text":"技术安全","textPreview":"技术安全","textChars":4,"textLines":1,"bbox":[1468,354,244,38]}
+{"kind":"textbox","id":"sh/zidonyd0","slide":7,"text":"报名、考务、评卷、成绩和志愿系统。","textPreview":"报名、考务、评卷、成绩和志愿系统。","textChars":17,"textLines":1,"bbox":[1468,405,244,132]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":7,"text":"上游的关键不是“资料多”，而是准确、及时、可解释。","textPreview":"上游的关键不是“资料多”，而是准确、及时、可解释。","textChars":25,"textLines":1,"bbox":[360,690,1200,55]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":7,"text":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textPreview":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textChars":37,"textLines":1,"bbox":[190,1010,1180,28]}
+{"kind":"textbox","id":"sh/pg3ex0nu","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1715,987,80,45]}
+{"kind":"slide","id":"sl/fu18jqh0","slide":8,"title":"志愿填报：","textShapes":4}
+{"kind":"shape","id":"sh/1032lszq","slide":8,"bbox":[-160,365,390,390]}
+{"kind":"shape","id":"sh/u9knih4b","slide":8,"bbox":[1665,860,320,320]}
+{"kind":"shape","id":"sh/c7u54zid","slide":8,"bbox":[760,300,34,34]}
+{"kind":"textbox","id":"sh/1orytsvu","slide":8,"text":"志愿填报：\n信息匹配环节","textPreview":"志愿填报： | 信息匹配环节","textChars":12,"textLines":2,"bbox":[920,320,600,120]}
+{"kind":"textbox","id":"sh/u18jqh0f","slide":8,"text":"分数、位次、专业、城市、选科限制、体检要求和家庭偏好共同决定填报策略。这里的信息密度最高，也最容易出现夸大承诺。","textPreview":"分数、位次、专业、城市、选科限制、体检要求和家庭偏好共同决定填报策略。这里的信息密度最高，也最容易出现夸大承诺。","textChars":56,"textLines":1,"bbox":[890,505,660,140]}
+{"kind":"textbox","id":"sh/jm1cfa9w","slide":8,"text":"图片：AI 生成的志愿填报咨询示意图","textPreview":"图片：AI 生成的志愿填报咨询示意图","textChars":18,"textLines":1,"bbox":[190,1010,1180,28]}
+{"kind":"textbox","id":"sh/cvixczed","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1715,987,80,45]}
+{"kind":"image","id":"im/gbq1oryt","slide":8,"name":"","geometry":"roundRect","bbox":[270,255,500,550]}
+{"kind":"slide","id":"sl/qh0fepkz","slide":9,"title":"价值分配","textShapes":20}
+{"kind":"shape","id":"sh/vahoza1g","slide":9,"bbox":[-160,365,390,390]}
+{"kind":"shape","id":"sh/ovahoza1","slide":9,"bbox":[1665,860,320,320]}
+{"kind":"textbox","id":"sh/dg7adsji","slide":9,"text":"价值分配","textPreview":"价值分配","textChars":4,"textLines":1,"bbox":[205,105,980,80]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":9,"text":"越靠近录取，信息匹配越重要，服务边界也越重要。","textPreview":"越靠近录取，信息匹配越重要，服务边界也越重要。","textChars":23,"textLines":1,"bbox":[208,198,1120,42]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1618,108,120,70]}
+{"kind":"shape","id":"sh/onyd0z61","slide":9,"bbox":[250,320,280,88]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":9,"text":"环节","textPreview":"环节","textChars":2,"textLines":1,"bbox":[274,347,232,34]}
+{"kind":"shape","id":"sh/6dcbulwv","slide":9,"bbox":[530,320,560,88]}
+{"kind":"textbox","id":"sh/vy90je9c","slide":9,"text":"价值来源","textPreview":"价值来源","textChars":4,"textLines":1,"bbox":[554,347,512,34]}
+{"kind":"shape","id":"sh/nuxc3ylc","slide":9,"bbox":[1090,320,560,88]}
+{"kind":"textbox","id":"sh/y90je9cv","slide":9,"text":"商业模式","textPreview":"商业模式","textChars":4,"textLines":1,"bbox":[1114,347,512,34]}
+{"kind":"shape","id":"sh/5wjudg7a","slide":9,"bbox":[250,408,280,88]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":9,"text":"备考","textPreview":"备考","textChars":2,"textLines":1,"bbox":[274,435,232,34]}
+{"kind":"shape","id":"sh/n29gr2p8","slide":9,"bbox":[530,408,560,88]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":9,"text":"学习效率、反馈、师资","textPreview":"学习效率、反馈、师资","textChars":10,"textLines":1,"bbox":[554,435,512,34]}
+{"kind":"shape","id":"sh/58z25kb6","slide":9,"bbox":[1090,408,560,88]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":9,"text":"课程、教辅、题库、硬件","textPreview":"课程、教辅、题库、硬件","textChars":11,"textLines":1,"bbox":[1114,435,512,34]}
+{"kind":"shape","id":"sh/neloj2t8","slide":9,"bbox":[250,496,280,88]}
+{"kind":"textbox","id":"sh/ytsvu9kn","slide":9,"text":"考务","textPreview":"考务","textChars":2,"textLines":1,"bbox":[274,523,232,34]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":9,"bbox":[530,496,560,88]}
+{"kind":"textbox","id":"sh/vixczed8","slide":9,"text":"公平、公信力、安全","textPreview":"公平、公信力、安全","textChars":9,"textLines":1,"bbox":[554,523,512,34]}
+{"kind":"shape","id":"sh/k3q5o7qp","slide":9,"bbox":[1090,496,560,88]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":9,"text":"公共服务与系统建设","textPreview":"公共服务与系统建设","textChars":9,"textLines":1,"bbox":[1114,523,512,34]}
+{"kind":"shape","id":"sh/6psfil0r","slide":9,"bbox":[250,584,280,88]}
+{"kind":"textbox","id":"sh/val87ed8","slide":9,"text":"志愿","textPreview":"志愿","textChars":2,"textLines":1,"bbox":[274,611,232,34]}
+{"kind":"shape","id":"sh/kre1w7mp","slide":9,"bbox":[530,584,560,88]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":9,"text":"数据清洗、规则理解","textPreview":"数据清洗、规则理解","textChars":9,"textLines":1,"bbox":[554,611,512,34]}
+{"kind":"shape","id":"sh/2lszqtcj","slide":9,"bbox":[1090,584,560,88]}
+{"kind":"textbox","id":"sh/v6psfil0","slide":9,"text":"工具订阅、咨询服务","textPreview":"工具订阅、咨询服务","textChars":9,"textLines":1,"bbox":[1114,611,512,34]}
+{"kind":"shape","id":"sh/h4byhgn2","slide":9,"bbox":[250,672,280,88]}
+{"kind":"textbox","id":"sh/sji5snel","slide":9,"text":"录取","textPreview":"录取","textChars":2,"textLines":1,"bbox":[274,699,232,34]}
+{"kind":"shape","id":"sh/3ylc7u54","slide":9,"bbox":[530,672,560,88]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":9,"text":"计划匹配、流程执行","textPreview":"计划匹配、流程执行","textChars":9,"textLines":1,"bbox":[554,699,512,34]}
+{"kind":"shape","id":"sh/lszqtcj6","slide":9,"bbox":[1090,672,560,88]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":9,"text":"高校招生与入学服务","textPreview":"高校招生与入学服务","textChars":9,"textLines":1,"bbox":[1114,699,512,34]}
+{"kind":"textbox","id":"sh/3m94fu18","slide":9,"text":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textPreview":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textChars":37,"textLines":1,"bbox":[190,1010,1180,28]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1715,987,80,45]}
+{"kind":"slide","id":"sl/29gr2p8n","slide":10,"title":"出分后的关键选择","textShapes":15}
+{"kind":"shape","id":"sh/2p8nqxs7","slide":10,"bbox":[-160,365,390,390]}
+{"kind":"shape","id":"sh/9gr2p8nq","slide":10,"bbox":[1665,860,320,320]}
+{"kind":"textbox","id":"sh/gvy90je9","slide":10,"text":"出分后的关键选择","textPreview":"出分后的关键选择","textChars":8,"textLines":1,"bbox":[205,105,980,80]}
+{"kind":"textbox","id":"sh/r2p8nqxs","slide":10,"text":"选择最适合的服务，而不是最焦虑的服务。","textPreview":"选择最适合的服务，而不是最焦虑的服务。","textChars":19,"textLines":1,"bbox":[208,198,1120,42]}
+{"kind":"textbox","id":"sh/2hwfyxob","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1618,108,120,70]}
+{"kind":"textbox","id":"sh/94fu18jq","slide":10,"text":"场景 1","textPreview":"场景 1","textChars":4,"textLines":1,"bbox":[360,320,420,40]}
+{"kind":"textbox","id":"sh/kjm1cfa9","slide":10,"text":"分数出来后，家庭不知道如何比较专业、城市和院校层次。","textPreview":"分数出来后，家庭不知道如何比较专业、城市和院校层次。","textChars":26,"textLines":1,"bbox":[315,380,510,92]}
+{"kind":"textbox","id":"sh/rqd4vmtw","slide":10,"text":"A 只看去年分数","textPreview":"A 只看去年分数","textChars":8,"textLines":1,"bbox":[350,520,450,35]}
+{"kind":"textbox","id":"sh/25kb6xkf","slide":10,"text":"B 做位次与专业匹配","textPreview":"B 做位次与专业匹配","textChars":10,"textLines":1,"bbox":[350,585,450,35]}
+{"kind":"textbox","id":"sh/4fu18jqh","slide":10,"text":"C 等别人推荐","textPreview":"C 等别人推荐","textChars":7,"textLines":1,"bbox":[350,650,450,35]}
+{"kind":"textbox","id":"sh/x0nuxc3y","slide":10,"text":"场景 2","textPreview":"场景 2","textChars":4,"textLines":1,"bbox":[1010,320,420,40]}
+{"kind":"textbox","id":"sh/m94fu18j","slide":10,"text":"学生目标专业受选科或体检限制影响，需要快速排除风险。","textPreview":"学生目标专业受选科或体检限制影响，需要快速排除风险。","textChars":26,"textLines":1,"bbox":[965,380,510,92]}
+{"kind":"textbox","id":"sh/fu18jqh0","slide":10,"text":"A 忽略限制","textPreview":"A 忽略限制","textChars":6,"textLines":1,"bbox":[1000,520,450,35]}
+{"kind":"textbox","id":"sh/83itgfml","slide":10,"text":"B 查章程和选科要求","textPreview":"B 查章程和选科要求","textChars":10,"textLines":1,"bbox":[1000,585,450,35]}
+{"kind":"textbox","id":"sh/xobm58z2","slide":10,"text":"C 只看学校名气","textPreview":"C 只看学校名气","textChars":8,"textLines":1,"bbox":[1000,650,450,35]}
+{"kind":"textbox","id":"sh/qxs72x4n","slide":10,"text":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textPreview":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textChars":37,"textLines":1,"bbox":[190,1010,1180,28]}
+{"kind":"textbox","id":"sh/fil0rqd4","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1715,987,80,45]}
+{"kind":"slide","id":"sl/re1w7mp0","slide":11,"title":"志愿填报的平衡","textShapes":14}
+{"kind":"shape","id":"sh/dg7adsji","slide":11,"bbox":[-160,365,390,390]}
+{"kind":"shape","id":"sh/6tovahoz","slide":11,"bbox":[1665,860,320,320]}
+{"kind":"textbox","id":"sh/vahoza1g","slide":11,"text":"志愿填报的平衡","textPreview":"志愿填报的平衡","textChars":7,"textLines":1,"bbox":[205,105,980,80]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":11,"text":"不是押一个答案，而是在约束里做匹配。","textPreview":"不是押一个答案，而是在约束里做匹配。","textChars":18,"textLines":1,"bbox":[208,198,1120,42]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1618,108,120,70]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":11,"text":"专业兴趣","textPreview":"专业兴趣","textChars":4,"textLines":1,"bbox":[365,340,260,40]}
+{"kind":"shape","id":"sh/z25kb6xk","slide":11,"bbox":[495,410,0,92]}
+{"kind":"textbox","id":"sh/oj2t83it","slide":11,"text":"城市偏好","textPreview":"城市偏好","textChars":4,"textLines":1,"bbox":[365,500,260,40]}
+{"kind":"textbox","id":"sh/d4vmtwra","slide":11,"text":"院校层次","textPreview":"院校层次","textChars":4,"textLines":1,"bbox":[1120,340,260,40]}
+{"kind":"shape","id":"sh/h4byhgn2","slide":11,"bbox":[1250,410,0,92]}
+{"kind":"textbox","id":"sh/sji5snel","slide":11,"text":"录取风险","textPreview":"录取风险","textChars":4,"textLines":1,"bbox":[1120,500,260,40]}
+{"kind":"textbox","id":"sh/3ylc7u54","slide":11,"text":"家庭预算","textPreview":"家庭预算","textChars":4,"textLines":1,"bbox":[365,565,260,40]}
+{"kind":"shape","id":"sh/adsji5sn","slide":11,"bbox":[495,635,0,92]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":11,"text":"就业预期","textPreview":"就业预期","textChars":4,"textLines":1,"bbox":[365,725,260,40]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":11,"text":"选科限制","textPreview":"选科限制","textChars":4,"textLines":1,"bbox":[1120,565,260,40]}
+{"kind":"shape","id":"sh/3m94fu18","slide":11,"bbox":[1250,635,0,92]}
+{"kind":"textbox","id":"sh/a5gbq1or","slide":11,"text":"体检要求","textPreview":"体检要求","textChars":4,"textLines":1,"bbox":[1120,725,260,40]}
+{"kind":"shape","id":"sh/hoza1gvy","slide":11,"bbox":[700,585,510,0]}
+{"kind":"textbox","id":"sh/s36hcrmh","slide":11,"text":"匹配质量","textPreview":"匹配质量","textChars":4,"textLines":1,"bbox":[780,520,360,58]}
+{"kind":"textbox","id":"sh/4zidonyd","slide":11,"text":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textPreview":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textChars":37,"textLines":1,"bbox":[190,1010,1180,28]}
+{"kind":"textbox","id":"sh/xkf6dcbu","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1715,987,80,45]}
+{"kind":"slide","id":"sl/4fu18jqh","slide":12,"title":"3","textShapes":7}
+{"kind":"shape","id":"sh/3m94fu18","slide":12,"bbox":[1600,700,430,430]}
+{"kind":"shape","id":"sh/s72x4nap","slide":12,"bbox":[-85,-120,310,300]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":12,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[650,300,140,90]}
+{"kind":"textbox","id":"sh/adsji5sn","slide":12,"text":"个容易被忽略的事实","textPreview":"个容易被忽略的事实","textChars":9,"textLines":1,"bbox":[790,310,580,75]}
+{"kind":"shape","id":"sh/3ylc7u54","slide":12,"bbox":[500,513,11,11]}
+{"kind":"textbox","id":"sh/sji5snel","slide":12,"text":"核心不是卖课，而是规则、评价和录取匹配形成的信任体系。","textPreview":"核心不是卖课，而是规则、评价和录取匹配形成的信任体系。","textChars":27,"textLines":1,"bbox":[530,500,920,90]}
+{"kind":"shape","id":"sh/h4byhgn2","slide":12,"bbox":[500,608,11,11]}
+{"kind":"textbox","id":"sh/ap4r65wj","slide":12,"text":"志愿填报不是看分数表，而是多个约束的综合匹配。","textPreview":"志愿填报不是看分数表，而是多个约束的综合匹配。","textChars":23,"textLines":1,"bbox":[530,595,920,90]}
+{"kind":"shape","id":"sh/za1gvy90","slide":12,"bbox":[500,703,11,11]}
+{"kind":"textbox","id":"sh/z61032ls","slide":12,"text":"越接近录取环节，越要强调服务边界：辅助决策，不承诺结果。","textPreview":"越接近录取环节，越要强调服务边界：辅助决策，不承诺结果。","textChars":28,"textLines":1,"bbox":[530,690,920,90]}
+{"kind":"textbox","id":"sh/al87ed8b","slide":12,"text":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textPreview":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textChars":37,"textLines":1,"bbox":[190,1010,1180,28]}
+{"kind":"textbox","id":"sh/hcrmhk3q","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1715,987,80,45]}
+{"kind":"slide","id":"sl/lwval87e","slide":13,"title":"服务成本结构","textShapes":21}
+{"kind":"shape","id":"sh/ed8bat47","slide":13,"bbox":[1600,700,430,430]}
+{"kind":"shape","id":"sh/l0rqd4vm","slide":13,"bbox":[-85,-120,310,300]}
+{"kind":"textbox","id":"sh/wfyxobm5","slide":13,"text":"服务成本结构","textPreview":"服务成本结构","textChars":6,"textLines":1,"bbox":[205,105,980,80]}
+{"kind":"textbox","id":"sh/36hcrmhk","slide":13,"text":"内容、技术、师资、获客和合规共同决定成本。","textPreview":"内容、技术、师资、获客和合规共同决定成本。","textChars":21,"textLines":1,"bbox":[208,198,1120,42]}
+{"kind":"textbox","id":"sh/eloj2t83","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1618,108,120,70]}
+{"kind":"textbox","id":"sh/lc7u54zi","slide":13,"text":"内容教研","textPreview":"内容教研","textChars":4,"textLines":1,"bbox":[330,335,220,35]}
+{"kind":"shape","id":"sh/wra5gbq1","slide":13,"bbox":[590,343,620,28]}
+{"kind":"shape","id":"sh/7adsji5s","slide":13,"bbox":[590,343,446.4,28]}
+{"kind":"textbox","id":"sh/epkzupwb","slide":13,"text":"72%","textPreview":"72%","textChars":3,"textLines":1,"bbox":[1240,333,90,38]}
+{"kind":"textbox","id":"sh/8jqh0fep","slide":13,"text":"课程更新与题库维护","textPreview":"课程更新与题库维护","textChars":9,"textLines":1,"bbox":[1370,332,340,42]}
+{"kind":"textbox","id":"sh/x4nap4r6","slide":13,"text":"技术系统","textPreview":"技术系统","textChars":4,"textLines":1,"bbox":[330,440,220,35]}
+{"kind":"shape","id":"sh/qd4vmtwr","slide":13,"bbox":[590,448,620,28]}
+{"kind":"shape","id":"sh/fyxobm58","slide":13,"bbox":[590,448,396.8,28]}
+{"kind":"textbox","id":"sh/8v6psfil","slide":13,"text":"64%","textPreview":"64%","textChars":3,"textLines":1,"bbox":[1240,438,90,38]}
+{"kind":"textbox","id":"sh/xczed8v6","slide":13,"text":"系统稳定与数据安全","textPreview":"系统稳定与数据安全","textChars":9,"textLines":1,"bbox":[1370,437,340,42]}
+{"kind":"textbox","id":"sh/qpg3ex0n","slide":13,"text":"师资交付","textPreview":"师资交付","textChars":4,"textLines":1,"bbox":[330,545,220,35]}
+{"kind":"shape","id":"sh/fa9w3m94","slide":13,"bbox":[590,553,620,28]}
+{"kind":"shape","id":"sh/8z25kb6x","slide":13,"bbox":[590,553,483.6,28]}
+{"kind":"textbox","id":"sh/1gvy90je","slide":13,"text":"78%","textPreview":"78%","textChars":3,"textLines":1,"bbox":[1240,543,90,38]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":13,"text":"教师/顾问交付","textPreview":"教师/顾问交付","textChars":7,"textLines":1,"bbox":[1370,542,340,42]}
+{"kind":"textbox","id":"sh/w3m94fu1","slide":13,"text":"获客服务","textPreview":"获客服务","textChars":4,"textLines":1,"bbox":[330,650,220,35]}
+{"kind":"shape","id":"sh/3itgfmlk","slide":13,"bbox":[590,658,620,28]}
+{"kind":"shape","id":"sh/ex0nuxc3","slide":13,"bbox":[590,658,359.6,28]}
+{"kind":"textbox","id":"sh/lwval87e","slide":13,"text":"58%","textPreview":"58%","textChars":3,"textLines":1,"bbox":[1240,648,90,38]}
+{"kind":"textbox","id":"sh/wb2hwfyx","slide":13,"text":"短窗口集中获客","textPreview":"短窗口集中获客","textChars":7,"textLines":1,"bbox":[1370,647,340,42]}
+{"kind":"textbox","id":"sh/3q5o7qpg","slide":13,"text":"合规更新","textPreview":"合规更新","textChars":4,"textLines":1,"bbox":[330,755,220,35]}
+{"kind":"shape","id":"sh/e9cvixcz","slide":13,"bbox":[590,763,620,28]}
+{"kind":"shape","id":"sh/l87ed8ba","slide":13,"bbox":[590,763,279,28]}
+{"kind":"textbox","id":"sh/sneloj2t","slide":13,"text":"45%","textPreview":"45%","textChars":3,"textLines":1,"bbox":[1240,753,90,38]}
+{"kind":"textbox","id":"sh/6hcrmhk3","slide":13,"text":"政策校验与投诉处理","textPreview":"政策校验与投诉处理","textChars":9,"textLines":1,"bbox":[1370,752,340,42]}
+{"kind":"textbox","id":"sh/z25kb6xk","slide":13,"text":"注：百分比为结构示意，不代表行业统计口径。","textPreview":"注：百分比为结构示意，不代表行业统计口径。","textChars":21,"textLines":1,"bbox":[370,905,860,34]}
+{"kind":"textbox","id":"sh/onyd0z61","slide":13,"text":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textPreview":"资料：教育考试网 / 阳光高考 / 教育部，访问日期 2026-06-19","textChars":37,"textLines":1,"bbox":[190,1010,1180,28]}
+{"kind":"textbox","id":"sh/d8v6psfi","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1715,987,80,45]}
+{"kind":"slide","id":"sl/25kb6xkf","slide":14,"title":"Thank you","textShapes":5}
+{"kind":"shape","id":"sh/val87ed8","slide":14,"bbox":[-150,740,440,440]}
+{"kind":"shape","id":"sh/kre1w7mp","slide":14,"bbox":[1540,-120,390,360]}
+{"kind":"shape","id":"sh/2x4nap4r","slide":14,"bbox":[850,250,42,42]}
+{"kind":"textbox","id":"sh/vixczed8","slide":14,"text":"Thank you","textPreview":"Thank you","textChars":9,"textLines":1,"bbox":[1025,340,560,75]}
+{"kind":"textbox","id":"sh/k3q5o7qp","slide":14,"text":"你觉得高考服务里，最值得花钱的是补课、志愿填报，还是心理支持？","textPreview":"你觉得高考服务里，最值得花钱的是补课、志愿填报，还是心理支持？","textChars":31,"textLines":1,"bbox":[945,470,720,95]}
+{"kind":"textbox","id":"sh/donyd0z6","slide":14,"text":"下一个可拆：志愿填报产业链 / 教辅出版产业链 / AI 学习硬件产业链","textPreview":"下一个可拆：志愿填报产业链 / 教辅出版产业链 / AI 学习硬件产业链","textChars":36,"textLines":1,"bbox":[925,640,760,60]}
+{"kind":"textbox","id":"sh/29gr2p8n","slide":14,"text":"图片：AI 生成的录取通知书场景示意图","textPreview":"图片：AI 生成的录取通知书场景示意图","textChars":19,"textLines":1,"bbox":[190,1010,1180,28]}
+{"kind":"textbox","id":"sh/vu9knih4","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1715,987,80,45]}
+{"kind":"image","id":"im/oza1gvy9","slide":14,"name":"","geometry":"roundRect","bbox":[260,220,620,620]}
