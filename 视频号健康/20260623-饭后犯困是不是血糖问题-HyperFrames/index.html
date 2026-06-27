@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f7f1e7;
+        color: #183d34;
+        font-family: "PingFang SC", "Hiragino Sans GB", sans-serif;
+      }
+
+      #main {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f7f1e7;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #f7f1e7;
+      }
+
+      #scene2,
+      #scene3,
+      #scene4,
+      #scene5 {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .bg-orb {
+        position: absolute;
+        border-radius: 999px;
+        background: rgba(224, 122, 63, 0.16);
+        filter: blur(4px);
+      }
+
+      .bg-orb.green {
+        background: rgba(47, 141, 101, 0.13);
+      }
+
+      .orb-a {
+        width: 420px;
+        height: 420px;
+        top: -120px;
+        right: -110px;
+      }
+
+      .orb-b {
+        width: 520px;
+        height: 520px;
+        left: -170px;
+        bottom: -130px;
+      }
+
+      .grain {
+        position: absolute;
+        inset: 0;
+        opacity: 0.14;
+        background-image:
+          radial-gradient(circle at 18% 22%, rgba(24, 61, 52, 0.08) 0 1px, transparent 1px),
+          radial-gradient(circle at 78% 62%, rgba(224, 122, 63, 0.08) 0 1px, transparent 1px);
+        background-size: 34px 34px, 46px 46px;
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        padding: 120px 78px 92px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 48px;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        align-self: flex-start;
+        min-height: 54px;
+        padding: 12px 24px;
+        border-radius: 999px;
+        background: #fff9ef;
+        color: #2f8d65;
+        font-size: 30px;
+        font-weight: 700;
+        box-shadow: 0 14px 35px rgba(24, 61, 52, 0.08);
+      }
+
+      .title {
+        max-width: 900px;
+        color: #183d34;
+        font-family: "LXGW WenKai", "STKaiti", serif;
+        font-size: 104px;
+        line-height: 1.09;
+        letter-spacing: -0.03em;
+        font-weight: 900;
+      }
+
+      #scene3 .title {
+        max-width: 930px;
+        font-size: 88px;
+      }
+
+      .subtitle {
+        max-width: 840px;
+        color: #5d776f;
+        font-size: 44px;
+        line-height: 1.42;
+        font-weight: 500;
+      }
+
+      .big-card {
+        width: 100%;
+        min-height: 540px;
+        padding: 48px;
+        border-radius: 34px;
+        background: #fff9ef;
+        box-shadow: 0 30px 90px rgba(24, 61, 52, 0.11);
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+      }
+
+      .plate {
+        position: relative;
+        width: 540px;
+        height: 540px;
+        margin: 0 auto;
+        border-radius: 50%;
+        background: #fffdf7;
+        box-shadow:
+          inset 0 0 0 34px #f2dfc7,
+          0 28px 65px rgba(24, 61, 52, 0.1);
+      }
+
+      .rice {
+        position: absolute;
+        width: 240px;
+        height: 240px;
+        left: 150px;
+        top: 150px;
+        border-radius: 52% 48% 56% 44%;
+        background: #fbf5e9;
+        box-shadow: inset 0 0 0 10px rgba(242, 179, 109, 0.25);
+      }
+
+      .sleep-face {
+        position: absolute;
+        left: 202px;
+        top: 217px;
+        color: #183d34;
+        font-size: 68px;
+        font-weight: 900;
+      }
+
+      .zzz {
+        position: absolute;
+        right: 100px;
+        top: 112px;
+        color: #b85a2d;
+        font-size: 54px;
+        font-weight: 900;
+      }
+
+      .callout {
+        padding: 28px 34px;
+        border-radius: 26px;
+        background: rgba(47, 141, 101, 0.1);
+        color: #183d34;
+        font-size: 42px;
+        line-height: 1.35;
+        font-weight: 700;
+      }
+
+      .pill-list {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      .pill {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        min-height: 112px;
+        padding: 22px 28px;
+        border-radius: 28px;
+        background: #fff9ef;
+        box-shadow: 0 18px 48px rgba(24, 61, 52, 0.08);
+        font-size: 43px;
+        line-height: 1.25;
+        font-weight: 750;
+      }
+
+      .dot {
+        flex: 0 0 auto;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #b85a2d;
+        box-shadow: 0 0 0 12px rgba(184, 90, 45, 0.16);
+      }
+
+      .dot.green {
+        background: #2f8d65;
+        box-shadow: 0 0 0 12px rgba(47, 141, 101, 0.15);
+      }
+
+      .meter {
+        width: 100%;
+        padding: 34px;
+        border-radius: 32px;
+        background: #fff9ef;
+        box-shadow: 0 24px 70px rgba(24, 61, 52, 0.1);
+      }
+
+      .meter-row {
+        display: grid;
+        grid-template-columns: 210px 1fr;
+        align-items: center;
+        gap: 24px;
+        margin: 24px 0;
+      }
+
+      .meter-label {
+        color: #183d34;
+        font-size: 34px;
+        font-weight: 800;
+      }
+
+      .bar {
+        position: relative;
+        height: 46px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: #eadfcf;
+      }
+
+      .bar-fill {
+        height: 100%;
+        border-radius: 999px;
+        background: #2f8d65;
+        transform-origin: left center;
+      }
+
+      .bar-fill.orange {
+        background: #b85a2d;
+      }
+
+      .caption {
+        min-height: 188px;
+        padding: 34px 42px;
+        border-radius: 34px;
+        background: #fff9ef;
+        color: #183d34;
+        border: 5px solid #183d34;
+        font-size: 50px;
+        line-height: 1.32;
+        font-weight: 850;
+        box-shadow: 0 24px 70px rgba(24, 61, 52, 0.18);
+      }
+
+      .caption .accent {
+        color: #9e4b27;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #5d776f;
+        font-size: 28px;
+        font-weight: 700;
+      }
+
+      .tag {
+        color: #183d34;
+        font-weight: 900;
+      }
+
+      .doctor-card {
+        padding: 54px 46px;
+        border-radius: 36px;
+        background: #fff9ef;
+        box-shadow: 0 30px 90px rgba(24, 61, 52, 0.11);
+      }
+
+      .doctor-title {
+        color: #183d34;
+        font-size: 62px;
+        line-height: 1.18;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+      }
+
+      .doctor-note {
+        margin-top: 30px;
+        color: #5d776f;
+        font-size: 38px;
+        line-height: 1.45;
+        font-weight: 600;
+      }
+
+      .soft-warning {
+        color: #b85a2d;
+      }
+
+      audio {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main" data-composition-id="main" data-width="1080" data-height="1920" data-start="0" data-duration="60">
+      <audio id="narration" data-start="0" data-duration="60" data-track-index="3" src="narration-hf.wav" data-volume="1"></audio>
+
+      <section id="scene1" class="scene">
+        <div class="bg-orb orb-a" data-layout-ignore></div>
+        <div class="bg-orb green orb-b" data-layout-ignore></div>
+        <div class="grain" data-layout-ignore></div>
+        <div class="content">
+          <div>
+            <div class="kicker">爸妈健康说明书 01</div>
+            <h1 class="title">饭后犯困，是血糖问题吗？</h1>
+            <p class="subtitle">先别急着下结论，饭后困有很多常见原因。</p>
+          </div>
+          <div class="plate">
+            <div class="rice"></div>
+            <div class="sleep-face">困</div>
+            <div class="zzz">Zzz</div>
+          </div>
+          <div class="caption">饭后总犯困，<span class="accent">是不是血糖出问题？</span></div>
+          <div class="footer"><span class="tag">健康科普</span><span>不替代医生诊断</span></div>
+        </div>
+      </section>
+
+      <section id="scene2" class="scene">
+        <div class="bg-orb green orb-a" data-layout-ignore></div>
+        <div class="bg-orb orb-b" data-layout-ignore></div>
+        <div class="grain" data-layout-ignore></div>
+        <div class="content">
+          <div>
+            <div class="kicker">先看常见原因</div>
+            <h2 class="title">困一次，不等于有病</h2>
+          </div>
+          <div class="pill-list">
+            <div class="pill"><span class="dot"></span><span>吃得太饱，胃肠在“加班”</span></div>
+            <div class="pill"><span class="dot green"></span><span>主食偏多，餐后波动更明显</span></div>
+            <div class="pill"><span class="dot"></span><span>昨晚没睡好，也会饭后更困</span></div>
+          </div>
+          <div class="caption">吃太饱、主食多、睡眠不足，<span class="accent">都可能让人饭后犯困。</span></div>
+          <div class="footer"><span class="tag">先观察</span><span>别自己吓自己</span></div>
+        </div>
+      </section>
+
+      <section id="scene3" class="scene">
+        <div class="bg-orb orb-a" data-layout-ignore></div>
+        <div class="bg-orb green orb-b" data-layout-ignore></div>
+        <div class="grain" data-layout-ignore></div>
+        <div class="content">
+          <div>
+            <div class="kicker">什么时候要留意？</div>
+            <h2 class="title">如果经常特别困，再看有没有这些信号</h2>
+          </div>
+          <div class="big-card">
+            <div class="callout">饭后困 + 下面这些情况反复出现，建议把血糖查清楚。</div>
+            <div class="pill-list">
+              <div class="pill"><span class="dot"></span><span>明显口渴</span></div>
+              <div class="pill"><span class="dot green"></span><span>尿多、夜尿变多</span></div>
+              <div class="pill"><span class="dot"></span><span>体重变化或总是疲乏</span></div>
+            </div>
+          </div>
+          <div class="caption">如果还伴随口渴、尿多、体重变化，<span class="accent">就值得留意血糖。</span></div>
+          <div class="footer"><span class="tag">重点是反复出现</span><span>不是偶尔一次</span></div>
+        </div>
+      </section>
+
+      <section id="scene4" class="scene">
+        <div class="bg-orb green orb-a" data-layout-ignore></div>
+        <div class="bg-orb orb-b" data-layout-ignore></div>
+        <div class="grain" data-layout-ignore></div>
+        <div class="content">
+          <div>
+            <div class="kicker">体检报告看这里</div>
+            <h2 class="title">三个指标，比感觉更可靠</h2>
+          </div>
+          <div class="meter">
+            <div class="meter-row">
+              <div class="meter-label">空腹血糖</div>
+              <div class="bar"><div class="bar-fill" style="width: 58%"></div></div>
+            </div>
+            <div class="meter-row">
+              <div class="meter-label">餐后2小时</div>
+              <div class="bar"><div class="bar-fill orange" style="width: 72%"></div></div>
+            </div>
+            <div class="meter-row">
+              <div class="meter-label">糖化血红蛋白</div>
+              <div class="bar"><div class="bar-fill" style="width: 64%"></div></div>
+            </div>
+          </div>
+          <div class="caption">可以关注：空腹血糖、餐后两小时血糖、<span class="accent">糖化血红蛋白。</span></div>
+          <div class="footer"><span class="tag">看趋势</span><span>别只看一次感觉</span></div>
+        </div>
+      </section>
+
+      <section id="scene5" class="scene">
+        <div class="bg-orb orb-a" data-layout-ignore></div>
+        <div class="bg-orb green orb-b" data-layout-ignore></div>
+        <div class="grain" data-layout-ignore></div>
+        <div class="content">
+          <div>
+            <div class="kicker">最后记住一句</div>
+            <h2 class="title">偶尔困一次，不代表有病</h2>
+          </div>
+          <div class="doctor-card">
+            <div class="doctor-title">如果持续出现，或者本来有糖尿病风险，带着体检结果问医生。</div>
+            <div class="doctor-note">尤其是同时出现明显口渴、尿多、体重变化、长期疲乏时，别只靠感觉判断。</div>
+          </div>
+          <div class="caption">持续出现，或家里有糖尿病风险，<span class="accent">建议咨询医生。</span></div>
+          <div class="footer"><span class="tag">爸妈健康说明书</span><span>下一期：血压正常能停药吗？</span></div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      gsap.config({ nullTargetWarn: false });
+      var tl = gsap.timeline({ paused: true });
+
+      function ambient(scene) {
+        tl.to(scene + " .orb-a", { scale: 1.08, x: -20, y: 24, duration: 8, repeat: 7, yoyo: true, ease: "sine.inOut" }, 0);
+        tl.to(scene + " .orb-b", { scale: 1.06, x: 28, y: -18, duration: 9, repeat: 6, yoyo: true, ease: "sine.inOut" }, 0);
+      }
+
+      function enter(scene, t) {
+        tl.from(scene + " .kicker", { y: 34, opacity: 0, scale: 0.96, duration: 0.55, ease: "power3.out" }, t + 0.18);
+        tl.from(scene + " .title", { y: 54, opacity: 0, duration: 0.65, ease: "expo.out" }, t + 0.34);
+        tl.from(scene + " .subtitle", { y: 34, opacity: 0, duration: 0.55, ease: "sine.out" }, t + 0.64);
+        tl.from(scene + " .big-card, " + scene + " .pill-list, " + scene + " .meter, " + scene + " .doctor-card, " + scene + " .plate", { y: 58, opacity: 0, scale: 0.97, duration: 0.7, ease: "back.out(1.25)" }, t + 0.88);
+        tl.from(scene + " .caption", { y: 44, opacity: 0, scale: 0.98, duration: 0.52, ease: "power2.out" }, t + 1.18);
+        tl.from(scene + " .footer", { y: 28, opacity: 0, duration: 0.45, ease: "circ.out" }, t + 1.38);
+      }
+
+      function blurTransition(oldScene, newScene, t) {
+        tl.set(newScene, { visibility: "visible", opacity: 0, filter: "blur(24px)", scale: 0.97, zIndex: 2 }, t);
+        tl.set(oldScene, { visibility: "visible", zIndex: 1 }, t);
+        tl.to(oldScene, { filter: "blur(24px)", scale: 1.04, duration: 0.62, ease: "power1.in" }, t);
+        tl.to(oldScene, { opacity: 0, duration: 0.42, ease: "power1.in" }, t + 0.36);
+        tl.to(newScene, { opacity: 1, duration: 0.34, ease: "power1.inOut" }, t + 0.42);
+        tl.to(newScene, { filter: "blur(0px)", scale: 1, duration: 0.62, ease: "power1.out" }, t + 0.62);
+        tl.set(oldScene, { visibility: "hidden" }, t + 1.26);
+      }
+
+      ambient("#scene1");
+      ambient("#scene2");
+      ambient("#scene3");
+      ambient("#scene4");
+      ambient("#scene5");
+
+      enter("#scene1", 0);
+      blurTransition("#scene1", "#scene2", 10.8);
+      enter("#scene2", 11.55);
+      blurTransition("#scene2", "#scene3", 22.5);
+      enter("#scene3", 23.25);
+      blurTransition("#scene3", "#scene4", 35.0);
+      enter("#scene4", 35.75);
+      blurTransition("#scene4", "#scene5", 47.2);
+      enter("#scene5", 47.95);
+
+      tl.to("#scene5 .content", { opacity: 0, y: -20, duration: 0.65, ease: "power1.inOut" }, 58.9);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

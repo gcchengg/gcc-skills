@@ -1,0 +1,399 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="7680" height="4320" viewBox="0 0 3840 2160">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="0.55" stop-color="#eef5fb"/>
+      <stop offset="1" stop-color="#f9fbf7"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d4c84"/>
+      <stop offset="1" stop-color="#1b72b4"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f8a48"/>
+      <stop offset="1" stop-color="#30b66a"/>
+    </linearGradient>
+    <linearGradient id="dark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#051d38"/>
+      <stop offset="1" stop-color="#123b67"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0b3156" flood-opacity="0.14"/>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#c7d6e2" stroke-width="1" opacity="0.38"/>
+    </pattern>
+    <marker id="arrowBlue" markerWidth="18" markerHeight="18" refX="14" refY="9" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L18,9 L0,18 Z" fill="#1c5f9f"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="18" markerHeight="18" refX="14" refY="9" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L18,9 L0,18 Z" fill="#18a65a"/>
+    </marker>
+    <style>
+      .font{font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif}
+      .title{font-size:118px;font-weight:900;letter-spacing:4px;fill:#071d3b}
+      .subtitle{font-size:42px;font-weight:700;fill:#1a3553}
+      .section{font-size:34px;font-weight:850;fill:#082449}
+      .label{font-size:28px;font-weight:800;fill:#092544}
+      .body{font-size:23px;font-weight:520;fill:#19344f}
+      .small{font-size:20px;font-weight:500;fill:#213b55}
+      .tiny{font-size:18px;font-weight:500;fill:#263f59}
+      .white{fill:#fff}
+      .panel{fill:#ffffff;stroke:#8fb1cf;stroke-width:3;rx:18;filter:url(#shadow)}
+      .soft{fill:#f7fbff;stroke:#a9c0d6;stroke-width:2;rx:16}
+      .greenBox{fill:#f4fff8;stroke:#57b981;stroke-width:3;rx:18}
+      .chip{fill:#0a2038;stroke:#5aa2d8;stroke-width:3;rx:14}
+      .num{font-size:27px;font-weight:900;fill:#fff}
+    </style>
+  </defs>
+
+  <rect width="3840" height="2160" fill="url(#paper)"/>
+  <rect x="0" y="0" width="3840" height="2160" fill="url(#grid)" opacity="0.55"/>
+
+  <text x="72" y="126" class="font title">EDA 软件技术结构解剖图</text>
+  <text x="78" y="186" class="font subtitle">从需求到流片：芯片设计的数字手术台与工具链系统</text>
+  <rect x="70" y="222" width="3700" height="3" fill="#a5b9ca"/>
+
+  <g class="font">
+    <rect x="60" y="250" width="420" height="1530" class="panel"/>
+    <text x="150" y="305" class="section">设计入口</text>
+
+    <g transform="translate(96 345)">
+      <rect width="350" height="190" class="soft"/>
+      <circle cx="42" cy="44" r="27" fill="url(#blue)"/><text x="32" y="54" class="num">1</text>
+      <text x="84" y="50" class="label">需求与规格</text>
+      <text x="36" y="92" class="body">市场需求、产品定义</text>
+      <text x="36" y="126" class="body">功能指标、性能目标</text>
+      <text x="36" y="160" class="body">功耗 / 面积 / 成本约束</text>
+    </g>
+
+    <g transform="translate(96 570)">
+      <rect width="350" height="200" class="soft"/>
+      <circle cx="42" cy="44" r="27" fill="url(#blue)"/><text x="32" y="54" class="num">2</text>
+      <text x="84" y="50" class="label">系统级设计</text>
+      <text x="36" y="94" class="body">架构探索、TLM 建模</text>
+      <text x="36" y="128" class="body">性能评估、接口规划</text>
+      <text x="36" y="162" class="body">软硬件协同验证</text>
+    </g>
+
+    <g transform="translate(96 805)">
+      <rect width="350" height="210" class="soft"/>
+      <circle cx="42" cy="44" r="27" fill="url(#blue)"/><text x="32" y="54" class="num">3</text>
+      <text x="84" y="50" class="label">IP 与复用规划</text>
+      <text x="36" y="94" class="body">CPU / DSP / SerDes</text>
+      <text x="36" y="128" class="body">第三方 IP 授权</text>
+      <text x="36" y="162" class="body">接口协议与版本管理</text>
+    </g>
+
+    <g transform="translate(96 1065)">
+      <rect width="350" height="250" class="greenBox"/>
+      <text x="92" y="47" class="label">产生价值</text>
+      <text x="36" y="95" class="body">• 明确目标与约束</text>
+      <text x="36" y="132" class="body">• 提前发现规格风险</text>
+      <text x="36" y="169" class="body">• 提升复用率，降低成本</text>
+      <text x="36" y="206" class="body">• 让后续验证有依据</text>
+    </g>
+
+    <g transform="translate(96 1370)">
+      <rect width="350" height="345" class="soft"/>
+      <text x="75" y="48" class="label">工艺与规则接口</text>
+      <text x="36" y="94" class="body">PDK / 工艺库</text>
+      <text x="36" y="132" class="body">标准单元、I/O 库</text>
+      <text x="36" y="170" class="body">DRC / LVS / ERC 规则</text>
+      <text x="36" y="208" class="body">SPICE 模型、寄生参数</text>
+      <rect x="45" y="242" width="260" height="62" fill="#0d3154" rx="10"/>
+      <text x="71" y="282" class="white body">工艺节点适配能力</text>
+    </g>
+  </g>
+
+  <g class="font">
+    <rect x="520" y="250" width="2760" height="1530" class="panel"/>
+    <rect x="560" y="290" width="2680" height="92" class="soft"/>
+    <text x="615" y="348" class="section">设计数据流（主线）</text>
+    <g stroke="#1c5f9f" stroke-width="12" fill="none" marker-end="url(#arrowBlue)">
+      <path d="M1000 336 H1260"/>
+      <path d="M1460 336 H1730"/>
+      <path d="M1935 336 H2205"/>
+      <path d="M2435 336 H2700"/>
+      <path d="M2915 336 H3140"/>
+    </g>
+    <text x="1030" y="325" class="label">规格</text>
+    <text x="1315" y="325" class="label">RTL</text>
+    <text x="1790" y="325" class="label">网表</text>
+    <text x="2255" y="325" class="label">布局布线</text>
+    <text x="2765" y="325" class="label">GDSII</text>
+    <text x="3140" y="325" class="label">晶圆厂</text>
+
+    <g transform="translate(570 430)">
+      <rect width="520" height="450" class="soft"/>
+      <circle cx="60" cy="62" r="28" fill="url(#blue)"/><text x="50" y="72" class="num">4</text>
+      <text x="112" y="68" class="section">RTL 编写</text>
+      <text x="112" y="108" class="body">把架构意图变成硬件描述</text>
+      <rect x="42" y="150" width="435" height="178" class="chip"/>
+      <text x="70" y="190" class="tiny white">module adder(input [7:0] a,b);</text>
+      <text x="70" y="225" class="tiny white">assign sum = a + b;</text>
+      <text x="70" y="260" class="tiny white">always_ff @(posedge clk)</text>
+      <text x="70" y="295" class="tiny white">  q &lt;= next_state;</text>
+      <text x="72" y="370" class="body">输出：HDL 代码、接口定义、约束草案</text>
+      <text x="72" y="407" class="body">瓶颈：工程师经验与规格理解</text>
+    </g>
+
+    <g transform="translate(1160 430)">
+      <rect width="520" height="450" class="soft"/>
+      <circle cx="60" cy="62" r="28" fill="url(#blue)"/><text x="50" y="72" class="num">5</text>
+      <text x="112" y="68" class="section">逻辑综合</text>
+      <text x="112" y="108" class="body">把 RTL 转成门级网表</text>
+      <g stroke="#1b3550" stroke-width="4" fill="none">
+        <path d="M86 195 H150 M86 250 H150 M150 195 Q230 195 230 250 Q230 305 150 305 H86"/>
+        <path d="M250 220 H315 M250 275 H315 M315 220 Q390 220 390 275 Q390 330 315 330"/>
+        <path d="M230 250 H250 M390 275 H455"/>
+      </g>
+      <rect x="80" y="355" width="360" height="46" fill="#eef4fa" stroke="#88a4bd"/>
+      <text x="135" y="386" class="body">输出：门级网表 Netlist</text>
+    </g>
+
+    <g transform="translate(1750 430)">
+      <rect width="520" height="450" class="soft"/>
+      <text x="150" y="70" class="section">IP 集成</text>
+      <text x="150" y="110" class="body">预验证模块与接口拼装</text>
+      <g fill="#2f74aa" stroke="#164269" stroke-width="4">
+        <rect x="80" y="160" width="125" height="95" rx="12"/>
+        <rect x="315" y="160" width="125" height="95" rx="12"/>
+        <rect x="80" y="292" width="125" height="95" rx="12"/>
+        <rect x="315" y="292" width="125" height="95" rx="12"/>
+      </g>
+      <text x="118" y="222" class="white label">IP</text>
+      <text x="353" y="222" class="white label">IP</text>
+      <text x="118" y="354" class="white label">IP</text>
+      <text x="353" y="354" class="white label">IP</text>
+      <text x="220" y="280" class="label">TOP</text>
+      <text x="70" y="420" class="body">价值：缩短周期；风险：兼容性与授权</text>
+    </g>
+
+    <g transform="translate(2340 430)">
+      <rect width="520" height="450" class="soft"/>
+      <circle cx="60" cy="62" r="28" fill="url(#blue)"/><text x="50" y="72" class="num">9</text>
+      <text x="112" y="68" class="section">物理设计实现</text>
+      <text x="112" y="108" class="body">布局布线、时钟树、物理优化</text>
+      <rect x="70" y="148" width="380" height="205" fill="#071b31" rx="10"/>
+      <g stroke-width="5" fill="none">
+        <path d="M90 185 H420 V230 H140 V320 H430" stroke="#1ed16d"/>
+        <path d="M120 170 V330 H210 V200 H455" stroke="#d8b13a"/>
+        <path d="M100 300 H360 V160" stroke="#328ae2"/>
+        <path d="M180 340 H440 V260 H250" stroke="#c95bd8"/>
+      </g>
+      <text x="70" y="400" class="body">瓶颈：PPA 收敛、寄生效应、规则复杂度</text>
+    </g>
+
+    <g transform="translate(2930 430)">
+      <rect width="300" height="450" class="soft"/>
+      <circle cx="44" cy="62" r="28" fill="url(#blue)"/><text x="28" y="72" class="num">10</text>
+      <text x="88" y="68" class="section">数据输出</text>
+      <text x="88" y="108" class="body">签核与 Tape-out</text>
+      <rect x="55" y="165" width="185" height="36" fill="#0e2e4e" transform="skewY(-10)"/>
+      <rect x="65" y="220" width="185" height="36" fill="#174b79" transform="skewY(-10)"/>
+      <rect x="75" y="275" width="185" height="36" fill="#246d9e" transform="skewY(-10)"/>
+      <text x="55" y="365" class="body">GDSII / OASIS</text>
+      <text x="55" y="400" class="body">LEF / DEF / 报告</text>
+    </g>
+
+    <g stroke="#18a65a" stroke-width="9" fill="none" marker-end="url(#arrowGreen)">
+      <path d="M1095 655 H1155"/>
+      <path d="M1682 655 H1744"/>
+      <path d="M2270 655 H2332"/>
+      <path d="M2865 655 H2922"/>
+      <path d="M820 880 V970 H1160"/>
+      <path d="M1420 880 V970 H1715"/>
+      <path d="M2570 880 V970 H2175"/>
+      <path d="M3075 880 V970 H2850"/>
+    </g>
+
+    <g transform="translate(570 970)">
+      <rect width="580" height="370" class="greenBox"/>
+      <circle cx="60" cy="62" r="28" fill="url(#green)"/><text x="50" y="72" class="num">6</text>
+      <text x="112" y="68" class="section">功能验证与仿真</text>
+      <text x="112" y="108" class="body">验证功能正确性，覆盖异常场景</text>
+      <rect x="58" y="150" width="330" height="135" fill="#08233e" rx="10"/>
+      <path d="M80 240 C130 210,185 250,230 218 S330 205,370 226" fill="none" stroke="#2fd477" stroke-width="5"/>
+      <text x="75" y="322" class="body">UVM / Testbench / Coverage</text>
+      <text x="425" y="238" class="section" fill="#0f8a48">92%</text>
+      <text x="405" y="276" class="body">覆盖率</text>
+    </g>
+
+    <g transform="translate(1230 970)">
+      <rect width="520" height="370" class="greenBox"/>
+      <circle cx="60" cy="62" r="28" fill="url(#green)"/><text x="50" y="72" class="num">7</text>
+      <text x="112" y="68" class="section">形式验证</text>
+      <text x="112" y="108" class="body">用数学方法证明等价性</text>
+      <rect x="110" y="165" width="115" height="58" fill="#fff" stroke="#7898b5"/>
+      <rect x="300" y="165" width="115" height="58" fill="#fff" stroke="#7898b5"/>
+      <path d="M225 194 H300" stroke="#1b3550" stroke-width="5" marker-end="url(#arrowBlue)"/>
+      <text x="143" y="202" class="body">RTL</text>
+      <text x="320" y="202" class="body">Netlist</text>
+      <text x="86" y="284" class="body">检查：LEC、SVA/PSL、断言验证</text>
+    </g>
+
+    <g transform="translate(1810 970)">
+      <rect width="520" height="370" class="greenBox"/>
+      <circle cx="60" cy="62" r="28" fill="url(#green)"/><text x="50" y="72" class="num">8</text>
+      <text x="112" y="68" class="section">静态时序分析</text>
+      <text x="112" y="108" class="body">不跑仿真，直接检查时序收敛</text>
+      <path d="M75 218 H440" stroke="#9ab1c5" stroke-width="3"/>
+      <path d="M90 250 C140 160,190 285,245 210 S340 210,420 155" fill="none" stroke="#29a164" stroke-width="5"/>
+      <text x="135" y="306" class="label" fill="#128545">Slack +0.12ns</text>
+    </g>
+
+    <g transform="translate(2390 970)">
+      <rect width="520" height="370" class="greenBox"/>
+      <text x="58" y="68" class="section">9B 功耗与信号完整性</text>
+      <text x="58" y="108" class="body">功耗、IR Drop、EM、串扰</text>
+      <rect x="65" y="155" width="180" height="125" fill="#164b83" rx="8"/>
+      <rect x="280" y="155" width="180" height="125" fill="#071b31" rx="8"/>
+      <path d="M80 260 C120 170,160 290,230 180" stroke="#f5c64a" stroke-width="6" fill="none"/>
+      <path d="M300 220 C340 140,395 300,450 190" stroke="#52d4ff" stroke-width="5" fill="none"/>
+      <text x="72" y="320" class="body">风险：热密度、压降、噪声闭环</text>
+    </g>
+
+    <g transform="translate(2965 970)">
+      <rect width="260" height="370" class="greenBox"/>
+      <text x="38" y="68" class="section">9C DFT</text>
+      <text x="38" y="108" class="body">可测试性设计</text>
+      <g fill="#fff" stroke="#7898b5" stroke-width="3">
+        <rect x="42" y="168" width="42" height="42"/><rect x="102" y="168" width="42" height="42"/>
+        <rect x="162" y="168" width="42" height="42"/>
+      </g>
+      <path d="M25 189 H230" stroke="#183957" stroke-width="4" marker-end="url(#arrowBlue)"/>
+      <text x="44" y="270" class="body">Scan 链、ATPG</text>
+      <text x="44" y="306" class="body">量产测试覆盖率</text>
+    </g>
+
+    <rect x="560" y="1390" width="2680" height="335" class="soft"/>
+    <text x="610" y="1446" class="section">局部放大视图（工具内部视角）</text>
+    <g transform="translate(610 1480)">
+      <g>
+        <rect width="340" height="205" fill="#fff" stroke="#b6c8d8" rx="12"/>
+        <text x="22" y="42" class="label">A RTL 代码片段</text>
+        <rect x="28" y="66" width="285" height="80" fill="#09213a" rx="8"/>
+        <text x="47" y="99" class="tiny white">always_ff @(posedge clk)</text>
+        <text x="47" y="129" class="tiny white">q &lt;= next_state;</text>
+        <text x="30" y="176" class="small">可综合编码规范</text>
+      </g>
+      <g transform="translate(375 0)">
+        <rect width="340" height="205" fill="#fff" stroke="#b6c8d8" rx="12"/>
+        <text x="22" y="42" class="label">B 门级网表</text>
+        <path d="M70 96 H140 M70 135 H140 M140 96 Q205 96 205 135 Q205 174 140 174" stroke="#183957" stroke-width="4" fill="none"/>
+        <path d="M205 135 H280" stroke="#183957" stroke-width="4"/>
+        <text x="56" y="176" class="small">逻辑等价基础</text>
+      </g>
+      <g transform="translate(750 0)">
+        <rect width="340" height="205" fill="#fff" stroke="#b6c8d8" rx="12"/>
+        <text x="22" y="42" class="label">C 时序路径分析</text>
+        <text x="34" y="86" class="small">Startpoint: reg_A/CLK</text>
+        <text x="34" y="116" class="small">Endpoint: reg_B/D</text>
+        <text x="34" y="146" class="small">Slack: +0.12ns</text>
+        <text x="34" y="176" class="small">Data Path Delay: 1.23ns</text>
+      </g>
+      <g transform="translate(1125 0)">
+        <rect width="340" height="205" fill="#fff" stroke="#b6c8d8" rx="12"/>
+        <text x="22" y="42" class="label">D 布局布线视图</text>
+        <rect x="34" y="66" width="270" height="95" fill="#08233e" rx="8"/>
+        <path d="M50 90 H280 V125 H90 V150" stroke="#2fd477" stroke-width="5" fill="none"/>
+        <path d="M70 145 H285 V80" stroke="#2e88de" stroke-width="5" fill="none"/>
+        <text x="34" y="185" class="small">标准单元与互连</text>
+      </g>
+      <g transform="translate(1500 0)">
+        <rect width="340" height="205" fill="#fff" stroke="#b6c8d8" rx="12"/>
+        <text x="22" y="42" class="label">E DRC 规则检查</text>
+        <text x="36" y="86" class="small">Min Width  ✓</text>
+        <text x="36" y="116" class="small">Min Spacing ✓</text>
+        <text x="36" y="146" class="small">Min Enclosure ✓</text>
+        <text x="36" y="176" class="small">Total violations: 0</text>
+      </g>
+      <g transform="translate(1875 0)">
+        <rect width="340" height="205" fill="#fff" stroke="#b6c8d8" rx="12"/>
+        <text x="22" y="42" class="label">F IP 接口视图</text>
+        <rect x="48" y="82" width="105" height="70" fill="#eef4fa" stroke="#7898b5"/>
+        <rect x="205" y="82" width="105" height="70" fill="#eef4fa" stroke="#7898b5"/>
+        <path d="M153 117 H205" stroke="#183957" stroke-width="4" marker-end="url(#arrowBlue)"/>
+        <text x="76" y="124" class="small">PCIe</text>
+        <text x="238" y="124" class="small">AXI</text>
+      </g>
+      <g transform="translate(2250 0)">
+        <rect width="340" height="205" fill="#fff" stroke="#b6c8d8" rx="12"/>
+        <text x="22" y="42" class="label">G PDK 约束</text>
+        <text x="36" y="86" class="small">M1 Width: 0.016um</text>
+        <text x="36" y="116" class="small">Via MinArea: 0.020um²</text>
+        <text x="36" y="146" class="small">MaxCap: 0.300pF</text>
+        <text x="36" y="176" class="small">规则定义实现边界</text>
+      </g>
+    </g>
+  </g>
+
+  <g class="font">
+    <rect x="3320" y="250" width="460" height="1530" class="panel"/>
+    <g transform="translate(3365 310)">
+      <rect width="370" height="160" class="soft"/>
+      <circle cx="46" cy="55" r="29" fill="url(#blue)"/><text x="31" y="65" class="num">11</text>
+      <text x="105" y="60" class="section">晶圆制造</text>
+      <text x="105" y="105" class="body">流片与量产</text>
+    </g>
+    <circle cx="3550" cy="675" r="188" fill="#d9edf4" stroke="#0c2743" stroke-width="5"/>
+    <g stroke="#0d4c84" stroke-width="2" opacity="0.48">
+      <path d="M3378 610 H3722 M3378 650 H3722 M3378 690 H3722 M3378 730 H3722"/>
+      <path d="M3470 500 V850 M3510 500 V850 M3550 500 V850 M3590 500 V850 M3630 500 V850"/>
+    </g>
+    <path d="M3375 674 C3440 545,3620 525,3725 675 C3635 825,3440 805,3375 674Z" fill="none" stroke="#9346b8" stroke-width="6" opacity="0.65"/>
+    <text x="3392" y="930" class="body">• 掩膜制作  • 晶圆制造</text>
+    <text x="3392" y="970" class="body">• 封装测试  • 量产交付</text>
+
+    <g transform="translate(3365 1040)">
+      <rect width="370" height="220" class="greenBox"/>
+      <text x="95" y="50" class="label">商业化路径</text>
+      <text x="32" y="96" class="body">产品定义 → 芯片架构</text>
+      <text x="32" y="134" class="body">EDA 验证 → 流片量产</text>
+      <text x="32" y="172" class="body">客户适配 → 生态复用</text>
+    </g>
+
+    <g transform="translate(3365 1305)">
+      <rect width="370" height="360" class="soft"/>
+      <text x="74" y="50" class="label">主要风险与瓶颈</text>
+      <text x="32" y="100" class="body">• PPA 收敛难度</text>
+      <text x="32" y="142" class="body">• 工艺节点适配</text>
+      <text x="32" y="184" class="body">• 验证覆盖率不足</text>
+      <text x="32" y="226" class="body">• IP / 工具链兼容</text>
+      <text x="32" y="268" class="body">• 历史项目迁移成本</text>
+      <text x="32" y="310" class="body">• 客户流程深度绑定</text>
+    </g>
+  </g>
+
+  <g class="font">
+    <rect x="60" y="1830" width="2120" height="245" class="panel"/>
+    <text x="110" y="1888" class="section">EDA 工具链生态（典型工具类别）</text>
+    <g transform="translate(110 1925)">
+      <rect width="230" height="100" class="soft"/><text x="28" y="42" class="small">需求与系统建模</text><text x="44" y="74" class="tiny">SysML / Arch</text>
+      <rect x="260" width="230" height="100" class="soft"/><text x="304" y="42" class="small">RTL 开发环境</text><text x="315" y="74" class="tiny">IDE / Lint</text>
+      <rect x="520" width="230" height="100" class="soft"/><text x="556" y="42" class="small">综合与优化</text><text x="560" y="74" class="tiny">Synthesis</text>
+      <rect x="780" width="230" height="100" class="soft"/><text x="817" y="42" class="small">验证与仿真</text><text x="820" y="74" class="tiny">Simulation</text>
+      <rect x="1040" width="230" height="100" class="soft"/><text x="1084" y="42" class="small">形式验证</text><text x="1100" y="74" class="tiny">Formal</text>
+      <rect x="1300" width="230" height="100" class="soft"/><text x="1328" y="42" class="small">时序与物理分析</text><text x="1348" y="74" class="tiny">STA / PPA</text>
+      <rect x="1560" width="230" height="100" class="soft"/><text x="1598" y="42" class="small">物理设计实现</text><text x="1614" y="74" class="tiny">P&amp;R / CTS</text>
+      <rect x="1820" width="230" height="100" class="soft"/><text x="1850" y="42" class="small">签核与验证</text><text x="1860" y="74" class="tiny">DRC / LVS</text>
+    </g>
+
+    <rect x="2220" y="1830" width="710" height="245" class="panel"/>
+    <text x="2325" y="1888" class="section">数据管理与闭环平台</text>
+    <text x="2280" y="1950" class="body">版本管理   配置管理   变更追踪   报表与质量   知识沉淀</text>
+    <text x="2280" y="2002" class="body">把验证、时序、功耗、面积、成本反馈到设计迭代</text>
+
+    <rect x="3000" y="1830" width="780" height="245" fill="url(#dark)" stroke="#8fb1cf" stroke-width="3" rx="18" filter="url(#shadow)"/>
+    <text x="3130" y="1892" class="white section">设计成功的关键公式</text>
+    <text x="3075" y="1960" class="white body">成功 = 正确的架构 × 充分的验证 × 优秀的实现 × 成熟的工艺</text>
+    <text x="3185" y="2015" class="white body">× 经验的工程师 × 高效的工具链</text>
+  </g>
+
+  <g class="font">
+    <path d="M480 1030 H520" stroke="#1c5f9f" stroke-width="12" marker-end="url(#arrowBlue)" fill="none"/>
+    <path d="M3280 760 H3315" stroke="#1c5f9f" stroke-width="12" marker-end="url(#arrowBlue)" fill="none"/>
+    <text x="520" y="2130" class="tiny">高清重排版：7680×4320 矢量母版。文字均为真实文本，避免低分辨率截图放大导致的模糊。</text>
+  </g>
+</svg>

@@ -1,0 +1,470 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="7680" height="4320" viewBox="0 0 3840 2160">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbfdff"/>
+      <stop offset="0.55" stop-color="#eef6fc"/>
+      <stop offset="1" stop-color="#f8fbff"/>
+    </linearGradient>
+    <linearGradient id="navy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071d39"/>
+      <stop offset="1" stop-color="#124a7a"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2d3a42"/>
+      <stop offset="0.45" stop-color="#768997"/>
+      <stop offset="1" stop-color="#1b2a32"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b63a2"/>
+      <stop offset="1" stop-color="#68a8df"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#346f43"/>
+      <stop offset="1" stop-color="#a7d08b"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a6423d"/>
+      <stop offset="1" stop-color="#e98678"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a7086"/>
+      <stop offset="1" stop-color="#8ed4e8"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c56a15"/>
+      <stop offset="1" stop-color="#f7c568"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#76508d"/>
+      <stop offset="1" stop-color="#c8a8dd"/>
+    </linearGradient>
+    <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+      <path d="M34 0H0V34" fill="none" stroke="#d5e1ea" stroke-width="1" opacity=".42"/>
+    </pattern>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#0a3558" flood-opacity=".18"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="16" markerHeight="16" refX="13" refY="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L16,8 L0,16 Z" fill="#1c5d9b"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="16" markerHeight="16" refX="13" refY="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L16,8 L0,16 Z" fill="#2c874a"/>
+    </marker>
+    <style>
+      .font{font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif}
+      .title{font-size:104px;font-weight:900;fill:#061b39;letter-spacing:2px}
+      .subtitle{font-size:38px;font-weight:700;fill:#172f4a}
+      .section{font-size:31px;font-weight:850;fill:#082345}
+      .label{font-size:25px;font-weight:800;fill:#102b48}
+      .body{font-size:21px;font-weight:550;fill:#183551}
+      .small{font-size:18px;font-weight:550;fill:#243d56}
+      .tiny{font-size:16px;font-weight:520;fill:#2b4158}
+      .white{fill:#fff}
+      .panel{fill:#fff;stroke:#83a9c8;stroke-width:3;rx:16;filter:url(#shadow)}
+      .box{fill:#f8fbff;stroke:#a9c2d8;stroke-width:2;rx:12}
+      .soft{fill:#eff7fd;stroke:#9cbad2;stroke-width:2;rx:12}
+      .num{font-size:26px;font-weight:900;fill:#fff}
+      .chipText{font-size:28px;font-weight:850;fill:#fff}
+    </style>
+  </defs>
+  <rect width="3840" height="2160" fill="url(#bg)"/>
+  <rect width="3840" height="2160" fill="url(#grid)" opacity=".6"/>
+
+  <g class="font">
+    <text x="34" y="110" class="title">IP核技术结构解剖图</text>
+    <text x="36" y="174" class="subtitle">芯片设计的可复用器官模块与生态系统</text>
+
+    <rect x="1015" y="24" width="2620" height="250" class="panel"/>
+    <text x="1088" y="78" class="section">IP核定义</text>
+    <g transform="translate(1080 104)">
+      <g>
+        <circle cx="42" cy="42" r="39" fill="#eef6ff" stroke="#163b61" stroke-width="3"/>
+        <rect x="23" y="23" width="38" height="38" fill="none" stroke="#173d63" stroke-width="3"/>
+        <text x="92" y="30" class="label">可复用设计资产</text>
+        <text x="92" y="65" class="body">预先设计、验证并可</text>
+        <text x="92" y="96" class="body">重复使用的功能模块</text>
+      </g>
+      <g transform="translate(440 0)">
+        <circle cx="42" cy="42" r="39" fill="#eef6ff" stroke="#163b61" stroke-width="3"/>
+        <path d="M24 52 L52 24 M34 62 L62 34" stroke="#173d63" stroke-width="5"/>
+        <text x="92" y="30" class="label">降低设计风险</text>
+        <text x="92" y="65" class="body">成熟验证、广泛应用</text>
+        <text x="92" y="96" class="body">减少 Bug 和返工</text>
+      </g>
+      <g transform="translate(880 0)">
+        <circle cx="42" cy="42" r="39" fill="#eef6ff" stroke="#163b61" stroke-width="3"/>
+        <path d="M42 18 V66 M18 42 H66" stroke="#173d63" stroke-width="5"/>
+        <text x="92" y="30" class="label">缩短开发周期</text>
+        <text x="92" y="65" class="body">即插即用，聚焦差异化</text>
+        <text x="92" y="96" class="body">功能开发</text>
+      </g>
+      <g transform="translate(1320 0)">
+        <circle cx="42" cy="42" r="39" fill="#eef6ff" stroke="#163b61" stroke-width="3"/>
+        <path d="M22 54 Q42 18 62 54 M30 56 H54" fill="none" stroke="#173d63" stroke-width="5"/>
+        <text x="92" y="30" class="label">优化 PPA</text>
+        <text x="92" y="65" class="body">性能 / 功耗 / 面积</text>
+        <text x="92" y="96" class="body">平衡优化</text>
+      </g>
+      <g transform="translate(1760 0)">
+        <circle cx="42" cy="42" r="39" fill="#eef6ff" stroke="#163b61" stroke-width="3"/>
+        <path d="M42 18 C24 28 24 58 42 68 C60 58 60 28 42 18Z" fill="none" stroke="#173d63" stroke-width="5"/>
+        <text x="92" y="30" class="label">跨工艺可迁移</text>
+        <text x="92" y="65" class="body">适配多工艺节点</text>
+        <text x="92" y="96" class="body">与多种实现方式</text>
+      </g>
+    </g>
+
+    <rect x="18" y="232" width="705" height="1698" class="panel"/>
+    <circle cx="68" cy="273" r="28" fill="#145891"/><text x="58" y="283" class="num">1</text>
+    <text x="124" y="283" class="section">IP 核类型分类</text>
+    <g transform="translate(45 316)">
+      <g>
+        <rect width="630" height="188" class="box"/>
+        <path d="M35 64 H120 M65 45 V83 M92 40 V88 M40 104 H124" stroke="#163b61" stroke-width="8" fill="none"/>
+        <text x="260" y="58" class="label">标准接口与协议 IP</text>
+        <text x="260" y="100" class="body">实现系统间高速、可通信连接</text>
+        <text x="260" y="134" class="body">PCIe、USB、DDR、以太网、</text>
+        <text x="260" y="168" class="body">MIPI、SATA、SPI、I3C 等</text>
+      </g>
+      <g transform="translate(0 205)">
+        <rect width="630" height="188" class="box"/>
+        <rect x="42" y="45" width="95" height="95" fill="#d8e9f8" stroke="#163b61" stroke-width="5" rx="13"/>
+        <path d="M35 64 H15 M35 96 H15 M35 128 H15 M137 64 H157 M137 96 H157 M137 128 H157" stroke="#163b61" stroke-width="5"/>
+        <text x="260" y="58" class="label">处理器与控制器 IP</text>
+        <text x="260" y="100" class="body">提供计算、控制与管理能力</text>
+        <text x="260" y="134" class="body">CPU、MCU、DMA、Timer、</text>
+        <text x="260" y="168" class="body">中断控制器、总线控制器等</text>
+      </g>
+      <g transform="translate(0 410)">
+        <rect width="630" height="188" class="box"/>
+        <rect x="40" y="42" width="88" height="105" fill="#d8e9f8" stroke="#163b61" stroke-width="5" rx="8"/>
+        <path d="M58 66 H108 M58 96 H108 M58 126 H108" stroke="#163b61" stroke-width="6"/>
+        <text x="260" y="58" class="label">存储与互连 IP</text>
+        <text x="260" y="100" class="body">数据存储与高速互连结构</text>
+        <text x="260" y="134" class="body">SRAM、eFlash、NoC、Cache、</text>
+        <text x="260" y="168" class="body">PHY、Crossbar 等</text>
+      </g>
+      <g transform="translate(0 615)">
+        <rect width="630" height="188" class="box"/>
+        <path d="M35 105 C70 20,105 188,145 88" fill="none" stroke="#163b61" stroke-width="6"/>
+        <text x="260" y="58" class="label">模拟与混合信号 IP</text>
+        <text x="260" y="100" class="body">处理模拟信号与电源管理</text>
+        <text x="260" y="134" class="body">ADC/DAC、PLL、LDO、</text>
+        <text x="260" y="168" class="body">SerDes、PMU 等</text>
+      </g>
+      <g transform="translate(0 820)">
+        <rect width="630" height="188" class="box"/>
+        <rect x="55" y="82" width="80" height="72" fill="#bfd6ea" stroke="#163b61" stroke-width="5" rx="8"/>
+        <path d="M72 82 V55 Q95 25 118 55 V82" fill="none" stroke="#163b61" stroke-width="8"/>
+        <text x="260" y="58" class="label">安全与加密 IP</text>
+        <text x="260" y="100" class="body">保护数据、身份与系统安全</text>
+        <text x="260" y="134" class="body">AES、RSA、PUF、TRNG、</text>
+        <text x="260" y="168" class="body">Secure Boot、Key Mng 等</text>
+      </g>
+      <g transform="translate(0 1025)">
+        <rect width="630" height="188" class="box"/>
+        <g stroke="#163b61" stroke-width="5" fill="#d8e9f8">
+          <circle cx="45" cy="60" r="10"/><circle cx="120" cy="52" r="10"/><circle cx="82" cy="100" r="10"/><circle cx="140" cy="132" r="10"/><circle cx="40" cy="145" r="10"/>
+          <path d="M45 60 L120 52 L82 100 L140 132 L40 145 L82 100 L45 60"/>
+        </g>
+        <text x="260" y="58" class="label">AI / 多媒体 / 加速 IP</text>
+        <text x="260" y="100" class="body">提升特定算法与媒体处理性能</text>
+        <text x="260" y="134" class="body">NPU、GPU、ISP、VPU、</text>
+        <text x="260" y="168" class="body">编解码器、DSP 等</text>
+      </g>
+      <g transform="translate(0 1230)">
+        <rect width="630" height="188" class="box"/>
+        <circle cx="86" cy="96" r="55" fill="#d8e9f8" stroke="#163b61" stroke-width="5"/>
+        <path d="M86 44 V148 M34 96 H138 M50 60 L122 132 M122 60 L50 132" stroke="#163b61" stroke-width="5"/>
+        <text x="260" y="58" class="label">其他功能 IP</text>
+        <text x="260" y="100" class="body">通用与常用功能模块</text>
+        <text x="260" y="134" class="body">GPIO、I2C、UART、PWM、</text>
+        <text x="260" y="168" class="body">温度传感器、RTC 等</text>
+      </g>
+    </g>
+
+    <rect x="742" y="232" width="2255" height="1215" class="panel"/>
+    <circle cx="792" cy="273" r="28" fill="#145891"/><text x="782" y="283" class="num">2</text>
+    <text x="845" y="283" class="section">SoC 集成剖面图：IP 核嵌入与互连</text>
+
+    <g transform="translate(980 345)">
+      <rect x="0" y="0" width="1680" height="900" fill="url(#chip)" stroke="#132c3f" stroke-width="8" rx="28" filter="url(#shadow)"/>
+      <rect x="40" y="40" width="1600" height="820" fill="#1b2931" stroke="#8197a4" stroke-width="3" rx="18"/>
+      <g stroke="#c7a46a" stroke-width="12">
+        <path d="M70 880 V930 M130 880 V930 M190 880 V930 M250 880 V930 M310 880 V930 M370 880 V930 M430 880 V930 M490 880 V930 M550 880 V930 M610 880 V930 M670 880 V930 M730 880 V930 M790 880 V930 M850 880 V930 M910 880 V930 M970 880 V930 M1030 880 V930 M1090 880 V930 M1150 880 V930 M1210 880 V930 M1270 880 V930 M1330 880 V930 M1390 880 V930 M1450 880 V930 M1510 880 V930"/>
+      </g>
+      <g opacity=".55" stroke-width="6" fill="none">
+        <path d="M150 165 H1470 V735 H150Z" stroke="#2e8ce0"/>
+        <path d="M220 250 H840 V505 H1050 V245 H1500" stroke="#19b35e"/>
+        <path d="M690 230 V770 H1430" stroke="#ff8a1c"/>
+        <path d="M270 575 H1030 V420 H1510" stroke="#d53a4c"/>
+      </g>
+
+      <g transform="translate(230 70)">
+        <rect width="780" height="130" fill="url(#blue)" stroke="#d7e9f8" stroke-width="4" rx="12"/>
+        <text x="275" y="38" class="chipText">标准接口与协议 IP</text>
+        <g transform="translate(42 57)" class="font">
+          <rect width="115" height="48" fill="#dbeeff" stroke="#0f3d68" rx="6"/><text x="28" y="32" class="body">PCIe</text>
+          <rect x="135" width="115" height="48" fill="#dbeeff" stroke="#0f3d68" rx="6"/><text x="170" y="32" class="body">USB</text>
+          <rect x="270" width="115" height="48" fill="#dbeeff" stroke="#0f3d68" rx="6"/><text x="303" y="32" class="body">DDR</text>
+          <rect x="405" width="135" height="48" fill="#dbeeff" stroke="#0f3d68" rx="6"/><text x="430" y="32" class="body">Ethernet</text>
+          <rect x="560" width="115" height="48" fill="#dbeeff" stroke="#0f3d68" rx="6"/><text x="592" y="32" class="body">MIPI</text>
+          <rect x="695" width="55" height="48" fill="#dbeeff" stroke="#0f3d68" rx="6"/><text x="716" y="32" class="body">...</text>
+        </g>
+      </g>
+
+      <g transform="translate(135 260)">
+        <rect width="620" height="250" fill="url(#green)" stroke="#d7f0d7" stroke-width="4" rx="14"/>
+        <text x="190" y="45" class="chipText">处理器与控制器 IP</text>
+        <rect x="50" y="75" width="520" height="65" fill="#69a96c" stroke="#e4f7e7" stroke-width="3" rx="8"/>
+        <text x="220" y="119" class="chipText">CPU Cluster</text>
+        <rect x="65" y="165" width="145" height="52" fill="#c9e5bd" stroke="#215b38" rx="8"/><text x="105" y="199" class="body">MCU</text>
+        <rect x="230" y="165" width="145" height="52" fill="#c9e5bd" stroke="#215b38" rx="8"/><text x="272" y="199" class="body">DMA</text>
+        <rect x="395" y="165" width="120" height="52" fill="#c9e5bd" stroke="#215b38" rx="8"/><text x="432" y="199" class="body">Timer</text>
+        <rect x="528" y="165" width="45" height="52" fill="#c9e5bd" stroke="#215b38" rx="8"/><text x="541" y="199" class="body">...</text>
+      </g>
+
+      <g transform="translate(820 260)">
+        <rect width="440" height="250" fill="#ead39a" stroke="#fff2c6" stroke-width="4" rx="14"/>
+        <text x="106" y="45" class="label">互连架构（NoC / Bus）</text>
+        <g stroke="#30485e" stroke-width="3" fill="#ffffff">
+          <circle cx="95" cy="95" r="8"/><circle cx="180" cy="85" r="8"/><circle cx="270" cy="95" r="8"/><circle cx="350" cy="88" r="8"/>
+          <circle cx="120" cy="165" r="8"/><circle cx="220" cy="155" r="8"/><circle cx="310" cy="170" r="8"/>
+          <path d="M95 95 L180 85 L270 95 L350 88 M95 95 L120 165 L220 155 L310 170 L350 88 M180 85 L220 155 L270 95 L310 170"/>
+        </g>
+      </g>
+
+      <g transform="translate(1310 260)">
+        <rect width="300" height="250" fill="url(#cyan)" stroke="#d6f5ff" stroke-width="4" rx="14"/>
+        <text x="52" y="45" class="chipText">存储与互连 IP</text>
+        <rect x="35" y="70" width="105" height="55" fill="#d2f0fa" stroke="#0e5367" rx="8"/><text x="62" y="106" class="body">SRAM</text>
+        <rect x="160" y="70" width="105" height="55" fill="#d2f0fa" stroke="#0e5367" rx="8"/><text x="190" y="106" class="body">eFlash</text>
+        <rect x="35" y="145" width="105" height="55" fill="#d2f0fa" stroke="#0e5367" rx="8"/><text x="67" y="181" class="body">PHY</text>
+        <rect x="160" y="145" width="105" height="55" fill="#d2f0fa" stroke="#0e5367" rx="8"/><text x="193" y="181" class="body">NoC</text>
+      </g>
+
+      <g transform="translate(1010 70)">
+        <rect width="540" height="130" fill="url(#purple)" stroke="#f3dfff" stroke-width="4" rx="12"/>
+        <text x="150" y="38" class="chipText">模拟与混合信号 IP</text>
+        <rect x="45" y="63" width="80" height="45" fill="#f1dfff" stroke="#55396b" rx="6"/><text x="66" y="94" class="body">PLL</text>
+        <rect x="142" y="63" width="80" height="45" fill="#f1dfff" stroke="#55396b" rx="6"/><text x="164" y="94" class="body">ADC</text>
+        <rect x="239" y="63" width="80" height="45" fill="#f1dfff" stroke="#55396b" rx="6"/><text x="262" y="94" class="body">LDO</text>
+        <rect x="336" y="63" width="100" height="45" fill="#f1dfff" stroke="#55396b" rx="6"/><text x="357" y="94" class="body">SerDes</text>
+        <rect x="455" y="63" width="45" height="45" fill="#f1dfff" stroke="#55396b" rx="6"/><text x="468" y="94" class="body">...</text>
+      </g>
+
+      <g transform="translate(80 555)">
+        <rect width="680" height="150" fill="url(#red)" stroke="#ffd5d0" stroke-width="4" rx="12"/>
+        <text x="210" y="42" class="chipText">安全与加密 IP</text>
+        <rect x="45" y="75" width="115" height="50" fill="#ffd6d0" stroke="#762f2d" rx="7"/><text x="80" y="109" class="body">AES</text>
+        <rect x="178" y="75" width="115" height="50" fill="#ffd6d0" stroke="#762f2d" rx="7"/><text x="218" y="109" class="body">PUF</text>
+        <rect x="311" y="75" width="115" height="50" fill="#ffd6d0" stroke="#762f2d" rx="7"/><text x="345" y="109" class="body">TRNG</text>
+        <rect x="444" y="75" width="135" height="50" fill="#ffd6d0" stroke="#762f2d" rx="7"/><text x="465" y="109" class="body">Secure Boot</text>
+        <rect x="597" y="75" width="45" height="50" fill="#ffd6d0" stroke="#762f2d" rx="7"/><text x="610" y="109" class="body">...</text>
+      </g>
+
+      <g transform="translate(1095 555)">
+        <rect width="540" height="150" fill="url(#orange)" stroke="#fff0c8" stroke-width="4" rx="12"/>
+        <text x="135" y="42" class="chipText">AI / 多媒体 / 加速 IP</text>
+        <rect x="45" y="75" width="105" height="50" fill="#ffe2a5" stroke="#7e430d" rx="7"/><text x="82" y="109" class="body">NPU</text>
+        <rect x="168" y="75" width="105" height="50" fill="#ffe2a5" stroke="#7e430d" rx="7"/><text x="207" y="109" class="body">ISP</text>
+        <rect x="291" y="75" width="105" height="50" fill="#ffe2a5" stroke="#7e430d" rx="7"/><text x="326" y="109" class="body">VPU</text>
+        <rect x="414" y="75" width="90" height="50" fill="#ffe2a5" stroke="#7e430d" rx="7"/><text x="446" y="109" class="body">GPU</text>
+      </g>
+
+      <g transform="translate(80 735)">
+        <rect width="650" height="105" fill="#4f5964" stroke="#dce7ef" stroke-width="4" rx="12"/>
+        <text x="295" y="35" class="chipText">基础 IP</text>
+        <rect x="35" y="58" width="95" height="35" fill="#cfd7de" stroke="#222" rx="5"/><text x="55" y="83" class="small">GPIO</text>
+        <rect x="145" y="58" width="95" height="35" fill="#cfd7de" stroke="#222" rx="5"/><text x="174" y="83" class="small">I2C</text>
+        <rect x="255" y="58" width="95" height="35" fill="#cfd7de" stroke="#222" rx="5"/><text x="281" y="83" class="small">UART</text>
+        <rect x="365" y="58" width="95" height="35" fill="#cfd7de" stroke="#222" rx="5"/><text x="394" y="83" class="small">SPI</text>
+        <rect x="475" y="58" width="95" height="35" fill="#cfd7de" stroke="#222" rx="5"/><text x="499" y="83" class="small">PWM</text>
+      </g>
+      <g transform="translate(870 735)">
+        <rect width="680" height="105" fill="#3d4650" stroke="#dce7ef" stroke-width="4" rx="12"/>
+        <text x="290" y="35" class="chipText">系统管理</text>
+        <rect x="60" y="58" width="130" height="35" fill="#cfd7de" stroke="#222" rx="5"/><text x="82" y="83" class="small">Power Mgr</text>
+        <rect x="215" y="58" width="130" height="35" fill="#cfd7de" stroke="#222" rx="5"/><text x="237" y="83" class="small">Clock Mgr</text>
+        <rect x="370" y="58" width="130" height="35" fill="#cfd7de" stroke="#222" rx="5"/><text x="392" y="83" class="small">Reset Mgr</text>
+      </g>
+    </g>
+
+    <g transform="translate(785 340)">
+      <rect width="275" height="860" class="box"/>
+      <text x="72" y="45" class="label">系统入口</text>
+      <g transform="translate(45 95)">
+        <rect width="185" height="120" class="soft"/><text x="55" y="72" class="body">外部接口</text>
+        <rect y="150" width="185" height="120" class="soft"/><text x="67" y="222" class="body">传感器</text>
+        <rect y="300" width="185" height="120" class="soft"/><text x="42" y="372" class="body">显示/摄像头</text>
+        <rect y="450" width="185" height="120" class="soft"/><text x="45" y="522" class="body">网络/存储</text>
+        <rect y="600" width="185" height="120" class="soft"/><text x="58" y="672" class="body">电源管理</text>
+      </g>
+    </g>
+    <g transform="translate(2700 335)">
+      <rect width="270" height="885" class="box"/>
+      <text x="63" y="50" class="label">软件与系统</text>
+      <rect x="43" y="112" width="185" height="120" class="soft"/><text x="61" y="184" class="body">操作系统</text>
+      <rect x="43" y="270" width="185" height="120" class="soft"/><text x="75" y="342" class="body">驱动程序</text>
+      <rect x="43" y="428" width="185" height="120" class="soft"/><text x="83" y="500" class="body">中间件</text>
+      <rect x="43" y="586" width="185" height="120" class="soft"/><text x="78" y="658" class="body">应用软件</text>
+    </g>
+    <g stroke-width="6" fill="none">
+      <path d="M1030 560 H1115" stroke="#1c5d9b" marker-end="url(#arrowBlue)"/>
+      <path d="M1030 710 H1115" stroke="#2c874a" marker-end="url(#arrowGreen)"/>
+      <path d="M1030 860 H1115" stroke="#1c5d9b" marker-end="url(#arrowBlue)"/>
+      <path d="M2640 600 H2700" stroke="#1c5d9b" marker-end="url(#arrowBlue)"/>
+      <path d="M2640 780 H2700" stroke="#1c5d9b" marker-end="url(#arrowBlue)"/>
+      <path d="M2640 955 H2700" stroke="#1c5d9b" marker-end="url(#arrowBlue)"/>
+    </g>
+    <rect x="785" y="1272" width="2155" height="95" class="box"/>
+    <text x="832" y="1332" class="section">接口与数据流</text>
+    <line x1="1100" y1="1321" x2="1255" y2="1321" stroke="#00469b" stroke-width="7"/><text x="1290" y="1332" class="body">高速数据通道</text>
+    <line x1="1535" y1="1321" x2="1690" y2="1321" stroke="#287a42" stroke-width="7"/><text x="1725" y="1332" class="body">控制信号</text>
+    <line x1="1960" y1="1321" x2="2115" y2="1321" stroke="#ff7f00" stroke-width="7"/><text x="2150" y="1332" class="body">时钟 / 复位</text>
+    <line x1="2390" y1="1321" x2="2545" y2="1321" stroke="#d52e48" stroke-width="7"/><text x="2580" y="1332" class="body">电源 / 管理</text>
+
+    <rect x="3015" y="232" width="800" height="1215" class="panel"/>
+    <circle cx="3064" cy="273" r="28" fill="#145891"/><text x="3054" y="283" class="num">3</text>
+    <text x="3118" y="283" class="section">IP 内部结构与实现形式（以接口 IP 为例）</text>
+    <g transform="translate(3060 322)">
+      <rect width="345" height="420" class="box"/>
+      <text x="110" y="46" class="label">硬核 (Hard IP)</text>
+      <rect x="48" y="88" width="250" height="150" fill="#071b31" stroke="#6da8d6" rx="8"/>
+      <g stroke-width="5" fill="none">
+        <path d="M70 120 H270 V170 H105 V220 H280" stroke="#39d477"/>
+        <path d="M90 210 H260 V110" stroke="#2e88de"/>
+        <path d="M120 100 V230 H235" stroke="#e4c045"/>
+      </g>
+      <text x="44" y="285" class="body">• 版图级交付</text>
+      <text x="44" y="322" class="body">• 性能高、功耗低</text>
+      <text x="44" y="359" class="body">• 面积可预测</text>
+      <text x="44" y="396" class="body">• 工艺依赖强</text>
+    </g>
+    <g transform="translate(3445 322)">
+      <rect width="325" height="420" class="box"/>
+      <text x="82" y="46" class="label">软核 (Soft IP / RTL)</text>
+      <rect x="42" y="88" width="245" height="150" fill="#071b31" stroke="#6da8d6" rx="8"/>
+      <text x="68" y="130" class="tiny white">module ip_core (...);</text>
+      <text x="68" y="168" class="tiny white">parameter WIDTH = 32;</text>
+      <text x="68" y="206" class="tiny white">endmodule</text>
+      <text x="38" y="285" class="body">• RTL 源码交付</text>
+      <text x="38" y="322" class="body">• 可配置性高</text>
+      <text x="38" y="359" class="body">• 可移植性好</text>
+      <text x="38" y="396" class="body">• 验证成本较高</text>
+    </g>
+
+    <rect x="3060" y="770" width="710" height="382" class="box"/>
+    <text x="3288" y="824" class="section">IP 模块边界与接口</text>
+    <rect x="3120" y="900" width="190" height="190" fill="#eef6ff" stroke="#8aaac5" stroke-width="3" rx="8"/>
+    <rect x="3345" y="900" width="190" height="190" fill="#c9dcf4" stroke="#6b93b8" stroke-width="3" rx="8"/>
+    <rect x="3570" y="900" width="150" height="190" fill="#eef6ff" stroke="#8aaac5" stroke-width="3" rx="8"/>
+    <text x="3158" y="948" class="body">主接口</text><text x="3150" y="982" class="body">(Master)</text><text x="3155" y="1032" class="body">AXI / CHI</text><text x="3165" y="1065" class="body">APB / AHB</text>
+    <text x="3395" y="1000" class="label">IP Core</text>
+    <text x="3588" y="948" class="body">从接口</text><text x="3586" y="982" class="body">(Slave)</text><text x="3583" y="1032" class="body">AXI / CHI</text><text x="3598" y="1065" class="body">APB</text>
+    <g stroke="#1c5d9b" stroke-width="4" fill="none" marker-end="url(#arrowBlue)">
+      <path d="M3310 955 H3345"/><path d="M3310 1005 H3345"/><path d="M3310 1055 H3345"/>
+      <path d="M3535 955 H3570"/><path d="M3535 1005 H3570"/><path d="M3535 1055 H3570"/>
+    </g>
+    <text x="3160" y="1126" class="small">配置寄存器</text><text x="3388" y="1126" class="small">中断信号</text><text x="3585" y="1126" class="small">时钟 / 复位</text>
+
+    <rect x="3060" y="1180" width="710" height="170" class="box"/>
+    <text x="3100" y="1232" class="label">可配置参数示例</text>
+    <g transform="translate(3095 1260)">
+      <rect width="120" height="65" class="soft"/><text x="18" y="29" class="small">数据位宽</text><text x="37" y="54" class="tiny">(Width)</text>
+      <rect x="140" width="120" height="65" class="soft"/><text x="30" y="29" class="small">通道数</text><text x="25" y="54" class="tiny">(Channels)</text>
+      <rect x="280" width="120" height="65" class="soft"/><text x="25" y="29" class="small">FIFO 深度</text><text x="35" y="54" class="tiny">(Depth)</text>
+      <rect x="420" width="120" height="65" class="soft"/><text x="25" y="29" class="small">特性开关</text><text x="28" y="54" class="tiny">(Feature)</text>
+      <rect x="560" width="120" height="65" class="soft"/><text x="25" y="29" class="small">性能等级</text><text x="36" y="54" class="tiny">(Grade)</text>
+    </g>
+
+    <g transform="translate(742 1468)">
+      <rect width="700" height="225" class="panel"/>
+      <circle cx="43" cy="43" r="28" fill="#145891"/><text x="33" y="53" class="num">4</text>
+      <text x="92" y="52" class="section">验证环境与参考设计</text>
+      <rect x="40" y="96" width="90" height="70" class="soft"/><text x="52" y="140" class="small">验证平台</text>
+      <path d="M132 130 H170" stroke="#1c5d9b" stroke-width="5" marker-end="url(#arrowBlue)"/>
+      <rect x="180" y="96" width="90" height="70" class="soft"/><text x="192" y="140" class="small">功能验证</text>
+      <path d="M272 130 H310" stroke="#1c5d9b" stroke-width="5" marker-end="url(#arrowBlue)"/>
+      <rect x="320" y="96" width="90" height="70" class="soft"/><text x="332" y="140" class="small">形式验证</text>
+      <path d="M412 130 H450" stroke="#1c5d9b" stroke-width="5" marker-end="url(#arrowBlue)"/>
+      <rect x="460" y="96" width="90" height="70" class="soft"/><text x="472" y="140" class="small">性能验证</text>
+      <path d="M552 130 H590" stroke="#1c5d9b" stroke-width="5" marker-end="url(#arrowBlue)"/>
+      <rect x="600" y="96" width="70" height="70" class="soft"/><text x="606" y="140" class="small">硬件平台</text>
+      <text x="42" y="202" class="small">完整验证用例与覆盖率报告，参与 SoC 设计与集成手册</text>
+    </g>
+
+    <g transform="translate(1465 1468)">
+      <rect width="1030" height="225" class="panel"/>
+      <circle cx="43" cy="43" r="28" fill="#145891"/><text x="33" y="53" class="num">5</text>
+      <text x="92" y="52" class="section">EDA 与流程接口</text>
+      <g transform="translate(45 94)">
+        <rect width="110" height="45" class="soft"/><text x="18" y="31" class="small">需求/规格</text>
+        <path d="M112 116 H150" transform="translate(0 -94)" stroke="#1c5d9b" stroke-width="4" marker-end="url(#arrowBlue)"/>
+        <rect x="150" width="110" height="45" class="soft"/><text x="174" y="31" class="small">系统架构</text>
+        <path d="M262 22 H300" stroke="#1c5d9b" stroke-width="4" marker-end="url(#arrowBlue)"/>
+        <rect x="300" width="110" height="45" class="soft"/><text x="324" y="31" class="small">RTL 集成</text>
+        <path d="M412 22 H450" stroke="#1c5d9b" stroke-width="4" marker-end="url(#arrowBlue)"/>
+        <rect x="450" width="110" height="45" class="soft"/><text x="490" y="31" class="small">验证</text>
+        <path d="M562 22 H600" stroke="#1c5d9b" stroke-width="4" marker-end="url(#arrowBlue)"/>
+        <rect x="600" width="110" height="45" class="soft"/><text x="624" y="31" class="small">物理实现</text>
+        <path d="M712 22 H750" stroke="#1c5d9b" stroke-width="4" marker-end="url(#arrowBlue)"/>
+        <rect x="750" width="110" height="45" class="soft"/><text x="778" y="31" class="small">签核/流片</text>
+      </g>
+      <text x="365" y="155" class="label">IP 交付包（IP Deliverables）</text>
+      <text x="70" y="200" class="small">RTL / Netlist、验证环境、约束、文档手册、脚本流程、模型库；兼容主流 EDA 工具</text>
+    </g>
+
+    <g transform="translate(2520 1468)">
+      <rect width="1295" height="225" class="panel"/>
+      <circle cx="43" cy="43" r="28" fill="#145891"/><text x="33" y="53" class="num">6</text>
+      <text x="92" y="52" class="section">授权模式与生态服务</text>
+      <g transform="translate(45 88)">
+        <rect width="125" height="105" class="box"/><text x="28" y="38" class="small">一次性买断</text><text x="24" y="70" class="tiny">(Perpetual)</text>
+        <rect x="145" width="125" height="105" class="box"/><text x="32" y="38" class="small">订阅授权</text><text x="28" y="70" class="tiny">(Subscription)</text>
+        <rect x="290" width="125" height="105" class="box"/><text x="30" y="38" class="small">使用量授权</text><text x="32" y="70" class="tiny">(Royalty)</text>
+        <rect x="435" width="125" height="105" class="box"/><text x="32" y="38" class="small">定制开发</text><text x="35" y="70" class="tiny">(Custom)</text>
+        <rect x="590" width="165" height="105" class="box"/><text x="50" y="35" class="label">生态服务</text><text x="20" y="70" class="tiny">技术支持 / 版本升级</text>
+      </g>
+      <rect x="820" y="78" width="430" height="126" class="box"/>
+      <text x="890" y="115" class="label">授权流向图（商业与技术闭环）</text>
+      <text x="872" y="160" class="body">IP 供应商  →  授权与交付  →  芯片设计公司</text>
+      <text x="940" y="195" class="body">授权费 / 版税  ←  技术支持与文档</text>
+    </g>
+
+    <g transform="translate(18 1946)">
+      <rect width="880" height="170" class="panel"/>
+      <circle cx="43" cy="43" r="28" fill="#145891"/><text x="33" y="53" class="num">7</text>
+      <text x="92" y="52" class="section">IP 核复用价值</text>
+      <text x="60" y="112" class="body">缩短工期 30%~70%　降低风险 bug 减少　优化 PPA　专注创新　规模复用</text>
+    </g>
+    <g transform="translate(925 1946)">
+      <rect width="520" height="170" class="panel"/>
+      <circle cx="43" cy="43" r="28" fill="#145891"/><text x="33" y="53" class="num">8</text>
+      <text x="92" y="52" class="section">成本结构（典型占比）</text>
+      <circle cx="135" cy="108" r="48" fill="none" stroke="#0d68b5" stroke-width="26"/>
+      <path d="M135 60 A48 48 0 0 1 181 121" fill="none" stroke="#f08a18" stroke-width="26"/>
+      <path d="M181 121 A48 48 0 0 1 104 149" fill="none" stroke="#4ca46a" stroke-width="26"/>
+      <text x="230" y="95" class="small">IP 授权费 40%</text>
+      <text x="230" y="125" class="small">定制与集成 20%</text>
+      <text x="230" y="155" class="small">验证与测试 20%</text>
+    </g>
+    <g transform="translate(1475 1946)">
+      <rect width="1240" height="170" class="panel"/>
+      <circle cx="43" cy="43" r="28" fill="#145891"/><text x="33" y="53" class="num">9</text>
+      <text x="92" y="52" class="section">风险与瓶颈</text>
+      <text x="65" y="112" class="body">兼容性风险　验证成本高　授权限制　性能与功耗权衡　工艺迁移挑战　安全与可信</text>
+      <text x="65" y="150" class="small">协议 / 接口 / 工具链不兼容会导致集成困难，后门风险与供应链安全也需长期管理。</text>
+    </g>
+    <g transform="translate(2745 1946)">
+      <rect width="1070" height="170" class="panel"/>
+      <circle cx="43" cy="43" r="28" fill="#145891"/><text x="23" y="53" class="num">10</text>
+      <text x="92" y="52" class="section">生态参与角色</text>
+      <text x="70" y="112" class="body">IP 供应商 → EDA 工具商 → 晶圆代工厂 → 封装测试厂 → 系统 / 终端厂商</text>
+      <text x="70" y="150" class="small">设计 / 验证 / 支持　工具 / 流程 / 接口　工艺 / PDK / 认证　封装 / 测试 / 量产　产品 / 软件 / 生态</text>
+    </g>
+
+    <rect x="22" y="2120" width="3795" height="58" fill="url(#navy)" rx="10"/>
+    <text x="900" y="2160" class="white section">IP 核是芯片设计的“可复用器官模块”，通过标准化接口、成熟验证与生态协同，显著提升设计效率与产品竞争力。</text>
+  </g>
+</svg>
