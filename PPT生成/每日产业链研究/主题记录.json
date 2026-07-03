@@ -81,6 +81,46 @@
       "completed_at": "2026-06-19T22:25:08+08:00",
       "file": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260619-香水产业链/产业链研究底稿.md",
       "social_file": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260619-香水产业链/小红书发布文案.md"
+    },
+    {
+      "topic": "AI 芯片创业公司商业模式解剖",
+      "normalized_topic": "ai芯片创业公司商业模式解剖",
+      "status": "completed",
+      "reserved_at": "2026-06-30T21:44:59+08:00",
+      "completed_at": "2026-06-30T21:52:29+08:00",
+      "file": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260630-AI 芯片创业公司商业模式解剖/产业链研究底稿.md"
+    },
+    {
+      "topic": "推理芯片商业化路径解剖",
+      "normalized_topic": "推理芯片商业化路径解剖",
+      "status": "completed",
+      "reserved_at": "2026-06-30T22:27:38+08:00",
+      "completed_at": "2026-06-30T22:31:51+08:00",
+      "file": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260630-推理芯片商业化路径解剖/产业链研究底稿.md"
+    },
+    {
+      "topic": "数据中心资本开支结构解剖",
+      "normalized_topic": "数据中心资本开支结构解剖",
+      "status": "completed",
+      "reserved_at": "2026-06-30T22:46:08+08:00",
+      "completed_at": "2026-06-30T22:53:27+08:00",
+      "file": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260630-数据中心资本开支结构解剖/产业链研究底稿.md"
+    },
+    {
+      "topic": "HBM 存储商业模式结构解剖",
+      "normalized_topic": "hbm存储商业模式结构解剖",
+      "status": "completed",
+      "reserved_at": "2026-07-01T22:42:14+08:00",
+      "completed_at": "2026-07-01T22:50:05+08:00",
+      "file": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260701-HBM 存储商业模式结构解剖/产业链研究底稿.md"
+    },
+    {
+      "topic": "光模块公司在 AI 算力链条中的位置",
+      "normalized_topic": "光模块公司在ai算力链条中的位置",
+      "status": "completed",
+      "reserved_at": "2026-07-01T22:43:52+08:00",
+      "completed_at": "2026-07-01T22:55:55+08:00",
+      "file": "/Users/apple/Documents/GitHub/gcc-skills/PPT生成/每日产业链研究/20260701-光模块公司在 AI 算力链条中的位置/产业链研究底稿.md"
     }
   ]
 }
