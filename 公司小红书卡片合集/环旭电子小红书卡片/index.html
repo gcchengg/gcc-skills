@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>环旭电子小红书观察卡片</title>
+  <style>
+    :root {
+      --w: 1242px;
+      --h: 1660px;
+      --paper: #f7f6f1;
+      --paper-2: #eeeee8;
+      --ink: #16181d;
+      --muted: #69707a;
+      --line: rgba(22, 24, 29, .16);
+      --blue: #1456d9;
+      --red: #c22f2f;
+      --green: #14705f;
+      --gold: #b3832e;
+      --dark: #111721;
+      --chip: #dfe7f7;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #d8d8d2;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--ink);
+    }
+
+    .page {
+      position: relative;
+      width: var(--w);
+      height: var(--h);
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(22,24,29,.028) 1px, transparent 1px) 0 0 / 54px 54px,
+        linear-gradient(0deg, rgba(22,24,29,.022) 1px, transparent 1px) 0 0 / 54px 54px,
+        var(--paper);
+      padding: 74px 82px 70px;
+      page-break-after: always;
+    }
+
+    .page.dark {
+      color: #f6f2e8;
+      background:
+        radial-gradient(circle at 65% 24%, rgba(20,86,217,.22), transparent 26%),
+        linear-gradient(120deg, #0e1219 0%, #141b26 48%, #10131a 100%);
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 22px;
+      letter-spacing: 0;
+      color: var(--muted);
+      margin-bottom: 54px;
+    }
+
+    .dark .meta { color: rgba(246,242,232,.72); }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 36px;
+      height: 3px;
+      background: currentColor;
+      display: inline-block;
+    }
+
+    .num {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 21px;
+      color: inherit;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: 94px;
+      line-height: 1.02;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 68px;
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: 35px;
+      line-height: 1.2;
+      font-weight: 850;
+    }
+
+    .lead {
+      margin-top: 28px;
+      font-size: 32px;
+      line-height: 1.45;
+      color: var(--muted);
+      font-weight: 520;
+    }
+
+    .dark .lead { color: rgba(246,242,232,.76); }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 38px;
+    }
+
+    .tag {
+      border: 1px solid currentColor;
+      padding: 11px 18px;
+      font-size: 24px;
+      font-weight: 750;
+      color: inherit;
+      background: rgba(255,255,255,.08);
+    }
+
+    .footer {
+      position: absolute;
+      left: 82px;
+      right: 82px;
+      bottom: 54px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      font-size: 19px;
+      color: var(--muted);
+    }
+
+    .dark .footer {
+      border-top-color: rgba(246,242,232,.18);
+      color: rgba(246,242,232,.62);
+    }
+
+    .visual-chip {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.18);
+      background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.03));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+    }
+
+    .wafer {
+      width: 530px;
+      height: 530px;
+      border-radius: 50%;
+      right: -54px;
+      bottom: 246px;
+      opacity: .9;
+      background:
+        radial-gradient(circle at 45% 42%, rgba(255,255,255,.18), transparent 18%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.20) 0 2px, transparent 2px 34px),
+        repeating-linear-gradient(135deg, rgba(74,134,255,.22) 0 2px, transparent 2px 34px),
+        rgba(255,255,255,.04);
+      border: 1px solid rgba(246,242,232,.22);
+    }
+
+    .cover-title {
+      position: relative;
+      z-index: 2;
+      margin-top: 148px;
+      max-width: 930px;
+    }
+
+    .cover-title h1 {
+      font-size: 88px;
+      line-height: 1.08;
+    }
+
+    .cover-note {
+      position: absolute;
+      left: 82px;
+      bottom: 206px;
+      width: 548px;
+      font-size: 30px;
+      line-height: 1.48;
+      color: rgba(246,242,232,.76);
+      z-index: 2;
+    }
+
+    .stamp {
+      color: #f7f2e8;
+      background: var(--red);
+      display: inline-block;
+      padding: 12px 18px;
+      transform: rotate(-2deg);
+      font-weight: 900;
+      font-size: 26px;
+      margin-bottom: 26px;
+    }
+
+    .note-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 52px;
+    }
+
+    .note {
+      min-height: 196px;
+      border-top: 4px solid var(--ink);
+      padding: 22px 0 0;
+    }
+
+    .note strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1.18;
+      margin-bottom: 16px;
+    }
+
+    .note span {
+      display: block;
+      color: var(--muted);
+      font-size: 25px;
+      line-height: 1.45;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      gap: 56px;
+      align-items: stretch;
+      margin-top: 54px;
+    }
+
+    .big-quote {
+      border-left: 8px solid var(--blue);
+      padding-left: 26px;
+      font-size: 40px;
+      line-height: 1.28;
+      font-weight: 850;
+    }
+
+    .factory {
+      position: relative;
+      height: 560px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 50% 42%, rgba(20,86,217,.10), transparent 42%),
+        linear-gradient(90deg, rgba(22,24,29,.06) 1px, transparent 1px) 0 0 / 42px 42px,
+        linear-gradient(0deg, rgba(22,24,29,.05) 1px, transparent 1px) 0 0 / 42px 42px,
+        #fbfaf6;
+      overflow: hidden;
+    }
+
+    .factory::before {
+      content: "";
+      position: absolute;
+      left: 94px;
+      right: 94px;
+      top: 86px;
+      height: 286px;
+      border: 1px solid rgba(20,86,217,.22);
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(20,86,217,.14) 1px, transparent 1px) 0 0 / 48px 48px,
+        linear-gradient(0deg, rgba(20,86,217,.12) 1px, transparent 1px) 0 0 / 48px 48px,
+        linear-gradient(135deg, #eef3fb, #dfe8f4);
+      box-shadow:
+        inset 0 0 0 22px rgba(255,255,255,.42),
+        0 28px 60px rgba(17,23,33,.08);
+    }
+
+    .factory::after {
+      content: "SiP Module / RF / Sensor / Storage / Test";
+      position: absolute;
+      left: 50px;
+      right: 50px;
+      bottom: 48px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 23px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .relation-board {
+      margin-top: 54px;
+      height: 790px;
+      position: relative;
+      border: 1px solid var(--line);
+      background: #fbfaf6;
+      padding: 54px;
+    }
+
+    .node {
+      position: absolute;
+      width: 330px;
+      min-height: 190px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      padding: 28px;
+    }
+
+    .node b {
+      display: block;
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .node span {
+      display: block;
+      font-size: 24px;
+      line-height: 1.42;
+      color: var(--muted);
+    }
+
+    .node.primary {
+      left: 72px;
+      top: 120px;
+      border-color: var(--blue);
+    }
+
+    .node.secondary {
+      right: 72px;
+      bottom: 74px;
+      border-color: var(--green);
+    }
+
+    .chain-line {
+      position: absolute;
+      left: 242px;
+      top: 370px;
+      width: 600px;
+      height: 170px;
+      border-top: 3px solid var(--ink);
+      border-right: 3px solid var(--ink);
+      transform: skewY(-12deg);
+    }
+
+    .relation-caption {
+      position: absolute;
+      left: 376px;
+      top: 348px;
+      width: 350px;
+      background: var(--ink);
+      color: #fff;
+      padding: 24px 28px;
+      font-size: 25px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .chain-map {
+      margin-top: 44px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .layer {
+      position: relative;
+      min-height: 176px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.48);
+      padding: 26px 28px 26px 178px;
+    }
+
+    .layer .index {
+      position: absolute;
+      left: 28px;
+      top: 28px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 30px;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .layer b {
+      display: block;
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .layer span {
+      color: var(--muted);
+      font-size: 24px;
+      line-height: 1.38;
+    }
+
+    .layer.hot {
+      border-color: rgba(20,86,217,.65);
+      background: #eef3ff;
+      box-shadow: inset 8px 0 0 var(--blue);
+    }
+
+    .logic {
+      margin-top: 58px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .logic-row {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 28px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+    }
+
+    .logic-row .label {
+      font-size: 31px;
+      font-weight: 900;
+      color: var(--blue);
+    }
+
+    .logic-row .text {
+      font-size: 30px;
+      line-height: 1.38;
+      font-weight: 700;
+    }
+
+    .duo {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      height: 780px;
+    }
+
+    .duo-panel {
+      border: 1px solid var(--line);
+      padding: 40px 34px;
+      background: rgba(255,255,255,.42);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .duo-panel h3 {
+      font-size: 42px;
+      line-height: 1.1;
+    }
+
+    .duo-panel p {
+      font-size: 29px;
+      line-height: 1.45;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+    .duo-panel .symbol {
+      height: 300px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, transparent 49%, rgba(22,24,29,.18) 50%, transparent 51%),
+        linear-gradient(0deg, transparent 49%, rgba(22,24,29,.18) 50%, transparent 51%),
+        #f4f3ee;
+      display: grid;
+      place-items: center;
+      font-size: 86px;
+      font-weight: 900;
+      color: var(--blue);
+    }
+
+    .risk-list {
+      margin-top: 58px;
+      display: grid;
+      gap: 26px;
+    }
+
+    .risk {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 26px;
+      align-items: start;
+      border-bottom: 1px solid rgba(246,242,232,.18);
+      padding-bottom: 25px;
+    }
+
+    .risk .mark {
+      color: #fff;
+      border: 1px solid rgba(246,242,232,.28);
+      height: 72px;
+      display: grid;
+      place-items: center;
+      font-size: 32px;
+      font-weight: 900;
+    }
+
+    .risk b {
+      display: block;
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .risk span {
+      display: block;
+      color: rgba(246,242,232,.70);
+      font-size: 25px;
+      line-height: 1.42;
+    }
+
+    .summary {
+      margin-top: 72px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .summary .big {
+      font-size: 260px;
+      line-height: .82;
+      font-weight: 950;
+      color: var(--blue);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 26px;
+    }
+
+    .summary-item {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      font-size: 34px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .small-note {
+      margin-top: 44px;
+      font-size: 24px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .source-note {
+      position: absolute;
+      left: 82px;
+      right: 82px;
+      bottom: 110px;
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <section class="page dark" id="card-01">
+    <div class="meta"><div class="kicker">个人投资复盘</div><div class="num">01 / 09</div></div>
+    <div class="visual-chip wafer"></div>
+    <div class="cover-title">
+      <div class="stamp">不是荐股，是复盘</div>
+      <h1>看电子制造，<br>我继续研究<br>环旭电子</h1>
+      <p class="lead">它不是消费品牌，更像把 SiP 微小化模组和电子产品设计制造能力藏在终端背后的平台。</p>
+      <div class="tags">
+        <span class="tag">环旭电子 601231</span>
+        <span class="tag">SiP模组</span>
+        <span class="tag">电子制造服务</span>
+      </div>
+    </div>
+    <p class="cover-note">这套图只讲我的研究路径：很多智能终端表面看品牌，里面真正难的是小型化、模组化、制造良率和供应链交付。</p>
+    <div class="footer"><span>USI research note</span><span>个人记录 / 不构成投资建议</span></div>
+  </section>
+
+  <section class="page" id="card-02">
+    <div class="meta"><div class="kicker">我为什么关注</div><div class="num">02 / 09</div></div>
+    <h2>我看它，不是因为它“卖终端产品”</h2>
+    <p class="lead">环旭电子的看点，不在前台品牌，而在 SiP 微小化、模组设计制造、测试交付和全球电子制造服务能力。</p>
+    <div class="note-grid">
+      <div class="note"><strong>它不是前台品牌</strong><span>消费者未必听过它，但手机、穿戴、汽车、云端设备背后都需要这类制造服务商。</span></div>
+      <div class="note"><strong>它更像模组平台</strong><span>SiP 把多个芯片和器件封到小空间里，考验设计、材料、工艺、测试和良率。</span></div>
+      <div class="note"><strong>它覆盖多类终端</strong><span>官网业务覆盖无线通讯、云端及存储、工业电子、消费电子和汽车电子等领域。</span></div>
+      <div class="note"><strong>我复盘的是逻辑</strong><span>重点不是追一个概念，而是看懂“终端小型化背后谁在做模组和交付”。</span></div>
+    </div>
+    <div class="footer"><span>投资笔记不是结论</span><span>先讲认知，再讲公司</span></div>
+  </section>
+
+  <section class="page" id="card-03">
+    <div class="meta"><div class="kicker">公司做什么</div><div class="num">03 / 09</div></div>
+    <h2>环旭电子不是卖手机的，它更像“微小化模组管家”</h2>
+    <div class="split">
+      <div>
+        <p class="big-quote">帮客户把芯片、器件、模组和整机，从设计、制造、测试到供应链交付做出来。</p>
+        <p class="lead">理解它，不是先看消费品牌，而是先看 SiP、电子制造服务、微小化设计和质量交付。</p>
+        <div class="tags">
+          <span class="tag" style="color:var(--blue)">SiP</span>
+          <span class="tag" style="color:var(--green)">EMS / ODM</span>
+          <span class="tag" style="color:var(--red)">微小化</span>
+        </div>
+      </div>
+      <div class="factory"></div>
+    </div>
+    <div class="footer"><span>SiP / EMS / Miniaturization</span><span>把复杂终端藏进小模组</span></div>
+  </section>
+
+  <section class="page" id="card-04">
+    <div class="meta"><div class="kicker">和芯片公司的区别</div><div class="num">04 / 09</div></div>
+    <h2>芯片是主角，环旭看“模组化交付”</h2>
+    <p class="lead">这条线要讲清楚：环旭电子不是芯片设计公司，它更像把芯片、器件、传感器和连接能力整合进模组与整机的制造服务商。</p>
+    <div class="relation-board">
+      <div class="node primary"><b>芯片与器件</b><span>提供处理、连接、传感、存储、电源管理等基础能力，是终端智能化的核心材料。</span></div>
+      <div class="chain-line"></div>
+      <div class="relation-caption">关注逻辑：终端升级不是只有芯片，还要被做成更小、更稳、更易量产的模组。</div>
+      <div class="node secondary"><b>环旭</b><span>更偏 SiP、模组设计制造、测试和供应链交付，是终端电子产品落地层的观察对象。</span></div>
+    </div>
+    <div class="footer"><span>不要把角色混为一谈</span><span>芯片 / 模组 / 整机 / 交付</span></div>
+  </section>
+
+  <section class="page" id="card-05">
+    <div class="meta"><div class="kicker">产业链位置</div><div class="num">05 / 09</div></div>
+    <h2>一个小模组背后，有一整条链</h2>
+    <div class="chain-map">
+      <div class="layer"><div class="index">01</div><b>上游元器件</b><span>芯片、传感器、连接器、PCB、被动元件、材料和封装工艺。</span></div>
+      <div class="layer hot"><div class="index">02</div><b>SiP 与模组制造</b><span>把多颗芯片和器件集成到小空间里，环旭电子容易被放在这一层理解。</span></div>
+      <div class="layer"><div class="index">03</div><b>设计制造服务</b><span>产品设计、工艺开发、测试验证、智能制造和供应链管理。</span></div>
+      <div class="layer"><div class="index">04</div><b>终端应用</b><span>无线通讯、云端及存储、工业医疗、消费电子、汽车电子等场景。</span></div>
+    </div>
+    <div class="footer"><span>高亮的是理解位置，不是收益承诺</span><span>SiP 与电子制造链条</span></div>
+  </section>
+
+  <section class="page" id="card-06">
+    <div class="meta"><div class="kicker">商业模式</div><div class="num">06 / 09</div></div>
+    <h2>它赚的不是品牌溢价，而是微小化和复杂制造的钱</h2>
+    <p class="lead">这类公司的价值，不是“把东西组装出来”这么简单，而是把设计、工艺、良率、测试、交期和全球供应链一起管理。</p>
+    <div class="logic">
+      <div class="logic-row"><div class="label">客户需求</div><div class="text">品牌商、通信客户、车载客户或工业客户提出小型化、可靠性和交付要求。</div></div>
+      <div class="logic-row"><div class="label">组织能力</div><div class="text">环旭电子提供 SiP、产品设计、制造、测试和供应链协同。</div></div>
+      <div class="logic-row"><div class="label">交付结果</div><div class="text">把多芯片、多器件系统稳定做成模组或终端产品。</div></div>
+      <div class="logic-row"><div class="label">收入来源</div><div class="text">赚微小化模组、电子设计制造、测试验证和供应链管理能力的钱。</div></div>
+    </div>
+    <div class="footer"><span>Manufacturing capability as business model</span><span>看懂现金流之前，先看懂角色</span></div>
+  </section>
+
+  <section class="page" id="card-07">
+    <div class="meta"><div class="kicker">为什么容易被忽略</div><div class="num">07 / 09</div></div>
+    <h2>消费者看见终端，我更想看见里面的模组</h2>
+    <div class="duo">
+      <div class="duo-panel">
+        <div>
+          <h3>大家熟悉的世界</h3>
+          <p>手机、手表、耳机、汽车、服务器、智能终端，品牌名字更容易被记住。</p>
+        </div>
+        <div class="symbol">前台</div>
+      </div>
+      <div class="duo-panel">
+        <div>
+          <h3>产业链里的世界</h3>
+          <p>SiP 模组、无线通讯模块、测试交付、供应链管理和微小化能力，才是终端落地的后台。</p>
+        </div>
+        <div class="symbol" style="color:var(--green)">后台</div>
+      </div>
+    </div>
+    <div class="footer"><span>这次复盘给我的提醒</span><span>不要只看台前品牌</span></div>
+  </section>
+
+  <section class="page dark" id="card-08">
+    <div class="meta"><div class="kicker">风险也要讲</div><div class="num">08 / 09</div></div>
+    <h2>但它不是“稳赚故事”</h2>
+    <p class="lead">越是好讲的终端升级和 SiP 故事，越要把风险写在前面。观察池不等于买入点。</p>
+    <div class="risk-list">
+      <div class="risk"><div class="mark">1</div><div><b>电子制造有周期</b><span>消费电子、汽车电子、云端存储和通信需求都会影响订单节奏。</span></div></div>
+      <div class="risk"><div class="mark">2</div><div><b>制造利润率不等于芯片利润率</b><span>EMS 和模组业务更看规模、良率、客户结构、成本控制和产能利用率。</span></div></div>
+      <div class="risk"><div class="mark">3</div><div><b>客户和产品结构要跟踪</b><span>新品导入、客户认证、终端销量和库存变化，都需要持续看公告和财报。</span></div></div>
+      <div class="risk"><div class="mark">4</div><div><b>不能只靠概念买股票</b><span>还要看收入结构、利润率、订单质量、现金流和估值位置。</span></div></div>
+    </div>
+    <div class="footer"><span>Risk first</span><span>个人复盘 / 不构成投资建议</span></div>
+  </section>
+
+  <section class="page" id="card-09">
+    <div class="meta"><div class="kicker">最后记住</div><div class="num">09 / 09</div></div>
+    <h2>看懂环旭电子，我记住 4 句话</h2>
+    <div class="summary">
+      <div class="big">4</div>
+      <div class="summary-list">
+        <div class="summary-item">它不是终端品牌，而是 SiP 与电子制造服务平台。</div>
+        <div class="summary-item">微小化模组是理解它的重要关键词。</div>
+        <div class="summary-item">芯片是前台主角，环旭更像终端落地层能力。</div>
+        <div class="summary-item">观察池不是买入点，最终还要回到业绩和价格。</div>
+      </div>
+    </div>
+    <p class="small-note">这篇是我的个人投资复盘，不是荐股。真正要做决策，还是要自己看公告、财报、估值和风险。</p>
+    <div class="source-note">信息口径参考：环旭电子官网、公司公开资料和电子制造服务行业资料。具体收入结构、客户进展、订单情况请以公司公告、年报、互动易等正式披露为准。</div>
+    <div class="footer"><span>收藏这一页</span><span>观察池 > 情绪追涨</span></div>
+  </section>
+</body>
+</html>

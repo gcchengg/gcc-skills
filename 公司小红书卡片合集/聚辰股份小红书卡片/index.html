@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>聚辰股份小红书观察卡片</title>
+  <style>
+    :root {
+      --w: 1242px;
+      --h: 1660px;
+      --paper: #f7f6f1;
+      --paper-2: #eeeee8;
+      --ink: #16181d;
+      --muted: #69707a;
+      --line: rgba(22, 24, 29, .16);
+      --blue: #2457d6;
+      --red: #c24232;
+      --green: #117267;
+      --gold: #b3832e;
+      --dark: #111721;
+      --chip: #dfe7f7;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #d8d8d2;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--ink);
+    }
+
+    .page {
+      position: relative;
+      width: var(--w);
+      height: var(--h);
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(22,24,29,.028) 1px, transparent 1px) 0 0 / 54px 54px,
+        linear-gradient(0deg, rgba(22,24,29,.022) 1px, transparent 1px) 0 0 / 54px 54px,
+        var(--paper);
+      padding: 74px 82px 70px;
+      page-break-after: always;
+    }
+
+    .page.dark {
+      color: #f6f2e8;
+      background:
+        radial-gradient(circle at 65% 24%, rgba(20,86,217,.22), transparent 26%),
+        linear-gradient(120deg, #0e1219 0%, #141b26 48%, #10131a 100%);
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 22px;
+      letter-spacing: 0;
+      color: var(--muted);
+      margin-bottom: 54px;
+    }
+
+    .dark .meta { color: rgba(246,242,232,.72); }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 36px;
+      height: 3px;
+      background: currentColor;
+      display: inline-block;
+    }
+
+    .num {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 21px;
+      color: inherit;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: 94px;
+      line-height: 1.02;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 68px;
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: 35px;
+      line-height: 1.2;
+      font-weight: 850;
+    }
+
+    .lead {
+      margin-top: 28px;
+      font-size: 32px;
+      line-height: 1.45;
+      color: var(--muted);
+      font-weight: 520;
+    }
+
+    .dark .lead { color: rgba(246,242,232,.76); }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 38px;
+    }
+
+    .tag {
+      border: 1px solid currentColor;
+      padding: 11px 18px;
+      font-size: 24px;
+      font-weight: 750;
+      color: inherit;
+      background: rgba(255,255,255,.08);
+    }
+
+    .footer {
+      position: absolute;
+      left: 82px;
+      right: 82px;
+      bottom: 54px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      font-size: 19px;
+      color: var(--muted);
+    }
+
+    .dark .footer {
+      border-top-color: rgba(246,242,232,.18);
+      color: rgba(246,242,232,.62);
+    }
+
+    .visual-chip {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.18);
+      background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.03));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+    }
+
+    .wafer {
+      width: 530px;
+      height: 530px;
+      border-radius: 50%;
+      right: -54px;
+      bottom: 246px;
+      opacity: .9;
+      background:
+        radial-gradient(circle at 45% 42%, rgba(255,255,255,.18), transparent 18%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.20) 0 2px, transparent 2px 34px),
+        repeating-linear-gradient(135deg, rgba(74,134,255,.22) 0 2px, transparent 2px 34px),
+        rgba(255,255,255,.04);
+      border: 1px solid rgba(246,242,232,.22);
+    }
+
+    .cover-title {
+      position: relative;
+      z-index: 2;
+      margin-top: 148px;
+      max-width: 930px;
+    }
+
+    .cover-title h1 {
+      font-size: 88px;
+      line-height: 1.08;
+    }
+
+    .cover-note {
+      position: absolute;
+      left: 82px;
+      bottom: 206px;
+      width: 548px;
+      font-size: 30px;
+      line-height: 1.48;
+      color: rgba(246,242,232,.76);
+      z-index: 2;
+    }
+
+    .stamp {
+      color: #f7f2e8;
+      background: var(--red);
+      display: inline-block;
+      padding: 12px 18px;
+      transform: rotate(-2deg);
+      font-weight: 900;
+      font-size: 26px;
+      margin-bottom: 26px;
+    }
+
+    .note-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 52px;
+    }
+
+    .note {
+      min-height: 196px;
+      border-top: 4px solid var(--ink);
+      padding: 22px 0 0;
+    }
+
+    .note strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1.18;
+      margin-bottom: 16px;
+    }
+
+    .note span {
+      display: block;
+      color: var(--muted);
+      font-size: 25px;
+      line-height: 1.45;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      gap: 56px;
+      align-items: stretch;
+      margin-top: 54px;
+    }
+
+    .big-quote {
+      border-left: 8px solid var(--blue);
+      padding-left: 26px;
+      font-size: 40px;
+      line-height: 1.28;
+      font-weight: 850;
+    }
+
+    .factory {
+      position: relative;
+      height: 740px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(20,86,217,.08), transparent 50%),
+        #fbfaf6;
+      overflow: hidden;
+    }
+
+    .factory::before {
+      content: "";
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      bottom: 120px;
+      height: 350px;
+      background:
+        linear-gradient(90deg, transparent 0 16%, rgba(20,86,217,.12) 16% 17%, transparent 17% 33%, rgba(20,86,217,.12) 33% 34%, transparent 34% 50%, rgba(20,86,217,.12) 50% 51%, transparent 51% 67%, rgba(20,86,217,.12) 67% 68%, transparent 68%),
+        linear-gradient(180deg, #dfe6ef 0 34%, #cdd5df 34% 100%);
+      clip-path: polygon(0 22%, 18% 22%, 18% 0, 33% 0, 33% 22%, 52% 22%, 52% 8%, 66% 8%, 66% 22%, 100% 22%, 100% 100%, 0 100%);
+    }
+
+    .factory::after {
+      content: "EEPROM / NOR Flash / SPD / NFC / VCM Driver / Auto Industrial";
+      position: absolute;
+      left: 50px;
+      right: 50px;
+      bottom: 48px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 23px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .product-matrix {
+      height: 610px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(36,87,214,.08), transparent 42%),
+        #fbfaf6;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-content: center;
+    }
+
+    .product-cell {
+      min-height: 190px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.52);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-cell b {
+      display: block;
+      font-size: 34px;
+      line-height: 1.08;
+    }
+
+    .product-cell span {
+      display: block;
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1.35;
+    }
+
+    .relation-board {
+      margin-top: 54px;
+      height: 790px;
+      position: relative;
+      border: 1px solid var(--line);
+      background: #fbfaf6;
+      padding: 54px;
+    }
+
+    .node {
+      position: absolute;
+      width: 330px;
+      min-height: 190px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      padding: 28px;
+    }
+
+    .node b {
+      display: block;
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .node span {
+      display: block;
+      font-size: 24px;
+      line-height: 1.42;
+      color: var(--muted);
+    }
+
+    .node.primary {
+      left: 72px;
+      top: 120px;
+      border-color: var(--blue);
+    }
+
+    .node.secondary {
+      right: 72px;
+      bottom: 74px;
+      border-color: var(--green);
+    }
+
+    .chain-line {
+      position: absolute;
+      left: 242px;
+      top: 370px;
+      width: 600px;
+      height: 170px;
+      border-top: 3px solid var(--ink);
+      border-right: 3px solid var(--ink);
+      transform: skewY(-12deg);
+    }
+
+    .relation-caption {
+      position: absolute;
+      left: 376px;
+      top: 348px;
+      width: 350px;
+      background: var(--ink);
+      color: #fff;
+      padding: 24px 28px;
+      font-size: 25px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .chain-map {
+      margin-top: 44px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .layer {
+      position: relative;
+      min-height: 176px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.48);
+      padding: 26px 28px 26px 178px;
+    }
+
+    .layer .index {
+      position: absolute;
+      left: 28px;
+      top: 28px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 30px;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .layer b {
+      display: block;
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .layer span {
+      color: var(--muted);
+      font-size: 24px;
+      line-height: 1.38;
+    }
+
+    .layer.hot {
+      border-color: rgba(20,86,217,.65);
+      background: #eef3ff;
+      box-shadow: inset 8px 0 0 var(--blue);
+    }
+
+    .logic {
+      margin-top: 58px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .logic-row {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 28px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+    }
+
+    .logic-row .label {
+      font-size: 31px;
+      font-weight: 900;
+      color: var(--blue);
+    }
+
+    .logic-row .text {
+      font-size: 30px;
+      line-height: 1.38;
+      font-weight: 700;
+    }
+
+    .duo {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      height: 780px;
+    }
+
+    .duo-panel {
+      border: 1px solid var(--line);
+      padding: 40px 34px;
+      background: rgba(255,255,255,.42);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .duo-panel h3 {
+      font-size: 42px;
+      line-height: 1.1;
+    }
+
+    .duo-panel p {
+      font-size: 29px;
+      line-height: 1.45;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+    .duo-panel .symbol {
+      height: 300px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, transparent 49%, rgba(22,24,29,.18) 50%, transparent 51%),
+        linear-gradient(0deg, transparent 49%, rgba(22,24,29,.18) 50%, transparent 51%),
+        #f4f3ee;
+      display: grid;
+      place-items: center;
+      font-size: 86px;
+      font-weight: 900;
+      color: var(--blue);
+    }
+
+    .risk-list {
+      margin-top: 58px;
+      display: grid;
+      gap: 26px;
+    }
+
+    .risk {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 26px;
+      align-items: start;
+      border-bottom: 1px solid rgba(246,242,232,.18);
+      padding-bottom: 25px;
+    }
+
+    .risk .mark {
+      color: #fff;
+      border: 1px solid rgba(246,242,232,.28);
+      height: 72px;
+      display: grid;
+      place-items: center;
+      font-size: 32px;
+      font-weight: 900;
+    }
+
+    .risk b {
+      display: block;
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .risk span {
+      display: block;
+      color: rgba(246,242,232,.70);
+      font-size: 25px;
+      line-height: 1.42;
+    }
+
+    .summary {
+      margin-top: 72px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .summary .big {
+      font-size: 260px;
+      line-height: .82;
+      font-weight: 950;
+      color: var(--blue);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 26px;
+    }
+
+    .summary-item {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      font-size: 34px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .small-note {
+      margin-top: 44px;
+      font-size: 24px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .source-note {
+      position: absolute;
+      left: 82px;
+      right: 82px;
+      bottom: 110px;
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <section class="page dark" id="card-01">
+    <div class="meta"><div class="kicker">个人投资复盘</div><div class="num">01 / 09</div></div>
+    <div class="visual-chip wafer"></div>
+    <div class="cover-title">
+      <div class="stamp">不是荐股，是复盘</div>
+      <h1>看完澜起后，<br>我继续研究<br>聚辰股份</h1>
+      <p class="lead">它不是 DRAM 颗粒厂，更像设备里保存配置、身份和参数的“小容量存储芯片”。</p>
+      <div class="tags">
+        <span class="tag">聚辰股份 688123</span>
+        <span class="tag">国产存储</span>
+        <span class="tag">观察池</span>
+      </div>
+    </div>
+    <p class="cover-note">这套图只讲我的研究路径：从内存接口、高速互连，继续延伸到 EEPROM、NOR Flash 和终端配置存储。</p>
+    <div class="footer"><span>Giantec Semiconductor research note</span><span>个人记录 / 不构成投资建议</span></div>
+  </section>
+
+  <section class="page" id="card-02">
+    <div class="meta"><div class="kicker">我为什么关注</div><div class="num">02 / 09</div></div>
+    <h2>我看它，不是因为四个字“国产存储”</h2>
+    <p class="lead">聚辰股份的看点，不是把它写成大容量内存主角，而是看它在 EEPROM、NOR Flash 和终端配置存储里的细分位置。</p>
+    <div class="note-grid">
+      <div class="note"><strong>它不是 DRAM 主角</strong><span>长鑫看内存颗粒制造，聚辰更偏非易失性小容量存储芯片和终端配套芯片。</span></div>
+      <div class="note"><strong>它做的是“记住参数”</strong><span>EEPROM/NOR Flash 常用来保存配置、校准、身份信息和设备运行参数。</span></div>
+      <div class="note"><strong>它贴近终端和模组</strong><span>智能手机、通信、汽车电子、工业控制、物联网和安全识别，都是官网展示的应用方向。</span></div>
+      <div class="note"><strong>我复盘的是方法</strong><span>赚钱不是重点，重点是从一个股票延伸出一条更完整的产业链观察路径。</span></div>
+    </div>
+    <div class="footer"><span>投资笔记不是结论</span><span>先讲认知，再讲公司</span></div>
+  </section>
+
+  <section class="page" id="card-03">
+    <div class="meta"><div class="kicker">公司做什么</div><div class="num">03 / 09</div></div>
+    <h2>聚辰股份不是做大内存，它更像“设备参数记忆芯片”</h2>
+    <div class="split">
+      <div>
+        <p class="big-quote">让手机、汽车、工业设备和物联网终端，记住配置、身份、校准和状态。</p>
+        <p class="lead">官网产品中心包括 EEPROM、NOR Flash、音圈马达驱动芯片和 NFC 芯片。</p>
+        <div class="tags">
+          <span class="tag" style="color:var(--blue)">EEPROM</span>
+          <span class="tag" style="color:var(--green)">NOR Flash</span>
+          <span class="tag" style="color:var(--red)">NFC</span>
+        </div>
+      </div>
+      <div class="product-matrix">
+        <div class="product-cell"><b>EEPROM</b><span>非易失性小容量存储，保存参数、身份和校准信息</span></div>
+        <div class="product-cell"><b>NOR Flash</b><span>用于代码、配置和固件存储，覆盖工业级与车规级方向</span></div>
+        <div class="product-cell"><b>VCM Driver</b><span>音圈马达驱动芯片，服务手机摄像头等精密执行场景</span></div>
+        <div class="product-cell"><b>NFC</b><span>安全识别和近场通信入口，可进入消费与物联网应用</span></div>
+      </div>
+    </div>
+    <div class="footer"><span>EEPROM / NOR Flash / VCM / NFC</span><span>从参数存储到终端应用</span></div>
+  </section>
+
+  <section class="page" id="card-04">
+    <div class="meta"><div class="kicker">和长鑫的区别</div><div class="num">04 / 09</div></div>
+    <h2>长鑫看 DRAM 制造，聚辰看 EEPROM + 终端配置存储</h2>
+    <p class="lead">这条线要讲清楚：聚辰股份不是长鑫，也不是澜起那种高速接口角色。它更适合放在“小容量非易失性存储 + 终端应用芯片”的位置理解。</p>
+    <div class="relation-board">
+      <div class="node primary"><b>长鑫</b><span>更偏 DRAM 主线：内存颗粒、晶圆制造、国产替代的前台主角。</span></div>
+      <div class="chain-line"></div>
+      <div class="relation-caption">关注逻辑：国产存储不是只有 DRAM，也包括 EEPROM、NOR Flash、模组配置和终端参数存储。</div>
+      <div class="node secondary"><b>聚辰</b><span>更偏 EEPROM、NOR Flash、音圈马达驱动和 NFC，是细分存储与应用端的观察对象。</span></div>
+    </div>
+    <div class="footer"><span>不要把角色混为一谈</span><span>DRAM 主线 / 小容量存储支线</span></div>
+  </section>
+
+  <section class="page" id="card-05">
+    <div class="meta"><div class="kicker">产业链位置</div><div class="num">05 / 09</div></div>
+    <h2>国产存储这张图里，聚辰股份在哪一层？</h2>
+    <div class="chain-map">
+      <div class="layer"><div class="index">01</div><b>上游基础</b><span>晶圆制造、设备材料、EDA、封测产能，是所有芯片公司共同依赖的底座。</span></div>
+      <div class="layer hot"><div class="index">02</div><b>小容量存储设计</b><span>EEPROM、NOR Flash 等非易失性存储产品定义和设计，是聚辰最核心的位置。</span></div>
+      <div class="layer"><div class="index">03</div><b>终端与模组配套</b><span>进入手机、通信、汽车电子、工业控制、物联网和安全识别等场景。</span></div>
+      <div class="layer"><div class="index">04</div><b>终端需求</b><span>设备配置、身份认证、参数校准、固件存储、车规与工业可靠性需求。</span></div>
+    </div>
+    <div class="footer"><span>高亮的是产业位置，不是收益承诺</span><span>国产存储观察池</span></div>
+  </section>
+
+  <section class="page" id="card-06">
+    <div class="meta"><div class="kicker">商业模式</div><div class="num">06 / 09</div></div>
+    <h2>它赚的不是大容量的钱，而是细分芯片验证和放量的钱</h2>
+    <p class="lead">聚辰股份的生意更像：在不同终端里提供“小而关键”的存储和配套芯片，然后跟随汽车、工业、消费电子周期波动。</p>
+    <div class="logic">
+      <div class="logic-row"><div class="label">EEPROM</div><div class="text">保存参数、身份、校准和状态，终端越智能，越需要稳定可靠的小容量存储。</div></div>
+      <div class="logic-row"><div class="label">NOR</div><div class="text">用于代码和固件存储，车规、工业与通信应用更看重可靠性和生命周期。</div></div>
+      <div class="logic-row"><div class="label">SPD</div><div class="text">内存模组也需要配置识别类芯片，DDR 世代升级会带来配套小芯片机会。</div></div>
+      <div class="logic-row"><div class="label">Scene</div><div class="text">汽车、工业、手机、物联网和安全识别客户验证周期不同，兑现节奏也不同。</div></div>
+    </div>
+    <div class="footer"><span>Product portfolio as business model</span><span>看懂收入之前，先看懂产品线</span></div>
+  </section>
+
+  <section class="page" id="card-07">
+    <div class="meta"><div class="kicker">为什么容易被忽略</div><div class="num">07 / 09</div></div>
+    <h2>大家看国产存储，我更想看“终端里的小芯片”</h2>
+    <div class="duo">
+      <div class="duo-panel">
+        <div>
+          <h3>容易被讲大的故事</h3>
+          <p>国产替代、车规存储、DDR5 配套、智能终端、物联网，听起来都很有想象力。</p>
+        </div>
+        <div class="symbol">叙事</div>
+      </div>
+      <div class="duo-panel">
+        <div>
+          <h3>我真正要盯的东西</h3>
+          <p>EEPROM/NOR 需求、车规认证、终端库存、产品价格、毛利率和客户导入。</p>
+        </div>
+        <div class="symbol" style="color:var(--green)">兑现</div>
+      </div>
+    </div>
+    <div class="footer"><span>这次复盘给我的提醒</span><span>概念之后要看兑现</span></div>
+  </section>
+
+  <section class="page dark" id="card-08">
+    <div class="meta"><div class="kicker">风险也要讲</div><div class="num">08 / 09</div></div>
+    <h2>但它不是“稳赚故事”</h2>
+    <p class="lead">越是好讲的国产替代故事，越要把风险写在前面。观察池不等于买入点。</p>
+    <div class="risk-list">
+      <div class="risk"><div class="mark">1</div><div><b>终端需求有周期</b><span>手机、消费电子、工业和汽车需求变化，会影响订单和价格。</span></div></div>
+      <div class="risk"><div class="mark">2</div><div><b>车规放量需要时间</b><span>汽车客户验证周期长，设计导入到收入兑现并不一定同步。</span></div></div>
+      <div class="risk"><div class="mark">3</div><div><b>小芯片也有竞争</b><span>EEPROM、NOR、驱动和 NFC 赛道都有国际和本土竞争者。</span></div></div>
+      <div class="risk"><div class="mark">4</div><div><b>估值会提前反映预期</b><span>还要看收入结构、毛利率、库存、研发投入、现金流和新品进展。</span></div></div>
+    </div>
+    <div class="footer"><span>Risk first</span><span>个人复盘 / 不构成投资建议</span></div>
+  </section>
+
+  <section class="page" id="card-09">
+    <div class="meta"><div class="kicker">最后记住</div><div class="num">09 / 09</div></div>
+    <h2>看懂聚辰股份，我记住 4 句话</h2>
+    <div class="summary">
+      <div class="big">4</div>
+      <div class="summary-list">
+        <div class="summary-item">它不是长鑫，不是国产 DRAM 制造主角。</div>
+        <div class="summary-item">它更像 EEPROM + NOR Flash + 终端配套芯片平台。</div>
+        <div class="summary-item">看点在车规、工业、DDR 配套和智能终端小芯片。</div>
+        <div class="summary-item">观察池不是买入点，最终还要回到业绩和价格。</div>
+      </div>
+    </div>
+    <p class="small-note">这篇是我的个人投资复盘，不是荐股。真正要做决策，还是要自己看公告、财报、估值和风险。</p>
+    <div class="source-note">信息口径参考：聚辰半导体/Giantec 官网产品中心、应用领域与公开公司资料。具体收入结构、客户进展、财务数据请以公司公告、年报、互动易等正式披露为准。</div>
+    <div class="footer"><span>收藏这一页</span><span>观察池 > 情绪追涨</span></div>
+  </section>
+</body>
+</html>

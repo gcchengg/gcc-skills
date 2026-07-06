@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>上峰材料小红书投资复盘卡片</title>
+  <style>
+    :root {
+      --w: 1242px;
+      --h: 1660px;
+      --paper: #f7f6f1;
+      --paper-2: #eeeee8;
+      --ink: #16181d;
+      --muted: #69707a;
+      --line: rgba(22, 24, 29, .16);
+      --blue: #2f6b4f;
+      --red: #b94031;
+      --green: #6f7f3a;
+      --gold: #b3832e;
+      --dark: #111721;
+      --chip: #dfe7f7;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #d8d8d2;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--ink);
+    }
+
+    .page {
+      position: relative;
+      width: var(--w);
+      height: var(--h);
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(22,24,29,.028) 1px, transparent 1px) 0 0 / 54px 54px,
+        linear-gradient(0deg, rgba(22,24,29,.022) 1px, transparent 1px) 0 0 / 54px 54px,
+        var(--paper);
+      padding: 74px 82px 70px;
+      page-break-after: always;
+    }
+
+    .page.dark {
+      color: #f6f2e8;
+      background:
+        radial-gradient(circle at 65% 24%, rgba(20,86,217,.22), transparent 26%),
+        linear-gradient(120deg, #0e1219 0%, #141b26 48%, #10131a 100%);
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 22px;
+      letter-spacing: 0;
+      color: var(--muted);
+      margin-bottom: 54px;
+    }
+
+    .dark .meta { color: rgba(246,242,232,.72); }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 36px;
+      height: 3px;
+      background: currentColor;
+      display: inline-block;
+    }
+
+    .num {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 21px;
+      color: inherit;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: 94px;
+      line-height: 1.02;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 68px;
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: 35px;
+      line-height: 1.2;
+      font-weight: 850;
+    }
+
+    .lead {
+      margin-top: 28px;
+      font-size: 32px;
+      line-height: 1.45;
+      color: var(--muted);
+      font-weight: 520;
+    }
+
+    .dark .lead { color: rgba(246,242,232,.76); }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 38px;
+    }
+
+    .tag {
+      border: 1px solid currentColor;
+      padding: 11px 18px;
+      font-size: 24px;
+      font-weight: 750;
+      color: inherit;
+      background: rgba(255,255,255,.08);
+    }
+
+    .footer {
+      position: absolute;
+      left: 82px;
+      right: 82px;
+      bottom: 54px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      font-size: 19px;
+      color: var(--muted);
+    }
+
+    .dark .footer {
+      border-top-color: rgba(246,242,232,.18);
+      color: rgba(246,242,232,.62);
+    }
+
+    .visual-chip {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.18);
+      background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.03));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+    }
+
+    .wafer {
+      width: 530px;
+      height: 530px;
+      border-radius: 50%;
+      right: -54px;
+      bottom: 246px;
+      opacity: .9;
+      background:
+        radial-gradient(circle at 45% 42%, rgba(255,255,255,.18), transparent 18%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.20) 0 2px, transparent 2px 34px),
+        repeating-linear-gradient(135deg, rgba(74,134,255,.22) 0 2px, transparent 2px 34px),
+        rgba(255,255,255,.04);
+      border: 1px solid rgba(246,242,232,.22);
+    }
+
+    .cover-title {
+      position: relative;
+      z-index: 2;
+      margin-top: 148px;
+      max-width: 930px;
+    }
+
+    .cover-title h1 {
+      font-size: 88px;
+      line-height: 1.08;
+    }
+
+    .cover-note {
+      position: absolute;
+      left: 82px;
+      bottom: 206px;
+      width: 548px;
+      font-size: 30px;
+      line-height: 1.48;
+      color: rgba(246,242,232,.76);
+      z-index: 2;
+    }
+
+    .stamp {
+      color: #f7f2e8;
+      background: var(--red);
+      display: inline-block;
+      padding: 12px 18px;
+      transform: rotate(-2deg);
+      font-weight: 900;
+      font-size: 26px;
+      margin-bottom: 26px;
+    }
+
+    .note-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 52px;
+    }
+
+    .note {
+      min-height: 196px;
+      border-top: 4px solid var(--ink);
+      padding: 22px 0 0;
+    }
+
+    .note strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1.18;
+      margin-bottom: 16px;
+    }
+
+    .note span {
+      display: block;
+      color: var(--muted);
+      font-size: 25px;
+      line-height: 1.45;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      gap: 56px;
+      align-items: stretch;
+      margin-top: 54px;
+    }
+
+    .big-quote {
+      border-left: 8px solid var(--blue);
+      padding-left: 26px;
+      font-size: 40px;
+      line-height: 1.28;
+      font-weight: 850;
+    }
+
+    .factory {
+      position: relative;
+      height: 740px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(20,86,217,.08), transparent 50%),
+        #fbfaf6;
+      overflow: hidden;
+    }
+
+    .factory::before {
+      content: "";
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      bottom: 120px;
+      height: 350px;
+      background:
+        linear-gradient(90deg, transparent 0 16%, rgba(20,86,217,.12) 16% 17%, transparent 17% 33%, rgba(20,86,217,.12) 33% 34%, transparent 34% 50%, rgba(20,86,217,.12) 50% 51%, transparent 51% 67%, rgba(20,86,217,.12) 67% 68%, transparent 68%),
+        linear-gradient(180deg, #dfe6ef 0 34%, #cdd5df 34% 100%);
+      clip-path: polygon(0 22%, 18% 22%, 18% 0, 33% 0, 33% 22%, 52% 22%, 52% 8%, 66% 8%, 66% 22%, 100% 22%, 100% 100%, 0 100%);
+    }
+
+    .factory::after {
+      content: "石灰石 / 熟料 / 水泥 / 骨料 / 环保协同 / 下游工程";
+      position: absolute;
+      left: 50px;
+      right: 50px;
+      bottom: 48px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 23px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .relation-board {
+      margin-top: 54px;
+      height: 790px;
+      position: relative;
+      border: 1px solid var(--line);
+      background: #fbfaf6;
+      padding: 54px;
+    }
+
+    .node {
+      position: absolute;
+      width: 330px;
+      min-height: 190px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      padding: 28px;
+    }
+
+    .node b {
+      display: block;
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .node span {
+      display: block;
+      font-size: 24px;
+      line-height: 1.42;
+      color: var(--muted);
+    }
+
+    .node.primary {
+      left: 72px;
+      top: 120px;
+      border-color: var(--blue);
+    }
+
+    .node.secondary {
+      right: 72px;
+      bottom: 74px;
+      border-color: var(--green);
+    }
+
+    .chain-line {
+      position: absolute;
+      left: 242px;
+      top: 370px;
+      width: 600px;
+      height: 170px;
+      border-top: 3px solid var(--ink);
+      border-right: 3px solid var(--ink);
+      transform: skewY(-12deg);
+    }
+
+    .relation-caption {
+      position: absolute;
+      left: 376px;
+      top: 348px;
+      width: 350px;
+      background: var(--ink);
+      color: #fff;
+      padding: 24px 28px;
+      font-size: 25px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .chain-map {
+      margin-top: 44px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .layer {
+      position: relative;
+      min-height: 176px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.48);
+      padding: 26px 28px 26px 178px;
+    }
+
+    .layer .index {
+      position: absolute;
+      left: 28px;
+      top: 28px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 30px;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .layer b {
+      display: block;
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .layer span {
+      color: var(--muted);
+      font-size: 24px;
+      line-height: 1.38;
+    }
+
+    .layer.hot {
+      border-color: rgba(20,86,217,.65);
+      background: #eef3ff;
+      box-shadow: inset 8px 0 0 var(--blue);
+    }
+
+    .logic {
+      margin-top: 58px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .logic-row {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 28px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+    }
+
+    .logic-row .label {
+      font-size: 31px;
+      font-weight: 900;
+      color: var(--blue);
+    }
+
+    .logic-row .text {
+      font-size: 30px;
+      line-height: 1.38;
+      font-weight: 700;
+    }
+
+    .duo {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      height: 780px;
+    }
+
+    .duo-panel {
+      border: 1px solid var(--line);
+      padding: 40px 34px;
+      background: rgba(255,255,255,.42);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .duo-panel h3 {
+      font-size: 42px;
+      line-height: 1.1;
+    }
+
+    .duo-panel p {
+      font-size: 29px;
+      line-height: 1.45;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+    .duo-panel .symbol {
+      height: 300px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, transparent 49%, rgba(22,24,29,.18) 50%, transparent 51%),
+        linear-gradient(0deg, transparent 49%, rgba(22,24,29,.18) 50%, transparent 51%),
+        #f4f3ee;
+      display: grid;
+      place-items: center;
+      font-size: 86px;
+      font-weight: 900;
+      color: var(--blue);
+    }
+
+    .risk-list {
+      margin-top: 58px;
+      display: grid;
+      gap: 26px;
+    }
+
+    .risk {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 26px;
+      align-items: start;
+      border-bottom: 1px solid rgba(246,242,232,.18);
+      padding-bottom: 25px;
+    }
+
+    .risk .mark {
+      color: #fff;
+      border: 1px solid rgba(246,242,232,.28);
+      height: 72px;
+      display: grid;
+      place-items: center;
+      font-size: 32px;
+      font-weight: 900;
+    }
+
+    .risk b {
+      display: block;
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .risk span {
+      display: block;
+      color: rgba(246,242,232,.70);
+      font-size: 25px;
+      line-height: 1.42;
+    }
+
+    .summary {
+      margin-top: 72px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .summary .big {
+      font-size: 260px;
+      line-height: .82;
+      font-weight: 950;
+      color: var(--blue);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 26px;
+    }
+
+    .summary-item {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      font-size: 34px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .small-note {
+      margin-top: 44px;
+      font-size: 24px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .source-note {
+      position: absolute;
+      left: 82px;
+      right: 82px;
+      bottom: 110px;
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <section class="page dark" id="card-01">
+    <div class="meta"><div class="kicker">个人投资复盘</div><div class="num">01 / 09</div></div>
+    <div class="visual-chip wafer"></div>
+    <div class="cover-title">
+      <div class="stamp">不是荐股，是复盘</div>
+      <h1>我买上峰材料赚钱后，<br>才看懂水泥股<br>这门生意</h1>
+      <p class="lead">它不是热门科技股，却把水泥、骨料、环保和新材料线索放在了一张资产负债表里。</p>
+      <div class="tags">
+        <span class="tag">上峰材料 000672</span>
+        <span class="tag">周期股复盘</span>
+        <span class="tag">建材产业链</span>
+      </div>
+    </div>
+    <p class="cover-note">这套图只讲我的研究路径：为什么关注它、它到底做什么，以及水泥周期股应该怎么谨慎理解。</p>
+    <div class="footer"><span>Shangfeng Materials research note</span><span>个人记录 / 不构成投资建议</span></div>
+  </section>
+
+  <section class="page" id="card-02">
+    <div class="meta"><div class="kicker">我为什么关注</div><div class="num">02 / 09</div></div>
+    <h2>我最初看它，不是因为它“性感”</h2>
+    <p class="lead">上峰材料这类公司，表面看是传统水泥建材，真正要看的却是区域供需、成本、现金流、分红和资产再配置能力。</p>
+    <div class="note-grid">
+      <div class="note"><strong>它是周期生意</strong><span>水泥价格、地产基建需求、区域产能和煤电成本，都会影响利润弹性。</span></div>
+      <div class="note"><strong>它有现金流属性</strong><span>传统建材公司不靠故事取胜，核心是产能、成本、现金流和股东回报。</span></div>
+      <div class="note"><strong>它在做资产延展</strong><span>水泥熟料之外，还能看骨料、环保协同处置、新材料和产业投资线索。</span></div>
+      <div class="note"><strong>我复盘的是方法</strong><span>赚钱只是结果，真正值得留下的是：怎么理解传统行业里的再估值机会。</span></div>
+    </div>
+    <div class="footer"><span>投资笔记不是结论</span><span>先讲认知，再讲公司</span></div>
+  </section>
+
+  <section class="page" id="card-03">
+    <div class="meta"><div class="kicker">公司做什么</div><div class="num">03 / 09</div></div>
+    <h2>上峰材料不是只卖水泥，它更像“区域建材平台”</h2>
+    <div class="split">
+      <div>
+        <p class="big-quote">把石灰石资源、熟料产能、水泥销售、骨料和环保协同连接起来。</p>
+        <p class="lead">我的理解是：它不是单一产品公司，而是围绕水泥主业做资源、产能和现金流管理。</p>
+        <div class="tags">
+          <span class="tag" style="color:var(--blue)">水泥熟料</span>
+          <span class="tag" style="color:var(--green)">砂石骨料</span>
+          <span class="tag" style="color:var(--red)">环保协同</span>
+        </div>
+      </div>
+      <div class="factory"></div>
+    </div>
+    <div class="footer"><span>Cement / Aggregate / Environmental service</span><span>把区域资源变成现金流</span></div>
+  </section>
+
+  <section class="page" id="card-04">
+    <div class="meta"><div class="kicker">主业与延展</div><div class="num">04 / 09</div></div>
+    <h2>水泥是基本盘，骨料和环保是延展线</h2>
+    <p class="lead">这类公司不能只看“水泥涨没涨价”。更细的看法是：水泥熟料提供基本盘，骨料改善资源属性，环保协同提升窑线利用价值。</p>
+    <div class="relation-board">
+      <div class="node primary"><b>水泥熟料</b><span>传统主业基本盘：区域需求、产能格局、煤电成本决定利润弹性。</span></div>
+      <div class="chain-line"></div>
+      <div class="relation-caption">关注逻辑：传统水泥股也可能通过资源和协同业务重估。</div>
+      <div class="node secondary"><b>骨料环保</b><span>砂石骨料靠资源半径，固废协同处置靠窑线能力，都是主业之外的加分项。</span></div>
+    </div>
+    <div class="footer"><span>不要只看水泥吨价</span><span>主业基本盘 / 业务延展</span></div>
+  </section>
+
+  <section class="page" id="card-05">
+    <div class="meta"><div class="kicker">产业链位置</div><div class="num">05 / 09</div></div>
+    <h2>一吨水泥背后，也是一条产业链</h2>
+    <div class="chain-map">
+      <div class="layer"><div class="index">01</div><b>资源与能源</b><span>石灰石矿山、煤炭电力、运输半径，是水泥企业成本和区域壁垒的底层。</span></div>
+      <div class="layer hot"><div class="index">02</div><b>熟料与水泥</b><span>窑线、熟料、水泥粉磨和销售，是上峰材料最核心的现金流基本盘。</span></div>
+      <div class="layer"><div class="index">03</div><b>骨料与环保</b><span>砂石骨料、固废协同处置、资源综合利用，决定它能否从传统周期里做出延展。</span></div>
+      <div class="layer"><div class="index">04</div><b>下游需求</b><span>基建、地产、市政、工业园区和区域工程，决定水泥价格和销量弹性。</span></div>
+    </div>
+    <div class="footer"><span>高亮的是基本盘，不是收益承诺</span><span>建材产业链</span></div>
+  </section>
+
+  <section class="page" id="card-06">
+    <div class="meta"><div class="kicker">商业模式</div><div class="num">06 / 09</div></div>
+    <h2>它赚的不是品牌溢价，而是区域资源和周期的钱</h2>
+    <p class="lead">水泥股的生意很朴素：半径有限、运输成本高、供需一变，吨盈利就会明显波动。</p>
+    <div class="logic">
+      <div class="logic-row"><div class="label">资源半径</div><div class="text">矿山和生产基地决定成本，运输距离决定市场边界。</div></div>
+      <div class="logic-row"><div class="label">产能格局</div><div class="text">区域供需越健康，企业越容易守住价格和利润率。</div></div>
+      <div class="logic-row"><div class="label">成本控制</div><div class="text">煤电、熟料、运输和管理费用，直接影响吨盈利。</div></div>
+      <div class="logic-row"><div class="label">业务延展</div><div class="text">骨料、环保协同和新材料投资，决定估值叙事有没有第二曲线。</div></div>
+    </div>
+    <div class="footer"><span>Regional resource as business model</span><span>看懂利润之前，先看懂半径</span></div>
+  </section>
+
+  <section class="page" id="card-07">
+    <div class="meta"><div class="kicker">为什么容易被忽略</div><div class="num">07 / 09</div></div>
+    <h2>大家嫌它传统，我反而先看现金流</h2>
+    <div class="duo">
+      <div class="duo-panel">
+        <div>
+          <h3>大家不喜欢的地方</h3>
+          <p>水泥听起来不新，受地产和基建影响大，行业周期波动也很明显。</p>
+        </div>
+        <div class="symbol">传统</div>
+      </div>
+      <div class="duo-panel">
+        <div>
+          <h3>我会重点看的地方</h3>
+          <p>区域价格、成本下降、现金流、分红、骨料环保和新材料投资的变化。</p>
+        </div>
+        <div class="symbol" style="color:var(--green)">现金</div>
+      </div>
+    </div>
+    <div class="footer"><span>这次赚钱给我的提醒</span><span>传统行业也要看结构变化</span></div>
+  </section>
+
+  <section class="page dark" id="card-08">
+    <div class="meta"><div class="kicker">风险也要讲</div><div class="num">08 / 09</div></div>
+    <h2>但它不是“稳赚故事”</h2>
+    <p class="lead">周期股最怕把短期反弹当长期成长。赚钱不能倒推出逻辑永远正确。</p>
+    <div class="risk-list">
+      <div class="risk"><div class="mark">1</div><div><b>需求端会波动</b><span>地产、基建、市政工程变化，都会影响水泥销量和价格。</span></div></div>
+      <div class="risk"><div class="mark">2</div><div><b>成本端会反噬</b><span>煤炭、电力、运输成本上行，会直接压缩吨盈利。</span></div></div>
+      <div class="risk"><div class="mark">3</div><div><b>估值可能先走一步</b><span>当市场开始重新讲周期修复时，股价可能已经反映了一部分预期。</span></div></div>
+      <div class="risk"><div class="mark">4</div><div><b>第二曲线要看兑现</b><span>骨料、环保、新材料和投资收益，都要回到报表和公告验证。</span></div></div>
+    </div>
+    <div class="footer"><span>Risk first</span><span>个人复盘 / 不构成投资建议</span></div>
+  </section>
+
+  <section class="page" id="card-09">
+    <div class="meta"><div class="kicker">最后记住</div><div class="num">09 / 09</div></div>
+    <h2>看懂上峰材料，我记住 4 句话</h2>
+    <div class="summary">
+      <div class="big">4</div>
+      <div class="summary-list">
+        <div class="summary-item">它的基本盘是水泥熟料，不是单纯概念股。</div>
+        <div class="summary-item">周期股要看区域供需、成本和吨盈利。</div>
+        <div class="summary-item">骨料、环保、新材料，是它被重新理解的延展线。</div>
+        <div class="summary-item">赚钱只是结果，看懂现金流和周期才是可复用的方法。</div>
+      </div>
+    </div>
+    <p class="small-note">这篇是我的个人投资复盘，不是荐股。真正要做决策，还是要自己看公告、财报、估值和风险。</p>
+    <div class="source-note">信息口径参考：上峰材料/上峰水泥公开公司资料与水泥建材行业常识。具体业务结构、财务数据、投资进展请以公司公告、年报、互动易等正式披露为准。</div>
+    <div class="footer"><span>收藏这一页</span><span>现金流 > 单次收益</span></div>
+  </section>
+</body>
+</html>

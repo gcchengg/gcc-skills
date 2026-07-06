@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>威胜信息小红书观察卡片</title>
+  <style>
+    :root {
+      --w: 1242px;
+      --h: 1660px;
+      --paper: #f7f6f1;
+      --paper-2: #eeeee8;
+      --ink: #16181d;
+      --muted: #69707a;
+      --line: rgba(22, 24, 29, .16);
+      --blue: #1456d9;
+      --red: #c22f2f;
+      --green: #14705f;
+      --gold: #b3832e;
+      --dark: #111721;
+      --chip: #dfe7f7;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #d8d8d2;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+      color: var(--ink);
+    }
+
+    .page {
+      position: relative;
+      width: var(--w);
+      height: var(--h);
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(22,24,29,.028) 1px, transparent 1px) 0 0 / 54px 54px,
+        linear-gradient(0deg, rgba(22,24,29,.022) 1px, transparent 1px) 0 0 / 54px 54px,
+        var(--paper);
+      padding: 74px 82px 70px;
+      page-break-after: always;
+    }
+
+    .page.dark {
+      color: #f6f2e8;
+      background:
+        radial-gradient(circle at 65% 24%, rgba(20,86,217,.22), transparent 26%),
+        linear-gradient(120deg, #0e1219 0%, #141b26 48%, #10131a 100%);
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 22px;
+      letter-spacing: 0;
+      color: var(--muted);
+      margin-bottom: 54px;
+    }
+
+    .dark .meta { color: rgba(246,242,232,.72); }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 36px;
+      height: 3px;
+      background: currentColor;
+      display: inline-block;
+    }
+
+    .num {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 21px;
+      color: inherit;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: 94px;
+      line-height: 1.02;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      font-size: 68px;
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: 35px;
+      line-height: 1.2;
+      font-weight: 850;
+    }
+
+    .lead {
+      margin-top: 28px;
+      font-size: 32px;
+      line-height: 1.45;
+      color: var(--muted);
+      font-weight: 520;
+    }
+
+    .dark .lead { color: rgba(246,242,232,.76); }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 38px;
+    }
+
+    .tag {
+      border: 1px solid currentColor;
+      padding: 11px 18px;
+      font-size: 24px;
+      font-weight: 750;
+      color: inherit;
+      background: rgba(255,255,255,.08);
+    }
+
+    .footer {
+      position: absolute;
+      left: 82px;
+      right: 82px;
+      bottom: 54px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      font-size: 19px;
+      color: var(--muted);
+    }
+
+    .dark .footer {
+      border-top-color: rgba(246,242,232,.18);
+      color: rgba(246,242,232,.62);
+    }
+
+    .visual-chip {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.18);
+      background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.03));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+    }
+
+    .wafer {
+      width: 530px;
+      height: 530px;
+      border-radius: 50%;
+      right: -54px;
+      bottom: 246px;
+      opacity: .9;
+      background:
+        radial-gradient(circle at 45% 42%, rgba(255,255,255,.18), transparent 18%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.20) 0 2px, transparent 2px 34px),
+        repeating-linear-gradient(135deg, rgba(74,134,255,.22) 0 2px, transparent 2px 34px),
+        rgba(255,255,255,.04);
+      border: 1px solid rgba(246,242,232,.22);
+    }
+
+    .cover-title {
+      position: relative;
+      z-index: 2;
+      margin-top: 148px;
+      max-width: 930px;
+    }
+
+    .cover-title h1 {
+      font-size: 88px;
+      line-height: 1.08;
+    }
+
+    .cover-note {
+      position: absolute;
+      left: 82px;
+      bottom: 206px;
+      width: 548px;
+      font-size: 30px;
+      line-height: 1.48;
+      color: rgba(246,242,232,.76);
+      z-index: 2;
+    }
+
+    .stamp {
+      color: #f7f2e8;
+      background: var(--red);
+      display: inline-block;
+      padding: 12px 18px;
+      transform: rotate(-2deg);
+      font-weight: 900;
+      font-size: 26px;
+      margin-bottom: 26px;
+    }
+
+    .note-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 52px;
+    }
+
+    .note {
+      min-height: 196px;
+      border-top: 4px solid var(--ink);
+      padding: 22px 0 0;
+    }
+
+    .note strong {
+      display: block;
+      font-size: 34px;
+      line-height: 1.18;
+      margin-bottom: 16px;
+    }
+
+    .note span {
+      display: block;
+      color: var(--muted);
+      font-size: 25px;
+      line-height: 1.45;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      gap: 56px;
+      align-items: stretch;
+      margin-top: 54px;
+    }
+
+    .big-quote {
+      border-left: 8px solid var(--blue);
+      padding-left: 26px;
+      font-size: 40px;
+      line-height: 1.28;
+      font-weight: 850;
+    }
+
+    .factory {
+      position: relative;
+      height: 740px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(20,86,217,.08), transparent 50%),
+        #fbfaf6;
+      overflow: hidden;
+    }
+
+    .factory::before {
+      content: "";
+      position: absolute;
+      left: 60px;
+      right: 60px;
+      bottom: 120px;
+      height: 350px;
+      background:
+        linear-gradient(90deg, transparent 0 16%, rgba(20,86,217,.12) 16% 17%, transparent 17% 33%, rgba(20,86,217,.12) 33% 34%, transparent 34% 50%, rgba(20,86,217,.12) 50% 51%, transparent 51% 67%, rgba(20,86,217,.12) 67% 68%, transparent 68%),
+        linear-gradient(180deg, #dfe6ef 0 34%, #cdd5df 34% 100%);
+      clip-path: polygon(0 22%, 18% 22%, 18% 0, 33% 0, 33% 22%, 52% 22%, 52% 8%, 66% 8%, 66% 22%, 100% 22%, 100% 100%, 0 100%);
+    }
+
+    .factory::after {
+      content: "电表 / 通信 / 采集 / 主站 / 配网 / 平台";
+      position: absolute;
+      left: 50px;
+      right: 50px;
+      bottom: 48px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 23px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .relation-board {
+      margin-top: 54px;
+      height: 790px;
+      position: relative;
+      border: 1px solid var(--line);
+      background: #fbfaf6;
+      padding: 54px;
+    }
+
+    .node {
+      position: absolute;
+      width: 330px;
+      min-height: 190px;
+      border: 2px solid var(--ink);
+      background: var(--paper);
+      padding: 28px;
+    }
+
+    .node b {
+      display: block;
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .node span {
+      display: block;
+      font-size: 24px;
+      line-height: 1.42;
+      color: var(--muted);
+    }
+
+    .node.primary {
+      left: 72px;
+      top: 120px;
+      border-color: var(--blue);
+    }
+
+    .node.secondary {
+      right: 72px;
+      bottom: 74px;
+      border-color: var(--green);
+    }
+
+    .chain-line {
+      position: absolute;
+      left: 242px;
+      top: 370px;
+      width: 600px;
+      height: 170px;
+      border-top: 3px solid var(--ink);
+      border-right: 3px solid var(--ink);
+      transform: skewY(-12deg);
+    }
+
+    .relation-caption {
+      position: absolute;
+      left: 376px;
+      top: 348px;
+      width: 350px;
+      background: var(--ink);
+      color: #fff;
+      padding: 24px 28px;
+      font-size: 25px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .chain-map {
+      margin-top: 44px;
+      display: grid;
+      gap: 20px;
+    }
+
+    .layer {
+      position: relative;
+      min-height: 176px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.48);
+      padding: 26px 28px 26px 178px;
+    }
+
+    .layer .index {
+      position: absolute;
+      left: 28px;
+      top: 28px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 30px;
+      color: var(--blue);
+      font-weight: 900;
+    }
+
+    .layer b {
+      display: block;
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .layer span {
+      color: var(--muted);
+      font-size: 24px;
+      line-height: 1.38;
+    }
+
+    .layer.hot {
+      border-color: rgba(20,86,217,.65);
+      background: #eef3ff;
+      box-shadow: inset 8px 0 0 var(--blue);
+    }
+
+    .logic {
+      margin-top: 58px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .logic-row {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 28px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+    }
+
+    .logic-row .label {
+      font-size: 31px;
+      font-weight: 900;
+      color: var(--blue);
+    }
+
+    .logic-row .text {
+      font-size: 30px;
+      line-height: 1.38;
+      font-weight: 700;
+    }
+
+    .duo {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      height: 780px;
+    }
+
+    .duo-panel {
+      border: 1px solid var(--line);
+      padding: 40px 34px;
+      background: rgba(255,255,255,.42);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .duo-panel h3 {
+      font-size: 42px;
+      line-height: 1.1;
+    }
+
+    .duo-panel p {
+      font-size: 29px;
+      line-height: 1.45;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+    .duo-panel .symbol {
+      height: 300px;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, transparent 49%, rgba(22,24,29,.18) 50%, transparent 51%),
+        linear-gradient(0deg, transparent 49%, rgba(22,24,29,.18) 50%, transparent 51%),
+        #f4f3ee;
+      display: grid;
+      place-items: center;
+      font-size: 86px;
+      font-weight: 900;
+      color: var(--blue);
+    }
+
+    .risk-list {
+      margin-top: 58px;
+      display: grid;
+      gap: 26px;
+    }
+
+    .risk {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 26px;
+      align-items: start;
+      border-bottom: 1px solid rgba(246,242,232,.18);
+      padding-bottom: 25px;
+    }
+
+    .risk .mark {
+      color: #fff;
+      border: 1px solid rgba(246,242,232,.28);
+      height: 72px;
+      display: grid;
+      place-items: center;
+      font-size: 32px;
+      font-weight: 900;
+    }
+
+    .risk b {
+      display: block;
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .risk span {
+      display: block;
+      color: rgba(246,242,232,.70);
+      font-size: 25px;
+      line-height: 1.42;
+    }
+
+    .summary {
+      margin-top: 72px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .summary .big {
+      font-size: 260px;
+      line-height: .82;
+      font-weight: 950;
+      color: var(--blue);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .summary-list {
+      display: grid;
+      gap: 26px;
+    }
+
+    .summary-item {
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      font-size: 34px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .small-note {
+      margin-top: 44px;
+      font-size: 24px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .source-note {
+      position: absolute;
+      left: 82px;
+      right: 82px;
+      bottom: 110px;
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <section class="page dark" id="card-01">
+    <div class="meta"><div class="kicker">个人投资复盘</div><div class="num">01 / 09</div></div>
+    <div class="visual-chip wafer"></div>
+    <div class="cover-title">
+      <div class="stamp">不是荐股，是复盘</div>
+      <h1>看数字电网，<br>我继续研究<br>威胜信息</h1>
+      <p class="lead">它不是发电公司，更像把智能计量、物联网通信、采集终端和数字电网感知能力交付给能源客户的平台。</p>
+      <div class="tags">
+        <span class="tag">威胜信息 688100</span>
+        <span class="tag">电力物联网</span>
+        <span class="tag">数字电网</span>
+      </div>
+    </div>
+    <p class="cover-note">这套图只讲我的研究路径：数字电网不是只看输电线路，还要看底层感知、通信连接、数据采集和平台管理。</p>
+    <div class="footer"><span>Willfar research note</span><span>个人记录 / 不构成投资建议</span></div>
+  </section>
+
+  <section class="page" id="card-02">
+    <div class="meta"><div class="kicker">我为什么关注</div><div class="num">02 / 09</div></div>
+    <h2>我看它，不是因为它“发电卖电”</h2>
+    <p class="lead">威胜信息的看点，不是发电资产，而是电力物联网里的感知、连接、采集和数据上送能力。</p>
+    <div class="note-grid">
+      <div class="note"><strong>它不是发电公司</strong><span>发电是能源供给，威胜信息更偏计量感知、通信连接和能源数据采集。</span></div>
+      <div class="note"><strong>它更像物联网底座</strong><span>智能终端、通信模块、采集设备、平台连接，是理解它的基础口径。</span></div>
+      <div class="note"><strong>市场关注数字电网</strong><span>电网数字化、配用电自动化、能效管理和能源数据价值，会带来长期关注。</span></div>
+      <div class="note"><strong>我复盘的是逻辑</strong><span>重点不是追概念，而是看懂“谁把电力现场数据连接起来”。</span></div>
+    </div>
+    <div class="footer"><span>投资笔记不是结论</span><span>先讲认知，再讲公司</span></div>
+  </section>
+
+  <section class="page" id="card-03">
+    <div class="meta"><div class="kicker">公司做什么</div><div class="num">03 / 09</div></div>
+    <h2>威胜信息不是卖电的，它更像“电力数据连接商”</h2>
+    <div class="split">
+      <div>
+        <p class="big-quote">把感知终端、计量设备、通信连接和平台系统组合成可交付的电力物联网方案。</p>
+        <p class="lead">理解它，不是先看“数字电网概念”，而是先看现场数据如何被采集、传输、处理和管理。</p>
+        <div class="tags">
+          <span class="tag" style="color:var(--blue)">智能终端</span>
+          <span class="tag" style="color:var(--green)">物联网通信</span>
+          <span class="tag" style="color:var(--red)">数字电网</span>
+        </div>
+      </div>
+      <div class="factory"></div>
+    </div>
+    <div class="footer"><span>Sensor / Network / Energy IoT</span><span>把现场数据变成可管理资产</span></div>
+  </section>
+
+  <section class="page" id="card-04">
+    <div class="meta"><div class="kicker">和电网资产的区别</div><div class="num">04 / 09</div></div>
+    <h2>电网是主角，威胜看“感知连接”</h2>
+    <p class="lead">这条线要讲清楚：威胜信息不是电网运营商，它更像把现场终端、通信网络、采集设备和平台能力交付给能源客户的物联网系统商。</p>
+    <div class="relation-board">
+      <div class="node primary"><b>电网公司</b><span>负责输配电网络、供电服务、计费管理和电力系统运行，是前台主角。</span></div>
+      <div class="chain-line"></div>
+      <div class="relation-caption">关注逻辑：数字电网不是只有主网资产，还要把现场数据稳定连接回来。</div>
+      <div class="node secondary"><b>威胜</b><span>更偏电力物联网、通信连接、采集终端和能源数据管理，是感知层与连接层的观察对象。</span></div>
+    </div>
+    <div class="footer"><span>不要把角色混为一谈</span><span>电网 / 感知 / 连接 / 平台</span></div>
+  </section>
+
+  <section class="page" id="card-05">
+    <div class="meta"><div class="kicker">产业链位置</div><div class="num">05 / 09</div></div>
+    <h2>一个数字电网背后，有一整条连接链</h2>
+    <div class="chain-map">
+      <div class="layer"><div class="index">01</div><b>上游基础</b><span>计量芯片、MCU、通信芯片、传感器、电源、PCB、结构件和软件组件。</span></div>
+      <div class="layer hot"><div class="index">02</div><b>感知终端与连接</b><span>智能终端、通信模块、采集设备和数据上送，威胜信息容易被放在这一层理解。</span></div>
+      <div class="layer"><div class="index">03</div><b>平台系统与能源物联</b><span>电力物联网平台、能源管理、数据采集、运维服务和系统集成。</span></div>
+      <div class="layer"><div class="index">04</div><b>下游客户</b><span>电网公司、能源客户、园区、公用事业和工商业能源管理场景。</span></div>
+    </div>
+    <div class="footer"><span>高亮的是理解位置，不是收益承诺</span><span>电力物联网与数字电网感知层</span></div>
+  </section>
+
+  <section class="page" id="card-06">
+    <div class="meta"><div class="kicker">商业模式</div><div class="num">06 / 09</div></div>
+    <h2>它赚的不是电费，而是连接、终端和系统交付的钱</h2>
+    <p class="lead">这类公司的价值，不是单卖一个硬件，而是把感知终端、通信连接、数据采集、平台软件和项目实施一起交付。</p>
+    <div class="logic">
+      <div class="logic-row"><div class="label">客户需求</div><div class="text">能源客户提出远程采集、状态感知、线损管理、运维效率和数据治理要求。</div></div>
+      <div class="logic-row"><div class="label">组织能力</div><div class="text">威胜信息提供智能终端、通信连接、采集设备、平台软件和系统交付。</div></div>
+      <div class="logic-row"><div class="label">交付结果</div><div class="text">把现场能源数据稳定连接回来，并支持计量、运维、调度和能源管理。</div></div>
+      <div class="logic-row"><div class="label">收入来源</div><div class="text">赚物联网终端、通信产品、系统集成、软件平台和项目交付能力的钱。</div></div>
+    </div>
+    <div class="footer"><span>Manufacturing capability as business model</span><span>看懂现金流之前，先看懂角色</span></div>
+  </section>
+
+  <section class="page" id="card-07">
+    <div class="meta"><div class="kicker">为什么容易被忽略</div><div class="num">07 / 09</div></div>
+    <h2>大家看见电网，我更想看见背后的连接层</h2>
+    <div class="duo">
+      <div class="duo-panel">
+        <div>
+          <h3>大家熟悉的世界</h3>
+          <p>电网、新能源、储能、电价改革，前台故事更容易被传播。</p>
+        </div>
+        <div class="symbol">前台</div>
+      </div>
+      <div class="duo-panel">
+        <div>
+          <h3>产业链里的世界</h3>
+          <p>智能终端、通信连接、数据采集、能源物联网平台和系统集成，才是数字电网的后台。</p>
+        </div>
+        <div class="symbol" style="color:var(--green)">后台</div>
+      </div>
+    </div>
+    <div class="footer"><span>这次复盘给我的提醒</span><span>不要只看台前公司</span></div>
+  </section>
+
+  <section class="page dark" id="card-08">
+    <div class="meta"><div class="kicker">风险也要讲</div><div class="num">08 / 09</div></div>
+    <h2>但它不是“稳赚故事”</h2>
+    <p class="lead">越是数字电网、能源物联网和电力数字化这种好讲的故事，越要把风险写在前面。观察池不等于买入点。</p>
+    <div class="risk-list">
+      <div class="risk"><div class="mark">1</div><div><b>电网招标有周期</b><span>招投标、认证、交货、验收和回款节奏都会影响收入兑现。</span></div></div>
+      <div class="risk"><div class="mark">2</div><div><b>项目结构会影响利润</b><span>不同终端、通信产品、软件平台和系统集成项目的毛利率不同。</span></div></div>
+      <div class="risk"><div class="mark">3</div><div><b>物联网业务要看落地质量</b><span>电力物联网不只是硬件，还要看连接稳定、平台运维和客户验收。</span></div></div>
+      <div class="risk"><div class="mark">4</div><div><b>不能只靠概念买股票</b><span>还要看收入结构、利润率、订单质量、现金流和估值位置。</span></div></div>
+    </div>
+    <div class="footer"><span>Risk first</span><span>个人复盘 / 不构成投资建议</span></div>
+  </section>
+
+  <section class="page" id="card-09">
+    <div class="meta"><div class="kicker">最后记住</div><div class="num">09 / 09</div></div>
+    <h2>看懂威胜信息，我记住 4 句话</h2>
+    <div class="summary">
+      <div class="big">4</div>
+      <div class="summary-list">
+        <div class="summary-item">它不是发电公司，而是电力物联网和数字电网感知连接商。</div>
+        <div class="summary-item">智能终端、通信连接、数据采集和能源物联网是关键词。</div>
+        <div class="summary-item">电网是前台主角，威胜更像现场数据连接能力。</div>
+        <div class="summary-item">观察池不是买入点，最终还要回到业绩和价格。</div>
+      </div>
+    </div>
+    <p class="small-note">这篇是我的个人投资复盘，不是荐股。真正要做决策，还是要自己看公告、财报、估值和风险。</p>
+    <div class="source-note">信息口径参考：威胜信息公开资料、公司公告和数字电网行业资料。具体收入结构、项目进展、客户情况请以公司公告、年报、互动易等正式披露为准。</div>
+    <div class="footer"><span>收藏这一页</span><span>观察池 > 情绪追涨</span></div>
+  </section>
+</body>
+</html>
