@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      @font-face {
+        font-family: "PingFang SC";
+        src: local("PingFang SC");
+      }
+
+      @font-face {
+        font-family: "Microsoft YaHei";
+        src: local("Microsoft YaHei");
+      }
+
+      @font-face {
+        font-family: "Noto Sans CJK SC";
+        src: local("Noto Sans CJK SC");
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #10231d;
+        font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      }
+
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 15% 15%, rgba(255, 235, 197, 0.5), transparent 28%),
+          linear-gradient(145deg, #fff7e9 0%, #e5f4ed 52%, #b9dfd5 100%);
+        color: #17362e;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        padding: 118px 76px 128px;
+        opacity: 0;
+        overflow: hidden;
+      }
+
+      .home-bg {
+        background-image: url("./assets/image2/dining-table-bg.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .plate-bg {
+        background-image: url("./assets/image2/plate-method-breakfast.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .record-bg {
+        background-image: url("./assets/image2/glucose-record-scene.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .scene::before {
+        content: "";
+        position: absolute;
+        inset: 38px;
+        border: 2px solid rgba(23, 54, 46, 0.08);
+        border-radius: 42px;
+        pointer-events: none;
+      }
+
+      .photo-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+
+      .scene > *:not(.photo-bg):not(.caption):not(.soft-scrim):not(.image-asset):not(.asset):not(.scene-visual-card):not(.mini-card) {
+        position: relative;
+        z-index: 2;
+      }
+
+      .kicker {
+        font-size: 34px;
+        font-weight: 700;
+        color: #287864;
+        letter-spacing: 0;
+        margin-bottom: 18px;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+        letter-spacing: 0;
+        line-height: 1.08;
+      }
+
+      h1 {
+        max-width: 820px;
+        font-size: 94px;
+        color: #16352d;
+      }
+
+      h2 {
+        font-size: 78px;
+        color: #16352d;
+      }
+
+      .sub {
+        margin-top: 28px;
+        font-size: 42px;
+        line-height: 1.28;
+        color: #35584f;
+        font-weight: 650;
+      }
+
+      .caption {
+        position: absolute;
+        left: 74px;
+        right: 74px;
+        bottom: 86px;
+        min-height: 118px;
+        padding: 28px 34px;
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.86);
+        border: 1px solid rgba(23, 54, 46, 0.1);
+        box-shadow: 0 28px 80px rgba(25, 70, 60, 0.14);
+        font-size: 38px;
+        font-weight: 750;
+        line-height: 1.26;
+        color: #1d4038;
+        z-index: 5;
+      }
+
+      .table-bg {
+        position: absolute;
+        left: -90px;
+        right: -90px;
+        bottom: -80px;
+        height: 780px;
+        border-radius: 52% 48% 0 0;
+        background:
+          radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.62), transparent 44%),
+          linear-gradient(90deg, #e3bd82, #f6d9aa 42%, #d7a86c);
+        box-shadow: inset 0 34px 90px rgba(255, 255, 255, 0.35);
+      }
+
+      .asset {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        color: #24483f;
+        font-weight: 850;
+        text-align: center;
+        border: 2px solid rgba(255, 255, 255, 0.72);
+        box-shadow: 0 24px 60px rgba(40, 92, 78, 0.18);
+      }
+
+      .image-asset {
+        position: absolute;
+        display: block;
+        object-fit: contain;
+        filter: drop-shadow(0 24px 46px rgba(22, 62, 52, 0.22));
+        z-index: 2;
+      }
+
+      .bowl {
+        width: 380px;
+        height: 240px;
+        border-radius: 48% 48% 44% 44%;
+        background:
+          radial-gradient(ellipse at 52% 35%, #fffef6 0 34%, #efe2c6 35% 50%, transparent 51%),
+          linear-gradient(180deg, #f9f3e6 0%, #d8b486 100%);
+        font-size: 42px;
+      }
+
+      .plate {
+        width: 520px;
+        height: 520px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle, #fff 0 48%, #ecf5ef 49% 66%, #d7e8df 67% 100%);
+        border: 18px solid rgba(255, 255, 255, 0.82);
+      }
+
+      .food {
+        width: 190px;
+        height: 150px;
+        border-radius: 42px;
+        background: #fffaf0;
+        font-size: 34px;
+      }
+
+      .food.egg {
+        background: radial-gradient(circle at 62% 48%, #f5bc35 0 18%, #fff8e7 19% 62%, #eee2c7 63%);
+      }
+
+      .food.soy {
+        border-radius: 40px 40px 22px 22px;
+        background: linear-gradient(180deg, #fbfff7, #eef3de);
+      }
+
+      .food.bun {
+        background: radial-gradient(circle at 50% 34%, #d6a367 0 60%, #b77d44 61%);
+        color: #10231d;
+      }
+
+      .food.greens {
+        background: radial-gradient(circle at 30% 50%, #83c98b, transparent 34%),
+          radial-gradient(circle at 62% 45%, #3f9b66, transparent 35%),
+          #e9f6df;
+      }
+
+      .person {
+        width: 300px;
+        height: 420px;
+        border-radius: 150px 150px 56px 56px;
+        background:
+          radial-gradient(circle at 50% 26%, #f4c99a 0 22%, transparent 23%),
+          linear-gradient(180deg, #67a894 0%, #2c6f5e 100%);
+        font-size: 34px;
+        color: #10231d;
+      }
+
+      .warning {
+        position: absolute;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 18px 28px;
+        border-radius: 999px;
+        background: #ff8c3a;
+        color: #fff;
+        font-size: 34px;
+        font-weight: 850;
+        box-shadow: 0 20px 50px rgba(255, 140, 58, 0.26);
+        z-index: 4;
+      }
+
+      .mini-card {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        min-width: 210px;
+        height: 94px;
+        padding: 0 26px;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #17362e;
+        font-size: 34px;
+        font-weight: 900;
+        box-shadow: 0 24px 60px rgba(25, 70, 60, 0.15);
+        z-index: 3;
+      }
+
+      .meal-stack {
+        position: absolute;
+        left: 90px;
+        right: 90px;
+        top: 600px;
+        height: 680px;
+      }
+
+      .record-card {
+        position: absolute;
+        left: 132px;
+        top: 760px;
+        width: 816px;
+        padding: 30px;
+        border-radius: 36px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 30px 90px rgba(21, 62, 52, 0.18);
+        z-index: 3;
+      }
+
+      .record-title {
+        font-size: 38px;
+        font-weight: 850;
+        margin-bottom: 18px;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 66px;
+        padding: 0 22px;
+        margin-top: 14px;
+        border-radius: 18px;
+        background: #edf7f1;
+        font-size: 28px;
+        font-weight: 760;
+      }
+
+      .meter {
+        position: absolute;
+        right: 86px;
+        top: 700px;
+        width: 260px;
+        height: 180px;
+        border-radius: 36px;
+        background: linear-gradient(180deg, #ecfff6, #caeadf);
+        color: #10231d;
+        font-size: 32px;
+      }
+
+      .meter::before {
+        content: "";
+        position: absolute;
+        left: 52px;
+        right: 52px;
+        top: 38px;
+        height: 58px;
+        border-radius: 14px;
+        background: #e7fff4;
+      }
+
+      .plate-method {
+        position: absolute;
+        left: 130px;
+        top: 580px;
+        width: 820px;
+        height: 820px;
+        border-radius: 50%;
+        background:
+          conic-gradient(#7ccf97 0 50%, #73b9d2 50% 75%, #e2ad62 75% 100%);
+        border: 24px solid rgba(255, 255, 255, 0.85);
+        box-shadow: 0 34px 100px rgba(27, 80, 65, 0.16);
+      }
+
+      .plate-method::after {
+        content: "蔬菜 1/2\\A蛋白 1/4\\A主食 1/4";
+        white-space: pre;
+        position: absolute;
+        inset: 145px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.88);
+        color: #17362e;
+        font-size: 48px;
+        font-weight: 900;
+        line-height: 1.35;
+        text-align: center;
+      }
+
+      .footer-note {
+        position: absolute;
+        left: 76px;
+        top: 360px;
+        right: 76px;
+        padding: 30px 34px;
+        border-radius: 30px;
+        background: rgba(246, 255, 249, 0.96);
+        color: #10231d;
+        font-size: 44px;
+        font-weight: 900;
+        line-height: 1.22;
+        box-shadow: 0 26px 70px rgba(22, 62, 52, 0.2);
+      }
+
+      .soft-scrim {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background:
+          linear-gradient(180deg, rgba(255, 248, 235, 0.86) 0%, rgba(255, 248, 235, 0.12) 34%, rgba(255, 248, 235, 0.64) 100%),
+          linear-gradient(90deg, rgba(229, 244, 237, 0.2), rgba(229, 244, 237, 0.46));
+      }
+
+      .scene-visual-card {
+        position: absolute;
+        left: 86px;
+        right: 86px;
+        top: 630px;
+        height: 760px;
+        border-radius: 48px;
+        background: rgba(255, 255, 255, 0.62);
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        box-shadow: 0 28px 90px rgba(22, 62, 52, 0.12);
+        z-index: 1;
+      }
+
+      .scene-visual-card.compact {
+        top: 700px;
+        height: 560px;
+      }
+
+      .scene-visual-card.warm {
+        background:
+          radial-gradient(ellipse at 50% 72%, rgba(255, 248, 225, 0.95), rgba(255, 255, 255, 0.66) 58%, rgba(255, 255, 255, 0.5)),
+          rgba(255, 255, 255, 0.58);
+      }
+
+      #scene-1 h1,
+      #scene-2 h2,
+      #scene-3 h2,
+      #scene-4 h2,
+      #scene-5 h2 {
+        max-width: 850px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="30.5" data-width="1080" data-height="1920">
+      <audio id="voice-01" src="./assets/fishaudio/scene-01.mp3" data-start="0" data-duration="4.11" data-track-index="20" data-volume="1"></audio>
+      <audio id="voice-02" src="./assets/fishaudio/scene-02.mp3" data-start="4.35" data-duration="6.57" data-track-index="20" data-volume="1"></audio>
+      <audio id="voice-03" src="./assets/fishaudio/scene-03.mp3" data-start="11.16" data-duration="5.92" data-track-index="20" data-volume="1"></audio>
+      <audio id="voice-04" src="./assets/fishaudio/scene-04.mp3" data-start="17.31" data-duration="5.37" data-track-index="20" data-volume="1"></audio>
+      <audio id="voice-05" src="./assets/fishaudio/scene-05.mp3" data-start="22.92" data-duration="6.39" data-track-index="20" data-volume="1"></audio>
+
+      <section id="scene-1" class="scene clip home-bg" data-start="0" data-duration="4.35" data-track-index="1">
+        <div class="soft-scrim"></div>
+        <div class="kicker">血糖高的一周餐盘改造 · 周一</div>
+        <h1>早餐别只喝白粥</h1>
+        <p class="sub">清淡不等于搭配完整</p>
+        <div class="scene-visual-card compact warm"></div>
+        <img class="image-asset congee-img" src="./assets/image2/congee-bowl.png" alt="" style="left: 264px; top: 760px; width: 550px;" />
+        <div class="caption">很多叔叔阿姨早餐喜欢一碗白粥，觉得清淡、舒服。</div>
+      </section>
+
+      <section id="scene-2" class="scene clip home-bg" data-start="4.35" data-duration="6.81" data-track-index="1">
+        <div class="soft-scrim"></div>
+        <div class="kicker">先别急着戒主食</div>
+        <h2>问题不是粥<br />是“只喝粥”</h2>
+        <div class="scene-visual-card compact"></div>
+        <img class="image-asset congee-img" src="./assets/image2/congee-bowl-zoom.png" alt="" style="left: 98px; top: 790px; width: 390px;" />
+        <div class="mini-card" style="right: 136px; top: 798px;">缺蛋白</div>
+        <div class="mini-card" style="right: 136px; top: 920px;">缺蔬菜</div>
+        <div class="warning" style="left: 260px; top: 1148px;">主食别单独上桌</div>
+        <div class="caption">早餐只有粥，缺少蛋白和蔬菜，餐后血糖可能更容易波动，也容易很快又饿。</div>
+      </section>
+
+      <section id="scene-3" class="scene clip home-bg" data-start="11.16" data-duration="6.15" data-track-index="1">
+        <div class="soft-scrim"></div>
+        <div class="kicker">换成这一盘</div>
+        <h2>这样搭<br />更稳一点</h2>
+        <div class="scene-visual-card warm"></div>
+        <img id="breakfast-foods" class="image-asset" src="./assets/image2/breakfast-foods.png" alt="" style="left: 114px; top: 748px; width: 850px;" />
+        <div class="caption">一个鸡蛋，一杯无糖豆浆，半个全麦馒头，再配一点黄瓜或青菜。</div>
+      </section>
+
+      <section id="scene-4" class="scene clip plate-bg" data-start="17.31" data-duration="5.61" data-track-index="1">
+        <div class="soft-scrim"></div>
+        <div class="kicker">记住这个顺序</div>
+        <h2>主食<br />别单独上桌</h2>
+        <div class="caption">不是不吃主食，而是让主食、蛋白、蔬菜一起出现。这样更接近餐盘法。</div>
+      </section>
+
+      <section id="scene-5" class="scene clip record-bg" data-start="22.92" data-duration="7.58" data-track-index="1">
+        <div class="soft-scrim"></div>
+        <div class="kicker">最后看自己的反应</div>
+        <h2>记录餐后<br />2小时血糖</h2>
+        <div class="record-card">
+          <div class="record-title">早餐观察记录</div>
+          <div class="row"><span>吃了什么</span><span>写下来</span></div>
+          <div class="row"><span>餐后2小时</span><span>测一次</span></div>
+          <div class="row"><span>困不困</span><span>轻 / 中 / 重</span></div>
+        </div>
+        <div class="caption">先记录几天餐后两小时血糖，再和医生或营养师一起调整。</div>
+      </section>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      const scenes = [
+        ["#scene-1", 0, 4.35],
+        ["#scene-2", 4.35, 6.81],
+        ["#scene-3", 11.16, 6.15],
+        ["#scene-4", 17.31, 5.61],
+        ["#scene-5", 22.92, 7.58],
+      ];
+
+      scenes.forEach(([selector, start, duration]) => {
+        tl.set(selector, { opacity: 1 }, start);
+        tl.fromTo(selector, { y: 28 }, { y: 0, duration: 0.32, ease: "power2.out" }, start);
+        if (selector !== "#scene-5") {
+          tl.to(selector, { opacity: 0, duration: 0.22, ease: "power1.in" }, start + duration - 0.22);
+        }
+      });
+
+      tl.from("#scene-1 h1", { opacity: 0, y: -36, duration: 0.55, ease: "back.out(1.2)" }, 0.28);
+      tl.from("#scene-1 .congee-img", { opacity: 0, y: 80, scale: 0.9, duration: 0.7, ease: "back.out(1.4)" }, 0.55);
+
+      tl.from("#scene-2 .congee-img", { opacity: 0, x: -80, scale: 0.92, duration: 0.48, ease: "power2.out" }, 4.58);
+      tl.from("#scene-2 .mini-card", { opacity: 0, x: 58, stagger: 0.22, duration: 0.42, ease: "power2.out" }, 5.25);
+      tl.from("#scene-2 .warning", { opacity: 0, y: 30, scale: 0.92, duration: 0.36, ease: "back.out(1.6)" }, 9.45);
+
+      tl.from("#breakfast-foods", { opacity: 0, y: 60, scale: 0.9, duration: 0.75, ease: "back.out(1.3)" }, 11.65);
+      tl.to("#breakfast-foods", { scale: 1.035, duration: 0.55, ease: "power2.out" }, 14.6);
+      tl.to("#breakfast-foods", { scale: 1, duration: 0.45, ease: "power2.out" }, 15.15);
+
+      tl.from("#scene-4 h2", { opacity: 0, x: -40, duration: 0.45, ease: "power2.out" }, 18.2);
+
+      tl.from("#scene-5 .record-card", { opacity: 0, y: 70, duration: 0.55, ease: "back.out(1.2)" }, 24.15);
+      tl.from("#scene-5 .row", { opacity: 0, x: -34, stagger: 0.28, duration: 0.35, ease: "power2.out" }, 25.25);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
