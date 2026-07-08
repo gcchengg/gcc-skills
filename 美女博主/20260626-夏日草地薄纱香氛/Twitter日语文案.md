@@ -8,7 +8,27 @@
 
 #AI写真 #画像生成 #自然光ポートレート #香水広告風 #プロンプト
 
-## Prompt Memo
+## プロンプト要約
 
-Summer grass field, adult woman lying calmly, translucent sheer veil, dappled sunlight, wildflowers, straw hat or wicker basket, Kodak Portra-inspired fashion editorial.
+夏の草地、薄いチュール、香水の透明感、光を浴びる肌と布。柔らかく上品なビューティー広告風ポートレート。
 
+## 第一コメント
+
+詳しい生成プロンプトです。
+
+```text
+参考画像は同じ成人女性のアイデンティティ固定に使う。顔の輪郭、目元、鼻、唇、肌色、成人らしい年齢感、自然な体型を保つ。服装や場面は夏の草地と香水広告風に変更する。
+
+夏の芝生や庭園で撮影した、透明感のある香水ビジュアル風ポートレート。柔らかい午後の光、淡い緑、白や淡色の薄いチュール、風で揺れる布、透明な香水瓶、肌に当たる光の反射を入れる。全体は清潔で高級、ロマンチックだが品のない表現にしない。
+
+人物は落ち着いた大人の表情で、香水瓶を手に持つ、頬の近くに寄せる、草地に座る、薄布が風で広がるなどの自然なポーズ。肌は自然な質感を残し、過度に磨かない。色は白、淡いグリーン、透明なガラス、薄いピンクやベージュを中心に、柔らかいハイキー調。
+
+香水広告のような余白と清潔な構図を意識する。避けるもの：過度な露出、性的なポーズ、プラスチック肌、顔の崩れ、別人化、手指の崩れ、実在ブランドロゴ、文字化け、透かし、安っぽい合成感、背景の混雑。
+```
+
+## 投稿画像
+
+- `images/01-soft-green-veil-floral-dress.png`
+- `images/02-creamy-white-veil-lace-dress.png`
+- `images/03-pale-blue-veil-cream-slip-dress.png`
+- `images/04-misty-pink-veil-cream-slip-dress.png`

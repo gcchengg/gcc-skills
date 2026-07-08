@@ -8,7 +8,20 @@
 
 #AI写真 #画像生成 #iPhone写真風 #日常ポートレート #プロンプト
 
-## Prompt Memo
+## プロンプト要約
 
-Boyfriend POV, top-down iPhone candid, one hand gently cups her cheek, dim bedroom, tired loving eyes, messy hair, warm lamp and blue night-window light.
+近距離の彼氏目線、両手で頬を包む親密なポートレート。自然光、柔らかい表情、生活感。
 
+## 第一コメント
+
+詳しい生成プロンプトです。
+
+```text
+同じ成人女性の顔を保ち、近距離の彼氏目線で撮った親密なポートレートを作る。カメラに近く、誰かの手または本人の手が頬を優しく包む。表情は少し照れた笑顔、リラックスした目線。背景は室内やカフェなど日常的で、自然光、浅い被写界深度、柔らかい肌の質感。性的ではなく、温かく清潔な雰囲気にする。手の形を自然にし、多指や歪み、顔の崩れ、別人化、未成年風、過度な美肌、透かし、ロゴを避ける。
+```
+
+## 投稿画像
+
+- `images/01-床边俯拍捧脸.png`
+- `images/02-枕边侧脸捧脸.png`
+- `images/03-夜窗暗光捧脸.png`

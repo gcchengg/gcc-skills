@@ -8,7 +8,18 @@
 
 #AI写真 #画像生成 #自然光ポートレート #寝室写真 #プロンプト
 
-## Prompt Memo
+## プロンプト要約
 
-Natural-light bedroom portrait, close to camera, soft restrained smile, clear eye focus, morning window light, knit top, real skin texture, intimate clean mood.
+朝の寝室、窓光、ニット、近距離の目元フォーカス。自然な肌と静かな微笑み。
 
+## 第一コメント
+
+詳しい生成プロンプトです。
+
+```text
+同じ成人女性の顔立ちを保ち、朝の寝室で撮った自然光ポートレートを作る。ベッド脇、白いシーツ、窓から入る柔らかい光、淡いニットトップス。カメラは近距離で、目にピントを合わせ、口元は控えめな浅い笑顔。髪の乱れや小さな影を残し、肌は磨きすぎず自然な質感。親密だが清潔で上品。顔の崩れ、別人化、プラスチック肌、過度な露出、手の崩れ、文字、透かし、ロゴを避ける。
+```
+
+## 投稿画像
+
+- `images/01-窗边浅笑情绪肖像.png`

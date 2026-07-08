@@ -8,7 +8,21 @@
 
 #AI写真 #画像生成 #CCD写真 #キャンパス写真 #プロンプト
 
-## Prompt Memo
+## プロンプト要約
 
-Bright campus vitality portrait, soft-light CCD, high ponytail, white shirt/knit, plaid pleated skirt, books or sports drink, clear green and blue-white background, natural smile.
+キャンパス、柔らかい光、CCD感、元気で清潔な学生風スナップ。ただし人物は成人女性として表現する。
 
+## 第一コメント
+
+詳しい生成プロンプトです。
+
+```text
+同じ成人女性の顔を保ち、大学キャンパスで撮った元気なCCD風スナップを作る。校舎、廊下、芝生、教室、午後の柔らかい光を入れる。服装は清潔なカジュアルまたは学院風だが、成人女性として自然に見せる。表情は明るく、少し照れた笑顔、友達が撮ったような距離感。CCDの軽いフラッシュ、淡い色、低い解像感、自然な粒子を加える。未成年風、制服コスプレの過剰演出、顔の崩れ、手指ミス、透かし、ロゴを避ける。
+```
+
+## 投稿画像
+
+- `images/01-林荫道抱书前倾微笑.png`
+- `images/02-教学楼走廊回头笑.png`
+- `images/03-操场边运动饮料笑容.png`
+- `images/04-校园路边抱书回头.png`

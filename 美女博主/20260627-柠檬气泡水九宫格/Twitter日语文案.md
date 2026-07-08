@@ -8,7 +8,18 @@
 
 #AI写真 #画像生成 #9コマコラージュ #手帳風 #プロンプト
 
-## Prompt Memo
+## プロンプト要約
 
-3x3 photoreal collage, lemon sparkling water diary, natural daylight, thin white grid borders, white hand-drawn doodles, bubbles, hearts, sparkles, fresh summer palette.
+レモンソーダ、黄色、透明な泡、夏の日差し。9枚グリッドで爽やかな日常広告風に見せる。
 
+## 第一コメント
+
+詳しい生成プロンプトです。
+
+```text
+同じ成人女性を使い、レモンソーダをテーマにした9枚グリッドの夏ビジュアルを作る。レモン、炭酸の泡、透明グラス、氷、黄色と白、明るい日差し、キッチンやカフェテーブルを入れる。人物は爽やかで自然な笑顔、グラスを持つ、レモンを絞る、ストローで飲む、手元アップなどを組み合わせる。全体は清潔で明るく、広告風だが生活感も残す。文字化け、ブランドロゴ、顔の不一致、手指の崩れ、過度な美肌、低品質を避ける。
+```
+
+## 投稿画像
+
+- `images/01-九宫格柠檬气泡水手账涂鸦.png`

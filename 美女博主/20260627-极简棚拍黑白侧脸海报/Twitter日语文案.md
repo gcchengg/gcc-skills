@@ -8,7 +8,18 @@
 
 #AI写真 #画像生成 #ファッション写真 #モノクロポスター #プロンプト
 
-## Prompt Memo
+## プロンプト要約
 
-Minimal gray studio, seated color subject in lower-left foreground, huge grayscale side-profile poster on wall, black top, gray wide-leg jeans, cap, sneakers, editorial contrast.
+極簡スタジオ、白黒、横顔、強い余白。顔の線と髪の輪郭だけで見せる静かなポスター。
 
+## 第一コメント
+
+詳しい生成プロンプトです。
+
+```text
+同じ成人女性の顔立ちを保ち、極簡スタジオで撮った白黒横顔ポスターを作る。背景は白または薄いグレー、光は柔らかいが輪郭をはっきり出す。横顔、首筋、髪の流れ、自然な肌の質感を重視し、表情は静かで抑制する。構図は余白を大きく取り、ファッション誌の表紙のように高級でミニマル。別人顔、過度な美肌、顔の崩れ、手の崩れ、安っぽい文字、透かし、ロゴ、過剰な装飾を避ける。
+```
+
+## 投稿画像
+
+- `images/01-极简スタジオ撮影黑白侧脸海报.png`

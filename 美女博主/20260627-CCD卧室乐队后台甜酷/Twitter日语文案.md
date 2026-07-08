@@ -8,7 +8,21 @@
 
 #AI写真 #画像生成 #CCD直フラッシュ #Y2K #プロンプト
 
-## Prompt Memo
+## プロンプト要約
 
-Bedroom band backstage, old digital camera flash, black leather fashion, silver chains, dramatic nails, guitar, microphone, leather sofa, messy room, sweet-cool Y2K mood.
+CCDの寝室とバンド楽屋の間のような甘さとクールさが混ざったスナップ。フラッシュ、ポスター、楽器、少し散らかった私室感。
 
+## 第一コメント
+
+詳しい生成プロンプトです。
+
+```text
+同じ成人女性の顔立ちを維持し、CCDコンパクトカメラで撮ったような寝室兼バンド楽屋スナップを作る。背景にはポスター、楽器ケース、ケーブル、ベッド、鏡、柔らかい室内灯と直射フラッシュを入れる。人物は甘さとクールさが混ざったな雰囲気で、少しロックな服装、自然なポーズ、カメラに近い距離感。肌は自然、髪は少し乱れ、フィルム粒子とフラッシュの硬さを残す。別人化、未成年風、過度な露出、手指の崩れ、文字化け、透かし、ロゴを避ける。
+```
+
+## 投稿画像
+
+- `images/01-黑皮沙发美甲近景.png`
+- `images/02-地毯低角度靴子前景.png`
+- `images/03-玻璃杯麦克风桌面抓拍.png`
+- `images/04-电吉他麦克风广角.png`

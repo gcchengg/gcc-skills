@@ -8,7 +8,21 @@
 
 #AI写真 #画像生成 #iPhoneセルフィー風 #バックステージ #プロンプト
 
-## Prompt Memo
+## プロンプト要約
 
-Accidental iPhone front-camera selfie, concert backstage corridor, LED strips, black curtains, silver road cases, stage glow, tired soft smile, low-light noise, imperfect crop.
+ライブ会場の楽屋セルフィー。暗い廊下、ミラーライト、パス、機材、汗と高揚感を残す。
 
+## 第一コメント
+
+詳しい生成プロンプトです。
+
+```text
+同じ成人女性の顔を維持し、ライブやコンサートの楽屋で撮ったセルフィー風ポートレートを作る。背景には鏡のライト、機材ケース、ケーブル、バックステージパス、暗い廊下の光を入れる。人物は少し汗をかき、メイクはライブ後のリアルさを残し、興奮と疲れが混ざった表情。スマホ近距離、軽い広角、ノイズ、フラッシュ感。過度な加工、別人化、未成年風、露出過多、ロゴ、読めるブランド、手指の崩れ、文字化けを避ける。
+```
+
+## 投稿画像
+
+- `images/01-近距离轻笑自拍.png`
+- `images/02-侧身走廊自拍.png`
+- `images/03-偏心构图回眸.png`
+- `images/04-穿行回头抓拍.png`
