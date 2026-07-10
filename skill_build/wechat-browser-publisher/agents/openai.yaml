@@ -1,0 +1,7 @@
+interface:
+  display_name: "WeChat Browser Publisher"
+  short_description: "Use logged-in WeChat backend to create drafts"
+  default_prompt: "Use $wechat-browser-publisher to create a WeChat Official Account draft from a local Markdown or HTML article."
+
+policy:
+  allow_implicit_invocation: true
