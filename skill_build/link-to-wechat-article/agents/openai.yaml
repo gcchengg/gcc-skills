@@ -1,7 +1,7 @@
 interface:
   display_name: "链接转公众号文章"
-  short_description: "从链接生成公众号和小红书图文"
-  default_prompt: "Use $link-to-wechat-article to turn this link into a rich WeChat Official Account article plus a Xiaohongshu image-text package with cover, titles, topics, and cards."
+  short_description: "从链接生成公众号草稿并审核发布"
+  default_prompt: "Use $link-to-wechat-article to turn this link into a rich WeChat Official Account article, save a draft, and publish only after my review."
 
 policy:
   allow_implicit_invocation: true
