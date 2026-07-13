@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#fbfaf7"/>
+  <text x="74" y="92" font-family="Arial, 'PingFang SC', sans-serif" font-size="44" font-weight="700" fill="#151515">智能体工程的三种隐性成本</text>
+  <text x="76" y="136" font-family="Arial, 'PingFang SC', sans-serif" font-size="22" fill="#5f5a52">生成越来越便宜时，稀缺资源会转移到注意力、理解和判断。</text>
+  <g font-family="Arial, 'PingFang SC', sans-serif">
+    <rect x="74" y="210" width="318" height="330" rx="24" fill="#e8f1f3"/>
+    <text x="112" y="278" font-size="32" font-weight="700" fill="#153f4d">认知投降</text>
+    <text x="112" y="334" font-size="24" fill="#24343a">盲目接受 AI 输出</text>
+    <text x="112" y="388" font-size="22" fill="#3f4d52">输出看起来像代理的工作，</text>
+    <text x="112" y="426" font-size="22" fill="#3f4d52">但上线后就是你的系统、</text>
+    <text x="112" y="464" font-size="22" fill="#3f4d52">你的名誉和你的责任。</text>
+    <rect x="441" y="210" width="318" height="330" rx="24" fill="#f1e8ef"/>
+    <text x="479" y="278" font-size="32" font-weight="700" fill="#76334f">认知债务</text>
+    <text x="479" y="334" font-size="24" fill="#4c2a39">理解能力被侵蚀</text>
+    <text x="479" y="388" font-size="22" fill="#5c4750">代码可以产出得很快，</text>
+    <text x="479" y="426" font-size="22" fill="#5c4750">但团队未必知道为什么</text>
+    <text x="479" y="464" font-size="22" fill="#5c4750">它能工作、哪里会坏。</text>
+    <rect x="808" y="210" width="318" height="330" rx="24" fill="#eee4d2"/>
+    <text x="846" y="278" font-size="32" font-weight="700" fill="#77511e">编排税</text>
+    <text x="846" y="334" font-size="24" fill="#4d3a1f">带宽不能并行扩张</text>
+    <text x="846" y="388" font-size="22" fill="#5b4d37">代理可以开很多，</text>
+    <text x="846" y="426" font-size="22" fill="#5b4d37">但排序、约束、采样和</text>
+    <text x="846" y="464" font-size="22" fill="#5b4d37">停止，仍要人来做。</text>
+  </g>
+  <text x="300" y="642" font-family="Arial, 'PingFang SC', sans-serif" font-size="28" font-weight="700" fill="#151515">解决方向：把注意力放进架构，把证据放进流程，把变更设为 opt-in。</text>
+</svg>

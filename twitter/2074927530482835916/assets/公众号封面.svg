@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="596" viewBox="0 0 1400 596">
+  <rect width="1400" height="596" fill="#111111"/>
+  <rect x="56" y="50" width="1288" height="496" rx="28" fill="#f7f3ea"/>
+  <text x="104" y="132" font-family="Arial, 'PingFang SC', sans-serif" font-size="34" fill="#7b4b28">Agentic Engineering</text>
+  <text x="104" y="222" font-family="Arial, 'PingFang SC', sans-serif" font-size="72" font-weight="700" fill="#151515">工程师要拥有外循环</text>
+  <text x="108" y="292" font-family="Arial, 'PingFang SC', sans-serif" font-size="34" fill="#333333">AI 可以跑内循环，但不能继承后果</text>
+  <g transform="translate(104 356)">
+    <rect width="270" height="84" rx="18" fill="#1b4d5f"/>
+    <text x="40" y="53" font-family="Arial, 'PingFang SC', sans-serif" font-size="28" font-weight="700" fill="#ffffff">约束</text>
+    <rect x="308" width="270" height="84" rx="18" fill="#8b3f5f"/>
+    <text x="348" y="53" font-family="Arial, 'PingFang SC', sans-serif" font-size="28" font-weight="700" fill="#ffffff">证据</text>
+    <rect x="616" width="270" height="84" rx="18" fill="#8b5e21"/>
+    <text x="656" y="53" font-family="Arial, 'PingFang SC', sans-serif" font-size="28" font-weight="700" fill="#ffffff">判定</text>
+    <rect x="924" width="270" height="84" rx="18" fill="#2f5b36"/>
+    <text x="964" y="53" font-family="Arial, 'PingFang SC', sans-serif" font-size="28" font-weight="700" fill="#ffffff">责任</text>
+  </g>
+  <text x="104" y="505" font-family="Arial, 'PingFang SC', sans-serif" font-size="24" fill="#555555">从 Own the Outer Loop 看智能体工程的真正工作边界</text>
+</svg>

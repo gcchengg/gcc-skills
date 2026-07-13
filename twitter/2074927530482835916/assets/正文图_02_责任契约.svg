@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#111111"/>
+  <text x="72" y="88" font-family="Arial, 'PingFang SC', sans-serif" font-size="44" font-weight="700" fill="#ffffff">每个 AI 代码变更，都需要一份责任契约</text>
+  <text x="74" y="132" font-family="Arial, 'PingFang SC', sans-serif" font-size="22" fill="#cfcfcf">不是多一道审批，而是让“为什么可以接受这个结果”变得可追问。</text>
+  <g transform="translate(74 190)" font-family="Arial, 'PingFang SC', sans-serif">
+    <rect width="494" height="190" rx="24" fill="#f7f3ea"/>
+    <text x="34" y="58" font-size="28" font-weight="700" fill="#151515">检查清单</text>
+    <text x="34" y="104" font-size="23" fill="#333333">需求是否被正确理解？</text>
+    <text x="34" y="142" font-size="23" fill="#333333">风险、依赖、回滚是否明确？</text>
+    <rect x="558" width="494" height="190" rx="24" fill="#e8f1f3"/>
+    <text x="592" y="58" font-size="28" font-weight="700" fill="#151515">证据</text>
+    <text x="592" y="104" font-size="23" fill="#333333">测试、类型检查、日志、评审记录</text>
+    <text x="592" y="142" font-size="23" fill="#333333">哪些证据支持“足够安全”？</text>
+    <rect y="244" width="494" height="190" rx="24" fill="#f1e8ef"/>
+    <text x="34" y="302" font-size="28" font-weight="700" fill="#151515">负责人</text>
+    <text x="34" y="348" font-size="23" fill="#333333">谁做出最终判定？</text>
+    <text x="34" y="386" font-size="23" fill="#333333">失败时谁解释、修复和承担后果？</text>
+    <rect x="558" y="244" width="494" height="190" rx="24" fill="#eee4d2"/>
+    <text x="592" y="302" font-size="28" font-weight="700" fill="#151515">系统状态</text>
+    <text x="592" y="348" font-size="23" fill="#333333">上线、阻断、收窄、加护栏或拒绝</text>
+    <text x="592" y="386" font-size="23" fill="#333333">判定之后系统处于什么状态？</text>
+  </g>
+  <text x="74" y="686" font-family="Arial, 'PingFang SC', sans-serif" font-size="25" fill="#e8e8e8">智能体可以建议选择，但不能继承后果；责任契约让选择可以被解释。</text>
+</svg>

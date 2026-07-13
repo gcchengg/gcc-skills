@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#faf7f0"/>
+  <text x="72" y="82" font-family="Arial, 'PingFang SC', sans-serif" font-size="42" font-weight="700" fill="#151515">内循环负责执行，外循环负责拥有</text>
+  <text x="74" y="126" font-family="Arial, 'PingFang SC', sans-serif" font-size="22" fill="#57534e">智能体可以调查、实现、验证、重复；工程师必须定义边界、读取证据、做出判定。</text>
+  <rect x="78" y="190" width="500" height="410" rx="28" fill="#ffffff" stroke="#d6d3cc" stroke-width="2"/>
+  <text x="126" y="250" font-family="Arial, 'PingFang SC', sans-serif" font-size="34" font-weight="700" fill="#1b4d5f">内循环：Agent Loop</text>
+  <g font-family="Arial, 'PingFang SC', sans-serif" font-size="26" fill="#1f2933">
+    <circle cx="170" cy="326" r="38" fill="#d8edf3"/><text x="132" y="336">调查</text>
+    <circle cx="396" cy="326" r="38" fill="#d8edf3"/><text x="358" y="336">实现</text>
+    <circle cx="396" cy="474" r="38" fill="#d8edf3"/><text x="358" y="484">验证</text>
+    <circle cx="170" cy="474" r="38" fill="#d8edf3"/><text x="132" y="484">重复</text>
+  </g>
+  <path d="M215 326 H346" stroke="#1b4d5f" stroke-width="8" stroke-linecap="round"/>
+  <path d="M396 372 V426" stroke="#1b4d5f" stroke-width="8" stroke-linecap="round"/>
+  <path d="M351 474 H220" stroke="#1b4d5f" stroke-width="8" stroke-linecap="round"/>
+  <path d="M170 429 V374" stroke="#1b4d5f" stroke-width="8" stroke-linecap="round"/>
+  <rect x="622" y="190" width="500" height="410" rx="28" fill="#ffffff" stroke="#d6d3cc" stroke-width="2"/>
+  <text x="670" y="250" font-family="Arial, 'PingFang SC', sans-serif" font-size="34" font-weight="700" fill="#8b3f5f">外循环：Human Ownership</text>
+  <g font-family="Arial, 'PingFang SC', sans-serif" font-size="26" fill="#1f2933">
+    <text x="694" y="330">1. 设定约束：范围、权限、架构、不变量</text>
+    <text x="694" y="390">2. 采样检查：看最危险和最关键输出</text>
+    <text x="694" y="450">3. 审计证据：测试、日志、差异、回滚路径</text>
+    <text x="694" y="510">4. 承担责任：决定上线、阻断或收窄</text>
+  </g>
+  <path d="M578 395 C604 395 596 395 622 395" stroke="#8b5e21" stroke-width="10" stroke-linecap="round"/>
+  <text x="520" y="678" font-family="Arial, 'PingFang SC', sans-serif" font-size="24" fill="#57534e">关键边界：证据可以跨过去，责任不能外包出去。</text>
+</svg>

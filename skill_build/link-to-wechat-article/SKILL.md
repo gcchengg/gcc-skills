@@ -1,6 +1,6 @@
 ---
 name: link-to-wechat-article
-description: Create a Chinese WeChat Official Account article from a source link, enrich and format the WeChat long-form article naturally without a fixed word limit, save a WeChat draft for user review, and only publish after explicit user approval. Use when the user says 给你一个链接生成公众号文章, 链接转公众号, 自动发公众号, 生成公众号草稿, 检查后发布, or asks Codex to turn URLs such as X/Twitter posts, blog posts, articles, PDFs, or webpages into WeChat publishing assets.
+description: Create a Chinese WeChat Official Account article from a source link, preserve and reinterpret any source images or diagrams, use image generation to create clearer and more polished replacement visuals when useful, enrich and format the WeChat long-form article naturally without a fixed word limit, save a WeChat draft for user review, and only publish after explicit user approval. Use when the user says 给你一个链接生成公众号文章, 链接转公众号, 自动发公众号, 生成公众号草稿, 检查后发布, or asks Codex to turn URLs such as X/Twitter posts, blog posts, articles, PDFs, or webpages into WeChat publishing assets.
 ---
 
 # Link To WeChat Article
@@ -16,6 +16,7 @@ Always enforce:
 - Draft-first workflow: generate local draft files, render or preview them, then save a WeChat draft.
 - Explicit publish approval: never click final publish, group send, or equivalent irreversible controls until the user explicitly confirms after inspecting the draft.
 - Source fidelity: preserve the source's main claims, order, examples, and important details; enrich with context, cases, diagrams, section structure, and Chinese-reader explanations without deleting core source content.
+- Image fidelity: do not ignore source images, screenshots, charts, or diagrams. Extract what each visual explains, then either reuse it when appropriate or create a clearer, more specific, more polished replacement visual.
 - Ownership framing: do not add 原作者/转载/精读 labels unless the user asks. If ownership or rights are unclear, ask before removing attribution.
 
 ## Workflow
@@ -23,25 +24,38 @@ Always enforce:
 1. Resolve source content.
    - For public web pages, browse or fetch the URL when needed.
    - For X/Twitter links, use available browser or Twitter tooling; if the post cannot be fetched automatically, ask the user for text/screenshots.
+   - Extract source images, screenshots, diagrams, charts, and image captions when available.
+   - For each source image, record what it contributes: concept explanation, data evidence, UI example, workflow diagram, product screenshot, quote card, or decorative image.
    - Archive extracted raw text or screenshots in a task folder when the project already has a folder convention.
 
-2. Create the article package.
+2. Plan the visual layer.
+   - Create an image inventory before writing the final article when the source contains visuals.
+   - Do not drop a source visual unless it is purely decorative, duplicated, unreadable, or unrelated to the article's argument.
+   - For useful source visuals, decide one of three treatments:
+     - **Reuse**: keep the original image when it is factual evidence, a product screenshot, or a chart where exact appearance matters.
+     - **Recreate**: use image generation to make a clearer, Chinese-localized, WeChat-friendly replacement when the original is a rough diagram, dense screenshot, simple concept visual, low-resolution image, or visually weak explainer.
+     - **Redesign**: turn the image's idea into a new diagram, comparison table, workflow map, or annotated visual that better serves the enriched article.
+   - Prefer image2/image generation for replacement visuals when the user asks for better, more specific, or more beautiful images.
+   - Write image placement notes so the article alternates naturally between explanation and visual support.
+
+3. Create the article package.
    - Write a full Chinese article draft, not a short summary.
    - Keep the source backbone intact, then add local examples, practical cases, transition explanations, and visual callouts.
    - Add a title, subtitle/deck if useful, section headings, image placement notes, and cover-image direction.
+   - For each important visual, introduce the knowledge point first, insert the image, then explain the reader takeaway after the image.
 
-3. Format for WeChat.
+4. Format for WeChat.
    - Prefer existing local WeChat skills/tools when available: `guocc-wechat`, `wechat-browser-publisher`, `md2wechat`, or user-provided publishing scripts.
    - Use a browser-login publishing path when API upload is blocked by IP whitelist, AppSecret, or platform restrictions.
    - Convert Markdown to WeChat-compatible HTML if the browser editor works better with pasted HTML.
    - Use local image paths that the chosen publishing path can upload or inline.
 
-4. Save draft and present review points.
+5. Save draft and present review points.
    - Save to WeChat as draft, not public publish.
    - Tell the user the draft status, title, any draft ID/URL visible in the platform, and files created.
-   - Ask the user to inspect typography, images, cover, title, and preview card.
+   - Ask the user to inspect typography, image order, image quality, cover, title, and preview card.
 
-5. Publish only after approval.
+6. Publish only after approval.
    - Treat "发布", "发出去", or "确认发布" after draft inspection as approval.
    - If the page shows a final confirmation dialog, report the exact action and wait if the user's approval is ambiguous.
    - After successful publish, report the public URL or platform confirmation if available.
@@ -96,13 +110,24 @@ Use judgment:
 Generate or prepare:
 
 - One WeChat cover image, commonly 2.35:1 or platform-accepted horizontal cover.
-- WeChat in-article diagrams or explanatory images when the article explains workflows, comparisons, architecture, or step-by-step methods.
+- WeChat in-article diagrams or explanatory images when the source contains visuals or the article explains workflows, comparisons, architecture, products, UI changes, charts, or step-by-step methods.
 - Image placement notes in the Markdown so the user knows where each image belongs.
+
+For source images:
+
+- Create `原文图片清单.md` or an equivalent section that lists each source image, what it means, and the chosen treatment: reuse, recreate, redesign, or omit with reason.
+- If recreating or redesigning, generate replacement images under `assets/正文图_*.png` and keep the visual's knowledge point aligned with the source.
+- Use Chinese labels in generated explainer images for Chinese readers.
+- Keep WeChat in-article images readable on mobile: restrained text, clear hierarchy, generous margins, and high contrast.
+- Use beautiful but functional visuals: every image should make a concept easier to understand, not just decorate the page.
+- When a source image is a UI screenshot, preserve the factual UI meaning; if generating a replacement, make it an annotated conceptual recreation rather than inventing false product details.
 
 Avoid:
 
 - Overly decorative images that do not explain a section.
 - Text-heavy images that duplicate entire paragraphs.
+- Ignoring original article visuals just because the text can be summarized without them.
+- Replacing factual charts or screenshots with visually attractive but inaccurate images.
 
 ## Publishing Channels
 
@@ -122,6 +147,8 @@ Create or update these artifacts when practical:
 - `公众号发布稿.md`: final WeChat-ready draft.
 - `公众号发布稿_浏览器版.md` or `.html`: browser-paste version when needed.
 - `assets/公众号封面.png`: cover image when requested or needed.
+- `原文图片清单.md`: source image inventory and treatment plan when the source contains images.
+- `assets/正文图_*.png`: regenerated or redesigned in-article visuals when source images should be improved.
 - A preview screenshot or local preview HTML when the article includes images or complex formatting.
 
 Use the repository's existing naming convention if the task folder already has one.
