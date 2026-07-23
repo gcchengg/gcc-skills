@@ -1,0 +1,4 @@
+interface:
+  display_name: "小航漫改"
+  short_description: "小航漫改：通过四道确认门禁创作家庭情感漫画竖屏短视频"
+  default_prompt: "用小航漫改先给我五个家庭情感主题，等我确认后再继续。"
