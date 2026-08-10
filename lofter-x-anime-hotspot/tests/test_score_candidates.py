@@ -41,11 +41,17 @@ class ScoreCandidatesTest(unittest.TestCase):
         candidates = [
             {"id": "low", "title": "Low", "ip_slot": "experiment", "x_growth": 20, "lofter_activity": 20, "ip_match": 10, "authorization": 0, "story_potential": 5},
             {"id": "high", "title": "High", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 28, "ip_match": 15, "authorization": 15, "story_potential": 9},
+            {"id": "long-2", "title": "Long 2", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 25, "ip_match": 15, "authorization": 10, "story_potential": 10},
             {"id": "mid", "title": "Mid", "ip_slot": "rising", "x_growth": 25, "lofter_activity": 23, "ip_match": 15, "authorization": 0, "story_potential": 8},
+            {"id": "rising-2", "title": "Rising 2", "ip_slot": "rising", "x_growth": 25, "lofter_activity": 20, "ip_match": 15, "authorization": 0, "story_potential": 10},
+            {"id": "experiment", "title": "Experiment", "ip_slot": "experiment", "x_growth": 25, "lofter_activity": 20, "ip_match": 15, "authorization": 0, "story_potential": 10},
         ]
         ranked = rank_candidates(candidates)
-        self.assertEqual([item["id"] for item in ranked], ["high", "mid"])
-        self.assertEqual(ranked[1]["media_instruction"], "create_independent_image")
+        self.assertEqual(
+            [item["id"] for item in ranked],
+            ["high", "long-2", "mid", "experiment", "rising-2"],
+        )
+        self.assertEqual(ranked[2]["media_instruction"], "create_independent_image")
 
     def test_rank_limits_each_ip_slot_and_preserves_total_score_order(self):
         def candidate(candidate_id, ip_slot, authorization, story_potential):
@@ -77,6 +83,20 @@ class ScoreCandidatesTest(unittest.TestCase):
             [item["id"] for item in ranked],
             ["long-1", "rising-1", "long-2", "rising-2", "experiment-1"],
         )
+
+    def test_rank_rejects_under_capacity_slot_after_threshold_filtering(self):
+        candidates = [
+            {"id": "long-1", "title": "Long 1", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 10},
+            {"id": "long-2", "title": "Long 2", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 9},
+            {"id": "rising-1", "title": "Rising 1", "ip_slot": "rising", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 8},
+            {"id": "rising-2", "title": "Rising 2", "ip_slot": "rising", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 7},
+            {"id": "experiment-low", "title": "Experiment low", "ip_slot": "experiment", "x_growth": 30, "lofter_activity": 20, "ip_match": 15, "authorization": 0, "story_potential": 4},
+        ]
+
+        with self.assertRaisesRegex(
+            ValueError, "experiment requires 1 candidates; 0 available"
+        ):
+            rank_candidates(candidates)
 
 
 if __name__ == "__main__":

@@ -53,6 +53,11 @@ def rank_candidates(candidates: list[dict], threshold: int = 70) -> list[dict]:
         if slot_counts[slot] < SLOT_CAPACITIES[slot]:
             selected.append(item)
             slot_counts[slot] += 1
+    for slot, capacity in SLOT_CAPACITIES.items():
+        if slot_counts[slot] < capacity:
+            raise ValueError(
+                f"{slot} requires {capacity} candidates; {slot_counts[slot]} available"
+            )
     return selected
 
 
