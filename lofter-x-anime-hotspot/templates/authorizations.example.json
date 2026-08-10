@@ -1,0 +1,11 @@
+[
+  {
+    "asset_id": "example-asset-1",
+    "author_handle": "@authorized_artist",
+    "source_url": "https://x.com/authorized_artist/status/example",
+    "evidence_path": "authorizations/example-asset-1.png",
+    "lofter_redistribution": true,
+    "ai_adaptation": true,
+    "commercial_use": false
+  }
+]
