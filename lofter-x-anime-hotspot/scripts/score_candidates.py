@@ -11,6 +11,7 @@ LIMITS = {
     "story_potential": 10,
 }
 VALID_IP_SLOTS = {"long_term", "rising", "experiment"}
+SLOT_CAPACITIES = {"long_term": 2, "rising": 2, "experiment": 1}
 
 
 def score_candidate(candidate: dict) -> dict:
@@ -41,10 +42,18 @@ def score_candidate(candidate: dict) -> dict:
 
 def rank_candidates(candidates: list[dict], threshold: int = 70) -> list[dict]:
     scored = [score_candidate(candidate) for candidate in candidates]
-    return sorted(
+    ranked = sorted(
         (item for item in scored if item["total_score"] >= threshold),
         key=lambda item: (-item["total_score"], item["id"]),
     )
+    selected = []
+    slot_counts = {slot: 0 for slot in SLOT_CAPACITIES}
+    for item in ranked:
+        slot = item["ip_slot"]
+        if slot_counts[slot] < SLOT_CAPACITIES[slot]:
+            selected.append(item)
+            slot_counts[slot] += 1
+    return selected
 
 
 def main() -> None:

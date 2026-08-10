@@ -47,6 +47,37 @@ class ScoreCandidatesTest(unittest.TestCase):
         self.assertEqual([item["id"] for item in ranked], ["high", "mid"])
         self.assertEqual(ranked[1]["media_instruction"], "create_independent_image")
 
+    def test_rank_limits_each_ip_slot_and_preserves_total_score_order(self):
+        def candidate(candidate_id, ip_slot, authorization, story_potential):
+            return {
+                "id": candidate_id,
+                "title": candidate_id,
+                "ip_slot": ip_slot,
+                "x_growth": 30,
+                "lofter_activity": 30,
+                "ip_match": 15,
+                "authorization": authorization,
+                "story_potential": story_potential,
+            }
+
+        candidates = [
+            candidate("long-1", "long_term", 15, 10),
+            candidate("rising-1", "rising", 15, 9),
+            candidate("long-2", "long_term", 14, 9),
+            candidate("rising-2", "rising", 13, 9),
+            candidate("experiment-1", "experiment", 12, 9),
+            candidate("long-3", "long_term", 11, 9),
+            candidate("rising-3", "rising", 10, 9),
+            candidate("experiment-2", "experiment", 9, 9),
+        ]
+
+        ranked = rank_candidates(candidates)
+
+        self.assertEqual(
+            [item["id"] for item in ranked],
+            ["long-1", "rising-1", "long-2", "rising-2", "experiment-1"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
