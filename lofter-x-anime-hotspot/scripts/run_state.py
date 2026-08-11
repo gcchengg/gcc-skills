@@ -61,7 +61,11 @@ _FIELD_TYPES = {
     "updated_at": str,
 }
 
-_OPTIONAL_FIELDS = {"platform_preview", "window_expansion"}
+_OPTIONAL_FIELDS = {
+    "approved_manifest_digest",
+    "platform_preview",
+    "window_expansion",
+}
 _STATE_FIELDS = set(_FIELD_TYPES) | _OPTIONAL_FIELDS
 _UPDATE_FIELDS = {
     "topic",
@@ -72,6 +76,7 @@ _UPDATE_FIELDS = {
     "confirmations",
     "publication",
     "errors",
+    "approved_manifest_digest",
     "platform_preview",
     "window_expansion",
 }
@@ -170,6 +175,11 @@ def _validate_state(value: object) -> dict:
     _validate_json_object(value["publication"], "publication")
     if "platform_preview" in value:
         _validate_json_object(value["platform_preview"], "platform_preview")
+    if "approved_manifest_digest" in value and not (
+        type(value["approved_manifest_digest"]) is str
+        and re.fullmatch(r"[0-9a-f]{64}", value["approved_manifest_digest"])
+    ):
+        raise ValueError("approved_manifest_digest must be a lowercase SHA-256 digest")
     if value["time_window_hours"] == 72 and not _valid_window_expansion(
         value.get("window_expansion")
     ):

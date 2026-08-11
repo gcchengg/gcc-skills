@@ -1,5 +1,7 @@
 """Persist two explicit human confirmations around LOFTER publication."""
 
+import hashlib
+import json
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -18,6 +20,7 @@ _PREVIEW_FIELDS = {
     "title",
     "media_count",
     "submit_button_visible",
+    "manifest_sha256",
 }
 _PUBLIC_MEDIA_FIELDS = ("display_id", "role", "local_path", "review_status")
 _SUCCESS_RESULT_FIELDS = {"lofter_url", "published_at"}
@@ -85,42 +88,17 @@ def _titles_and_tags(run_dir: Path) -> tuple[str, list[str]]:
     return title, tags
 
 
-def _selected_title(run_dir: Path) -> str:
-    return _titles_and_tags(run_dir)[0]
-
-
-def approve_form_fill(run_dir: Path, confirmation: str) -> dict:
-    """Record the first exact confirmation after all media pass review."""
-    if confirmation != FIRST_CONFIRMATION:
-        raise ValueError("exact confirmation required: 确认发布")
-    run_dir = Path(run_dir)
-    state = load_state(run_dir)
-    if state["state"] != "authorization_review":
-        raise ValueError("run is not awaiting authorization review")
+def _publishable_ledger(run_dir: Path) -> list[dict]:
     ledger = load_media_ledger(run_dir)
     if not ledger or any(
         item["review_status"] not in PUBLISHABLE_MEDIA for item in ledger
     ):
         raise ValueError("media review incomplete")
-    return transition(
-        run_dir,
-        "authorization_review",
-        "approved",
-        confirmations={"fill": True, "submit": False},
-    )
+    return ledger
 
 
-def build_upload_manifest(run_dir: Path) -> dict:
-    """Build a public-only, run-local upload manifest after first approval."""
-    run_dir = Path(run_dir)
-    state = load_state(run_dir)
-    if state["state"] != "approved" or state["confirmations"]["fill"] is not True:
-        raise ValueError("first publication confirmation is missing")
-    ledger = load_media_ledger(run_dir)
-    if not ledger or any(
-        item["review_status"] not in PUBLISHABLE_MEDIA for item in ledger
-    ):
-        raise ValueError("media review incomplete")
+def _build_public_manifest(run_dir: Path, ledger: list[dict] | None = None) -> dict:
+    ledger = _publishable_ledger(run_dir) if ledger is None else ledger
     try:
         article = (run_dir / "article.md").read_text(encoding="utf-8")
     except OSError as error:
@@ -137,6 +115,61 @@ def build_upload_manifest(run_dir: Path) -> dict:
     }
 
 
+def _manifest_digest(manifest: dict) -> str:
+    canonical = json.dumps(
+        manifest,
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+        allow_nan=False,
+    ).encode("utf-8")
+    return hashlib.sha256(canonical).hexdigest()
+
+
+def _approved_digest(state: dict) -> str:
+    digest = state.get("approved_manifest_digest")
+    if type(digest) is not str or re.fullmatch(r"[0-9a-f]{64}", digest) is None:
+        raise ValueError("approved upload manifest digest is missing")
+    return digest
+
+
+def _require_unchanged_manifest(run_dir: Path, state: dict) -> tuple[dict, str]:
+    manifest = _build_public_manifest(run_dir)
+    current_digest = _manifest_digest(manifest)
+    if current_digest != _approved_digest(state):
+        raise ValueError("upload manifest changed after first confirmation")
+    return manifest, current_digest
+
+
+def approve_form_fill(run_dir: Path, confirmation: str) -> dict:
+    """Record the first exact confirmation after all media pass review."""
+    if confirmation != FIRST_CONFIRMATION:
+        raise ValueError("exact confirmation required: 确认发布")
+    run_dir = Path(run_dir)
+    state = load_state(run_dir)
+    if state["state"] != "authorization_review":
+        raise ValueError("run is not awaiting authorization review")
+    ledger = _publishable_ledger(run_dir)
+    manifest_digest = _manifest_digest(_build_public_manifest(run_dir, ledger))
+    return transition(
+        run_dir,
+        "authorization_review",
+        "approved",
+        confirmations={"fill": True, "submit": False},
+        approved_manifest_digest=manifest_digest,
+    )
+
+
+def build_upload_manifest(run_dir: Path) -> dict:
+    """Build a public-only, run-local upload manifest after first approval."""
+    run_dir = Path(run_dir)
+    state = load_state(run_dir)
+    if state["state"] != "approved" or state["confirmations"]["fill"] is not True:
+        raise ValueError("first publication confirmation is missing")
+    manifest, _ = _require_unchanged_manifest(run_dir, state)
+    return manifest
+
+
 def _validate_platform_preview(run_dir: Path, value: object) -> dict:
     if type(value) is not dict or set(value) != _PREVIEW_FIELDS:
         raise ValueError("final platform preview is incomplete")
@@ -144,21 +177,24 @@ def _validate_platform_preview(run_dir: Path, value: object) -> dict:
         _parse_iso_datetime(value["captured_at"], "captured_at")
     except ValueError as error:
         raise ValueError("final platform preview is incomplete") from error
-    title = _selected_title(run_dir)
-    ledger = load_media_ledger(run_dir)
-    if not ledger or any(
-        item["review_status"] not in PUBLISHABLE_MEDIA for item in ledger
-    ):
-        raise ValueError("media review incomplete")
+    state = load_state(run_dir)
+    manifest, current_digest = _require_unchanged_manifest(run_dir, state)
     valid = (
         type(value["title"]) is str
-        and value["title"] == title
+        and value["title"] == manifest["title"]
         and type(value["media_count"]) is int
-        and value["media_count"] == len(ledger)
+        and value["media_count"] == len(manifest["media"])
         and value["submit_button_visible"] is True
     )
     if not valid:
         raise ValueError("final platform preview is incomplete")
+    if (
+        type(value["manifest_sha256"]) is not str
+        or value["manifest_sha256"] != current_digest
+    ):
+        raise ValueError(
+            "final platform preview manifest digest does not match approved upload manifest"
+        )
     return value.copy()
 
 

@@ -1,3 +1,4 @@
+import hashlib
 import json
 import sys
 import tempfile
@@ -36,7 +37,11 @@ class PublicationGateTest(unittest.TestCase):
         self.root = Path(self.temporary.name)
 
     def prepared_review_run(
-        self, slug: str = "publication-gate", *, include_x_media: bool = False
+        self,
+        slug: str = "publication-gate",
+        *,
+        include_x_media: bool = False,
+        two_independent: bool = False,
     ) -> Path:
         run_dir, _ = create_run(self.root / "runs", slug, FIXED_NOW)
         media = []
@@ -67,6 +72,21 @@ class PublicationGateTest(unittest.TestCase):
                 },
             }
         )
+        if two_independent:
+            (run_dir / "generated-media/second.webp").write_bytes(b"generated-second")
+            media.append(
+                {
+                    "kind": "generated_original",
+                    "role": "body",
+                    "local_path": "generated-media/second.webp",
+                    "caption": "第二张独立原创配图",
+                    "generation_lineage": {
+                        "generator": "test-image-model",
+                        "prompt": "a second independent original composition",
+                        "source_media_ids": [],
+                    },
+                }
+            )
         write_json_atomic(
             run_dir / "hotspot-analysis.json",
             {
@@ -94,9 +114,17 @@ class PublicationGateTest(unittest.TestCase):
         return run_dir
 
     def fully_reviewed_run(
-        self, slug: str = "fully-reviewed", *, include_authorized: bool = False
+        self,
+        slug: str = "fully-reviewed",
+        *,
+        include_authorized: bool = False,
+        two_independent: bool = False,
     ) -> Path:
-        run_dir = self.prepared_review_run(slug, include_x_media=include_authorized)
+        run_dir = self.prepared_review_run(
+            slug,
+            include_x_media=include_authorized,
+            two_independent=two_independent,
+        )
         if include_authorized:
             ledger_path = run_dir / "private-authorization/authorizations.json"
             evidence_path = ledger_path.parent / "evidence/media-123.txt"
@@ -133,16 +161,19 @@ class PublicationGateTest(unittest.TestCase):
             )
         return run_dir
 
-    def filled_form_run(self, slug: str = "filled-form") -> Path:
-        run_dir = self.fully_reviewed_run(slug)
-        approve_form_fill(run_dir, "确认发布")
+    def filled_form_run(
+        self, slug: str = "filled-form", *, two_independent: bool = False
+    ) -> Path:
+        run_dir = self.fully_reviewed_run(slug, two_independent=two_independent)
+        state = approve_form_fill(run_dir, "确认发布")
         mark_form_filled(
             run_dir,
             {
                 "captured_at": "2026-08-11T15:55:00+08:00",
                 "title": "备选标题一",
-                "media_count": 1,
+                "media_count": 2 if two_independent else 1,
                 "submit_button_visible": True,
+                "manifest_sha256": state["approved_manifest_digest"],
             },
         )
         return run_dir
@@ -171,7 +202,7 @@ class PublicationGateTest(unittest.TestCase):
 
     def test_manifest_contains_only_authorized_or_independent_local_media(self):
         run_dir = self.fully_reviewed_run(include_authorized=True)
-        approve_form_fill(run_dir, "确认发布")
+        state = approve_form_fill(run_dir, "确认发布")
 
         manifest = build_upload_manifest(run_dir)
 
@@ -191,15 +222,25 @@ class PublicationGateTest(unittest.TestCase):
         self.assertNotIn("authorization", serialized)
         self.assertNotIn("evidence_path", serialized)
         self.assertNotIn("ledger", serialized)
+        canonical = json.dumps(
+            manifest,
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode("utf-8")
+        self.assertEqual(
+            state["approved_manifest_digest"], hashlib.sha256(canonical).hexdigest()
+        )
 
     def test_form_preview_is_typed_and_must_match_upload_contents(self):
         run_dir = self.fully_reviewed_run()
-        approve_form_fill(run_dir, "确认发布")
+        state = approve_form_fill(run_dir, "确认发布")
+        digest = state["approved_manifest_digest"]
         invalid_previews = (
-            {"captured_at": "bad", "title": "备选标题一", "media_count": 1, "submit_button_visible": True},
-            {"captured_at": "2026-08-11T15:55:00+08:00", "title": "错误标题", "media_count": 1, "submit_button_visible": True},
-            {"captured_at": "2026-08-11T15:55:00+08:00", "title": "备选标题一", "media_count": True, "submit_button_visible": True},
-            {"captured_at": "2026-08-11T15:55:00+08:00", "title": "备选标题一", "media_count": 1, "submit_button_visible": False},
+            {"captured_at": "bad", "title": "备选标题一", "media_count": 1, "submit_button_visible": True, "manifest_sha256": digest},
+            {"captured_at": "2026-08-11T15:55:00+08:00", "title": "错误标题", "media_count": 1, "submit_button_visible": True, "manifest_sha256": digest},
+            {"captured_at": "2026-08-11T15:55:00+08:00", "title": "备选标题一", "media_count": True, "submit_button_visible": True, "manifest_sha256": digest},
+            {"captured_at": "2026-08-11T15:55:00+08:00", "title": "备选标题一", "media_count": 1, "submit_button_visible": False, "manifest_sha256": digest},
         )
 
         for preview in invalid_previews:
@@ -208,6 +249,64 @@ class PublicationGateTest(unittest.TestCase):
                     mark_form_filled(run_dir, preview)
 
         self.assertEqual(load_state(run_dir)["state"], "approved")
+
+    def test_forged_preview_manifest_digest_is_rejected(self):
+        run_dir = self.fully_reviewed_run("forged-preview-digest")
+        approve_form_fill(run_dir, "确认发布")
+
+        with self.assertRaisesRegex(ValueError, "manifest digest"):
+            mark_form_filled(
+                run_dir,
+                {
+                    "captured_at": "2026-08-11T15:55:00+08:00",
+                    "title": "备选标题一",
+                    "media_count": 1,
+                    "submit_button_visible": True,
+                    "manifest_sha256": "0" * 64,
+                },
+            )
+
+        self.assertEqual(load_state(run_dir)["state"], "approved")
+
+    def test_article_mutation_after_preview_fails_final_digest_check(self):
+        run_dir = self.filled_form_run("mutated-article")
+        article_path = run_dir / "article.md"
+        article_path.write_text(
+            article_path.read_text(encoding="utf-8") + "篡改",
+            encoding="utf-8",
+        )
+
+        with self.assertRaisesRegex(ValueError, "upload manifest changed"):
+            approve_final_submit(run_dir, "确认最终提交")
+
+        self.assertFalse(load_state(run_dir)["confirmations"]["submit"])
+
+    def test_tag_mutation_after_preview_fails_final_digest_check(self):
+        run_dir = self.filled_form_run("mutated-tag")
+        path = run_dir / "titles-and-tags.md"
+        path.write_text(
+            path.read_text(encoding="utf-8").replace("#标签8#", "#篡改标签#"),
+            encoding="utf-8",
+        )
+
+        with self.assertRaisesRegex(ValueError, "upload manifest changed"):
+            approve_final_submit(run_dir, "确认最终提交")
+
+        self.assertFalse(load_state(run_dir)["confirmations"]["submit"])
+
+    def test_same_count_media_swap_fails_final_digest_check(self):
+        run_dir = self.filled_form_run("media-swap", two_independent=True)
+        ledger_path = run_dir / "sources/media-ledger.json"
+        ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
+        ledger.reverse()
+        ledger[0]["display_id"] = 1
+        ledger[1]["display_id"] = 2
+        write_json_atomic(ledger_path, ledger)
+
+        with self.assertRaisesRegex(ValueError, "upload manifest changed"):
+            approve_final_submit(run_dir, "确认最终提交")
+
+        self.assertFalse(load_state(run_dir)["confirmations"]["submit"])
 
     def test_second_confirmation_and_result_are_separate_events(self):
         run_dir = self.filled_form_run()
