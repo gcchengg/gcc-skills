@@ -6,10 +6,13 @@ import re
 import shutil
 import tempfile
 import unicodedata
+from datetime import datetime, timezone
+from hashlib import sha256
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from urllib.parse import urlparse
 
 from run_state import load_state, transition, write_json_atomic
+from validate_authorizations import validate_authorization, validate_ledger
 
 
 PUBLIC_DISCLOSURE = "图像经授权使用，含AI辅助创作｜#AI辅助#"
@@ -499,6 +502,30 @@ def _rollback_install_set(
         raise RuntimeError("failed to roll back draft transaction") from errors[0]
 
 
+def _commit_install_set(
+    run_dir: Path, install_items: list[tuple[Path, Path]], backup_dir: Path, state_update
+):
+    targets = [target for _, target in install_items]
+    backups: dict[Path, Path | None] = {}
+    for index, target in enumerate(targets, start=1):
+        if target.exists():
+            backup = backup_dir / f"target-{index:02d}.bak"
+            shutil.copyfile(target, backup)
+            backups[target] = backup
+        else:
+            backups[target] = None
+    status_path = run_dir / "status.json"
+    status_backup = backup_dir / "status.json"
+    shutil.copyfile(status_path, status_backup)
+    try:
+        for staged, target in install_items:
+            _install_staged_file(staged, target)
+        return state_update()
+    except Exception:
+        _rollback_install_set(targets, backups, status_path, status_backup)
+        raise
+
+
 def _transactional_install(
     run_dir: Path,
     article: str,
@@ -540,23 +567,7 @@ def _transactional_install(
             shutil.copyfile(source_path, staged_media)
             install_items.append((staged_media, run_dir / record["local_path"]))
 
-        targets = [target for _, target in install_items]
-        backups: dict[Path, Path | None] = {}
-        for index, target in enumerate(targets, start=1):
-            if target.exists():
-                backup = backup_dir / f"target-{index:02d}.bak"
-                shutil.copyfile(target, backup)
-                backups[target] = backup
-            else:
-                backups[target] = None
-        status_path = run_dir / "status.json"
-        status_backup = backup_dir / "status.json"
-        shutil.copyfile(status_path, status_backup)
-
-        try:
-            for staged, target in install_items:
-                _install_staged_file(staged, target)
-
+        def update_state():
             counts = {
                 status: sum(item["review_status"] == status for item in media)
                 for status in ("pending", "authorized", "rejected", "independent")
@@ -576,11 +587,353 @@ def _transactional_install(
                 }
             transition(run_dir, "researching", "draft_ready", **updates)
             return transition(run_dir, "draft_ready", "authorization_review")
-        except Exception:
-            _rollback_install_set(targets, backups, status_path, status_backup)
-            raise
+
+        return _commit_install_set(run_dir, install_items, backup_dir, update_state)
     finally:
         shutil.rmtree(staging_dir, ignore_errors=True)
+
+
+def load_media_ledger(run_dir: Path) -> list[dict]:
+    """Load the private media ledger and reject malformed review records."""
+    run_dir = _validate_run_layout(Path(run_dir))
+    ledger_path = run_dir / _FILES["media_ledger"]
+    try:
+        ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
+    except FileNotFoundError as error:
+        raise ValueError("media ledger is required") from error
+    except (OSError, json.JSONDecodeError) as error:
+        raise ValueError("media ledger must contain valid JSON") from error
+    if type(ledger) is not list or not 1 <= len(ledger) <= 3:
+        raise ValueError("media ledger must contain one to three records")
+
+    for expected_id, media in enumerate(ledger, start=1):
+        if type(media) is not dict:
+            raise ValueError("each media ledger record must be an object")
+        if type(media.get("display_id")) is not int or media["display_id"] != expected_id:
+            raise ValueError("media ledger display_id values must be sequential integers")
+        if media.get("kind") not in _MEDIA_KINDS:
+            raise ValueError("invalid media kind")
+        if media.get("role") not in _MEDIA_ROLES:
+            raise ValueError("media role must be cover or body")
+        if media.get("review_status") not in {
+            "pending",
+            "authorized",
+            "rejected",
+            "independent",
+        }:
+            raise ValueError("invalid media review_status")
+        local_path, _ = _resolve_local_media(run_dir, media.get("local_path"))
+        expected_parent = (
+            "original-media"
+            if media["kind"] == "x_original"
+            else "generated-media"
+        )
+        if PurePosixPath(local_path).parts[0] != expected_parent:
+            raise ValueError("media local_path does not match media kind")
+        _validate_rendered_string(
+            media.get("caption"), "media caption", delimiters="|｜"
+        )
+        if media["kind"] in {"x_original", "ai_adaptation"}:
+            _validate_x_url(media.get("source_url"))
+            _validate_rendered_string(
+                media.get("source_author"), "source_author", delimiters="|｜"
+            )
+            _validate_rendered_string(
+                media.get("source_media_id"), "source_media_id", delimiters="|｜"
+            )
+        if media["kind"] in {"ai_adaptation", "generated_original"}:
+            _validate_generation_lineage(media.get("generation_lineage"), media["kind"])
+        authorization = media.get("authorization")
+        if media["review_status"] == "authorized":
+            if type(authorization) is not dict or authorization.get("allowed") is not True:
+                raise ValueError("authorized media requires a validated authorization")
+            if "authorization_ledger_path" in authorization:
+                raise ValueError("media ledger leaks an operational authorization path")
+        elif authorization is not None:
+            raise ValueError("only authorized media may store authorization")
+    if sum(media["role"] == "cover" for media in ledger) != 1:
+        raise ValueError("media ledger must contain exactly one cover")
+    return ledger
+
+
+def _find_media_with_index(ledger: list[dict], media_id: int) -> tuple[int, dict]:
+    if type(media_id) is not int or media_id < 1:
+        raise ValueError("media_id must be a positive integer")
+    matches = [
+        (index, media)
+        for index, media in enumerate(ledger)
+        if media.get("display_id") == media_id
+    ]
+    if len(matches) != 1:
+        raise ValueError(f"expected one media record for display_id {media_id}")
+    return matches[0]
+
+
+def _find_media(ledger: list[dict], media_id: int) -> dict:
+    return _find_media_with_index(ledger, media_id)[1]
+
+
+def _resolve_authorization_ledger(run_dir: Path, value: object) -> Path:
+    ledger_text = _non_empty_string(value, "authorization_ledger_path")
+    candidate = Path(ledger_text)
+    if not candidate.is_absolute():
+        posix_path = PurePosixPath(ledger_text)
+        windows_path = PureWindowsPath(ledger_text)
+        if (
+            windows_path.is_absolute()
+            or windows_path.drive
+            or windows_path.root
+            or ".." in posix_path.parts
+            or ".." in windows_path.parts
+            or "\\" in ledger_text
+        ):
+            raise ValueError("authorization_ledger_path must be run-local or absolute")
+        candidate = run_dir / Path(*posix_path.parts)
+        resolved = candidate.resolve()
+        if not _is_within(resolved, run_dir):
+            raise ValueError("authorization_ledger_path must stay inside the run directory")
+    else:
+        resolved = candidate.resolve()
+    if candidate.is_symlink() or not resolved.is_file():
+        raise ValueError("authorization ledger cannot be read")
+    return resolved
+
+
+def _revalidate_media_decision(
+    run_dir: Path, media: dict, authorization: dict
+) -> dict:
+    if type(authorization) is not dict:
+        raise ValueError("authorized media requires a ledger-backed allow decision")
+    supplied = authorization.copy()
+    try:
+        ledger_path = _resolve_authorization_ledger(
+            run_dir, supplied.pop("authorization_ledger_path")
+        )
+        if supplied.get("allowed") is not True:
+            raise ValueError("decision is not allowed")
+        requested_usage = (
+            "original" if media["kind"] == "x_original" else "ai_adaptation"
+        )
+        if supplied.get("requested_usage") != requested_usage:
+            raise ValueError("authorization usage does not match media")
+        if supplied.get("asset_id") != media["source_media_id"]:
+            raise ValueError("authorization asset_id does not match media")
+        if supplied.get("source_url") != media["source_url"]:
+            raise ValueError("authorization source_url does not match media")
+        if supplied.get("author_handle") != media["source_author"]:
+            raise ValueError("authorization author_handle does not match media")
+        commercial = supplied.get("commercial_intent")
+        operations = supplied.get("requested_operations")
+        if type(commercial) is not bool or type(operations) is not list:
+            raise ValueError("authorization request scope is malformed")
+        records = json.loads(ledger_path.read_text(encoding="utf-8"))
+        indexed = validate_ledger(records, evidence_root=ledger_path.parent)
+        asset_id = media["source_media_id"]
+        if asset_id not in indexed:
+            raise ValueError("authorization asset_id is not present in the ledger")
+        regenerated = validate_authorization(
+            indexed[asset_id],
+            requested_usage,
+            commercial,
+            operations=operations,
+            evidence_root=ledger_path.parent,
+        )
+    except (KeyError, OSError, json.JSONDecodeError, ValueError) as error:
+        raise ValueError(
+            f"authorized media requires a ledger-backed allow decision: {error}"
+        ) from error
+    if regenerated != supplied:
+        raise ValueError(
+            "authorized media requires a ledger-backed allow decision: "
+            "decision does not exactly match regenerated ledger output"
+        )
+    return regenerated
+
+
+def _review_counts(ledger: list[dict]) -> dict[str, int]:
+    return {
+        status: sum(media["review_status"] == status for media in ledger)
+        for status in ("pending", "authorized", "rejected", "independent")
+    }
+
+
+def _transactional_review_update(
+    run_dir: Path,
+    staged_values: list[tuple[Path, bytes]],
+    expected_state: str,
+    target_state: str,
+    ledger: list[dict],
+) -> dict:
+    staging_dir = Path(tempfile.mkdtemp(prefix=".review-stage-", dir=run_dir))
+    try:
+        install_dir = staging_dir / "install"
+        backup_dir = staging_dir / "backup"
+        install_dir.mkdir()
+        backup_dir.mkdir()
+        install_items = []
+        for index, (target, content) in enumerate(staged_values, start=1):
+            staged = install_dir / f"artifact-{index:02d}"
+            staged.write_bytes(content)
+            install_items.append((staged, target))
+
+        def update_state():
+            return transition(
+                run_dir,
+                expected_state,
+                target_state,
+                media_review=_review_counts(ledger),
+            )
+
+        return _commit_install_set(run_dir, install_items, backup_dir, update_state)
+    finally:
+        shutil.rmtree(staging_dir, ignore_errors=True)
+
+
+def _serialized_json(value: object) -> bytes:
+    return (
+        json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
+    ).encode("utf-8")
+
+
+def _transactional_review_status_update(run_dir: Path, ledger: list[dict]) -> None:
+    staging_dir = Path(tempfile.mkdtemp(prefix=".review-stage-", dir=run_dir))
+    try:
+        backup_dir = staging_dir / "backup"
+        backup_dir.mkdir()
+        staged_ledger = staging_dir / "media-ledger.json"
+        staged_ledger.write_bytes(_serialized_json(ledger))
+        ledger_path = run_dir / _FILES["media_ledger"]
+        status_path = run_dir / "status.json"
+        state = load_state(run_dir)
+        state["media_review"] = _review_counts(ledger)
+        state["updated_at"] = datetime.now(timezone.utc).isoformat()
+
+        def update_state():
+            write_json_atomic(status_path, state)
+
+        _commit_install_set(
+            run_dir, [(staged_ledger, ledger_path)], backup_dir, update_state
+        )
+    finally:
+        shutil.rmtree(staging_dir, ignore_errors=True)
+
+
+def record_media_review(
+    run_dir: Path,
+    media_id: int,
+    authorized: bool,
+    authorization: dict | None = None,
+) -> dict:
+    """Record one human authorization decision without persisting evidence paths."""
+    if type(authorized) is not bool:
+        raise ValueError("authorized must be a boolean")
+    run_dir = _validate_run_layout(Path(run_dir))
+    state = load_state(run_dir)
+    if state["state"] != "authorization_review":
+        raise ValueError("run is not awaiting authorization review")
+    ledger = load_media_ledger(run_dir)
+    media = _find_media(ledger, media_id)
+    if media["review_status"] != "pending":
+        raise ValueError("media is not awaiting review")
+    if authorized:
+        regenerated = _revalidate_media_decision(run_dir, media, authorization)
+        media["review_status"] = "authorized"
+        media["authorization"] = regenerated
+        _transactional_review_status_update(run_dir, ledger)
+    else:
+        if authorization is not None:
+            raise ValueError("rejected media must not include authorization")
+        media["review_status"] = "rejected"
+        media.pop("authorization", None)
+        _transactional_review_update(
+            run_dir,
+            [(run_dir / _FILES["media_ledger"], _serialized_json(ledger))],
+            "authorization_review",
+            "revisions_required",
+            ledger,
+        )
+    return media
+
+
+def _validate_replacement(
+    run_dir: Path, media_id: int, current: dict, replacement: object
+) -> tuple[dict, Path]:
+    if type(replacement) is not dict or replacement.get("kind") != "generated_original":
+        raise ValueError("replacement must be generated_original")
+    allowed = {"kind", "local_path", "caption", "generation_lineage"}
+    unknown = sorted(set(replacement) - allowed)
+    if unknown:
+        raise ValueError(f"unknown replacement field: {unknown[0]}")
+    lineage = replacement.get("generation_lineage")
+    if type(lineage) is not dict or lineage.get("source_media_ids") != []:
+        raise ValueError("replacement must not derive from rejected source media")
+    candidate = {**replacement, "role": current["role"]}
+    validated, source_path = _validate_one_media(run_dir, candidate, media_id)
+    _, rejected_path = _resolve_local_media(run_dir, current["local_path"])
+    if source_path == rejected_path or sha256(source_path.read_bytes()).digest() == sha256(
+        rejected_path.read_bytes()
+    ).digest():
+        raise ValueError("replacement must not reuse rejected media path or bytes")
+    return validated, source_path
+
+
+def replace_rejected_media(
+    run_dir: Path,
+    media_id: int,
+    replacement: dict,
+    article: str,
+    captions: list[str],
+) -> list[dict]:
+    """Install an independent replacement and rewrite only affected public copy."""
+    run_dir = _validate_run_layout(Path(run_dir))
+    state = load_state(run_dir)
+    if state["state"] != "revisions_required":
+        raise ValueError("run is not awaiting rejected-media revisions")
+    ledger = load_media_ledger(run_dir)
+    index, current = _find_media_with_index(ledger, media_id)
+    if current["review_status"] != "rejected":
+        raise ValueError("only rejected media can be replaced")
+    validated, source_path = _validate_replacement(
+        run_dir, media_id, current, replacement
+    )
+    revised_article = _validate_article(article)
+    if type(captions) is not list or len(captions) != len(ledger):
+        raise ValueError("captions must contain one value per media record")
+    revised_captions = [
+        _validate_rendered_string(value, "media caption", delimiters="|｜")
+        for value in captions
+    ]
+    for other_index, media in enumerate(ledger):
+        if other_index != index and revised_captions[other_index] != media["caption"]:
+            raise ValueError("replacement may change only affected media copy")
+    if revised_captions[index] != validated["caption"]:
+        raise ValueError("replacement caption must match affected copy")
+
+    ledger[index] = {
+        **validated,
+        "caption": revised_captions[index],
+        "display_id": media_id,
+        "role": current["role"],
+        "review_status": "independent",
+        "replaces_media_id": media_id,
+    }
+    target_path = run_dir / ledger[index]["local_path"]
+    _transactional_review_update(
+        run_dir,
+        [
+            (run_dir / _FILES["article"], (revised_article + "\n").encode("utf-8")),
+            (
+                run_dir / _FILES["publication_order"],
+                (_render_publication_order(ledger) + "\n").encode("utf-8"),
+            ),
+            (run_dir / _FILES["media_ledger"], _serialized_json(ledger)),
+            (target_path, source_path.read_bytes()),
+        ],
+        "revisions_required",
+        "authorization_review",
+        ledger,
+    )
+    return ledger
 
 
 def build_draft(run_dir: Path, payload: dict) -> dict:
