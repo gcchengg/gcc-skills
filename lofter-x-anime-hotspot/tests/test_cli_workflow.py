@@ -22,7 +22,7 @@ def run_cli(*arguments, cwd):
 
 
 class CliWorkflowTest(unittest.TestCase):
-    def test_exact_examples_complete_end_to_end_from_another_directory(self):
+    def test_legacy_smoke_only_cli_workflow_from_another_directory(self):
         with tempfile.TemporaryDirectory() as temp_value:
             temp_dir = Path(temp_value)
             ranked_path = temp_dir / "ranked.json"
