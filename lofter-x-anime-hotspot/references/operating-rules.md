@@ -22,13 +22,19 @@ Require non-empty asset/source/author/evidence values; exact booleans for redist
 
 ## Fan-fiction gate
 
-Require all five research checks, prior observation URL/date, and one phase gate:
+Require all five research checks—world setting, characters, relationships, CP conventions, and fandom/OOC risks—plus a prior LOFTER observation URL/date and one phase gate:
 
 - weeks 1–2: `baseline_policy_selected: true`;
 - week 3+: `top_40_percent: true` based on the latest 14-day account performance.
 
-Otherwise publish only a trend-analysis review packet.
+Otherwise route the topic to trend analysis.
 
-## Publication review
+## Publish-ready review
 
-Verify score ≥70, accurate labels, exact authorization binding, disclosure, one interaction question, no unsupported facts, no hard paywall, and no public prose generated automatically. Human review and manual publication are mandatory.
+Verify score ≥70, accurate labels, exact authorization binding, source-ledger checksums, disclosure, one interaction question, no unsupported facts, and no hard paywall. Require one cover and no more than two body images. Candidate X media remains `pending` and local-only until review; independent generated media uses empty source lineage.
+
+The first exact confirmation authorizes form filling only. The second exact confirmation authorizes one final-submit click only. Stop on login, CAPTCHA, risk control, page ambiguity, changed content, or uncertain publication result; never retry submit automatically.
+
+## Privacy boundary
+
+Keep authorization evidence, evidence paths, local checksums, cookies, credentials, and browser session data out of public copy, `upload-manifest.json`, and platform-preview evidence. Preserve them only in private run artifacts where their schema permits them.

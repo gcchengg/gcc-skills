@@ -1,6 +1,22 @@
-# Content packet contracts
+# Content contracts
 
-Generate structural human-review packets, not public prose. Every packet must contain exactly one line beginning `互动问题：`.
+## Publish-ready illustrated draft
+
+Generate exactly one public-ready Chinese article per run:
+
+- 800–1500 non-whitespace Chinese characters, synthesized rather than translated, stitched, or copied from sources;
+- exactly three distinct candidate titles and 8–12 distinct LOFTER tags;
+- exactly one cover and zero to two body images, each with one caption and a deterministic publication position;
+- one natural interaction question, accurate official/fan-setting distinctions, and no unrelated trend tags or hard-paywall cliffhanger;
+- the exact reserved disclosure `图像经授权使用，含AI辅助创作｜#AI辅助#` exactly once only when authorized media and AI assistance coexist.
+
+Pass model-authored content through `build_publishable_draft.build_draft`; do not manually format the persisted article, title/tag, media-ledger, or publication-order artifacts.
+
+For `trend_analysis`, lead with what changed, establish cross-platform evidence, add context, and finish with an original assessment. For `visual_curation`, make the image sequence carry the argument while explaining why each visual matters. For `fanfic`, meet every qualification in `operating-rules.md`, distinguish canon from fan interpretation, and preserve relationship/CP conventions.
+
+## Legacy packet compatibility
+
+Generate the following structural human-review packets only when the user explicitly requests a legacy packet. Every packet must contain exactly one line beginning `互动问题：`. Legacy packets and all smoke outputs are not publish-ready drafts.
 
 ## `daily_hotspot` — 今日热度异动
 

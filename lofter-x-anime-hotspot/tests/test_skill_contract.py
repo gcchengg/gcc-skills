@@ -43,7 +43,34 @@ class SkillContractTest(unittest.TestCase):
         self.assertIn("--smoke-only", skill)
         self.assertIn("packet-input", skill)
         self.assertNotIn("original|ai_adaptation", skill)
-        self.assertIn("Never publish automatically", skill)
+        self.assertIn("确认发布", skill)
+        self.assertIn("确认最终提交", skill)
+        self.assertIn("Never click the final submit button", skill)
+
+    def test_skill_describes_publish_ready_two_phase_workflow(self):
+        skill = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("one publish-ready illustrated draft", skill)
+        self.assertIn("24 hours first", skill)
+        self.assertIn("expand to 72 hours", skill)
+        self.assertIn("确认发布", skill)
+        self.assertIn("确认最终提交", skill)
+        self.assertIn("browser:control-in-app-browser", skill)
+        self.assertIn("Never click the final submit button", skill)
+
+    def test_skill_routes_unlicensed_media_to_independent_generation(self):
+        research = (
+            SKILL_DIR / "references" / "research-and-drafting.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("source_media_ids must be []", research)
+        self.assertIn("Do not provide the rejected image", research)
+
+    def test_browser_protocol_stops_on_ambiguous_or_uncertain_state(self):
+        protocol = (
+            SKILL_DIR / "references" / "browser-publishing.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("CAPTCHA", protocol)
+        self.assertIn("do not click submit again", protocol)
+        self.assertIn("final platform preview", protocol)
 
     def test_portable_validator_setup_is_pinned_and_ignored(self):
         requirements = (SKILL_DIR / "requirements-dev.txt").read_text(encoding="utf-8")
