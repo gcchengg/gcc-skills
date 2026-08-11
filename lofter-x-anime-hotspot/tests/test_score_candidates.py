@@ -4,99 +4,177 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parents[1] / "scripts"))
 
-from score_candidates import rank_candidates, score_candidate
+from score_candidates import (
+    PUBLICATION_THRESHOLD,
+    rank_candidates,
+    score_candidate,
+    validate_ip_pool,
+)
+
+
+IP_POOL = [
+    {"ip_id": "long-1", "ip_name": "长线一", "ip_slot": "long_term"},
+    {"ip_id": "long-2", "ip_name": "长线二", "ip_slot": "long_term"},
+    {"ip_id": "rise-1", "ip_name": "上升一", "ip_slot": "rising"},
+    {"ip_id": "rise-2", "ip_name": "上升二", "ip_slot": "rising"},
+    {"ip_id": "exp-1", "ip_name": "实验一", "ip_slot": "experiment"},
+]
+
+
+def candidate(candidate_id="topic-1", **overrides):
+    value = {
+        "id": candidate_id,
+        "title": f"选题 {candidate_id}",
+        "ip_id": "rise-1",
+        "ip_name": "上升一",
+        "ip_slot": "rising",
+        "characters": ["角色A", "角色B"],
+        "tags": ["上升一", "角色A"],
+        "x_growth": 26,
+        "lofter_activity": 24,
+        "ip_match": 15,
+        "authorization": 10,
+        "story_potential": 8,
+        "x_evidence": "近24小时相关创作增长",
+        "lofter_evidence": "对应标签出现有效讨论",
+        "x_source_urls": ["https://x.com/example/status/1"],
+        "observed_at": "2026-08-10T08:00:00+08:00",
+        "asset_id": None,
+        "requested_usage": "independent",
+        "commercial_intent": False,
+        "image_provenance": "human_original",
+    }
+    value.update(overrides)
+    return value
+
+
+class IpPoolTest(unittest.TestCase):
+    def test_accepts_exactly_five_unique_ip_entries(self):
+        indexed = validate_ip_pool(IP_POOL)
+        self.assertEqual(set(indexed), {item["ip_id"] for item in IP_POOL})
+
+    def test_rejects_wrong_slot_counts(self):
+        wrong = [*IP_POOL[:-1], {"ip_id": "rise-3", "ip_name": "上升三", "ip_slot": "rising"}]
+        with self.assertRaisesRegex(ValueError, "experiment must contain exactly 1 IP"):
+            validate_ip_pool(wrong)
+
+    def test_rejects_duplicate_ip_ids(self):
+        duplicate = [dict(item) for item in IP_POOL]
+        duplicate[-1]["ip_id"] = "long-1"
+        with self.assertRaisesRegex(ValueError, "duplicate ip_id: long-1"):
+            validate_ip_pool(duplicate)
+
+    def test_rejects_duplicate_ip_names(self):
+        duplicate = [dict(item) for item in IP_POOL]
+        duplicate[-1]["ip_name"] = "长线一"
+        with self.assertRaisesRegex(ValueError, "duplicate ip_name: 长线一"):
+            validate_ip_pool(duplicate)
 
 
 class ScoreCandidatesTest(unittest.TestCase):
-    def test_weighted_total_and_eligibility(self):
-        candidate = {
-            "id": "topic-1",
-            "title": "Example CP spike",
-            "ip_slot": "rising",
-            "x_growth": 26,
-            "lofter_activity": 24,
-            "ip_match": 15,
-            "authorization": 10,
-            "story_potential": 8,
-        }
-        result = score_candidate(candidate)
+    def test_weighted_total_uses_one_constant_threshold(self):
+        self.assertEqual(PUBLICATION_THRESHOLD, 70)
+        result = score_candidate(candidate(), IP_POOL)
         self.assertEqual(result["total_score"], 83)
         self.assertTrue(result["eligible"])
 
-    def test_rejects_out_of_range_dimension(self):
-        candidate = {
-            "id": "bad",
-            "title": "Bad score",
-            "ip_slot": "experiment",
-            "x_growth": 31,
-            "lofter_activity": 0,
-            "ip_match": 0,
-            "authorization": 0,
-            "story_potential": 0,
-        }
-        with self.assertRaisesRegex(ValueError, "x_growth must be between 0 and 30"):
-            score_candidate(candidate)
-
-    def test_rank_filters_and_orders(self):
-        candidates = [
-            {"id": "low", "title": "Low", "ip_slot": "experiment", "x_growth": 20, "lofter_activity": 20, "ip_match": 10, "authorization": 0, "story_potential": 5},
-            {"id": "high", "title": "High", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 28, "ip_match": 15, "authorization": 15, "story_potential": 9},
-            {"id": "long-2", "title": "Long 2", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 25, "ip_match": 15, "authorization": 10, "story_potential": 10},
-            {"id": "mid", "title": "Mid", "ip_slot": "rising", "x_growth": 25, "lofter_activity": 23, "ip_match": 15, "authorization": 0, "story_potential": 8},
-            {"id": "rising-2", "title": "Rising 2", "ip_slot": "rising", "x_growth": 25, "lofter_activity": 20, "ip_match": 15, "authorization": 0, "story_potential": 10},
-            {"id": "experiment", "title": "Experiment", "ip_slot": "experiment", "x_growth": 25, "lofter_activity": 20, "ip_match": 15, "authorization": 0, "story_potential": 10},
-        ]
-        ranked = rank_candidates(candidates)
-        self.assertEqual(
-            [item["id"] for item in ranked],
-            ["high", "long-2", "mid", "experiment", "rising-2"],
+    def test_candidate_must_reference_matching_pool_entry(self):
+        cases = (
+            (candidate(ip_id="missing"), "unknown ip_id: missing"),
+            (candidate(ip_name="伪造名称"), "ip_name does not match IP pool"),
+            (candidate(ip_slot="long_term"), "ip_slot does not match IP pool"),
         )
-        self.assertEqual(ranked[2]["media_instruction"], "create_independent_image")
+        for value, message in cases:
+            with self.subTest(message=message):
+                with self.assertRaisesRegex(ValueError, message):
+                    score_candidate(value, IP_POOL)
 
-    def test_rank_limits_each_ip_slot_and_preserves_total_score_order(self):
-        def candidate(candidate_id, ip_slot, authorization, story_potential):
-            return {
-                "id": candidate_id,
-                "title": candidate_id,
-                "ip_slot": ip_slot,
-                "x_growth": 30,
-                "lofter_activity": 30,
-                "ip_match": 15,
-                "authorization": authorization,
-                "story_potential": story_potential,
-            }
-
-        candidates = [
-            candidate("long-1", "long_term", 15, 10),
-            candidate("rising-1", "rising", 15, 9),
-            candidate("long-2", "long_term", 14, 9),
-            candidate("rising-2", "rising", 13, 9),
-            candidate("experiment-1", "experiment", 12, 9),
-            candidate("long-3", "long_term", 11, 9),
-            candidate("rising-3", "rising", 10, 9),
-            candidate("experiment-2", "experiment", 9, 9),
+    def test_rank_returns_every_eligible_topic_without_slot_quotas(self):
+        topics = [
+            candidate(f"topic-{number}", story_potential=number)
+            for number in range(1, 8)
         ]
+        ranked = rank_candidates(topics, IP_POOL)
+        self.assertEqual(len(ranked), 7)
+        self.assertEqual(ranked[0]["id"], "topic-7")
 
-        ranked = rank_candidates(candidates)
+    def test_rank_does_not_require_eligible_topics_in_every_pool_category(self):
+        ranked = rank_candidates([candidate("only-rising")], IP_POOL)
+        self.assertEqual([item["id"] for item in ranked], ["only-rising"])
 
-        self.assertEqual(
-            [item["id"] for item in ranked],
-            ["long-1", "rising-1", "long-2", "rising-2", "experiment-1"],
+    def test_rank_filters_below_70_and_keeps_70(self):
+        at_threshold = candidate(
+            "at-70",
+            x_growth=20,
+            lofter_activity=20,
+            ip_match=10,
+            authorization=10,
+            story_potential=10,
         )
+        below = candidate(
+            "below-70",
+            x_growth=20,
+            lofter_activity=20,
+            ip_match=10,
+            authorization=10,
+            story_potential=9,
+        )
+        ranked = rank_candidates([below, at_threshold], IP_POOL)
+        self.assertEqual([item["id"] for item in ranked], ["at-70"])
 
-    def test_rank_rejects_under_capacity_slot_after_threshold_filtering(self):
-        candidates = [
-            {"id": "long-1", "title": "Long 1", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 10},
-            {"id": "long-2", "title": "Long 2", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 9},
-            {"id": "rising-1", "title": "Rising 1", "ip_slot": "rising", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 8},
-            {"id": "rising-2", "title": "Rising 2", "ip_slot": "rising", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 7},
-            {"id": "experiment-low", "title": "Experiment low", "ip_slot": "experiment", "x_growth": 30, "lofter_activity": 20, "ip_match": 15, "authorization": 0, "story_potential": 4},
-        ]
+    def test_rejects_invalid_shared_candidate_fields(self):
+        cases = (
+            (candidate(title=""), "title must be a non-empty string"),
+            (candidate(characters=[]), "characters must contain at least one"),
+            (candidate(characters=["角色A", ""]), "characters must contain non-empty strings"),
+            (candidate(tags="角色A"), "tags must be a list"),
+            (candidate(x_evidence=None), "x_evidence must be a non-empty string"),
+            (candidate(x_source_urls=[]), "x_source_urls must contain at least one"),
+            (candidate(x_source_urls=["http://x.com/example/status/1"]), "HTTPS X URL"),
+            (candidate(observed_at="yesterday"), "observed_at must be ISO-8601"),
+            (candidate(commercial_intent="false"), "commercial_intent must be a boolean"),
+            (candidate(x_growth=True), "x_growth must be an integer"),
+        )
+        for value, message in cases:
+            with self.subTest(message=message):
+                with self.assertRaisesRegex(ValueError, message):
+                    score_candidate(value, IP_POOL)
 
-        with self.assertRaisesRegex(
-            ValueError, "experiment requires 1 candidates; 0 available"
-        ):
-            rank_candidates(candidates)
+    def test_rejects_inconsistent_media_intent(self):
+        cases = (
+            (
+                candidate(asset_id="asset-1"),
+                "independent media must use a null asset_id",
+            ),
+            (
+                candidate(requested_usage="original", image_provenance="authorized_original"),
+                "authorized media requires a non-empty asset_id",
+            ),
+            (
+                candidate(
+                    asset_id="asset-1",
+                    requested_usage="original",
+                    image_provenance="authorized_ai_adaptation",
+                ),
+                "original usage requires authorized_original provenance",
+            ),
+            (
+                candidate(
+                    asset_id="asset-1",
+                    requested_usage="ai_adaptation",
+                    image_provenance="authorized_original",
+                ),
+                "ai_adaptation usage requires authorized_ai_adaptation provenance",
+            ),
+            (
+                candidate(image_provenance="authorized_original"),
+                "independent usage requires independent image provenance",
+            ),
+        )
+        for value, message in cases:
+            with self.subTest(message=message):
+                with self.assertRaisesRegex(ValueError, message):
+                    score_candidate(value, IP_POOL)
 
 
 if __name__ == "__main__":

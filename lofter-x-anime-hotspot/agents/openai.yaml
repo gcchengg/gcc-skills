@@ -1,4 +1,4 @@
 interface:
   display_name: "LOFTER × X 二次元热点"
-  short_description: "双平台热点选题、授权校验与LOFTER内容包"
-  default_prompt: "分析当前 X 与 LOFTER 的二次元交叉热点，按规则评分并生成可审核的 LOFTER 内容包。"
+  short_description: "追踪双平台二次元热点、核验媒体授权并生成LOFTER人工审核内容包"
+  default_prompt: "Use $lofter-x-anime-hotspot to rank current X/LOFTER anime topics and build a human-review packet."

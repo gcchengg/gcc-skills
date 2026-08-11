@@ -1,5 +1,7 @@
 # LOFTER × X Anime Hotspot Skill Implementation Plan
 
+> **Authoritative final-review update:** The [Final-review amendment](#final-review-amendment-2026-08-11) supersedes conflicting schemas, commands, quotas, disclosure rules, and test counts in the historical task bodies below.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Build a reusable local Skill that scores X/LOFTER anime hotspot candidates, validates image authorization records, and generates compliant LOFTER content packets for the approved 30-day operating workflow.
@@ -900,3 +902,64 @@ The following items are intentionally excluded until the 30-day account test est
 - Automatic CP selection without human verification;
 - Monetization, paywall, advertising, or commercial-use workflows;
 - Dashboarding beyond JSON and Markdown artifacts.
+
+---
+
+## Final-review amendment (2026-08-11)
+
+This amendment is authoritative. Earlier task bodies remain as implementation history only.
+
+### Corrected architecture and schemas
+
+- Model the IP pool in `templates/ip-pool.example.json` as exactly five unique IPs: two `long_term`, two `rising`, and one `experiment`. Validate the pool independently, then rank any number of eligible topic candidates without per-category topic quotas.
+- Require every candidate to exact-match its pool `ip_id`, `ip_name`, and `ip_slot`. Use one shared typed candidate contract for identity, characters/tags, bounded score dimensions, X/LOFTER evidence, HTTPS X sources, ISO observation time, and media intent.
+- Use one fixed publication threshold, 70. The numeric `authorization` score is a research-quality dimension only and never authorizes media use.
+- Represent media intent with nullable `asset_id`, `requested_usage`, strict `commercial_intent`, and one of the five explicit provenance values. Reject inconsistent combinations before scoring.
+- Validate complete authorization records: strict permission booleans, LOFTER platform scope, valid source/evidence, attribution mode, original/derived lineage, requested translation/crop/layout operations, and publication history. Resolve relative evidence paths against the ledger directory.
+- Bind packet authorization to the validator decision's schema marker, allow flag, exact asset ID, requested usage, commercial scope, provenance, and LOFTER platform. Packet generation reopens the named ledger, revalidates local evidence, regenerates the decision, and rejects incomplete or forged allow dictionaries.
+- Generate four structural human-review packet shapes only: one 200–400-character daily hotspot, exactly five-item weekly trend, one media-curation item, or one qualified 800–2000-character fan-fiction item. Each packet contains exactly one column-specific interaction question and no generated public prose.
+- Gate fan fiction on all five research checks, prior LOFTER observation URL/date, and either explicit weeks 1–2 baseline selection or week 3+ top-40% qualification.
+- Apply exact disclosures: none for authorized/human originals; authorized AI adaptation uses `图像经授权使用，含AI辅助创作｜#AI辅助#`; independent AI-assisted/generated originals use only `#AI辅助#`/`#AI生成#`.
+
+### Corrected portable workflow
+
+Set `LOFTER_SKILL_DIR` to the absolute Skill directory (the default installation expression and exact end-to-end commands are in `SKILL.md`). The corrected scorer command requires the separate pool:
+
+```bash
+python3 "$LOFTER_SKILL_DIR/scripts/score_candidates.py" \
+  "$LOFTER_SKILL_DIR/templates/candidates.example.json" \
+  --ip-pool "$LOFTER_SKILL_DIR/templates/ip-pool.example.json" \
+  --output "$LOFTER_WORK_DIR/ranked.json"
+```
+
+Capture one validator decision with a literal usage value, then construct a column-specific input matching `templates/packet-inputs.example.json`:
+
+```bash
+python3 "$LOFTER_SKILL_DIR/scripts/validate_authorizations.py" \
+  "$LOFTER_SKILL_DIR/templates/authorizations.example.json" \
+  example-asset-adapted-1 \
+  --usage ai_adaptation \
+  --operation layout \
+  > "$LOFTER_WORK_DIR/authorization.json"
+
+python3 "$LOFTER_SKILL_DIR/scripts/build_content_packet.py" \
+  "$LOFTER_WORK_DIR/packet-input.json" \
+  --output "$LOFTER_WORK_DIR/packet.md"
+```
+
+Human review and manual publication remain mandatory.
+
+### Final verification count
+
+The final suite contains **44 tests**. The authoritative verification commands are:
+
+```bash
+PYTHONPATH=/private/tmp/lofter-skill-validator-deps \
+  python3 -m unittest discover -s lofter-x-anime-hotspot/tests -p 'test_*.py' -v
+
+PYTHONPATH=/private/tmp/lofter-skill-validator-deps \
+  python3 /Users/guocc/.codex/skills/.system/skill-creator/scripts/quick_validate.py \
+  lofter-x-anime-hotspot
+```
+
+The temporary `PYTHONPATH` supplies PyYAML required by the official validator in this development environment; it is not a runtime dependency of the Skill scripts.

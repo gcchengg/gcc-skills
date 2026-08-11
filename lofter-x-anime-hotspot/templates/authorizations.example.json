@@ -1,11 +1,36 @@
 [
   {
-    "asset_id": "example-asset-1",
+    "asset_id": "example-asset-original-1",
     "author_handle": "@authorized_artist",
-    "source_url": "https://x.com/authorized_artist/status/example",
-    "evidence_path": "authorizations/example-asset-1.png",
+    "source_url": "https://x.com/authorized_artist/status/example-original",
+    "evidence_path": "evidence/example-asset-original-1.txt",
     "lofter_redistribution": true,
     "ai_adaptation": true,
-    "commercial_use": false
+    "commercial_use": false,
+    "translation": true,
+    "crop": true,
+    "layout": true,
+    "allowed_platforms": ["LOFTER"],
+    "attribution_mode": "public",
+    "original_asset_id": null,
+    "derived_asset_ids": ["example-asset-adapted-1"],
+    "publication_history": []
+  },
+  {
+    "asset_id": "example-asset-adapted-1",
+    "author_handle": "@authorized_artist",
+    "source_url": "https://x.com/authorized_artist/status/example-adapted",
+    "evidence_path": "evidence/example-asset-adapted-1.txt",
+    "lofter_redistribution": true,
+    "ai_adaptation": true,
+    "commercial_use": false,
+    "translation": true,
+    "crop": true,
+    "layout": true,
+    "allowed_platforms": ["LOFTER"],
+    "attribution_mode": "public",
+    "original_asset_id": "example-asset-original-1",
+    "derived_asset_ids": [],
+    "publication_history": []
   }
 ]

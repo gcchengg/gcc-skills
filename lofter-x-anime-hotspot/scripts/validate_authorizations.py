@@ -1,53 +1,252 @@
 import argparse
 import json
+from datetime import date, datetime
 from pathlib import Path
+from urllib.parse import urlparse
 
 
-REQUIRED = {
+BOOLEAN_FIELDS = {
+    "lofter_redistribution",
+    "ai_adaptation",
+    "commercial_use",
+    "translation",
+    "crop",
+    "layout",
+}
+REQUIRED_FIELDS = {
     "asset_id",
     "author_handle",
     "source_url",
     "evidence_path",
-    "lofter_redistribution",
-    "ai_adaptation",
-    "commercial_use",
+    *BOOLEAN_FIELDS,
+    "allowed_platforms",
+    "attribution_mode",
+    "original_asset_id",
+    "derived_asset_ids",
+    "publication_history",
 }
+ATTRIBUTION_MODES = {"public", "anonymous_allowed", "required"}
+OPERATIONS = {"translation", "crop", "layout"}
+DECISION_SCHEMA = "lofter-media-authorization/v1"
 
 
-def validate_authorization(record: dict, usage: str, commercial: bool = False) -> dict:
-    missing = sorted(REQUIRED - record.keys())
+def _non_empty_string(value, field: str) -> str:
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{field} must be a non-empty string")
+    return value.strip()
+
+
+def _https_url(value, field: str, *, lofter: bool = False) -> str:
+    _non_empty_string(value, field)
+    parsed = urlparse(value)
+    host = (parsed.hostname or "").lower()
+    if parsed.scheme != "https" or not host:
+        suffix = " LOFTER" if lofter else ""
+        raise ValueError(f"{field} must be an HTTPS{suffix} URL")
+    if lofter and not (host == "lofter.com" or host.endswith(".lofter.com")):
+        raise ValueError(f"{field} must be an HTTPS LOFTER URL")
+    return value
+
+
+def _iso_date_or_datetime(value, field: str) -> str:
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"{field} must be ISO-8601")
+    try:
+        if "T" in value:
+            datetime.fromisoformat(value.replace("Z", "+00:00"))
+        else:
+            date.fromisoformat(value)
+    except ValueError as error:
+        raise ValueError(f"{field} must be ISO-8601") from error
+    return value
+
+
+def _string_list(value, field: str) -> list[str]:
+    if not isinstance(value, list):
+        raise ValueError(f"{field} must be a list")
+    if any(not isinstance(item, str) or not item.strip() for item in value):
+        raise ValueError(f"{field} must contain non-empty strings")
+    return value
+
+
+def _validate_record(record: dict, evidence_root: Path) -> None:
+    if not isinstance(record, dict):
+        raise ValueError("authorization record must be an object")
+    missing = sorted(REQUIRED_FIELDS - record.keys())
     if missing:
         raise ValueError(f"missing fields: {', '.join(missing)}")
+
+    _non_empty_string(record["asset_id"], "asset_id")
+    _non_empty_string(record["author_handle"], "author_handle")
+    _https_url(record["source_url"], "source_url")
+    evidence_value = _non_empty_string(record["evidence_path"], "evidence_path")
+    evidence_path = Path(evidence_value)
+    if not evidence_path.is_absolute():
+        evidence_path = evidence_root / evidence_path
+    if not evidence_path.is_file():
+        raise ValueError(f"authorization evidence does not exist: {evidence_value}")
+
+    for field in BOOLEAN_FIELDS:
+        if type(record[field]) is not bool:
+            raise ValueError(f"{field} must be a boolean")
+
+    platforms = _string_list(record["allowed_platforms"], "allowed_platforms")
+    if not platforms:
+        raise ValueError("allowed_platforms must contain at least one platform")
+    if record["attribution_mode"] not in ATTRIBUTION_MODES:
+        raise ValueError("invalid attribution_mode")
+
+    original_asset_id = record["original_asset_id"]
+    if original_asset_id is not None:
+        if not isinstance(original_asset_id, str) or not original_asset_id.strip():
+            raise ValueError(
+                "original_asset_id must be null or a non-empty string"
+            )
+        if original_asset_id == record["asset_id"]:
+            raise ValueError("original_asset_id must differ from asset_id")
+    derived = _string_list(record["derived_asset_ids"], "derived_asset_ids")
+    if len(set(derived)) != len(derived):
+        raise ValueError("derived_asset_ids must be unique")
+    if record["asset_id"] in derived:
+        raise ValueError("derived_asset_ids cannot contain asset_id")
+
+    history = record["publication_history"]
+    if not isinstance(history, list):
+        raise ValueError("publication_history must be a list")
+    for index, publication in enumerate(history):
+        if not isinstance(publication, dict):
+            raise ValueError(f"publication_history[{index}] must be an object")
+        missing_history = sorted({"published_at", "lofter_url"} - publication.keys())
+        if missing_history:
+            raise ValueError(
+                f"publication_history[{index}] missing fields: {', '.join(missing_history)}"
+            )
+        _iso_date_or_datetime(publication["published_at"], "published_at")
+        _https_url(publication["lofter_url"], "lofter_url", lofter=True)
+
+
+def validate_ledger(
+    records: list[dict], *, evidence_root: Path | str = Path.cwd()
+) -> dict[str, dict]:
+    if not isinstance(records, list):
+        raise ValueError("authorization ledger must be a list")
+    root = Path(evidence_root)
+    indexed: dict[str, dict] = {}
+    for record in records:
+        _validate_record(record, root)
+        asset_id = record["asset_id"]
+        if asset_id in indexed:
+            raise ValueError(f"duplicate asset_id: {asset_id}")
+        indexed[asset_id] = record
+
+    for asset_id, record in indexed.items():
+        original_id = record["original_asset_id"]
+        if original_id is not None:
+            if original_id not in indexed:
+                raise ValueError(f"unknown original_asset_id: {original_id}")
+            if asset_id not in indexed[original_id]["derived_asset_ids"]:
+                raise ValueError(
+                    f"original asset {original_id} does not list derived asset {asset_id}"
+                )
+        for derived_id in record["derived_asset_ids"]:
+            if derived_id not in indexed:
+                raise ValueError(f"unknown derived_asset_id: {derived_id}")
+            if indexed[derived_id]["original_asset_id"] != asset_id:
+                raise ValueError(
+                    f"derived asset {derived_id} does not reference original asset {asset_id}"
+                )
+    return indexed
+
+
+def validate_authorization(
+    record: dict,
+    usage: str,
+    commercial: bool = False,
+    *,
+    operations: tuple[str, ...] | list[str] = (),
+    evidence_root: Path | str = Path.cwd(),
+) -> dict:
+    root = Path(evidence_root)
+    _validate_record(record, root)
     if usage not in {"original", "ai_adaptation"}:
         raise ValueError("usage must be original or ai_adaptation")
-    if not record["lofter_redistribution"]:
+    if type(commercial) is not bool:
+        raise ValueError("commercial must be a boolean")
+    if not isinstance(operations, (tuple, list)):
+        raise ValueError("operations must be a list or tuple")
+    requested_operations = []
+    for operation in operations:
+        if operation not in OPERATIONS:
+            raise ValueError(f"unknown requested operation: {operation}")
+        if operation in requested_operations:
+            raise ValueError(f"duplicate requested operation: {operation}")
+        requested_operations.append(operation)
+
+    if "LOFTER" not in record["allowed_platforms"]:
+        raise ValueError("LOFTER is not in allowed_platforms")
+    if record["lofter_redistribution"] is not True:
         raise ValueError("LOFTER redistribution is not authorized")
-    if usage == "ai_adaptation" and not record["ai_adaptation"]:
+    if usage == "original" and record["original_asset_id"] is not None:
+        raise ValueError("original usage requires an original asset record")
+    if usage == "ai_adaptation" and record["original_asset_id"] is None:
+        raise ValueError("ai_adaptation usage requires a derived asset record")
+    if usage == "ai_adaptation" and record["ai_adaptation"] is not True:
         raise ValueError("AI adaptation is not authorized")
-    if commercial and not record["commercial_use"]:
+    if commercial and record["commercial_use"] is not True:
         raise ValueError("commercial use is not authorized")
+    for operation in requested_operations:
+        if record[operation] is not True:
+            raise ValueError(f"{operation} is not authorized")
+
     return {
-        "asset_id": record["asset_id"],
+        "decision_schema": DECISION_SCHEMA,
         "allowed": True,
-        "usage": usage,
-        "commercial": commercial,
-        "author_handle": record["author_handle"],
+        "asset_id": record["asset_id"],
+        "requested_usage": usage,
+        "commercial_intent": commercial,
+        "requested_operations": requested_operations,
         "source_url": record["source_url"],
+        "author_handle": record["author_handle"],
+        "attribution_mode": record["attribution_mode"],
+        "platform": "LOFTER",
+        "original_asset_id": record["original_asset_id"],
+        "image_provenance": (
+            "authorized_original"
+            if usage == "original"
+            else "authorized_ai_adaptation"
+        ),
     }
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="Validate one asset against the complete LOFTER authorization ledger."
+    )
     parser.add_argument("ledger", type=Path)
     parser.add_argument("asset_id")
     parser.add_argument("--usage", choices=("original", "ai_adaptation"), required=True)
     parser.add_argument("--commercial", action="store_true")
+    parser.add_argument(
+        "--operation",
+        action="append",
+        choices=tuple(sorted(OPERATIONS)),
+        default=[],
+    )
     args = parser.parse_args()
-    records = json.loads(args.ledger.read_text(encoding="utf-8"))
-    matches = [record for record in records if record.get("asset_id") == args.asset_id]
-    if len(matches) != 1:
-        raise SystemExit(f"expected one authorization record for {args.asset_id}")
-    result = validate_authorization(matches[0], args.usage, args.commercial)
+    try:
+        records = json.loads(args.ledger.read_text(encoding="utf-8"))
+        indexed = validate_ledger(records, evidence_root=args.ledger.parent)
+        if args.asset_id not in indexed:
+            raise ValueError(f"expected one authorization record for {args.asset_id}")
+        result = validate_authorization(
+            indexed[args.asset_id],
+            args.usage,
+            args.commercial,
+            operations=args.operation,
+            evidence_root=args.ledger.parent,
+        )
+    except (OSError, json.JSONDecodeError, ValueError) as error:
+        raise SystemExit(f"error: {error}") from error
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 

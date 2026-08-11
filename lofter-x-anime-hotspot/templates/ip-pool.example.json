@@ -1,0 +1,7 @@
+[
+  {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
+  {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
+  {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
+  {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
+  {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
+]

@@ -1,25 +1,39 @@
-# Content Templates
+# Content packet contracts
 
-## 今日热度异动
+Generate structural human-review packets, not public prose. Every packet must contain exactly one line beginning `互动问题：`.
 
-标题：`【IP/角色】过去24小时为什么突然升温？`
+## `daily_hotspot` — 今日热度异动
 
-结构：100字内说明事件；给出X增长信号；说明LOFTER讨论差异；提供一个原创判断；结尾只问一个选择题式问题。
+- Accept exactly one eligible candidate.
+- Set a 200–400 Chinese-character target.
+- Preserve the X evidence, LOFTER evidence, source URLs, observation time, and media provenance.
+- Ask one question about whether the hotspot will continue or is a short-lived spike.
 
-## 本周二次元趋势
+## `weekly_trend` — 本周二次元趋势
 
-标题：`本周二次元趋势｜5个正在升温的角色与CP`
+- Accept exactly five distinct candidates already ranked by score.
+- Render each candidate's X signal, LOFTER signal, and non-empty sustainability note.
+- Ask one question selecting what to track next week.
 
-结构：先给结论；按热度列5项；每项包含X信号、LOFTER信号和持续性判断；结尾询问下周希望跟踪哪一项。
+## `media_curation` — 媒体策展
 
-## 热点脑洞实验室
+- Accept exactly one eligible candidate.
+- Require either exact-matched validated authorization or independent media with a null asset ID.
+- Render source/author/attribution for authorized media and never claim authorization for independent media.
+- Ask one media-focused question.
 
-标题：`【IP｜CP】一句冲突或悬念`
+## `fanfic` — 热点脑洞实验室
 
-结构：前100字建立冲突；正文保持核验后的人设与关系；提供完整首篇体验；不设置强付费截断；结尾询问是否继续该分支。
+- Accept exactly one eligible candidate and set an 800–2000 Chinese-character target.
+- Require verified world, characters, relationships, CP conventions, and fandom risks.
+- Require the prior observation's LOFTER URL and ISO-8601 publication date.
+- Require either the explicitly selected weeks 1–2 baseline policy or week 3+ `top_40_percent: true`.
+- Ask one continuation question.
 
-## 极简声明
+## Exact AI disclosure
 
-授权AI辅助图：`图像经授权使用，含AI辅助创作｜#AI辅助#`
-
-独立原创图：按实际AI参与情况使用平台要求的 `#AI辅助#` 或 `#AI生成#` 标识，不写“经授权使用”。
+- `authorized_original`: no AI label.
+- `authorized_ai_adaptation`: `图像经授权使用，含AI辅助创作｜#AI辅助#`.
+- `human_original`: no AI label.
+- `ai_assisted_original`: `#AI辅助#` without an authorization claim.
+- `ai_generated_original`: `#AI生成#` without an authorization claim.

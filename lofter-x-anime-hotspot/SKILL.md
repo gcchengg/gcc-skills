@@ -1,32 +1,103 @@
 ---
 name: lofter-x-anime-hotspot
-description: Analyze current anime, game, character, and CP hotspots across X and LOFTER, rank candidates, verify media authorization, and create Chinese LOFTER trend or fan-fiction content packets. Use when the user wants hotspot-driven LOFTER anime content, X-to-LOFTER curation, or a 30-day LOFTER growth workflow.
+description: Analyze current anime, game, character, and CP hotspots across X and LOFTER, validate a distinct five-IP pool and complete media authorization, and create Chinese human-review packets for daily hotspots, weekly trends, media curation, or qualified fan fiction. Use for hotspot-driven LOFTER anime content, X-to-LOFTER curation, or a 30-day LOFTER growth workflow.
 ---
 
 # LOFTER × X Anime Hotspot
 
-Use Chinese when communicating with the user.
+Use Chinese with the user. Produce human-review packets only; never draft public prose or publish automatically.
 
-## Workflow
+## Load rules
 
-1. Collect current 24—72 hour X and LOFTER evidence for candidate topics.
-2. Maintain 2 `long_term`, 2 `rising`, and 1 `experiment` IP slots.
-3. Save candidate values using `templates/candidates.example.json` as the schema.
-4. Run `python3 scripts/score_candidates.py INPUT --output ranked.json`.
-5. Reject candidates below 70. A candidate with authorization score 0 may use only an independently created image.
-6. For original or AI-adapted X images, record authorization using `templates/authorizations.example.json`, then run `python3 scripts/validate_authorizations.py LEDGER ASSET_ID --usage original|ai_adaptation`.
-7. Before fan fiction, verify world, characters, relationships, CP conventions, and fandom risks. If any check is incomplete, produce hotspot analysis instead.
-8. Generate the Markdown brief with `python3 scripts/build_content_packet.py INPUT --output packet.md`.
-9. Human-review facts, tags, labels, image scope, and the single interaction question before publication.
-10. Never publish automatically.
+- Read `references/operating-rules.md` before ranking, authorization, or fan-fiction qualification.
+- Read `references/content-templates.md` before generating a packet.
+- Use `templates/ip-pool.example.json`, `templates/candidates.example.json`, and `templates/authorizations.example.json` as separate schemas.
+- Use `templates/packet-inputs.example.json` for all four column payload shapes.
 
-## Required Rules
+## Run the workflow
 
-- Read `references/operating-rules.md` before ranking or scheduling.
-- Read `references/content-templates.md` before drafting public copy.
-- Do not treat a public X post as permission.
-- AI adaptation requires explicit AI adaptation authorization.
-- Commercial use is false unless the authorization record says true.
-- Keep authorization evidence in the private ledger; do not expose private evidence in public copy.
-- For authorized AI-assisted images, end public copy with `图像经授权使用，含AI辅助创作｜#AI辅助#`.
-- Do not add irrelevant trending tags or hard paywall cliffhangers during the first 30 days.
+Resolve the Skill directory once. The default below works for a normal Codex Skill installation and all later commands work from any current directory:
+
+```bash
+LOFTER_SKILL_DIR="${CODEX_HOME:-${HOME}/.codex}/skills/lofter-x-anime-hotspot"
+LOFTER_WORK_DIR="$(mktemp -d)"
+```
+
+When operating from a repository checkout, set `LOFTER_SKILL_DIR` to the absolute directory containing this `SKILL.md`.
+
+1. Collect current 24–72 hour X and LOFTER evidence. Maintain the five-entry IP pool separately from any number of topic candidates.
+2. Rank every eligible topic using the fixed threshold of 70:
+
+```bash
+python3 "$LOFTER_SKILL_DIR/scripts/score_candidates.py" \
+  "$LOFTER_SKILL_DIR/templates/candidates.example.json" \
+  --ip-pool "$LOFTER_SKILL_DIR/templates/ip-pool.example.json" \
+  --output "$LOFTER_WORK_DIR/ranked.json"
+```
+
+3. For direct original reuse, validate and capture the exact asset decision:
+
+```bash
+python3 "$LOFTER_SKILL_DIR/scripts/validate_authorizations.py" \
+  "$LOFTER_SKILL_DIR/templates/authorizations.example.json" \
+  example-asset-original-1 \
+  --usage original \
+  > "$LOFTER_WORK_DIR/authorization.json"
+```
+
+For an authorized AI adaptation, use a separate command and list every requested operation:
+
+```bash
+python3 "$LOFTER_SKILL_DIR/scripts/validate_authorizations.py" \
+  "$LOFTER_SKILL_DIR/templates/authorizations.example.json" \
+  example-asset-adapted-1 \
+  --usage ai_adaptation \
+  --operation layout \
+  > "$LOFTER_WORK_DIR/authorization.json"
+```
+
+4. Construct a daily packet-input file from the captured outputs. Keep `asset_id`, requested usage, and commercial intent unchanged:
+
+```bash
+python3 - "$LOFTER_SKILL_DIR" "$LOFTER_WORK_DIR" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+skill_dir = Path(sys.argv[1])
+work_dir = Path(sys.argv[2])
+ranked = json.loads((work_dir / "ranked.json").read_text(encoding="utf-8"))
+authorization = json.loads((work_dir / "authorization.json").read_text(encoding="utf-8"))
+ip_pool = json.loads((skill_dir / "templates/ip-pool.example.json").read_text(encoding="utf-8"))
+candidate = next(item for item in ranked if item["asset_id"] == authorization["asset_id"])
+payload = {
+    "column": "daily_hotspot",
+    "ip_pool": ip_pool,
+    "candidate": candidate,
+    "authorization": authorization,
+    "authorization_ledger_path": str(skill_dir / "templates/authorizations.example.json"),
+}
+(work_dir / "packet-input.json").write_text(
+    json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+)
+PY
+```
+
+5. Generate the human-review packet:
+
+```bash
+python3 "$LOFTER_SKILL_DIR/scripts/build_content_packet.py" \
+  "$LOFTER_WORK_DIR/packet-input.json" \
+  --output "$LOFTER_WORK_DIR/packet.md"
+```
+
+6. Human-review facts, source links, IP/character/CP terminology, tags, authorization scope, disclosure, structural requirements, and the single interaction question. Never publish automatically.
+
+## Fail-closed rules
+
+- Treat the `authorization` score dimension as research quality only. It never authorizes an asset.
+- Use a null `asset_id` only with `requested_usage: independent`; never attach an authorization decision to independent media.
+- Exact-match authorized asset ID, usage, commercial intent, provenance, and LOFTER platform against validator output. Packet generation reopens the named ledger, verifies its evidence, and regenerates the decision before accepting it.
+- Do not treat a public X post as permission. Require an existing local evidence file and complete ledger scope.
+- Require all five research checks, a prior LOFTER observation URL/date, and the applicable baseline or top-40% gate before fan fiction.
+- Keep authorization evidence private. Do not add unrelated trending tags or hard-paywall cliffhangers.
