@@ -39,7 +39,10 @@ _FILES = {
     "media_ledger": "sources/media-ledger.json",
 }
 
-_HTTP_URL = re.compile(r"https?://[^\s<>]+", re.IGNORECASE)
+_HTTP_URL = re.compile(
+    r"https?://[^\s<>\"'`，。；：！？、（）【】《》「」『』“”‘’]+",
+    re.IGNORECASE,
+)
 _FILE_URL = re.compile(r"file:(?://)?/", re.IGNORECASE)
 _POSIX_PRIVATE_PATH = re.compile(
     r"/(?:Users|home|private|tmp|var(?:/folders)?|etc|root|usr|opt|Applications|Volumes)(?:/|$)",

@@ -284,6 +284,35 @@ class BuildPublishableDraftTest(unittest.TestCase):
         payload["media"][1]["caption"] = "普通斜杠表达：A/B 与角色/关系"
         build_draft(run_dir, payload)
 
+    def test_url_followed_by_unicode_prose_cannot_swallow_private_path(self):
+        cases = (
+            "来源：https://x.com/artist/status/1，证据：/Users/reviewer/evidence.png",
+            "来源：“https://x.com/artist/status/1”；证据：C:\\Users\\reviewer\\evidence.png",
+            "来源：『https://x.com/artist/status/1』；证据：file:///private/evidence.txt",
+        )
+        for index, caption in enumerate(cases):
+            with self.subTest(caption=caption):
+                run_dir = self.create_run_with_local_media(f"url-boundary-{index}")
+                payload = valid_payload()
+                payload["media"][1]["caption"] = caption
+                with self.assertRaisesRegex(ValueError, "private path"):
+                    build_draft(run_dir, payload)
+                self.assertEqual(load_state(run_dir)["state"], "researching")
+
+    def test_legitimate_x_url_fields_and_url_only_caption_remain_allowed(self):
+        run_dir = self.create_run_with_local_media("valid-x-url")
+        payload = valid_payload()
+        payload["media"][0]["source_url"] = "https://x.com/artist/status/1"
+        payload["media"][1]["caption"] = "来源：https://x.com/artist/status/1"
+
+        result = build_draft(run_dir, payload)
+
+        self.assertEqual(result["state"], "authorization_review")
+        ledger = json.loads(
+            (run_dir / "sources/media-ledger.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(ledger[0]["source_url"], "https://x.com/artist/status/1")
+
     def test_private_path_checks_cover_article_titles_tags_and_captions(self):
         cases = []
         article = valid_payload()
