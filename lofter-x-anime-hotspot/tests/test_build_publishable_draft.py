@@ -86,6 +86,7 @@ class BuildPublishableDraftTest(unittest.TestCase):
             run_dir / "titles-and-tags.md": b"old titles\n",
             run_dir / "publication-order.md": b"old order\n",
             run_dir / "sources/media-ledger.json": b"[]\n",
+            run_dir / "sources/draft-intent.json": b'{"old": true}\n',
             run_dir / "original-media/01.webp": b"old x media",
             run_dir / "generated-media/02.webp": b"old generated media",
         }
@@ -104,6 +105,7 @@ class BuildPublishableDraftTest(unittest.TestCase):
             "titles-and-tags.md",
             "publication-order.md",
             "sources/media-ledger.json",
+            "sources/draft-intent.json",
         ):
             self.assertTrue((run_dir / relative_path).is_file(), relative_path)
         ledger = json.loads(
@@ -136,6 +138,12 @@ class BuildPublishableDraftTest(unittest.TestCase):
             result["files"]["media_ledger"], "sources/media-ledger.json"
         )
         self.assertEqual(result["content_mode"], "trend_analysis")
+        self.assertEqual(
+            json.loads(
+                (run_dir / "sources/draft-intent.json").read_text(encoding="utf-8")
+            ),
+            {"authorized_media_intent": True, "ai_assistance": True},
+        )
         self.assertEqual(
             (run_dir / "titles-and-tags.md").read_text(encoding="utf-8"),
             "# 备选标题\n\n1. 备选标题一\n2. 备选标题二\n3. 备选标题三\n\n"
@@ -665,7 +673,7 @@ class BuildPublishableDraftTest(unittest.TestCase):
             build_draft(run_dir, payload)
 
     def test_artifact_install_failures_restore_preexisting_set_and_state(self):
-        for failure_index in range(1, 7):
+        for failure_index in range(1, 8):
             with self.subTest(failure_index=failure_index):
                 run_dir = self.create_run_with_local_media(f"install-fail-{failure_index}")
                 originals = self.seed_existing_targets(run_dir)
@@ -756,6 +764,7 @@ class BuildPublishableDraftTest(unittest.TestCase):
             "titles-and-tags.md",
             "publication-order.md",
             "sources/media-ledger.json",
+            "sources/draft-intent.json",
             "original-media/01.webp",
             "generated-media/02.webp",
         ):

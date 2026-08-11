@@ -1,7 +1,9 @@
 import sys
 import tempfile
 import unittest
+from contextlib import nullcontext
 from pathlib import Path
+from unittest import mock
 
 sys.path.insert(0, str(Path(__file__).parents[1] / "scripts"))
 
@@ -116,6 +118,41 @@ class AuthorizationTest(unittest.TestCase):
                 "original",
                 evidence_root=self.root,
             )
+
+    def test_rejects_empty_symlinked_and_unreadable_evidence(self):
+        evidence = self.root / "evidence" / "asset-original-1.txt"
+        for case in ("empty", "symlink", "unreadable"):
+            with self.subTest(case=case):
+                evidence.unlink(missing_ok=True)
+                evidence.write_bytes(b"example evidence")
+                if case == "empty":
+                    evidence.write_bytes(b"")
+                    context = nullcontext()
+                elif case == "symlink":
+                    target = evidence.with_name("real-evidence.txt")
+                    target.write_bytes(b"real evidence")
+                    evidence.unlink()
+                    evidence.symlink_to(target)
+                    context = nullcontext()
+                else:
+                    real_read_bytes = Path.read_bytes
+
+                    def fail_evidence_read(path):
+                        if path == evidence:
+                            raise OSError("injected unreadable evidence")
+                        return real_read_bytes(path)
+
+                    context = mock.patch.object(
+                        Path, "read_bytes", autospec=True, side_effect=fail_evidence_read
+                    )
+
+                with context:
+                    with self.assertRaisesRegex(ValueError, "authorization evidence"):
+                        validate_authorization(
+                            authorization_record(),
+                            "original",
+                            evidence_root=self.root,
+                        )
 
     def test_requires_lofter_platform_and_redistribution_scope(self):
         cases = (

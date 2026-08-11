@@ -2,6 +2,7 @@ import json
 import sys
 import tempfile
 import unittest
+from contextlib import nullcontext
 from datetime import datetime
 from pathlib import Path
 from unittest import mock
@@ -12,6 +13,7 @@ sys.path.insert(0, str(SCRIPTS))
 
 import build_publishable_draft as draft_module
 from build_publishable_draft import (
+    PUBLIC_DISCLOSURE,
     build_draft,
     record_media_review,
     replace_rejected_media,
@@ -56,10 +58,48 @@ class MediaReviewTest(unittest.TestCase):
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
 
-    def prepared_review_run(self, slug: str = "review-topic") -> Path:
+    def prepared_review_run(
+        self,
+        slug: str = "review-topic",
+        *,
+        media: list[dict] | None = None,
+        authorized_media_intent: bool = False,
+        ai_assistance: bool = False,
+    ) -> Path:
         run_dir, _ = create_run(self.root / "runs", slug, FIXED_NOW)
-        (run_dir / "original-media/candidate.webp").write_bytes(b"rejected-candidate")
-        (run_dir / "generated-media/original.webp").write_bytes(b"existing-original")
+        if media is None:
+            media = [
+                {
+                    "kind": "x_original",
+                    "role": "cover",
+                    "local_path": "original-media/candidate.webp",
+                    "caption": "候选封面图",
+                    "source_url": "https://x.com/artist/status/123",
+                    "source_author": "@artist",
+                    "source_media_id": "media-123",
+                },
+                {
+                    "kind": "generated_original",
+                    "role": "body",
+                    "local_path": "generated-media/original.webp",
+                    "caption": "独立原创配图",
+                    "generation_lineage": {
+                        "generator": "test-image-model",
+                        "prompt": "an independent original composition",
+                        "source_media_ids": [],
+                    },
+                },
+            ]
+            source_bytes = (b"rejected-candidate", b"existing-original")
+        else:
+            source_bytes = tuple(
+                f"custom-source-{index}".encode("ascii")
+                for index in range(1, len(media) + 1)
+            )
+        for record, content in zip(media, source_bytes, strict=True):
+            path = run_dir / record["local_path"]
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(content)
         write_json_atomic(
             run_dir / "hotspot-analysis.json",
             {
@@ -75,44 +115,36 @@ class MediaReviewTest(unittest.TestCase):
                 "article": long_article(),
                 "titles": ["备选标题一", "备选标题二", "备选标题三"],
                 "tags": [f"标签{number}" for number in range(1, 9)],
-                "authorized_media_intent": False,
-                "ai_assistance": False,
-                "media": [
-                    {
-                        "kind": "x_original",
-                        "role": "cover",
-                        "local_path": "original-media/candidate.webp",
-                        "caption": "候选封面图",
-                        "source_url": "https://x.com/artist/status/123",
-                        "source_author": "@artist",
-                        "source_media_id": "media-123",
-                    },
-                    {
-                        "kind": "generated_original",
-                        "role": "body",
-                        "local_path": "generated-media/original.webp",
-                        "caption": "独立原创配图",
-                        "generation_lineage": {
-                            "generator": "test-image-model",
-                            "prompt": "an independent original composition",
-                            "source_media_ids": [],
-                        },
-                    },
-                ],
+                "authorized_media_intent": authorized_media_intent,
+                "ai_assistance": ai_assistance,
+                "media": media,
             },
         )
         return run_dir
 
     def authorization_envelope(self, run_dir: Path, **record_overrides) -> dict:
-        evidence = run_dir / "private-authorization/evidence/media-123.txt"
-        evidence.parent.mkdir(parents=True)
-        evidence.write_text("real operational evidence", encoding="utf-8")
-        ledger_path = run_dir / "private-authorization/authorizations.json"
         record = authorization_record(**record_overrides)
-        write_json_atomic(ledger_path, [record])
+        return self.authorization_envelope_for(
+            run_dir, [record], record["asset_id"], "original"
+        )
+
+    def authorization_envelope_for(
+        self,
+        run_dir: Path,
+        records: list[dict],
+        asset_id: str,
+        usage: str,
+    ) -> dict:
+        ledger_path = run_dir / "private-authorization/authorizations.json"
+        for record in records:
+            evidence = ledger_path.parent / record["evidence_path"]
+            evidence.parent.mkdir(parents=True, exist_ok=True)
+            evidence.write_text("real operational evidence", encoding="utf-8")
+        write_json_atomic(ledger_path, records)
+        indexed = validate_ledger(records, evidence_root=ledger_path.parent)
         decision = validate_authorization(
-            record,
-            "original",
+            indexed[asset_id],
+            usage,
             evidence_root=ledger_path.parent,
         )
         return {**decision, "authorization_ledger_path": str(ledger_path)}
@@ -136,6 +168,10 @@ class MediaReviewTest(unittest.TestCase):
         return json.loads(
             (run_dir / "sources/media-ledger.json").read_text(encoding="utf-8")
         )
+
+    @staticmethod
+    def write_media_ledger(run_dir: Path, ledger: list[dict]) -> None:
+        write_json_atomic(run_dir / "sources/media-ledger.json", ledger)
 
     def test_authorized_x_media_requires_exact_ledger_backed_decision(self):
         run_dir = self.prepared_review_run()
@@ -198,6 +234,37 @@ class MediaReviewTest(unittest.TestCase):
                 self.assertEqual(self.load_media_ledger(run_dir), before)
                 self.assertEqual(load_state(run_dir)["state"], "authorization_review")
 
+    def test_empty_symlinked_or_unreadable_evidence_fails_closed_on_reopen(self):
+        for case in ("empty", "symlink", "unreadable"):
+            with self.subTest(case=case):
+                run_dir = self.prepared_review_run(f"evidence-{case}")
+                envelope = self.authorization_envelope(run_dir)
+                evidence = run_dir / "private-authorization/evidence/media-123.txt"
+                if case == "empty":
+                    evidence.write_bytes(b"")
+                    context = nullcontext()
+                elif case == "symlink":
+                    target = evidence.with_name("real-evidence.txt")
+                    target.write_bytes(b"real evidence")
+                    evidence.unlink()
+                    evidence.symlink_to(target)
+                    context = nullcontext()
+                else:
+                    context = mock.patch.object(
+                        Path,
+                        "read_bytes",
+                        autospec=True,
+                        side_effect=OSError("injected unreadable evidence"),
+                    )
+
+                with context:
+                    with self.assertRaisesRegex(ValueError, "ledger-backed.*evidence"):
+                        record_media_review(run_dir, 1, True, envelope)
+
+                self.assertEqual(
+                    self.load_media_ledger(run_dir)[0]["review_status"], "pending"
+                )
+
     def test_example_only_ledger_fails_closed(self):
         run_dir = self.prepared_review_run()
         evidence = run_dir / "private-authorization/evidence/media-123.txt"
@@ -225,6 +292,137 @@ class MediaReviewTest(unittest.TestCase):
             )
 
         self.assertEqual(self.load_media_ledger(run_dir)[0]["review_status"], "pending")
+
+    def test_persisted_review_status_is_bound_to_media_kind(self):
+        cases = (
+            (0, "independent"),
+            (1, "pending"),
+            (1, "rejected"),
+            (1, "authorized"),
+        )
+        for index, status in cases:
+            with self.subTest(index=index, status=status):
+                run_dir = self.prepared_review_run(f"kind-status-{index}-{status}")
+                ledger = self.load_media_ledger(run_dir)
+                ledger[index]["review_status"] = status
+                if status == "authorized":
+                    ledger[index]["authorization"] = {"allowed": True}
+                self.write_media_ledger(run_dir, ledger)
+
+                with self.assertRaisesRegex(ValueError, "review_status.*media kind"):
+                    draft_module.load_media_ledger(run_dir)
+
+    def test_non_authorized_statuses_never_accept_authorization_payloads(self):
+        cases = ((0, "pending"), (0, "rejected"), (1, "independent"))
+        for index, status in cases:
+            with self.subTest(index=index, status=status):
+                run_dir = self.prepared_review_run(f"status-auth-{index}-{status}")
+                ledger = self.load_media_ledger(run_dir)
+                ledger[index]["review_status"] = status
+                ledger[index]["authorization"] = {"allowed": True}
+                self.write_media_ledger(run_dir, ledger)
+
+                with self.assertRaisesRegex(ValueError, "only authorized"):
+                    draft_module.load_media_ledger(run_dir)
+
+    def test_media_ledger_rejects_operational_evidence_fields(self):
+        run_dir = self.prepared_review_run("ledger-evidence-field")
+        envelope = self.authorization_envelope(run_dir)
+        record_media_review(run_dir, 1, True, envelope)
+        ledger = self.load_media_ledger(run_dir)
+        ledger[0]["evidence_path"] = "/private/authorization/evidence.txt"
+        self.write_media_ledger(run_dir, ledger)
+
+        with self.assertRaisesRegex(ValueError, "unknown persisted media field"):
+            draft_module.load_media_ledger(run_dir)
+
+    def test_persisted_authorization_requires_exact_schema_and_media_binding(self):
+        cases = {
+            "missing": lambda decision: decision.pop("decision_schema"),
+            "unknown": lambda decision: decision.update({"evidence_path": "secret.txt"}),
+            "schema": lambda decision: decision.update({"decision_schema": "forged/v9"}),
+            "truthy_allowed": lambda decision: decision.update({"allowed": 1}),
+            "asset": lambda decision: decision.update({"asset_id": "other-asset"}),
+            "source": lambda decision: decision.update(
+                {"source_url": "https://x.com/other/status/999"}
+            ),
+            "author": lambda decision: decision.update({"author_handle": "@other"}),
+            "attribution_type": lambda decision: decision.update(
+                {"attribution_mode": {}}
+            ),
+            "usage": lambda decision: decision.update({"requested_usage": "ai_adaptation"}),
+            "provenance": lambda decision: decision.update(
+                {"image_provenance": "authorized_ai_adaptation"}
+            ),
+            "smoke": lambda decision: decision.update(
+                {"smoke_only": True, "publication_forbidden": True}
+            ),
+            "falsey_smoke": lambda decision: decision.update({"smoke_only": 0}),
+            "publication": lambda decision: decision.update(
+                {"publication_forbidden": True}
+            ),
+            "falsey_publication": lambda decision: decision.update(
+                {"publication_forbidden": 0}
+            ),
+            "ledger_path": lambda decision: decision.update(
+                {"authorization_ledger_path": "/private/ledger.json"}
+            ),
+        }
+        for case, forge in cases.items():
+            with self.subTest(case=case):
+                run_dir = self.prepared_review_run(f"persisted-auth-{case}")
+                envelope = self.authorization_envelope(run_dir)
+                record_media_review(run_dir, 1, True, envelope)
+                ledger = self.load_media_ledger(run_dir)
+                forge(ledger[0]["authorization"])
+                self.write_media_ledger(run_dir, ledger)
+
+                with self.assertRaisesRegex(ValueError, "authorization"):
+                    draft_module.load_media_ledger(run_dir)
+
+    def test_persisted_ai_authorization_binds_original_asset_to_lineage(self):
+        media = [
+            {
+                "kind": "ai_adaptation",
+                "role": "cover",
+                "local_path": "generated-media/adaptation.webp",
+                "caption": "已授权AI改编图",
+                "source_url": "https://x.com/adapter/status/456",
+                "source_author": "@adapter",
+                "source_media_id": "derived-456",
+                "generation_lineage": {
+                    "generator": "test-image-model",
+                    "prompt": "authorized adaptation",
+                    "source_media_ids": ["original-456"],
+                },
+            }
+        ]
+        run_dir = self.prepared_review_run("ai-original-binding", media=media)
+        original = authorization_record(
+            asset_id="original-456",
+            author_handle="@adapter",
+            source_url="https://x.com/adapter/status/400",
+            evidence_path="evidence/original-456.txt",
+            derived_asset_ids=["derived-456"],
+        )
+        derived = authorization_record(
+            asset_id="derived-456",
+            author_handle="@adapter",
+            source_url="https://x.com/adapter/status/456",
+            evidence_path="evidence/derived-456.txt",
+            original_asset_id="original-456",
+            derived_asset_ids=[],
+        )
+        envelope = self.authorization_envelope_for(
+            run_dir, [original, derived], "derived-456", "ai_adaptation"
+        )
+        record_media_review(run_dir, 1, True, envelope)
+        ledger = self.load_media_ledger(run_dir)
+        ledger[0]["authorization"]["original_asset_id"] = "other-original"
+        self.write_media_ledger(run_dir, ledger)
+
+        with self.assertRaisesRegex(ValueError, "original_asset_id"):
+            draft_module.load_media_ledger(run_dir)
 
     def test_rejection_requires_generated_independent_replacement(self):
         run_dir = self.prepared_review_run()
@@ -288,6 +486,34 @@ class MediaReviewTest(unittest.TestCase):
                         ["新封面图", "独立原创配图"],
                     )
 
+    def test_replacement_lineage_cannot_embed_rejected_media_identifiers(self):
+        identifiers = (
+            "original-media/01.webp",
+            "https://x.com/artist/status/123",
+            "media-123",
+            "@artist",
+        )
+        for index, identifier in enumerate(identifiers):
+            for field in ("generator", "prompt"):
+                with self.subTest(identifier=identifier, field=field):
+                    run_dir = self.prepared_review_run(
+                        f"lineage-identifier-{index}-{field}"
+                    )
+                    record_media_review(run_dir, 1, False)
+                    replacement = self.valid_independent_replacement(run_dir)
+                    replacement["generation_lineage"][field] = (
+                        f"independent request referencing {identifier}"
+                    )
+
+                    with self.assertRaisesRegex(ValueError, "lineage.*rejected media"):
+                        replace_rejected_media(
+                            run_dir,
+                            1,
+                            replacement,
+                            long_article(),
+                            ["新封面图", "独立原创配图"],
+                        )
+
     def test_replacement_changes_only_rejected_media_and_affected_copy(self):
         run_dir = self.prepared_review_run()
         before = self.load_media_ledger(run_dir)
@@ -314,7 +540,172 @@ class MediaReviewTest(unittest.TestCase):
         self.assertEqual((run_dir / before[1]["local_path"]).read_bytes(), unchanged_media_bytes)
         self.assertEqual((run_dir / "titles-and-tags.md").read_bytes(), unchanged_titles)
         self.assertEqual((run_dir / "article.md").read_text(encoding="utf-8"), revised_article + "\n")
+        self.assertNotIn(PUBLIC_DISCLOSURE, revised_article)
         self.assertEqual(load_state(run_dir)["state"], "authorization_review")
+
+    def test_replacement_adds_disclosure_for_unaffected_authorized_original(self):
+        media = [
+            {
+                "kind": "x_original",
+                "role": "cover",
+                "local_path": "original-media/target.webp",
+                "caption": "待替换封面",
+                "source_url": "https://x.com/artist/status/123",
+                "source_author": "@artist",
+                "source_media_id": "media-123",
+            },
+            {
+                "kind": "x_original",
+                "role": "body",
+                "local_path": "original-media/authorized.webp",
+                "caption": "已授权正文图",
+                "source_url": "https://x.com/second/status/456",
+                "source_author": "@second",
+                "source_media_id": "media-456",
+            },
+        ]
+        run_dir = self.prepared_review_run("disclosure-authorized", media=media)
+        envelope = self.authorization_envelope(
+            run_dir,
+            asset_id="media-456",
+            author_handle="@second",
+            source_url="https://x.com/second/status/456",
+            evidence_path="evidence/media-456.txt",
+        )
+        record_media_review(run_dir, 2, True, envelope)
+        record_media_review(run_dir, 1, False)
+
+        replacement = self.valid_independent_replacement(run_dir)
+        result = replace_rejected_media(
+            run_dir,
+            1,
+            replacement,
+            long_article(),
+            ["新封面图", "已授权正文图"],
+        )
+
+        article = (run_dir / "article.md").read_text(encoding="utf-8")
+        self.assertEqual(article.count(PUBLIC_DISCLOSURE), 1)
+        self.assertEqual(result[1]["review_status"], "authorized")
+
+    def test_replacement_preserves_disclosure_for_authorized_ai_adaptation(self):
+        media = [
+            {
+                "kind": "x_original",
+                "role": "cover",
+                "local_path": "original-media/target.webp",
+                "caption": "待替换封面",
+                "source_url": "https://x.com/artist/status/123",
+                "source_author": "@artist",
+                "source_media_id": "media-123",
+            },
+            {
+                "kind": "ai_adaptation",
+                "role": "body",
+                "local_path": "generated-media/adaptation.webp",
+                "caption": "已授权AI改编图",
+                "source_url": "https://x.com/adapter/status/456",
+                "source_author": "@adapter",
+                "source_media_id": "derived-456",
+                "generation_lineage": {
+                    "generator": "test-image-model",
+                    "prompt": "authorized adaptation",
+                    "source_media_ids": ["original-456"],
+                },
+            },
+        ]
+        run_dir = self.prepared_review_run(
+            "disclosure-adaptation",
+            media=media,
+            authorized_media_intent=True,
+            ai_assistance=True,
+        )
+        original = authorization_record(
+            asset_id="original-456",
+            author_handle="@adapter",
+            source_url="https://x.com/adapter/status/400",
+            evidence_path="evidence/original-456.txt",
+            derived_asset_ids=["derived-456"],
+        )
+        derived = authorization_record(
+            asset_id="derived-456",
+            author_handle="@adapter",
+            source_url="https://x.com/adapter/status/456",
+            evidence_path="evidence/derived-456.txt",
+            original_asset_id="original-456",
+            derived_asset_ids=[],
+        )
+        envelope = self.authorization_envelope_for(
+            run_dir, [original, derived], "derived-456", "ai_adaptation"
+        )
+        record_media_review(run_dir, 2, True, envelope)
+        record_media_review(run_dir, 1, False)
+
+        replacement = self.valid_independent_replacement(run_dir)
+        replace_rejected_media(
+            run_dir,
+            1,
+            replacement,
+            long_article(),
+            ["新封面图", "已授权AI改编图"],
+        )
+
+        article = (run_dir / "article.md").read_text(encoding="utf-8")
+        self.assertEqual(article.count(PUBLIC_DISCLOSURE), 1)
+
+    def test_replacement_removes_disclosure_when_no_authorized_media_remains(self):
+        run_dir = self.prepared_review_run(
+            "disclosure-removed",
+            authorized_media_intent=True,
+            ai_assistance=True,
+        )
+        self.assertEqual(
+            (run_dir / "article.md").read_text(encoding="utf-8").count(
+                PUBLIC_DISCLOSURE
+            ),
+            1,
+        )
+        record_media_review(run_dir, 1, False)
+
+        replacement = self.valid_independent_replacement(run_dir)
+        replace_rejected_media(
+            run_dir,
+            1,
+            replacement,
+            long_article(),
+            ["新封面图", "独立原创配图"],
+        )
+
+        self.assertNotIn(
+            PUBLIC_DISCLOSURE,
+            (run_dir / "article.md").read_text(encoding="utf-8"),
+        )
+
+    def test_replacement_rejects_caller_authored_disclosure_without_writes(self):
+        run_dir = self.prepared_review_run()
+        record_media_review(run_dir, 1, False)
+        replacement = self.valid_independent_replacement(run_dir)
+        before = {
+            path: path.read_bytes()
+            for path in (
+                run_dir / "article.md",
+                run_dir / "publication-order.md",
+                run_dir / "sources/media-ledger.json",
+                run_dir / "status.json",
+            )
+        }
+
+        with self.assertRaisesRegex(ValueError, "reserved disclosure"):
+            replace_rejected_media(
+                run_dir,
+                1,
+                replacement,
+                long_article() + "\n\n" + PUBLIC_DISCLOSURE,
+                ["新封面图", "独立原创配图"],
+            )
+
+        for path, content in before.items():
+            self.assertEqual(path.read_bytes(), content, path)
 
     def test_replacement_transition_failure_rolls_back_all_artifacts_and_state(self):
         run_dir = self.prepared_review_run()

@@ -29,6 +29,23 @@ REQUIRED_FIELDS = {
 ATTRIBUTION_MODES = {"public", "anonymous_allowed", "required"}
 OPERATIONS = {"translation", "crop", "layout"}
 DECISION_SCHEMA = "lofter-media-authorization/v1"
+DECISION_FIELDS = {
+    "decision_schema",
+    "allowed",
+    "asset_id",
+    "requested_usage",
+    "commercial_intent",
+    "requested_operations",
+    "source_url",
+    "author_handle",
+    "attribution_mode",
+    "platform",
+    "original_asset_id",
+    "image_provenance",
+    "smoke_only",
+    "publication_forbidden",
+    "publication_warning",
+}
 
 
 def _non_empty_string(value, field: str) -> str:
@@ -79,6 +96,19 @@ def _string_list(value, field: str) -> list[str]:
     return value
 
 
+def _validate_evidence_file(evidence_path: Path, evidence_value: str) -> None:
+    if evidence_path.is_symlink() or not evidence_path.is_file():
+        raise ValueError(f"authorization evidence does not exist: {evidence_value}")
+    try:
+        content = evidence_path.read_bytes()
+    except OSError as error:
+        raise ValueError(
+            f"authorization evidence cannot be read: {evidence_value}"
+        ) from error
+    if not content:
+        raise ValueError(f"authorization evidence must not be empty: {evidence_value}")
+
+
 def _validate_record(
     record: dict, evidence_root: Path, *, allow_example_only: bool = False
 ) -> None:
@@ -95,8 +125,7 @@ def _validate_record(
     evidence_path = Path(evidence_value)
     if not evidence_path.is_absolute():
         evidence_path = evidence_root / evidence_path
-    if not evidence_path.is_file():
-        raise ValueError(f"authorization evidence does not exist: {evidence_value}")
+    _validate_evidence_file(evidence_path, evidence_value)
 
     for field in BOOLEAN_FIELDS:
         if type(record[field]) is not bool:

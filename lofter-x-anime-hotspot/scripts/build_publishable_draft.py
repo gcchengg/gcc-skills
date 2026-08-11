@@ -12,7 +12,14 @@ from pathlib import Path, PurePosixPath, PureWindowsPath
 from urllib.parse import urlparse
 
 from run_state import load_state, transition, write_json_atomic
-from validate_authorizations import validate_authorization, validate_ledger
+from validate_authorizations import (
+    ATTRIBUTION_MODES,
+    DECISION_FIELDS,
+    DECISION_SCHEMA,
+    OPERATIONS,
+    validate_authorization,
+    validate_ledger,
+)
 
 
 PUBLIC_DISCLOSURE = "图像经授权使用，含AI辅助创作｜#AI辅助#"
@@ -40,6 +47,7 @@ _FILES = {
     "titles_and_tags": "titles-and-tags.md",
     "publication_order": "publication-order.md",
     "media_ledger": "sources/media-ledger.json",
+    "draft_intent": "sources/draft-intent.json",
 }
 
 _FILE_URL = re.compile(r"file:(?://)?/", re.IGNORECASE)
@@ -237,6 +245,7 @@ def _validate_run_layout(run_dir: Path) -> Path:
         _FILES["titles_and_tags"],
         _FILES["publication_order"],
         _FILES["media_ledger"],
+        _FILES["draft_intent"],
     ):
         _validate_output_target(root, root / relative)
     return root
@@ -534,6 +543,7 @@ def _transactional_install(
     media: list[dict],
     media_sources: list[Path],
     selection: dict,
+    draft_intent: dict,
 ) -> dict:
     staging_dir = Path(tempfile.mkdtemp(prefix=".draft-stage-", dir=run_dir))
     try:
@@ -546,16 +556,19 @@ def _transactional_install(
         staged_titles = install_dir / "titles-and-tags.md"
         staged_order = install_dir / "publication-order.md"
         staged_ledger = install_dir / "media-ledger.json"
+        staged_intent = install_dir / "draft-intent.json"
         _stage_text(staged_article, article)
         _stage_text(staged_titles, titles_and_tags)
         _stage_text(staged_order, publication_order)
         write_json_atomic(staged_ledger, media)
+        write_json_atomic(staged_intent, draft_intent)
 
         install_items = [
             (staged_article, run_dir / _FILES["article"]),
             (staged_titles, run_dir / _FILES["titles_and_tags"]),
             (staged_order, run_dir / _FILES["publication_order"]),
             (staged_ledger, run_dir / _FILES["media_ledger"]),
+            (staged_intent, run_dir / _FILES["draft_intent"]),
         ]
         for index, (record, source_path) in enumerate(
             zip(media, media_sources, strict=True), start=1
@@ -613,15 +626,32 @@ def load_media_ledger(run_dir: Path) -> list[dict]:
             raise ValueError("media ledger display_id values must be sequential integers")
         if media.get("kind") not in _MEDIA_KINDS:
             raise ValueError("invalid media kind")
+        persisted_fields = _allowed_media_fields(media["kind"]) | {
+            "display_id",
+            "review_status",
+            "authorization",
+            "replaces_media_id",
+        }
+        unknown = sorted(set(media) - persisted_fields)
+        if unknown:
+            raise ValueError(f"unknown persisted media field: {unknown[0]}")
         if media.get("role") not in _MEDIA_ROLES:
             raise ValueError("media role must be cover or body")
-        if media.get("review_status") not in {
+        review_status = media.get("review_status")
+        if review_status not in {
             "pending",
             "authorized",
             "rejected",
             "independent",
         }:
             raise ValueError("invalid media review_status")
+        expected_statuses = (
+            {"pending", "authorized", "rejected"}
+            if media["kind"] in {"x_original", "ai_adaptation"}
+            else {"independent"}
+        )
+        if review_status not in expected_statuses:
+            raise ValueError("review_status does not match media kind")
         local_path, _ = _resolve_local_media(run_dir, media.get("local_path"))
         expected_parent = (
             "original-media"
@@ -644,16 +674,94 @@ def load_media_ledger(run_dir: Path) -> list[dict]:
         if media["kind"] in {"ai_adaptation", "generated_original"}:
             _validate_generation_lineage(media.get("generation_lineage"), media["kind"])
         authorization = media.get("authorization")
-        if media["review_status"] == "authorized":
-            if type(authorization) is not dict or authorization.get("allowed") is not True:
-                raise ValueError("authorized media requires a validated authorization")
-            if "authorization_ledger_path" in authorization:
-                raise ValueError("media ledger leaks an operational authorization path")
+        if review_status == "authorized":
+            _validate_persisted_authorization(media, authorization)
         elif authorization is not None:
             raise ValueError("only authorized media may store authorization")
     if sum(media["role"] == "cover" for media in ledger) != 1:
         raise ValueError("media ledger must contain exactly one cover")
     return ledger
+
+
+def _validate_persisted_authorization(media: dict, authorization: object) -> None:
+    if type(authorization) is not dict:
+        raise ValueError("authorized media requires a validated authorization")
+    missing = sorted(DECISION_FIELDS - set(authorization))
+    unknown = sorted(set(authorization) - DECISION_FIELDS)
+    if missing or unknown:
+        raise ValueError("persisted authorization must use the exact decision schema")
+    requested_usage = (
+        "original" if media["kind"] == "x_original" else "ai_adaptation"
+    )
+    provenance = (
+        "authorized_original"
+        if media["kind"] == "x_original"
+        else "authorized_ai_adaptation"
+    )
+    exact_values = {
+        "decision_schema": DECISION_SCHEMA,
+        "asset_id": media["source_media_id"],
+        "requested_usage": requested_usage,
+        "source_url": media["source_url"],
+        "author_handle": media["source_author"],
+        "platform": "LOFTER",
+        "image_provenance": provenance,
+        "publication_warning": None,
+    }
+    if any(authorization[field] != expected for field, expected in exact_values.items()):
+        raise ValueError("persisted authorization does not match media provenance")
+    if (
+        authorization["allowed"] is not True
+        or authorization["smoke_only"] is not False
+        or authorization["publication_forbidden"] is not False
+    ):
+        raise ValueError("persisted authorization decision flags are invalid")
+    if type(authorization["commercial_intent"]) is not bool:
+        raise ValueError("persisted authorization commercial_intent must be a boolean")
+    operations = authorization["requested_operations"]
+    if (
+        type(operations) is not list
+        or any(type(operation) is not str or operation not in OPERATIONS for operation in operations)
+        or len(set(operations)) != len(operations)
+    ):
+        raise ValueError("persisted authorization requested_operations are invalid")
+    if (
+        type(authorization["attribution_mode"]) is not str
+        or authorization["attribution_mode"] not in ATTRIBUTION_MODES
+    ):
+        raise ValueError("persisted authorization attribution_mode is invalid")
+    original_asset_id = authorization["original_asset_id"]
+    if requested_usage == "original" and original_asset_id is not None:
+        raise ValueError("persisted authorization original_asset_id is invalid")
+    if requested_usage == "ai_adaptation" and (
+        type(original_asset_id) is not str or not original_asset_id.strip()
+    ):
+        raise ValueError("persisted authorization original_asset_id is invalid")
+    if (
+        requested_usage == "ai_adaptation"
+        and original_asset_id not in media["generation_lineage"]["source_media_ids"]
+    ):
+        raise ValueError(
+            "persisted authorization original_asset_id does not match generation lineage"
+        )
+
+
+def _load_draft_intent(run_dir: Path) -> dict[str, bool]:
+    path = run_dir / _FILES["draft_intent"]
+    try:
+        intent = json.loads(path.read_text(encoding="utf-8"))
+    except FileNotFoundError as error:
+        raise ValueError("draft intent is required") from error
+    except (OSError, json.JSONDecodeError) as error:
+        raise ValueError("draft intent must contain valid JSON") from error
+    if type(intent) is not dict or set(intent) != {
+        "authorized_media_intent",
+        "ai_assistance",
+    }:
+        raise ValueError("draft intent must use the exact private schema")
+    if any(type(value) is not bool for value in intent.values()):
+        raise ValueError("draft intent values must be booleans")
+    return intent
 
 
 def _find_media_with_index(ledger: list[dict], media_id: int) -> tuple[int, dict]:
@@ -867,6 +975,25 @@ def _validate_replacement(
     lineage = replacement.get("generation_lineage")
     if type(lineage) is not dict or lineage.get("source_media_ids") != []:
         raise ValueError("replacement must not derive from rejected source media")
+    rejected_identifiers = {
+        current[field]
+        for field in (
+            "local_path",
+            "source_url",
+            "source_media_id",
+            "x_media_id",
+            "asset_id",
+            "source_author",
+            "author_handle",
+        )
+        if type(current.get(field)) is str and current[field]
+    }
+    if any(
+        identifier in lineage_value
+        for lineage_value in _nested_strings(lineage)
+        for identifier in rejected_identifiers
+    ):
+        raise ValueError("generation lineage must not contain rejected media identifiers")
     candidate = {**replacement, "role": current["role"]}
     validated, source_path = _validate_one_media(run_dir, candidate, media_id)
     _, rejected_path = _resolve_local_media(run_dir, current["local_path"])
@@ -875,6 +1002,17 @@ def _validate_replacement(
     ).digest():
         raise ValueError("replacement must not reuse rejected media path or bytes")
     return validated, source_path
+
+
+def _nested_strings(value: object):
+    if type(value) is str:
+        yield value
+    elif type(value) is list:
+        for item in value:
+            yield from _nested_strings(item)
+    elif type(value) is dict:
+        for item in value.values():
+            yield from _nested_strings(item)
 
 
 def replace_rejected_media(
@@ -917,6 +1055,17 @@ def replace_rejected_media(
         "review_status": "independent",
         "replaces_media_id": media_id,
     }
+    intent = _load_draft_intent(run_dir)
+    has_authorized_media = any(
+        media["review_status"] == "authorized" for media in ledger
+    )
+    has_ai_assistance = intent["ai_assistance"] or any(
+        media["kind"] in {"ai_adaptation", "generated_original"}
+        for media in ledger
+    )
+    revised_article = _apply_disclosure(
+        revised_article, has_authorized_media, has_ai_assistance
+    )
     target_path = run_dir / ledger[index]["local_path"]
     _transactional_review_update(
         run_dir,
@@ -956,4 +1105,8 @@ def build_draft(run_dir: Path, payload: dict) -> dict:
         media,
         media_sources,
         selection,
+        {
+            "authorized_media_intent": authorized_intent,
+            "ai_assistance": ai_assistance,
+        },
     )
