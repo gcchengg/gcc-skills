@@ -26,6 +26,11 @@ IMAGE_PROVENANCE = {
     *INDEPENDENT_PROVENANCE,
 }
 REQUESTED_USAGE = {"original", "ai_adaptation", "independent"}
+TOPIC_FEATURE_FIELDS = {
+    "event_signal",
+    "relationship_signal",
+    "visual_signal",
+}
 CANDIDATE_FIELDS = {
     "id",
     "title",
@@ -43,6 +48,7 @@ CANDIDATE_FIELDS = {
     "requested_usage",
     "commercial_intent",
     "image_provenance",
+    "topic_features",
 }
 
 
@@ -78,6 +84,18 @@ def _iso_datetime(value, field: str) -> str:
         datetime.fromisoformat(value.replace("Z", "+00:00"))
     except ValueError as error:
         raise ValueError(f"{field} must be ISO-8601") from error
+    return value
+
+
+def _topic_features(value) -> dict:
+    if not isinstance(value, dict):
+        raise ValueError("topic_features must be an object")
+    missing = sorted(TOPIC_FEATURE_FIELDS - value.keys())
+    if missing:
+        raise ValueError("topic_features missing fields: " + ", ".join(missing))
+    for field in sorted(TOPIC_FEATURE_FIELDS):
+        if type(value[field]) is not bool:
+            raise ValueError(f"topic_features.{field} must be a boolean")
     return value
 
 
@@ -139,6 +157,7 @@ def _validate_candidate(candidate: dict, pool: dict[str, dict]) -> None:
     for index, url in enumerate(urls):
         _https_x_url(url, f"x_source_urls[{index}]")
     _iso_datetime(candidate["observed_at"], "observed_at")
+    _topic_features(candidate["topic_features"])
 
     ip_id = candidate["ip_id"]
     if ip_id not in pool:

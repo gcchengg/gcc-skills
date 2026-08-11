@@ -43,6 +43,11 @@ def candidate(candidate_id="topic-1", **overrides):
         "requested_usage": "independent",
         "commercial_intent": False,
         "image_provenance": "human_original",
+        "topic_features": {
+            "event_signal": True,
+            "relationship_signal": False,
+            "visual_signal": False,
+        },
     }
     value.update(overrides)
     return value
@@ -181,6 +186,34 @@ class ScoreCandidatesTest(unittest.TestCase):
             (candidate(ip_slot=[]), "ip_slot must be a string"),
             (candidate(requested_usage={}), "requested_usage must be a string"),
             (candidate(image_provenance=[]), "image_provenance must be a string"),
+        )
+        for value, message in cases:
+            with self.subTest(message=message):
+                with self.assertRaisesRegex(ValueError, message):
+                    score_candidate(value, IP_POOL)
+
+    def test_requires_strict_topic_feature_signals(self):
+        cases = (
+            (candidate(topic_features=None), "topic_features must be an object"),
+            (
+                candidate(
+                    topic_features={
+                        "event_signal": True,
+                        "relationship_signal": False,
+                    }
+                ),
+                "topic_features missing fields: visual_signal",
+            ),
+            (
+                candidate(
+                    topic_features={
+                        "event_signal": 1,
+                        "relationship_signal": False,
+                        "visual_signal": False,
+                    }
+                ),
+                "topic_features.event_signal must be a boolean",
+            ),
         )
         for value, message in cases:
             with self.subTest(message=message):

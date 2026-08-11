@@ -20,6 +20,7 @@
     "requested_usage": "ai_adaptation",
     "commercial_intent": false,
     "image_provenance": "authorized_ai_adaptation",
+    "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false},
     "sustainability_note": "纪念日后仍有连续二创，预计短期保持热度"
   },
   {
@@ -43,6 +44,7 @@
     "requested_usage": "original",
     "commercial_intent": false,
     "image_provenance": "authorized_original",
+    "topic_features": {"event_signal": false, "relationship_signal": true, "visual_signal": false},
     "sustainability_note": "长线角色讨论稳定，适合继续观察"
   },
   {
@@ -66,6 +68,7 @@
     "requested_usage": "independent",
     "commercial_intent": false,
     "image_provenance": "ai_assisted_original",
+    "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false},
     "sustainability_note": "剧情节点可形成系列回顾，具备延续性"
   },
   {
@@ -89,6 +92,7 @@
     "requested_usage": "independent",
     "commercial_intent": false,
     "image_provenance": "human_original",
+    "topic_features": {"event_signal": false, "relationship_signal": false, "visual_signal": true},
     "sustainability_note": "新角色后续仍有官方活动，热度可能延续"
   },
   {
@@ -112,6 +116,7 @@
     "requested_usage": "independent",
     "commercial_intent": false,
     "image_provenance": "ai_generated_original",
+    "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false},
     "sustainability_note": "版本周期内仍有内容释放，预计持续两周"
   },
   {
@@ -135,6 +140,7 @@
     "requested_usage": "independent",
     "commercial_intent": false,
     "image_provenance": "human_original",
+    "topic_features": {"event_signal": false, "relationship_signal": false, "visual_signal": true},
     "sustainability_note": "需要一周数据确认是否从实验位升级"
   },
   {
@@ -158,6 +164,7 @@
     "requested_usage": "independent",
     "commercial_intent": false,
     "image_provenance": "human_original",
+    "topic_features": {"event_signal": false, "relationship_signal": true, "visual_signal": false},
     "sustainability_note": "与主热点不同，可独立跟踪"
   }
 ]

@@ -60,6 +60,11 @@ def raw_candidate(candidate_id="topic-1", **overrides):
         "requested_usage": "independent",
         "commercial_intent": False,
         "image_provenance": "human_original",
+        "topic_features": {
+            "event_signal": True,
+            "relationship_signal": False,
+            "visual_signal": False,
+        },
     }
     value.update(overrides)
     return value
