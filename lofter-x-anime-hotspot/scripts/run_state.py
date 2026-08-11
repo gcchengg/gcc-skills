@@ -65,6 +65,7 @@ _OPTIONAL_FIELDS = {
     "approved_manifest_digest",
     "platform_preview",
     "window_expansion",
+    "media_rights_attestation",
 }
 _STATE_FIELDS = set(_FIELD_TYPES) | _OPTIONAL_FIELDS
 _UPDATE_FIELDS = {
@@ -79,6 +80,7 @@ _UPDATE_FIELDS = {
     "approved_manifest_digest",
     "platform_preview",
     "window_expansion",
+    "media_rights_attestation",
 }
 
 
@@ -186,6 +188,16 @@ def _validate_state(value: object) -> dict:
         raise ValueError("window expansion requires auditable 24-to-72 evidence")
     if "window_expansion" in value:
         _validate_json_object(value["window_expansion"], "window_expansion")
+    if "media_rights_attestation" in value:
+        attestation = value["media_rights_attestation"]
+        if (
+            type(attestation) is not dict
+            or set(attestation) != {"attested", "attested_at"}
+            or attestation.get("attested") is not True
+            or type(attestation.get("attested_at")) is not str
+            or not attestation["attested_at"].strip()
+        ):
+            raise ValueError("media_rights_attestation is invalid")
     forbidden = _find_forbidden_data(value)
     if forbidden:
         raise ValueError(f"forbidden secret field: {forbidden}")

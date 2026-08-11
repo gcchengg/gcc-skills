@@ -1,4 +1,3 @@
-import hashlib
 import json
 import sys
 import tempfile
@@ -68,11 +67,14 @@ def valid_research_payload() -> dict:
         ],
         "windows": {
             "24": {
+                "checked_at": "2026-08-11T14:00:00+08:00",
                 "x_sources": [
-                    "https://x.com/example/status/1",
-                    "https://x.com/example/status/2",
+                    {"source_url": "https://x.com/example/status/1", "published_at": "2026-08-11T12:00:00+08:00", "evidence_summary": "X来源一"},
+                    {"source_url": "https://x.com/example/status/2", "published_at": "2026-08-11T13:00:00+08:00", "evidence_summary": "X来源二"},
                 ],
-                "lofter_sources": ["https://example.lofter.com/post/1"],
+                "lofter_sources": [
+                    {"source_url": "https://example.lofter.com/post/1", "published_at": "2026-08-11T13:30:00+08:00", "evidence_summary": "LOFTER来源"}
+                ],
                 "candidates": [candidate],
             }
         },
@@ -144,18 +146,16 @@ def revised_captions() -> list[str]:
 
 
 def valid_platform_preview(manifest: dict) -> dict:
-    canonical = json.dumps(
-        manifest,
-        ensure_ascii=False,
-        sort_keys=True,
-        separators=(",", ":"),
-    ).encode("utf-8")
     return {
         "captured_at": "2026-08-11T15:55:00+08:00",
         "title": manifest["title"],
-        "media_count": len(manifest["media"]),
+        "article": manifest["article"],
+        "tags": manifest["tags"],
+        "media": [
+            {"display_id": item["display_id"], "sha256": item["sha256"], "size": item["size"]}
+            for item in manifest["media"]
+        ],
         "submit_button_visible": True,
-        "manifest_sha256": hashlib.sha256(canonical).hexdigest(),
     }
 
 

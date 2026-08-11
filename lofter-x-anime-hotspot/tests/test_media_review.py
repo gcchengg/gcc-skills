@@ -17,6 +17,7 @@ from build_publishable_draft import (
     build_draft,
     record_media_review,
     replace_rejected_media,
+    revise_draft,
 )
 from run_state import create_run, load_state, write_json_atomic
 from validate_authorizations import validate_authorization, validate_ledger
@@ -740,6 +741,99 @@ class MediaReviewTest(unittest.TestCase):
         self.assertFalse(replacement_target.exists())
         self.assertEqual(load_state(run_dir)["state"], "revisions_required")
         self.assertFalse(tuple(run_dir.glob(".review-stage-*")))
+
+    def test_revision_updates_only_allowlisted_local_copy_and_preserves_media(self):
+        run_dir = self.prepared_review_run("local-revision")
+        before_ledger = self.load_media_ledger(run_dir)
+        before_media = {
+            item["local_path"]: (run_dir / item["local_path"]).read_bytes()
+            for item in before_ledger
+        }
+
+        state = revise_draft(
+            run_dir,
+            {
+                "titles": ["排除CP后的标题一", "排除CP后的标题二", "排除CP后的标题三"],
+                "tags": [f"单角色标签{number}" for number in range(1, 9)],
+                "article": long_article("这是排除CP关系并调整为角色单人分析后的正文。"),
+                "captions": {1: "单角色封面图"},
+                "content_mode": "trend_analysis",
+            },
+        )
+
+        self.assertEqual(state["state"], "authorization_review")
+        self.assertIn("排除CP后的标题一", (run_dir / "titles-and-tags.md").read_text(encoding="utf-8"))
+        self.assertEqual(self.load_media_ledger(run_dir)[1], before_ledger[1])
+        self.assertEqual(self.load_media_ledger(run_dir)[0]["caption"], "单角色封面图")
+        for path, content in before_media.items():
+            self.assertEqual((run_dir / path).read_bytes(), content)
+        self.assertIn("排除CP关系", (run_dir / "article.md").read_text(encoding="utf-8"))
+        self.assertIn("排除CP后的标题一", (run_dir / "preview.html").read_text(encoding="utf-8"))
+
+    def test_revision_preserves_unspecified_fields_and_resets_gate_state(self):
+        run_dir = self.prepared_review_run("revision-reset")
+        before_article = (run_dir / "article.md").read_bytes()
+        before_ledger = (run_dir / "sources/media-ledger.json").read_bytes()
+        state = load_state(run_dir)
+        state["confirmations"] = {"fill": True, "submit": True}
+        state["approved_manifest_digest"] = "a" * 64
+        state["platform_preview"] = {"stale": "preview"}
+        state["publication"] = {"stale": "result"}
+        write_json_atomic(run_dir / "status.json", state)
+
+        result = revise_draft(
+            run_dir,
+            {"titles": ["新标题一", "新标题二", "新标题三"]},
+        )
+
+        self.assertEqual((run_dir / "article.md").read_bytes(), before_article)
+        self.assertEqual((run_dir / "sources/media-ledger.json").read_bytes(), before_ledger)
+        self.assertEqual(result["confirmations"], {"fill": False, "submit": False})
+        self.assertEqual(result["publication"], {})
+        self.assertNotIn("approved_manifest_digest", result)
+        self.assertNotIn("platform_preview", result)
+
+    def test_revision_is_strict_and_transactional(self):
+        run_dir = self.prepared_review_run("revision-rollback")
+        tracked = {
+            path: path.read_bytes()
+            for path in (
+                run_dir / "article.md",
+                run_dir / "titles-and-tags.md",
+                run_dir / "publication-order.md",
+                run_dir / "sources/media-ledger.json",
+                run_dir / "hotspot-analysis.json",
+                run_dir / "status.json",
+            )
+        }
+        with self.assertRaisesRegex(ValueError, "unknown revision field"):
+            revise_draft(run_dir, {"media": []})
+
+        with mock.patch.object(
+            draft_module,
+            "_install_staged_file",
+            side_effect=OSError("injected revision install failure"),
+        ):
+            with self.assertRaisesRegex(OSError, "injected revision install failure"):
+                revise_draft(
+                    run_dir,
+                    {"titles": ["失败标题一", "失败标题二", "失败标题三"]},
+                )
+
+        for path, content in tracked.items():
+            self.assertEqual(path.read_bytes(), content, path)
+
+    def test_revision_is_available_while_rejected_media_still_needs_replacement(self):
+        run_dir = self.prepared_review_run("revision-required-copy")
+        record_media_review(run_dir, 1, False)
+
+        result = revise_draft(
+            run_dir,
+            {"titles": ["修订标题一", "修订标题二", "修订标题三"]},
+        )
+
+        self.assertEqual(result["state"], "revisions_required")
+        self.assertEqual(self.load_media_ledger(run_dir)[0]["review_status"], "rejected")
 
 
 if __name__ == "__main__":

@@ -40,6 +40,7 @@ _OPTIONAL_X_MEDIA_FIELDS = {"source_post_id", "fetched_at", "sha256"}
 _GENERATION_FIELDS = {"generation_lineage"}
 _LINEAGE_FIELDS = {"generator", "prompt", "source_media_ids"}
 _CONTENT_MODES = {"trend_analysis", "fanfic", "visual_curation"}
+_REVISION_FIELDS = {"article", "titles", "tags", "captions", "content_mode"}
 _OUTPUT_PARENTS = ("sources", "original-media", "generated-media")
 _FILES = {
     "hotspot_analysis": "hotspot-analysis.json",
@@ -121,6 +122,32 @@ def _validate_article(text: object) -> str:
     if not 800 <= count <= 1500:
         raise ValueError("article must contain 800–1500 non-whitespace characters")
     return article
+
+
+def validate_persisted_public_copy(
+    article: object, titles: object, tags: object
+) -> tuple[str, list[str], list[str]]:
+    """Revalidate persisted public copy, allowing one builder-owned disclosure."""
+    if type(article) is not str:
+        raise ValueError("article must be a non-empty string")
+    if article.count(PUBLIC_DISCLOSURE) > 1:
+        raise ValueError("article contains an invalid disclosure")
+    if PUBLIC_DISCLOSURE in article:
+        suffix = f"\n\n{PUBLIC_DISCLOSURE}"
+        if not article.rstrip().endswith(suffix):
+            raise ValueError("article contains an invalid disclosure")
+        base = article.rstrip()[: -len(suffix)]
+        _validate_rendered_string(base, "article", allow_newlines=True)
+    else:
+        _validate_rendered_string(article, "article", allow_newlines=True)
+    count = len("".join(article.strip().split()))
+    if not 800 <= count <= 1500:
+        raise ValueError("article must contain 800–1500 non-whitespace characters")
+    return (
+        article.strip(),
+        _validate_unique_strings(titles, "titles", 3, 3),
+        _validate_unique_strings(tags, "tags", 8, 12),
+    )
 
 
 def _validate_unique_strings(
@@ -420,6 +447,38 @@ def _load_selection(run_dir: Path) -> dict:
     if selection["content_mode"] not in _CONTENT_MODES:
         raise ValueError("selection result has an invalid content mode")
     _non_empty_string(selection["selection_reason"], "selection_reason")
+    if selection["time_window_hours"] == 72:
+        expansion = selection.get("window_expansion")
+        counts = expansion.get("counts") if type(expansion) is dict else None
+        if (
+            type(expansion) is not dict
+            or set(expansion)
+            != {
+                "from",
+                "to",
+                "insufficient_24h",
+                "checked_at",
+                "reason",
+                "counts",
+            }
+            or expansion.get("from") != 24
+            or expansion.get("to") != 72
+            or expansion.get("insufficient_24h") is not True
+            or type(expansion.get("checked_at")) is not str
+            or not expansion["checked_at"].strip()
+            or type(expansion.get("reason")) is not str
+            or not expansion["reason"].strip()
+            or type(counts) is not dict
+            or set(counts)
+            != {
+                "x_sources",
+                "lofter_sources",
+                "candidates",
+                "eligible_candidates",
+            }
+            or any(type(value) is not int or value < 0 for value in counts.values())
+        ):
+            raise ValueError("selection window expansion evidence is invalid")
     return selection
 
 
@@ -592,12 +651,7 @@ def _transactional_install(
                 "media_review": counts,
             }
             if selection["time_window_hours"] == 72:
-                updates["window_expansion"] = {
-                    "from": 24,
-                    "to": 72,
-                    "insufficient_24h": True,
-                    "reason": "The 24-hour research window lacked sufficient cross-platform evidence.",
-                }
+                updates["window_expansion"] = selection["window_expansion"]
             transition(run_dir, "researching", "draft_ready", **updates)
             return transition(run_dir, "draft_ready", "authorization_review")
 
@@ -1110,3 +1164,121 @@ def build_draft(run_dir: Path, payload: dict) -> dict:
             "ai_assistance": ai_assistance,
         },
     )
+
+
+def _read_titles_and_tags(run_dir: Path) -> tuple[list[str], list[str]]:
+    try:
+        content = (run_dir / _FILES["titles_and_tags"]).read_text(encoding="utf-8")
+    except OSError as error:
+        raise ValueError("titles and tags are required") from error
+    match = re.fullmatch(
+        r"# 备选标题\n\n1\. ([^\n]+)\n2\. ([^\n]+)\n3\. ([^\n]+)\n\n# 标签\n\n([^\n]+)\n?",
+        content,
+    )
+    if match is None:
+        raise ValueError("titles and tags must use the publishable draft format")
+    titles = [match.group(index).strip() for index in range(1, 4)]
+    tags = re.findall(r"#([^#\n]+)#", match.group(4))
+    return titles, tags
+
+
+def _revised_captions(value: object, ledger: list[dict]) -> list[str]:
+    captions = [item["caption"] for item in ledger]
+    if type(value) is list:
+        if len(value) != len(ledger):
+            raise ValueError("captions must contain one value per media record")
+        return [
+            _validate_rendered_string(item, "media caption", delimiters="|｜")
+            for item in value
+        ]
+    if type(value) is not dict or not value:
+        raise ValueError("captions must be a non-empty display-id mapping or full list")
+    for display_id, caption in value.items():
+        if type(display_id) is not int or not 1 <= display_id <= len(ledger):
+            raise ValueError("caption display_id is invalid")
+        captions[display_id - 1] = _validate_rendered_string(
+            caption, "media caption", delimiters="|｜"
+        )
+    return captions
+
+
+def revise_draft(run_dir: Path, changes: dict) -> dict:
+    """Apply an allowlisted local-copy revision as one rollback-safe transaction."""
+    run_dir = _validate_run_layout(Path(run_dir))
+    state = load_state(run_dir)
+    if state["state"] not in {"authorization_review", "revisions_required"}:
+        raise ValueError("run is not in a revisable state")
+    if type(changes) is not dict or not changes:
+        raise ValueError("revision changes must be a non-empty object")
+    unknown = sorted(set(changes) - _REVISION_FIELDS)
+    if unknown:
+        raise ValueError(f"unknown revision field: {unknown[0]}")
+
+    article = (run_dir / _FILES["article"]).read_text(encoding="utf-8").rstrip("\n")
+    titles, tags = _read_titles_and_tags(run_dir)
+    ledger = load_media_ledger(run_dir)
+    selection = _load_selection(run_dir)
+    if "article" in changes:
+        base_article = _validate_article(changes["article"])
+        intent = _load_draft_intent(run_dir)
+        article = _apply_disclosure(
+            base_article,
+            intent["authorized_media_intent"],
+            intent["ai_assistance"],
+        )
+    if "titles" in changes:
+        titles = _validate_unique_strings(changes["titles"], "titles", 3, 3)
+    if "tags" in changes:
+        tags = _validate_unique_strings(changes["tags"], "tags", 8, 12)
+    if "captions" in changes:
+        captions = _revised_captions(changes["captions"], ledger)
+        for item, caption in zip(ledger, captions, strict=True):
+            item["caption"] = caption
+    if "content_mode" in changes:
+        if changes["content_mode"] not in _CONTENT_MODES:
+            raise ValueError("revision content_mode is invalid")
+        selection["content_mode"] = changes["content_mode"]
+
+    titles_text = _render_titles_and_tags(titles, tags)
+    order_text = _render_publication_order(ledger)
+    from render_preview import build_preview_html
+
+    preview_state = {**state, "content_mode": selection["content_mode"]}
+    preview_html = build_preview_html(
+        preview_state, selection, article, titles_text, order_text, ledger
+    )
+    staged_values = [
+        (run_dir / _FILES["article"], (article.rstrip() + "\n").encode("utf-8")),
+        (run_dir / _FILES["titles_and_tags"], (titles_text + "\n").encode("utf-8")),
+        (run_dir / _FILES["publication_order"], (order_text + "\n").encode("utf-8")),
+        (run_dir / _FILES["media_ledger"], _serialized_json(ledger)),
+        (run_dir / _FILES["hotspot_analysis"], _serialized_json(selection)),
+        (run_dir / "preview.html", preview_html.encode("utf-8")),
+    ]
+    staging_dir = Path(tempfile.mkdtemp(prefix=".revision-stage-", dir=run_dir))
+    try:
+        install_dir = staging_dir / "install"
+        backup_dir = staging_dir / "backup"
+        install_dir.mkdir()
+        backup_dir.mkdir()
+        install_items = []
+        for index, (target, content) in enumerate(staged_values, start=1):
+            staged = install_dir / f"artifact-{index:02d}"
+            staged.write_bytes(content)
+            install_items.append((staged, target))
+
+        def update_state():
+            revised = load_state(run_dir)
+            revised["content_mode"] = selection["content_mode"]
+            revised["confirmations"] = {"fill": False, "submit": False}
+            revised["publication"] = {}
+            revised.pop("approved_manifest_digest", None)
+            revised.pop("platform_preview", None)
+            revised.pop("media_rights_attestation", None)
+            revised["updated_at"] = datetime.now(timezone.utc).isoformat()
+            write_json_atomic(run_dir / "status.json", revised)
+            return load_state(run_dir)
+
+        return _commit_install_set(run_dir, install_items, backup_dir, update_state)
+    finally:
+        shutil.rmtree(staging_dir, ignore_errors=True)

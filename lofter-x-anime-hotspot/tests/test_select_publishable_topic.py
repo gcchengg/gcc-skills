@@ -49,17 +49,36 @@ def candidate(candidate_id="high-score", **overrides):
 
 
 def fixture_payload():
+    def source(url, published_at, summary):
+        return {
+            "source_url": url,
+            "published_at": published_at,
+            "evidence_summary": summary,
+        }
+
     return {
         "ip_pool": IP_POOL,
         "windows": {
             "24": {
-                "x_sources": ["https://x.com/example/status/1", "https://x.com/example/status/2"],
-                "lofter_sources": ["https://example.lofter.com/post/1"],
+                "checked_at": "2026-08-11T08:00:00+08:00",
+                "x_sources": [
+                    source("https://x.com/example/status/1", "2026-08-10T12:00:00+08:00", "X讨论增长"),
+                    source("https://x.com/example/status/2", "2026-08-10T13:00:00+08:00", "第二个独立X来源"),
+                ],
+                "lofter_sources": [
+                    source("https://example.lofter.com/post/1", "2026-08-10T14:00:00+08:00", "LOFTER标签讨论")
+                ],
                 "candidates": [candidate()],
             },
             "72": {
-                "x_sources": ["https://x.com/example/status/3", "https://x.com/example/status/4"],
-                "lofter_sources": ["https://example.lofter.com/post/2"],
+                "checked_at": "2026-08-11T08:00:00+08:00",
+                "x_sources": [
+                    source("https://x.com/example/status/3", "2026-08-09T12:00:00+08:00", "72小时X来源一"),
+                    source("https://x.com/example/status/4", "2026-08-09T13:00:00+08:00", "72小时X来源二"),
+                ],
+                "lofter_sources": [
+                    source("https://example.lofter.com/post/2", "2026-08-09T14:00:00+08:00", "72小时LOFTER来源")
+                ],
                 "candidates": [candidate("fallback")],
             },
         },
@@ -78,6 +97,53 @@ class SelectPublishableTopicTest(unittest.TestCase):
         payload["windows"]["24"]["lofter_sources"] = []
         result = select_topic(payload)
         self.assertEqual(result["time_window_hours"], 72)
+        self.assertEqual(
+            result["window_expansion"],
+            {
+                "from": 24,
+                "to": 72,
+                "insufficient_24h": True,
+                "checked_at": "2026-08-11T08:00:00+08:00",
+                "reason": "insufficient_cross_platform_sources",
+                "counts": {
+                    "x_sources": 2,
+                    "lofter_sources": 0,
+                    "candidates": 1,
+                    "eligible_candidates": 1,
+                },
+            },
+        )
+
+    def test_72_hour_selection_requires_a_checked_24_hour_window(self):
+        payload = fixture_payload()
+        del payload["windows"]["24"]
+
+        with self.assertRaisesRegex(ValueError, "24-hour window is required"):
+            select_topic(payload)
+
+    def test_24_hour_selection_does_not_require_a_72_hour_window(self):
+        payload = fixture_payload()
+        del payload["windows"]["72"]
+
+        self.assertEqual(select_topic(payload)["time_window_hours"], 24)
+
+    def test_sources_require_strict_distinct_platform_urls_and_in_window_timestamps(self):
+        mutations = {
+            "string-source": lambda window: window["x_sources"].__setitem__(0, "https://x.com/example/status/1"),
+            "unknown-field": lambda window: window["x_sources"][0].update({"sha256": "0" * 64}),
+            "wrong-x-host": lambda window: window["x_sources"][0].update({"source_url": "https://example.com/post/1"}),
+            "wrong-lofter-host": lambda window: window["lofter_sources"][0].update({"source_url": "https://example.com/post/1"}),
+            "duplicate": lambda window: window["x_sources"].__setitem__(1, dict(window["x_sources"][0])),
+            "outside-window": lambda window: window["x_sources"][0].update({"published_at": "2026-08-09T07:59:59+08:00"}),
+            "future": lambda window: window["x_sources"][0].update({"published_at": "2026-08-11T08:00:01+08:00"}),
+            "naive-time": lambda window: window["x_sources"][0].update({"published_at": "2026-08-10T12:00:00"}),
+        }
+        for name, mutate in mutations.items():
+            with self.subTest(name=name):
+                payload = fixture_payload()
+                mutate(payload["windows"]["24"])
+                with self.assertRaisesRegex(ValueError, "source|timestamp|URL"):
+                    select_topic(payload)
 
     def test_refuses_to_draft_without_two_platforms_and_eligible_topic(self):
         payload = fixture_payload()

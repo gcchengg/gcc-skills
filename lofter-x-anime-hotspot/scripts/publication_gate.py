@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
-from build_publishable_draft import load_media_ledger
+from build_publishable_draft import load_media_ledger, validate_persisted_public_copy
 from run_state import load_state, transition, write_json_atomic
 
 
@@ -15,13 +15,15 @@ FIRST_CONFIRMATION = "确认发布"
 SECOND_CONFIRMATION = "确认最终提交"
 PUBLISHABLE_MEDIA = {"authorized", "independent"}
 
-_PREVIEW_FIELDS = {
+_OBSERVED_PREVIEW_FIELDS = {
     "captured_at",
     "title",
-    "media_count",
+    "article",
+    "tags",
+    "media",
     "submit_button_visible",
-    "manifest_sha256",
 }
+_PERSISTED_PREVIEW_FIELDS = _OBSERVED_PREVIEW_FIELDS | {"observed_manifest_sha256"}
 _PUBLIC_MEDIA_FIELDS = ("display_id", "role", "local_path", "review_status")
 _SUCCESS_RESULT_FIELDS = {"lofter_url", "published_at"}
 _UNCERTAIN_RESULT = {
@@ -61,7 +63,7 @@ def _parse_iso_datetime(value: object, field: str) -> datetime:
     return parsed
 
 
-def _titles_and_tags(run_dir: Path) -> tuple[str, list[str]]:
+def _titles_and_tags(run_dir: Path) -> tuple[list[str], list[str]]:
     try:
         content = (run_dir / "titles-and-tags.md").read_text(encoding="utf-8")
     except OSError as error:
@@ -74,18 +76,18 @@ def _titles_and_tags(run_dir: Path) -> tuple[str, list[str]]:
     )
     if match is None:
         raise ValueError("titles and tags must use the publishable draft format")
-    title = match.group(1).strip()
+    titles = [match.group(index).strip() for index in range(1, 4)]
     tag_line = match.group(4)
     tags = re.findall(r"#([^#\n]+)#", tag_line)
     if (
-        not title
+        any(not title for title in titles)
         or not 8 <= len(tags) <= 12
         or len(set(tags)) != len(tags)
         or any(not tag.strip() for tag in tags)
         or tag_line != " ".join(f"#{tag}#" for tag in tags)
     ):
         raise ValueError("titles and tags must use the publishable draft format")
-    return title, tags
+    return titles, tags
 
 
 def _publishable_ledger(run_dir: Path) -> list[dict]:
@@ -103,15 +105,31 @@ def _build_public_manifest(run_dir: Path, ledger: list[dict] | None = None) -> d
         article = (run_dir / "article.md").read_text(encoding="utf-8")
     except OSError as error:
         raise ValueError("article is required") from error
-    title, tags = _titles_and_tags(run_dir)
+    titles, tags = _titles_and_tags(run_dir)
+    article, titles, tags = validate_persisted_public_copy(article, titles, tags)
+    public_media = []
+    for item in ledger:
+        path = run_dir / item["local_path"]
+        if path.is_symlink() or not path.is_file():
+            raise ValueError("canonical media must be a regular run-local file")
+        try:
+            content = path.read_bytes()
+        except OSError as error:
+            raise ValueError("canonical media cannot be read") from error
+        if not content:
+            raise ValueError("canonical media must not be empty")
+        public_media.append(
+            {
+                **{field: item[field] for field in _PUBLIC_MEDIA_FIELDS},
+                "sha256": hashlib.sha256(content).hexdigest(),
+                "size": len(content),
+            }
+        )
     return {
-        "title": title,
+        "title": titles[0],
         "article": article,
         "tags": tags,
-        "media": [
-            {field: item[field] for field in _PUBLIC_MEDIA_FIELDS}
-            for item in ledger
-        ],
+        "media": public_media,
     }
 
 
@@ -151,12 +169,14 @@ def approve_form_fill(run_dir: Path, confirmation: str) -> dict:
         raise ValueError("run is not awaiting authorization review")
     ledger = _publishable_ledger(run_dir)
     manifest_digest = _manifest_digest(_build_public_manifest(run_dir, ledger))
+    attested_at = datetime.now(timezone.utc).isoformat()
     return transition(
         run_dir,
         "authorization_review",
         "approved",
         confirmations={"fill": True, "submit": False},
         approved_manifest_digest=manifest_digest,
+        media_rights_attestation={"attested": True, "attested_at": attested_at},
     )
 
 
@@ -164,38 +184,67 @@ def build_upload_manifest(run_dir: Path) -> dict:
     """Build a public-only, run-local upload manifest after first approval."""
     run_dir = Path(run_dir)
     state = load_state(run_dir)
-    if state["state"] != "approved" or state["confirmations"]["fill"] is not True:
+    if (
+        state["state"] != "approved"
+        or state["confirmations"]["fill"] is not True
+        or state.get("media_rights_attestation", {}).get("attested") is not True
+    ):
         raise ValueError("first publication confirmation is missing")
     manifest, _ = _require_unchanged_manifest(run_dir, state)
     return manifest
 
 
-def _validate_platform_preview(run_dir: Path, value: object) -> dict:
-    if type(value) is not dict or set(value) != _PREVIEW_FIELDS:
+def _platform_projection(manifest: dict) -> dict:
+    return {
+        "title": manifest["title"],
+        "article": manifest["article"],
+        "tags": manifest["tags"],
+        "media": [
+            {
+                "display_id": item["display_id"],
+                "sha256": item["sha256"],
+                "size": item["size"],
+            }
+            for item in manifest["media"]
+        ],
+    }
+
+
+def _validate_platform_preview(
+    run_dir: Path, value: object, *, persisted: bool = False
+) -> dict:
+    expected_fields = _PERSISTED_PREVIEW_FIELDS if persisted else _OBSERVED_PREVIEW_FIELDS
+    if type(value) is not dict or set(value) != expected_fields:
         raise ValueError("final platform preview is incomplete")
+    supplied_digest = value.get("observed_manifest_sha256") if persisted else None
+    observed = {field: value[field] for field in _OBSERVED_PREVIEW_FIELDS}
     try:
-        _parse_iso_datetime(value["captured_at"], "captured_at")
+        _parse_iso_datetime(observed["captured_at"], "captured_at")
     except ValueError as error:
         raise ValueError("final platform preview is incomplete") from error
     state = load_state(run_dir)
-    manifest, current_digest = _require_unchanged_manifest(run_dir, state)
-    valid = (
-        type(value["title"]) is str
-        and value["title"] == manifest["title"]
-        and type(value["media_count"]) is int
-        and value["media_count"] == len(manifest["media"])
-        and value["submit_button_visible"] is True
-    )
-    if not valid:
+    manifest, _ = _require_unchanged_manifest(run_dir, state)
+    projection = _platform_projection(manifest)
+    if observed["submit_button_visible"] is not True:
         raise ValueError("final platform preview is incomplete")
-    if (
-        type(value["manifest_sha256"]) is not str
-        or value["manifest_sha256"] != current_digest
-    ):
+    candidate = {
+        "title": observed["title"],
+        "article": observed["article"],
+        "tags": observed["tags"],
+        "media": observed["media"],
+    }
+    try:
+        observed_digest = _manifest_digest(candidate)
+        expected_digest = _manifest_digest(projection)
+    except (TypeError, ValueError) as error:
+        raise ValueError("final platform preview is incomplete") from error
+    if observed_digest != expected_digest:
         raise ValueError(
-            "final platform preview manifest digest does not match approved upload manifest"
+            "final platform preview contents do not match approved upload manifest"
         )
-    return value.copy()
+    if persisted and supplied_digest != observed_digest:
+        raise ValueError("final platform preview observed digest is invalid")
+    return {**observed, "observed_manifest_sha256": observed_digest}
 
 
 def mark_form_filled(run_dir: Path, platform_preview: dict) -> dict:
@@ -218,7 +267,7 @@ def approve_final_submit(run_dir: Path, confirmation: str) -> dict:
     state = load_state(run_dir)
     if state["state"] != "publishing" or not state.get("platform_preview"):
         raise ValueError("final platform preview is required")
-    _validate_platform_preview(run_dir, state["platform_preview"])
+    _validate_platform_preview(run_dir, state["platform_preview"], persisted=True)
     if state["publication"].get("result") == "uncertain":
         raise ValueError(
             "read-only LOFTER profile/drafts check is required before further action"
@@ -276,6 +325,50 @@ def record_publication(run_dir: Path, result: dict) -> dict:
         write_json_atomic(run_dir / "status.json", state)
         return load_state(run_dir)
     publication = _validate_publication_result(result)
+    return transition(
+        run_dir,
+        "publishing",
+        "published",
+        publication=publication,
+    )
+
+
+def resolve_uncertain_publication(run_dir: Path, evidence: dict) -> dict:
+    """Archive a previously uncertain submit after read-only LOFTER verification."""
+    run_dir = Path(run_dir)
+    state = load_state(run_dir)
+    if (
+        state["state"] != "publishing"
+        or state["confirmations"]["submit"] is not True
+        or state["publication"] != _UNCERTAIN_RESULT
+    ):
+        raise ValueError("run is not awaiting uncertain publication resolution")
+    required = {
+        "lofter_url",
+        "observed_title",
+        "observed_manifest_sha256",
+        "checked_at",
+    }
+    if type(evidence) is not dict or set(evidence) != required:
+        raise ValueError("uncertain publication evidence is incomplete")
+    url = _validate_lofter_url(evidence["lofter_url"])
+    checked_at = evidence["checked_at"]
+    _parse_iso_datetime(checked_at, "checked_at")
+    manifest, current_digest = _require_unchanged_manifest(run_dir, state)
+    if evidence["observed_title"] != manifest["title"]:
+        raise ValueError("observed LOFTER title does not match approved manifest")
+    if (
+        type(evidence["observed_manifest_sha256"]) is not str
+        or evidence["observed_manifest_sha256"] != current_digest
+    ):
+        raise ValueError("observed LOFTER manifest digest does not match approval")
+    publication = {
+        "lofter_url": url,
+        "published_at": checked_at,
+        "resolution": "read_only_verification",
+        "manifest_sha256": current_digest,
+        "submit_retried": False,
+    }
     return transition(
         run_dir,
         "publishing",

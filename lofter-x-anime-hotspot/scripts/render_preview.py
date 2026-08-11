@@ -1,9 +1,11 @@
 """Render a local-only HTML preview of a completed LOFTER draft."""
 
+import json
 from html import escape
 from pathlib import Path
+from urllib.parse import urlparse
 
-from build_publishable_draft import load_media_ledger
+from build_publishable_draft import _validate_rendered_string, load_media_ledger
 from run_state import load_state
 
 
@@ -78,6 +80,92 @@ def _media_figure(item: dict) -> str:
     )
 
 
+def _public_url(value: object, platform: str) -> str:
+    if type(value) is not str:
+        raise ValueError("public source URL is invalid")
+    parsed = urlparse(value)
+    host = (parsed.hostname or "").casefold()
+    valid_host = (
+        host == "x.com"
+        if platform == "x"
+        else host == "lofter.com" or host.endswith(".lofter.com")
+    )
+    if (
+        parsed.scheme != "https"
+        or not valid_host
+        or not parsed.path.strip("/")
+        or parsed.username is not None
+        or parsed.password is not None
+    ):
+        raise ValueError("public source URL is invalid")
+    return value
+
+
+def _public_sources(value: object, platform: str) -> list[dict]:
+    if value is None:
+        return []
+    if type(value) is not list:
+        raise ValueError("public sources must be a list")
+    result = []
+    for source in value:
+        if type(source) is not dict:
+            raise ValueError("public source must be an object")
+        public = {"source_url": _public_url(source.get("source_url"), platform)}
+        summary = source.get("evidence_summary")
+        if summary is not None:
+            public["evidence_summary"] = _validate_rendered_string(
+                summary, "evidence summary", allow_newlines=True
+            )
+        result.append(public)
+    return result
+
+
+def _public_analysis(state: dict, analysis: dict) -> dict:
+    if type(analysis) is not dict:
+        raise ValueError("hotspot analysis must be an object")
+    candidate = analysis.get("candidate")
+    candidate_title = candidate.get("title") if type(candidate) is dict else state["topic"]
+    result = {
+        "topic": _validate_rendered_string(candidate_title, "topic"),
+        "selection_reason": _validate_rendered_string(
+            analysis.get("selection_reason"), "selection_reason", allow_newlines=True
+        ),
+        "time_window_hours": analysis.get("time_window_hours"),
+        "content_mode": analysis.get("content_mode"),
+        "x_sources": _public_sources(analysis.get("x_sources"), "x"),
+        "lofter_sources": _public_sources(analysis.get("lofter_sources"), "lofter"),
+    }
+    if type(result["time_window_hours"]) is not int or result["time_window_hours"] not in {24, 72}:
+        raise ValueError("hotspot analysis has an invalid time window")
+    if result["content_mode"] not in {"trend_analysis", "fanfic", "visual_curation"}:
+        raise ValueError("hotspot analysis has an invalid content mode")
+    return result
+
+
+def build_preview_html(
+    state: dict,
+    analysis: dict,
+    article: str,
+    titles_tags: str,
+    order: str,
+    ledger: list[dict],
+) -> str:
+    """Build preview bytes from explicit validated artifacts."""
+    public_analysis = json.dumps(
+        _public_analysis(state, analysis), ensure_ascii=False, indent=2, allow_nan=False
+    )
+    media_html = "\n".join(_media_figure(item) for item in ledger)
+    return _TEMPLATE.format(
+        status=escape(_public_status(state["state"])),
+        topic=escape(state["topic"]),
+        analysis=escape(public_analysis),
+        media=media_html,
+        article=_markdown_paragraphs(article),
+        titles_tags=escape(titles_tags),
+        order=escape(order),
+    )
+
+
 def render_preview(run_dir: Path) -> Path:
     """Write and return a self-contained, local-only draft preview."""
     run_dir = Path(run_dir)
@@ -86,18 +174,21 @@ def render_preview(run_dir: Path) -> Path:
         raise ValueError("preview requires a completed draft")
 
     article = (run_dir / "article.md").read_text(encoding="utf-8")
-    analysis = (run_dir / "hotspot-analysis.json").read_text(encoding="utf-8")
+    try:
+        analysis = json.loads(
+            (run_dir / "hotspot-analysis.json").read_text(encoding="utf-8")
+        )
+    except (OSError, json.JSONDecodeError) as error:
+        raise ValueError("hotspot analysis must contain valid JSON") from error
     titles_tags = (run_dir / "titles-and-tags.md").read_text(encoding="utf-8")
     order = (run_dir / "publication-order.md").read_text(encoding="utf-8")
-    media_html = "\n".join(_media_figure(item) for item in load_media_ledger(run_dir))
-    body = _TEMPLATE.format(
-        status=escape(_public_status(state["state"])),
-        topic=escape(state["topic"]),
-        analysis=escape(analysis),
-        media=media_html,
-        article=_markdown_paragraphs(article),
-        titles_tags=escape(titles_tags),
-        order=escape(order),
+    body = build_preview_html(
+        state,
+        analysis,
+        article,
+        titles_tags,
+        order,
+        load_media_ledger(run_dir),
     )
     target = run_dir / "preview.html"
     if target.is_symlink():

@@ -5,7 +5,7 @@ description: Use when the user requests a current X/LOFTER anime, game, characte
 
 # LOFTER × X Anime Hotspot
 
-Use Chinese with the user. Produce exactly one publish-ready illustrated draft per new run. Keep research evidence, authorization records, checksums, and local evidence paths private.
+Use Chinese with the user. Produce exactly one publish-ready illustrated draft per new run. Keep research evidence, authorization records, checksums, and local evidence paths private. Do not claim Codex independently verified authorization: the user's exact `确认发布` is the publication authorization attestation for that run.
 
 ## Load the applicable protocol
 
@@ -32,15 +32,15 @@ Create a run under `runs/` with `run_state.create_run`. Research 24 hours first 
 
 ### Resume or revise
 
-Load the named run, or the latest unfinished run when unambiguous, with `run_state.load_state`. Do not reselect the topic. Apply only requested changes. For rejected media, call `build_publishable_draft.record_media_review`, generate an independent replacement under the research protocol, then call `build_publishable_draft.replace_rejected_media`. Re-render the preview after every accepted revision, show its absolute path, and stop for review.
+Load the named run, or the latest unfinished run when unambiguous, with `run_state.load_state`. Do not reselect the topic. Apply article/title/tag/caption changes with `build_publishable_draft.revise_draft`; it preserves unspecified fields, resets publication confirmations, and refreshes the preview transactionally. For rejected media, call `build_publishable_draft.record_media_review`, generate an independent replacement under the research protocol, then call `build_publishable_draft.replace_rejected_media`. Show the refreshed preview path and stop for review.
 
 ### First confirmation: `确认发布`
 
-Accept only the exact phrase bound to the reviewed run. Revalidate every media item, call `publication_gate.approve_form_fill`, then `publication_gate.build_upload_manifest`. Persist that exact public object as run-local `upload-manifest.json` with `run_state.write_json_atomic`. Follow `references/browser-publishing.md` to fill LOFTER from that manifest and persist the final platform preview with `publication_gate.mark_form_filled`. Stop before submit and request `确认最终提交`.
+Accept only the exact phrase bound to the reviewed run. It attests that every run media item is authorized for LOFTER; reject pending/rejected and known smoke-only/publication-forbidden media. Call `publication_gate.approve_form_fill`, then `publication_gate.build_upload_manifest`. Persist that exact public object as run-local `upload-manifest.json` with `run_state.write_json_atomic`. Follow `references/browser-publishing.md` to fill LOFTER from that manifest and persist the observed title, body, tags, and ordered media identities with `publication_gate.mark_form_filled`. Stop before submit and request `确认最终提交`.
 
 ### Final confirmation: `确认最终提交`
 
-Reload the same run and final platform preview. Immediately call `publication_gate.approve_final_submit`, click submit once, verify the result, and call `publication_gate.record_publication`. Preserve the published run as the archive. Never click the final submit button without this fresh exact confirmation.
+Reload the same run and final platform preview. Immediately call `publication_gate.approve_final_submit`, click submit once, verify the result, and call `publication_gate.record_publication`. Preserve the published run as the archive. Never click the final submit button without this fresh exact confirmation. For an uncertain result, perform read-only verification and call `resolve_uncertain_publication`; never submit again.
 
 ## Deterministic boundaries
 

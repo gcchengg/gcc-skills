@@ -1,4 +1,5 @@
 import sys
+import json
 import tempfile
 import unittest
 from datetime import datetime
@@ -83,6 +84,33 @@ class RenderPreviewTest(unittest.TestCase):
 
     def test_preview_is_local_and_does_not_leak_evidence(self):
         run_dir = prepared_review_run(Path(self.temporary.name))
+        analysis_path = run_dir / "hotspot-analysis.json"
+        analysis = json.loads(analysis_path.read_text(encoding="utf-8"))
+        analysis.update(
+            {
+                "x_sources": [
+                    {
+                        "source_url": "https://x.com/artist/status/123",
+                        "published_at": "2026-08-11T07:00:00+08:00",
+                        "evidence_summary": "公开可复核的X讨论摘要",
+                        "local_path": "/private/tmp/raw.webp",
+                        "sha256": "a" * 64,
+                    }
+                ],
+                "lofter_sources": [
+                    {
+                        "source_url": "https://example.lofter.com/post/abc",
+                        "published_at": "2026-08-11T06:00:00+08:00",
+                        "evidence_summary": "公开可复核的LOFTER讨论摘要",
+                    }
+                ],
+                "private_source_ledger": {
+                    "evidence_path": "/Users/reviewer/evidence.txt",
+                    "authorization_binding": {"ledger_sha256": "b" * 64},
+                },
+            }
+        )
+        analysis_path.write_text(json.dumps(analysis, ensure_ascii=False), encoding="utf-8")
 
         html = render_preview(run_dir).read_text(encoding="utf-8")
 
@@ -90,3 +118,9 @@ class RenderPreviewTest(unittest.TestCase):
         self.assertNotIn("<form", html.lower())
         self.assertNotIn("evidence_path", html)
         self.assertNotIn("authorization-evidence", html)
+        self.assertNotIn("private_source_ledger", html)
+        self.assertNotIn("local_path", html)
+        self.assertNotIn("sha256", html)
+        self.assertNotIn("/Users/", html)
+        self.assertIn("https://x.com/artist/status/123", html)
+        self.assertIn("公开可复核的LOFTER讨论摘要", html)

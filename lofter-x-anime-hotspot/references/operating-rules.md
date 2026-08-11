@@ -31,7 +31,7 @@ Otherwise route the topic to trend analysis.
 
 ## Publish-ready review
 
-Verify score ≥70, accurate labels, exact authorization binding, source-ledger checksums, disclosure, one interaction question, no unsupported facts, and no hard paywall. Require one cover and no more than two body images. Candidate X media remains `pending` and local-only until review; independent generated media uses empty source lineage.
+Verify score ≥70, accurate labels, source-ledger checksums, disclosure, one interaction question, no unsupported facts, and no hard paywall. Require one cover and no more than two body images. Candidate X media remains `pending` and local-only until review; independent generated media uses empty source lineage. The exact first confirmation is the user's run-specific attestation that all publishable media is authorized for LOFTER; Codex must not describe it as independent legal or evidence verification.
 
 The first exact confirmation authorizes form filling only. The second exact confirmation authorizes one final-submit click only. Stop on login, CAPTCHA, risk control, page ambiguity, changed content, or uncertain publication result; never retry submit automatically.
 

@@ -637,6 +637,23 @@ class BuildPublishableDraftTest(unittest.TestCase):
 
     def test_72_hour_selection_persists_compatible_expansion_evidence(self):
         run_dir = self.create_run_with_local_media("expanded-topic", hours=72)
+        selection = json.loads(
+            (run_dir / "hotspot-analysis.json").read_text(encoding="utf-8")
+        )
+        selection["window_expansion"] = {
+            "from": 24,
+            "to": 72,
+            "insufficient_24h": True,
+            "checked_at": "2026-08-11T08:00:00+08:00",
+            "reason": "insufficient_cross_platform_sources",
+            "counts": {
+                "x_sources": 2,
+                "lofter_sources": 0,
+                "candidates": 1,
+                "eligible_candidates": 1,
+            },
+        }
+        write_json_atomic(run_dir / "hotspot-analysis.json", selection)
         result = build_draft(run_dir, valid_payload())
         self.assertEqual(result["state"], "authorization_review")
         self.assertEqual(result["time_window_hours"], 72)
@@ -646,9 +663,22 @@ class BuildPublishableDraftTest(unittest.TestCase):
                 "from": 24,
                 "to": 72,
                 "insufficient_24h": True,
-                "reason": "The 24-hour research window lacked sufficient cross-platform evidence.",
+                "checked_at": "2026-08-11T08:00:00+08:00",
+                "reason": "insufficient_cross_platform_sources",
+                "counts": {
+                    "x_sources": 2,
+                    "lofter_sources": 0,
+                    "candidates": 1,
+                    "eligible_candidates": 1,
+                },
             },
         )
+
+    def test_72_hour_selection_rejects_missing_selector_expansion_evidence(self):
+        run_dir = self.create_run_with_local_media("missing-expansion", hours=72)
+
+        with self.assertRaisesRegex(ValueError, "window expansion"):
+            build_draft(run_dir, valid_payload())
 
     def test_rejects_untrusted_unknown_fields(self):
         run_dir = self.create_run_with_local_media()

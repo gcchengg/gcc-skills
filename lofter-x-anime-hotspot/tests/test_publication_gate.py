@@ -18,6 +18,7 @@ from publication_gate import (
     mark_form_filled,
     pause_before_submit,
     record_publication,
+    resolve_uncertain_publication,
 )
 from run_state import create_run, load_state, write_json_atomic
 from validate_authorizations import validate_authorization, validate_ledger
@@ -165,15 +166,24 @@ class PublicationGateTest(unittest.TestCase):
         self, slug: str = "filled-form", *, two_independent: bool = False
     ) -> Path:
         run_dir = self.fully_reviewed_run(slug, two_independent=two_independent)
-        state = approve_form_fill(run_dir, "确认发布")
+        approve_form_fill(run_dir, "确认发布")
+        manifest = build_upload_manifest(run_dir)
         mark_form_filled(
             run_dir,
             {
                 "captured_at": "2026-08-11T15:55:00+08:00",
-                "title": "备选标题一",
-                "media_count": 2 if two_independent else 1,
+                "title": manifest["title"],
+                "article": manifest["article"],
+                "tags": manifest["tags"],
+                "media": [
+                    {
+                        "display_id": item["display_id"],
+                        "sha256": item["sha256"],
+                        "size": item["size"],
+                    }
+                    for item in manifest["media"]
+                ],
                 "submit_button_visible": True,
-                "manifest_sha256": state["approved_manifest_digest"],
             },
         )
         return run_dir
@@ -185,6 +195,14 @@ class PublicationGateTest(unittest.TestCase):
             approve_form_fill(run_dir, "确认发布")
 
         self.assertEqual(load_state(run_dir)["state"], "authorization_review")
+
+    def test_first_confirmation_persists_user_authorization_attestation(self):
+        run_dir = self.fully_reviewed_run("attestation", include_authorized=True)
+
+        state = approve_form_fill(run_dir, "确认发布")
+
+        self.assertEqual(state["media_rights_attestation"]["attested"], True)
+        self.assertIn("attested_at", state["media_rights_attestation"])
 
     def test_wrong_or_reused_confirmation_cannot_advance(self):
         run_dir = self.fully_reviewed_run()
@@ -214,7 +232,7 @@ class PublicationGateTest(unittest.TestCase):
         )
         self.assertTrue(
             all(
-                set(item) == {"display_id", "role", "local_path", "review_status"}
+                set(item) == {"display_id", "role", "local_path", "review_status", "sha256", "size"}
                 for item in manifest["media"]
             )
         )
@@ -234,13 +252,26 @@ class PublicationGateTest(unittest.TestCase):
 
     def test_form_preview_is_typed_and_must_match_upload_contents(self):
         run_dir = self.fully_reviewed_run()
-        state = approve_form_fill(run_dir, "确认发布")
-        digest = state["approved_manifest_digest"]
+        approve_form_fill(run_dir, "确认发布")
+        manifest = build_upload_manifest(run_dir)
+        valid = {
+            "captured_at": "2026-08-11T15:55:00+08:00",
+            "title": manifest["title"],
+            "article": manifest["article"],
+            "tags": manifest["tags"],
+            "media": [
+                {"display_id": item["display_id"], "sha256": item["sha256"], "size": item["size"]}
+                for item in manifest["media"]
+            ],
+            "submit_button_visible": True,
+        }
         invalid_previews = (
-            {"captured_at": "bad", "title": "备选标题一", "media_count": 1, "submit_button_visible": True, "manifest_sha256": digest},
-            {"captured_at": "2026-08-11T15:55:00+08:00", "title": "错误标题", "media_count": 1, "submit_button_visible": True, "manifest_sha256": digest},
-            {"captured_at": "2026-08-11T15:55:00+08:00", "title": "备选标题一", "media_count": True, "submit_button_visible": True, "manifest_sha256": digest},
-            {"captured_at": "2026-08-11T15:55:00+08:00", "title": "备选标题一", "media_count": 1, "submit_button_visible": False, "manifest_sha256": digest},
+            {**valid, "captured_at": "bad"},
+            {**valid, "title": "错误标题"},
+            {**valid, "article": "错误正文"},
+            {**valid, "tags": [*manifest["tags"][:-1], "错误标签"]},
+            {**valid, "media": [{**valid["media"][0], "sha256": "0" * 64}]},
+            {**valid, "submit_button_visible": False},
         )
 
         for preview in invalid_previews:
@@ -250,23 +281,47 @@ class PublicationGateTest(unittest.TestCase):
 
         self.assertEqual(load_state(run_dir)["state"], "approved")
 
-    def test_forged_preview_manifest_digest_is_rejected(self):
+    def test_caller_supplied_preview_manifest_digest_is_rejected(self):
         run_dir = self.fully_reviewed_run("forged-preview-digest")
         approve_form_fill(run_dir, "确认发布")
+        manifest = build_upload_manifest(run_dir)
 
-        with self.assertRaisesRegex(ValueError, "manifest digest"):
+        with self.assertRaisesRegex(ValueError, "final platform preview"):
             mark_form_filled(
                 run_dir,
                 {
                     "captured_at": "2026-08-11T15:55:00+08:00",
-                    "title": "备选标题一",
-                    "media_count": 1,
+                    "title": manifest["title"],
+                    "article": manifest["article"],
+                    "tags": manifest["tags"],
+                    "media": [
+                        {"display_id": item["display_id"], "sha256": item["sha256"], "size": item["size"]}
+                        for item in manifest["media"]
+                    ],
                     "submit_button_visible": True,
                     "manifest_sha256": "0" * 64,
                 },
             )
 
         self.assertEqual(load_state(run_dir)["state"], "approved")
+
+    def test_media_bytes_are_bound_to_approval_and_final_submit(self):
+        run_dir = self.fully_reviewed_run("byte-bound")
+        approve_form_fill(run_dir, "确认发布")
+        approved = load_state(run_dir)["approved_manifest_digest"]
+        manifest = build_upload_manifest(run_dir)
+        media_path = run_dir / manifest["media"][0]["local_path"]
+        media_path.write_bytes(b"same path replacement")
+
+        with self.assertRaisesRegex(ValueError, "upload manifest changed"):
+            build_upload_manifest(run_dir)
+        self.assertEqual(load_state(run_dir)["approved_manifest_digest"], approved)
+
+        run_dir = self.filled_form_run("byte-bound-final")
+        ledger = json.loads((run_dir / "sources/media-ledger.json").read_text(encoding="utf-8"))
+        (run_dir / ledger[0]["local_path"]).write_bytes(b"changed after platform preview")
+        with self.assertRaisesRegex(ValueError, "upload manifest changed"):
+            approve_final_submit(run_dir, "确认最终提交")
 
     def test_article_mutation_after_preview_fails_final_digest_check(self):
         run_dir = self.filled_form_run("mutated-article")
@@ -387,6 +442,59 @@ class PublicationGateTest(unittest.TestCase):
                     "published_at": "2026-08-11T16:00:00+08:00",
                 },
             )
+
+    def test_uncertain_publication_can_only_be_resolved_by_matching_read_only_evidence(self):
+        run_dir = self.filled_form_run("uncertain-resolution")
+        approve_final_submit(run_dir, "确认最终提交")
+        record_publication(run_dir, {"result": "uncertain"})
+        approved = load_state(run_dir)["approved_manifest_digest"]
+
+        state = resolve_uncertain_publication(
+            run_dir,
+            {
+                "lofter_url": "https://example.lofter.com/post/verified",
+                "observed_title": "备选标题一",
+                "observed_manifest_sha256": approved,
+                "checked_at": "2026-08-11T16:05:00+08:00",
+            },
+        )
+
+        self.assertEqual(state["state"], "published")
+        self.assertEqual(state["publication"]["resolution"], "read_only_verification")
+        self.assertFalse(state["publication"]["submit_retried"])
+        with self.assertRaisesRegex(ValueError, "uncertain"):
+            resolve_uncertain_publication(
+                run_dir,
+                {
+                    "lofter_url": "https://example.lofter.com/post/verified",
+                    "observed_title": "备选标题一",
+                    "observed_manifest_sha256": approved,
+                    "checked_at": "2026-08-11T16:06:00+08:00",
+                },
+            )
+
+    def test_uncertain_resolution_rejects_mismatched_observation_without_state_change(self):
+        for field, value in (
+            ("lofter_url", "https://example.com/post/no"),
+            ("observed_title", "错误标题"),
+            ("observed_manifest_sha256", "0" * 64),
+            ("checked_at", "2026-08-11T16:05:00"),
+        ):
+            with self.subTest(field=field):
+                run_dir = self.filled_form_run(f"uncertain-mismatch-{field}")
+                approve_final_submit(run_dir, "确认最终提交")
+                record_publication(run_dir, {"result": "uncertain"})
+                before = load_state(run_dir)
+                evidence = {
+                    "lofter_url": "https://example.lofter.com/post/verified",
+                    "observed_title": "备选标题一",
+                    "observed_manifest_sha256": before["approved_manifest_digest"],
+                    "checked_at": "2026-08-11T16:05:00+08:00",
+                }
+                evidence[field] = value
+                with self.assertRaises(ValueError):
+                    resolve_uncertain_publication(run_dir, evidence)
+                self.assertEqual(load_state(run_dir), before)
 
 
 if __name__ == "__main__":
