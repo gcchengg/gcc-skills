@@ -160,6 +160,7 @@ git commit -m "feat: add resumable LOFTER run state"
 - Create: `lofter-x-anime-hotspot/tests/test_select_publishable_topic.py`
 - Create: `lofter-x-anime-hotspot/templates/run-input.example.json`
 - Modify: `lofter-x-anime-hotspot/templates/candidates.example.json`
+- Modify: `lofter-x-anime-hotspot/templates/packet-inputs.example.json`
 - Modify: `lofter-x-anime-hotspot/tests/test_score_candidates.py`
 
 **Interfaces:**
@@ -255,7 +256,7 @@ def select_topic(payload: dict) -> dict:
     raise ValueError("no publishable topic in 24-hour or 72-hour window")
 ```
 
-Extend candidate validation in `score_candidates.py` to require a `topic_features` object with the three strict booleans. Update existing candidate fixtures and templates with values that preserve their current ranking and media semantics.
+Extend candidate validation in `score_candidates.py` to require a `topic_features` object with the three strict booleans. Update existing candidate fixtures, `candidates.example.json`, and every embedded candidate in `packet-inputs.example.json` with values that preserve their current ranking and media semantics.
 
 - [ ] **Step 4: Add the complete non-authorizing input example and run tests**
 
@@ -277,7 +278,7 @@ Expected: all scoring and selection tests PASS with unchanged eligible ordering.
 - [ ] **Step 5: Commit Task 2**
 
 ```bash
-git add lofter-x-anime-hotspot/scripts/score_candidates.py lofter-x-anime-hotspot/scripts/select_publishable_topic.py lofter-x-anime-hotspot/templates/candidates.example.json lofter-x-anime-hotspot/templates/run-input.example.json lofter-x-anime-hotspot/tests/test_score_candidates.py lofter-x-anime-hotspot/tests/test_select_publishable_topic.py
+git add lofter-x-anime-hotspot/scripts/score_candidates.py lofter-x-anime-hotspot/scripts/select_publishable_topic.py lofter-x-anime-hotspot/templates/candidates.example.json lofter-x-anime-hotspot/templates/packet-inputs.example.json lofter-x-anime-hotspot/templates/run-input.example.json lofter-x-anime-hotspot/tests/test_score_candidates.py lofter-x-anime-hotspot/tests/test_select_publishable_topic.py
 git commit -m "feat: select one publishable hotspot"
 ```
 
