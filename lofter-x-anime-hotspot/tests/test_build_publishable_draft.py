@@ -299,6 +299,28 @@ class BuildPublishableDraftTest(unittest.TestCase):
                     build_draft(run_dir, payload)
                 self.assertEqual(load_state(run_dir)["state"], "researching")
 
+    def test_http_context_never_exempts_private_path_markers(self):
+        cases = (
+            "来源：https://x.com/artist/status/1—证据：/Users/reviewer/evidence.png",
+            "来源：https://x.com/artist/status/1…证据：/home/reviewer/evidence.png",
+            "来源：https://x.com/artist/status/1, evidence: /private/evidence.txt",
+            "来源：https://x.com/artist/status/1; evidence: /tmp/evidence.txt",
+            "来源：【https://x.com/artist/status/1】证据：/Users/reviewer/evidence.png",
+            "来源：https://x.com/artist/private/evidence.png",
+            "来源：https://x.com/artist/Users/reviewer/evidence.png",
+            "来源：https://x.com/redirect/file:///private/evidence.txt",
+            "来源：https://x.com/redirect/C:\\Users\\reviewer\\evidence.txt",
+            "来源：https://x.com/redirect/\\\\server\\share\\evidence.txt",
+        )
+        for index, caption in enumerate(cases):
+            with self.subTest(caption=caption):
+                run_dir = self.create_run_with_local_media(f"http-private-{index}")
+                payload = valid_payload()
+                payload["media"][1]["caption"] = caption
+                with self.assertRaisesRegex(ValueError, "private path"):
+                    build_draft(run_dir, payload)
+                self.assertEqual(load_state(run_dir)["state"], "researching")
+
     def test_legitimate_x_url_fields_and_url_only_caption_remain_allowed(self):
         run_dir = self.create_run_with_local_media("valid-x-url")
         payload = valid_payload()

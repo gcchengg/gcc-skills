@@ -39,10 +39,6 @@ _FILES = {
     "media_ledger": "sources/media-ledger.json",
 }
 
-_HTTP_URL = re.compile(
-    r"https?://[^\s<>\"'`，。；：！？、（）【】《》「」『』“”‘’]+",
-    re.IGNORECASE,
-)
 _FILE_URL = re.compile(r"file:(?://)?/", re.IGNORECASE)
 _POSIX_PRIVATE_PATH = re.compile(
     r"/(?:Users|home|private|tmp|var(?:/folders)?|etc|root|usr|opt|Applications|Volumes)(?:/|$)",
@@ -51,8 +47,8 @@ _POSIX_PRIVATE_PATH = re.compile(
 _GENERIC_POSIX_PATH = re.compile(
     r"(?<![\w:/])/(?!/)(?:[A-Za-z0-9._-]+/)+[^\s/`|]+"
 )
-_WINDOWS_DRIVE_PATH = re.compile(r"[A-Za-z]:[\\/]")
-_WINDOWS_UNC_PATH = re.compile(r"(?:\\\\|//)[^\\/\s]+[\\/][^\\/\s]+")
+_WINDOWS_DRIVE_PATH = re.compile(r"(?<![A-Za-z0-9])[A-Za-z]:[\\/]")
+_WINDOWS_UNC_PATH = re.compile(r"(?<!:)(?:\\\\|//)[^\\/\s]+[\\/][^\\/\s]+")
 _SAFE_SUFFIX = re.compile(r"\.[a-z0-9]{1,10}")
 
 
@@ -75,13 +71,12 @@ def _contains_forbidden_control(text: str, *, allow_newlines: bool) -> bool:
 
 
 def _contains_private_path(text: str) -> bool:
-    without_web_urls = _HTTP_URL.sub("", text)
     return bool(
-        _FILE_URL.search(without_web_urls)
-        or _POSIX_PRIVATE_PATH.search(without_web_urls)
-        or _GENERIC_POSIX_PATH.search(without_web_urls)
-        or _WINDOWS_DRIVE_PATH.search(without_web_urls)
-        or _WINDOWS_UNC_PATH.search(without_web_urls)
+        _FILE_URL.search(text)
+        or _POSIX_PRIVATE_PATH.search(text)
+        or _GENERIC_POSIX_PATH.search(text)
+        or _WINDOWS_DRIVE_PATH.search(text)
+        or _WINDOWS_UNC_PATH.search(text)
     )
 
 
