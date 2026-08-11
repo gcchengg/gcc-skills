@@ -2,6 +2,7 @@
 
 import json
 import re
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -26,7 +27,18 @@ ALLOWED = {
     "published": set(),
 }
 
-FORBIDDEN_KEYS = {"password", "cookie", "cookies", "verification_code", "captcha"}
+FORBIDDEN_KEYS = {
+    "password",
+    "cookie",
+    "cookies",
+    "verification_code",
+    "captcha",
+    "session",
+    "session_id",
+    "auth_token",
+    "access_token",
+    "refresh_token",
+}
 
 _FIELD_TYPES = {
     "run_id": str,
@@ -59,12 +71,26 @@ def _timestamp(now: datetime | None = None) -> datetime:
 
 
 def write_json_atomic(path: Path, payload: object) -> None:
+    """Replace JSON atomically with a unique temporary file in the same directory.
+
+    This prevents partial-file reads; it deliberately does not provide a
+    multi-writer lock.
+    """
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
-    temporary.replace(path)
+    with tempfile.NamedTemporaryFile(
+        mode="w",
+        encoding="utf-8",
+        dir=path.parent,
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+        delete=False,
+    ) as file:
+        temporary = Path(file.name)
+        file.write(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
+    try:
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def create_run(
@@ -86,7 +112,7 @@ def create_run(
         "run_id": run_id,
         "state": "researching",
         "topic": topic,
-        "time_window_hours": 72,
+        "time_window_hours": 24,
         "content_mode": "human_review",
         "files": {},
         "media_review": {},
@@ -100,12 +126,7 @@ def create_run(
     return run_dir, state
 
 
-def load_state(run_dir: Path) -> dict:
-    try:
-        value = json.loads((Path(run_dir) / "status.json").read_text(encoding="utf-8"))
-    except json.JSONDecodeError as error:
-        raise ValueError("invalid state JSON") from error
-
+def _validate_state(value: object) -> dict:
     if type(value) is not dict:
         raise ValueError("state must be an object")
     for field, expected_type in _FIELD_TYPES.items():
@@ -118,18 +139,79 @@ def load_state(run_dir: Path) -> dict:
     return value
 
 
+def load_state(run_dir: Path) -> dict:
+    try:
+        value = json.loads((Path(run_dir) / "status.json").read_text(encoding="utf-8"))
+    except json.JSONDecodeError as error:
+        raise ValueError("invalid state JSON") from error
+    return _validate_state(value)
+
+
+def _contains_forbidden_key(value: object) -> str | None:
+    if type(value) is dict:
+        for key, nested in value.items():
+            if type(key) is str and key.lower() in FORBIDDEN_KEYS:
+                return key.lower()
+            forbidden = _contains_forbidden_key(nested)
+            if forbidden:
+                return forbidden
+    elif type(value) is list:
+        for nested in value:
+            forbidden = _contains_forbidden_key(nested)
+            if forbidden:
+                return forbidden
+    return None
+
+
+def _merged_state(state: dict, updates: dict) -> dict:
+    merged = state.copy()
+    for key, value in updates.items():
+        if type(value) is dict and type(merged.get(key)) is dict:
+            merged[key] = {**merged[key], **value}
+        else:
+            merged[key] = value
+    return merged
+
+
+def _complete_object(value: object) -> bool:
+    return type(value) is dict and bool(value) and all(
+        type(key) is str and key and item not in (None, "")
+        for key, item in value.items()
+    )
+
+
+def _validate_transition_prerequisites(state: dict, expected: str, target: str) -> None:
+    confirmations = state["confirmations"]
+    if target == "approved" and confirmations.get("fill") is not True:
+        raise ValueError("fill confirmation is required before approval")
+    if expected == "approved" and target == "publishing":
+        if confirmations.get("fill") is not True:
+            raise ValueError("fill confirmation is required before publishing")
+        if not _complete_object(state.get("platform_preview")):
+            raise ValueError("complete platform preview is required before publishing")
+    if target == "published":
+        if confirmations.get("submit") is not True:
+            raise ValueError("submit confirmation is required before publishing")
+        if not _complete_object(state["publication"]):
+            raise ValueError("valid publication object is required before publishing")
+
+
 def transition(run_dir: Path, expected: str, target: str, **updates) -> dict:
     state = load_state(run_dir)
     if state["state"] != expected:
         raise ValueError(f"expected {expected}, found {state['state']}")
     if target not in ALLOWED[expected]:
         raise ValueError(f"illegal state transition: {expected} -> {target}")
-    lowered = {key.lower() for key in updates}
-    forbidden = sorted(lowered & FORBIDDEN_KEYS)
+    forbidden = _contains_forbidden_key(updates)
     if forbidden:
-        raise ValueError(f"forbidden secret field: {forbidden[0]}")
-    state.update(updates)
-    state["state"] = target
-    state["updated_at"] = datetime.now(timezone.utc).isoformat()
-    write_json_atomic(Path(run_dir) / "status.json", state)
-    return state
+        raise ValueError(f"forbidden secret field: {forbidden}")
+    if "run_id" in updates or "state" in updates:
+        raise ValueError("run_id and state cannot be updated by transition")
+
+    proposed = _merged_state(state, updates)
+    proposed["state"] = target
+    proposed["updated_at"] = datetime.now(timezone.utc).isoformat()
+    _validate_state(proposed)
+    _validate_transition_prerequisites(proposed, expected, target)
+    write_json_atomic(Path(run_dir) / "status.json", proposed)
+    return proposed
