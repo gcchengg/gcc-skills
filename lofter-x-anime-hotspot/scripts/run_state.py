@@ -27,17 +27,16 @@ ALLOWED = {
     "published": set(),
 }
 
-FORBIDDEN_KEYS = {
+FORBIDDEN_TOKENS = {
     "password",
     "cookie",
-    "cookies",
-    "verification_code",
+    "verificationcode",
     "captcha",
     "session",
-    "session_id",
-    "auth_token",
-    "access_token",
-    "refresh_token",
+    "authtoken",
+    "accesstoken",
+    "refreshtoken",
+    "secret",
 }
 
 _FIELD_TYPES = {
@@ -150,8 +149,10 @@ def load_state(run_dir: Path) -> dict:
 def _contains_forbidden_key(value: object) -> str | None:
     if type(value) is dict:
         for key, nested in value.items():
-            if type(key) is str and key.lower() in FORBIDDEN_KEYS:
-                return key.lower()
+            if type(key) is str:
+                normalized = "".join(char for char in key.casefold() if char.isalnum())
+                if any(token in normalized for token in FORBIDDEN_TOKENS):
+                    return normalized
             forbidden = _contains_forbidden_key(nested)
             if forbidden:
                 return forbidden
@@ -196,6 +197,28 @@ def _validate_transition_prerequisites(state: dict, expected: str, target: str) 
             raise ValueError("valid publication object is required before publishing")
 
 
+def _validate_window_expansion(state: dict, proposed: dict) -> None:
+    if proposed["time_window_hours"] == state["time_window_hours"]:
+        return
+    evidence = proposed.get("window_expansion")
+    valid_evidence = (
+        type(evidence) is dict
+        and evidence.get("from") == 24
+        and type(evidence.get("from")) is int
+        and evidence.get("to") == 72
+        and type(evidence.get("to")) is int
+        and evidence.get("insufficient_24h") is True
+        and type(evidence.get("reason")) is str
+        and bool(evidence["reason"].strip())
+    )
+    if (
+        state["time_window_hours"] != 24
+        or proposed["time_window_hours"] != 72
+        or not valid_evidence
+    ):
+        raise ValueError("window expansion requires auditable 24-to-72 evidence")
+
+
 def transition(run_dir: Path, expected: str, target: str, **updates) -> dict:
     state = load_state(run_dir)
     if state["state"] != expected:
@@ -212,6 +235,7 @@ def transition(run_dir: Path, expected: str, target: str, **updates) -> dict:
     proposed["state"] = target
     proposed["updated_at"] = datetime.now(timezone.utc).isoformat()
     _validate_state(proposed)
+    _validate_window_expansion(state, proposed)
     _validate_transition_prerequisites(proposed, expected, target)
     write_json_atomic(Path(run_dir) / "status.json", proposed)
     return proposed

@@ -53,6 +53,25 @@ class RunStateTest(unittest.TestCase):
                 )
             self.assertEqual(load_state(run_dir)["state"], "researching")
 
+    def test_state_rejects_normalized_nested_secret_key_variants(self):
+        secret_keys = (
+            "browser_session_secret",
+            "session_secret",
+            "lofter_cookie",
+            "verificationCode",
+        )
+        with tempfile.TemporaryDirectory() as value:
+            for index, key in enumerate(secret_keys):
+                run_dir, _ = create_run(Path(value), f"topic-{index}")
+                with self.assertRaisesRegex(ValueError, "forbidden secret field"):
+                    transition(
+                        run_dir,
+                        "researching",
+                        "draft_ready",
+                        files={"request": [{key: "secret"}]},
+                    )
+                self.assertEqual(load_state(run_dir)["state"], "researching")
+
     def test_transition_rejects_malformed_update_without_corrupting_state(self):
         with tempfile.TemporaryDirectory() as value:
             run_dir, before = create_run(Path(value), "topic")
@@ -72,6 +91,68 @@ class RunStateTest(unittest.TestCase):
                     run_id="forged-run",
                 )
             self.assertEqual(load_state(run_dir), before)
+
+    def test_time_window_expansion_requires_auditable_24_to_72_evidence(self):
+        with tempfile.TemporaryDirectory() as value:
+            run_dir, before = create_run(Path(value), "topic")
+            with self.assertRaisesRegex(ValueError, "window expansion"):
+                transition(
+                    run_dir,
+                    "researching",
+                    "draft_ready",
+                    time_window_hours=72,
+                )
+            self.assertEqual(load_state(run_dir), before)
+            with self.assertRaisesRegex(ValueError, "window expansion"):
+                transition(
+                    run_dir,
+                    "researching",
+                    "draft_ready",
+                    time_window_hours=72,
+                    window_expansion={
+                        "from": 24,
+                        "to": 72,
+                        "insufficient_24h": True,
+                        "reason": "",
+                    },
+                )
+            self.assertEqual(load_state(run_dir), before)
+            with self.assertRaisesRegex(ValueError, "window expansion"):
+                transition(
+                    run_dir,
+                    "researching",
+                    "draft_ready",
+                    time_window_hours=72,
+                    window_expansion={
+                        "from": 24,
+                        "to": 72,
+                        "insufficient_24h": 1,
+                        "reason": "The first window lacked enough evidence.",
+                    },
+                )
+            self.assertEqual(load_state(run_dir), before)
+            with self.assertRaisesRegex(ValueError, "window expansion"):
+                transition(
+                    run_dir,
+                    "researching",
+                    "draft_ready",
+                    time_window_hours=48,
+                )
+            self.assertEqual(load_state(run_dir), before)
+            state = transition(
+                run_dir,
+                "researching",
+                "draft_ready",
+                time_window_hours=72,
+                window_expansion={
+                    "from": 24,
+                    "to": 72,
+                    "insufficient_24h": True,
+                    "reason": "The first 24-hour window lacked enough evidence.",
+                },
+            )
+            self.assertEqual(state["time_window_hours"], 72)
+            self.assertEqual(state["window_expansion"]["from"], 24)
 
     def test_review_to_approval_requires_fill_confirmation(self):
         with tempfile.TemporaryDirectory() as value:
