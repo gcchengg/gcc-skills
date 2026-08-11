@@ -1,10 +1,11 @@
 """Private, resumable state storage for LOFTER content runs."""
 
 import json
+import math
 import re
 import tempfile
 from datetime import datetime, timezone
-from pathlib import Path
+from pathlib import Path, PurePosixPath, PureWindowsPath
 
 
 STATES = (
@@ -28,6 +29,12 @@ ALLOWED = {
 }
 
 FORBIDDEN_TOKENS = {
+    "authorization",
+    "credential",
+    "bearer",
+    "header",
+    "apikey",
+    "token",
     "password",
     "cookie",
     "verificationcode",
@@ -54,6 +61,21 @@ _FIELD_TYPES = {
     "updated_at": str,
 }
 
+_OPTIONAL_FIELDS = {"platform_preview", "window_expansion"}
+_STATE_FIELDS = set(_FIELD_TYPES) | _OPTIONAL_FIELDS
+_UPDATE_FIELDS = {
+    "topic",
+    "time_window_hours",
+    "content_mode",
+    "files",
+    "media_review",
+    "confirmations",
+    "publication",
+    "errors",
+    "platform_preview",
+    "window_expansion",
+}
+
 
 def _slugify(topic_slug: str) -> str:
     if not isinstance(topic_slug, str):
@@ -75,21 +97,24 @@ def write_json_atomic(path: Path, payload: object) -> None:
     This prevents partial-file reads; it deliberately does not provide a
     multi-writer lock.
     """
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.NamedTemporaryFile(
-        mode="w",
-        encoding="utf-8",
-        dir=path.parent,
-        prefix=f".{path.name}.",
-        suffix=".tmp",
-        delete=False,
-    ) as file:
-        temporary = Path(file.name)
-        file.write(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
+    temporary: Path | None = None
     try:
+        serialized = json.dumps(payload, ensure_ascii=False, indent=2, allow_nan=False)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as file:
+            temporary = Path(file.name)
+            file.write(serialized + "\n")
         temporary.replace(path)
     finally:
-        temporary.unlink(missing_ok=True)
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
 
 
 def create_run(
@@ -128,6 +153,9 @@ def create_run(
 def _validate_state(value: object) -> dict:
     if type(value) is not dict:
         raise ValueError("state must be an object")
+    unknown = sorted(set(value) - _STATE_FIELDS)
+    if unknown:
+        raise ValueError(f"state has unknown fields: {', '.join(unknown)}")
     for field, expected_type in _FIELD_TYPES.items():
         if field not in value:
             raise ValueError(f"state missing field: {field}")
@@ -135,6 +163,22 @@ def _validate_state(value: object) -> dict:
             raise ValueError(f"state field {field} must be {expected_type.__name__}")
     if value["state"] not in STATES:
         raise ValueError(f"unknown state: {value['state']}")
+    _validate_files(value["files"])
+    _validate_errors(value["errors"])
+    _validate_confirmations(value["confirmations"])
+    _validate_json_object(value["media_review"], "media_review")
+    _validate_json_object(value["publication"], "publication")
+    if "platform_preview" in value:
+        _validate_json_object(value["platform_preview"], "platform_preview")
+    if value["time_window_hours"] == 72 and not _valid_window_expansion(
+        value.get("window_expansion")
+    ):
+        raise ValueError("window expansion requires auditable 24-to-72 evidence")
+    if "window_expansion" in value:
+        _validate_json_object(value["window_expansion"], "window_expansion")
+    forbidden = _find_forbidden_data(value)
+    if forbidden:
+        raise ValueError(f"forbidden secret field: {forbidden}")
     return value
 
 
@@ -146,22 +190,83 @@ def load_state(run_dir: Path) -> dict:
     return _validate_state(value)
 
 
-def _contains_forbidden_key(value: object) -> str | None:
+def _find_forbidden_data(value: object) -> str | None:
     if type(value) is dict:
         for key, nested in value.items():
             if type(key) is str:
                 normalized = "".join(char for char in key.casefold() if char.isalnum())
                 if any(token in normalized for token in FORBIDDEN_TOKENS):
                     return normalized
-            forbidden = _contains_forbidden_key(nested)
+            forbidden = _find_forbidden_data(nested)
             if forbidden:
                 return forbidden
     elif type(value) is list:
         for nested in value:
-            forbidden = _contains_forbidden_key(nested)
+            forbidden = _find_forbidden_data(nested)
             if forbidden:
                 return forbidden
+    elif type(value) is str:
+        candidate = value.strip()
+        if candidate.casefold().startswith("bearer "):
+            return "bearer-value"
+        if re.fullmatch(r"[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}", candidate):
+            return "jwt-value"
     return None
+
+
+def _validate_json_value(value: object, field: str) -> None:
+    if value is None or type(value) in {bool, int, str}:
+        return
+    if type(value) is float:
+        if math.isfinite(value):
+            return
+        raise ValueError(f"{field} must contain JSON-compatible values")
+    if type(value) is list:
+        for nested in value:
+            _validate_json_value(nested, field)
+        return
+    if type(value) is dict:
+        for key, nested in value.items():
+            if type(key) is not str:
+                raise ValueError(f"{field} must contain JSON-compatible values")
+            _validate_json_value(nested, field)
+        return
+    raise ValueError(f"{field} must contain JSON-compatible values")
+
+
+def _validate_json_object(value: object, field: str) -> None:
+    if type(value) is not dict:
+        raise ValueError(f"{field} must be an object")
+    _validate_json_value(value, field)
+
+
+def _validate_files(files: dict) -> None:
+    for name, location in files.items():
+        if type(name) is not str or not name or type(location) is not str or not location:
+            raise ValueError("files must map names to relative run-local paths")
+        posix_path = PurePosixPath(location)
+        windows_path = PureWindowsPath(location)
+        if (
+            posix_path.is_absolute()
+            or windows_path.is_absolute()
+            or windows_path.drive
+            or windows_path.root
+            or ".." in posix_path.parts
+            or ".." in windows_path.parts
+        ):
+            raise ValueError("files must map names to relative run-local paths")
+
+
+def _validate_errors(errors: list) -> None:
+    if not all(type(error) is str for error in errors):
+        raise ValueError("errors must be a list of strings")
+
+
+def _validate_confirmations(confirmations: dict) -> None:
+    if set(confirmations) != {"fill", "submit"} or any(
+        type(value) is not bool for value in confirmations.values()
+    ):
+        raise ValueError("confirmations must contain exact boolean fill and submit fields")
 
 
 def _merged_state(state: dict, updates: dict) -> dict:
@@ -197,11 +302,8 @@ def _validate_transition_prerequisites(state: dict, expected: str, target: str) 
             raise ValueError("valid publication object is required before publishing")
 
 
-def _validate_window_expansion(state: dict, proposed: dict) -> None:
-    if proposed["time_window_hours"] == state["time_window_hours"]:
-        return
-    evidence = proposed.get("window_expansion")
-    valid_evidence = (
+def _valid_window_expansion(evidence: object) -> bool:
+    return (
         type(evidence) is dict
         and evidence.get("from") == 24
         and type(evidence.get("from")) is int
@@ -211,6 +313,12 @@ def _validate_window_expansion(state: dict, proposed: dict) -> None:
         and type(evidence.get("reason")) is str
         and bool(evidence["reason"].strip())
     )
+
+
+def _validate_window_expansion(state: dict, proposed: dict) -> None:
+    if proposed["time_window_hours"] == state["time_window_hours"]:
+        return
+    valid_evidence = _valid_window_expansion(proposed.get("window_expansion"))
     if (
         state["time_window_hours"] != 24
         or proposed["time_window_hours"] != 72
@@ -225,11 +333,14 @@ def transition(run_dir: Path, expected: str, target: str, **updates) -> dict:
         raise ValueError(f"expected {expected}, found {state['state']}")
     if target not in ALLOWED[expected]:
         raise ValueError(f"illegal state transition: {expected} -> {target}")
-    forbidden = _contains_forbidden_key(updates)
+    forbidden = _find_forbidden_data(updates)
     if forbidden:
         raise ValueError(f"forbidden secret field: {forbidden}")
-    if "run_id" in updates or "state" in updates:
+    if {"run_id", "state", "created_at", "updated_at"} & set(updates):
         raise ValueError("run_id and state cannot be updated by transition")
+    unknown = sorted(set(updates) - _UPDATE_FIELDS)
+    if unknown:
+        raise ValueError(f"unknown update field: {unknown[0]}")
 
     proposed = _merged_state(state, updates)
     proposed["state"] = target
