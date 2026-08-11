@@ -30,6 +30,7 @@ def authorization_record(**overrides):
                 "lofter_url": "https://www.lofter.com/post/example",
             }
         ],
+        "example_only": False,
     }
     value.update(overrides)
     return value
@@ -214,6 +215,53 @@ class AuthorizationTest(unittest.TestCase):
         )
         indexed = validate_ledger([original, derived], evidence_root=self.root)
         self.assertEqual(set(indexed), {"asset-original-1", "asset-derived-1"})
+
+    def test_normal_validation_rejects_example_only_records(self):
+        record = authorization_record(example_only=True)
+        with self.assertRaisesRegex(
+            ValueError, "example-only authorization is forbidden outside smoke mode"
+        ):
+            validate_ledger([record], evidence_root=self.root)
+        with self.assertRaisesRegex(
+            ValueError, "example-only authorization is forbidden outside smoke mode"
+        ):
+            validate_authorization(record, "original", evidence_root=self.root)
+
+    def test_explicit_smoke_mode_marks_decision_as_publication_forbidden(self):
+        record = authorization_record(example_only=True)
+        indexed = validate_ledger(
+            [record], evidence_root=self.root, allow_example_only=True
+        )
+        decision = validate_authorization(
+            indexed["asset-original-1"],
+            "original",
+            evidence_root=self.root,
+            smoke_only=True,
+        )
+        self.assertIs(decision["smoke_only"], True)
+        self.assertIs(decision["publication_forbidden"], True)
+        self.assertIn("EXAMPLE ONLY", decision["publication_warning"])
+
+    def test_enum_values_require_strings(self):
+        with self.assertRaisesRegex(ValueError, "attribution_mode must be a string"):
+            validate_authorization(
+                authorization_record(attribution_mode={}),
+                "original",
+                evidence_root=self.root,
+            )
+        with self.assertRaisesRegex(ValueError, "usage must be a string"):
+            validate_authorization(
+                authorization_record(), [], evidence_root=self.root
+            )
+        with self.assertRaisesRegex(
+            ValueError, "requested operation must be a string"
+        ):
+            validate_authorization(
+                authorization_record(),
+                "original",
+                operations=[{}],
+                evidence_root=self.root,
+            )
 
 
 if __name__ == "__main__":

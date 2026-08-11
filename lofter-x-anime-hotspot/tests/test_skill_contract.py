@@ -8,9 +8,18 @@ from pathlib import Path
 
 SKILL_DIR = Path(__file__).parents[1]
 REPOSITORY_ROOT = SKILL_DIR.parent
-QUICK_VALIDATE = Path(
-    "/Users/guocc/.codex/skills/.system/skill-creator/scripts/quick_validate.py"
+PLAN_PATH = (
+    REPOSITORY_ROOT
+    / "docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md"
 )
+
+
+def skill_creator_root():
+    override = os.environ.get("SKILL_CREATOR_ROOT")
+    if override:
+        return Path(override)
+    codex_root = Path(os.environ.get("CODEX_HOME", Path.home() / ".codex"))
+    return codex_root / "skills/.system/skill-creator"
 
 
 class SkillContractTest(unittest.TestCase):
@@ -27,23 +36,50 @@ class SkillContractTest(unittest.TestCase):
     def test_skill_commands_are_portable_and_safe(self):
         skill = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn('LOFTER_SKILL_DIR=', skill)
+        self.assertIn('SKILL_CREATOR_ROOT=', skill)
         self.assertIn('"$LOFTER_SKILL_DIR/scripts/score_candidates.py"', skill)
         self.assertIn('"$LOFTER_SKILL_DIR/scripts/validate_authorizations.py"', skill)
         self.assertIn('> "$LOFTER_WORK_DIR/authorization.json"', skill)
+        self.assertIn("--smoke-only", skill)
         self.assertIn("packet-input", skill)
         self.assertNotIn("original|ai_adaptation", skill)
         self.assertIn("Never publish automatically", skill)
 
-    def test_official_quick_validation_passes(self):
-        environment = os.environ.copy()
-        temporary_dependencies = Path("/private/tmp/lofter-skill-validator-deps")
-        if temporary_dependencies.is_dir():
-            existing = environment.get("PYTHONPATH")
-            environment["PYTHONPATH"] = str(temporary_dependencies) + (
-                os.pathsep + existing if existing else ""
+    def test_portable_validator_setup_is_pinned_and_ignored(self):
+        requirements = (SKILL_DIR / "requirements-dev.txt").read_text(encoding="utf-8")
+        ignores = (SKILL_DIR / ".gitignore").read_text(encoding="utf-8")
+        skill = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+        plan = PLAN_PATH.read_text(encoding="utf-8")
+        self.assertEqual(requirements.strip(), "PyYAML==6.0.3")
+        self.assertIn(".dev-deps/", ignores.splitlines())
+        self.assertIn("requirements-dev.txt", skill)
+        self.assertIn(".dev-deps", skill)
+        forbidden_home = "/Users" + "/guocc"
+        forbidden_temp = "/private" + "/tmp"
+        for content in (skill, plan, Path(__file__).read_text(encoding="utf-8")):
+            self.assertNotIn(forbidden_home, content)
+            self.assertNotIn(forbidden_temp, content)
+
+    def test_official_quick_validation_passes_when_portable_setup_exists(self):
+        quick_validate = skill_creator_root() / "scripts/quick_validate.py"
+        if not quick_validate.is_file():
+            self.skipTest(
+                "official skill-creator not found; set SKILL_CREATOR_ROOT to its directory"
             )
+        dev_dependencies = SKILL_DIR / ".dev-deps"
+        if not (dev_dependencies / "yaml").is_dir():
+            self.skipTest(
+                "install validator dependency with: python3 -m pip install --requirement "
+                "lofter-x-anime-hotspot/requirements-dev.txt --target "
+                "lofter-x-anime-hotspot/.dev-deps"
+            )
+        environment = os.environ.copy()
+        existing = environment.get("PYTHONPATH")
+        environment["PYTHONPATH"] = str(dev_dependencies) + (
+            os.pathsep + existing if existing else ""
+        )
         result = subprocess.run(
-            [sys.executable, str(QUICK_VALIDATE), str(SKILL_DIR)],
+            [sys.executable, str(quick_validate), str(SKILL_DIR)],
             cwd=REPOSITORY_ROOT,
             text=True,
             capture_output=True,

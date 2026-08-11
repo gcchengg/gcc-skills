@@ -1,6 +1,8 @@
+import atexit
 import json
 import re
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -19,7 +21,21 @@ IP_POOL = [
     {"ip_id": "exp-1", "ip_name": "实验一", "ip_slot": "experiment"},
 ]
 TEMPLATES_DIR = Path(__file__).parents[1] / "templates"
-AUTHORIZATION_LEDGER = TEMPLATES_DIR / "authorizations.example.json"
+_AUTHORIZATION_TEMP = tempfile.TemporaryDirectory()
+atexit.register(_AUTHORIZATION_TEMP.cleanup)
+_AUTHORIZATION_ROOT = Path(_AUTHORIZATION_TEMP.name)
+_AUTHORIZATION_RECORDS = json.loads(
+    (TEMPLATES_DIR / "authorizations.example.json").read_text(encoding="utf-8")
+)
+for _record in _AUTHORIZATION_RECORDS:
+    _record["example_only"] = False
+    _record["evidence_path"] = str(
+        TEMPLATES_DIR / "evidence" / Path(_record["evidence_path"]).name
+    )
+AUTHORIZATION_LEDGER = _AUTHORIZATION_ROOT / "authorizations.json"
+AUTHORIZATION_LEDGER.write_text(
+    json.dumps(_AUTHORIZATION_RECORDS, ensure_ascii=False), encoding="utf-8"
+)
 
 
 def raw_candidate(candidate_id="topic-1", **overrides):
@@ -152,6 +168,26 @@ class AuthorizationBindingTest(unittest.TestCase):
             ValueError, "authorization decision does not match validated ledger"
         ):
             build_packet(payload)
+
+    def test_authorization_enum_fields_require_strings(self):
+        for field, value, message in (
+            ("requested_usage", [], "authorization requested_usage"),
+            ("image_provenance", {}, "authorization image_provenance"),
+            ("attribution_mode", [], "authorization attribution_mode"),
+            ("requested_operations", [{}], "authorization requested operation"),
+        ):
+            with self.subTest(field=field):
+                decision = authorization_decision()
+                decision[field] = value
+                payload = {
+                    "column": "daily_hotspot",
+                    "ip_pool": IP_POOL,
+                    "candidate": self.authorized_candidate(),
+                    "authorization": decision,
+                    "authorization_ledger_path": str(AUTHORIZATION_LEDGER),
+                }
+                with self.assertRaisesRegex(ValueError, message):
+                    build_packet(payload)
 
     def test_independent_media_rejects_authorization_decision(self):
         payload = {

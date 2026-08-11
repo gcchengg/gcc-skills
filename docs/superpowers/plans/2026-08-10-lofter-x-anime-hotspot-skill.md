@@ -932,7 +932,7 @@ python3 "$LOFTER_SKILL_DIR/scripts/score_candidates.py" \
   --output "$LOFTER_WORK_DIR/ranked.json"
 ```
 
-Capture one validator decision with a literal usage value, then construct a column-specific input matching `templates/packet-inputs.example.json`:
+For an operational decision, copy the ledger template, replace every placeholder with real evidence, set `example_only: false`, and validate without a smoke flag. The bundled ledger command below is explicitly smoke-only and its output is forbidden for publication:
 
 ```bash
 python3 "$LOFTER_SKILL_DIR/scripts/validate_authorizations.py" \
@@ -940,6 +940,7 @@ python3 "$LOFTER_SKILL_DIR/scripts/validate_authorizations.py" \
   example-asset-adapted-1 \
   --usage ai_adaptation \
   --operation layout \
+  --smoke-only \
   > "$LOFTER_WORK_DIR/authorization.json"
 
 python3 "$LOFTER_SKILL_DIR/scripts/build_content_packet.py" \
@@ -947,19 +948,22 @@ python3 "$LOFTER_SKILL_DIR/scripts/build_content_packet.py" \
   --output "$LOFTER_WORK_DIR/packet.md"
 ```
 
-Human review and manual publication remain mandatory.
+Set `smoke_only: true` in the corresponding packet input. The generated packet must remain visibly test-only and must never be published. Human review and manual publication remain mandatory for operational packets backed by real evidence.
 
 ### Final verification count
 
-The final suite contains **44 tests**. The authoritative verification commands are:
+The final suite contains **51 tests**. Provision the pinned official-validator dependency in the ignored project-local directory. The authoritative portable verification commands are:
 
 ```bash
-PYTHONPATH=/private/tmp/lofter-skill-validator-deps \
-  python3 -m unittest discover -s lofter-x-anime-hotspot/tests -p 'test_*.py' -v
+LOFTER_SKILL_DIR="$(pwd)/lofter-x-anime-hotspot"
+SKILL_CREATOR_ROOT="${SKILL_CREATOR_ROOT:-${CODEX_HOME:-${HOME}/.codex}/skills/.system/skill-creator}"
+python3 -m pip install --requirement "$LOFTER_SKILL_DIR/requirements-dev.txt" \
+  --target "$LOFTER_SKILL_DIR/.dev-deps"
 
-PYTHONPATH=/private/tmp/lofter-skill-validator-deps \
-  python3 /Users/guocc/.codex/skills/.system/skill-creator/scripts/quick_validate.py \
-  lofter-x-anime-hotspot
+python3 -m unittest discover -s "$LOFTER_SKILL_DIR/tests" -p 'test_*.py' -v
+
+PYTHONPATH="$LOFTER_SKILL_DIR/.dev-deps${PYTHONPATH:+:$PYTHONPATH}" \
+  python3 "$SKILL_CREATOR_ROOT/scripts/quick_validate.py" "$LOFTER_SKILL_DIR"
 ```
 
-The temporary `PYTHONPATH` supplies PyYAML required by the official validator in this development environment; it is not a runtime dependency of the Skill scripts.
+The project-local `PYTHONPATH` supplies the pinned PyYAML development dependency required by the official validator; it is not a runtime dependency of the Skill scripts.

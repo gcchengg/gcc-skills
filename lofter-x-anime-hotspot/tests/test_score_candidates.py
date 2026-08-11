@@ -176,6 +176,17 @@ class ScoreCandidatesTest(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, message):
                     score_candidate(value, IP_POOL)
 
+    def test_enum_values_require_strings(self):
+        cases = (
+            (candidate(ip_slot=[]), "ip_slot must be a string"),
+            (candidate(requested_usage={}), "requested_usage must be a string"),
+            (candidate(image_provenance=[]), "image_provenance must be a string"),
+        )
+        for value, message in cases:
+            with self.subTest(message=message):
+                with self.assertRaisesRegex(ValueError, message):
+                    score_candidate(value, IP_POOL)
+
 
 if __name__ == "__main__":
     unittest.main()

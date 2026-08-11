@@ -14,7 +14,8 @@
     "attribution_mode": "public",
     "original_asset_id": null,
     "derived_asset_ids": ["example-asset-adapted-1"],
-    "publication_history": []
+    "publication_history": [],
+    "example_only": true
   },
   {
     "asset_id": "example-asset-adapted-1",
@@ -31,6 +32,7 @@
     "attribution_mode": "public",
     "original_asset_id": "example-asset-original-1",
     "derived_asset_ids": [],
-    "publication_history": []
+    "publication_history": [],
+    "example_only": true
   }
 ]

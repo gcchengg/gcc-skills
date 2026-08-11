@@ -24,6 +24,7 @@ REQUIRED_FIELDS = {
     "original_asset_id",
     "derived_asset_ids",
     "publication_history",
+    "example_only",
 }
 ATTRIBUTION_MODES = {"public", "anonymous_allowed", "required"}
 OPERATIONS = {"translation", "crop", "layout"}
@@ -34,6 +35,15 @@ def _non_empty_string(value, field: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ValueError(f"{field} must be a non-empty string")
     return value.strip()
+
+
+def _enum_string(value, field: str, allowed) -> str:
+    if not isinstance(value, str):
+        raise ValueError(f"{field} must be a string")
+    if value not in allowed:
+        choices = ", ".join(sorted(allowed))
+        raise ValueError(f"invalid {field}; must be one of: {choices}")
+    return value
 
 
 def _https_url(value, field: str, *, lofter: bool = False) -> str:
@@ -69,7 +79,9 @@ def _string_list(value, field: str) -> list[str]:
     return value
 
 
-def _validate_record(record: dict, evidence_root: Path) -> None:
+def _validate_record(
+    record: dict, evidence_root: Path, *, allow_example_only: bool = False
+) -> None:
     if not isinstance(record, dict):
         raise ValueError("authorization record must be an object")
     missing = sorted(REQUIRED_FIELDS - record.keys())
@@ -89,12 +101,15 @@ def _validate_record(record: dict, evidence_root: Path) -> None:
     for field in BOOLEAN_FIELDS:
         if type(record[field]) is not bool:
             raise ValueError(f"{field} must be a boolean")
+    if type(record["example_only"]) is not bool:
+        raise ValueError("example_only must be a boolean")
+    if record["example_only"] is True and not allow_example_only:
+        raise ValueError("example-only authorization is forbidden outside smoke mode")
 
     platforms = _string_list(record["allowed_platforms"], "allowed_platforms")
     if not platforms:
         raise ValueError("allowed_platforms must contain at least one platform")
-    if record["attribution_mode"] not in ATTRIBUTION_MODES:
-        raise ValueError("invalid attribution_mode")
+    _enum_string(record["attribution_mode"], "attribution_mode", ATTRIBUTION_MODES)
 
     original_asset_id = record["original_asset_id"]
     if original_asset_id is not None:
@@ -126,14 +141,17 @@ def _validate_record(record: dict, evidence_root: Path) -> None:
 
 
 def validate_ledger(
-    records: list[dict], *, evidence_root: Path | str = Path.cwd()
+    records: list[dict],
+    *,
+    evidence_root: Path | str = Path.cwd(),
+    allow_example_only: bool = False,
 ) -> dict[str, dict]:
     if not isinstance(records, list):
         raise ValueError("authorization ledger must be a list")
     root = Path(evidence_root)
     indexed: dict[str, dict] = {}
     for record in records:
-        _validate_record(record, root)
+        _validate_record(record, root, allow_example_only=allow_example_only)
         asset_id = record["asset_id"]
         if asset_id in indexed:
             raise ValueError(f"duplicate asset_id: {asset_id}")
@@ -165,17 +183,23 @@ def validate_authorization(
     *,
     operations: tuple[str, ...] | list[str] = (),
     evidence_root: Path | str = Path.cwd(),
+    smoke_only: bool = False,
 ) -> dict:
     root = Path(evidence_root)
-    _validate_record(record, root)
-    if usage not in {"original", "ai_adaptation"}:
-        raise ValueError("usage must be original or ai_adaptation")
+    if type(smoke_only) is not bool:
+        raise ValueError("smoke_only must be a boolean")
+    _validate_record(record, root, allow_example_only=smoke_only)
+    if smoke_only and record["example_only"] is not True:
+        raise ValueError("smoke mode requires an example-only authorization record")
+    usage = _enum_string(usage, "usage", {"original", "ai_adaptation"})
     if type(commercial) is not bool:
         raise ValueError("commercial must be a boolean")
     if not isinstance(operations, (tuple, list)):
         raise ValueError("operations must be a list or tuple")
     requested_operations = []
     for operation in operations:
+        if not isinstance(operation, str):
+            raise ValueError("requested operation must be a string")
         if operation not in OPERATIONS:
             raise ValueError(f"unknown requested operation: {operation}")
         if operation in requested_operations:
@@ -215,6 +239,13 @@ def validate_authorization(
             if usage == "original"
             else "authorized_ai_adaptation"
         ),
+        "smoke_only": smoke_only,
+        "publication_forbidden": smoke_only,
+        "publication_warning": (
+            "EXAMPLE ONLY — TEST USE ONLY — PUBLICATION FORBIDDEN"
+            if smoke_only
+            else None
+        ),
     }
 
 
@@ -226,6 +257,7 @@ def main() -> None:
     parser.add_argument("asset_id")
     parser.add_argument("--usage", choices=("original", "ai_adaptation"), required=True)
     parser.add_argument("--commercial", action="store_true")
+    parser.add_argument("--smoke-only", action="store_true")
     parser.add_argument(
         "--operation",
         action="append",
@@ -235,7 +267,11 @@ def main() -> None:
     args = parser.parse_args()
     try:
         records = json.loads(args.ledger.read_text(encoding="utf-8"))
-        indexed = validate_ledger(records, evidence_root=args.ledger.parent)
+        indexed = validate_ledger(
+            records,
+            evidence_root=args.ledger.parent,
+            allow_example_only=args.smoke_only,
+        )
         if args.asset_id not in indexed:
             raise ValueError(f"expected one authorization record for {args.asset_id}")
         result = validate_authorization(
@@ -244,6 +280,7 @@ def main() -> None:
             args.commercial,
             operations=args.operation,
             evidence_root=args.ledger.parent,
+            smoke_only=args.smoke_only,
         )
     except (OSError, json.JSONDecodeError, ValueError) as error:
         raise SystemExit(f"error: {error}") from error

@@ -39,6 +39,9 @@ AUTHORIZATION_DECISION_FIELDS = {
     "platform",
     "original_asset_id",
     "image_provenance",
+    "smoke_only",
+    "publication_forbidden",
+    "publication_warning",
 }
 DISCLOSURES = {
     "authorized_original": "",
@@ -53,6 +56,13 @@ def _non_empty_string(value, field: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ValueError(f"{field} must be a non-empty string")
     return value.strip()
+
+
+def _enum_string(value, field: str, allowed: set[str]) -> str:
+    value = _non_empty_string(value, field)
+    if value not in allowed:
+        raise ValueError(f"{field} is invalid")
+    return value
 
 
 def _https_url(value, field: str, *, lofter: bool = False) -> str:
@@ -102,6 +112,7 @@ def _validate_authorization_decision(
     decision: dict | None,
     ledger_value,
     base_dir: Path,
+    smoke_only: bool,
 ) -> dict | None:
     if candidate["requested_usage"] == "independent":
         if decision is not None:
@@ -120,22 +131,29 @@ def _validate_authorization_decision(
         raise ValueError("authorization decision is not a validated allow decision")
     if decision["asset_id"] != candidate["asset_id"]:
         raise ValueError("authorization asset_id does not match candidate")
+    _enum_string(
+        decision["requested_usage"],
+        "authorization requested_usage",
+        {"original", "ai_adaptation"},
+    )
     if decision["requested_usage"] != candidate["requested_usage"]:
         raise ValueError("authorization usage does not match candidate")
     if type(decision["commercial_intent"]) is not bool:
         raise ValueError("authorization commercial_intent must be a boolean")
     if decision["commercial_intent"] is not candidate["commercial_intent"]:
         raise ValueError("authorization commercial scope does not match candidate")
+    _enum_string(decision["image_provenance"], "authorization image_provenance", set(DISCLOSURES))
     if decision["image_provenance"] != candidate["image_provenance"]:
         raise ValueError("authorization provenance does not match candidate")
     if decision["platform"] != "LOFTER":
         raise ValueError("authorization platform must be LOFTER")
     _non_empty_string(decision["author_handle"], "authorization author_handle")
     _https_url(decision["source_url"], "authorization source_url")
-    if decision["attribution_mode"] not in ATTRIBUTION_MODES:
-        raise ValueError("authorization attribution_mode is invalid")
+    _enum_string(decision["attribution_mode"], "authorization attribution_mode", ATTRIBUTION_MODES)
     if not isinstance(decision["requested_operations"], list):
         raise ValueError("authorization requested_operations must be a list")
+    for operation in decision["requested_operations"]:
+        _non_empty_string(operation, "authorization requested operation")
     ledger_text = _non_empty_string(
         ledger_value, "authorization_ledger_path"
     )
@@ -144,7 +162,11 @@ def _validate_authorization_decision(
         ledger_path = base_dir / ledger_path
     try:
         records = json.loads(ledger_path.read_text(encoding="utf-8"))
-        indexed = validate_ledger(records, evidence_root=ledger_path.parent)
+        indexed = validate_ledger(
+            records,
+            evidence_root=ledger_path.parent,
+            allow_example_only=smoke_only,
+        )
         if candidate["asset_id"] not in indexed:
             raise ValueError("authorization asset_id is not present in the ledger")
         validated = validate_authorization(
@@ -153,6 +175,7 @@ def _validate_authorization_decision(
             candidate["commercial_intent"],
             operations=decision["requested_operations"],
             evidence_root=ledger_path.parent,
+            smoke_only=smoke_only,
         )
     except (OSError, json.JSONDecodeError) as error:
         raise ValueError(f"authorization ledger cannot be read: {error}") from error
@@ -166,13 +189,20 @@ def _media_lines(
     decision: dict | None,
     ledger_value,
     base_dir: Path,
+    smoke_only: bool,
 ) -> list[str]:
     validated = _validate_authorization_decision(
-        candidate, decision, ledger_value, base_dir
+        candidate, decision, ledger_value, base_dir, smoke_only
     )
     provenance = candidate["image_provenance"]
     if validated is None:
         lines = [f"媒体来源：独立创作（{provenance}）"]
+    elif smoke_only:
+        lines = [
+            "媒体来源：测试占位素材｜示例授权记录禁止发布"
+            f"｜作者：{validated['author_handle']}"
+            f"｜来源：{validated['source_url']}"
+        ]
     else:
         lines = [
             "媒体来源：已验证授权素材"
@@ -180,9 +210,9 @@ def _media_lines(
             f"｜来源：{validated['source_url']}"
             f"｜署名模式：{validated['attribution_mode']}"
         ]
-    disclosure = DISCLOSURES[provenance]
+    disclosure = "测试标识：示例授权记录禁止发布" if smoke_only else DISCLOSURES[provenance]
     if disclosure:
-        lines.append(f"AI披露：{disclosure}")
+        lines.append(disclosure if smoke_only else f"AI披露：{disclosure}")
     return lines
 
 
@@ -214,6 +244,7 @@ def _daily_packet(payload: dict, ip_pool: list[dict], base_dir: Path) -> list[st
             payload.get("authorization"),
             payload.get("authorization_ledger_path"),
             base_dir,
+            payload["smoke_only"],
         ),
         "",
         "## 正文结构要求",
@@ -290,6 +321,7 @@ def _weekly_packet(payload: dict, ip_pool: list[dict], base_dir: Path) -> list[s
                     decision,
                     payload.get("authorization_ledger_path"),
                     base_dir,
+                    payload["smoke_only"],
                 ),
             ]
         )
@@ -311,6 +343,7 @@ def _media_packet(payload: dict, ip_pool: list[dict], base_dir: Path) -> list[st
             payload.get("authorization"),
             payload.get("authorization_ledger_path"),
             base_dir,
+            payload["smoke_only"],
         ),
         "",
         "## 正文结构要求",
@@ -361,6 +394,7 @@ def _fanfic_packet(payload: dict, ip_pool: list[dict], base_dir: Path) -> list[s
             payload.get("authorization"),
             payload.get("authorization_ledger_path"),
             base_dir,
+            payload["smoke_only"],
         ),
         f"前置观察：{observation_url}",
         f"观察发布日期：{observation_published_at}",
@@ -382,9 +416,11 @@ def _fanfic_packet(payload: dict, ip_pool: list[dict], base_dir: Path) -> list[s
 def build_packet(payload: dict, *, base_dir: Path | str = Path.cwd()) -> str:
     if not isinstance(payload, dict):
         raise ValueError("packet input must be an object")
-    column = payload.get("column")
-    if column not in COLUMN_TITLES:
-        raise ValueError("unknown column")
+    column = _enum_string(payload.get("column"), "column", set(COLUMN_TITLES))
+    smoke_only = payload.get("smoke_only", False)
+    if type(smoke_only) is not bool:
+        raise ValueError("smoke_only must be a boolean")
+    payload = {**payload, "smoke_only": smoke_only}
     ip_pool = payload.get("ip_pool")
     renderers = {
         "daily_hotspot": _daily_packet,
@@ -393,6 +429,9 @@ def build_packet(payload: dict, *, base_dir: Path | str = Path.cwd()) -> str:
         "fanfic": _fanfic_packet,
     }
     lines = renderers[column](payload, ip_pool, Path(base_dir))
+    if smoke_only:
+        lines[0] = lines[0].replace("# ", "# 仅供测试｜禁止发布｜", 1)
+        lines[1:1] = ["", "警告：示例授权记录仅供流程冒烟测试，禁止发布或用于运营。"]
     packet = "\n".join(lines) + "\n"
     question_count = sum(
         line.startswith("互动问题：") for line in packet.splitlines()

@@ -52,6 +52,15 @@ def _non_empty_string(value, field: str) -> str:
     return value.strip()
 
 
+def _enum_string(value, field: str, allowed) -> str:
+    if not isinstance(value, str):
+        raise ValueError(f"{field} must be a string")
+    if value not in allowed:
+        choices = ", ".join(sorted(allowed))
+        raise ValueError(f"{field} must be one of: {choices}")
+    return value
+
+
 def _string_list(value, field: str, *, non_empty: bool) -> list[str]:
     if not isinstance(value, list):
         raise ValueError(f"{field} must be a list")
@@ -95,9 +104,7 @@ def validate_ip_pool(ip_pool: list[dict]) -> dict[str, dict]:
             raise ValueError(f"IP pool entry {index} missing fields: {', '.join(missing)}")
         ip_id = _non_empty_string(entry["ip_id"], "ip_id")
         ip_name = _non_empty_string(entry["ip_name"], "ip_name")
-        slot = entry["ip_slot"]
-        if slot not in IP_SLOT_COUNTS:
-            raise ValueError("ip_slot must be long_term, rising, or experiment")
+        slot = _enum_string(entry["ip_slot"], "ip_slot", IP_SLOT_COUNTS)
         if ip_id in indexed:
             raise ValueError(f"duplicate ip_id: {ip_id}")
         if ip_name in names:
@@ -139,7 +146,8 @@ def _validate_candidate(candidate: dict, pool: dict[str, dict]) -> None:
     pool_entry = pool[ip_id]
     if candidate["ip_name"] != pool_entry["ip_name"]:
         raise ValueError("ip_name does not match IP pool")
-    if candidate["ip_slot"] != pool_entry["ip_slot"]:
+    candidate_slot = _enum_string(candidate["ip_slot"], "ip_slot", IP_SLOT_COUNTS)
+    if candidate_slot != pool_entry["ip_slot"]:
         raise ValueError("ip_slot does not match IP pool")
 
     for field, maximum in SCORE_LIMITS.items():
@@ -151,12 +159,12 @@ def _validate_candidate(candidate: dict, pool: dict[str, dict]) -> None:
 
     if type(candidate["commercial_intent"]) is not bool:
         raise ValueError("commercial_intent must be a boolean")
-    usage = candidate["requested_usage"]
-    if usage not in REQUESTED_USAGE:
-        raise ValueError("requested_usage must be original, ai_adaptation, or independent")
-    provenance = candidate["image_provenance"]
-    if provenance not in IMAGE_PROVENANCE:
-        raise ValueError("invalid image_provenance")
+    usage = _enum_string(
+        candidate["requested_usage"], "requested_usage", REQUESTED_USAGE
+    )
+    provenance = _enum_string(
+        candidate["image_provenance"], "image_provenance", IMAGE_PROVENANCE
+    )
     asset_id = candidate["asset_id"]
     if asset_id is not None:
         _non_empty_string(asset_id, "asset_id")
