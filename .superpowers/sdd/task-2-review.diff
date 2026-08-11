@@ -1,0 +1,123 @@
+# Review package: 575bb4407f2de5abb838162b8a811b79f03bb6fc..f9d554b
+
+## Commits
+f9d554b feat: validate LOFTER media authorization
+
+## Files changed
+ .../scripts/validate_authorizations.py             | 55 ++++++++++++++++++++++
+ .../tests/test_validate_authorizations.py          | 45 ++++++++++++++++++
+ 2 files changed, 100 insertions(+)
+
+## Diff
+diff --git a/lofter-x-anime-hotspot/scripts/validate_authorizations.py b/lofter-x-anime-hotspot/scripts/validate_authorizations.py
+new file mode 100644
+index 0000000..b0b91fb
+--- /dev/null
++++ b/lofter-x-anime-hotspot/scripts/validate_authorizations.py
+@@ -0,0 +1,55 @@
++import argparse
++import json
++from pathlib import Path
++
++
++REQUIRED = {
++    "asset_id",
++    "author_handle",
++    "source_url",
++    "evidence_path",
++    "lofter_redistribution",
++    "ai_adaptation",
++    "commercial_use",
++}
++
++
++def validate_authorization(record: dict, usage: str, commercial: bool = False) -> dict:
++    missing = sorted(REQUIRED - record.keys())
++    if missing:
++        raise ValueError(f"missing fields: {', '.join(missing)}")
++    if usage not in {"original", "ai_adaptation"}:
++        raise ValueError("usage must be original or ai_adaptation")
++    if not record["lofter_redistribution"]:
++        raise ValueError("LOFTER redistribution is not authorized")
++    if usage == "ai_adaptation" and not record["ai_adaptation"]:
++        raise ValueError("AI adaptation is not authorized")
++    if commercial and not record["commercial_use"]:
++        raise ValueError("commercial use is not authorized")
++    return {
++        "asset_id": record["asset_id"],
++        "allowed": True,
++        "usage": usage,
++        "commercial": commercial,
++        "author_handle": record["author_handle"],
++        "source_url": record["source_url"],
++    }
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("ledger", type=Path)
++    parser.add_argument("asset_id")
++    parser.add_argument("--usage", choices=("original", "ai_adaptation"), required=True)
++    parser.add_argument("--commercial", action="store_true")
++    args = parser.parse_args()
++    records = json.loads(args.ledger.read_text(encoding="utf-8"))
++    matches = [record for record in records if record.get("asset_id") == args.asset_id]
++    if len(matches) != 1:
++        raise SystemExit(f"expected one authorization record for {args.asset_id}")
++    result = validate_authorization(matches[0], args.usage, args.commercial)
++    print(json.dumps(result, ensure_ascii=False, indent=2))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/lofter-x-anime-hotspot/tests/test_validate_authorizations.py b/lofter-x-anime-hotspot/tests/test_validate_authorizations.py
+new file mode 100644
+index 0000000..23be94a
+--- /dev/null
++++ b/lofter-x-anime-hotspot/tests/test_validate_authorizations.py
+@@ -0,0 +1,45 @@
++import sys
++import unittest
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).parents[1] / "scripts"))
++
++from validate_authorizations import validate_authorization
++
++
++BASE = {
++    "asset_id": "asset-1",
++    "author_handle": "@artist",
++    "source_url": "https://x.com/artist/status/1",
++    "evidence_path": "authorizations/asset-1.png",
++    "lofter_redistribution": True,
++    "ai_adaptation": True,
++    "commercial_use": False,
++}
++
++
++class AuthorizationTest(unittest.TestCase):
++    def test_ai_adaptation_is_allowed(self):
++        result = validate_authorization(BASE, "ai_adaptation")
++        self.assertTrue(result["allowed"])
++        self.assertEqual(result["asset_id"], "asset-1")
++
++    def test_ai_adaptation_requires_explicit_scope(self):
++        record = {**BASE, "ai_adaptation": False}
++        with self.assertRaisesRegex(ValueError, "AI adaptation is not authorized"):
++            validate_authorization(record, "ai_adaptation")
++
++    def test_commercial_use_defaults_to_denied(self):
++        with self.assertRaisesRegex(ValueError, "commercial use is not authorized"):
++            validate_authorization(BASE, "original", commercial=True)
++
++    def test_original_requires_lofter_permission(self):
++        record = {**BASE, "lofter_redistribution": False}
++        with self.assertRaisesRegex(
++            ValueError, "LOFTER redistribution is not authorized"
++        ):
++            validate_authorization(record, "original")
++
++
++if __name__ == "__main__":
++    unittest.main()

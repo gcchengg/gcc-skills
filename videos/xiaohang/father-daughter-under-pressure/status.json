@@ -4,7 +4,7 @@
     "topic": "approved",
     "storyboard": "approved",
     "images": "approved",
-    "audio": "pending"
+    "audio": "approved"
   },
   "selected_topic": "topic-05",
   "topic_options_hash": "0f0af80d40897a4801a5381ae0c09a983ef732103da0dedf384d9df08b273eb6",
@@ -47,9 +47,9 @@
       "preview_hash": "d72226150e682a1126d4be431f67f8eaa188fe736caae4fea09d3578d8999876"
     }
   },
-  "approved_audio_hash": null,
+  "approved_audio_hash": "675cb37f62d1f5dff3de942f4015fc0c8a590d42a15825730686468f14fdc8fd",
   "render": {
-    "status": "pending",
-    "path": null
+    "status": "verified",
+    "path": "renders/xiaohang-v1.mp4"
   }
 }

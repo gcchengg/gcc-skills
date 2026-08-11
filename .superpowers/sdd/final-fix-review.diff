@@ -1,0 +1,3012 @@
+# Review package: 16333b1..2b09ac754ffad03f23739277b2c904fdad39376e
+
+## Commits
+2b09ac7 fix: harden LOFTER hotspot workflow
+
+## Files changed
+ .../2026-08-10-lofter-x-anime-hotspot-skill.md     |  63 +++
+ lofter-x-anime-hotspot/SKILL.md                    | 123 ++++--
+ lofter-x-anime-hotspot/agents/openai.yaml          |   4 +-
+ .../references/content-templates.md                |  42 +-
+ .../references/operating-rules.md                  |  41 +-
+ .../scripts/build_content_packet.py                | 427 ++++++++++++++++++---
+ lofter-x-anime-hotspot/scripts/score_candidates.py | 239 ++++++++++--
+ .../scripts/validate_authorizations.py             | 237 +++++++++++-
+ .../templates/authorizations.example.json          |  33 +-
+ .../templates/candidates.example.json              | 168 ++++++--
+ .../templates/evidence/example-asset-adapted-1.txt |   1 +
+ .../evidence/example-asset-original-1.txt          |   1 +
+ .../templates/ip-pool.example.json                 |   7 +
+ .../templates/packet-inputs.example.json           | 112 ++++++
+ .../tests/test_build_content_packet.py             | 389 +++++++++++++++++--
+ lofter-x-anime-hotspot/tests/test_cli_workflow.py  | 187 +++++++++
+ .../tests/test_score_candidates.py                 | 238 ++++++++----
+ .../tests/test_skill_contract.py                   |  57 +++
+ .../tests/test_validate_authorizations.py          | 233 +++++++++--
+ 19 files changed, 2255 insertions(+), 347 deletions(-)
+
+## Diff
+diff --git a/docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md b/docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md
+index 1be1043..e635c4b 100644
+--- a/docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md
++++ b/docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md
+@@ -1,12 +1,14 @@
+ # LOFTER × X Anime Hotspot Skill Implementation Plan
+ 
++> **Authoritative final-review update:** The [Final-review amendment](#final-review-amendment-2026-08-11) supersedes conflicting schemas, commands, quotas, disclosure rules, and test counts in the historical task bodies below.
++
+ > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+ 
+ **Goal:** Build a reusable local Skill that scores X/LOFTER anime hotspot candidates, validates image authorization records, and generates compliant LOFTER content packets for the approved 30-day operating workflow.
+ 
+ **Architecture:** Use a semi-automated, file-based workflow for the first 30-day validation cycle. Operators collect current X and LOFTER signals into JSON, Python standard-library scripts rank candidates and enforce authorization gates, and a content-packet generator produces a Markdown brief for human review; scraping and automatic publishing remain out of scope until the workflow has real account data.
+ 
+ **Tech Stack:** Codex Skill Markdown, Python 3 standard library, `unittest`, JSON, Markdown.
+ 
+ ## Global Constraints
+ 
+@@ -893,10 +895,71 @@ Expected: all 11 tests pass. `git status --short` may show pre-existing unrelate
+ ## Deferred Work
+ 
+ The following items are intentionally excluded until the 30-day account test establishes real value and platform-safe operating data:
+ 
+ - Automated X or LOFTER scraping;
+ - Automatic LOFTER login or publishing;
+ - Automatic image downloading or image-to-image generation;
+ - Automatic CP selection without human verification;
+ - Monetization, paywall, advertising, or commercial-use workflows;
+ - Dashboarding beyond JSON and Markdown artifacts.
++
++---
++
++## Final-review amendment (2026-08-11)
++
++This amendment is authoritative. Earlier task bodies remain as implementation history only.
++
++### Corrected architecture and schemas
++
++- Model the IP pool in `templates/ip-pool.example.json` as exactly five unique IPs: two `long_term`, two `rising`, and one `experiment`. Validate the pool independently, then rank any number of eligible topic candidates without per-category topic quotas.
++- Require every candidate to exact-match its pool `ip_id`, `ip_name`, and `ip_slot`. Use one shared typed candidate contract for identity, characters/tags, bounded score dimensions, X/LOFTER evidence, HTTPS X sources, ISO observation time, and media intent.
++- Use one fixed publication threshold, 70. The numeric `authorization` score is a research-quality dimension only and never authorizes media use.
++- Represent media intent with nullable `asset_id`, `requested_usage`, strict `commercial_intent`, and one of the five explicit provenance values. Reject inconsistent combinations before scoring.
++- Validate complete authorization records: strict permission booleans, LOFTER platform scope, valid source/evidence, attribution mode, original/derived lineage, requested translation/crop/layout operations, and publication history. Resolve relative evidence paths against the ledger directory.
++- Bind packet authorization to the validator decision's schema marker, allow flag, exact asset ID, requested usage, commercial scope, provenance, and LOFTER platform. Packet generation reopens the named ledger, revalidates local evidence, regenerates the decision, and rejects incomplete or forged allow dictionaries.
++- Generate four structural human-review packet shapes only: one 200–400-character daily hotspot, exactly five-item weekly trend, one media-curation item, or one qualified 800–2000-character fan-fiction item. Each packet contains exactly one column-specific interaction question and no generated public prose.
++- Gate fan fiction on all five research checks, prior LOFTER observation URL/date, and either explicit weeks 1–2 baseline selection or week 3+ top-40% qualification.
++- Apply exact disclosures: none for authorized/human originals; authorized AI adaptation uses `图像经授权使用，含AI辅助创作｜#AI辅助#`; independent AI-assisted/generated originals use only `#AI辅助#`/`#AI生成#`.
++
++### Corrected portable workflow
++
++Set `LOFTER_SKILL_DIR` to the absolute Skill directory (the default installation expression and exact end-to-end commands are in `SKILL.md`). The corrected scorer command requires the separate pool:
++
++```bash
++python3 "$LOFTER_SKILL_DIR/scripts/score_candidates.py" \
++  "$LOFTER_SKILL_DIR/templates/candidates.example.json" \
++  --ip-pool "$LOFTER_SKILL_DIR/templates/ip-pool.example.json" \
++  --output "$LOFTER_WORK_DIR/ranked.json"
++```
++
++Capture one validator decision with a literal usage value, then construct a column-specific input matching `templates/packet-inputs.example.json`:
++
++```bash
++python3 "$LOFTER_SKILL_DIR/scripts/validate_authorizations.py" \
++  "$LOFTER_SKILL_DIR/templates/authorizations.example.json" \
++  example-asset-adapted-1 \
++  --usage ai_adaptation \
++  --operation layout \
++  > "$LOFTER_WORK_DIR/authorization.json"
++
++python3 "$LOFTER_SKILL_DIR/scripts/build_content_packet.py" \
++  "$LOFTER_WORK_DIR/packet-input.json" \
++  --output "$LOFTER_WORK_DIR/packet.md"
++```
++
++Human review and manual publication remain mandatory.
++
++### Final verification count
++
++The final suite contains **44 tests**. The authoritative verification commands are:
++
++```bash
++PYTHONPATH=/private/tmp/lofter-skill-validator-deps \
++  python3 -m unittest discover -s lofter-x-anime-hotspot/tests -p 'test_*.py' -v
++
++PYTHONPATH=/private/tmp/lofter-skill-validator-deps \
++  python3 /Users/guocc/.codex/skills/.system/skill-creator/scripts/quick_validate.py \
++  lofter-x-anime-hotspot
++```
++
++The temporary `PYTHONPATH` supplies PyYAML required by the official validator in this development environment; it is not a runtime dependency of the Skill scripts.
+diff --git a/lofter-x-anime-hotspot/SKILL.md b/lofter-x-anime-hotspot/SKILL.md
+index 7178199..7392e0f 100644
+--- a/lofter-x-anime-hotspot/SKILL.md
++++ b/lofter-x-anime-hotspot/SKILL.md
+@@ -1,32 +1,103 @@
+ ---
+ name: lofter-x-anime-hotspot
+-description: Analyze current anime, game, character, and CP hotspots across X and LOFTER, rank candidates, verify media authorization, and create Chinese LOFTER trend or fan-fiction content packets. Use when the user wants hotspot-driven LOFTER anime content, X-to-LOFTER curation, or a 30-day LOFTER growth workflow.
++description: Analyze current anime, game, character, and CP hotspots across X and LOFTER, validate a distinct five-IP pool and complete media authorization, and create Chinese human-review packets for daily hotspots, weekly trends, media curation, or qualified fan fiction. Use for hotspot-driven LOFTER anime content, X-to-LOFTER curation, or a 30-day LOFTER growth workflow.
+ ---
+ 
+ # LOFTER × X Anime Hotspot
+ 
+-Use Chinese when communicating with the user.
+-
+-## Workflow
+-
+-1. Collect current 24—72 hour X and LOFTER evidence for candidate topics.
+-2. Maintain 2 `long_term`, 2 `rising`, and 1 `experiment` IP slots.
+-3. Save candidate values using `templates/candidates.example.json` as the schema.
+-4. Run `python3 scripts/score_candidates.py INPUT --output ranked.json`.
+-5. Reject candidates below 70. A candidate with authorization score 0 may use only an independently created image.
+-6. For original or AI-adapted X images, record authorization using `templates/authorizations.example.json`, then run `python3 scripts/validate_authorizations.py LEDGER ASSET_ID --usage original|ai_adaptation`.
+-7. Before fan fiction, verify world, characters, relationships, CP conventions, and fandom risks. If any check is incomplete, produce hotspot analysis instead.
+-8. Generate the Markdown brief with `python3 scripts/build_content_packet.py INPUT --output packet.md`.
+-9. Human-review facts, tags, labels, image scope, and the single interaction question before publication.
+-10. Never publish automatically.
+-
+-## Required Rules
+-
+-- Read `references/operating-rules.md` before ranking or scheduling.
+-- Read `references/content-templates.md` before drafting public copy.
+-- Do not treat a public X post as permission.
+-- AI adaptation requires explicit AI adaptation authorization.
+-- Commercial use is false unless the authorization record says true.
+-- Keep authorization evidence in the private ledger; do not expose private evidence in public copy.
+-- For authorized AI-assisted images, end public copy with `图像经授权使用，含AI辅助创作｜#AI辅助#`.
+-- Do not add irrelevant trending tags or hard paywall cliffhangers during the first 30 days.
++Use Chinese with the user. Produce human-review packets only; never draft public prose or publish automatically.
++
++## Load rules
++
++- Read `references/operating-rules.md` before ranking, authorization, or fan-fiction qualification.
++- Read `references/content-templates.md` before generating a packet.
++- Use `templates/ip-pool.example.json`, `templates/candidates.example.json`, and `templates/authorizations.example.json` as separate schemas.
++- Use `templates/packet-inputs.example.json` for all four column payload shapes.
++
++## Run the workflow
++
++Resolve the Skill directory once. The default below works for a normal Codex Skill installation and all later commands work from any current directory:
++
++```bash
++LOFTER_SKILL_DIR="${CODEX_HOME:-${HOME}/.codex}/skills/lofter-x-anime-hotspot"
++LOFTER_WORK_DIR="$(mktemp -d)"
++```
++
++When operating from a repository checkout, set `LOFTER_SKILL_DIR` to the absolute directory containing this `SKILL.md`.
++
++1. Collect current 24–72 hour X and LOFTER evidence. Maintain the five-entry IP pool separately from any number of topic candidates.
++2. Rank every eligible topic using the fixed threshold of 70:
++
++```bash
++python3 "$LOFTER_SKILL_DIR/scripts/score_candidates.py" \
++  "$LOFTER_SKILL_DIR/templates/candidates.example.json" \
++  --ip-pool "$LOFTER_SKILL_DIR/templates/ip-pool.example.json" \
++  --output "$LOFTER_WORK_DIR/ranked.json"
++```
++
++3. For direct original reuse, validate and capture the exact asset decision:
++
++```bash
++python3 "$LOFTER_SKILL_DIR/scripts/validate_authorizations.py" \
++  "$LOFTER_SKILL_DIR/templates/authorizations.example.json" \
++  example-asset-original-1 \
++  --usage original \
++  > "$LOFTER_WORK_DIR/authorization.json"
++```
++
++For an authorized AI adaptation, use a separate command and list every requested operation:
++
++```bash
++python3 "$LOFTER_SKILL_DIR/scripts/validate_authorizations.py" \
++  "$LOFTER_SKILL_DIR/templates/authorizations.example.json" \
++  example-asset-adapted-1 \
++  --usage ai_adaptation \
++  --operation layout \
++  > "$LOFTER_WORK_DIR/authorization.json"
++```
++
++4. Construct a daily packet-input file from the captured outputs. Keep `asset_id`, requested usage, and commercial intent unchanged:
++
++```bash
++python3 - "$LOFTER_SKILL_DIR" "$LOFTER_WORK_DIR" <<'PY'
++import json
++import sys
++from pathlib import Path
++
++skill_dir = Path(sys.argv[1])
++work_dir = Path(sys.argv[2])
++ranked = json.loads((work_dir / "ranked.json").read_text(encoding="utf-8"))
++authorization = json.loads((work_dir / "authorization.json").read_text(encoding="utf-8"))
++ip_pool = json.loads((skill_dir / "templates/ip-pool.example.json").read_text(encoding="utf-8"))
++candidate = next(item for item in ranked if item["asset_id"] == authorization["asset_id"])
++payload = {
++    "column": "daily_hotspot",
++    "ip_pool": ip_pool,
++    "candidate": candidate,
++    "authorization": authorization,
++    "authorization_ledger_path": str(skill_dir / "templates/authorizations.example.json"),
++}
++(work_dir / "packet-input.json").write_text(
++    json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
++)
++PY
++```
++
++5. Generate the human-review packet:
++
++```bash
++python3 "$LOFTER_SKILL_DIR/scripts/build_content_packet.py" \
++  "$LOFTER_WORK_DIR/packet-input.json" \
++  --output "$LOFTER_WORK_DIR/packet.md"
++```
++
++6. Human-review facts, source links, IP/character/CP terminology, tags, authorization scope, disclosure, structural requirements, and the single interaction question. Never publish automatically.
++
++## Fail-closed rules
++
++- Treat the `authorization` score dimension as research quality only. It never authorizes an asset.
++- Use a null `asset_id` only with `requested_usage: independent`; never attach an authorization decision to independent media.
++- Exact-match authorized asset ID, usage, commercial intent, provenance, and LOFTER platform against validator output. Packet generation reopens the named ledger, verifies its evidence, and regenerates the decision before accepting it.
++- Do not treat a public X post as permission. Require an existing local evidence file and complete ledger scope.
++- Require all five research checks, a prior LOFTER observation URL/date, and the applicable baseline or top-40% gate before fan fiction.
++- Keep authorization evidence private. Do not add unrelated trending tags or hard-paywall cliffhangers.
+diff --git a/lofter-x-anime-hotspot/agents/openai.yaml b/lofter-x-anime-hotspot/agents/openai.yaml
+index fe8f465..75a0bd6 100644
+--- a/lofter-x-anime-hotspot/agents/openai.yaml
++++ b/lofter-x-anime-hotspot/agents/openai.yaml
+@@ -1,4 +1,4 @@
+ interface:
+   display_name: "LOFTER × X 二次元热点"
+-  short_description: "双平台热点选题、授权校验与LOFTER内容包"
+-  default_prompt: "分析当前 X 与 LOFTER 的二次元交叉热点，按规则评分并生成可审核的 LOFTER 内容包。"
++  short_description: "追踪双平台二次元热点、核验媒体授权并生成LOFTER人工审核内容包"
++  default_prompt: "Use $lofter-x-anime-hotspot to rank current X/LOFTER anime topics and build a human-review packet."
+diff --git a/lofter-x-anime-hotspot/references/content-templates.md b/lofter-x-anime-hotspot/references/content-templates.md
+index f98071c..69244d0 100644
+--- a/lofter-x-anime-hotspot/references/content-templates.md
++++ b/lofter-x-anime-hotspot/references/content-templates.md
+@@ -1,25 +1,39 @@
+-# Content Templates
++# Content packet contracts
+ 
+-## 今日热度异动
++Generate structural human-review packets, not public prose. Every packet must contain exactly one line beginning `互动问题：`.
+ 
+-标题：`【IP/角色】过去24小时为什么突然升温？`
++## `daily_hotspot` — 今日热度异动
+ 
+-结构：100字内说明事件；给出X增长信号；说明LOFTER讨论差异；提供一个原创判断；结尾只问一个选择题式问题。
++- Accept exactly one eligible candidate.
++- Set a 200–400 Chinese-character target.
++- Preserve the X evidence, LOFTER evidence, source URLs, observation time, and media provenance.
++- Ask one question about whether the hotspot will continue or is a short-lived spike.
+ 
+-## 本周二次元趋势
++## `weekly_trend` — 本周二次元趋势
+ 
+-标题：`本周二次元趋势｜5个正在升温的角色与CP`
++- Accept exactly five distinct candidates already ranked by score.
++- Render each candidate's X signal, LOFTER signal, and non-empty sustainability note.
++- Ask one question selecting what to track next week.
+ 
+-结构：先给结论；按热度列5项；每项包含X信号、LOFTER信号和持续性判断；结尾询问下周希望跟踪哪一项。
++## `media_curation` — 媒体策展
+ 
+-## 热点脑洞实验室
++- Accept exactly one eligible candidate.
++- Require either exact-matched validated authorization or independent media with a null asset ID.
++- Render source/author/attribution for authorized media and never claim authorization for independent media.
++- Ask one media-focused question.
+ 
+-标题：`【IP｜CP】一句冲突或悬念`
++## `fanfic` — 热点脑洞实验室
+ 
+-结构：前100字建立冲突；正文保持核验后的人设与关系；提供完整首篇体验；不设置强付费截断；结尾询问是否继续该分支。
++- Accept exactly one eligible candidate and set an 800–2000 Chinese-character target.
++- Require verified world, characters, relationships, CP conventions, and fandom risks.
++- Require the prior observation's LOFTER URL and ISO-8601 publication date.
++- Require either the explicitly selected weeks 1–2 baseline policy or week 3+ `top_40_percent: true`.
++- Ask one continuation question.
+ 
+-## 极简声明
++## Exact AI disclosure
+ 
+-授权AI辅助图：`图像经授权使用，含AI辅助创作｜#AI辅助#`
+-
+-独立原创图：按实际AI参与情况使用平台要求的 `#AI辅助#` 或 `#AI生成#` 标识，不写“经授权使用”。
++- `authorized_original`: no AI label.
++- `authorized_ai_adaptation`: `图像经授权使用，含AI辅助创作｜#AI辅助#`.
++- `human_original`: no AI label.
++- `ai_assisted_original`: `#AI辅助#` without an authorization claim.
++- `ai_generated_original`: `#AI生成#` without an authorization claim.
+diff --git a/lofter-x-anime-hotspot/references/operating-rules.md b/lofter-x-anime-hotspot/references/operating-rules.md
+index 7e651f3..0db3957 100644
+--- a/lofter-x-anime-hotspot/references/operating-rules.md
++++ b/lofter-x-anime-hotspot/references/operating-rules.md
+@@ -1,27 +1,34 @@
+-# Operating Rules
++# Operating rules
+ 
+-## IP Pool
++## Separate IP pool
+ 
+-- `long_term`: 2 slots, evaluate monthly, observe at least four weeks.
+-- `rising`: 2 slots, evaluate weekly, replace after two weeks below the account median.
+-- `experiment`: 1 slot, replace weekly based on events and results.
++Maintain exactly five unique `ip_id` entries: two `long_term`, two `rising`, and one `experiment`. A candidate references one pool entry and must exact-match its `ip_name` and `ip_slot`. Rank every topic scoring at least 70; do not cap topics by pool category or require an eligible topic from every category.
+ 
+-## Weekly Cadence
++## Shared candidate contract
+ 
+-- 3 daily hotspot observations.
+-- 2 authorized image-curation or meaningful AI-adaptation posts.
+-- 1 weekly trend report.
+-- 1 verified fan-fiction short.
+-- Publish one post per day; allow at most one extra breaking-hotspot post.
++Require typed identity/IP fields, non-empty character names, a tag list, all five bounded score dimensions, X and LOFTER evidence, at least one HTTPS X source URL, an ISO-8601 observation timestamp, and complete media intent.
+ 
+-## Fan-fiction Gate
++Media intent is one of:
+ 
+-All five checks must be true: world, characters, relationships, CP conventions, and fandom risks. Otherwise publish only analysis.
++- `original` + non-empty asset ID + `authorized_original`;
++- `ai_adaptation` + non-empty asset ID + `authorized_ai_adaptation`;
++- `independent` + null asset ID + `human_original`, `ai_assisted_original`, or `ai_generated_original`.
+ 
+-## Review Metrics
++`commercial_intent` is a strict boolean. The numeric authorization score measures research completeness only and never grants media permission.
+ 
+-Weeks 1—2 establish the account baseline. From week 3, calculate relative performance using follow conversion 35%, save rate 25%, comment rate 20%, and like rate 20%. Top-40% hotspots may become fan fiction; top-20% fan-fiction posts may become collections.
++## Authorization ledger
+ 
+-## Publication Review
++Require non-empty asset/source/author/evidence values; exact booleans for redistribution, AI adaptation, commercial use, translation, crop, and layout; LOFTER platform scope; attribution mode; original/derived lineage; and publication history. Resolve relative evidence paths from the ledger directory. Reject malformed types, missing evidence, duplicate IDs, incomplete lineage, and any requested operation outside scope.
+ 
+-Confirm score ≥70, accurate tags, one interaction question, no hard paywall, valid authorization for reused media, correct AI label, and no unsupported factual claim.
++## Fan-fiction gate
++
++Require all five research checks, prior observation URL/date, and one phase gate:
++
++- weeks 1–2: `baseline_policy_selected: true`;
++- week 3+: `top_40_percent: true` based on the latest 14-day account performance.
++
++Otherwise publish only a trend-analysis review packet.
++
++## Publication review
++
++Verify score ≥70, accurate labels, exact authorization binding, disclosure, one interaction question, no unsupported facts, no hard paywall, and no public prose generated automatically. Human review and manual publication are mandatory.
+diff --git a/lofter-x-anime-hotspot/scripts/build_content_packet.py b/lofter-x-anime-hotspot/scripts/build_content_packet.py
+index 80a3db7..0f94917 100644
+--- a/lofter-x-anime-hotspot/scripts/build_content_packet.py
++++ b/lofter-x-anime-hotspot/scripts/build_content_packet.py
+@@ -1,86 +1,421 @@
+ import argparse
+ import json
++from datetime import date, datetime
+ from pathlib import Path
++from urllib.parse import urlparse
++
++from score_candidates import score_candidate
++from validate_authorizations import (
++    ATTRIBUTION_MODES,
++    DECISION_SCHEMA,
++    validate_authorization,
++    validate_ledger,
++)
+ 
+ 
+ COLUMN_TITLES = {
+     "daily_hotspot": "今日热度异动",
+     "weekly_trend": "本周二次元趋势",
++    "media_curation": "媒体策展",
+     "fanfic": "热点脑洞实验室",
+ }
+ RESEARCH_FIELDS = {
+     "world_verified",
+     "characters_verified",
+     "relationships_verified",
+     "cp_conventions_verified",
+     "fandom_risks_verified",
+ }
++AUTHORIZATION_DECISION_FIELDS = {
++    "decision_schema",
++    "allowed",
++    "asset_id",
++    "requested_usage",
++    "commercial_intent",
++    "requested_operations",
++    "source_url",
++    "author_handle",
++    "attribution_mode",
++    "platform",
++    "original_asset_id",
++    "image_provenance",
++}
++DISCLOSURES = {
++    "authorized_original": "",
++    "authorized_ai_adaptation": "图像经授权使用，含AI辅助创作｜#AI辅助#",
++    "human_original": "",
++    "ai_assisted_original": "#AI辅助#",
++    "ai_generated_original": "#AI生成#",
++}
+ 
+ 
+-def build_packet(
+-    candidate: dict,
+-    research: dict,
+-    column: str,
+-    asset: dict | None = None,
+-) -> str:
+-    if column not in COLUMN_TITLES:
+-        raise ValueError("unknown column")
+-    if candidate.get("total_score", 0) < 70:
++def _non_empty_string(value, field: str) -> str:
++    if not isinstance(value, str) or not value.strip():
++        raise ValueError(f"{field} must be a non-empty string")
++    return value.strip()
++
++
++def _https_url(value, field: str, *, lofter: bool = False) -> str:
++    if not isinstance(value, str) or not value.strip():
++        if lofter:
++            raise ValueError(f"{field} must be an HTTPS LOFTER URL")
++        raise ValueError(f"{field} must be an HTTPS URL")
++    parsed = urlparse(value)
++    host = (parsed.hostname or "").lower()
++    if parsed.scheme != "https" or not host:
++        if lofter:
++            raise ValueError(f"{field} must be an HTTPS LOFTER URL")
++        raise ValueError(f"{field} must be an HTTPS URL")
++    if lofter and not (host == "lofter.com" or host.endswith(".lofter.com")):
++        raise ValueError(f"{field} must be an HTTPS LOFTER URL")
++    return value
++
++
++def _iso_date_or_datetime(value, field: str) -> str:
++    if not isinstance(value, str) or not value.strip():
++        raise ValueError(f"{field} must be ISO-8601")
++    try:
++        if "T" in value:
++            datetime.fromisoformat(value.replace("Z", "+00:00"))
++        else:
++            date.fromisoformat(value)
++    except ValueError as error:
++        raise ValueError(f"{field} must be ISO-8601") from error
++    return value
++
++
++def _validated_candidate(candidate: dict, ip_pool: list[dict]) -> dict:
++    provided_total = candidate.get("total_score") if isinstance(candidate, dict) else None
++    provided_eligible = candidate.get("eligible") if isinstance(candidate, dict) else None
++    scored = score_candidate(candidate, ip_pool)
++    if provided_total is not None and provided_total != scored["total_score"]:
++        raise ValueError("candidate total_score does not match score dimensions")
++    if provided_eligible is not None and provided_eligible is not scored["eligible"]:
++        raise ValueError("candidate eligible flag does not match score dimensions")
++    if not scored["eligible"]:
+         raise ValueError("candidate score is below 70")
+-    if column == "fanfic" and not all(
+-        research.get(field) is True for field in RESEARCH_FIELDS
+-    ):
+-        raise ValueError("fan fiction research is incomplete")
+-    if candidate.get("media_instruction") == "use_authorized_media":
+-        if not asset or asset.get("allowed") is not True:
+-            raise ValueError("validated authorization is required")
+-        media_line = f"授权素材：{asset['source_url']}（{asset['usage']}）"
+-        footer = "图像经授权使用，含AI辅助创作｜#AI辅助#"
++    return scored
++
++
++def _validate_authorization_decision(
++    candidate: dict,
++    decision: dict | None,
++    ledger_value,
++    base_dir: Path,
++) -> dict | None:
++    if candidate["requested_usage"] == "independent":
++        if decision is not None:
++            raise ValueError("independent media must not include authorization")
++        return None
++    if decision is None:
++        raise ValueError("validated authorization is required")
++    if not isinstance(decision, dict):
++        raise ValueError("validated authorization output must be an object")
++    missing = sorted(AUTHORIZATION_DECISION_FIELDS - decision.keys())
++    if missing:
++        raise ValueError(
++            "validated authorization output is incomplete: " + ", ".join(missing)
++        )
++    if decision["decision_schema"] != DECISION_SCHEMA or decision["allowed"] is not True:
++        raise ValueError("authorization decision is not a validated allow decision")
++    if decision["asset_id"] != candidate["asset_id"]:
++        raise ValueError("authorization asset_id does not match candidate")
++    if decision["requested_usage"] != candidate["requested_usage"]:
++        raise ValueError("authorization usage does not match candidate")
++    if type(decision["commercial_intent"]) is not bool:
++        raise ValueError("authorization commercial_intent must be a boolean")
++    if decision["commercial_intent"] is not candidate["commercial_intent"]:
++        raise ValueError("authorization commercial scope does not match candidate")
++    if decision["image_provenance"] != candidate["image_provenance"]:
++        raise ValueError("authorization provenance does not match candidate")
++    if decision["platform"] != "LOFTER":
++        raise ValueError("authorization platform must be LOFTER")
++    _non_empty_string(decision["author_handle"], "authorization author_handle")
++    _https_url(decision["source_url"], "authorization source_url")
++    if decision["attribution_mode"] not in ATTRIBUTION_MODES:
++        raise ValueError("authorization attribution_mode is invalid")
++    if not isinstance(decision["requested_operations"], list):
++        raise ValueError("authorization requested_operations must be a list")
++    ledger_text = _non_empty_string(
++        ledger_value, "authorization_ledger_path"
++    )
++    ledger_path = Path(ledger_text)
++    if not ledger_path.is_absolute():
++        ledger_path = base_dir / ledger_path
++    try:
++        records = json.loads(ledger_path.read_text(encoding="utf-8"))
++        indexed = validate_ledger(records, evidence_root=ledger_path.parent)
++        if candidate["asset_id"] not in indexed:
++            raise ValueError("authorization asset_id is not present in the ledger")
++        validated = validate_authorization(
++            indexed[candidate["asset_id"]],
++            candidate["requested_usage"],
++            candidate["commercial_intent"],
++            operations=decision["requested_operations"],
++            evidence_root=ledger_path.parent,
++        )
++    except (OSError, json.JSONDecodeError) as error:
++        raise ValueError(f"authorization ledger cannot be read: {error}") from error
++    if validated != decision:
++        raise ValueError("authorization decision does not match validated ledger")
++    return decision
++
++
++def _media_lines(
++    candidate: dict,
++    decision: dict | None,
++    ledger_value,
++    base_dir: Path,
++) -> list[str]:
++    validated = _validate_authorization_decision(
++        candidate, decision, ledger_value, base_dir
++    )
++    provenance = candidate["image_provenance"]
++    if validated is None:
++        lines = [f"媒体来源：独立创作（{provenance}）"]
+     else:
+-        media_line = "配图要求：独立创作配图，不输入未授权原图"
+-        footer = ""
+-    tags = " ".join(f"#{tag}#" for tag in candidate.get("tags", []))
+-    characters = "、".join(candidate.get("characters", []))
+-    sections = [
+-        f"# {COLUMN_TITLES[column]}",
+-        "",
++        lines = [
++            "媒体来源：已验证授权素材"
++            f"｜作者：{validated['author_handle']}"
++            f"｜来源：{validated['source_url']}"
++            f"｜署名模式：{validated['attribution_mode']}"
++        ]
++    disclosure = DISCLOSURES[provenance]
++    if disclosure:
++        lines.append(f"AI披露：{disclosure}")
++    return lines
++
++
++def _candidate_lines(candidate: dict) -> list[str]:
++    characters = "、".join(candidate["characters"])
++    tags = " ".join(f"#{tag}#" for tag in candidate["tags"])
++    sources = "、".join(candidate["x_source_urls"])
++    return [
+         f"选题：{candidate['title']}",
+-        f"IP：{candidate['ip_name']}",
++        f"IP：{candidate['ip_name']}（{candidate['ip_id']}｜{candidate['ip_slot']}）",
+         f"角色：{characters}",
++        f"标签：{tags}",
+         f"总分：{candidate['total_score']}/100",
+         f"X依据：{candidate['x_evidence']}",
+         f"LOFTER依据：{candidate['lofter_evidence']}",
+-        f"标签：{tags}",
+-        media_line,
++        f"X来源：{sources}",
++        f"观察时间：{candidate['observed_at']}",
++    ]
++
++
++def _daily_packet(payload: dict, ip_pool: list[dict], base_dir: Path) -> list[str]:
++    candidate = _validated_candidate(payload.get("candidate"), ip_pool)
++    lines = [
++        "# 人工审核内容包｜今日热度异动",
+         "",
+-        "## 正文写作要求",
++        *_candidate_lines(candidate),
++        *_media_lines(
++            candidate,
++            payload.get("authorization"),
++            payload.get("authorization_ledger_path"),
++            base_dir,
++        ),
+         "",
+-        "- 前100字说明热点或设置故事钩子。",
+-        "- 正文提供明确的信息增量或完整故事体验。",
+-        "- 不设置强付费截断。",
+-        "- 不添加无关热门标签。",
++        "## 正文结构要求",
+         "",
+-        "互动问题：你更想看这个热点的趋势拆解，还是角色故事？",
++        "- 目标长度：200–400个中文字符。",
++        "- 前100字说明过去24–72小时发生了什么。",
++        "- 分别说明X增长信号与LOFTER讨论差异。",
++        "- 提供一个可核验的原创判断；仅输出结构要求，不代写公开内容。",
++        "- 不添加无关热门标签，不设置强付费截断。",
++        "",
++        "互动问题：你认为这个热点会继续升温，还是只是短期异动？",
+     ]
+-    if footer:
+-        sections.extend(["", footer])
+-    return "\n".join(sections) + "\n"
++    return lines
++
++
++def _authorization_map(decisions) -> dict[str, dict]:
++    if decisions is None:
++        return {}
++    if not isinstance(decisions, list):
++        raise ValueError("authorizations must be a list")
++    result = {}
++    for decision in decisions:
++        if not isinstance(decision, dict) or "asset_id" not in decision:
++            raise ValueError("each authorization must contain asset_id")
++        asset_id = decision["asset_id"]
++        if asset_id in result:
++            raise ValueError(f"duplicate authorization asset_id: {asset_id}")
++        result[asset_id] = decision
++    return result
++
++
++def _weekly_packet(payload: dict, ip_pool: list[dict], base_dir: Path) -> list[str]:
++    candidates = payload.get("candidates")
++    if not isinstance(candidates, list) or len(candidates) != 5:
++        raise ValueError("weekly_trend requires exactly five candidates")
++    scored = [_validated_candidate(candidate, ip_pool) for candidate in candidates]
++    ids = [candidate["id"] for candidate in scored]
++    if len(set(ids)) != 5:
++        raise ValueError("weekly_trend candidates must have unique ids")
++    expected = sorted(scored, key=lambda item: (-item["total_score"], item["id"]))
++    if [item["id"] for item in expected] != ids:
++        raise ValueError("weekly_trend candidates must be ranked by score")
++    decisions = _authorization_map(payload.get("authorizations"))
++    used_assets = set()
++    lines = [
++        "# 人工审核内容包｜本周二次元趋势",
++        "",
++        "## 正文结构要求",
++        "",
++        "- 仅按以下顺序呈现5个热点，不自动生成公开正文。",
++        "- 每项保留X信号、LOFTER信号与持续性判断。",
++        "- 不添加无关热门标签，不设置强付费截断。",
++    ]
++    for index, candidate in enumerate(scored, start=1):
++        note = candidate.get("sustainability_note")
++        if not isinstance(note, str) or not note.strip():
++            raise ValueError(
++                "weekly candidate sustainability_note must be a non-empty string"
++            )
++        decision = None
++        if candidate["asset_id"] is not None:
++            decision = decisions.get(candidate["asset_id"])
++            used_assets.add(candidate["asset_id"])
++        lines.extend(
++            [
++                "",
++                f"## {index}. {candidate['title']}｜{candidate['total_score']}/100",
++                f"IP：{candidate['ip_name']}（{candidate['ip_id']}）",
++                f"X信号：{candidate['x_evidence']}",
++                f"LOFTER信号：{candidate['lofter_evidence']}",
++                f"持续性判断：{note}",
++                *_media_lines(
++                    candidate,
++                    decision,
++                    payload.get("authorization_ledger_path"),
++                    base_dir,
++                ),
++            ]
++        )
++    unused = set(decisions) - used_assets
++    if unused:
++        raise ValueError("unused authorization decisions: " + ", ".join(sorted(unused)))
++    lines.extend(["", "互动问题：下周你最希望继续追踪以上哪一个热点？"])
++    return lines
++
++
++def _media_packet(payload: dict, ip_pool: list[dict], base_dir: Path) -> list[str]:
++    candidate = _validated_candidate(payload.get("candidate"), ip_pool)
++    return [
++        "# 人工审核内容包｜媒体策展",
++        "",
++        *_candidate_lines(candidate),
++        *_media_lines(
++            candidate,
++            payload.get("authorization"),
++            payload.get("authorization_ledger_path"),
++            base_dir,
++        ),
++        "",
++        "## 正文结构要求",
++        "",
++        "- 仅使用上述已验证授权素材，或明确标注的独立创作素材。",
++        "- 核对来源、作者、署名模式、使用方式与商业范围。",
++        "- 解释画面与热点的关系；仅输出结构要求，不代写公开内容。",
++        "- 不添加无关热门标签，不设置强付费截断。",
++        "",
++        "互动问题：你更想看这张图的创作过程，还是围绕角色的视觉解读？",
++    ]
++
++
++def _fanfic_qualification(payload: dict) -> str:
++    qualification = payload.get("fanfic_qualification")
++    if not isinstance(qualification, dict):
++        raise ValueError("fanfic_qualification must be an object")
++    phase = qualification.get("phase")
++    if phase == "weeks_1_2":
++        if qualification.get("baseline_policy_selected") is not True:
++            raise ValueError("weeks 1-2 baseline policy must be explicitly selected")
++        return "资格：第1–2周基线政策已明确选择"
++    if phase == "week_3_plus":
++        if qualification.get("top_40_percent") is not True:
++            raise ValueError("week 3+ fan fiction requires top_40_percent true")
++        return "资格：第3周起近14天表现前40%"
++    raise ValueError("fanfic qualification phase must be weeks_1_2 or week_3_plus")
++
++
++def _fanfic_packet(payload: dict, ip_pool: list[dict], base_dir: Path) -> list[str]:
++    candidate = _validated_candidate(payload.get("candidate"), ip_pool)
++    research = payload.get("research")
++    if not isinstance(research, dict) or not all(
++        research.get(field) is True for field in RESEARCH_FIELDS
++    ):
++        raise ValueError("fan fiction research is incomplete")
++    observation_url = payload.get("observation_url")
++    _https_url(observation_url, "observation_url", lofter=True)
++    observation_published_at = payload.get("observation_published_at")
++    _iso_date_or_datetime(observation_published_at, "observation_published_at")
++    qualification_line = _fanfic_qualification(payload)
++    return [
++        "# 人工审核内容包｜热点脑洞实验室",
++        "",
++        *_candidate_lines(candidate),
++        *_media_lines(
++            candidate,
++            payload.get("authorization"),
++            payload.get("authorization_ledger_path"),
++            base_dir,
++        ),
++        f"前置观察：{observation_url}",
++        f"观察发布日期：{observation_published_at}",
++        "研究核验：5/5已通过",
++        qualification_line,
++        "",
++        "## 正文结构要求",
++        "",
++        "- 目标长度：800–2000个中文字符。",
++        "- 前100字建立冲突或悬念，保持核验后的人设、关系与CP惯例。",
++        "- 提供完整首篇体验，不设置强付费截断。",
++        "- 明确区分官方设定与常见二设；仅输出结构要求，不代写公开内容。",
++        "- 使用准确预警与标签，提交人工事实、OOC和拆逆风险审核。",
++        "",
++        "互动问题：你希望这个故事沿当前分支继续吗？",
++    ]
++
++
++def build_packet(payload: dict, *, base_dir: Path | str = Path.cwd()) -> str:
++    if not isinstance(payload, dict):
++        raise ValueError("packet input must be an object")
++    column = payload.get("column")
++    if column not in COLUMN_TITLES:
++        raise ValueError("unknown column")
++    ip_pool = payload.get("ip_pool")
++    renderers = {
++        "daily_hotspot": _daily_packet,
++        "weekly_trend": _weekly_packet,
++        "media_curation": _media_packet,
++        "fanfic": _fanfic_packet,
++    }
++    lines = renderers[column](payload, ip_pool, Path(base_dir))
++    packet = "\n".join(lines) + "\n"
++    question_count = sum(
++        line.startswith("互动问题：") for line in packet.splitlines()
++    )
++    if question_count != 1:
++        raise ValueError("packet must contain exactly one interaction question line")
++    return packet
+ 
+ 
+ def main() -> None:
+-    parser = argparse.ArgumentParser()
++    parser = argparse.ArgumentParser(
++        description="Generate a column-specific LOFTER human-review packet."
++    )
+     parser.add_argument("input", type=Path)
+     parser.add_argument("--output", type=Path, required=True)
+     args = parser.parse_args()
+-    payload = json.loads(args.input.read_text(encoding="utf-8"))
+-    packet = build_packet(
+-        payload["candidate"],
+-        payload.get("research", {}),
+-        payload["column"],
+-        payload.get("asset"),
+-    )
+-    args.output.write_text(packet, encoding="utf-8")
++    try:
++        payload = json.loads(args.input.read_text(encoding="utf-8"))
++        packet = build_packet(payload, base_dir=args.input.parent)
++        args.output.write_text(packet, encoding="utf-8")
++    except (OSError, json.JSONDecodeError, ValueError, TypeError) as error:
++        raise SystemExit(f"error: {error}") from error
+ 
+ 
+ if __name__ == "__main__":
+     main()
+diff --git a/lofter-x-anime-hotspot/scripts/score_candidates.py b/lofter-x-anime-hotspot/scripts/score_candidates.py
+index a34e02b..a9d1bbc 100644
+--- a/lofter-x-anime-hotspot/scripts/score_candidates.py
++++ b/lofter-x-anime-hotspot/scripts/score_candidates.py
+@@ -1,79 +1,248 @@
+ import argparse
+ import json
++from collections import Counter
++from datetime import datetime
+ from pathlib import Path
++from urllib.parse import urlparse
+ 
+ 
+-LIMITS = {
++PUBLICATION_THRESHOLD = 70
++SCORE_LIMITS = {
+     "x_growth": 30,
+     "lofter_activity": 30,
+     "ip_match": 15,
+     "authorization": 15,
+     "story_potential": 10,
+ }
+-VALID_IP_SLOTS = {"long_term", "rising", "experiment"}
+-SLOT_CAPACITIES = {"long_term": 2, "rising": 2, "experiment": 1}
++IP_SLOT_COUNTS = {"long_term": 2, "rising": 2, "experiment": 1}
++INDEPENDENT_PROVENANCE = {
++    "human_original",
++    "ai_assisted_original",
++    "ai_generated_original",
++}
++IMAGE_PROVENANCE = {
++    "authorized_original",
++    "authorized_ai_adaptation",
++    *INDEPENDENT_PROVENANCE,
++}
++REQUESTED_USAGE = {"original", "ai_adaptation", "independent"}
++CANDIDATE_FIELDS = {
++    "id",
++    "title",
++    "ip_id",
++    "ip_name",
++    "ip_slot",
++    "characters",
++    "tags",
++    *SCORE_LIMITS.keys(),
++    "x_evidence",
++    "lofter_evidence",
++    "x_source_urls",
++    "observed_at",
++    "asset_id",
++    "requested_usage",
++    "commercial_intent",
++    "image_provenance",
++}
++
++
++def _non_empty_string(value, field: str) -> str:
++    if not isinstance(value, str) or not value.strip():
++        raise ValueError(f"{field} must be a non-empty string")
++    return value.strip()
++
++
++def _string_list(value, field: str, *, non_empty: bool) -> list[str]:
++    if not isinstance(value, list):
++        raise ValueError(f"{field} must be a list")
++    if non_empty and not value:
++        raise ValueError(f"{field} must contain at least one value")
++    if any(not isinstance(item, str) or not item.strip() for item in value):
++        raise ValueError(f"{field} must contain non-empty strings")
++    return value
++
++
++def _iso_datetime(value, field: str) -> str:
++    if not isinstance(value, str) or not value.strip() or "T" not in value:
++        raise ValueError(f"{field} must be ISO-8601")
++    try:
++        datetime.fromisoformat(value.replace("Z", "+00:00"))
++    except ValueError as error:
++        raise ValueError(f"{field} must be ISO-8601") from error
++    return value
++
++
++def _https_x_url(value, field: str) -> str:
++    _non_empty_string(value, field)
++    parsed = urlparse(value)
++    host = (parsed.hostname or "").lower()
++    if parsed.scheme != "https" or not (host == "x.com" or host.endswith(".x.com")):
++        raise ValueError(f"{field} must be an HTTPS X URL")
++    return value
+ 
+ 
+-def score_candidate(candidate: dict) -> dict:
+-    required = {"id", "title", "ip_slot", *LIMITS.keys()}
+-    missing = sorted(required - candidate.keys())
++def validate_ip_pool(ip_pool: list[dict]) -> dict[str, dict]:
++    if not isinstance(ip_pool, list):
++        raise ValueError("IP pool must be a list")
++    indexed: dict[str, dict] = {}
++    names = set()
++    counts = Counter()
++    for index, entry in enumerate(ip_pool):
++        if not isinstance(entry, dict):
++            raise ValueError(f"IP pool entry {index} must be an object")
++        missing = sorted({"ip_id", "ip_name", "ip_slot"} - entry.keys())
++        if missing:
++            raise ValueError(f"IP pool entry {index} missing fields: {', '.join(missing)}")
++        ip_id = _non_empty_string(entry["ip_id"], "ip_id")
++        ip_name = _non_empty_string(entry["ip_name"], "ip_name")
++        slot = entry["ip_slot"]
++        if slot not in IP_SLOT_COUNTS:
++            raise ValueError("ip_slot must be long_term, rising, or experiment")
++        if ip_id in indexed:
++            raise ValueError(f"duplicate ip_id: {ip_id}")
++        if ip_name in names:
++            raise ValueError(f"duplicate ip_name: {ip_name}")
++        indexed[ip_id] = entry
++        names.add(ip_name)
++        counts[slot] += 1
++    count_errors = [
++        f"{slot} must contain exactly {expected} IPs"
++        for slot, expected in IP_SLOT_COUNTS.items()
++        if counts[slot] != expected
++    ]
++    if count_errors:
++        raise ValueError("; ".join(count_errors))
++    if len(indexed) != sum(IP_SLOT_COUNTS.values()):
++        raise ValueError("IP pool must contain exactly 5 IPs")
++    return indexed
++
++
++def _validate_candidate(candidate: dict, pool: dict[str, dict]) -> None:
++    if not isinstance(candidate, dict):
++        raise ValueError("candidate must be an object")
++    missing = sorted(CANDIDATE_FIELDS - candidate.keys())
+     if missing:
+         raise ValueError(f"missing fields: {', '.join(missing)}")
+-    if candidate["ip_slot"] not in VALID_IP_SLOTS:
+-        raise ValueError("ip_slot must be long_term, rising, or experiment")
+-    for field, maximum in LIMITS.items():
++
++    for field in ("id", "title", "ip_id", "ip_name", "x_evidence", "lofter_evidence"):
++        _non_empty_string(candidate[field], field)
++    _string_list(candidate["characters"], "characters", non_empty=True)
++    _string_list(candidate["tags"], "tags", non_empty=False)
++    urls = _string_list(candidate["x_source_urls"], "x_source_urls", non_empty=True)
++    for index, url in enumerate(urls):
++        _https_x_url(url, f"x_source_urls[{index}]")
++    _iso_datetime(candidate["observed_at"], "observed_at")
++
++    ip_id = candidate["ip_id"]
++    if ip_id not in pool:
++        raise ValueError(f"unknown ip_id: {ip_id}")
++    pool_entry = pool[ip_id]
++    if candidate["ip_name"] != pool_entry["ip_name"]:
++        raise ValueError("ip_name does not match IP pool")
++    if candidate["ip_slot"] != pool_entry["ip_slot"]:
++        raise ValueError("ip_slot does not match IP pool")
++
++    for field, maximum in SCORE_LIMITS.items():
+         value = candidate[field]
+         if not isinstance(value, int) or isinstance(value, bool):
+             raise ValueError(f"{field} must be an integer")
+         if not 0 <= value <= maximum:
+             raise ValueError(f"{field} must be between 0 and {maximum}")
+-    total = sum(candidate[field] for field in LIMITS)
++
++    if type(candidate["commercial_intent"]) is not bool:
++        raise ValueError("commercial_intent must be a boolean")
++    usage = candidate["requested_usage"]
++    if usage not in REQUESTED_USAGE:
++        raise ValueError("requested_usage must be original, ai_adaptation, or independent")
++    provenance = candidate["image_provenance"]
++    if provenance not in IMAGE_PROVENANCE:
++        raise ValueError("invalid image_provenance")
++    asset_id = candidate["asset_id"]
++    if asset_id is not None:
++        _non_empty_string(asset_id, "asset_id")
++
++    if usage == "independent":
++        if asset_id is not None:
++            raise ValueError("independent media must use a null asset_id")
++        if provenance not in INDEPENDENT_PROVENANCE:
++            raise ValueError("independent usage requires independent image provenance")
++    elif asset_id is None:
++        raise ValueError("authorized media requires a non-empty asset_id")
++    elif usage == "original" and provenance != "authorized_original":
++        raise ValueError("original usage requires authorized_original provenance")
++    elif usage == "ai_adaptation" and provenance != "authorized_ai_adaptation":
++        raise ValueError(
++            "ai_adaptation usage requires authorized_ai_adaptation provenance"
++        )
++
++
++def score_candidate(candidate: dict, ip_pool: list[dict]) -> dict:
++    pool = validate_ip_pool(ip_pool)
++    _validate_candidate(candidate, pool)
++    total = sum(candidate[field] for field in SCORE_LIMITS)
+     return {
+         **candidate,
+         "total_score": total,
+-        "eligible": total >= 70,
++        "eligible": total >= PUBLICATION_THRESHOLD,
+         "media_instruction": (
+-            "use_authorized_media"
+-            if candidate["authorization"] > 0
+-            else "create_independent_image"
++            "create_independent_image"
++            if candidate["requested_usage"] == "independent"
++            else "use_authorized_media"
+         ),
+     }
+ 
+ 
+-def rank_candidates(candidates: list[dict], threshold: int = 70) -> list[dict]:
+-    scored = [score_candidate(candidate) for candidate in candidates]
+-    ranked = sorted(
+-        (item for item in scored if item["total_score"] >= threshold),
++def rank_candidates(candidates: list[dict], ip_pool: list[dict]) -> list[dict]:
++    if not isinstance(candidates, list):
++        raise ValueError("candidates must be a list")
++    pool = validate_ip_pool(ip_pool)
++    scored = []
++    candidate_ids = set()
++    for candidate in candidates:
++        _validate_candidate(candidate, pool)
++        candidate_id = candidate["id"]
++        if candidate_id in candidate_ids:
++            raise ValueError(f"duplicate candidate id: {candidate_id}")
++        candidate_ids.add(candidate_id)
++        total = sum(candidate[field] for field in SCORE_LIMITS)
++        scored.append(
++            {
++                **candidate,
++                "total_score": total,
++                "eligible": total >= PUBLICATION_THRESHOLD,
++                "media_instruction": (
++                    "create_independent_image"
++                    if candidate["requested_usage"] == "independent"
++                    else "use_authorized_media"
++                ),
++            }
++        )
++    return sorted(
++        (item for item in scored if item["eligible"]),
+         key=lambda item: (-item["total_score"], item["id"]),
+     )
+-    selected = []
+-    slot_counts = {slot: 0 for slot in SLOT_CAPACITIES}
+-    for item in ranked:
+-        slot = item["ip_slot"]
+-        if slot_counts[slot] < SLOT_CAPACITIES[slot]:
+-            selected.append(item)
+-            slot_counts[slot] += 1
+-    for slot, capacity in SLOT_CAPACITIES.items():
+-        if slot_counts[slot] < capacity:
+-            raise ValueError(
+-                f"{slot} requires {capacity} candidates; {slot_counts[slot]} available"
+-            )
+-    return selected
+ 
+ 
+ def main() -> None:
+-    parser = argparse.ArgumentParser()
+-    parser.add_argument("input", type=Path)
++    parser = argparse.ArgumentParser(
++        description="Validate and rank LOFTER/X topic candidates."
++    )
++    parser.add_argument("candidates", type=Path)
++    parser.add_argument("--ip-pool", type=Path, required=True)
+     parser.add_argument("--output", type=Path)
+     args = parser.parse_args()
+-    candidates = json.loads(args.input.read_text(encoding="utf-8"))
+-    result = rank_candidates(candidates)
++    try:
++        candidates = json.loads(args.candidates.read_text(encoding="utf-8"))
++        ip_pool = json.loads(args.ip_pool.read_text(encoding="utf-8"))
++        result = rank_candidates(candidates, ip_pool)
++    except (OSError, json.JSONDecodeError, ValueError) as error:
++        raise SystemExit(f"error: {error}") from error
+     payload = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
+     if args.output:
+         args.output.write_text(payload, encoding="utf-8")
+     else:
+         print(payload, end="")
+ 
+ 
+ if __name__ == "__main__":
+     main()
+diff --git a/lofter-x-anime-hotspot/scripts/validate_authorizations.py b/lofter-x-anime-hotspot/scripts/validate_authorizations.py
+index b0b91fb..c77f7b7 100644
+--- a/lofter-x-anime-hotspot/scripts/validate_authorizations.py
++++ b/lofter-x-anime-hotspot/scripts/validate_authorizations.py
+@@ -1,55 +1,254 @@
+ import argparse
+ import json
++from datetime import date, datetime
+ from pathlib import Path
++from urllib.parse import urlparse
+ 
+ 
+-REQUIRED = {
++BOOLEAN_FIELDS = {
++    "lofter_redistribution",
++    "ai_adaptation",
++    "commercial_use",
++    "translation",
++    "crop",
++    "layout",
++}
++REQUIRED_FIELDS = {
+     "asset_id",
+     "author_handle",
+     "source_url",
+     "evidence_path",
+-    "lofter_redistribution",
+-    "ai_adaptation",
+-    "commercial_use",
++    *BOOLEAN_FIELDS,
++    "allowed_platforms",
++    "attribution_mode",
++    "original_asset_id",
++    "derived_asset_ids",
++    "publication_history",
+ }
++ATTRIBUTION_MODES = {"public", "anonymous_allowed", "required"}
++OPERATIONS = {"translation", "crop", "layout"}
++DECISION_SCHEMA = "lofter-media-authorization/v1"
++
+ 
++def _non_empty_string(value, field: str) -> str:
++    if not isinstance(value, str) or not value.strip():
++        raise ValueError(f"{field} must be a non-empty string")
++    return value.strip()
+ 
+-def validate_authorization(record: dict, usage: str, commercial: bool = False) -> dict:
+-    missing = sorted(REQUIRED - record.keys())
++
++def _https_url(value, field: str, *, lofter: bool = False) -> str:
++    _non_empty_string(value, field)
++    parsed = urlparse(value)
++    host = (parsed.hostname or "").lower()
++    if parsed.scheme != "https" or not host:
++        suffix = " LOFTER" if lofter else ""
++        raise ValueError(f"{field} must be an HTTPS{suffix} URL")
++    if lofter and not (host == "lofter.com" or host.endswith(".lofter.com")):
++        raise ValueError(f"{field} must be an HTTPS LOFTER URL")
++    return value
++
++
++def _iso_date_or_datetime(value, field: str) -> str:
++    if not isinstance(value, str) or not value.strip():
++        raise ValueError(f"{field} must be ISO-8601")
++    try:
++        if "T" in value:
++            datetime.fromisoformat(value.replace("Z", "+00:00"))
++        else:
++            date.fromisoformat(value)
++    except ValueError as error:
++        raise ValueError(f"{field} must be ISO-8601") from error
++    return value
++
++
++def _string_list(value, field: str) -> list[str]:
++    if not isinstance(value, list):
++        raise ValueError(f"{field} must be a list")
++    if any(not isinstance(item, str) or not item.strip() for item in value):
++        raise ValueError(f"{field} must contain non-empty strings")
++    return value
++
++
++def _validate_record(record: dict, evidence_root: Path) -> None:
++    if not isinstance(record, dict):
++        raise ValueError("authorization record must be an object")
++    missing = sorted(REQUIRED_FIELDS - record.keys())
+     if missing:
+         raise ValueError(f"missing fields: {', '.join(missing)}")
++
++    _non_empty_string(record["asset_id"], "asset_id")
++    _non_empty_string(record["author_handle"], "author_handle")
++    _https_url(record["source_url"], "source_url")
++    evidence_value = _non_empty_string(record["evidence_path"], "evidence_path")
++    evidence_path = Path(evidence_value)
++    if not evidence_path.is_absolute():
++        evidence_path = evidence_root / evidence_path
++    if not evidence_path.is_file():
++        raise ValueError(f"authorization evidence does not exist: {evidence_value}")
++
++    for field in BOOLEAN_FIELDS:
++        if type(record[field]) is not bool:
++            raise ValueError(f"{field} must be a boolean")
++
++    platforms = _string_list(record["allowed_platforms"], "allowed_platforms")
++    if not platforms:
++        raise ValueError("allowed_platforms must contain at least one platform")
++    if record["attribution_mode"] not in ATTRIBUTION_MODES:
++        raise ValueError("invalid attribution_mode")
++
++    original_asset_id = record["original_asset_id"]
++    if original_asset_id is not None:
++        if not isinstance(original_asset_id, str) or not original_asset_id.strip():
++            raise ValueError(
++                "original_asset_id must be null or a non-empty string"
++            )
++        if original_asset_id == record["asset_id"]:
++            raise ValueError("original_asset_id must differ from asset_id")
++    derived = _string_list(record["derived_asset_ids"], "derived_asset_ids")
++    if len(set(derived)) != len(derived):
++        raise ValueError("derived_asset_ids must be unique")
++    if record["asset_id"] in derived:
++        raise ValueError("derived_asset_ids cannot contain asset_id")
++
++    history = record["publication_history"]
++    if not isinstance(history, list):
++        raise ValueError("publication_history must be a list")
++    for index, publication in enumerate(history):
++        if not isinstance(publication, dict):
++            raise ValueError(f"publication_history[{index}] must be an object")
++        missing_history = sorted({"published_at", "lofter_url"} - publication.keys())
++        if missing_history:
++            raise ValueError(
++                f"publication_history[{index}] missing fields: {', '.join(missing_history)}"
++            )
++        _iso_date_or_datetime(publication["published_at"], "published_at")
++        _https_url(publication["lofter_url"], "lofter_url", lofter=True)
++
++
++def validate_ledger(
++    records: list[dict], *, evidence_root: Path | str = Path.cwd()
++) -> dict[str, dict]:
++    if not isinstance(records, list):
++        raise ValueError("authorization ledger must be a list")
++    root = Path(evidence_root)
++    indexed: dict[str, dict] = {}
++    for record in records:
++        _validate_record(record, root)
++        asset_id = record["asset_id"]
++        if asset_id in indexed:
++            raise ValueError(f"duplicate asset_id: {asset_id}")
++        indexed[asset_id] = record
++
++    for asset_id, record in indexed.items():
++        original_id = record["original_asset_id"]
++        if original_id is not None:
++            if original_id not in indexed:
++                raise ValueError(f"unknown original_asset_id: {original_id}")
++            if asset_id not in indexed[original_id]["derived_asset_ids"]:
++                raise ValueError(
++                    f"original asset {original_id} does not list derived asset {asset_id}"
++                )
++        for derived_id in record["derived_asset_ids"]:
++            if derived_id not in indexed:
++                raise ValueError(f"unknown derived_asset_id: {derived_id}")
++            if indexed[derived_id]["original_asset_id"] != asset_id:
++                raise ValueError(
++                    f"derived asset {derived_id} does not reference original asset {asset_id}"
++                )
++    return indexed
++
++
++def validate_authorization(
++    record: dict,
++    usage: str,
++    commercial: bool = False,
++    *,
++    operations: tuple[str, ...] | list[str] = (),
++    evidence_root: Path | str = Path.cwd(),
++) -> dict:
++    root = Path(evidence_root)
++    _validate_record(record, root)
+     if usage not in {"original", "ai_adaptation"}:
+         raise ValueError("usage must be original or ai_adaptation")
+-    if not record["lofter_redistribution"]:
++    if type(commercial) is not bool:
++        raise ValueError("commercial must be a boolean")
++    if not isinstance(operations, (tuple, list)):
++        raise ValueError("operations must be a list or tuple")
++    requested_operations = []
++    for operation in operations:
++        if operation not in OPERATIONS:
++            raise ValueError(f"unknown requested operation: {operation}")
++        if operation in requested_operations:
++            raise ValueError(f"duplicate requested operation: {operation}")
++        requested_operations.append(operation)
++
++    if "LOFTER" not in record["allowed_platforms"]:
++        raise ValueError("LOFTER is not in allowed_platforms")
++    if record["lofter_redistribution"] is not True:
+         raise ValueError("LOFTER redistribution is not authorized")
+-    if usage == "ai_adaptation" and not record["ai_adaptation"]:
++    if usage == "original" and record["original_asset_id"] is not None:
++        raise ValueError("original usage requires an original asset record")
++    if usage == "ai_adaptation" and record["original_asset_id"] is None:
++        raise ValueError("ai_adaptation usage requires a derived asset record")
++    if usage == "ai_adaptation" and record["ai_adaptation"] is not True:
+         raise ValueError("AI adaptation is not authorized")
+-    if commercial and not record["commercial_use"]:
++    if commercial and record["commercial_use"] is not True:
+         raise ValueError("commercial use is not authorized")
++    for operation in requested_operations:
++        if record[operation] is not True:
++            raise ValueError(f"{operation} is not authorized")
++
+     return {
+-        "asset_id": record["asset_id"],
++        "decision_schema": DECISION_SCHEMA,
+         "allowed": True,
+-        "usage": usage,
+-        "commercial": commercial,
+-        "author_handle": record["author_handle"],
++        "asset_id": record["asset_id"],
++        "requested_usage": usage,
++        "commercial_intent": commercial,
++        "requested_operations": requested_operations,
+         "source_url": record["source_url"],
++        "author_handle": record["author_handle"],
++        "attribution_mode": record["attribution_mode"],
++        "platform": "LOFTER",
++        "original_asset_id": record["original_asset_id"],
++        "image_provenance": (
++            "authorized_original"
++            if usage == "original"
++            else "authorized_ai_adaptation"
++        ),
+     }
+ 
+ 
+ def main() -> None:
+-    parser = argparse.ArgumentParser()
++    parser = argparse.ArgumentParser(
++        description="Validate one asset against the complete LOFTER authorization ledger."
++    )
+     parser.add_argument("ledger", type=Path)
+     parser.add_argument("asset_id")
+     parser.add_argument("--usage", choices=("original", "ai_adaptation"), required=True)
+     parser.add_argument("--commercial", action="store_true")
++    parser.add_argument(
++        "--operation",
++        action="append",
++        choices=tuple(sorted(OPERATIONS)),
++        default=[],
++    )
+     args = parser.parse_args()
+-    records = json.loads(args.ledger.read_text(encoding="utf-8"))
+-    matches = [record for record in records if record.get("asset_id") == args.asset_id]
+-    if len(matches) != 1:
+-        raise SystemExit(f"expected one authorization record for {args.asset_id}")
+-    result = validate_authorization(matches[0], args.usage, args.commercial)
++    try:
++        records = json.loads(args.ledger.read_text(encoding="utf-8"))
++        indexed = validate_ledger(records, evidence_root=args.ledger.parent)
++        if args.asset_id not in indexed:
++            raise ValueError(f"expected one authorization record for {args.asset_id}")
++        result = validate_authorization(
++            indexed[args.asset_id],
++            args.usage,
++            args.commercial,
++            operations=args.operation,
++            evidence_root=args.ledger.parent,
++        )
++    except (OSError, json.JSONDecodeError, ValueError) as error:
++        raise SystemExit(f"error: {error}") from error
+     print(json.dumps(result, ensure_ascii=False, indent=2))
+ 
+ 
+ if __name__ == "__main__":
+     main()
+diff --git a/lofter-x-anime-hotspot/templates/authorizations.example.json b/lofter-x-anime-hotspot/templates/authorizations.example.json
+index 20c2daa..1153774 100644
+--- a/lofter-x-anime-hotspot/templates/authorizations.example.json
++++ b/lofter-x-anime-hotspot/templates/authorizations.example.json
+@@ -1,11 +1,36 @@
+ [
+   {
+-    "asset_id": "example-asset-1",
++    "asset_id": "example-asset-original-1",
+     "author_handle": "@authorized_artist",
+-    "source_url": "https://x.com/authorized_artist/status/example",
+-    "evidence_path": "authorizations/example-asset-1.png",
++    "source_url": "https://x.com/authorized_artist/status/example-original",
++    "evidence_path": "evidence/example-asset-original-1.txt",
+     "lofter_redistribution": true,
+     "ai_adaptation": true,
+-    "commercial_use": false
++    "commercial_use": false,
++    "translation": true,
++    "crop": true,
++    "layout": true,
++    "allowed_platforms": ["LOFTER"],
++    "attribution_mode": "public",
++    "original_asset_id": null,
++    "derived_asset_ids": ["example-asset-adapted-1"],
++    "publication_history": []
++  },
++  {
++    "asset_id": "example-asset-adapted-1",
++    "author_handle": "@authorized_artist",
++    "source_url": "https://x.com/authorized_artist/status/example-adapted",
++    "evidence_path": "evidence/example-asset-adapted-1.txt",
++    "lofter_redistribution": true,
++    "ai_adaptation": true,
++    "commercial_use": false,
++    "translation": true,
++    "crop": true,
++    "layout": true,
++    "allowed_platforms": ["LOFTER"],
++    "attribution_mode": "public",
++    "original_asset_id": "example-asset-original-1",
++    "derived_asset_ids": [],
++    "publication_history": []
+   }
+ ]
+diff --git a/lofter-x-anime-hotspot/templates/candidates.example.json b/lofter-x-anime-hotspot/templates/candidates.example.json
+index 02f95ee..3515cb7 100644
+--- a/lofter-x-anime-hotspot/templates/candidates.example.json
++++ b/lofter-x-anime-hotspot/templates/candidates.example.json
+@@ -1,77 +1,163 @@
+ [
+   {
+-    "id": "example-hotspot-1",
++    "id": "example-hotspot-adapted-1",
+     "title": "示例角色纪念日创作增长",
+-    "ip_name": "示例IP",
++    "ip_id": "rising-1",
++    "ip_name": "示例上升IP甲",
+     "ip_slot": "rising",
+     "characters": ["角色A", "角色B"],
+-    "tags": ["示例IP", "角色A"],
++    "tags": ["示例上升IP甲", "角色A"],
+     "x_growth": 27,
+     "lofter_activity": 24,
+     "ip_match": 15,
+     "authorization": 15,
+     "story_potential": 8,
+     "x_evidence": "近24小时相关公开帖互动与创作数量集中增长",
+-    "lofter_evidence": "对应标签出现持续更新和有效互动"
++    "lofter_evidence": "对应标签出现持续更新和有效互动",
++    "x_source_urls": ["https://x.com/authorized_artist/status/example-adapted"],
++    "observed_at": "2026-08-10T08:00:00+08:00",
++    "asset_id": "example-asset-adapted-1",
++    "requested_usage": "ai_adaptation",
++    "commercial_intent": false,
++    "image_provenance": "authorized_ai_adaptation",
++    "sustainability_note": "纪念日后仍有连续二创，预计短期保持热度"
+   },
+   {
+-    "id": "example-hotspot-2",
++    "id": "example-hotspot-original-1",
+     "title": "示例长线角色剧情讨论升温",
+-    "ip_name": "示例IP长线",
++    "ip_id": "long-term-1",
++    "ip_name": "示例长线IP甲",
+     "ip_slot": "long_term",
+     "characters": ["角色C", "角色D"],
+-    "tags": ["示例IP长线", "角色C"],
+-    "x_growth": 23,
+-    "lofter_activity": 21,
+-    "ip_match": 14,
+-    "authorization": 12,
+-    "story_potential": 9,
+-    "x_evidence": "近24小时剧情解析和角色讨论保持稳定增长",
+-    "lofter_evidence": "对应角色标签持续有高质量二创更新"
++    "tags": ["示例长线IP甲", "角色C"],
++    "x_growth": 26,
++    "lofter_activity": 24,
++    "ip_match": 15,
++    "authorization": 15,
++    "story_potential": 8,
++    "x_evidence": "剧情解析与角色讨论持续增长",
++    "lofter_evidence": "角色标签持续有高质量二创更新",
++    "x_source_urls": ["https://x.com/authorized_artist/status/example-original"],
++    "observed_at": "2026-08-10T08:05:00+08:00",
++    "asset_id": "example-asset-original-1",
++    "requested_usage": "original",
++    "commercial_intent": false,
++    "image_provenance": "authorized_original",
++    "sustainability_note": "长线角色讨论稳定，适合继续观察"
+   },
+   {
+-    "id": "example-hotspot-3",
++    "id": "example-hotspot-independent-ai-1",
+     "title": "示例长线剧情节点回顾热度",
+-    "ip_name": "示例IP长线",
++    "ip_id": "long-term-1",
++    "ip_name": "示例长线IP甲",
+     "ip_slot": "long_term",
+     "characters": ["角色E", "角色F"],
+-    "tags": ["示例IP长线", "角色E"],
+-    "x_growth": 22,
+-    "lofter_activity": 20,
+-    "ip_match": 14,
++    "tags": ["示例长线IP甲", "角色E"],
++    "x_growth": 25,
++    "lofter_activity": 23,
++    "ip_match": 15,
+     "authorization": 12,
+-    "story_potential": 8,
+-    "x_evidence": "关键剧情节点引发公开帖的回顾与讨论",
+-    "lofter_evidence": "剧情相关标签出现连续创作和评论互动"
++    "story_potential": 9,
++    "x_evidence": "关键剧情节点引发公开帖回顾",
++    "lofter_evidence": "剧情标签出现连续创作和评论互动",
++    "x_source_urls": ["https://x.com/example/status/independent-ai"],
++    "observed_at": "2026-08-10T08:10:00+08:00",
++    "asset_id": null,
++    "requested_usage": "independent",
++    "commercial_intent": false,
++    "image_provenance": "ai_assisted_original",
++    "sustainability_note": "剧情节点可形成系列回顾，具备延续性"
+   },
+   {
+-    "id": "example-hotspot-4",
++    "id": "example-hotspot-rising-2",
+     "title": "示例新角色二创关注上升",
+-    "ip_name": "示例IP新星",
++    "ip_id": "rising-2",
++    "ip_name": "示例上升IP乙",
+     "ip_slot": "rising",
+     "characters": ["角色G", "角色H"],
+-    "tags": ["示例IP新星", "角色G"],
++    "tags": ["示例上升IP乙", "角色G"],
+     "x_growth": 25,
+-    "lofter_activity": 19,
+-    "ip_match": 13,
+-    "authorization": 11,
+-    "story_potential": 8,
+-    "x_evidence": "新角色相关公开帖的转发和创作分享增加",
+-    "lofter_evidence": "新角色标签新增图文二创并获得有效互动"
++    "lofter_activity": 22,
++    "ip_match": 14,
++    "authorization": 12,
++    "story_potential": 9,
++    "x_evidence": "新角色相关公开帖转发与创作分享增加",
++    "lofter_evidence": "新角色标签新增图文二创并获得有效互动",
++    "x_source_urls": ["https://x.com/example/status/rising-2"],
++    "observed_at": "2026-08-10T08:15:00+08:00",
++    "asset_id": null,
++    "requested_usage": "independent",
++    "commercial_intent": false,
++    "image_provenance": "human_original",
++    "sustainability_note": "新角色后续仍有官方活动，热度可能延续"
+   },
+   {
+-    "id": "example-hotspot-5",
++    "id": "example-hotspot-long-2",
++    "title": "示例长线IP乙版本讨论",
++    "ip_id": "long-term-2",
++    "ip_name": "示例长线IP乙",
++    "ip_slot": "long_term",
++    "characters": ["角色I", "角色J"],
++    "tags": ["示例长线IP乙", "角色I"],
++    "x_growth": 23,
++    "lofter_activity": 22,
++    "ip_match": 14,
++    "authorization": 12,
++    "story_potential": 9,
++    "x_evidence": "版本内容带动角色讨论稳定增加",
++    "lofter_evidence": "版本标签下出现多种二创方向",
++    "x_source_urls": ["https://x.com/example/status/long-2"],
++    "observed_at": "2026-08-10T08:20:00+08:00",
++    "asset_id": null,
++    "requested_usage": "independent",
++    "commercial_intent": false,
++    "image_provenance": "ai_generated_original",
++    "sustainability_note": "版本周期内仍有内容释放，预计持续两周"
++  },
++  {
++    "id": "example-hotspot-experiment-1",
+     "title": "示例实验向设定讨论出现",
+-    "ip_name": "示例IP实验",
++    "ip_id": "experiment-1",
++    "ip_name": "示例实验IP",
+     "ip_slot": "experiment",
+-    "characters": ["角色I", "角色J"],
+-    "tags": ["示例IP实验", "角色I"],
+-    "x_growth": 21,
+-    "lofter_activity": 18,
+-    "ip_match": 12,
+-    "authorization": 10,
++    "characters": ["角色K", "角色L"],
++    "tags": ["示例实验IP", "角色K"],
++    "x_growth": 22,
++    "lofter_activity": 20,
++    "ip_match": 13,
++    "authorization": 12,
+     "story_potential": 10,
+     "x_evidence": "实验向设定在公开讨论中获得初步关注",
+-    "lofter_evidence": "小众设定标签出现连续的创作尝试"
++    "lofter_evidence": "小众设定标签出现连续创作尝试",
++    "x_source_urls": ["https://x.com/example/status/experiment-1"],
++    "observed_at": "2026-08-10T08:25:00+08:00",
++    "asset_id": null,
++    "requested_usage": "independent",
++    "commercial_intent": false,
++    "image_provenance": "human_original",
++    "sustainability_note": "需要一周数据确认是否从实验位升级"
++  },
++  {
++    "id": "example-hotspot-extra-topic",
++    "title": "同一上升IP的第二个合格话题",
++    "ip_id": "rising-1",
++    "ip_name": "示例上升IP甲",
++    "ip_slot": "rising",
++    "characters": ["角色A"],
++    "tags": ["示例上升IP甲", "角色A"],
++    "x_growth": 21,
++    "lofter_activity": 20,
++    "ip_match": 13,
++    "authorization": 10,
++    "story_potential": 9,
++    "x_evidence": "同一IP出现第二条独立增长信号",
++    "lofter_evidence": "另一角色标签也出现有效互动",
++    "x_source_urls": ["https://x.com/example/status/extra-topic"],
++    "observed_at": "2026-08-10T08:30:00+08:00",
++    "asset_id": null,
++    "requested_usage": "independent",
++    "commercial_intent": false,
++    "image_provenance": "human_original",
++    "sustainability_note": "与主热点不同，可独立跟踪"
+   }
+ ]
+diff --git a/lofter-x-anime-hotspot/templates/evidence/example-asset-adapted-1.txt b/lofter-x-anime-hotspot/templates/evidence/example-asset-adapted-1.txt
+new file mode 100644
+index 0000000..04d11d7
+--- /dev/null
++++ b/lofter-x-anime-hotspot/templates/evidence/example-asset-adapted-1.txt
+@@ -0,0 +1 @@
++Example-only derived-asset evidence placeholder. Replace this record and file with real evidence before any media use.
+diff --git a/lofter-x-anime-hotspot/templates/evidence/example-asset-original-1.txt b/lofter-x-anime-hotspot/templates/evidence/example-asset-original-1.txt
+new file mode 100644
+index 0000000..a78b9ad
+--- /dev/null
++++ b/lofter-x-anime-hotspot/templates/evidence/example-asset-original-1.txt
+@@ -0,0 +1 @@
++Example-only authorization evidence placeholder. Replace this record and file with real evidence before any media use.
+diff --git a/lofter-x-anime-hotspot/templates/ip-pool.example.json b/lofter-x-anime-hotspot/templates/ip-pool.example.json
+new file mode 100644
+index 0000000..3055b7b
+--- /dev/null
++++ b/lofter-x-anime-hotspot/templates/ip-pool.example.json
+@@ -0,0 +1,7 @@
++[
++  {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
++  {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
++  {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
++  {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
++  {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
++]
+diff --git a/lofter-x-anime-hotspot/templates/packet-inputs.example.json b/lofter-x-anime-hotspot/templates/packet-inputs.example.json
+new file mode 100644
+index 0000000..724b548
+--- /dev/null
++++ b/lofter-x-anime-hotspot/templates/packet-inputs.example.json
+@@ -0,0 +1,112 @@
++{
++  "daily_hotspot": {
++    "column": "daily_hotspot",
++    "ip_pool": [
++      {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
++      {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
++      {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
++      {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
++      {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
++    ],
++    "candidate": {
++      "id": "packet-daily-1", "title": "示例今日热点", "ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising",
++      "characters": ["角色A"], "tags": ["示例上升IP甲", "角色A"],
++      "x_growth": 25, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
++      "x_evidence": "X近24小时创作增加", "lofter_evidence": "LOFTER标签出现有效讨论",
++      "x_source_urls": ["https://x.com/example/status/packet-daily-1"], "observed_at": "2026-08-10T09:00:00+08:00",
++      "asset_id": null, "requested_usage": "independent", "commercial_intent": false, "image_provenance": "human_original"
++    },
++    "authorization": null
++  },
++  "weekly_trend": {
++    "column": "weekly_trend",
++    "ip_pool": [
++      {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
++      {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
++      {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
++      {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
++      {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
++    ],
++    "candidates": [
++      {
++        "id": "packet-weekly-1", "title": "本周热点一", "ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term",
++        "characters": ["角色A"], "tags": ["角色A"], "x_growth": 25, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
++        "x_evidence": "X信号一", "lofter_evidence": "LOFTER信号一", "x_source_urls": ["https://x.com/example/status/packet-weekly-1"],
++        "observed_at": "2026-08-10T09:00:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
++        "image_provenance": "human_original", "sustainability_note": "持续性判断一"
++      },
++      {
++        "id": "packet-weekly-2", "title": "本周热点二", "ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term",
++        "characters": ["角色B"], "tags": ["角色B"], "x_growth": 24, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
++        "x_evidence": "X信号二", "lofter_evidence": "LOFTER信号二", "x_source_urls": ["https://x.com/example/status/packet-weekly-2"],
++        "observed_at": "2026-08-10T09:01:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
++        "image_provenance": "human_original", "sustainability_note": "持续性判断二"
++      },
++      {
++        "id": "packet-weekly-3", "title": "本周热点三", "ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising",
++        "characters": ["角色C"], "tags": ["角色C"], "x_growth": 23, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
++        "x_evidence": "X信号三", "lofter_evidence": "LOFTER信号三", "x_source_urls": ["https://x.com/example/status/packet-weekly-3"],
++        "observed_at": "2026-08-10T09:02:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
++        "image_provenance": "ai_assisted_original", "sustainability_note": "持续性判断三"
++      },
++      {
++        "id": "packet-weekly-4", "title": "本周热点四", "ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising",
++        "characters": ["角色D"], "tags": ["角色D"], "x_growth": 22, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
++        "x_evidence": "X信号四", "lofter_evidence": "LOFTER信号四", "x_source_urls": ["https://x.com/example/status/packet-weekly-4"],
++        "observed_at": "2026-08-10T09:03:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
++        "image_provenance": "ai_generated_original", "sustainability_note": "持续性判断四"
++      },
++      {
++        "id": "packet-weekly-5", "title": "本周热点五", "ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment",
++        "characters": ["角色E"], "tags": ["角色E"], "x_growth": 21, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
++        "x_evidence": "X信号五", "lofter_evidence": "LOFTER信号五", "x_source_urls": ["https://x.com/example/status/packet-weekly-5"],
++        "observed_at": "2026-08-10T09:04:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
++        "image_provenance": "human_original", "sustainability_note": "持续性判断五"
++      }
++    ],
++    "authorizations": []
++  },
++  "media_curation": {
++    "column": "media_curation",
++    "ip_pool": [
++      {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
++      {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
++      {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
++      {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
++      {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
++    ],
++    "candidate": {
++      "id": "packet-media-1", "title": "示例独立媒体策展", "ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising",
++      "characters": ["角色G"], "tags": ["角色G"], "x_growth": 25, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
++      "x_evidence": "X视觉创作增长", "lofter_evidence": "LOFTER视觉讨论活跃", "x_source_urls": ["https://x.com/example/status/packet-media-1"],
++      "observed_at": "2026-08-10T09:10:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
++      "image_provenance": "ai_assisted_original"
++    },
++    "authorization": null
++  },
++  "fanfic": {
++    "column": "fanfic",
++    "ip_pool": [
++      {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
++      {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
++      {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
++      {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
++      {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
++    ],
++    "candidate": {
++      "id": "packet-fanfic-1", "title": "示例已观察同人选题", "ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term",
++      "characters": ["角色C", "角色D"], "tags": ["角色C", "角色D"], "x_growth": 25, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
++      "x_evidence": "X角色关系讨论增长", "lofter_evidence": "LOFTER观察文获得有效反馈", "x_source_urls": ["https://x.com/example/status/packet-fanfic-1"],
++      "observed_at": "2026-08-10T09:20:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
++      "image_provenance": "human_original"
++    },
++    "authorization": null,
++    "research": {
++      "world_verified": true, "characters_verified": true, "relationships_verified": true,
++      "cp_conventions_verified": true, "fandom_risks_verified": true
++    },
++    "observation_url": "https://example.lofter.com/post/packet-fanfic-observation",
++    "observation_published_at": "2026-08-09T12:00:00+08:00",
++    "fanfic_qualification": {"phase": "weeks_1_2", "baseline_policy_selected": true}
++  }
++}
+diff --git a/lofter-x-anime-hotspot/tests/test_build_content_packet.py b/lofter-x-anime-hotspot/tests/test_build_content_packet.py
+index f078529..a1d104c 100644
+--- a/lofter-x-anime-hotspot/tests/test_build_content_packet.py
++++ b/lofter-x-anime-hotspot/tests/test_build_content_packet.py
+@@ -1,61 +1,382 @@
++import json
++import re
+ import sys
+ import unittest
+ from pathlib import Path
+ 
+ sys.path.insert(0, str(Path(__file__).parents[1] / "scripts"))
+ 
+ from build_content_packet import build_packet
++from score_candidates import score_candidate
++from validate_authorizations import validate_authorization, validate_ledger
++
++
++IP_POOL = [
++    {"ip_id": "long-1", "ip_name": "长线一", "ip_slot": "long_term"},
++    {"ip_id": "long-2", "ip_name": "长线二", "ip_slot": "long_term"},
++    {"ip_id": "rise-1", "ip_name": "上升一", "ip_slot": "rising"},
++    {"ip_id": "rise-2", "ip_name": "上升二", "ip_slot": "rising"},
++    {"ip_id": "exp-1", "ip_name": "实验一", "ip_slot": "experiment"},
++]
++TEMPLATES_DIR = Path(__file__).parents[1] / "templates"
++AUTHORIZATION_LEDGER = TEMPLATES_DIR / "authorizations.example.json"
++
++
++def raw_candidate(candidate_id="topic-1", **overrides):
++    value = {
++        "id": candidate_id,
++        "title": f"角色纪念日热度上升 {candidate_id}",
++        "ip_id": "rise-1",
++        "ip_name": "上升一",
++        "ip_slot": "rising",
++        "characters": ["角色A", "角色B"],
++        "tags": ["上升一", "角色A"],
++        "x_growth": 26,
++        "lofter_activity": 24,
++        "ip_match": 15,
++        "authorization": 10,
++        "story_potential": 8,
++        "x_evidence": "X近24小时相关创作集中增长",
++        "lofter_evidence": "LOFTER标签出现新讨论",
++        "x_source_urls": [f"https://x.com/example/status/{candidate_id}"],
++        "observed_at": "2026-08-10T08:00:00+08:00",
++        "asset_id": None,
++        "requested_usage": "independent",
++        "commercial_intent": False,
++        "image_provenance": "human_original",
++    }
++    value.update(overrides)
++    return value
++
++
++def ranked_candidate(candidate_id="topic-1", **overrides):
++    return score_candidate(raw_candidate(candidate_id, **overrides), IP_POOL)
++
++
++def authorization_decision(
++    asset_id=None, usage="original", commercial=False, **overrides
++):
++    if asset_id is None:
++        asset_id = (
++            "example-asset-original-1"
++            if usage == "original"
++            else "example-asset-adapted-1"
++        )
++    records = json.loads(AUTHORIZATION_LEDGER.read_text(encoding="utf-8"))
++    indexed = validate_ledger(records, evidence_root=TEMPLATES_DIR)
++    value = validate_authorization(
++        indexed[asset_id], usage, commercial, evidence_root=TEMPLATES_DIR
++    )
++    value.update(overrides)
++    return value
+ 
+ 
+-CANDIDATE = {
+-    "id": "topic-1",
+-    "title": "角色A纪念日热度上升",
+-    "ip_name": "示例IP",
+-    "characters": ["角色A", "角色B"],
+-    "tags": ["示例IP", "角色A"],
+-    "total_score": 82,
+-    "media_instruction": "use_authorized_media",
+-    "x_evidence": "X近24小时相关创作集中增长",
+-    "lofter_evidence": "LOFTER标签出现新讨论",
+-}
+ RESEARCH = {
+     "world_verified": True,
+     "characters_verified": True,
+     "relationships_verified": True,
+     "cp_conventions_verified": True,
+     "fandom_risks_verified": True,
+ }
+-ASSET = {
+-    "allowed": True,
+-    "usage": "ai_adaptation",
+-    "author_handle": "@artist",
+-    "source_url": "https://x.com/artist/status/1",
+-}
+ 
+ 
+-class BuildPacketTest(unittest.TestCase):
+-    def test_builds_hotspot_observation_without_fanfic_gate(self):
+-        packet = build_packet(CANDIDATE, {}, "daily_hotspot", ASSET)
+-        self.assertIn("# 今日热度异动", packet)
+-        self.assertIn("总分：82/100", packet)
++def question_lines(packet):
++    return [line for line in packet.splitlines() if line.startswith("互动问题：")]
++
++
++class AuthorizationBindingTest(unittest.TestCase):
++    def authorized_candidate(self, **overrides):
++        values = {
++            "asset_id": "example-asset-original-1",
++            "requested_usage": "original",
++            "image_provenance": "authorized_original",
++        }
++        values.update(overrides)
++        return ranked_candidate(**values)
++
++    def test_rejects_forged_allowed_dictionary(self):
++        payload = {
++            "column": "daily_hotspot",
++            "ip_pool": IP_POOL,
++            "candidate": self.authorized_candidate(),
++            "authorization": {"allowed": True},
++            "authorization_ledger_path": str(AUTHORIZATION_LEDGER),
++        }
++        with self.assertRaisesRegex(
++            ValueError, "validated authorization output is incomplete"
++        ):
++            build_packet(payload)
++
++    def test_rejects_asset_usage_and_commercial_mismatches(self):
++        cases = (
++            ({"asset_id": "other"}, "authorization asset_id does not match candidate"),
++            ({"requested_usage": "ai_adaptation"}, "authorization usage does not match candidate"),
++            ({"commercial_intent": True}, "authorization commercial scope does not match candidate"),
++        )
++        for changed, message in cases:
++            with self.subTest(message=message):
++                decision = authorization_decision()
++                decision.update(changed)
++                payload = {
++                    "column": "daily_hotspot",
++                    "ip_pool": IP_POOL,
++                    "candidate": self.authorized_candidate(),
++                    "authorization": decision,
++                    "authorization_ledger_path": str(AUTHORIZATION_LEDGER),
++                }
++                with self.assertRaisesRegex(ValueError, message):
++                    build_packet(payload)
++
++    def test_authorization_score_never_authorizes_media(self):
++        payload = {
++            "column": "daily_hotspot",
++            "ip_pool": IP_POOL,
++            "candidate": self.authorized_candidate(authorization=15),
++            "authorization_ledger_path": str(AUTHORIZATION_LEDGER),
++        }
++        with self.assertRaisesRegex(ValueError, "validated authorization is required"):
++            build_packet(payload)
++
++    def test_rejects_complete_hand_built_authorization_lookalike(self):
++        decision = authorization_decision(
++            source_url="https://x.com/forged/status/999"
++        )
++        payload = {
++            "column": "daily_hotspot",
++            "ip_pool": IP_POOL,
++            "candidate": self.authorized_candidate(),
++            "authorization": decision,
++            "authorization_ledger_path": str(AUTHORIZATION_LEDGER),
++        }
++        with self.assertRaisesRegex(
++            ValueError, "authorization decision does not match validated ledger"
++        ):
++            build_packet(payload)
++
++    def test_independent_media_rejects_authorization_decision(self):
++        payload = {
++            "column": "daily_hotspot",
++            "ip_pool": IP_POOL,
++            "candidate": ranked_candidate(),
++            "authorization": authorization_decision(),
++        }
++        with self.assertRaisesRegex(
++            ValueError, "independent media must not include authorization"
++        ):
++            build_packet(payload)
++
++
++class DisclosureTest(unittest.TestCase):
++    def packet_for(self, provenance, usage="independent"):
++        asset_id = None
++        authorization = None
++        if usage != "independent":
++            asset_id = (
++                "example-asset-original-1"
++                if usage == "original"
++                else "example-asset-adapted-1"
++            )
++            authorization = authorization_decision(asset_id=asset_id, usage=usage)
++        candidate = ranked_candidate(
++            asset_id=asset_id,
++            requested_usage=usage,
++            image_provenance=provenance,
++        )
++        return build_packet(
++            {
++                "column": "media_curation",
++                "ip_pool": IP_POOL,
++                "candidate": candidate,
++                "authorization": authorization,
++                "authorization_ledger_path": str(AUTHORIZATION_LEDGER),
++            }
++        )
++
++    def test_authorized_original_has_no_ai_label(self):
++        packet = self.packet_for("authorized_original", "original")
++        self.assertNotIn("#AI辅助#", packet)
++        self.assertNotIn("#AI生成#", packet)
++
++    def test_authorized_ai_adaptation_has_exact_label(self):
++        packet = self.packet_for("authorized_ai_adaptation", "ai_adaptation")
+         self.assertIn("图像经授权使用，含AI辅助创作｜#AI辅助#", packet)
+ 
+-    def test_fanfic_requires_all_research_checks(self):
+-        incomplete = {**RESEARCH, "relationships_verified": False}
+-        with self.assertRaisesRegex(ValueError, "fan fiction research is incomplete"):
+-            build_packet(CANDIDATE, incomplete, "fanfic", ASSET)
++    def test_human_original_has_no_ai_or_authorized_claim(self):
++        packet = self.packet_for("human_original")
++        self.assertNotIn("#AI", packet)
++        self.assertNotIn("图像经授权使用", packet)
+ 
+-    def test_fanfic_packet_has_one_interaction_question(self):
+-        packet = build_packet(CANDIDATE, RESEARCH, "fanfic", ASSET)
+-        self.assertIn("# 热点脑洞实验室", packet)
+-        self.assertEqual(packet.count("互动问题："), 1)
++    def test_ai_assisted_original_has_independent_label(self):
++        packet = self.packet_for("ai_assisted_original")
++        self.assertIn("AI披露：#AI辅助#", packet)
++        self.assertNotIn("图像经授权使用", packet)
+ 
+-    def test_missing_authorized_asset_requests_independent_image(self):
+-        candidate = {**CANDIDATE, "media_instruction": "create_independent_image"}
+-        packet = build_packet(candidate, {}, "weekly_trend")
+-        self.assertIn("独立创作配图，不输入未授权原图", packet)
++    def test_ai_generated_original_has_independent_label(self):
++        packet = self.packet_for("ai_generated_original")
++        self.assertIn("AI披露：#AI生成#", packet)
+         self.assertNotIn("图像经授权使用", packet)
+ 
+ 
++class ColumnPacketTest(unittest.TestCase):
++    def test_daily_hotspot_has_specific_shape_and_one_question(self):
++        packet = build_packet(
++            {
++                "column": "daily_hotspot",
++                "ip_pool": IP_POOL,
++                "candidate": ranked_candidate(),
++                "authorization": None,
++            }
++        )
++        self.assertIn("# 人工审核内容包｜今日热度异动", packet)
++        self.assertIn("目标长度：200–400个中文字符", packet)
++        self.assertEqual(
++            question_lines(packet),
++            ["互动问题：你认为这个热点会继续升温，还是只是短期异动？"],
++        )
++        self.assertNotIn("正文草稿", packet)
++
++    def test_weekly_trend_requires_and_renders_exactly_five_ranked_items(self):
++        candidates = [
++            ranked_candidate(
++                f"weekly-{number}",
++                story_potential=10 - number,
++                sustainability_note=f"持续性判断 {number}",
++            )
++            for number in range(5)
++        ]
++        packet = build_packet(
++            {
++                "column": "weekly_trend",
++                "ip_pool": IP_POOL,
++                "candidates": candidates,
++                "authorizations": [],
++            }
++        )
++        self.assertEqual(packet.count("X信号："), 5)
++        self.assertEqual(packet.count("LOFTER信号："), 5)
++        self.assertEqual(packet.count("持续性判断："), 5)
++        for candidate in candidates:
++            self.assertIn(candidate["title"], packet)
++        self.assertEqual(
++            question_lines(packet),
++            ["互动问题：下周你最希望继续追踪以上哪一个热点？"],
++        )
++
++    def test_weekly_trend_rejects_wrong_count_or_missing_sustainability(self):
++        five = [
++            ranked_candidate(
++                f"weekly-{number}",
++                story_potential=10 - number,
++                sustainability_note=f"持续性判断 {number}",
++            )
++            for number in range(5)
++        ]
++        cases = (
++            ({"candidates": five[:4]}, "weekly_trend requires exactly five candidates"),
++            (
++                {"candidates": [{key: value for key, value in five[0].items() if key != "sustainability_note"}, *five[1:]]},
++                "weekly candidate sustainability_note must be a non-empty string",
++            ),
++        )
++        for changed, message in cases:
++            with self.subTest(message=message):
++                payload = {
++                    "column": "weekly_trend",
++                    "ip_pool": IP_POOL,
++                    "authorizations": [],
++                    **changed,
++                }
++                with self.assertRaisesRegex(ValueError, message):
++                    build_packet(payload)
++
++    def test_media_curation_has_provenance_and_media_question(self):
++        packet = build_packet(
++            {
++                "column": "media_curation",
++                "ip_pool": IP_POOL,
++                "candidate": ranked_candidate(image_provenance="ai_assisted_original"),
++                "authorization": None,
++            }
++        )
++        self.assertIn("# 人工审核内容包｜媒体策展", packet)
++        self.assertIn("媒体来源：独立创作", packet)
++        self.assertEqual(
++            question_lines(packet),
++            ["互动问题：你更想看这张图的创作过程，还是围绕角色的视觉解读？"],
++        )
++
++    def test_fanfic_accepts_explicit_weeks_1_2_baseline_policy(self):
++        packet = build_packet(
++            {
++                "column": "fanfic",
++                "ip_pool": IP_POOL,
++                "candidate": ranked_candidate(),
++                "authorization": None,
++                "research": RESEARCH,
++                "observation_url": "https://example.lofter.com/post/observation-1",
++                "observation_published_at": "2026-08-09T12:00:00+08:00",
++                "fanfic_qualification": {
++                    "phase": "weeks_1_2",
++                    "baseline_policy_selected": True,
++                },
++            }
++        )
++        self.assertIn("目标长度：800–2000个中文字符", packet)
++        self.assertIn("前置观察：https://example.lofter.com/post/observation-1", packet)
++        self.assertIn("研究核验：5/5已通过", packet)
++        self.assertEqual(
++            question_lines(packet),
++            ["互动问题：你希望这个故事沿当前分支继续吗？"],
++        )
++
++    def test_fanfic_accepts_week_3_top_40_percent_qualification(self):
++        payload = {
++            "column": "fanfic",
++            "ip_pool": IP_POOL,
++            "candidate": ranked_candidate(),
++            "authorization": None,
++            "research": RESEARCH,
++            "observation_url": "https://example.lofter.com/post/observation-1",
++            "observation_published_at": "2026-08-09",
++            "fanfic_qualification": {
++                "phase": "week_3_plus",
++                "top_40_percent": True,
++            },
++        }
++        packet = build_packet(payload)
++        self.assertIn("资格：第3周起近14天表现前40%", packet)
++
++    def test_fanfic_rejects_incomplete_research_observation_or_qualification(self):
++        base = {
++            "column": "fanfic",
++            "ip_pool": IP_POOL,
++            "candidate": ranked_candidate(),
++            "authorization": None,
++            "research": RESEARCH,
++            "observation_url": "https://example.lofter.com/post/observation-1",
++            "observation_published_at": "2026-08-09",
++            "fanfic_qualification": {
++                "phase": "week_3_plus",
++                "top_40_percent": True,
++            },
++        }
++        cases = (
++            ({"research": {**RESEARCH, "relationships_verified": False}}, "fan fiction research is incomplete"),
++            ({"observation_url": ""}, "observation_url must be an HTTPS LOFTER URL"),
++            (
++                {"fanfic_qualification": {"phase": "weeks_1_2", "baseline_policy_selected": False}},
++                "weeks 1-2 baseline policy must be explicitly selected",
++            ),
++            (
++                {"fanfic_qualification": {"phase": "week_3_plus", "top_40_percent": False}},
++                "week 3+ fan fiction requires top_40_percent true",
++            ),
++        )
++        for changed, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, re.escape(message)):
++                    build_packet({**base, **changed})
++
++
+ if __name__ == "__main__":
+     unittest.main()
+diff --git a/lofter-x-anime-hotspot/tests/test_cli_workflow.py b/lofter-x-anime-hotspot/tests/test_cli_workflow.py
+new file mode 100644
+index 0000000..b3c07cd
+--- /dev/null
++++ b/lofter-x-anime-hotspot/tests/test_cli_workflow.py
+@@ -0,0 +1,187 @@
++import json
++import subprocess
++import sys
++import tempfile
++import unittest
++from pathlib import Path
++
++
++SKILL_DIR = Path(__file__).parents[1]
++SCRIPTS_DIR = SKILL_DIR / "scripts"
++TEMPLATES_DIR = SKILL_DIR / "templates"
++
++
++def run_cli(*arguments, cwd):
++    return subprocess.run(
++        [sys.executable, *map(str, arguments)],
++        cwd=cwd,
++        text=True,
++        capture_output=True,
++        check=False,
++    )
++
++
++class CliWorkflowTest(unittest.TestCase):
++    def test_exact_examples_complete_end_to_end_from_another_directory(self):
++        with tempfile.TemporaryDirectory() as temp_value:
++            temp_dir = Path(temp_value)
++            ranked_path = temp_dir / "ranked.json"
++            authorization_path = temp_dir / "authorization.json"
++            packet_input_path = temp_dir / "packet-input.json"
++            packet_path = temp_dir / "packet.md"
++
++            score = run_cli(
++                SCRIPTS_DIR / "score_candidates.py",
++                TEMPLATES_DIR / "candidates.example.json",
++                "--ip-pool",
++                TEMPLATES_DIR / "ip-pool.example.json",
++                "--output",
++                ranked_path,
++                cwd=temp_dir,
++            )
++            self.assertEqual(score.returncode, 0, score.stderr)
++            ranked = json.loads(ranked_path.read_text(encoding="utf-8"))
++            self.assertGreater(len(ranked), 5)
++
++            authorization = run_cli(
++                SCRIPTS_DIR / "validate_authorizations.py",
++                TEMPLATES_DIR / "authorizations.example.json",
++                "example-asset-adapted-1",
++                "--usage",
++                "ai_adaptation",
++                "--operation",
++                "layout",
++                cwd=temp_dir,
++            )
++            self.assertEqual(authorization.returncode, 0, authorization.stderr)
++            authorization_path.write_text(authorization.stdout, encoding="utf-8")
++            decision = json.loads(authorization.stdout)
++
++            pool = json.loads(
++                (TEMPLATES_DIR / "ip-pool.example.json").read_text(encoding="utf-8")
++            )
++            candidate = next(
++                item for item in ranked if item["asset_id"] == decision["asset_id"]
++            )
++            payload = {
++                "column": "daily_hotspot",
++                "ip_pool": pool,
++                "candidate": candidate,
++                "authorization": decision,
++                "authorization_ledger_path": str(
++                    TEMPLATES_DIR / "authorizations.example.json"
++                ),
++            }
++            packet_input_path.write_text(
++                json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
++            )
++
++            packet = run_cli(
++                SCRIPTS_DIR / "build_content_packet.py",
++                packet_input_path,
++                "--output",
++                packet_path,
++                cwd=temp_dir,
++            )
++            self.assertEqual(packet.returncode, 0, packet.stderr)
++            text = packet_path.read_text(encoding="utf-8")
++            self.assertIn("# 人工审核内容包｜今日热度异动", text)
++            self.assertIn("图像经授权使用，含AI辅助创作｜#AI辅助#", text)
++            self.assertEqual(text.count("互动问题："), 1)
++
++    def test_cli_failures_are_nonzero_and_explain_the_rejection(self):
++        with tempfile.TemporaryDirectory() as temp_value:
++            temp_dir = Path(temp_value)
++            pool_path = TEMPLATES_DIR / "ip-pool.example.json"
++            candidates = json.loads(
++                (TEMPLATES_DIR / "candidates.example.json").read_text(encoding="utf-8")
++            )
++            candidates[0]["ip_id"] = "forged-ip"
++            invalid_candidates = temp_dir / "invalid-candidates.json"
++            invalid_candidates.write_text(
++                json.dumps(candidates, ensure_ascii=False), encoding="utf-8"
++            )
++            score = run_cli(
++                SCRIPTS_DIR / "score_candidates.py",
++                invalid_candidates,
++                "--ip-pool",
++                pool_path,
++                cwd=temp_dir,
++            )
++            self.assertNotEqual(score.returncode, 0)
++            self.assertIn("unknown ip_id", score.stderr)
++
++            ledger = json.loads(
++                (TEMPLATES_DIR / "authorizations.example.json").read_text(
++                    encoding="utf-8"
++                )
++            )
++            evidence_dir = TEMPLATES_DIR / "evidence"
++            for record in ledger:
++                record["evidence_path"] = str(
++                    evidence_dir / Path(record["evidence_path"]).name
++                )
++            ledger.append(dict(ledger[0]))
++            duplicate_ledger = temp_dir / "duplicate-ledger.json"
++            duplicate_ledger.write_text(
++                json.dumps(ledger, ensure_ascii=False), encoding="utf-8"
++            )
++            authorization = run_cli(
++                SCRIPTS_DIR / "validate_authorizations.py",
++                duplicate_ledger,
++                ledger[0]["asset_id"],
++                "--usage",
++                "original",
++                cwd=temp_dir,
++            )
++            self.assertNotEqual(authorization.returncode, 0)
++            self.assertIn("duplicate asset_id", authorization.stderr)
++
++            examples = json.loads(
++                (TEMPLATES_DIR / "packet-inputs.example.json").read_text(
++                    encoding="utf-8"
++                )
++            )
++            forged = dict(examples["daily_hotspot"])
++            forged["candidate"] = dict(forged["candidate"])
++            forged["candidate"].update(
++                {
++                    "asset_id": "forged-asset",
++                    "requested_usage": "original",
++                    "image_provenance": "authorized_original",
++                }
++            )
++            forged["authorization"] = {"allowed": True}
++            forged_path = temp_dir / "forged-packet.json"
++            forged_path.write_text(
++                json.dumps(forged, ensure_ascii=False), encoding="utf-8"
++            )
++            packet = run_cli(
++                SCRIPTS_DIR / "build_content_packet.py",
++                forged_path,
++                "--output",
++                temp_dir / "packet.md",
++                cwd=temp_dir,
++            )
++            self.assertNotEqual(packet.returncode, 0)
++            self.assertIn("validated authorization output is incomplete", packet.stderr)
++
++    def test_each_packet_example_is_a_valid_column_shape(self):
++        sys.path.insert(0, str(SCRIPTS_DIR))
++        from build_content_packet import build_packet
++
++        examples = json.loads(
++            (TEMPLATES_DIR / "packet-inputs.example.json").read_text(encoding="utf-8")
++        )
++        self.assertEqual(
++            set(examples),
++            {"daily_hotspot", "weekly_trend", "media_curation", "fanfic"},
++        )
++        for column, payload in examples.items():
++            with self.subTest(column=column):
++                packet = build_packet(payload)
++                self.assertEqual(packet.count("互动问题："), 1)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/lofter-x-anime-hotspot/tests/test_score_candidates.py b/lofter-x-anime-hotspot/tests/test_score_candidates.py
+index 1892e31..eda5a43 100644
+--- a/lofter-x-anime-hotspot/tests/test_score_candidates.py
++++ b/lofter-x-anime-hotspot/tests/test_score_candidates.py
+@@ -1,103 +1,181 @@
+ import sys
+ import unittest
+ from pathlib import Path
+ 
+ sys.path.insert(0, str(Path(__file__).parents[1] / "scripts"))
+ 
+-from score_candidates import rank_candidates, score_candidate
++from score_candidates import (
++    PUBLICATION_THRESHOLD,
++    rank_candidates,
++    score_candidate,
++    validate_ip_pool,
++)
++
++
++IP_POOL = [
++    {"ip_id": "long-1", "ip_name": "长线一", "ip_slot": "long_term"},
++    {"ip_id": "long-2", "ip_name": "长线二", "ip_slot": "long_term"},
++    {"ip_id": "rise-1", "ip_name": "上升一", "ip_slot": "rising"},
++    {"ip_id": "rise-2", "ip_name": "上升二", "ip_slot": "rising"},
++    {"ip_id": "exp-1", "ip_name": "实验一", "ip_slot": "experiment"},
++]
++
++
++def candidate(candidate_id="topic-1", **overrides):
++    value = {
++        "id": candidate_id,
++        "title": f"选题 {candidate_id}",
++        "ip_id": "rise-1",
++        "ip_name": "上升一",
++        "ip_slot": "rising",
++        "characters": ["角色A", "角色B"],
++        "tags": ["上升一", "角色A"],
++        "x_growth": 26,
++        "lofter_activity": 24,
++        "ip_match": 15,
++        "authorization": 10,
++        "story_potential": 8,
++        "x_evidence": "近24小时相关创作增长",
++        "lofter_evidence": "对应标签出现有效讨论",
++        "x_source_urls": ["https://x.com/example/status/1"],
++        "observed_at": "2026-08-10T08:00:00+08:00",
++        "asset_id": None,
++        "requested_usage": "independent",
++        "commercial_intent": False,
++        "image_provenance": "human_original",
++    }
++    value.update(overrides)
++    return value
++
++
++class IpPoolTest(unittest.TestCase):
++    def test_accepts_exactly_five_unique_ip_entries(self):
++        indexed = validate_ip_pool(IP_POOL)
++        self.assertEqual(set(indexed), {item["ip_id"] for item in IP_POOL})
++
++    def test_rejects_wrong_slot_counts(self):
++        wrong = [*IP_POOL[:-1], {"ip_id": "rise-3", "ip_name": "上升三", "ip_slot": "rising"}]
++        with self.assertRaisesRegex(ValueError, "experiment must contain exactly 1 IP"):
++            validate_ip_pool(wrong)
++
++    def test_rejects_duplicate_ip_ids(self):
++        duplicate = [dict(item) for item in IP_POOL]
++        duplicate[-1]["ip_id"] = "long-1"
++        with self.assertRaisesRegex(ValueError, "duplicate ip_id: long-1"):
++            validate_ip_pool(duplicate)
++
++    def test_rejects_duplicate_ip_names(self):
++        duplicate = [dict(item) for item in IP_POOL]
++        duplicate[-1]["ip_name"] = "长线一"
++        with self.assertRaisesRegex(ValueError, "duplicate ip_name: 长线一"):
++            validate_ip_pool(duplicate)
+ 
+ 
+ class ScoreCandidatesTest(unittest.TestCase):
+-    def test_weighted_total_and_eligibility(self):
+-        candidate = {
+-            "id": "topic-1",
+-            "title": "Example CP spike",
+-            "ip_slot": "rising",
+-            "x_growth": 26,
+-            "lofter_activity": 24,
+-            "ip_match": 15,
+-            "authorization": 10,
+-            "story_potential": 8,
+-        }
+-        result = score_candidate(candidate)
++    def test_weighted_total_uses_one_constant_threshold(self):
++        self.assertEqual(PUBLICATION_THRESHOLD, 70)
++        result = score_candidate(candidate(), IP_POOL)
+         self.assertEqual(result["total_score"], 83)
+         self.assertTrue(result["eligible"])
+ 
+-    def test_rejects_out_of_range_dimension(self):
+-        candidate = {
+-            "id": "bad",
+-            "title": "Bad score",
+-            "ip_slot": "experiment",
+-            "x_growth": 31,
+-            "lofter_activity": 0,
+-            "ip_match": 0,
+-            "authorization": 0,
+-            "story_potential": 0,
+-        }
+-        with self.assertRaisesRegex(ValueError, "x_growth must be between 0 and 30"):
+-            score_candidate(candidate)
+-
+-    def test_rank_filters_and_orders(self):
+-        candidates = [
+-            {"id": "low", "title": "Low", "ip_slot": "experiment", "x_growth": 20, "lofter_activity": 20, "ip_match": 10, "authorization": 0, "story_potential": 5},
+-            {"id": "high", "title": "High", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 28, "ip_match": 15, "authorization": 15, "story_potential": 9},
+-            {"id": "long-2", "title": "Long 2", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 25, "ip_match": 15, "authorization": 10, "story_potential": 10},
+-            {"id": "mid", "title": "Mid", "ip_slot": "rising", "x_growth": 25, "lofter_activity": 23, "ip_match": 15, "authorization": 0, "story_potential": 8},
+-            {"id": "rising-2", "title": "Rising 2", "ip_slot": "rising", "x_growth": 25, "lofter_activity": 20, "ip_match": 15, "authorization": 0, "story_potential": 10},
+-            {"id": "experiment", "title": "Experiment", "ip_slot": "experiment", "x_growth": 25, "lofter_activity": 20, "ip_match": 15, "authorization": 0, "story_potential": 10},
+-        ]
+-        ranked = rank_candidates(candidates)
+-        self.assertEqual(
+-            [item["id"] for item in ranked],
+-            ["high", "long-2", "mid", "experiment", "rising-2"],
++    def test_candidate_must_reference_matching_pool_entry(self):
++        cases = (
++            (candidate(ip_id="missing"), "unknown ip_id: missing"),
++            (candidate(ip_name="伪造名称"), "ip_name does not match IP pool"),
++            (candidate(ip_slot="long_term"), "ip_slot does not match IP pool"),
+         )
+-        self.assertEqual(ranked[2]["media_instruction"], "create_independent_image")
+-
+-    def test_rank_limits_each_ip_slot_and_preserves_total_score_order(self):
+-        def candidate(candidate_id, ip_slot, authorization, story_potential):
+-            return {
+-                "id": candidate_id,
+-                "title": candidate_id,
+-                "ip_slot": ip_slot,
+-                "x_growth": 30,
+-                "lofter_activity": 30,
+-                "ip_match": 15,
+-                "authorization": authorization,
+-                "story_potential": story_potential,
+-            }
+-
+-        candidates = [
+-            candidate("long-1", "long_term", 15, 10),
+-            candidate("rising-1", "rising", 15, 9),
+-            candidate("long-2", "long_term", 14, 9),
+-            candidate("rising-2", "rising", 13, 9),
+-            candidate("experiment-1", "experiment", 12, 9),
+-            candidate("long-3", "long_term", 11, 9),
+-            candidate("rising-3", "rising", 10, 9),
+-            candidate("experiment-2", "experiment", 9, 9),
++        for value, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    score_candidate(value, IP_POOL)
++
++    def test_rank_returns_every_eligible_topic_without_slot_quotas(self):
++        topics = [
++            candidate(f"topic-{number}", story_potential=number)
++            for number in range(1, 8)
+         ]
++        ranked = rank_candidates(topics, IP_POOL)
++        self.assertEqual(len(ranked), 7)
++        self.assertEqual(ranked[0]["id"], "topic-7")
+ 
+-        ranked = rank_candidates(candidates)
++    def test_rank_does_not_require_eligible_topics_in_every_pool_category(self):
++        ranked = rank_candidates([candidate("only-rising")], IP_POOL)
++        self.assertEqual([item["id"] for item in ranked], ["only-rising"])
+ 
+-        self.assertEqual(
+-            [item["id"] for item in ranked],
+-            ["long-1", "rising-1", "long-2", "rising-2", "experiment-1"],
++    def test_rank_filters_below_70_and_keeps_70(self):
++        at_threshold = candidate(
++            "at-70",
++            x_growth=20,
++            lofter_activity=20,
++            ip_match=10,
++            authorization=10,
++            story_potential=10,
++        )
++        below = candidate(
++            "below-70",
++            x_growth=20,
++            lofter_activity=20,
++            ip_match=10,
++            authorization=10,
++            story_potential=9,
+         )
++        ranked = rank_candidates([below, at_threshold], IP_POOL)
++        self.assertEqual([item["id"] for item in ranked], ["at-70"])
+ 
+-    def test_rank_rejects_under_capacity_slot_after_threshold_filtering(self):
+-        candidates = [
+-            {"id": "long-1", "title": "Long 1", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 10},
+-            {"id": "long-2", "title": "Long 2", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 9},
+-            {"id": "rising-1", "title": "Rising 1", "ip_slot": "rising", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 8},
+-            {"id": "rising-2", "title": "Rising 2", "ip_slot": "rising", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 7},
+-            {"id": "experiment-low", "title": "Experiment low", "ip_slot": "experiment", "x_growth": 30, "lofter_activity": 20, "ip_match": 15, "authorization": 0, "story_potential": 4},
+-        ]
++    def test_rejects_invalid_shared_candidate_fields(self):
++        cases = (
++            (candidate(title=""), "title must be a non-empty string"),
++            (candidate(characters=[]), "characters must contain at least one"),
++            (candidate(characters=["角色A", ""]), "characters must contain non-empty strings"),
++            (candidate(tags="角色A"), "tags must be a list"),
++            (candidate(x_evidence=None), "x_evidence must be a non-empty string"),
++            (candidate(x_source_urls=[]), "x_source_urls must contain at least one"),
++            (candidate(x_source_urls=["http://x.com/example/status/1"]), "HTTPS X URL"),
++            (candidate(observed_at="yesterday"), "observed_at must be ISO-8601"),
++            (candidate(commercial_intent="false"), "commercial_intent must be a boolean"),
++            (candidate(x_growth=True), "x_growth must be an integer"),
++        )
++        for value, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    score_candidate(value, IP_POOL)
+ 
+-        with self.assertRaisesRegex(
+-            ValueError, "experiment requires 1 candidates; 0 available"
+-        ):
+-            rank_candidates(candidates)
++    def test_rejects_inconsistent_media_intent(self):
++        cases = (
++            (
++                candidate(asset_id="asset-1"),
++                "independent media must use a null asset_id",
++            ),
++            (
++                candidate(requested_usage="original", image_provenance="authorized_original"),
++                "authorized media requires a non-empty asset_id",
++            ),
++            (
++                candidate(
++                    asset_id="asset-1",
++                    requested_usage="original",
++                    image_provenance="authorized_ai_adaptation",
++                ),
++                "original usage requires authorized_original provenance",
++            ),
++            (
++                candidate(
++                    asset_id="asset-1",
++                    requested_usage="ai_adaptation",
++                    image_provenance="authorized_original",
++                ),
++                "ai_adaptation usage requires authorized_ai_adaptation provenance",
++            ),
++            (
++                candidate(image_provenance="authorized_original"),
++                "independent usage requires independent image provenance",
++            ),
++        )
++        for value, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    score_candidate(value, IP_POOL)
+ 
+ 
+ if __name__ == "__main__":
+     unittest.main()
+diff --git a/lofter-x-anime-hotspot/tests/test_skill_contract.py b/lofter-x-anime-hotspot/tests/test_skill_contract.py
+new file mode 100644
+index 0000000..405cce2
+--- /dev/null
++++ b/lofter-x-anime-hotspot/tests/test_skill_contract.py
+@@ -0,0 +1,57 @@
++import os
++import re
++import subprocess
++import sys
++import unittest
++from pathlib import Path
++
++
++SKILL_DIR = Path(__file__).parents[1]
++REPOSITORY_ROOT = SKILL_DIR.parent
++QUICK_VALIDATE = Path(
++    "/Users/guocc/.codex/skills/.system/skill-creator/scripts/quick_validate.py"
++)
++
++
++class SkillContractTest(unittest.TestCase):
++    def test_metadata_matches_official_interface_constraints(self):
++        metadata = (SKILL_DIR / "agents" / "openai.yaml").read_text(encoding="utf-8")
++        short_match = re.search(r'^  short_description: "([^"]+)"$', metadata, re.M)
++        prompt_match = re.search(r'^  default_prompt: "([^"]+)"$', metadata, re.M)
++        self.assertIsNotNone(short_match)
++        self.assertIsNotNone(prompt_match)
++        self.assertGreaterEqual(len(short_match.group(1)), 25)
++        self.assertLessEqual(len(short_match.group(1)), 64)
++        self.assertIn("$lofter-x-anime-hotspot", prompt_match.group(1))
++
++    def test_skill_commands_are_portable_and_safe(self):
++        skill = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
++        self.assertIn('LOFTER_SKILL_DIR=', skill)
++        self.assertIn('"$LOFTER_SKILL_DIR/scripts/score_candidates.py"', skill)
++        self.assertIn('"$LOFTER_SKILL_DIR/scripts/validate_authorizations.py"', skill)
++        self.assertIn('> "$LOFTER_WORK_DIR/authorization.json"', skill)
++        self.assertIn("packet-input", skill)
++        self.assertNotIn("original|ai_adaptation", skill)
++        self.assertIn("Never publish automatically", skill)
++
++    def test_official_quick_validation_passes(self):
++        environment = os.environ.copy()
++        temporary_dependencies = Path("/private/tmp/lofter-skill-validator-deps")
++        if temporary_dependencies.is_dir():
++            existing = environment.get("PYTHONPATH")
++            environment["PYTHONPATH"] = str(temporary_dependencies) + (
++                os.pathsep + existing if existing else ""
++            )
++        result = subprocess.run(
++            [sys.executable, str(QUICK_VALIDATE), str(SKILL_DIR)],
++            cwd=REPOSITORY_ROOT,
++            text=True,
++            capture_output=True,
++            check=False,
++            env=environment,
++        )
++        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/lofter-x-anime-hotspot/tests/test_validate_authorizations.py b/lofter-x-anime-hotspot/tests/test_validate_authorizations.py
+index 23be94a..cc60cc9 100644
+--- a/lofter-x-anime-hotspot/tests/test_validate_authorizations.py
++++ b/lofter-x-anime-hotspot/tests/test_validate_authorizations.py
+@@ -1,45 +1,220 @@
+ import sys
++import tempfile
+ import unittest
+ from pathlib import Path
+ 
+ sys.path.insert(0, str(Path(__file__).parents[1] / "scripts"))
+ 
+-from validate_authorizations import validate_authorization
++from validate_authorizations import validate_authorization, validate_ledger
+ 
+ 
+-BASE = {
+-    "asset_id": "asset-1",
+-    "author_handle": "@artist",
+-    "source_url": "https://x.com/artist/status/1",
+-    "evidence_path": "authorizations/asset-1.png",
+-    "lofter_redistribution": True,
+-    "ai_adaptation": True,
+-    "commercial_use": False,
+-}
++def authorization_record(**overrides):
++    value = {
++        "asset_id": "asset-original-1",
++        "author_handle": "@artist",
++        "source_url": "https://x.com/artist/status/1",
++        "evidence_path": "evidence/asset-original-1.txt",
++        "lofter_redistribution": True,
++        "ai_adaptation": True,
++        "commercial_use": False,
++        "translation": True,
++        "crop": True,
++        "layout": True,
++        "allowed_platforms": ["LOFTER"],
++        "attribution_mode": "public",
++        "original_asset_id": None,
++        "derived_asset_ids": [],
++        "publication_history": [
++            {
++                "published_at": "2026-08-09",
++                "lofter_url": "https://www.lofter.com/post/example",
++            }
++        ],
++    }
++    value.update(overrides)
++    return value
+ 
+ 
+ class AuthorizationTest(unittest.TestCase):
+-    def test_ai_adaptation_is_allowed(self):
+-        result = validate_authorization(BASE, "ai_adaptation")
+-        self.assertTrue(result["allowed"])
+-        self.assertEqual(result["asset_id"], "asset-1")
+-
+-    def test_ai_adaptation_requires_explicit_scope(self):
+-        record = {**BASE, "ai_adaptation": False}
+-        with self.assertRaisesRegex(ValueError, "AI adaptation is not authorized"):
+-            validate_authorization(record, "ai_adaptation")
+-
+-    def test_commercial_use_defaults_to_denied(self):
+-        with self.assertRaisesRegex(ValueError, "commercial use is not authorized"):
+-            validate_authorization(BASE, "original", commercial=True)
+-
+-    def test_original_requires_lofter_permission(self):
+-        record = {**BASE, "lofter_redistribution": False}
+-        with self.assertRaisesRegex(
+-            ValueError, "LOFTER redistribution is not authorized"
++    def setUp(self):
++        self.temp_dir = tempfile.TemporaryDirectory()
++        self.root = Path(self.temp_dir.name)
++        evidence = self.root / "evidence" / "asset-original-1.txt"
++        evidence.parent.mkdir()
++        evidence.write_text("example evidence", encoding="utf-8")
++
++    def tearDown(self):
++        self.temp_dir.cleanup()
++
++    def test_complete_original_authorization_is_allowed(self):
++        result = validate_authorization(
++            authorization_record(),
++            "original",
++            operations=("translation", "crop"),
++            evidence_root=self.root,
++        )
++        self.assertIs(result["allowed"], True)
++        self.assertEqual(result["asset_id"], "asset-original-1")
++        self.assertEqual(result["requested_usage"], "original")
++        self.assertIs(result["commercial_intent"], False)
++        self.assertEqual(result["source_url"], "https://x.com/artist/status/1")
++        self.assertEqual(result["author_handle"], "@artist")
++        self.assertEqual(result["attribution_mode"], "public")
++        self.assertEqual(result["platform"], "LOFTER")
++
++    def test_rejects_truthy_or_null_permission_values(self):
++        for field in (
++            "lofter_redistribution",
++            "ai_adaptation",
++            "commercial_use",
++            "translation",
++            "crop",
++            "layout",
+         ):
+-            validate_authorization(record, "original")
++            for malformed in ("false", 1, None):
++                with self.subTest(field=field, malformed=malformed):
++                    with self.assertRaisesRegex(ValueError, f"{field} must be a boolean"):
++                        validate_authorization(
++                            authorization_record(**{field: malformed}),
++                            "original",
++                            evidence_root=self.root,
++                        )
++
++    def test_rejects_empty_identifiers_and_invalid_urls(self):
++        cases = (
++            (authorization_record(asset_id=""), "asset_id must be a non-empty string"),
++            (authorization_record(author_handle=None), "author_handle must be a non-empty string"),
++            (authorization_record(source_url="http://x.com/a"), "source_url must be an HTTPS URL"),
++            (authorization_record(evidence_path=""), "evidence_path must be a non-empty string"),
++            (
++                authorization_record(
++                    publication_history=[
++                        {"published_at": "yesterday", "lofter_url": "https://www.lofter.com/post/a"}
++                    ]
++                ),
++                "published_at must be ISO-8601",
++            ),
++            (
++                authorization_record(
++                    publication_history=[
++                        {"published_at": "2026-08-09", "lofter_url": "http://www.lofter.com/post/a"}
++                    ]
++                ),
++                "lofter_url must be an HTTPS LOFTER URL",
++            ),
++        )
++        for record, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    validate_authorization(record, "original", evidence_root=self.root)
++
++    def test_rejects_missing_evidence_file(self):
++        with self.assertRaisesRegex(ValueError, "authorization evidence does not exist"):
++            validate_authorization(
++                authorization_record(evidence_path="evidence/missing.txt"),
++                "original",
++                evidence_root=self.root,
++            )
++
++    def test_requires_lofter_platform_and_redistribution_scope(self):
++        cases = (
++            (
++                authorization_record(allowed_platforms=["OTHER"]),
++                "LOFTER is not in allowed_platforms",
++            ),
++            (
++                authorization_record(lofter_redistribution=False),
++                "LOFTER redistribution is not authorized",
++            ),
++        )
++        for record, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    validate_authorization(record, "original", evidence_root=self.root)
++
++    def test_rejects_unauthorized_requested_operations(self):
++        for operation in ("translation", "crop", "layout"):
++            with self.subTest(operation=operation):
++                record = authorization_record(**{operation: False})
++                with self.assertRaisesRegex(
++                    ValueError, f"{operation} is not authorized"
++                ):
++                    validate_authorization(
++                        record,
++                        "original",
++                        operations=(operation,),
++                        evidence_root=self.root,
++                    )
++
++    def test_rejects_ai_commercial_and_lineage_mismatches(self):
++        cases = (
++            (
++                authorization_record(ai_adaptation=False, original_asset_id="source-1"),
++                "AI adaptation is not authorized",
++                "ai_adaptation",
++                False,
++            ),
++            (
++                authorization_record(),
++                "commercial use is not authorized",
++                "original",
++                True,
++            ),
++            (
++                authorization_record(original_asset_id="source-1"),
++                "original usage requires an original asset record",
++                "original",
++                False,
++            ),
++            (
++                authorization_record(),
++                "ai_adaptation usage requires a derived asset record",
++                "ai_adaptation",
++                False,
++            ),
++        )
++        for record, message, usage, commercial in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    validate_authorization(
++                        record,
++                        usage,
++                        commercial=commercial,
++                        evidence_root=self.root,
++                    )
++
++    def test_rejects_invalid_attribution_and_lineage_shapes(self):
++        cases = (
++            (authorization_record(attribution_mode="sometimes"), "invalid attribution_mode"),
++            (authorization_record(original_asset_id=""), "original_asset_id must be null or a non-empty string"),
++            (authorization_record(derived_asset_ids=[""]), "derived_asset_ids must contain non-empty strings"),
++            (authorization_record(publication_history={}), "publication_history must be a list"),
++        )
++        for record, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    validate_authorization(record, "original", evidence_root=self.root)
++
++    def test_ledger_rejects_duplicate_asset_ids(self):
++        with self.assertRaisesRegex(ValueError, "duplicate asset_id: asset-original-1"):
++            validate_ledger(
++                [authorization_record(), authorization_record()],
++                evidence_root=self.root,
++            )
++
++    def test_ledger_validates_derived_relationships(self):
++        derived_evidence = self.root / "evidence" / "asset-derived-1.txt"
++        derived_evidence.write_text("derived evidence", encoding="utf-8")
++        original = authorization_record(derived_asset_ids=["asset-derived-1"])
++        derived = authorization_record(
++            asset_id="asset-derived-1",
++            evidence_path="evidence/asset-derived-1.txt",
++            original_asset_id="asset-original-1",
++            derived_asset_ids=[],
++        )
++        indexed = validate_ledger([original, derived], evidence_root=self.root)
++        self.assertEqual(set(indexed), {"asset-original-1", "asset-derived-1"})
+ 
+ 
+ if __name__ == "__main__":
+     unittest.main()

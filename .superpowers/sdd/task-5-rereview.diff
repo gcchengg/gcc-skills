@@ -1,0 +1,198 @@
+# Review package: 96944b1..16333b1
+
+## Commits
+16333b1 test: align LOFTER hotspot example capacity
+8576c94 test: add LOFTER hotspot workflow examples
+
+## Files changed
+ .../2026-08-10-lofter-x-anime-hotspot-skill.md     | 60 +++++++++++++++++
+ .../templates/authorizations.example.json          | 11 ++++
+ .../templates/candidates.example.json              | 77 ++++++++++++++++++++++
+ 3 files changed, 148 insertions(+)
+
+## Diff
+diff --git a/docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md b/docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md
+index 67e4b22..1be1043 100644
+--- a/docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md
++++ b/docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md
+@@ -742,20 +742,80 @@ git commit -m "feat: add LOFTER anime hotspot skill workflow"
+     "ip_slot": "rising",
+     "characters": ["角色A", "角色B"],
+     "tags": ["示例IP", "角色A"],
+     "x_growth": 27,
+     "lofter_activity": 24,
+     "ip_match": 15,
+     "authorization": 15,
+     "story_potential": 8,
+     "x_evidence": "近24小时相关公开帖互动与创作数量集中增长",
+     "lofter_evidence": "对应标签出现持续更新和有效互动"
++  },
++  {
++    "id": "example-hotspot-2",
++    "title": "示例长线角色剧情讨论升温",
++    "ip_name": "示例IP长线",
++    "ip_slot": "long_term",
++    "characters": ["角色C", "角色D"],
++    "tags": ["示例IP长线", "角色C"],
++    "x_growth": 23,
++    "lofter_activity": 21,
++    "ip_match": 14,
++    "authorization": 12,
++    "story_potential": 9,
++    "x_evidence": "近24小时剧情解析和角色讨论保持稳定增长",
++    "lofter_evidence": "对应角色标签持续有高质量二创更新"
++  },
++  {
++    "id": "example-hotspot-3",
++    "title": "示例长线剧情节点回顾热度",
++    "ip_name": "示例IP长线",
++    "ip_slot": "long_term",
++    "characters": ["角色E", "角色F"],
++    "tags": ["示例IP长线", "角色E"],
++    "x_growth": 22,
++    "lofter_activity": 20,
++    "ip_match": 14,
++    "authorization": 12,
++    "story_potential": 8,
++    "x_evidence": "关键剧情节点引发公开帖的回顾与讨论",
++    "lofter_evidence": "剧情相关标签出现连续创作和评论互动"
++  },
++  {
++    "id": "example-hotspot-4",
++    "title": "示例新角色二创关注上升",
++    "ip_name": "示例IP新星",
++    "ip_slot": "rising",
++    "characters": ["角色G", "角色H"],
++    "tags": ["示例IP新星", "角色G"],
++    "x_growth": 25,
++    "lofter_activity": 19,
++    "ip_match": 13,
++    "authorization": 11,
++    "story_potential": 8,
++    "x_evidence": "新角色相关公开帖的转发和创作分享增加",
++    "lofter_evidence": "新角色标签新增图文二创并获得有效互动"
++  },
++  {
++    "id": "example-hotspot-5",
++    "title": "示例实验向设定讨论出现",
++    "ip_name": "示例IP实验",
++    "ip_slot": "experiment",
++    "characters": ["角色I", "角色J"],
++    "tags": ["示例IP实验", "角色I"],
++    "x_growth": 21,
++    "lofter_activity": 18,
++    "ip_match": 12,
++    "authorization": 10,
++    "story_potential": 10,
++    "x_evidence": "实验向设定在公开讨论中获得初步关注",
++    "lofter_evidence": "小众设定标签出现连续的创作尝试"
+   }
+ ]
+ ```
+ 
+ - [ ] **Step 2: Create the authorization example**
+ 
+ ```json
+ [
+   {
+     "asset_id": "example-asset-1",
+diff --git a/lofter-x-anime-hotspot/templates/authorizations.example.json b/lofter-x-anime-hotspot/templates/authorizations.example.json
+new file mode 100644
+index 0000000..20c2daa
+--- /dev/null
++++ b/lofter-x-anime-hotspot/templates/authorizations.example.json
+@@ -0,0 +1,11 @@
++[
++  {
++    "asset_id": "example-asset-1",
++    "author_handle": "@authorized_artist",
++    "source_url": "https://x.com/authorized_artist/status/example",
++    "evidence_path": "authorizations/example-asset-1.png",
++    "lofter_redistribution": true,
++    "ai_adaptation": true,
++    "commercial_use": false
++  }
++]
+diff --git a/lofter-x-anime-hotspot/templates/candidates.example.json b/lofter-x-anime-hotspot/templates/candidates.example.json
+new file mode 100644
+index 0000000..02f95ee
+--- /dev/null
++++ b/lofter-x-anime-hotspot/templates/candidates.example.json
+@@ -0,0 +1,77 @@
++[
++  {
++    "id": "example-hotspot-1",
++    "title": "示例角色纪念日创作增长",
++    "ip_name": "示例IP",
++    "ip_slot": "rising",
++    "characters": ["角色A", "角色B"],
++    "tags": ["示例IP", "角色A"],
++    "x_growth": 27,
++    "lofter_activity": 24,
++    "ip_match": 15,
++    "authorization": 15,
++    "story_potential": 8,
++    "x_evidence": "近24小时相关公开帖互动与创作数量集中增长",
++    "lofter_evidence": "对应标签出现持续更新和有效互动"
++  },
++  {
++    "id": "example-hotspot-2",
++    "title": "示例长线角色剧情讨论升温",
++    "ip_name": "示例IP长线",
++    "ip_slot": "long_term",
++    "characters": ["角色C", "角色D"],
++    "tags": ["示例IP长线", "角色C"],
++    "x_growth": 23,
++    "lofter_activity": 21,
++    "ip_match": 14,
++    "authorization": 12,
++    "story_potential": 9,
++    "x_evidence": "近24小时剧情解析和角色讨论保持稳定增长",
++    "lofter_evidence": "对应角色标签持续有高质量二创更新"
++  },
++  {
++    "id": "example-hotspot-3",
++    "title": "示例长线剧情节点回顾热度",
++    "ip_name": "示例IP长线",
++    "ip_slot": "long_term",
++    "characters": ["角色E", "角色F"],
++    "tags": ["示例IP长线", "角色E"],
++    "x_growth": 22,
++    "lofter_activity": 20,
++    "ip_match": 14,
++    "authorization": 12,
++    "story_potential": 8,
++    "x_evidence": "关键剧情节点引发公开帖的回顾与讨论",
++    "lofter_evidence": "剧情相关标签出现连续创作和评论互动"
++  },
++  {
++    "id": "example-hotspot-4",
++    "title": "示例新角色二创关注上升",
++    "ip_name": "示例IP新星",
++    "ip_slot": "rising",
++    "characters": ["角色G", "角色H"],
++    "tags": ["示例IP新星", "角色G"],
++    "x_growth": 25,
++    "lofter_activity": 19,
++    "ip_match": 13,
++    "authorization": 11,
++    "story_potential": 8,
++    "x_evidence": "新角色相关公开帖的转发和创作分享增加",
++    "lofter_evidence": "新角色标签新增图文二创并获得有效互动"
++  },
++  {
++    "id": "example-hotspot-5",
++    "title": "示例实验向设定讨论出现",
++    "ip_name": "示例IP实验",
++    "ip_slot": "experiment",
++    "characters": ["角色I", "角色J"],
++    "tags": ["示例IP实验", "角色I"],
++    "x_growth": 21,
++    "lofter_activity": 18,
++    "ip_match": 12,
++    "authorization": 10,
++    "story_potential": 10,
++    "x_evidence": "实验向设定在公开讨论中获得初步关注",
++    "lofter_evidence": "小众设定标签出现连续的创作尝试"
++  }
++]

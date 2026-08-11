@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "total_duration": 36.711429,
+  "scenes": [
+    {
+      "scene_id": "01",
+      "path": "audio/scene-01-v1.wav",
+      "raw_duration": 5.982041,
+      "lead_in": 0.15,
+      "tail_out": 0.3,
+      "start": 0.0,
+      "end": 6.432041,
+      "duration": 6.432041
+    },
+    {
+      "scene_id": "02",
+      "path": "audio/scene-02-v1.wav",
+      "raw_duration": 5.067755,
+      "lead_in": 0.15,
+      "tail_out": 0.3,
+      "start": 6.432041,
+      "end": 11.949796,
+      "duration": 5.517755
+    },
+    {
+      "scene_id": "03",
+      "path": "audio/scene-03-v1.wav",
+      "raw_duration": 5.616327,
+      "lead_in": 0.15,
+      "tail_out": 0.3,
+      "start": 11.949796,
+      "end": 18.016123,
+      "duration": 6.066327
+    },
+    {
+      "scene_id": "04",
+      "path": "audio/scene-04-v1.wav",
+      "raw_duration": 6.008163,
+      "lead_in": 0.15,
+      "tail_out": 0.3,
+      "start": 18.016123,
+      "end": 24.474286,
+      "duration": 6.458163
+    },
+    {
+      "scene_id": "05",
+      "path": "audio/scene-05-v1.wav",
+      "raw_duration": 5.616327,
+      "lead_in": 0.15,
+      "tail_out": 0.3,
+      "start": 24.474286,
+      "end": 30.540613,
+      "duration": 6.066327
+    },
+    {
+      "scene_id": "06",
+      "path": "audio/scene-06-v1.wav",
+      "raw_duration": 5.720816,
+      "lead_in": 0.15,
+      "tail_out": 0.3,
+      "start": 30.540613,
+      "end": 36.711429,
+      "duration": 6.170816
+    }
+  ]
+}
