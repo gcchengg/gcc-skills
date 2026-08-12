@@ -1,11 +1,13 @@
 ---
 name: lofter-x-anime-hotspot
-description: Use when the user requests a current X/LOFTER anime, game, character, or CP article; wants an illustrated LOFTER preview; supplies a run ID/path or revision; or sends a LOFTER publication confirmation.
+description: Use when the user explicitly invokes $lofter-x-anime-hotspot, requests a current X/LOFTER anime, game, character, or CP article, wants an illustrated LOFTER preview, supplies a run ID or revision, or sends a LOFTER publication confirmation.
 ---
 
 # LOFTER × X Anime Hotspot
 
 Use Chinese with the user. Produce exactly one publish-ready illustrated draft per new run. Keep research evidence, authorization records, checksums, and local evidence paths private. Do not claim Codex independently verified authorization: the user's exact `确认发布` is the publication authorization attestation for that run.
+
+When invoked as `$lofter-x-anime-hotspot` without additional instructions, start a new run: research the current relevant hotspots, choose one publishable topic, generate one illustrated LOFTER preview, and stop before opening LOFTER. Treat text after the skill mention as the topic, revision request, run reference, or confirmation for that invocation.
 
 ## Load the applicable protocol
 
@@ -37,6 +39,10 @@ Load the named run, or the latest unfinished run when unambiguous, with `run_sta
 ### First confirmation: `确认发布`
 
 Accept only the exact phrase bound to the reviewed run. It attests that every run media item is authorized for LOFTER; reject pending/rejected and known smoke-only/publication-forbidden media. Call `publication_gate.approve_form_fill`, then `publication_gate.build_upload_manifest`. Persist that exact public object as run-local `upload-manifest.json` with `run_state.write_json_atomic`. Follow `references/browser-publishing.md` to fill LOFTER from that manifest and persist the observed title, body, tags, and ordered media identities with `publication_gate.mark_form_filled`. Stop before submit and request `确认最终提交`.
+
+### Login resume: `已登录`
+
+Accept this message only for an approved run paused on the LOFTER login page. Reload that run and its locked `upload-manifest.json`, then follow `references/browser-publishing.md` to reacquire the existing Codex in-app browser tabs and resume in the same LOFTER tab only after an authenticated editor is unambiguous. Do not repeat the first confirmation, rebuild or change the manifest, create a new run, or treat `已登录` as final-submit approval.
 
 ### Final confirmation: `确认最终提交`
 

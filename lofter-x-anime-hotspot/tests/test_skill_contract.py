@@ -72,6 +72,19 @@ class SkillContractTest(unittest.TestCase):
         self.assertIn("do not click submit again", protocol)
         self.assertIn("final platform preview", protocol)
 
+    def test_browser_protocol_requires_in_app_manual_login_resume(self):
+        protocol = (
+            SKILL_DIR / "references" / "browser-publishing.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn('agent.browsers.get("iab")', protocol)
+        self.assertIn("已登录", protocol)
+        self.assertIn("same LOFTER tab", protocol)
+        self.assertIn("locked `upload-manifest.json`", protocol)
+        self.assertIn("manually log in", protocol)
+        self.assertIn("Never read, fill, or store credentials", protocol)
+        self.assertIn("Do not automatically switch to Chrome", protocol)
+        self.assertIn("do not repeat the first confirmation", protocol)
+
     def test_portable_validator_setup_is_pinned_and_ignored(self):
         requirements = (SKILL_DIR / "requirements-dev.txt").read_text(encoding="utf-8")
         ignores = (SKILL_DIR / ".gitignore").read_text(encoding="utf-8")
