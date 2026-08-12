@@ -50,3 +50,33 @@ Result: passed — 4 tests run, 0 failures.
 This report is committed with the Task 1 renderer change as
 `feat: render LOFTER cover before article`; use `git log -1 --oneline` to obtain
 the immutable commit identifier.
+
+## Critical review fix
+
+The cover section originally followed the topic/status and hotspot-evidence
+sections, so it was not the first visible child of `<main>`.
+
+### Regression RED
+
+After adding assertions that the cover path precedes the unique status marker
+`等待授权复核，尚不可发布` and analysis marker `测试图片优先顺序`, ran:
+
+```sh
+python3 -m unittest lofter-x-anime-hotspot/tests/test_render_preview.py -v
+```
+
+Result: failed as expected in
+`test_preview_renders_cover_before_article_and_body_media_afterward`:
+the cover path index was `1767`, after the status marker at `1379`.
+
+### Fix and GREEN
+
+Moved `<section class="cover">` to be the first child of `<main>`, before the
+topic/status and hotspot-evidence sections. The focused test was rerun:
+
+```sh
+python3 -m unittest lofter-x-anime-hotspot/tests/test_render_preview.py -v
+```
+
+Result: passed — 4 tests run, 0 failures. A focused `git diff --check` for the
+renderer and test files also passed.

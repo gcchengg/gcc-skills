@@ -129,6 +129,8 @@ class RenderPreviewTest(unittest.TestCase):
 
         self.assertLess(html.index(cover_path), html.index(article_marker))
         self.assertLess(html.index(article_marker), html.index(body_path))
+        self.assertLess(html.index(cover_path), html.index("等待授权复核，尚不可发布"))
+        self.assertLess(html.index(cover_path), html.index("测试图片优先顺序"))
 
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()

@@ -47,9 +47,9 @@ _TEMPLATE = """<!doctype html>
 </head>
 <body>
 <main>
+  <section class="cover"><div class="media">{cover}</div></section>
   <section><h1>{topic}</h1><p class="status">{status}</p></section>
   <section><h2>热点依据</h2><pre>{analysis}</pre></section>
-  <section class="cover"><div class="media">{cover}</div></section>
   <section class="article"><h2>正文</h2>{article}</section>
   <section><h2>候选标题与标签</h2><pre>{titles_tags}</pre></section>
   <section><h2>配图与发布顺序</h2><div class="media">{media}</div><pre>{order}</pre></section>
