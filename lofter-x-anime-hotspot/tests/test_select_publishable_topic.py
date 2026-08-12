@@ -85,6 +85,32 @@ def fixture_payload():
     }
 
 
+def add_168_window(payload):
+    payload["windows"]["168"] = {
+        "checked_at": "2026-08-11T08:00:00+08:00",
+        "x_sources": [
+            {
+                "source_url": "https://x.com/example/status/5",
+                "published_at": "2026-08-05T12:00:00+08:00",
+                "evidence_summary": "168小时X来源一",
+            },
+            {
+                "source_url": "https://x.com/example/status/6",
+                "published_at": "2026-08-05T13:00:00+08:00",
+                "evidence_summary": "168小时X来源二",
+            },
+        ],
+        "lofter_sources": [
+            {
+                "source_url": "https://example.lofter.com/post/3",
+                "published_at": "2026-08-05T14:00:00+08:00",
+                "evidence_summary": "168小时LOFTER来源",
+            }
+        ],
+        "candidates": [candidate("seven-day-fallback")],
+    }
+
+
 class SelectPublishableTopicTest(unittest.TestCase):
     def test_uses_24_hours_when_sources_and_candidates_are_sufficient(self):
         payload = fixture_payload()
@@ -120,6 +146,29 @@ class SelectPublishableTopicTest(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "24-hour window is required"):
             select_topic(payload)
+
+    def test_expands_to_168_only_after_24_and_72_are_insufficient(self):
+        payload = fixture_payload()
+        payload["windows"]["24"]["lofter_sources"] = []
+        payload["windows"]["72"]["lofter_sources"] = []
+        add_168_window(payload)
+
+        result = select_topic(payload)
+
+        self.assertEqual(result["time_window_hours"], 168)
+        self.assertEqual(result["candidate"]["id"], "seven-day-fallback")
+        self.assertEqual(
+            [(step["from"], step["to"]) for step in result["window_expansion"]["steps"]],
+            [(24, 72), (72, 168)],
+        )
+        self.assertIs(result["window_expansion"]["steps"][1]["insufficient_72h"], True)
+
+    def test_does_not_consider_168_when_72_is_sufficient(self):
+        payload = fixture_payload()
+        payload["windows"]["24"]["lofter_sources"] = []
+        add_168_window(payload)
+
+        self.assertEqual(select_topic(payload)["time_window_hours"], 72)
 
     def test_24_hour_selection_does_not_require_a_72_hour_window(self):
         payload = fixture_payload()

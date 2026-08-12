@@ -11,7 +11,7 @@ sys.path.insert(0, str(SCRIPTS))
 
 from build_publishable_draft import build_draft
 from run_state import create_run, write_json_atomic
-from render_preview import render_preview
+from render_preview import build_preview_html, render_preview
 
 
 FIXED_NOW = datetime(2026, 8, 11, 14, 30)
@@ -66,6 +66,25 @@ def prepared_review_run(root: Path) -> Path:
 
 
 class RenderPreviewTest(unittest.TestCase):
+    def test_renders_168_hour_analysis(self):
+        html = build_preview_html(
+            {"state": "authorization_review", "topic": "seven-day-topic"},
+            {
+                "time_window_hours": 168,
+                "candidate": {"title": "七天热点"},
+                "content_mode": "trend_analysis",
+                "selection_reason": "七天窗口内综合评分最高",
+                "x_sources": [],
+                "lofter_sources": [],
+            },
+            "正文",
+            "标题与标签",
+            "发布顺序",
+            [],
+        )
+
+        self.assertIn('&quot;time_window_hours&quot;: 168', html)
+
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)

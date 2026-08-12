@@ -674,6 +674,38 @@ class BuildPublishableDraftTest(unittest.TestCase):
             },
         )
 
+    def test_168_hour_selection_validates_and_persists_full_expansion_chain(self):
+        run_dir = self.create_run_with_local_media("seven-day-topic", hours=168)
+        selection = json.loads(
+            (run_dir / "hotspot-analysis.json").read_text(encoding="utf-8")
+        )
+        counts = {
+            "x_sources": 2, "lofter_sources": 0,
+            "candidates": 1, "eligible_candidates": 1,
+        }
+        selection["window_expansion"] = {
+            "from": 24,
+            "to": 168,
+            "steps": [
+                {
+                    "from": 24, "to": 72, "insufficient_24h": True,
+                    "checked_at": "2026-08-11T08:00:00+08:00",
+                    "reason": "insufficient_cross_platform_sources", "counts": counts,
+                },
+                {
+                    "from": 72, "to": 168, "insufficient_72h": True,
+                    "checked_at": "2026-08-11T08:00:00+08:00",
+                    "reason": "insufficient_cross_platform_sources", "counts": counts,
+                },
+            ],
+        }
+        write_json_atomic(run_dir / "hotspot-analysis.json", selection)
+
+        result = build_draft(run_dir, valid_payload())
+
+        self.assertEqual(result["time_window_hours"], 168)
+        self.assertEqual(len(result["window_expansion"]["steps"]), 2)
+
     def test_72_hour_selection_rejects_missing_selector_expansion_evidence(self):
         run_dir = self.create_run_with_local_media("missing-expansion", hours=72)
 

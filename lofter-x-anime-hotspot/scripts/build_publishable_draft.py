@@ -432,7 +432,7 @@ def _load_selection(run_dir: Path) -> dict:
         raise ValueError("selection result is incomplete")
     if type(selection["time_window_hours"]) is not int or selection[
         "time_window_hours"
-    ] not in {24, 72}:
+    ] not in {24, 72, 168}:
         raise ValueError("selection result has an invalid time window")
     candidate = selection["candidate"]
     if (
@@ -447,38 +447,36 @@ def _load_selection(run_dir: Path) -> dict:
     if selection["content_mode"] not in _CONTENT_MODES:
         raise ValueError("selection result has an invalid content mode")
     _non_empty_string(selection["selection_reason"], "selection_reason")
-    if selection["time_window_hours"] == 72:
+    if selection["time_window_hours"] in {72, 168}:
         expansion = selection.get("window_expansion")
-        counts = expansion.get("counts") if type(expansion) is dict else None
+        steps = [expansion] if selection["time_window_hours"] == 72 else (
+            expansion.get("steps") if type(expansion) is dict else None
+        )
         if (
             type(expansion) is not dict
-            or set(expansion)
-            != {
-                "from",
-                "to",
-                "insufficient_24h",
-                "checked_at",
-                "reason",
-                "counts",
-            }
             or expansion.get("from") != 24
-            or expansion.get("to") != 72
-            or expansion.get("insufficient_24h") is not True
-            or type(expansion.get("checked_at")) is not str
-            or not expansion["checked_at"].strip()
-            or type(expansion.get("reason")) is not str
-            or not expansion["reason"].strip()
-            or type(counts) is not dict
-            or set(counts)
-            != {
-                "x_sources",
-                "lofter_sources",
-                "candidates",
-                "eligible_candidates",
-            }
-            or any(type(value) is not int or value < 0 for value in counts.values())
+            or expansion.get("to") != selection["time_window_hours"]
+            or type(steps) is not list
+            or len(steps) != (1 if selection["time_window_hours"] == 72 else 2)
         ):
             raise ValueError("selection window expansion evidence is invalid")
+        for index, step in enumerate(steps):
+            start, end = ((24, 72), (72, 168))[index]
+            counts = step.get("counts") if type(step) is dict else None
+            if (
+                type(step) is not dict
+                or step.get("from") != start
+                or step.get("to") != end
+                or step.get(f"insufficient_{start}h") is not True
+                or type(step.get("checked_at")) is not str
+                or not step["checked_at"].strip()
+                or type(step.get("reason")) is not str
+                or not step["reason"].strip()
+                or type(counts) is not dict
+                or set(counts) != {"x_sources", "lofter_sources", "candidates", "eligible_candidates"}
+                or any(type(value) is not int or value < 0 for value in counts.values())
+            ):
+                raise ValueError("selection window expansion evidence is invalid")
     return selection
 
 
@@ -650,7 +648,7 @@ def _transactional_install(
                 "files": _FILES,
                 "media_review": counts,
             }
-            if selection["time_window_hours"] == 72:
+            if selection["time_window_hours"] in {72, 168}:
                 updates["window_expansion"] = selection["window_expansion"]
             transition(run_dir, "researching", "draft_ready", **updates)
             return transition(run_dir, "draft_ready", "authorization_review")

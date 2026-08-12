@@ -135,7 +135,7 @@ def _public_analysis(state: dict, analysis: dict) -> dict:
         "x_sources": _public_sources(analysis.get("x_sources"), "x"),
         "lofter_sources": _public_sources(analysis.get("lofter_sources"), "lofter"),
     }
-    if type(result["time_window_hours"]) is not int or result["time_window_hours"] not in {24, 72}:
+    if type(result["time_window_hours"]) is not int or result["time_window_hours"] not in {24, 72, 168}:
         raise ValueError("hotspot analysis has an invalid time window")
     if result["content_mode"] not in {"trend_analysis", "fanfic", "visual_curation"}:
         raise ValueError("hotspot analysis has an invalid content mode")

@@ -155,15 +155,37 @@ def select_topic(payload: dict) -> dict:
     if "72" not in windows:
         raise ValueError("no publishable topic in 24-hour or 72-hour window")
     expanded = _evaluate_window(windows["72"], 72, ip_pool)
-    if not expanded["sufficient"]:
-        raise ValueError("no publishable topic in 24-hour or 72-hour window")
-    result = _selection(72, expanded)
-    result["window_expansion"] = {
+    first_step = {
         "from": 24,
         "to": 72,
         "insufficient_24h": True,
         "checked_at": first["checked_at"],
         "reason": first["reason"],
         "counts": first["counts"],
+    }
+    if expanded["sufficient"]:
+        result = _selection(72, expanded)
+        result["window_expansion"] = first_step
+        return result
+    if "168" not in windows:
+        raise ValueError("no publishable topic in 24-hour, 72-hour, or 168-hour window")
+    seven_day = _evaluate_window(windows["168"], 168, ip_pool)
+    if not seven_day["sufficient"]:
+        raise ValueError("no publishable topic in 24-hour, 72-hour, or 168-hour window")
+    result = _selection(168, seven_day)
+    result["window_expansion"] = {
+        "from": 24,
+        "to": 168,
+        "steps": [
+            first_step,
+            {
+                "from": 72,
+                "to": 168,
+                "insufficient_72h": True,
+                "checked_at": expanded["checked_at"],
+                "reason": expanded["reason"],
+                "counts": expanded["counts"],
+            },
+        ],
     }
     return result

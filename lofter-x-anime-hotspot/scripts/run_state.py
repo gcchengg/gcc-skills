@@ -182,10 +182,10 @@ def _validate_state(value: object) -> dict:
         and re.fullmatch(r"[0-9a-f]{64}", value["approved_manifest_digest"])
     ):
         raise ValueError("approved_manifest_digest must be a lowercase SHA-256 digest")
-    if value["time_window_hours"] == 72 and not _valid_window_expansion(
-        value.get("window_expansion")
+    if value["time_window_hours"] in {72, 168} and not _valid_window_expansion(
+        value.get("window_expansion"), value["time_window_hours"]
     ):
-        raise ValueError("window expansion requires auditable 24-to-72 evidence")
+        raise ValueError("window expansion requires an auditable expansion chain")
     if "window_expansion" in value:
         _validate_json_object(value["window_expansion"], "window_expansion")
     if "media_rights_attestation" in value:
@@ -324,29 +324,46 @@ def _validate_transition_prerequisites(state: dict, expected: str, target: str) 
             raise ValueError("valid publication object is required before publishing")
 
 
-def _valid_window_expansion(evidence: object) -> bool:
+def _valid_window_step(evidence: object, start: int, end: int) -> bool:
+    flag = f"insufficient_{start}h"
     return (
         type(evidence) is dict
-        and evidence.get("from") == 24
+        and evidence.get("from") == start
         and type(evidence.get("from")) is int
-        and evidence.get("to") == 72
+        and evidence.get("to") == end
         and type(evidence.get("to")) is int
-        and evidence.get("insufficient_24h") is True
+        and evidence.get(flag) is True
         and type(evidence.get("reason")) is str
         and bool(evidence["reason"].strip())
+    )
+
+
+def _valid_window_expansion(evidence: object, target: int) -> bool:
+    if target == 72:
+        return _valid_window_step(evidence, 24, 72)
+    return (
+        target == 168
+        and type(evidence) is dict
+        and evidence.get("from") == 24
+        and evidence.get("to") == 168
+        and type(evidence.get("steps")) is list
+        and len(evidence["steps"]) == 2
+        and _valid_window_step(evidence["steps"][0], 24, 72)
+        and _valid_window_step(evidence["steps"][1], 72, 168)
     )
 
 
 def _validate_window_expansion(state: dict, proposed: dict) -> None:
     if proposed["time_window_hours"] == state["time_window_hours"]:
         return
-    valid_evidence = _valid_window_expansion(proposed.get("window_expansion"))
+    target = proposed["time_window_hours"]
+    valid_evidence = _valid_window_expansion(proposed.get("window_expansion"), target)
     if (
         state["time_window_hours"] != 24
-        or proposed["time_window_hours"] != 72
+        or target not in {72, 168}
         or not valid_evidence
     ):
-        raise ValueError("window expansion requires auditable 24-to-72 evidence")
+        raise ValueError("window expansion requires an auditable expansion chain")
 
 
 def transition(run_dir: Path, expected: str, target: str, **updates) -> dict:

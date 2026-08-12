@@ -261,6 +261,35 @@ class RunStateTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "unknown fields"):
                 load_state(run_dir)
 
+    def test_168_hour_window_requires_complete_24_to_72_to_168_chain(self):
+        with tempfile.TemporaryDirectory() as value:
+            run_dir, before = create_run(Path(value), "topic")
+            step_24 = {
+                "from": 24, "to": 72, "insufficient_24h": True,
+                "reason": "24 hours insufficient",
+            }
+            step_72 = {
+                "from": 72, "to": 168, "insufficient_72h": True,
+                "reason": "72 hours insufficient",
+            }
+            with self.assertRaisesRegex(ValueError, "window expansion"):
+                transition(
+                    run_dir, "researching", "draft_ready",
+                    time_window_hours=168,
+                    window_expansion={"from": 24, "to": 168, "steps": [step_24]},
+                )
+            self.assertEqual(load_state(run_dir), before)
+
+            state = transition(
+                run_dir, "researching", "draft_ready",
+                time_window_hours=168,
+                window_expansion={
+                    "from": 24, "to": 168, "steps": [step_24, step_72]
+                },
+            )
+            self.assertEqual(state["time_window_hours"], 168)
+            self.assertEqual(state["window_expansion"]["steps"][1]["to"], 168)
+
     def test_review_to_approval_requires_fill_confirmation(self):
         with tempfile.TemporaryDirectory() as value:
             run_dir, _ = create_run(Path(value), "topic")
