@@ -42,7 +42,7 @@ Accept only the exact phrase bound to the reviewed run. It attests that every ru
 
 ### Login resume: `已登录`
 
-Accept this message only for an approved run paused on the LOFTER login page. Reload that run and its locked `upload-manifest.json`, then follow `references/browser-publishing.md` to reacquire the existing Codex in-app browser tabs and resume in the same LOFTER tab only after an authenticated editor is unambiguous. Do not repeat the first confirmation, rebuild or change the manifest, create a new run, or treat `已登录` as final-submit approval.
+Accept this message only for an approved run paused on the LOFTER login page. Reload that run and its locked `upload-manifest.json`, then follow `references/browser-publishing.md` to reacquire the existing Codex in-app browser tabs and resume in the same LOFTER tab only after an authenticated editor is unambiguous. An empty editor must upload and observe the locked manifest cover first before body entry; a recovered filled draft must recheck its existing first content node and reposition or pause if it is not the cover. Do not repeat the first confirmation, rebuild or change the manifest, create a new run, or treat `已登录` as final-submit approval.
 
 ### Final confirmation: `确认最终提交`
 

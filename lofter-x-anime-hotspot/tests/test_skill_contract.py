@@ -92,8 +92,19 @@ class SkillContractTest(unittest.TestCase):
         self.assertIn("cover image first", protocol)
         self.assertIn("first effective content node", protocol)
         self.assertIn("first_content_is_cover", protocol)
+        initial_resume = "initial login resume with an empty editor"
+        upload_locked_cover = "upload the locked manifest cover first"
+        observe_before_body = "observe it as the first effective content node"
+        recovered_draft = "recovered previously filled draft"
+        recheck_existing_cover = "recheck that the existing cover is the first effective content node"
+        self.assertIn(initial_resume, protocol)
+        self.assertIn(recovered_draft, protocol)
+        self.assertLess(protocol.index(initial_resume), protocol.index(upload_locked_cover))
+        self.assertLess(protocol.index(upload_locked_cover), protocol.index(observe_before_body))
+        self.assertLess(protocol.index(observe_before_body), protocol.index("enter the title and full body"))
+        self.assertLess(protocol.index(recovered_draft), protocol.index(recheck_existing_cover))
         self.assertLess(
-            protocol.index("repeat cover-first check after login/draft recovery"),
+            protocol.index(recheck_existing_cover),
             protocol.index("final platform preview evidence"),
         )
 
