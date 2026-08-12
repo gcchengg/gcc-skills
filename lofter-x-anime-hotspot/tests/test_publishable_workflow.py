@@ -156,6 +156,7 @@ def valid_platform_preview(manifest: dict) -> dict:
             for item in manifest["media"]
         ],
         "submit_button_visible": True,
+        "first_content_is_cover": True,
     }
 
 

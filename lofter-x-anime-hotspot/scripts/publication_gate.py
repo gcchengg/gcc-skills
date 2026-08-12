@@ -22,6 +22,7 @@ _OBSERVED_PREVIEW_FIELDS = {
     "tags",
     "media",
     "submit_button_visible",
+    "first_content_is_cover",
 }
 _PERSISTED_PREVIEW_FIELDS = _OBSERVED_PREVIEW_FIELDS | {"observed_manifest_sha256"}
 _PUBLIC_MEDIA_FIELDS = ("display_id", "role", "local_path", "review_status")
@@ -226,6 +227,8 @@ def _validate_platform_preview(
     manifest, _ = _require_unchanged_manifest(run_dir, state)
     projection = _platform_projection(manifest)
     if observed["submit_button_visible"] is not True:
+        raise ValueError("final platform preview is incomplete")
+    if observed["first_content_is_cover"] is not True:
         raise ValueError("final platform preview is incomplete")
     candidate = {
         "title": observed["title"],

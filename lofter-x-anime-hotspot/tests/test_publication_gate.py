@@ -184,6 +184,7 @@ class PublicationGateTest(unittest.TestCase):
                     for item in manifest["media"]
                 ],
                 "submit_button_visible": True,
+                "first_content_is_cover": True,
             },
         )
         return run_dir
@@ -264,6 +265,7 @@ class PublicationGateTest(unittest.TestCase):
                 for item in manifest["media"]
             ],
             "submit_button_visible": True,
+            "first_content_is_cover": True,
         }
         invalid_previews = (
             {**valid, "captured_at": "bad"},
@@ -272,6 +274,10 @@ class PublicationGateTest(unittest.TestCase):
             {**valid, "tags": [*manifest["tags"][:-1], "错误标签"]},
             {**valid, "media": [{**valid["media"][0], "sha256": "0" * 64}]},
             {**valid, "submit_button_visible": False},
+            {key: value for key, value in valid.items() if key != "first_content_is_cover"},
+            {**valid, "first_content_is_cover": False},
+            {**valid, "first_content_is_cover": 1},
+            {**valid, "first_content_is_cover": "true"},
         )
 
         for preview in invalid_previews:
@@ -299,6 +305,7 @@ class PublicationGateTest(unittest.TestCase):
                         for item in manifest["media"]
                     ],
                     "submit_button_visible": True,
+                    "first_content_is_cover": True,
                     "manifest_sha256": "0" * 64,
                 },
             )
