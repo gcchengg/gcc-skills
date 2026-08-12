@@ -97,12 +97,17 @@ class SkillContractTest(unittest.TestCase):
         observe_before_body = "observe it as the first effective content node"
         recovered_draft = "recovered previously filled draft"
         recheck_existing_cover = "recheck that the existing cover is the first effective content node"
+        bypass_fresh_upload = "never execute step 5's fresh cover upload"
+        recovered_continue = "continue at step 6"
         self.assertIn(initial_resume, protocol)
         self.assertIn(recovered_draft, protocol)
+        self.assertIn(bypass_fresh_upload, protocol)
         self.assertLess(protocol.index(initial_resume), protocol.index(upload_locked_cover))
         self.assertLess(protocol.index(upload_locked_cover), protocol.index(observe_before_body))
         self.assertLess(protocol.index(observe_before_body), protocol.index("enter the title and full body"))
         self.assertLess(protocol.index(recovered_draft), protocol.index(recheck_existing_cover))
+        self.assertLess(protocol.index(recheck_existing_cover), protocol.index(bypass_fresh_upload))
+        self.assertLess(protocol.index(bypass_fresh_upload), protocol.index(recovered_continue, protocol.index(recovered_draft)))
         self.assertLess(
             protocol.index(recheck_existing_cover),
             protocol.index("final platform preview evidence"),
