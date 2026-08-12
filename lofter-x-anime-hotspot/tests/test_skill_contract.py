@@ -85,6 +85,18 @@ class SkillContractTest(unittest.TestCase):
         self.assertIn("Do not automatically switch to Chrome", protocol)
         self.assertIn("do not repeat the first confirmation", protocol)
 
+    def test_browser_protocol_requires_cover_first_and_rechecks_after_recovery(self):
+        protocol = (
+            SKILL_DIR / "references" / "browser-publishing.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("cover image first", protocol)
+        self.assertIn("first effective content node", protocol)
+        self.assertIn("first_content_is_cover", protocol)
+        self.assertLess(
+            protocol.index("repeat cover-first check after login/draft recovery"),
+            protocol.index("final platform preview evidence"),
+        )
+
     def test_portable_validator_setup_is_pinned_and_ignored(self):
         requirements = (SKILL_DIR / "requirements-dev.txt").read_text(encoding="utf-8")
         ignores = (SKILL_DIR / ".gitignore").read_text(encoding="utf-8")

@@ -38,7 +38,7 @@ Load the named run, or the latest unfinished run when unambiguous, with `run_sta
 
 ### First confirmation: `确认发布`
 
-Accept only the exact phrase bound to the reviewed run. It attests that every run media item is authorized for LOFTER; reject pending/rejected and known smoke-only/publication-forbidden media. Call `publication_gate.approve_form_fill`, then `publication_gate.build_upload_manifest`. Persist that exact public object as run-local `upload-manifest.json` with `run_state.write_json_atomic`. Follow `references/browser-publishing.md` to fill LOFTER from that manifest and persist the observed title, body, tags, and ordered media identities with `publication_gate.mark_form_filled`. Stop before submit and request `确认最终提交`.
+Accept only the exact phrase bound to the reviewed run. It attests that every run media item is authorized for LOFTER; reject pending/rejected and known smoke-only/publication-forbidden media. Call `publication_gate.approve_form_fill`, then `publication_gate.build_upload_manifest`. Persist that exact public object as run-local `upload-manifest.json` with `run_state.write_json_atomic`. Follow `references/browser-publishing.md` to fill LOFTER from that manifest: the cover image must be uploaded first and observed as the first effective content node before body entry; record `first_content_is_cover: true` with the observed title, body, tags, and ordered media identities in `publication_gate.mark_form_filled`. Stop before submit and request `确认最终提交`.
 
 ### Login resume: `已登录`
 
