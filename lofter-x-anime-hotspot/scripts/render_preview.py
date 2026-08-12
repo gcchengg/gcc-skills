@@ -49,6 +49,7 @@ _TEMPLATE = """<!doctype html>
 <main>
   <section><h1>{topic}</h1><p class="status">{status}</p></section>
   <section><h2>热点依据</h2><pre>{analysis}</pre></section>
+  <section class="cover"><div class="media">{cover}</div></section>
   <section class="article"><h2>正文</h2>{article}</section>
   <section><h2>候选标题与标签</h2><pre>{titles_tags}</pre></section>
   <section><h2>配图与发布顺序</h2><div class="media">{media}</div><pre>{order}</pre></section>
@@ -151,14 +152,18 @@ def build_preview_html(
     ledger: list[dict],
 ) -> str:
     """Build preview bytes from explicit validated artifacts."""
+    if not ledger or ledger[0].get("role") != "cover":
+        raise ValueError("media ledger must start with a cover")
     public_analysis = json.dumps(
         _public_analysis(state, analysis), ensure_ascii=False, indent=2, allow_nan=False
     )
-    media_html = "\n".join(_media_figure(item) for item in ledger)
+    cover_html = _media_figure(ledger[0])
+    media_html = "\n".join(_media_figure(item) for item in ledger[1:])
     return _TEMPLATE.format(
         status=escape(_public_status(state["state"])),
         topic=escape(state["topic"]),
         analysis=escape(public_analysis),
+        cover=cover_html,
         media=media_html,
         article=_markdown_paragraphs(article),
         titles_tags=escape(titles_tags),

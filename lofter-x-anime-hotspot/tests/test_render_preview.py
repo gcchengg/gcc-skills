@@ -80,10 +80,55 @@ class RenderPreviewTest(unittest.TestCase):
             "正文",
             "标题与标签",
             "发布顺序",
-            [],
+            [
+                {
+                    "kind": "generated_original",
+                    "role": "cover",
+                    "local_path": "generated-media/cover.webp",
+                    "caption": "封面",
+                    "display_id": 1,
+                }
+            ],
         )
 
         self.assertIn('&quot;time_window_hours&quot;: 168', html)
+
+    def test_preview_renders_cover_before_article_and_body_media_afterward(self):
+        cover_path = "original-media/cover.webp"
+        body_path = "generated-media/body.webp"
+        article_marker = "封面和正文配图之间的唯一正文句子。"
+
+        html = build_preview_html(
+            {"state": "authorization_review", "topic": "图片优先预览"},
+            {
+                "time_window_hours": 24,
+                "candidate": {"title": "图片优先预览"},
+                "content_mode": "trend_analysis",
+                "selection_reason": "测试图片优先顺序",
+            },
+            article_marker,
+            "标题与标签",
+            "发布顺序",
+            [
+                {
+                    "kind": "x_original",
+                    "role": "cover",
+                    "local_path": cover_path,
+                    "caption": "封面",
+                    "display_id": 1,
+                },
+                {
+                    "kind": "generated_original",
+                    "role": "body",
+                    "local_path": body_path,
+                    "caption": "正文配图",
+                    "display_id": 2,
+                },
+            ],
+        )
+
+        self.assertLess(html.index(cover_path), html.index(article_marker))
+        self.assertLess(html.index(article_marker), html.index(body_path))
 
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
