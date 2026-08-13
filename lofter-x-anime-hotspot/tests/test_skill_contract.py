@@ -113,6 +113,18 @@ class SkillContractTest(unittest.TestCase):
             protocol.index("final platform preview evidence"),
         )
 
+    def test_image_posts_use_native_photo_publisher(self):
+        skill = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+        protocol = (
+            SKILL_DIR / "references" / "browser-publishing.md"
+        ).read_text(encoding="utf-8")
+        for content in (skill, protocol):
+            self.assertIn("https://www.lofter.com/#publish=photo", content)
+            self.assertIn("https://www.lofter.com/#publish=text", content)
+            self.assertIn("image_post", content)
+        self.assertIn("Never create an image post inside the text editor", protocol)
+        self.assertIn("publisher_kind: photo", protocol)
+
     def test_portable_validator_setup_is_pinned_and_ignored(self):
         requirements = (SKILL_DIR / "requirements-dev.txt").read_text(encoding="utf-8")
         ignores = (SKILL_DIR / ".gitignore").read_text(encoding="utf-8")
