@@ -12,6 +12,8 @@ Generate exactly one public-ready Chinese article per run:
 
 Pass model-authored content through `build_publishable_draft.build_draft`; do not manually format the persisted article, title/tag, media-ledger, or publication-order artifacts.
 
+For an explicitly approved `image_post` experiment, use 120–180 non-whitespace characters, exactly five distinct tags, exactly three candidate titles, one cover, and up to two body images. Keep the interaction question and disclosure requirements unchanged. This format is for image-first LOFTER activity or character posts; do not silently convert ordinary article runs into it.
+
 For `trend_analysis`, lead with what changed, establish cross-platform evidence, add context, and finish with an original assessment. For `visual_curation`, make the image sequence carry the argument while explaining why each visual matters. For `fanfic`, meet every qualification in `operating-rules.md`, distinguish canon from fan interpretation, and preserve relationship/CP conventions.
 
 ## Legacy packet compatibility

@@ -32,6 +32,8 @@ For a repository checkout, set `LOFTER_SKILL_DIR` to the absolute directory cont
 
 Create a run under `runs/` with `run_state.create_run`. Research 24 hours first and expand to 72 hours only when `select_publishable_topic.select_topic` reports insufficient 24-hour evidence. Persist the selector result and private research ledger in `hotspot-analysis.json` with `run_state.write_json_atomic`, validate the draft with `build_publishable_draft.build_draft`, then call `render_preview.render_preview`. Show the absolute `preview.html` path and stop in `authorization_review`; do not open LOFTER.
 
+When the user explicitly approves an activity-meme or image-post test, set `content_format: image_post` and follow the short image-post contract in `references/content-templates.md`. Keep the normal article contract as the default.
+
 ### Resume or revise
 
 Load the named run, or the latest unfinished run when unambiguous, with `run_state.load_state`. Do not reselect the topic. Apply article/title/tag/caption changes with `build_publishable_draft.revise_draft`; it preserves unspecified fields, resets publication confirmations, and refreshes the preview transactionally. For rejected media, call `build_publishable_draft.record_media_review`, generate an independent replacement under the research protocol, then call `build_publishable_draft.replace_rejected_media`. Show the refreshed preview path and stop for review.

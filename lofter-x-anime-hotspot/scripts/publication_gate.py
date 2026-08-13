@@ -64,7 +64,7 @@ def _parse_iso_datetime(value: object, field: str) -> datetime:
     return parsed
 
 
-def _titles_and_tags(run_dir: Path) -> tuple[list[str], list[str]]:
+def _titles_and_tags(run_dir: Path, content_format: str = "article") -> tuple[list[str], list[str]]:
     try:
         content = (run_dir / "titles-and-tags.md").read_text(encoding="utf-8")
     except OSError as error:
@@ -82,7 +82,7 @@ def _titles_and_tags(run_dir: Path) -> tuple[list[str], list[str]]:
     tags = re.findall(r"#([^#\n]+)#", tag_line)
     if (
         any(not title for title in titles)
-        or not 8 <= len(tags) <= 12
+        or not ((len(tags) == 5) if content_format == "image_post" else (8 <= len(tags) <= 12))
         or len(set(tags)) != len(tags)
         or any(not tag.strip() for tag in tags)
         or tag_line != " ".join(f"#{tag}#" for tag in tags)
@@ -106,8 +106,15 @@ def _build_public_manifest(run_dir: Path, ledger: list[dict] | None = None) -> d
         article = (run_dir / "article.md").read_text(encoding="utf-8")
     except OSError as error:
         raise ValueError("article is required") from error
-    titles, tags = _titles_and_tags(run_dir)
-    article, titles, tags = validate_persisted_public_copy(article, titles, tags)
+    try:
+        intent = json.loads((run_dir / "sources/draft-intent.json").read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as error:
+        raise ValueError("draft intent is required") from error
+    content_format = intent.get("content_format", "article")
+    titles, tags = _titles_and_tags(run_dir, content_format)
+    article, titles, tags = validate_persisted_public_copy(
+        article, titles, tags, content_format
+    )
     public_media = []
     for item in ledger:
         path = run_dir / item["local_path"]

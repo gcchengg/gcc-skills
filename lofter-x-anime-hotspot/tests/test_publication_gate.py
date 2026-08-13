@@ -251,6 +251,44 @@ class PublicationGateTest(unittest.TestCase):
             state["approved_manifest_digest"], hashlib.sha256(canonical).hexdigest()
         )
 
+    def test_short_image_post_can_build_upload_manifest(self):
+        run_dir, _ = create_run(self.root / "runs", "short-image-manifest", FIXED_NOW)
+        (run_dir / "generated-media/original.webp").write_bytes(b"generated")
+        write_json_atomic(
+            run_dir / "hotspot-analysis.json",
+            {
+                "time_window_hours": 24,
+                "candidate": {"id": "short", "title": "温迪画风挑战", "eligible": True},
+                "content_mode": "visual_curation",
+                "selection_reason": "LOFTER 当前活动图片帖测试",
+            },
+        )
+        article = "温迪接到任务：请把自己画得简单一点。于是他认真画了三笔，一只圆滚滚的风精灵就诞生了。本人对这幅杰作相当满意，甚至准备拿它换一杯苹果酿。结果下一秒，小家伙真的从画纸里飞了出来，还抢走了他的帽子。精致吟游诗人和极简风精灵，你更想把哪一只带回尘歌壶？\n\n#AI生成#"
+        build_draft(
+            run_dir,
+            {
+                "content_format": "image_post",
+                "article": article,
+                "titles": ["温迪：这已经是最简单的画风了", "当温迪认真画了三笔", "极简风精灵逃出画纸之后"],
+                "tags": ["原神", "温迪", "原神同人", "画风挑战", "梗图"],
+                "authorized_media_intent": False,
+                "ai_assistance": True,
+                "media": [{
+                    "kind": "generated_original",
+                    "role": "cover",
+                    "local_path": "generated-media/original.webp",
+                    "caption": "温迪与极简风精灵",
+                    "generation_lineage": {"generator": "test", "prompt": "new image", "source_media_ids": []},
+                }],
+            },
+        )
+
+        approve_form_fill(run_dir, "确认发布")
+        manifest = build_upload_manifest(run_dir)
+
+        self.assertEqual(manifest["article"], article)
+        self.assertEqual(manifest["tags"], ["原神", "温迪", "原神同人", "画风挑战", "梗图"])
+
     def test_form_preview_is_typed_and_must_match_upload_contents(self):
         run_dir = self.fully_reviewed_run()
         approve_form_fill(run_dir, "确认发布")

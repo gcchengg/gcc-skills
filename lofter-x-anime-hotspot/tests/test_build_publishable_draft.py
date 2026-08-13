@@ -155,6 +155,30 @@ class BuildPublishableDraftTest(unittest.TestCase):
             "2. 正文图｜generated-media/02.webp｜独立原创配图\n",
         )
 
+    def test_builds_short_image_post_with_five_tags(self):
+        run_dir = self.create_run_with_local_media("short-image-post")
+        payload = valid_payload()
+        payload.update(
+            {
+                "content_format": "image_post",
+                "article": "温迪接到任务：请把自己画得简单一点。于是他认真画了三笔，一只圆滚滚的风精灵就诞生了。本人对这幅杰作相当满意，甚至准备拿它换一杯苹果酿。结果下一秒，小家伙真的从画纸里飞了出来，还抢走了他的帽子。精致吟游诗人和极简风精灵，你更想把哪一只带回尘歌壶？\n\n#AI生成#",
+                "tags": ["原神", "温迪", "原神同人", "画风挑战", "梗图"],
+                "authorized_media_intent": False,
+            }
+        )
+
+        result = build_draft(run_dir, payload)
+
+        self.assertEqual(result["state"], "authorization_review")
+        self.assertEqual(
+            json.loads((run_dir / "sources/draft-intent.json").read_text()),
+            {
+                "authorized_media_intent": False,
+                "ai_assistance": True,
+                "content_format": "image_post",
+            },
+        )
+
     def test_rejects_wrong_article_length_title_count_or_tag_count(self):
         run_dir = self.create_run_with_local_media()
         for field, value, message in (

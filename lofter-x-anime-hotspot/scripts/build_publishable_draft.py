@@ -32,6 +32,8 @@ _DRAFT_FIELDS = {
     "authorized_media_intent",
     "ai_assistance",
 }
+_OPTIONAL_DRAFT_FIELDS = {"content_format"}
+_CONTENT_FORMATS = {"article", "image_post"}
 _MEDIA_KINDS = {"x_original", "ai_adaptation", "generated_original"}
 _MEDIA_ROLES = {"cover", "body"}
 _COMMON_MEDIA_FIELDS = {"kind", "role", "local_path", "caption"}
@@ -116,16 +118,19 @@ def _validate_rendered_string(
     return text
 
 
-def _validate_article(text: object) -> str:
+def _validate_article(text: object, content_format: str = "article") -> str:
     article = _validate_rendered_string(text, "article", allow_newlines=True)
     count = len("".join(article.split()))
-    if not 800 <= count <= 1500:
-        raise ValueError("article must contain 800–1500 non-whitespace characters")
+    minimum, maximum = (120, 180) if content_format == "image_post" else (800, 1500)
+    if not minimum <= count <= maximum:
+        raise ValueError(
+            f"article must contain {minimum}–{maximum} non-whitespace characters"
+        )
     return article
 
 
 def validate_persisted_public_copy(
-    article: object, titles: object, tags: object
+    article: object, titles: object, tags: object, content_format: str = "article"
 ) -> tuple[str, list[str], list[str]]:
     """Revalidate persisted public copy, allowing one builder-owned disclosure."""
     if type(article) is not str:
@@ -141,12 +146,21 @@ def validate_persisted_public_copy(
     else:
         _validate_rendered_string(article, "article", allow_newlines=True)
     count = len("".join(article.strip().split()))
-    if not 800 <= count <= 1500:
-        raise ValueError("article must contain 800–1500 non-whitespace characters")
+    minimum, maximum = (120, 180) if content_format == "image_post" else (800, 1500)
+    if not minimum <= count <= maximum:
+        raise ValueError(
+            f"article must contain {minimum}–{maximum} non-whitespace characters"
+        )
+    tag_minimum = tag_maximum = 5 if content_format == "image_post" else None
     return (
         article.strip(),
         _validate_unique_strings(titles, "titles", 3, 3),
-        _validate_unique_strings(tags, "tags", 8, 12),
+        _validate_unique_strings(
+            tags,
+            "tags",
+            tag_minimum if tag_minimum is not None else 8,
+            tag_maximum if tag_maximum is not None else 12,
+        ),
     )
 
 
@@ -505,10 +519,10 @@ def _render_publication_order(media: list[dict]) -> str:
     return "\n".join(lines)
 
 
-def _validate_payload(payload: object) -> tuple[str, list[str], list[str], bool, bool]:
+def _validate_payload(payload: object) -> tuple[str, list[str], list[str], bool, bool, str]:
     if type(payload) is not dict:
         raise ValueError("draft payload must be an object")
-    unknown = sorted(set(payload) - _DRAFT_FIELDS)
+    unknown = sorted(set(payload) - _DRAFT_FIELDS - _OPTIONAL_DRAFT_FIELDS)
     if unknown:
         raise ValueError(f"unknown draft field: {unknown[0]}")
     missing = sorted(_DRAFT_FIELDS - set(payload))
@@ -518,21 +532,34 @@ def _validate_payload(payload: object) -> tuple[str, list[str], list[str], bool,
         raise ValueError("authorized_media_intent must be a boolean")
     if type(payload["ai_assistance"]) is not bool:
         raise ValueError("ai_assistance must be a boolean")
+    content_format = payload.get("content_format", "article")
+    if content_format not in _CONTENT_FORMATS:
+        raise ValueError("content_format is invalid")
+    tag_minimum, tag_maximum = (5, 5) if content_format == "image_post" else (8, 12)
     return (
-        _validate_article(payload["article"]),
+        _validate_article(payload["article"], content_format),
         _validate_unique_strings(payload["titles"], "titles", 3, 3),
-        _validate_unique_strings(payload["tags"], "tags", 8, 12),
+        _validate_unique_strings(payload["tags"], "tags", tag_minimum, tag_maximum),
         payload["authorized_media_intent"],
         payload["ai_assistance"],
+        content_format,
     )
 
 
-def _apply_disclosure(article: str, authorized_intent: bool, ai_assistance: bool) -> str:
+def _apply_disclosure(
+    article: str,
+    authorized_intent: bool,
+    ai_assistance: bool,
+    content_format: str = "article",
+) -> str:
     if authorized_intent and ai_assistance:
         article = f"{article}\n\n{PUBLIC_DISCLOSURE}"
     count = len("".join(article.split()))
-    if not 800 <= count <= 1500:
-        raise ValueError("article must contain 800–1500 non-whitespace characters")
+    minimum, maximum = (120, 180) if content_format == "image_post" else (800, 1500)
+    if not minimum <= count <= maximum:
+        raise ValueError(
+            f"article must contain {minimum}–{maximum} non-whitespace characters"
+        )
     return article
 
 
@@ -1144,11 +1171,13 @@ def build_draft(run_dir: Path, payload: dict) -> dict:
     if state["state"] != "researching":
         raise ValueError(f"expected researching, found {state['state']}")
     selection = _load_selection(run_dir)
-    article, titles, tags, authorized_intent, ai_assistance = _validate_payload(
+    article, titles, tags, authorized_intent, ai_assistance, content_format = _validate_payload(
         payload
     )
     media, media_sources = _validate_media(run_dir, payload["media"])
-    article = _apply_disclosure(article, authorized_intent, ai_assistance)
+    article = _apply_disclosure(
+        article, authorized_intent, ai_assistance, content_format
+    )
     return _transactional_install(
         run_dir,
         article,
@@ -1160,6 +1189,11 @@ def build_draft(run_dir: Path, payload: dict) -> dict:
         {
             "authorized_media_intent": authorized_intent,
             "ai_assistance": ai_assistance,
+            **(
+                {"content_format": content_format}
+                if content_format != "article"
+                else {}
+            ),
         },
     )
 
