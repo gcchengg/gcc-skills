@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "title": "从重复提示词到 Codex Skill",
+  "format": {"width":1080,"height":1920,"fps":30},
+  "source": {"url":"https://x.com/AdrianPunk115/status/2082706843466633354","title":"如何把一套工作流沉淀成自己的 Codex Skill：从 0 到上传 GitHub"},
+  "audio": {"path":"audio/narration-fish.mp3","duration_seconds":86.58,"voice":"中文科技知识讲解","voice_id":"a48a402a-8f0c-48d6-b8da-e8f49706364d","model_id":"fishaudio-s21pro-flash","api_speed":1.0,"postprocess_atempo":1.08},
+  "scenes": [
+    {"id":"scene-01","start":0,"end":7.6,"purpose":"hook","narration":"如果你每周都要把同一套要求重新发给 AI，真正缺少的可能不是提示词，而是一个 Skill。","headline":"别再重复解释","supporting_text":["把固定工作流交给 Codex"],"image":null,"image_focus":null,"visual":"kinetic-title","transition":"crossfade","source_refs":["section-01"]},
+    {"id":"scene-02","start":7.6,"end":14.7,"purpose":"definition","narration":"Skill 就像岗位说明书、标准作业流程和验收清单，固化的不是一句话，而是一类任务。","headline":"提示词解决一次","supporting_text":["Skill 固化一类任务"],"image":null,"image_focus":null,"visual":"comparison-cards","transition":"crossfade","source_refs":["section-01"]},
+    {"id":"scene-03","start":14.7,"end":30.3,"purpose":"screening","narration":"一件事会重复发生，输入输出稳定，有固定步骤和判断标准，通常就值得做成 Skill。","headline":"先问 4 个问题","supporting_text":["会重复？","输入输出稳定？","步骤和标准固定？","换个 AI 还要重讲？"],"image":null,"image_focus":null,"visual":"checklist","transition":"crossfade","source_refs":["section-01"]},
+    {"id":"scene-04","start":30.3,"end":40.7,"purpose":"framework","narration":"先写工作流卡片：什么时候启动、用户提供什么、如何执行、输出什么、怎样算合格、信息不足怎么办。","headline":"写一张工作流卡片","supporting_text":["启动 · 输入 · 步骤","输出 · 标准 · 异常"],"image":null,"image_focus":null,"visual":"six-field-card","transition":"crossfade","source_refs":["section-02"]},
+    {"id":"scene-05","start":40.7,"end":47.6,"purpose":"trigger-testing","narration":"再准备三种真实说法：明确点名、自然表达，以及信息不完整的边界情况。","headline":"准备 3 个触发案例","supporting_text":["点名执行","自然触发","缺失信息不乱编"],"image":"images/source-01.jpg","image_focus":"终端初始化结果","visual":"image-terminal","transition":"crossfade","source_refs":["section-02","section-03"]},
+    {"id":"scene-06","start":47.6,"end":56.9,"purpose":"structure","narration":"最小版本只需要 SKILL.md。重复代码放 scripts，长资料放 references，交付模板放 assets。","headline":"从最小结构开始","supporting_text":["SKILL.md 必需","其余目录按需增加"],"image":"images/source-02.jpg","image_focus":"SKILL.md 的 YAML 与工作流程","visual":"image-terminal","transition":"crossfade","source_refs":["section-04"]},
+    {"id":"scene-07","start":56.9,"end":64.3,"purpose":"quality","narration":"description 决定什么时候触发，正文决定触发以后怎么做。规则越容易出错，就要写得越具体。","headline":"触发与执行分开写","supporting_text":["description → 何时使用","正文 → 如何完成"],"image":"images/source-04.jpg","image_focus":"校验通过与安装结果","visual":"split-rule","transition":"crossfade","source_refs":["section-04","section-05"]},
+    {"id":"scene-08","start":64.3,"end":72.1,"purpose":"test","narration":"验证结构以后，用点名、自然表达和缺失信息三类真实任务测试，再根据失败位置修改。","headline":"验证通过 ≠ 真正好用","supporting_text":["结构校验","真实调用","针对性迭代"],"image":"images/source-03.jpg","image_focus":"weekly-review 的实际输出","visual":"image-terminal","transition":"crossfade","source_refs":["section-05"]},
+    {"id":"scene-09","start":72.1,"end":86.58,"purpose":"recap","narration":"跑通后再上传 GitHub。公开前删除密钥、客户数据和内部规则。先从最近重复两次的任务开始。","headline":"跑通，再沉淀","supporting_text":["真实任务 → Skill → GitHub","把重复解释变成自动执行"],"image":"images/source-05.jpg","image_focus":"GitHub 仓库与文件结构","visual":"final-image","transition":"fade","source_refs":["section-06"]}
+  ]
+}

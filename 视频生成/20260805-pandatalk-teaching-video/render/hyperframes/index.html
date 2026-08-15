@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>模型越来越强，为什么你的生产力没有变？</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "PingFang SC"; src: local("PingFang SC"); }
+      @font-face { font-family: "Noto Sans CJK SC"; src: local("Noto Sans CJK SC"); }
+      @font-face { font-family: "Songti SC"; src: local("Songti SC"); }
+      @font-face { font-family: "Noto Serif CJK SC"; src: local("Noto Serif CJK SC"); }
+      :root {
+        --ink: #1d2421;
+        --paper: #f3ead7;
+        --paper-deep: #e8d8bd;
+        --accent: #df5035;
+        --accent-dark: #9f321f;
+        --green: #325b4b;
+        --muted: #6f6658;
+        --safe-bottom: 420px;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: var(--paper); }
+      body { font-family: "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif; color: var(--ink); }
+      #root { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+      .clip { position: absolute; inset: 0; width: 1080px; height: 1920px; overflow: hidden; }
+      .background { background: var(--paper); }
+      .grain { position: absolute; inset: 0; opacity: .18; background-image: radial-gradient(#715f47 0.7px, transparent 0.7px); background-size: 9px 9px; }
+      .orb { position: absolute; width: 720px; height: 720px; border: 54px solid rgba(232, 93, 63, .16); border-radius: 50%; right: -290px; top: 120px; }
+      .arc { position: absolute; width: 980px; height: 980px; border: 3px solid rgba(50, 91, 75, .28); border-radius: 50%; left: -620px; bottom: -140px; }
+      .edge-rule { position: absolute; left: 72px; right: 72px; top: 112px; height: 3px; background: var(--ink); opacity: .72; }
+      .scene { padding: 160px 76px var(--safe-bottom); display: flex; flex-direction: column; }
+      .kicker { font-size: 25px; font-weight: 700; letter-spacing: .18em; color: var(--accent-dark); }
+      .headline { margin-top: 46px; max-width: 920px; font-family: "Songti SC", "Noto Serif CJK SC", serif; font-size: 102px; line-height: 1.12; font-weight: 800; letter-spacing: -.04em; }
+      .headline.compact { font-size: 84px; }
+      .rule { width: 100%; height: 5px; margin-top: 44px; background: var(--accent); transform-origin: left center; }
+      .caption { position: absolute; left: 80px; right: 80px; bottom: 430px; min-height: 128px; padding: 26px 34px; border: 3px solid rgba(29, 36, 33, .72); background: rgba(243, 234, 215, .96); box-shadow: 12px 12px 0 rgba(50, 91, 75, .22); font-size: 44px; line-height: 1.38; font-weight: 650; text-align: center; }
+      .meta { position: absolute; left: 78px; right: 78px; bottom: 590px; display: flex; justify-content: space-between; font-size: 22px; color: var(--muted); letter-spacing: .08em; }
+      .gap-stage { flex: 1; display: grid; place-items: center; padding-bottom: 190px; }
+      .gap-number { font: 900 260px/1 "Songti SC", serif; color: var(--accent); }
+      .gap-label { margin-top: -24px; font-size: 35px; font-weight: 750; letter-spacing: .14em; }
+      .split { margin-top: 110px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+      .panel { min-height: 430px; padding: 38px 34px; border: 3px solid var(--ink); background: rgba(255,255,255,.28); }
+      .panel strong { display: block; font: 800 54px/1.15 "Songti SC", serif; }
+      .panel p { margin-top: 32px; font-size: 34px; line-height: 1.5; color: var(--muted); }
+      .panel.engineered { background: var(--green); color: #f7efdf; border-color: var(--green); }
+      .panel.engineered p { color: #f7efdf; }
+      .layers { margin-top: 70px; display: grid; gap: 18px; }
+      .layer { height: 154px; padding: 28px 34px; display: flex; align-items: center; justify-content: space-between; border: 3px solid var(--ink); background: rgba(255,255,255,.35); }
+      .layer:nth-child(2) { margin-left: 46px; background: var(--paper-deep); }
+      .layer:nth-child(3) { margin-left: 92px; background: #cfbca0; }
+      .layer:nth-child(4) { margin-left: 138px; color: #f7efdf; background: var(--green); border-color: var(--green); }
+      .layer b { font-size: 42px; }
+      .layer span { font: 800 48px/1 serif; color: var(--accent); }
+      .question-list { margin-top: 86px; display: grid; gap: 30px; }
+      .question { display: grid; grid-template-columns: 76px 1fr; gap: 26px; align-items: center; padding: 28px; border-top: 3px solid var(--ink); font-size: 42px; font-weight: 650; }
+      .question i { display: grid; place-items: center; width: 66px; height: 66px; border-radius: 50%; background: var(--accent); color: #fff3df; font-style: normal; }
+      .filter { margin-top: 90px; display: grid; gap: 20px; }
+      .chip { padding: 30px 34px; border: 2px solid var(--ink); font-size: 37px; font-weight: 650; background: rgba(255,255,255,.28); }
+      .chip.keep { margin-left: 90px; color: #f7efdf; background: var(--green); border-color: var(--green); }
+      .contract { margin-top: 82px; padding: 48px; border: 4px solid var(--ink); background: rgba(255,255,255,.34); box-shadow: 16px 16px 0 var(--accent); }
+      .contract-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+      .contract-item { min-height: 150px; padding: 26px; border: 2px solid var(--ink); font-size: 37px; font-weight: 750; }
+      .loop { position: relative; margin: 92px auto 0; width: 650px; height: 650px; border: 58px solid var(--green); border-radius: 50%; }
+      .loop-center { position: absolute; inset: 128px; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: #fff4e3; font: 800 48px/1.2 "Songti SC", serif; text-align: center; }
+      .loop-tag { position: absolute; padding: 15px 22px; background: var(--paper); border: 2px solid var(--ink); font-size: 29px; font-weight: 700; }
+      .loop-tag.one { top: -42px; left: 210px; }
+      .loop-tag.two { right: -70px; top: 280px; }
+      .loop-tag.three { bottom: -42px; left: 200px; }
+      .loop-tag.four { left: -70px; top: 280px; }
+      .path { margin-top: 76px; display: grid; gap: 22px; }
+      .path-step { position: relative; padding: 27px 34px 27px 90px; border: 3px solid var(--ink); font-size: 37px; font-weight: 700; background: rgba(255,255,255,.3); }
+      .path-step::before { content: attr(data-step); position: absolute; left: 24px; top: 23px; color: var(--accent); font: 900 38px/1 serif; }
+      .path-step.final { color: #f7efdf; background: var(--green); border-color: var(--green); }
+      .source { margin-top: 40px; color: var(--muted); font-size: 24px; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="76" data-width="1080" data-height="1920">
+      <div id="background" class="clip background" data-start="0" data-duration="76" data-track-index="0" data-layout-ignore>
+        <div class="grain"></div><div id="orb" class="orb"></div><div id="arc" class="arc"></div><div class="edge-rule"></div>
+      </div>
+      <section id="scene-01" class="clip scene" data-start="0" data-duration="7" data-track-index="1">
+        <div class="kicker">AI PRODUCTIVITY GAP · 01</div><h1 class="headline">模型更强了<br>你却没更高效？</h1><div class="rule"></div>
+        <div class="gap-stage"><div><div class="gap-number">0</div><div class="gap-label">被稳定接管的重复任务</div></div></div>
+        <div class="caption">答案很多，不等于工作被稳定接管</div><div class="meta"><span>知识工作方法</span><span>00:07</span></div>
+      </section>
+      <section id="scene-02" class="clip scene" data-start="7" data-duration="9" data-track-index="1">
+        <div class="kicker">CHAT VS ENGINEERING · 02</div><h2 class="headline compact">会提问 ≠ Prompt 工程</h2><div class="rule"></div>
+        <div class="split"><div class="panel"><strong>聊天</strong><p>临场追问<br>修正一次回答</p></div><div class="panel engineered"><strong>工程</strong><p>定义任务<br>稳定复用结果</p></div></div>
+        <div class="caption">聊天解决一次回答，工程解决一类真实任务</div><div class="meta"><span>从探索走向生产</span><span>00:16</span></div>
+      </section>
+      <section id="scene-03" class="clip scene" data-start="16" data-duration="12" data-track-index="1">
+        <div class="kicker">THE FOUR-LAYER SYSTEM · 03</div><h2 class="headline compact">生产力的四层框架</h2><div class="rule"></div>
+        <div class="layers"><div class="layer"><b>任务定义</b><span>01</span></div><div class="layer"><b>上下文组织</b><span>02</span></div><div class="layer"><b>执行契约</b><span>03</span></div><div class="layer"><b>评估闭环</b><span>04</span></div></div>
+        <div class="caption">四层一起工作，才能把模糊意图变成稳定结果</div><div class="meta"><span>Prompt Engineering</span><span>00:28</span></div>
+      </section>
+      <section id="scene-04" class="clip scene" data-start="28" data-duration="10" data-track-index="1">
+        <div class="kicker">TASK DEFINITION · 04</div><h2 class="headline compact">01 任务定义</h2><div class="rule"></div>
+        <div class="question-list"><div class="question"><i>1</i><span>谁会使用这个结果？</span></div><div class="question"><i>2</i><span>他准备用它完成什么？</span></div><div class="question"><i>3</i><span>什么变化代表成功？</span></div></div>
+        <div class="caption">不要只说动作，还要说明价值、受众和成功标准</div><div class="meta"><span>先定义目标</span><span>00:38</span></div>
+      </section>
+      <section id="scene-05" class="clip scene" data-start="38" data-duration="10" data-track-index="1">
+        <div class="kicker">CONTEXT ORGANIZATION · 05</div><h2 class="headline compact">02 上下文组织</h2><div class="rule"></div>
+        <div class="filter"><div class="chip">全部资料：过时信息 · 噪声 · 冲突结论</div><div class="chip keep">当前任务真正需要的上下文</div><div class="chip keep">可信资料 · 业务规则 · 已有结论</div></div>
+        <div class="caption">资料不是越多越好，而是给得越对</div><div class="meta"><span>Context Engineering</span><span>00:48</span></div>
+      </section>
+      <section id="scene-06" class="clip scene" data-start="48" data-duration="10" data-track-index="1">
+        <div class="kicker">EXECUTION CONTRACT · 06</div><h2 class="headline compact">03 执行契约</h2><div class="rule"></div>
+        <div class="contract"><div class="contract-grid"><div class="contract-item">约束<br>必须 / 禁止</div><div class="contract-item">优先级<br>冲突时先满足谁</div><div class="contract-item">示例<br>什么结果算合格</div><div class="contract-item">格式<br>怎样进入下一步</div></div></div>
+        <div class="caption">把期待变成边界，让结果可以继续被使用</div><div class="meta"><span>可执行的任务契约</span><span>00:58</span></div>
+      </section>
+      <section id="scene-07" class="clip scene" data-start="58" data-duration="9" data-track-index="1">
+        <div class="kicker">EVALUATION LOOP · 07</div><h2 class="headline compact">04 评估闭环</h2><div class="rule"></div>
+        <div id="evaluation-loop" class="loop"><div class="loop-center">怎样<br>才算好？</div><span class="loop-tag one">定义标准</span><span class="loop-tag two">真实测试</span><span class="loop-tag three">检查退化</span><span class="loop-tag four">稳定复现</span></div>
+        <div class="caption">先定义好结果，再迭代 Prompt，而不是只凭感觉</div><div class="meta"><span>Eval / Verification</span><span>01:07</span></div>
+      </section>
+      <section id="scene-08" class="clip scene" data-start="67" data-duration="9" data-track-index="1">
+        <div class="kicker">FROM CHAT TO SYSTEM · 08</div><h2 class="headline compact">把一次对话<br>变成可复用流程</h2><div class="rule"></div>
+        <div class="path"><div class="path-step" data-step="01">临时对话</div><div class="path-step" data-step="02">可复用 Prompt</div><div class="path-step" data-step="03">资料 + 示例 + 检查清单</div><div class="path-step" data-step="04">固定工作流</div><div class="path-step final" data-step="05">Skill · 脚本 · Agent</div></div>
+        <div class="source">来源：Mr Panda (@PandaTalk8) · X Article</div>
+        <div class="caption">AI 的价值，是有多少工作能够被稳定完成</div>
+      </section>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.to("#orb", { rotation: 70, scale: 1.08, duration: 76, ease: "none" }, 0);
+      tl.to("#arc", { rotation: -55, x: 110, duration: 76, ease: "none" }, 0);
+      const scenes = [
+        ["#scene-01", 0], ["#scene-02", 7], ["#scene-03", 16], ["#scene-04", 28],
+        ["#scene-05", 38], ["#scene-06", 48], ["#scene-07", 58], ["#scene-08", 67]
+      ];
+      scenes.forEach(([selector, start]) => {
+        tl.fromTo(`${selector} .kicker`, { opacity: 0, x: -48 }, { opacity: 1, x: 0, duration: .45, ease: "power3.out" }, start + .12);
+        tl.fromTo(`${selector} .headline`, { opacity: 0, y: 64 }, { opacity: 1, y: 0, duration: .62, ease: "expo.out" }, start + .25);
+        tl.fromTo(`${selector} .rule`, { scaleX: 0 }, { scaleX: 1, duration: .7, ease: "power2.inOut" }, start + .5);
+        tl.fromTo(`${selector} .caption`, { opacity: 0, y: 36 }, { opacity: 1, y: 0, duration: .52, ease: "back.out(1.5)" }, start + .82);
+      });
+      tl.fromTo("#scene-01 .gap-stage", { opacity: 0, scale: .82 }, { opacity: 1, scale: 1, duration: .75, ease: "back.out(1.6)" }, 1.0);
+      tl.fromTo("#scene-02 .panel", { opacity: 0, y: 70 }, { opacity: 1, y: 0, duration: .7, stagger: .18, ease: "power3.out" }, 8.2);
+      tl.fromTo("#scene-03 .layer", { opacity: 0, x: -90 }, { opacity: 1, x: 0, duration: .65, stagger: .42, ease: "expo.out" }, 17.1);
+      tl.fromTo("#scene-04 .question", { opacity: 0, x: -70 }, { opacity: 1, x: 0, duration: .55, stagger: .42, ease: "power3.out" }, 29.2);
+      tl.fromTo("#scene-05 .chip", { opacity: 0, scale: .92 }, { opacity: 1, scale: 1, duration: .55, stagger: .48, ease: "back.out(1.4)" }, 39.2);
+      tl.fromTo("#scene-06 .contract-item", { opacity: 0, y: 46 }, { opacity: 1, y: 0, duration: .52, stagger: .28, ease: "power3.out" }, 49.2);
+      tl.fromTo("#evaluation-loop", { opacity: 0, scale: .72, rotation: -38 }, { opacity: 1, scale: 1, rotation: 0, duration: .9, ease: "expo.out" }, 59.1);
+      tl.to("#evaluation-loop", { rotation: 22, duration: 7, ease: "none" }, 60);
+      tl.fromTo("#scene-08 .path-step", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: .48, stagger: .42, ease: "power3.out" }, 68.0);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "title": "Graph Engineering：从 Loop 到多 Agent 协作",
+  "renderer": "HyperFrames 0.7.98",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration_seconds": 75.23,
+  "source_count": 1,
+  "image_count": 4,
+  "narration": {
+    "service": "Fish Audio",
+    "voice_name": "中文科技知识讲解",
+    "voice_id": "a48a402a-8f0c-48d6-b8da-e8f49706364d",
+    "model_id": "fishaudio-s21pro-flash",
+    "format": "mp3",
+    "speed": 1
+  }
+}

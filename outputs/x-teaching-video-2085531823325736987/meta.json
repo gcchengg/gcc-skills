@@ -1,0 +1,19 @@
+{
+  "title": "FDE 到底做什么？普通人如何上车",
+  "renderer": "HyperFrames 0.7.98",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "duration_seconds": 67.997,
+  "source_count": 1,
+  "image_count": 6,
+  "narration": {
+    "service": "Fish Audio",
+    "voice_name": "中文科技知识讲解",
+    "voice_id": "a48a402a-8f0c-48d6-b8da-e8f49706364d",
+    "model_id": "fishaudio-s21pro-flash",
+    "format": "mp3",
+    "speed": 1,
+    "request_id": "codex-teaching-video-825c1d4197a330e761d2e5aa"
+  }
+}

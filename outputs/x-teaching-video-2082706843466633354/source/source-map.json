@@ -1,0 +1,16 @@
+{
+  "source_url": "https://x.com/AdrianPunk115/status/2082706843466633354",
+  "title": "如何把一套工作流沉淀成自己的 Codex Skill：从 0 到上传 GitHub",
+  "author": "Adrian Punk",
+  "author_handle": "AdrianPunk115",
+  "sections": [
+    {"id":"section-01","title":"Skill 的本质与适用条件","images":[]},
+    {"id":"section-02","title":"工作流卡片与触发案例","images":[]},
+    {"id":"section-03","title":"初始化 Skill","images":["images/source-01.jpg"]},
+    {"id":"section-04","title":"编写 SKILL.md","images":["images/source-02.jpg"]},
+    {"id":"section-05","title":"验证安装与真实测试","images":["images/source-04.jpg","images/source-03.jpg"]},
+    {"id":"section-06","title":"上传 GitHub 与安全检查","images":["images/source-05.jpg"]}
+  ],
+  "image_count": 5,
+  "omitted_images": []
+}

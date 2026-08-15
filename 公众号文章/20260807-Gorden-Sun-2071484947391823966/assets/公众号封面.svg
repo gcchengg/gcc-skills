@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1880" height="800" viewBox="0 0 1880 800">
+  <image href="公众号封面_背景.png" width="1880" height="800" preserveAspectRatio="xMidYMid slice"/>
+  <defs><linearGradient id="g"><stop stop-color="#050b14" stop-opacity=".98"/><stop offset=".58" stop-color="#050b14" stop-opacity=".58"/><stop offset="1" stop-color="#050b14" stop-opacity="0"/></linearGradient></defs>
+  <rect width="1180" height="800" fill="url(#g)"/>
+  <text x="100" y="225" fill="#77d7ff" font-size="34" font-family="Arial,'PingFang SC'" font-weight="600">CODEX × 知识工作</text>
+  <text x="100" y="350" fill="white" font-size="80" font-family="Arial,'PingFang SC'" font-weight="800">别把 Codex</text>
+  <text x="100" y="455" fill="white" font-size="80" font-family="Arial,'PingFang SC'" font-weight="800">只当成代码工具</text>
+  <line x1="102" y1="510" x2="740" y2="510" stroke="#27b6ff" stroke-width="6"/>
+  <text x="100" y="585" fill="#c7d7ea" font-size="36" font-family="Arial,'PingFang SC'">把上下文、工具、流程与审阅串成工作系统</text>
+</svg>

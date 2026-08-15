@@ -1,0 +1,1 @@
+{"name":"x-teaching-video-2074312503618584610","private":true,"type":"module","scripts":{"dev":"npx --yes hyperframes@0.7.98 preview","check":"npx --yes hyperframes@0.7.98 check","render":"npx --yes hyperframes@0.7.98 render"}}

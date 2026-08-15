@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="zh-CN" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Noto Serif SC"; src: local("Songti SC"); }
+      @font-face { font-family: "Songti SC"; src: local("Songti SC"); }
+      @font-face { font-family: "STSong"; src: local("STSong"); }
+      @font-face { font-family: "Kaiti SC"; src: local("Kaiti SC"); }
+      @font-face { font-family: "STKaiti"; src: local("STKaiti"); }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #050505; }
+      body { font-family: "Noto Serif SC", "Songti SC", "STSong", serif; }
+      #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+      .surround {
+        position: absolute; inset: 0;
+        background:
+          radial-gradient(ellipse at 50% 48%, #191616 0%, #090909 53%, #020202 100%);
+      }
+      .crt-shell {
+        position: absolute; left: 150px; top: 86px; width: 1620px; height: 908px;
+        padding: 30px; border-radius: 86px;
+        background: linear-gradient(145deg, #262323 0%, #090909 44%, #181515 100%);
+        border: 2px solid rgba(243,239,230,.13);
+        box-shadow: 0 34px 100px rgba(0,0,0,.92), inset 0 1px 0 rgba(255,255,255,.09), 0 0 68px rgba(161,15,24,.12);
+      }
+      .glass {
+        position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 58px;
+        background: #101010;
+        box-shadow: inset 0 0 90px rgba(0,0,0,.95), inset 0 0 12px rgba(243,239,230,.08);
+        isolation: isolate;
+      }
+      .inner-camera { position: absolute; inset: 0; overflow: hidden; }
+      .scene { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; opacity: 0; }
+      .scene::before {
+        content: ""; position: absolute; inset: -12%;
+        background: radial-gradient(ellipse at center, rgba(161,15,24,.15) 0%, rgba(16,16,16,0) 62%);
+      }
+      .brush {
+        position: absolute; left: 50%; top: 50%; width: 100%; text-align: center;
+        color: #b0353c; font-family: "Kaiti SC", "STKaiti", "Noto Serif SC", serif;
+        font-weight: 900; line-height: .78; letter-spacing: -.1em; white-space: nowrap;
+        filter: blur(.35px) drop-shadow(0 0 18px rgba(229,34,45,.26));
+        mix-blend-mode: screen; opacity: .82;
+      }
+      .brush::after { content: attr(data-copy); position: absolute; inset: 0; color: #5f070c; opacity: .62; filter: blur(4px); }
+      .brush-ai { font-size: 430px; }
+      .brush-tools { font-size: 560px; }
+      .brush-judgment { font-size: 470px; color: #e5222d; opacity: .94; }
+      .headline {
+        position: relative; z-index: 3; width: 1360px; text-align: center;
+        color: #f3efe6; font-size: 112px; line-height: 1.25; font-weight: 900;
+        letter-spacing: .04em; text-shadow: 3px 0 rgba(229,34,45,.35), -2px 0 rgba(80,160,180,.2), 0 7px 24px #000;
+      }
+      .headline .accent { color: #fffaf0; text-shadow: 0 0 22px rgba(243,239,230,.24), 3px 0 rgba(229,34,45,.4), -2px 0 rgba(80,160,180,.2); }
+      .headline-compact { width: 900px; font-size: 118px; line-height: 1.13; }
+      .headline-compact .verdict { font-size: 166px; letter-spacing: .1em; }
+      .line { display: block; white-space: nowrap; }
+      .scanlines, .grain, .vignette, .glass-glint { position: absolute; inset: 0; pointer-events: none; }
+      .scanlines {
+        z-index: 8; opacity: .13;
+        background: repeating-linear-gradient(to bottom, rgba(255,255,255,.13) 0, rgba(255,255,255,.13) 1px, rgba(0,0,0,.24) 2px, rgba(0,0,0,.24) 4px);
+        mix-blend-mode: overlay;
+      }
+      .grain {
+        z-index: 9; opacity: .18;
+        background-image:
+          repeating-radial-gradient(circle at 17% 23%, rgba(255,255,255,.15) 0 1px, transparent 1px 4px),
+          repeating-radial-gradient(circle at 73% 61%, rgba(255,255,255,.1) 0 1px, transparent 1px 5px);
+        background-size: 13px 17px, 19px 11px;
+        mix-blend-mode: soft-light;
+      }
+      .vignette { z-index: 10; box-shadow: inset 0 0 170px 90px rgba(0,0,0,.72); border-radius: 58px; }
+      .glass-glint { z-index: 11; background: linear-gradient(118deg, rgba(255,255,255,.055), transparent 27%, transparent 74%, rgba(255,255,255,.018)); }
+      .power-line { position: absolute; z-index: 12; left: 11%; right: 11%; top: 50%; height: 3px; background: #f3efe6; box-shadow: 0 0 28px #f3efe6; opacity: 0; }
+      .corner-label { position: absolute; z-index: 12; left: 62px; top: 46px; color: rgba(243,239,230,.54); font: 600 19px/1 "SFMono-Regular", Menlo, monospace; letter-spacing: .16em; }
+      .rec { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: #e5222d; margin-right: 10px; box-shadow: 0 0 10px #e5222d; }
+    </style>
+  </head>
+  <body>
+    <div id="stage" data-composition-id="main" data-start="0" data-duration="10" data-fps="30" data-width="1920" data-height="1080">
+      <div id="full-shot" class="clip" data-start="0" data-duration="10" data-track-index="1">
+        <div class="surround"></div>
+        <div class="crt-shell">
+          <div class="glass" id="glass">
+            <div class="inner-camera" id="camera" data-layout-allow-overflow="true">
+              <section class="scene" id="scene-one">
+                <div class="brush brush-ai" id="brush-one" data-copy="AI时代" data-layout-allow-overlap="true" data-layout-allow-overflow="true" aria-hidden="true">AI时代</div>
+                <div class="headline" id="headline-one"><span class="line accent">AI时代，</span><span class="line">真正拉开差距的</span></div>
+              </section>
+              <section class="scene" id="scene-two">
+                <div class="brush brush-tools" id="brush-two" data-copy="工具" data-layout-allow-overlap="true" data-layout-allow-overflow="true" aria-hidden="true">工具</div>
+                <div class="headline" id="headline-two"><span class="line">不是<span class="accent">工具</span></span></div>
+              </section>
+              <section class="scene" id="scene-three" data-layout-allow-overflow="true">
+                <div class="brush brush-judgment" id="brush-three" data-copy="判断力" data-layout-allow-overlap="true" data-layout-allow-overflow="true" aria-hidden="true">判断力</div>
+                <div class="headline headline-compact" id="headline-three"><span class="line">而是</span><span class="line accent verdict">判断力。</span></div>
+              </section>
+            </div>
+            <div class="corner-label"><span class="rec"></span>CH 03 · SIGNAL</div>
+            <div class="power-line" id="power-line"></div>
+            <div class="scanlines"></div><div class="grain" id="grain"></div><div class="vignette"></div><div class="glass-glint"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true, defaults: { overwrite: false } });
+
+      tl.set("#scene-one", { opacity: 1 }, 0)
+        .fromTo("#glass", { opacity: 0 }, { opacity: 1, duration: .18, ease: "power4.out" }, 0)
+        .fromTo("#power-line", { opacity: .9, scaleX: .06 }, { opacity: 0, scaleX: 1, duration: .22, ease: "expo.out" }, .04)
+        .fromTo("#brush-one", { xPercent: -50, yPercent: -50, scale: 1.22, rotation: -3, opacity: .25 }, { xPercent: -50, yPercent: -50, scale: 1, rotation: -1, opacity: .82, duration: .5, ease: "expo.out" }, .2)
+        .fromTo("#headline-one", { scale: .72, opacity: 0, y: 34 }, { scale: 1, opacity: 1, y: 0, duration: .38, ease: "back.out(1.9)" }, .4)
+        .to("#headline-one", { x: 20, duration: .04, ease: "power4.out" }, .80)
+        .to("#headline-one", { x: -15, duration: .04 }, .845)
+        .to("#headline-one", { x: 10, duration: .04 }, .89)
+        .to("#headline-one", { x: -5, duration: .04 }, .935)
+        .to("#headline-one", { x: 0, duration: .05 }, .98)
+        .to("#camera", { scale: 1.035, duration: 1.5, ease: "sine.inOut" }, 1.08)
+        .to("#camera", { scale: 1.22, opacity: 0, duration: .28, ease: "expo.in" }, 2.72)
+
+        .set("#scene-one", { opacity: 0 }, 3)
+        .set("#scene-two", { opacity: 1 }, 3)
+        .set("#camera", { scale: 1, opacity: 1, x: 0 }, 3)
+        .fromTo("#brush-two", { xPercent: -50, yPercent: -50, scale: .72, rotation: 2, opacity: .25 }, { xPercent: -50, yPercent: -50, scale: 1, rotation: 0, opacity: .84, duration: .46, ease: "expo.out" }, 3.12)
+        .fromTo("#headline-two", { y: -120, scale: .82, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: .4, ease: "back.out(1.8)" }, 3.2)
+        .to("#headline-two", { x: 24, duration: .04 }, 3.58)
+        .to("#headline-two", { x: -18, duration: .04 }, 3.62)
+        .to("#headline-two", { x: 12, duration: .04 }, 3.66)
+        .to("#headline-two", { x: -6, duration: .04 }, 3.70)
+        .to("#headline-two", { x: 0, duration: .05 }, 3.74)
+        .to("#headline-two .line", { x: 46, duration: .3, ease: "power2.in" }, 6.02)
+        .to("#camera", { scale: 1.3, opacity: 0, duration: .3, ease: "expo.in" }, 6.3)
+
+        .set("#scene-two", { opacity: 0 }, 6.6)
+        .set("#scene-three", { opacity: 1 }, 6.6)
+        .set("#camera", { scale: 1, opacity: 1, x: 0 }, 6.6)
+        .fromTo("#brush-three", { xPercent: -50, yPercent: -50, scale: .58, rotation: -4, opacity: .15 }, { xPercent: -50, yPercent: -50, scale: 1.08, rotation: -1, opacity: .94, duration: .42, ease: "expo.out" }, 6.62)
+        .fromTo("#headline-three", { scale: 1.42, opacity: 0, y: 26 }, { scale: 1, opacity: 1, y: 0, duration: .34, ease: "back.out(2.1)" }, 6.67)
+        .to("#camera", { x: 30, duration: .04 }, 6.78)
+        .to("#camera", { x: -24, duration: .04 }, 6.82)
+        .to("#camera", { x: 17, duration: .04 }, 6.86)
+        .to("#camera", { x: -11, duration: .04 }, 6.90)
+        .to("#camera", { x: 6, duration: .04 }, 6.94)
+        .to("#camera", { x: 0, duration: .05 }, 6.98)
+        .to("#brush-three", { filter: "blur(.35px) drop-shadow(0 0 54px rgba(229,34,45,.72))", scale: 1.14, duration: .18, ease: "power3.out" }, 8.05)
+        .to("#brush-three", { filter: "blur(.35px) drop-shadow(0 0 18px rgba(229,34,45,.26))", scale: 1.08, duration: .48, ease: "sine.out" }, 8.23)
+
+        .to("#grain", { x: 3, y: -2, duration: .08, repeat: 8, yoyo: true, ease: "none" }, 0)
+        .to("#grain", { x: -2, y: 3, duration: .09, repeat: 10, yoyo: true, ease: "none" }, 3)
+        .to("#grain", { x: 2, y: 1, duration: .1, repeat: 11, yoyo: true, ease: "none" }, 6.6)
+        .to("#glass", { opacity: .975, duration: .06, repeat: 5, yoyo: true, ease: "none" }, 1.62)
+        .to("#glass", { opacity: .98, duration: .07, repeat: 4, yoyo: true, ease: "none" }, 5.08);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

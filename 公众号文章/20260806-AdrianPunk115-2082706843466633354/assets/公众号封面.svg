@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1880" height="800" viewBox="0 0 1880 800">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#050a12" stop-opacity=".98"/><stop offset=".58" stop-color="#050a12" stop-opacity=".5"/><stop offset="1" stop-color="#050a12" stop-opacity="0"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity=".7"/></filter></defs>
+  <image href="公众号封面_背景.png" width="1880" height="800" preserveAspectRatio="xMidYMid slice"/>
+  <rect width="1880" height="800" fill="url(#g)"/>
+  <g font-family="PingFang SC, Noto Sans CJK SC, sans-serif" fill="#fff" filter="url(#s)">
+    <text x="105" y="235" font-size="82" font-weight="700">把工作流变成</text>
+    <text x="105" y="350" font-size="94" font-weight="760">自己的 Codex Skill</text>
+    <rect x="108" y="407" width="700" height="5" rx="2" fill="#28a8ff"/>
+    <text x="108" y="480" font-size="34" fill="#b7d9f5">从 0 创建、验证、安装，到上传 GitHub</text>
+  </g>
+</svg>

@@ -1,48 +1,32 @@
-# Browser Publishing Notes
+# Browser publishing diagnostics
 
-## CDP Browser
+Use this reference only when the deterministic publisher reports a selector or upload failure.
 
-This workflow expects a real Chrome/Edge instance with remote debugging enabled and an authenticated WeChat Official Account session.
+## Persistent browser
 
-Common Chrome launch pattern:
+- CDP endpoint: `http://127.0.0.1:9223`
+- Profile: `~/.codex/wechat-publisher-profile`
+- Login wait: ten minutes by default; override with `--loginTimeout <milliseconds>`.
+- Closing Chrome does not remove the login state. A later run relaunches the same profile.
 
-```bash
-/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome \
-  --remote-debugging-port=9222 \
-  --user-data-dir=/tmp/wechat-browser-publisher-profile
-```
+Do not reuse the ordinary Chrome profile: Chrome locks active profiles and remote-debugging startup becomes unreliable.
 
-If the user wants to reuse an existing Chrome profile, avoid overwriting it. Prefer a dedicated profile and ask the user to log into `https://mp.weixin.qq.com/` once.
+## Diagnostic loop
 
-## Article Input
+1. Run the same command with `--mode fill`.
+2. Inspect `wechat_editor_filled.png` and the visible editor.
+3. Confirm two `.ProseMirror` editors exist: title first, body second.
+4. Check title, body length, H2/H3 hierarchy, body image count, digest, and cover.
+5. Update semantic selectors in the script when the WeChat layout changes.
+6. Return to `--mode draft` and require `DRAFT_SAVED`.
 
-Prefer HTML produced by `md2wechat convert` because it already contains inline styles compatible with the WeChat editor.
+## Expected manual stops
 
-If starting from Markdown:
+Pause for the user only when WeChat displays:
 
-```bash
-tools/bin/md2wechat convert article.md article.wechat.html
-```
+- QR-code login;
+- administrator/account confirmation;
+- CAPTCHA or security verification;
+- an ambiguous cover crop that cannot be verified.
 
-## Expected Manual Stops
-
-Pause and ask the user to complete the browser step when any of these appear:
-
-- QR code login.
-- Admin/account selection.
-- Security verification.
-- Original declaration confirmation.
-- Cover cropping UI.
-- Final publish confirmation.
-
-## Debugging Selectors
-
-The script uses conservative selectors for title, author, digest, contenteditable body, and save buttons. If WeChat changes the editor layout:
-
-1. Inspect the page with Playwright or browser devtools.
-2. Update `scripts/publish_wechat_browser.mjs` selectors.
-3. Test with `--mode fill` before `--mode draft`.
-
-## Publishing Policy
-
-Saving a draft is allowed when requested. Final publish or mass-send should remain manual unless the user explicitly asks for it in the same turn and the UI state is visibly verified.
+Public publish is outside this script. The user must inspect the saved draft and explicitly authorize publication in a later turn.

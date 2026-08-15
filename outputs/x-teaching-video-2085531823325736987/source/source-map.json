@@ -1,0 +1,111 @@
+{
+  "source_url": "https://x.com/ai_Goge/status/2085531823325736987",
+  "status_id": "2085531823325736987",
+  "article_id": "2085520178419519489",
+  "title": "全网都在谈论FDE，那么它到底是做啥的？普通人怎么上车",
+  "author": "Kelvin",
+  "author_handle": "ai_Goge",
+  "created_at": "2026-08-07T01:01:48.000Z",
+  "modified_at": "2026-08-07T01:01:48.000Z",
+  "block_count": 594,
+  "images": [
+    {
+      "path": "images/source-01.jpg",
+      "url": "https://pbs.twimg.com/media/HPFIDdfbAAAJi-8.jpg",
+      "width": 1672,
+      "height": 941,
+      "media_id": "2085527326742478848"
+    },
+    {
+      "path": "images/source-02.jpg",
+      "url": "https://pbs.twimg.com/media/HPFJaxba8AAW8DU.jpg",
+      "width": 1672,
+      "height": 941,
+      "media_id": "2085528826743025664"
+    },
+    {
+      "path": "images/source-03.jpg",
+      "url": "https://pbs.twimg.com/media/HPFIQYpa8AAEXIS.jpg",
+      "width": 1672,
+      "height": 941,
+      "media_id": "2085527548780539904"
+    },
+    {
+      "path": "images/source-04.jpg",
+      "url": "https://pbs.twimg.com/media/HPFI1u3bsAAOlrF.jpg",
+      "width": 1672,
+      "height": 941,
+      "media_id": "2085528190400049152"
+    },
+    {
+      "path": "images/source-05.jpg",
+      "url": "https://pbs.twimg.com/media/HPFHkTsaQAEH_9s.jpg",
+      "width": 1915,
+      "height": 821,
+      "media_id": "2085526791536656385"
+    },
+    {
+      "path": "images/source-06.jpg",
+      "url": "https://pbs.twimg.com/media/HPFJLcsaoAAXf8l.jpg",
+      "width": 1672,
+      "height": 941,
+      "media_id": "2085528563479126016"
+    }
+  ],
+  "attribution": "Kelvin (@ai_Goge), X Article, 2026-08-07",
+  "sections": [
+    {
+      "id": "definition",
+      "title": "FDE 的定义",
+      "images": [
+        "images/source-05.jpg"
+      ]
+    },
+    {
+      "id": "enterprise-problem",
+      "title": "企业 AI 的最后一公里",
+      "images": [
+        "images/source-01.jpg"
+      ]
+    },
+    {
+      "id": "difference",
+      "title": "FDE 与普通开发的区别",
+      "images": [
+        "images/source-03.jpg"
+      ]
+    },
+    {
+      "id": "daily-work",
+      "title": "FDE 的五步工作流",
+      "images": [
+        "images/source-04.jpg"
+      ]
+    },
+    {
+      "id": "core-abilities",
+      "title": "懂业务、懂 AI、能落地",
+      "images": []
+    },
+    {
+      "id": "worked-example",
+      "title": "房地产销售助手闭环",
+      "images": [
+        "images/source-06.jpg"
+      ]
+    },
+    {
+      "id": "learning-path",
+      "title": "普通人的学习路线",
+      "images": [
+        "images/source-02.jpg"
+      ]
+    },
+    {
+      "id": "conclusion",
+      "title": "从看起来能用到真的能用",
+      "images": []
+    }
+  ],
+  "omitted_from_video": []
+}

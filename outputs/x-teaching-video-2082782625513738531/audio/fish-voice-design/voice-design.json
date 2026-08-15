@@ -1,0 +1,19 @@
+{
+  "design_id": "vd_e9076cd0050f4d8eacd909206af95ed2",
+  "status": "succeeded",
+  "expires_at": "2026-08-07T08:32:01.857Z",
+  "billing": {
+    "creditsUsed": 200,
+    "creditsRemaining": 18479
+  },
+  "request_id": "e9bed027-e68c-4bd7-aeeb-d5d70d538bce",
+  "previews": [
+    {
+      "candidate_id": "vdc_314ff7d1dc7a44b6843c7c494b12a12e",
+      "provider": "fishaudio",
+      "output": "audio/fish-voice-design/voice-design-1-fishaudio.mp3",
+      "bytes": 335916,
+      "request_id": "9aa62bc3-fef4-439f-a8a3-9487e757c9be"
+    }
+  ]
+}

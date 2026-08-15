@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "title": "FDE 到底做什么？普通人如何上车",
+  "format": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "source": {
+    "url": "https://x.com/ai_Goge/status/2085531823325736987",
+    "title": "全网都在谈论FDE，那么它到底是做啥的？普通人怎么上车"
+  },
+  "audio": {
+    "path": "audio/narration-fish.mp3",
+    "duration_seconds": 67.997
+  },
+  "scenes": [
+    {
+      "id": "scene-01",
+      "start": 0,
+      "end": 10.2,
+      "purpose": "hook",
+      "narration": "FDE 不是普通程序员，也不只是 AI 售前。它负责把 AI 塞进真实业务，并确保系统能跑、有人用、能出结果。",
+      "headline": "FDE 到底做什么？",
+      "supporting_text": [
+        "让 AI 进入业务，并对结果负责"
+      ],
+      "image": "images/source-05.jpg",
+      "image_focus": "AI 接入企业系统并产生业务成果",
+      "visual": "hero-image",
+      "transition": "fade",
+      "source_refs": [
+        "definition"
+      ]
+    },
+    {
+      "id": "scene-02",
+      "start": 10.2,
+      "end": 18.656,
+      "purpose": "problem",
+      "narration": "企业缺的往往不是模型，而是连接 CRM、ERP、权限、隐私、知识库和人工流程的最后一公里。",
+      "headline": "难在最后一公里",
+      "supporting_text": [
+        "系统 · 权限 · 数据 · 流程"
+      ],
+      "image": "images/source-01.jpg",
+      "image_focus": "从散乱系统到可用生产系统",
+      "visual": "image-focus",
+      "transition": "crossfade",
+      "source_refs": [
+        "enterprise-problem"
+      ]
+    },
+    {
+      "id": "scene-03",
+      "start": 18.656,
+      "end": 27,
+      "purpose": "comparison",
+      "narration": "普通开发接到的是明确功能；FDE 接到的是模糊问题，必须先找到真正阻塞业务的环节。",
+      "headline": "功能 vs. 问题",
+      "supporting_text": [
+        "开发：实现接口",
+        "FDE：定义并解决问题"
+      ],
+      "image": "images/source-03.jpg",
+      "image_focus": "从销售效率低到完整销售助手",
+      "visual": "comparison",
+      "transition": "slide",
+      "source_refs": [
+        "difference"
+      ]
+    },
+    {
+      "id": "scene-04",
+      "start": 27,
+      "end": 35.52,
+      "purpose": "framework",
+      "narration": "一次完整落地通常经历五步：理解业务、设计方案、做出原型、用 Eval 验证、上线并持续追踪。",
+      "headline": "FDE 的五步工作流",
+      "supporting_text": [
+        "业务 → 方案 → 原型 → Eval → 上线"
+      ],
+      "image": "images/source-04.jpg",
+      "image_focus": "五阶段工作流全图",
+      "visual": "image-focus",
+      "transition": "crossfade",
+      "source_refs": [
+        "daily-work"
+      ]
+    },
+    {
+      "id": "scene-05",
+      "start": 35.52,
+      "end": 43.5,
+      "purpose": "definition",
+      "narration": "所以 FDE 的核心不是五个岗位全精通，而是三种能力：懂业务、懂 AI、能落地。",
+      "headline": "3 种核心能力",
+      "supporting_text": [
+        "懂业务",
+        "懂 AI",
+        "能落地"
+      ],
+      "image": null,
+      "image_focus": null,
+      "visual": "three-cards",
+      "transition": "slide",
+      "source_refs": [
+        "core-abilities"
+      ]
+    },
+    {
+      "id": "scene-06",
+      "start": 43.5,
+      "end": 52.599,
+      "purpose": "example",
+      "narration": "例如房地产销售助手，不只是生成话术，而是让聊天、客户画像、房源匹配、跟进提醒和反馈更新连成闭环。",
+      "headline": "AI 要进入整个流程",
+      "supporting_text": [
+        "聊天 → 画像 → 匹配 → 跟进 → 更新"
+      ],
+      "image": "images/source-06.jpg",
+      "image_focus": "房地产销售闭环",
+      "visual": "image-focus",
+      "transition": "crossfade",
+      "source_refs": [
+        "worked-example"
+      ]
+    },
+    {
+      "id": "scene-07",
+      "start": 52.599,
+      "end": 62.95,
+      "purpose": "roadmap",
+      "narration": "普通人可以按五步靠近：用熟 AI 工具、学自动化、补一点代码、完成真实项目、叠加自己的行业经验。",
+      "headline": "普通人的上车路线",
+      "supporting_text": [
+        "工具 → 自动化 → 代码",
+        "项目 → 行业能力"
+      ],
+      "image": "images/source-02.jpg",
+      "image_focus": "六级能力成长阶梯",
+      "visual": "roadmap",
+      "transition": "crossfade",
+      "source_refs": [
+        "learning-path"
+      ]
+    },
+    {
+      "id": "scene-08",
+      "start": 62.95,
+      "end": 67.997,
+      "purpose": "recap",
+      "narration": "别被 Engineer 吓住。真正稀缺的，是能让 AI 从看起来能用变成真的能用的人。",
+      "headline": "从 Demo 到结果",
+      "supporting_text": [
+        "看起来能用 → 真的能用"
+      ],
+      "image": null,
+      "image_focus": null,
+      "visual": "final-card",
+      "transition": "fade",
+      "source_refs": [
+        "conclusion"
+      ]
+    }
+  ]
+}

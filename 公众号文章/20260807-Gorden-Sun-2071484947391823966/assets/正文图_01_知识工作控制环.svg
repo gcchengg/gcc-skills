@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+<rect width="1200" height="900" rx="38" fill="#07111f"/><text x="70" y="95" fill="#fff" font-size="50" font-family="Arial,'PingFang SC'" font-weight="800">Codex 不是聊天框，而是知识工作的控制环</text>
+<text x="70" y="145" fill="#8fb8d9" font-size="25" font-family="Arial,'PingFang SC'">价值来自闭环，不来自某个单点功能</text>
+<g font-family="Arial,'PingFang SC'" text-anchor="middle"><circle cx="600" cy="450" r="142" fill="#12345d" stroke="#35b8ff" stroke-width="4"/><text x="600" y="435" fill="#fff" font-size="42" font-weight="800">可检查的</text><text x="600" y="490" fill="#63d8ff" font-size="42" font-weight="800">工作成果</text>
+<g fill="#102842" stroke="#2c9ef2" stroke-width="3"><rect x="90" y="250" width="260" height="130" rx="24"/><rect x="850" y="250" width="260" height="130" rx="24"/><rect x="90" y="580" width="260" height="130" rx="24"/><rect x="850" y="580" width="260" height="130" rx="24"/></g>
+<g fill="#fff" font-size="34" font-weight="700"><text x="220" y="330">上下文</text><text x="980" y="330">工具与数据</text><text x="220" y="660">规则与权限</text><text x="980" y="660">审阅与沉淀</text></g>
+<g fill="none" stroke="#4bd6c0" stroke-width="7" stroke-linecap="round"><path d="M350 315 C470 280 485 310 520 350"/><path d="M850 315 C730 280 715 310 680 350"/><path d="M350 645 C470 680 485 610 520 550"/><path d="M850 645 C730 680 715 610 680 550"/></g></g>
+<text x="600" y="820" fill="#55c8ff" font-size="30" font-family="Arial,'PingFang SC'" text-anchor="middle">连接 → 执行 → 验证 → 记录 → 下一次更快</text></svg>

@@ -1,0 +1,154 @@
+{
+  "source_url": "https://x.com/ModengSir/status/2074312503618584610",
+  "status_id": "2074312503618584610",
+  "article_id": "2074307262613512192",
+  "title": "为什么放着 Codex 不用？视频号博主选 WorkBuddy 的真实理由",
+  "author": "Modengsir AI",
+  "author_handle": "ModengSir",
+  "created_at": "2026-07-07T02:00:14.000Z",
+  "modified_at": "2026-07-07T02:00:14.000Z",
+  "block_count": 68,
+  "images": [
+    {
+      "path": "images/source-01.jpg",
+      "url": "https://pbs.twimg.com/media/HMlrvPFW4AAkoU-.jpg",
+      "width": 1227,
+      "height": 684,
+      "media_id": "2074307562627850240"
+    },
+    {
+      "path": "images/source-02.jpg",
+      "url": "https://pbs.twimg.com/media/HMlsnjCX0AAqXpn.jpg",
+      "width": 1983,
+      "height": 793,
+      "media_id": "2074308530056712192"
+    },
+    {
+      "path": "images/source-03.jpg",
+      "url": "https://pbs.twimg.com/media/HMlrsxGWwAEofRH.jpg",
+      "width": 1239,
+      "height": 728,
+      "media_id": "2074307520219234305"
+    },
+    {
+      "path": "images/source-04.jpg",
+      "url": "https://pbs.twimg.com/media/HMlrocKXkAAyYvB.jpg",
+      "width": 1275,
+      "height": 675,
+      "media_id": "2074307445879443456"
+    },
+    {
+      "path": "images/source-05.jpg",
+      "url": "https://pbs.twimg.com/media/HMlsYbGXkAAIo0C.jpg",
+      "width": 1983,
+      "height": 793,
+      "media_id": "2074308270227951616"
+    },
+    {
+      "path": "images/source-06.jpg",
+      "url": "https://pbs.twimg.com/media/HMlsrxeWIAA8Vri.jpg",
+      "width": 1983,
+      "height": 793,
+      "media_id": "2074308602651615232"
+    },
+    {
+      "path": "images/source-07.jpg",
+      "url": "https://pbs.twimg.com/media/HMlwGhLWEAAbDIy.jpg",
+      "width": 1983,
+      "height": 793,
+      "media_id": "2074312360668303360"
+    },
+    {
+      "path": "images/source-08.jpg",
+      "url": "https://pbs.twimg.com/media/HMlsdtoWwAA3OIf.jpg",
+      "width": 1983,
+      "height": 793,
+      "media_id": "2074308361101688832"
+    },
+    {
+      "path": "images/source-09.jpg",
+      "url": "https://pbs.twimg.com/media/HMlr6iiWkAA92zO.jpg",
+      "width": 1983,
+      "height": 793,
+      "media_id": "2074307756828299264"
+    },
+    {
+      "path": "images/source-10.jpg",
+      "url": "https://pbs.twimg.com/media/HMlskOyXEAALDeo.jpg",
+      "width": 1788,
+      "height": 1194,
+      "media_id": "2074308473081237504"
+    }
+  ],
+  "attribution": "Modengsir AI (@ModengSir), X Article, 2026-07-07",
+  "sections": [
+    {
+      "id": "intro",
+      "title": "为什么选择 WorkBuddy",
+      "images": [
+        "images/source-02.jpg"
+      ]
+    },
+    {
+      "id": "reason-01",
+      "title": "微信生态与迁移成本",
+      "images": [
+        "images/source-09.jpg"
+      ]
+    },
+    {
+      "id": "reason-02",
+      "title": "自然语言与学习成本",
+      "images": [
+        "images/source-05.jpg"
+      ]
+    },
+    {
+      "id": "reason-03",
+      "title": "碎片时间与远程派活",
+      "images": [
+        "images/source-08.jpg",
+        "images/source-10.jpg"
+      ]
+    },
+    {
+      "id": "reason-04",
+      "title": "内容运营任务覆盖",
+      "images": [
+        "images/source-02.jpg"
+      ]
+    },
+    {
+      "id": "reason-05",
+      "title": "国内可用性与稳定性",
+      "images": [
+        "images/source-06.jpg"
+      ]
+    },
+    {
+      "id": "conclusion",
+      "title": "适合工作流才是最好",
+      "images": [
+        "images/source-07.jpg"
+      ]
+    }
+  ],
+  "omitted_from_video": [
+    {
+      "path": "images/source-01.jpg",
+      "reason": "功能分类截图，与主线重复"
+    },
+    {
+      "path": "images/source-03.jpg",
+      "reason": "开发功能截图，与创作者选择主线无关"
+    },
+    {
+      "path": "images/source-04.jpg",
+      "reason": "办公功能截图，与创作者选择主线重复"
+    },
+    {
+      "path": "images/source-07.jpg",
+      "reason": "结论宣传图，视频结尾改用更简洁的自制总结卡"
+    }
+  ]
+}

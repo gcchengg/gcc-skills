@@ -1,0 +1,17 @@
+{
+  "version":1,
+  "title":"Codex 不只是写代码：办公与知识工作指南",
+  "format":{"width":1080,"height":1920,"fps":30},
+  "source":{"url":"https://x.com/Gorden_Sun/status/2071484947391823966","title":"Codex 如何应用于办公和知识场景"},
+  "audio":{"path":"audio/narration-fish.mp3","duration_seconds":86.16,"voice":"中文科技知识讲解","voice_id":"a48a402a-8f0c-48d6-b8da-e8f49706364d","model_id":"fishaudio-s21pro-flash","api_speed":1.0,"postprocess_atempo":1.25},
+  "scenes":[
+    {"id":"scene-01","start":0,"end":10.1,"purpose":"hook","narration":"Codex 不只是写代码工具，它更像一个能找资料、调工具、跑流程并交付成果的办公工作台。","headline":"Codex 只会写代码？","supporting_text":["这个判断错了"],"image":null,"image_focus":null,"visual":"kinetic-title","transition":"crossfade","source_refs":["section-01"]},
+    {"id":"scene-02","start":10.1,"end":19.3,"purpose":"concepts","narration":"先记住五个概念：项目是容器，对话处理具体任务，目标持续推进，插件扩展能力，站点输出成果。","headline":"先懂 5 个概念","supporting_text":["Project · Thread · Goal","Plugin · Site"],"image":"images/source-02.jpg","image_focus":"五个概念的关系图","visual":"source-diagram","transition":"crossfade","source_refs":["section-01"]},
+    {"id":"scene-03","start":19.3,"end":29.6,"purpose":"task-fit","narration":"需要多来源信息、有重复步骤、可以按标准检查，并且最终要交付一个东西的任务，最适合交给 Codex。","headline":"什么任务最适合？","supporting_text":["多来源","重复步骤","可检查","有产出"],"image":"images/source-01.png","image_focus":"接入方式与优先级表","visual":"checklist-table","transition":"crossfade","source_refs":["section-02"]},
+    {"id":"scene-04","start":29.6,"end":40.1,"purpose":"workflow","narration":"所有好用的工作流都跑同一个循环：连接工具，写入上下文，执行任务，去真实场景审核，再把有效做法沉淀下来。","headline":"五步工作循环","supporting_text":["连接 → 上下文 → 执行","审核 → 积累 → 下一次更快"],"image":"images/source-03.jpg","image_focus":"五步复利循环图","visual":"source-diagram","transition":"crossfade","source_refs":["section-03"]},
+    {"id":"scene-05","start":40.1,"end":51.8,"purpose":"workspace","narration":"不要只依赖聊天记录。把角色、偏好和红线写进工作空间，让不同对话通过共享文件获得稳定上下文。","headline":"搭一个 AI 工作空间","supporting_text":["context.md：你是谁","preferences.md：你的偏好","rules.md：什么绝对不能做"],"image":"images/source-06.jpg","image_focus":"工作空间五类目录","visual":"workspace-map","transition":"crossfade","source_refs":["section-04"]},
+    {"id":"scene-06","start":51.8,"end":62.6,"purpose":"progression","narration":"别一上来追求全自动。从单次任务，到跨系统整合，再到定期自动跑、自建工具，最后变成越用越聪明的系统。","headline":"五级进阶路线","supporting_text":["单次 → 多源 → 自动化","工具 → 持续学习系统"],"image":"images/source-04.jpg","image_focus":"L1 到 L5 阶梯图","visual":"progression","transition":"crossfade","source_refs":["section-05"]},
+    {"id":"scene-07","start":62.6,"end":74,"purpose":"decision-rule","narration":"判断是否自动化只看一条：一份检查清单能验证，就交给 Codex；每次都要重新判断，就一起做。","headline":"委派，还是协作？","supporting_text":["可检查 → 放手委派","需判断 → 人机协作"],"image":"images/source-05.png","image_focus":"工作空间文件树","visual":"decision-split","transition":"crossfade","source_refs":["section-02","section-04"]},
+    {"id":"scene-08","start":74,"end":86.16,"purpose":"recap","narration":"从一个真实、低风险、可检查的任务开始。做好一次，保存有效做法，再把重复任务变成流程。","headline":"现在就开始","supporting_text":["一个真实任务","一次完整检查","一套可复用流程"],"image":null,"image_focus":null,"visual":"final-path","transition":"fade","source_refs":["section-06"]}
+  ]
+}
