@@ -1,0 +1,791 @@
+# Review package: 686087224acc8d6d117a80d4cd89243cbedf944c..16333b1
+
+## Commits
+16333b1 test: align LOFTER hotspot example capacity
+8576c94 test: add LOFTER hotspot workflow examples
+96944b1 feat: add LOFTER anime hotspot skill workflow
+c3d1792 feat: generate LOFTER content packets
+f9d554b feat: validate LOFTER media authorization
+575bb44 fix: reject incomplete LOFTER hotspot slots
+930261a fix: limit LOFTER hotspot slots
+33ad59d feat: add LOFTER hotspot scorer
+
+## Files changed
+ .../2026-08-10-lofter-x-anime-hotspot-skill.md     |  60 ++++++++++++
+ lofter-x-anime-hotspot/SKILL.md                    |  32 +++++++
+ lofter-x-anime-hotspot/agents/openai.yaml          |   4 +
+ .../references/content-templates.md                |  25 +++++
+ .../references/operating-rules.md                  |  27 ++++++
+ .../scripts/build_content_packet.py                |  86 +++++++++++++++++
+ lofter-x-anime-hotspot/scripts/score_candidates.py |  79 ++++++++++++++++
+ .../scripts/validate_authorizations.py             |  55 +++++++++++
+ .../templates/authorizations.example.json          |  11 +++
+ .../templates/candidates.example.json              |  77 +++++++++++++++
+ .../tests/test_build_content_packet.py             |  61 ++++++++++++
+ .../tests/test_score_candidates.py                 | 103 +++++++++++++++++++++
+ .../tests/test_validate_authorizations.py          |  45 +++++++++
+ 13 files changed, 665 insertions(+)
+
+## Diff
+diff --git a/docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md b/docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md
+index 67e4b22..1be1043 100644
+--- a/docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md
++++ b/docs/superpowers/plans/2026-08-10-lofter-x-anime-hotspot-skill.md
+@@ -742,20 +742,80 @@ git commit -m "feat: add LOFTER anime hotspot skill workflow"
+     "ip_slot": "rising",
+     "characters": ["角色A", "角色B"],
+     "tags": ["示例IP", "角色A"],
+     "x_growth": 27,
+     "lofter_activity": 24,
+     "ip_match": 15,
+     "authorization": 15,
+     "story_potential": 8,
+     "x_evidence": "近24小时相关公开帖互动与创作数量集中增长",
+     "lofter_evidence": "对应标签出现持续更新和有效互动"
++  },
++  {
++    "id": "example-hotspot-2",
++    "title": "示例长线角色剧情讨论升温",
++    "ip_name": "示例IP长线",
++    "ip_slot": "long_term",
++    "characters": ["角色C", "角色D"],
++    "tags": ["示例IP长线", "角色C"],
++    "x_growth": 23,
++    "lofter_activity": 21,
++    "ip_match": 14,
++    "authorization": 12,
++    "story_potential": 9,
++    "x_evidence": "近24小时剧情解析和角色讨论保持稳定增长",
++    "lofter_evidence": "对应角色标签持续有高质量二创更新"
++  },
++  {
++    "id": "example-hotspot-3",
++    "title": "示例长线剧情节点回顾热度",
++    "ip_name": "示例IP长线",
++    "ip_slot": "long_term",
++    "characters": ["角色E", "角色F"],
++    "tags": ["示例IP长线", "角色E"],
++    "x_growth": 22,
++    "lofter_activity": 20,
++    "ip_match": 14,
++    "authorization": 12,
++    "story_potential": 8,
++    "x_evidence": "关键剧情节点引发公开帖的回顾与讨论",
++    "lofter_evidence": "剧情相关标签出现连续创作和评论互动"
++  },
++  {
++    "id": "example-hotspot-4",
++    "title": "示例新角色二创关注上升",
++    "ip_name": "示例IP新星",
++    "ip_slot": "rising",
++    "characters": ["角色G", "角色H"],
++    "tags": ["示例IP新星", "角色G"],
++    "x_growth": 25,
++    "lofter_activity": 19,
++    "ip_match": 13,
++    "authorization": 11,
++    "story_potential": 8,
++    "x_evidence": "新角色相关公开帖的转发和创作分享增加",
++    "lofter_evidence": "新角色标签新增图文二创并获得有效互动"
++  },
++  {
++    "id": "example-hotspot-5",
++    "title": "示例实验向设定讨论出现",
++    "ip_name": "示例IP实验",
++    "ip_slot": "experiment",
++    "characters": ["角色I", "角色J"],
++    "tags": ["示例IP实验", "角色I"],
++    "x_growth": 21,
++    "lofter_activity": 18,
++    "ip_match": 12,
++    "authorization": 10,
++    "story_potential": 10,
++    "x_evidence": "实验向设定在公开讨论中获得初步关注",
++    "lofter_evidence": "小众设定标签出现连续的创作尝试"
+   }
+ ]
+ ```
+ 
+ - [ ] **Step 2: Create the authorization example**
+ 
+ ```json
+ [
+   {
+     "asset_id": "example-asset-1",
+diff --git a/lofter-x-anime-hotspot/SKILL.md b/lofter-x-anime-hotspot/SKILL.md
+new file mode 100644
+index 0000000..7178199
+--- /dev/null
++++ b/lofter-x-anime-hotspot/SKILL.md
+@@ -0,0 +1,32 @@
++---
++name: lofter-x-anime-hotspot
++description: Analyze current anime, game, character, and CP hotspots across X and LOFTER, rank candidates, verify media authorization, and create Chinese LOFTER trend or fan-fiction content packets. Use when the user wants hotspot-driven LOFTER anime content, X-to-LOFTER curation, or a 30-day LOFTER growth workflow.
++---
++
++# LOFTER × X Anime Hotspot
++
++Use Chinese when communicating with the user.
++
++## Workflow
++
++1. Collect current 24—72 hour X and LOFTER evidence for candidate topics.
++2. Maintain 2 `long_term`, 2 `rising`, and 1 `experiment` IP slots.
++3. Save candidate values using `templates/candidates.example.json` as the schema.
++4. Run `python3 scripts/score_candidates.py INPUT --output ranked.json`.
++5. Reject candidates below 70. A candidate with authorization score 0 may use only an independently created image.
++6. For original or AI-adapted X images, record authorization using `templates/authorizations.example.json`, then run `python3 scripts/validate_authorizations.py LEDGER ASSET_ID --usage original|ai_adaptation`.
++7. Before fan fiction, verify world, characters, relationships, CP conventions, and fandom risks. If any check is incomplete, produce hotspot analysis instead.
++8. Generate the Markdown brief with `python3 scripts/build_content_packet.py INPUT --output packet.md`.
++9. Human-review facts, tags, labels, image scope, and the single interaction question before publication.
++10. Never publish automatically.
++
++## Required Rules
++
++- Read `references/operating-rules.md` before ranking or scheduling.
++- Read `references/content-templates.md` before drafting public copy.
++- Do not treat a public X post as permission.
++- AI adaptation requires explicit AI adaptation authorization.
++- Commercial use is false unless the authorization record says true.
++- Keep authorization evidence in the private ledger; do not expose private evidence in public copy.
++- For authorized AI-assisted images, end public copy with `图像经授权使用，含AI辅助创作｜#AI辅助#`.
++- Do not add irrelevant trending tags or hard paywall cliffhangers during the first 30 days.
+diff --git a/lofter-x-anime-hotspot/agents/openai.yaml b/lofter-x-anime-hotspot/agents/openai.yaml
+new file mode 100644
+index 0000000..fe8f465
+--- /dev/null
++++ b/lofter-x-anime-hotspot/agents/openai.yaml
+@@ -0,0 +1,4 @@
++interface:
++  display_name: "LOFTER × X 二次元热点"
++  short_description: "双平台热点选题、授权校验与LOFTER内容包"
++  default_prompt: "分析当前 X 与 LOFTER 的二次元交叉热点，按规则评分并生成可审核的 LOFTER 内容包。"
+diff --git a/lofter-x-anime-hotspot/references/content-templates.md b/lofter-x-anime-hotspot/references/content-templates.md
+new file mode 100644
+index 0000000..f98071c
+--- /dev/null
++++ b/lofter-x-anime-hotspot/references/content-templates.md
+@@ -0,0 +1,25 @@
++# Content Templates
++
++## 今日热度异动
++
++标题：`【IP/角色】过去24小时为什么突然升温？`
++
++结构：100字内说明事件；给出X增长信号；说明LOFTER讨论差异；提供一个原创判断；结尾只问一个选择题式问题。
++
++## 本周二次元趋势
++
++标题：`本周二次元趋势｜5个正在升温的角色与CP`
++
++结构：先给结论；按热度列5项；每项包含X信号、LOFTER信号和持续性判断；结尾询问下周希望跟踪哪一项。
++
++## 热点脑洞实验室
++
++标题：`【IP｜CP】一句冲突或悬念`
++
++结构：前100字建立冲突；正文保持核验后的人设与关系；提供完整首篇体验；不设置强付费截断；结尾询问是否继续该分支。
++
++## 极简声明
++
++授权AI辅助图：`图像经授权使用，含AI辅助创作｜#AI辅助#`
++
++独立原创图：按实际AI参与情况使用平台要求的 `#AI辅助#` 或 `#AI生成#` 标识，不写“经授权使用”。
+diff --git a/lofter-x-anime-hotspot/references/operating-rules.md b/lofter-x-anime-hotspot/references/operating-rules.md
+new file mode 100644
+index 0000000..7e651f3
+--- /dev/null
++++ b/lofter-x-anime-hotspot/references/operating-rules.md
+@@ -0,0 +1,27 @@
++# Operating Rules
++
++## IP Pool
++
++- `long_term`: 2 slots, evaluate monthly, observe at least four weeks.
++- `rising`: 2 slots, evaluate weekly, replace after two weeks below the account median.
++- `experiment`: 1 slot, replace weekly based on events and results.
++
++## Weekly Cadence
++
++- 3 daily hotspot observations.
++- 2 authorized image-curation or meaningful AI-adaptation posts.
++- 1 weekly trend report.
++- 1 verified fan-fiction short.
++- Publish one post per day; allow at most one extra breaking-hotspot post.
++
++## Fan-fiction Gate
++
++All five checks must be true: world, characters, relationships, CP conventions, and fandom risks. Otherwise publish only analysis.
++
++## Review Metrics
++
++Weeks 1—2 establish the account baseline. From week 3, calculate relative performance using follow conversion 35%, save rate 25%, comment rate 20%, and like rate 20%. Top-40% hotspots may become fan fiction; top-20% fan-fiction posts may become collections.
++
++## Publication Review
++
++Confirm score ≥70, accurate tags, one interaction question, no hard paywall, valid authorization for reused media, correct AI label, and no unsupported factual claim.
+diff --git a/lofter-x-anime-hotspot/scripts/build_content_packet.py b/lofter-x-anime-hotspot/scripts/build_content_packet.py
+new file mode 100644
+index 0000000..80a3db7
+--- /dev/null
++++ b/lofter-x-anime-hotspot/scripts/build_content_packet.py
+@@ -0,0 +1,86 @@
++import argparse
++import json
++from pathlib import Path
++
++
++COLUMN_TITLES = {
++    "daily_hotspot": "今日热度异动",
++    "weekly_trend": "本周二次元趋势",
++    "fanfic": "热点脑洞实验室",
++}
++RESEARCH_FIELDS = {
++    "world_verified",
++    "characters_verified",
++    "relationships_verified",
++    "cp_conventions_verified",
++    "fandom_risks_verified",
++}
++
++
++def build_packet(
++    candidate: dict,
++    research: dict,
++    column: str,
++    asset: dict | None = None,
++) -> str:
++    if column not in COLUMN_TITLES:
++        raise ValueError("unknown column")
++    if candidate.get("total_score", 0) < 70:
++        raise ValueError("candidate score is below 70")
++    if column == "fanfic" and not all(
++        research.get(field) is True for field in RESEARCH_FIELDS
++    ):
++        raise ValueError("fan fiction research is incomplete")
++    if candidate.get("media_instruction") == "use_authorized_media":
++        if not asset or asset.get("allowed") is not True:
++            raise ValueError("validated authorization is required")
++        media_line = f"授权素材：{asset['source_url']}（{asset['usage']}）"
++        footer = "图像经授权使用，含AI辅助创作｜#AI辅助#"
++    else:
++        media_line = "配图要求：独立创作配图，不输入未授权原图"
++        footer = ""
++    tags = " ".join(f"#{tag}#" for tag in candidate.get("tags", []))
++    characters = "、".join(candidate.get("characters", []))
++    sections = [
++        f"# {COLUMN_TITLES[column]}",
++        "",
++        f"选题：{candidate['title']}",
++        f"IP：{candidate['ip_name']}",
++        f"角色：{characters}",
++        f"总分：{candidate['total_score']}/100",
++        f"X依据：{candidate['x_evidence']}",
++        f"LOFTER依据：{candidate['lofter_evidence']}",
++        f"标签：{tags}",
++        media_line,
++        "",
++        "## 正文写作要求",
++        "",
++        "- 前100字说明热点或设置故事钩子。",
++        "- 正文提供明确的信息增量或完整故事体验。",
++        "- 不设置强付费截断。",
++        "- 不添加无关热门标签。",
++        "",
++        "互动问题：你更想看这个热点的趋势拆解，还是角色故事？",
++    ]
++    if footer:
++        sections.extend(["", footer])
++    return "\n".join(sections) + "\n"
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("input", type=Path)
++    parser.add_argument("--output", type=Path, required=True)
++    args = parser.parse_args()
++    payload = json.loads(args.input.read_text(encoding="utf-8"))
++    packet = build_packet(
++        payload["candidate"],
++        payload.get("research", {}),
++        payload["column"],
++        payload.get("asset"),
++    )
++    args.output.write_text(packet, encoding="utf-8")
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/lofter-x-anime-hotspot/scripts/score_candidates.py b/lofter-x-anime-hotspot/scripts/score_candidates.py
+new file mode 100644
+index 0000000..a34e02b
+--- /dev/null
++++ b/lofter-x-anime-hotspot/scripts/score_candidates.py
+@@ -0,0 +1,79 @@
++import argparse
++import json
++from pathlib import Path
++
++
++LIMITS = {
++    "x_growth": 30,
++    "lofter_activity": 30,
++    "ip_match": 15,
++    "authorization": 15,
++    "story_potential": 10,
++}
++VALID_IP_SLOTS = {"long_term", "rising", "experiment"}
++SLOT_CAPACITIES = {"long_term": 2, "rising": 2, "experiment": 1}
++
++
++def score_candidate(candidate: dict) -> dict:
++    required = {"id", "title", "ip_slot", *LIMITS.keys()}
++    missing = sorted(required - candidate.keys())
++    if missing:
++        raise ValueError(f"missing fields: {', '.join(missing)}")
++    if candidate["ip_slot"] not in VALID_IP_SLOTS:
++        raise ValueError("ip_slot must be long_term, rising, or experiment")
++    for field, maximum in LIMITS.items():
++        value = candidate[field]
++        if not isinstance(value, int) or isinstance(value, bool):
++            raise ValueError(f"{field} must be an integer")
++        if not 0 <= value <= maximum:
++            raise ValueError(f"{field} must be between 0 and {maximum}")
++    total = sum(candidate[field] for field in LIMITS)
++    return {
++        **candidate,
++        "total_score": total,
++        "eligible": total >= 70,
++        "media_instruction": (
++            "use_authorized_media"
++            if candidate["authorization"] > 0
++            else "create_independent_image"
++        ),
++    }
++
++
++def rank_candidates(candidates: list[dict], threshold: int = 70) -> list[dict]:
++    scored = [score_candidate(candidate) for candidate in candidates]
++    ranked = sorted(
++        (item for item in scored if item["total_score"] >= threshold),
++        key=lambda item: (-item["total_score"], item["id"]),
++    )
++    selected = []
++    slot_counts = {slot: 0 for slot in SLOT_CAPACITIES}
++    for item in ranked:
++        slot = item["ip_slot"]
++        if slot_counts[slot] < SLOT_CAPACITIES[slot]:
++            selected.append(item)
++            slot_counts[slot] += 1
++    for slot, capacity in SLOT_CAPACITIES.items():
++        if slot_counts[slot] < capacity:
++            raise ValueError(
++                f"{slot} requires {capacity} candidates; {slot_counts[slot]} available"
++            )
++    return selected
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("input", type=Path)
++    parser.add_argument("--output", type=Path)
++    args = parser.parse_args()
++    candidates = json.loads(args.input.read_text(encoding="utf-8"))
++    result = rank_candidates(candidates)
++    payload = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
++    if args.output:
++        args.output.write_text(payload, encoding="utf-8")
++    else:
++        print(payload, end="")
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/lofter-x-anime-hotspot/scripts/validate_authorizations.py b/lofter-x-anime-hotspot/scripts/validate_authorizations.py
+new file mode 100644
+index 0000000..b0b91fb
+--- /dev/null
++++ b/lofter-x-anime-hotspot/scripts/validate_authorizations.py
+@@ -0,0 +1,55 @@
++import argparse
++import json
++from pathlib import Path
++
++
++REQUIRED = {
++    "asset_id",
++    "author_handle",
++    "source_url",
++    "evidence_path",
++    "lofter_redistribution",
++    "ai_adaptation",
++    "commercial_use",
++}
++
++
++def validate_authorization(record: dict, usage: str, commercial: bool = False) -> dict:
++    missing = sorted(REQUIRED - record.keys())
++    if missing:
++        raise ValueError(f"missing fields: {', '.join(missing)}")
++    if usage not in {"original", "ai_adaptation"}:
++        raise ValueError("usage must be original or ai_adaptation")
++    if not record["lofter_redistribution"]:
++        raise ValueError("LOFTER redistribution is not authorized")
++    if usage == "ai_adaptation" and not record["ai_adaptation"]:
++        raise ValueError("AI adaptation is not authorized")
++    if commercial and not record["commercial_use"]:
++        raise ValueError("commercial use is not authorized")
++    return {
++        "asset_id": record["asset_id"],
++        "allowed": True,
++        "usage": usage,
++        "commercial": commercial,
++        "author_handle": record["author_handle"],
++        "source_url": record["source_url"],
++    }
++
++
++def main() -> None:
++    parser = argparse.ArgumentParser()
++    parser.add_argument("ledger", type=Path)
++    parser.add_argument("asset_id")
++    parser.add_argument("--usage", choices=("original", "ai_adaptation"), required=True)
++    parser.add_argument("--commercial", action="store_true")
++    args = parser.parse_args()
++    records = json.loads(args.ledger.read_text(encoding="utf-8"))
++    matches = [record for record in records if record.get("asset_id") == args.asset_id]
++    if len(matches) != 1:
++        raise SystemExit(f"expected one authorization record for {args.asset_id}")
++    result = validate_authorization(matches[0], args.usage, args.commercial)
++    print(json.dumps(result, ensure_ascii=False, indent=2))
++
++
++if __name__ == "__main__":
++    main()
+diff --git a/lofter-x-anime-hotspot/templates/authorizations.example.json b/lofter-x-anime-hotspot/templates/authorizations.example.json
+new file mode 100644
+index 0000000..20c2daa
+--- /dev/null
++++ b/lofter-x-anime-hotspot/templates/authorizations.example.json
+@@ -0,0 +1,11 @@
++[
++  {
++    "asset_id": "example-asset-1",
++    "author_handle": "@authorized_artist",
++    "source_url": "https://x.com/authorized_artist/status/example",
++    "evidence_path": "authorizations/example-asset-1.png",
++    "lofter_redistribution": true,
++    "ai_adaptation": true,
++    "commercial_use": false
++  }
++]
+diff --git a/lofter-x-anime-hotspot/templates/candidates.example.json b/lofter-x-anime-hotspot/templates/candidates.example.json
+new file mode 100644
+index 0000000..02f95ee
+--- /dev/null
++++ b/lofter-x-anime-hotspot/templates/candidates.example.json
+@@ -0,0 +1,77 @@
++[
++  {
++    "id": "example-hotspot-1",
++    "title": "示例角色纪念日创作增长",
++    "ip_name": "示例IP",
++    "ip_slot": "rising",
++    "characters": ["角色A", "角色B"],
++    "tags": ["示例IP", "角色A"],
++    "x_growth": 27,
++    "lofter_activity": 24,
++    "ip_match": 15,
++    "authorization": 15,
++    "story_potential": 8,
++    "x_evidence": "近24小时相关公开帖互动与创作数量集中增长",
++    "lofter_evidence": "对应标签出现持续更新和有效互动"
++  },
++  {
++    "id": "example-hotspot-2",
++    "title": "示例长线角色剧情讨论升温",
++    "ip_name": "示例IP长线",
++    "ip_slot": "long_term",
++    "characters": ["角色C", "角色D"],
++    "tags": ["示例IP长线", "角色C"],
++    "x_growth": 23,
++    "lofter_activity": 21,
++    "ip_match": 14,
++    "authorization": 12,
++    "story_potential": 9,
++    "x_evidence": "近24小时剧情解析和角色讨论保持稳定增长",
++    "lofter_evidence": "对应角色标签持续有高质量二创更新"
++  },
++  {
++    "id": "example-hotspot-3",
++    "title": "示例长线剧情节点回顾热度",
++    "ip_name": "示例IP长线",
++    "ip_slot": "long_term",
++    "characters": ["角色E", "角色F"],
++    "tags": ["示例IP长线", "角色E"],
++    "x_growth": 22,
++    "lofter_activity": 20,
++    "ip_match": 14,
++    "authorization": 12,
++    "story_potential": 8,
++    "x_evidence": "关键剧情节点引发公开帖的回顾与讨论",
++    "lofter_evidence": "剧情相关标签出现连续创作和评论互动"
++  },
++  {
++    "id": "example-hotspot-4",
++    "title": "示例新角色二创关注上升",
++    "ip_name": "示例IP新星",
++    "ip_slot": "rising",
++    "characters": ["角色G", "角色H"],
++    "tags": ["示例IP新星", "角色G"],
++    "x_growth": 25,
++    "lofter_activity": 19,
++    "ip_match": 13,
++    "authorization": 11,
++    "story_potential": 8,
++    "x_evidence": "新角色相关公开帖的转发和创作分享增加",
++    "lofter_evidence": "新角色标签新增图文二创并获得有效互动"
++  },
++  {
++    "id": "example-hotspot-5",
++    "title": "示例实验向设定讨论出现",
++    "ip_name": "示例IP实验",
++    "ip_slot": "experiment",
++    "characters": ["角色I", "角色J"],
++    "tags": ["示例IP实验", "角色I"],
++    "x_growth": 21,
++    "lofter_activity": 18,
++    "ip_match": 12,
++    "authorization": 10,
++    "story_potential": 10,
++    "x_evidence": "实验向设定在公开讨论中获得初步关注",
++    "lofter_evidence": "小众设定标签出现连续的创作尝试"
++  }
++]
+diff --git a/lofter-x-anime-hotspot/tests/test_build_content_packet.py b/lofter-x-anime-hotspot/tests/test_build_content_packet.py
+new file mode 100644
+index 0000000..f078529
+--- /dev/null
++++ b/lofter-x-anime-hotspot/tests/test_build_content_packet.py
+@@ -0,0 +1,61 @@
++import sys
++import unittest
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).parents[1] / "scripts"))
++
++from build_content_packet import build_packet
++
++
++CANDIDATE = {
++    "id": "topic-1",
++    "title": "角色A纪念日热度上升",
++    "ip_name": "示例IP",
++    "characters": ["角色A", "角色B"],
++    "tags": ["示例IP", "角色A"],
++    "total_score": 82,
++    "media_instruction": "use_authorized_media",
++    "x_evidence": "X近24小时相关创作集中增长",
++    "lofter_evidence": "LOFTER标签出现新讨论",
++}
++RESEARCH = {
++    "world_verified": True,
++    "characters_verified": True,
++    "relationships_verified": True,
++    "cp_conventions_verified": True,
++    "fandom_risks_verified": True,
++}
++ASSET = {
++    "allowed": True,
++    "usage": "ai_adaptation",
++    "author_handle": "@artist",
++    "source_url": "https://x.com/artist/status/1",
++}
++
++
++class BuildPacketTest(unittest.TestCase):
++    def test_builds_hotspot_observation_without_fanfic_gate(self):
++        packet = build_packet(CANDIDATE, {}, "daily_hotspot", ASSET)
++        self.assertIn("# 今日热度异动", packet)
++        self.assertIn("总分：82/100", packet)
++        self.assertIn("图像经授权使用，含AI辅助创作｜#AI辅助#", packet)
++
++    def test_fanfic_requires_all_research_checks(self):
++        incomplete = {**RESEARCH, "relationships_verified": False}
++        with self.assertRaisesRegex(ValueError, "fan fiction research is incomplete"):
++            build_packet(CANDIDATE, incomplete, "fanfic", ASSET)
++
++    def test_fanfic_packet_has_one_interaction_question(self):
++        packet = build_packet(CANDIDATE, RESEARCH, "fanfic", ASSET)
++        self.assertIn("# 热点脑洞实验室", packet)
++        self.assertEqual(packet.count("互动问题："), 1)
++
++    def test_missing_authorized_asset_requests_independent_image(self):
++        candidate = {**CANDIDATE, "media_instruction": "create_independent_image"}
++        packet = build_packet(candidate, {}, "weekly_trend")
++        self.assertIn("独立创作配图，不输入未授权原图", packet)
++        self.assertNotIn("图像经授权使用", packet)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/lofter-x-anime-hotspot/tests/test_score_candidates.py b/lofter-x-anime-hotspot/tests/test_score_candidates.py
+new file mode 100644
+index 0000000..1892e31
+--- /dev/null
++++ b/lofter-x-anime-hotspot/tests/test_score_candidates.py
+@@ -0,0 +1,103 @@
++import sys
++import unittest
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).parents[1] / "scripts"))
++
++from score_candidates import rank_candidates, score_candidate
++
++
++class ScoreCandidatesTest(unittest.TestCase):
++    def test_weighted_total_and_eligibility(self):
++        candidate = {
++            "id": "topic-1",
++            "title": "Example CP spike",
++            "ip_slot": "rising",
++            "x_growth": 26,
++            "lofter_activity": 24,
++            "ip_match": 15,
++            "authorization": 10,
++            "story_potential": 8,
++        }
++        result = score_candidate(candidate)
++        self.assertEqual(result["total_score"], 83)
++        self.assertTrue(result["eligible"])
++
++    def test_rejects_out_of_range_dimension(self):
++        candidate = {
++            "id": "bad",
++            "title": "Bad score",
++            "ip_slot": "experiment",
++            "x_growth": 31,
++            "lofter_activity": 0,
++            "ip_match": 0,
++            "authorization": 0,
++            "story_potential": 0,
++        }
++        with self.assertRaisesRegex(ValueError, "x_growth must be between 0 and 30"):
++            score_candidate(candidate)
++
++    def test_rank_filters_and_orders(self):
++        candidates = [
++            {"id": "low", "title": "Low", "ip_slot": "experiment", "x_growth": 20, "lofter_activity": 20, "ip_match": 10, "authorization": 0, "story_potential": 5},
++            {"id": "high", "title": "High", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 28, "ip_match": 15, "authorization": 15, "story_potential": 9},
++            {"id": "long-2", "title": "Long 2", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 25, "ip_match": 15, "authorization": 10, "story_potential": 10},
++            {"id": "mid", "title": "Mid", "ip_slot": "rising", "x_growth": 25, "lofter_activity": 23, "ip_match": 15, "authorization": 0, "story_potential": 8},
++            {"id": "rising-2", "title": "Rising 2", "ip_slot": "rising", "x_growth": 25, "lofter_activity": 20, "ip_match": 15, "authorization": 0, "story_potential": 10},
++            {"id": "experiment", "title": "Experiment", "ip_slot": "experiment", "x_growth": 25, "lofter_activity": 20, "ip_match": 15, "authorization": 0, "story_potential": 10},
++        ]
++        ranked = rank_candidates(candidates)
++        self.assertEqual(
++            [item["id"] for item in ranked],
++            ["high", "long-2", "mid", "experiment", "rising-2"],
++        )
++        self.assertEqual(ranked[2]["media_instruction"], "create_independent_image")
++
++    def test_rank_limits_each_ip_slot_and_preserves_total_score_order(self):
++        def candidate(candidate_id, ip_slot, authorization, story_potential):
++            return {
++                "id": candidate_id,
++                "title": candidate_id,
++                "ip_slot": ip_slot,
++                "x_growth": 30,
++                "lofter_activity": 30,
++                "ip_match": 15,
++                "authorization": authorization,
++                "story_potential": story_potential,
++            }
++
++        candidates = [
++            candidate("long-1", "long_term", 15, 10),
++            candidate("rising-1", "rising", 15, 9),
++            candidate("long-2", "long_term", 14, 9),
++            candidate("rising-2", "rising", 13, 9),
++            candidate("experiment-1", "experiment", 12, 9),
++            candidate("long-3", "long_term", 11, 9),
++            candidate("rising-3", "rising", 10, 9),
++            candidate("experiment-2", "experiment", 9, 9),
++        ]
++
++        ranked = rank_candidates(candidates)
++
++        self.assertEqual(
++            [item["id"] for item in ranked],
++            ["long-1", "rising-1", "long-2", "rising-2", "experiment-1"],
++        )
++
++    def test_rank_rejects_under_capacity_slot_after_threshold_filtering(self):
++        candidates = [
++            {"id": "long-1", "title": "Long 1", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 10},
++            {"id": "long-2", "title": "Long 2", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 9},
++            {"id": "rising-1", "title": "Rising 1", "ip_slot": "rising", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 8},
++            {"id": "rising-2", "title": "Rising 2", "ip_slot": "rising", "x_growth": 30, "lofter_activity": 30, "ip_match": 15, "authorization": 15, "story_potential": 7},
++            {"id": "experiment-low", "title": "Experiment low", "ip_slot": "experiment", "x_growth": 30, "lofter_activity": 20, "ip_match": 15, "authorization": 0, "story_potential": 4},
++        ]
++
++        with self.assertRaisesRegex(
++            ValueError, "experiment requires 1 candidates; 0 available"
++        ):
++            rank_candidates(candidates)
++
++
++if __name__ == "__main__":
++    unittest.main()
+diff --git a/lofter-x-anime-hotspot/tests/test_validate_authorizations.py b/lofter-x-anime-hotspot/tests/test_validate_authorizations.py
+new file mode 100644
+index 0000000..23be94a
+--- /dev/null
++++ b/lofter-x-anime-hotspot/tests/test_validate_authorizations.py
+@@ -0,0 +1,45 @@
++import sys
++import unittest
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).parents[1] / "scripts"))
++
++from validate_authorizations import validate_authorization
++
++
++BASE = {
++    "asset_id": "asset-1",
++    "author_handle": "@artist",
++    "source_url": "https://x.com/artist/status/1",
++    "evidence_path": "authorizations/asset-1.png",
++    "lofter_redistribution": True,
++    "ai_adaptation": True,
++    "commercial_use": False,
++}
++
++
++class AuthorizationTest(unittest.TestCase):
++    def test_ai_adaptation_is_allowed(self):
++        result = validate_authorization(BASE, "ai_adaptation")
++        self.assertTrue(result["allowed"])
++        self.assertEqual(result["asset_id"], "asset-1")
++
++    def test_ai_adaptation_requires_explicit_scope(self):
++        record = {**BASE, "ai_adaptation": False}
++        with self.assertRaisesRegex(ValueError, "AI adaptation is not authorized"):
++            validate_authorization(record, "ai_adaptation")
++
++    def test_commercial_use_defaults_to_denied(self):
++        with self.assertRaisesRegex(ValueError, "commercial use is not authorized"):
++            validate_authorization(BASE, "original", commercial=True)
++
++    def test_original_requires_lofter_permission(self):
++        record = {**BASE, "lofter_redistribution": False}
++        with self.assertRaisesRegex(
++            ValueError, "LOFTER redistribution is not authorized"
++        ):
++            validate_authorization(record, "original")
++
++
++if __name__ == "__main__":
++    unittest.main()

@@ -1,0 +1,51 @@
+# Review package: 96944b1..8576c94
+
+## Commits
+8576c94 test: add LOFTER hotspot workflow examples
+
+## Files changed
+ .../templates/authorizations.example.json               | 11 +++++++++++
+ .../templates/candidates.example.json                   | 17 +++++++++++++++++
+ 2 files changed, 28 insertions(+)
+
+## Diff
+diff --git a/lofter-x-anime-hotspot/templates/authorizations.example.json b/lofter-x-anime-hotspot/templates/authorizations.example.json
+new file mode 100644
+index 0000000..20c2daa
+--- /dev/null
++++ b/lofter-x-anime-hotspot/templates/authorizations.example.json
+@@ -0,0 +1,11 @@
++[
++  {
++    "asset_id": "example-asset-1",
++    "author_handle": "@authorized_artist",
++    "source_url": "https://x.com/authorized_artist/status/example",
++    "evidence_path": "authorizations/example-asset-1.png",
++    "lofter_redistribution": true,
++    "ai_adaptation": true,
++    "commercial_use": false
++  }
++]
+diff --git a/lofter-x-anime-hotspot/templates/candidates.example.json b/lofter-x-anime-hotspot/templates/candidates.example.json
+new file mode 100644
+index 0000000..0287a37
+--- /dev/null
++++ b/lofter-x-anime-hotspot/templates/candidates.example.json
+@@ -0,0 +1,17 @@
++[
++  {
++    "id": "example-hotspot-1",
++    "title": "示例角色纪念日创作增长",
++    "ip_name": "示例IP",
++    "ip_slot": "rising",
++    "characters": ["角色A", "角色B"],
++    "tags": ["示例IP", "角色A"],
++    "x_growth": 27,
++    "lofter_activity": 24,
++    "ip_match": 15,
++    "authorization": 15,
++    "story_potential": 8,
++    "x_evidence": "近24小时相关公开帖互动与创作数量集中增长",
++    "lofter_evidence": "对应标签出现持续更新和有效互动"
++  }
++]

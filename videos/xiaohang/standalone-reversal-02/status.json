@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "gates": {
+    "topic": "approved",
+    "storyboard": "approved",
+    "images": "approved",
+    "audio": "pending"
+  },
+  "selected_topic": "topic-03",
+  "topic_options_hash": "f80ee119c169938726910e87409ace7bc5bda199d209cfec29b868af4253821e",
+  "approved_story_hash": "d4d37245f8209c5f72dccebb87a70894f913324a82a065c0e153171722df9951",
+  "approved_images": {
+    "01": {
+      "source": "images/scene-01-source-v1.png",
+      "source_hash": "1fa1784d8e3175ed0bdb91605ddc3d434c003806fbb75b2f38e6a164adea358c",
+      "preview": "images/scene-01-preview-v1.png",
+      "preview_hash": "0b27149d130cb8cd9dbb67b6d971d9e0fd5ab98fc5e2c67f1f4f48efba4c41e0"
+    },
+    "02": {
+      "source": "images/scene-02-source-v1.png",
+      "source_hash": "2c14de611d7692d2229788fc7e4121a395f7da9a98b866d0f6517fb392c2a424",
+      "preview": "images/scene-02-preview-v1.png",
+      "preview_hash": "4ed59d7ba173bad1ec425cca4a6c19e1f06c2b0d8f9f8c5c742276d981b0c9d1"
+    },
+    "03": {
+      "source": "images/scene-03-source-v1.png",
+      "source_hash": "3496c2050d4f75617e2ade61c5a6ff1e8e49f4467c1c1177c9a5ff2ce1b4f17e",
+      "preview": "images/scene-03-preview-v1.png",
+      "preview_hash": "ad098822a71a5d048c4f956253eac817f4c15dab7dfe2f75cd995077c6d44e78"
+    },
+    "04": {
+      "source": "images/scene-04-source-v1.png",
+      "source_hash": "dc127975edf17c7bf528a57859424482105ce6968b7ffe21d4c5da08a0d786ac",
+      "preview": "images/scene-04-preview-v1.png",
+      "preview_hash": "660b4758eb548b21c3c0eef3b2111a996103b0fb8d06de7d1d16da66abaada3f"
+    },
+    "05": {
+      "source": "images/scene-05-source-v1.png",
+      "source_hash": "05c83972b380c9d970e50097cb83e67fa4805923e53beed6cd127ce102773374",
+      "preview": "images/scene-05-preview-v1.png",
+      "preview_hash": "a8c79e6f0a69d56fad5c79c325002a0e9b2c2f146e5bb9a5c58bc40a62a91b0e"
+    },
+    "06": {
+      "source": "images/scene-06-source-v2.png",
+      "source_hash": "4130bf5c1007b74074b420804d294414ef8824c07dcb65cf359592918930cfab",
+      "preview": "images/scene-06-preview-v2.png",
+      "preview_hash": "1e610134d98d348ad63740e47ad42b63dabab7a0c4d1b03141260e1b2192458e"
+    }
+  },
+  "approved_audio_hash": null,
+  "render": {
+    "status": "pending",
+    "path": null
+  }
+}

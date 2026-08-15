@@ -1,0 +1,115 @@
+{
+  "daily_hotspot": {
+    "column": "daily_hotspot",
+    "ip_pool": [
+      {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
+      {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
+      {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
+      {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
+      {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
+    ],
+    "candidate": {
+      "id": "packet-daily-1", "title": "示例今日热点", "ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising",
+      "characters": ["角色A"], "tags": ["示例上升IP甲", "角色A"],
+      "x_growth": 25, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+      "x_evidence": "X近24小时创作增加", "lofter_evidence": "LOFTER标签出现有效讨论",
+      "x_source_urls": ["https://x.com/example/status/packet-daily-1"], "observed_at": "2026-08-10T09:00:00+08:00",
+      "asset_id": null, "requested_usage": "independent", "commercial_intent": false, "image_provenance": "human_original",
+      "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false}
+    },
+    "authorization": null
+  },
+  "weekly_trend": {
+    "column": "weekly_trend",
+    "ip_pool": [
+      {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
+      {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
+      {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
+      {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
+      {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
+    ],
+    "candidates": [
+      {
+        "id": "packet-weekly-1", "title": "本周热点一", "ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term",
+        "characters": ["角色A"], "tags": ["角色A"], "x_growth": 25, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+        "x_evidence": "X信号一", "lofter_evidence": "LOFTER信号一", "x_source_urls": ["https://x.com/example/status/packet-weekly-1"],
+        "observed_at": "2026-08-10T09:00:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+        "image_provenance": "human_original", "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false}, "sustainability_note": "持续性判断一"
+      },
+      {
+        "id": "packet-weekly-2", "title": "本周热点二", "ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term",
+        "characters": ["角色B"], "tags": ["角色B"], "x_growth": 24, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+        "x_evidence": "X信号二", "lofter_evidence": "LOFTER信号二", "x_source_urls": ["https://x.com/example/status/packet-weekly-2"],
+        "observed_at": "2026-08-10T09:01:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+        "image_provenance": "human_original", "topic_features": {"event_signal": false, "relationship_signal": true, "visual_signal": false}, "sustainability_note": "持续性判断二"
+      },
+      {
+        "id": "packet-weekly-3", "title": "本周热点三", "ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising",
+        "characters": ["角色C"], "tags": ["角色C"], "x_growth": 23, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+        "x_evidence": "X信号三", "lofter_evidence": "LOFTER信号三", "x_source_urls": ["https://x.com/example/status/packet-weekly-3"],
+        "observed_at": "2026-08-10T09:02:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+        "image_provenance": "ai_assisted_original", "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false}, "sustainability_note": "持续性判断三"
+      },
+      {
+        "id": "packet-weekly-4", "title": "本周热点四", "ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising",
+        "characters": ["角色D"], "tags": ["角色D"], "x_growth": 22, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+        "x_evidence": "X信号四", "lofter_evidence": "LOFTER信号四", "x_source_urls": ["https://x.com/example/status/packet-weekly-4"],
+        "observed_at": "2026-08-10T09:03:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+        "image_provenance": "ai_generated_original", "topic_features": {"event_signal": false, "relationship_signal": false, "visual_signal": true}, "sustainability_note": "持续性判断四"
+      },
+      {
+        "id": "packet-weekly-5", "title": "本周热点五", "ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment",
+        "characters": ["角色E"], "tags": ["角色E"], "x_growth": 21, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+        "x_evidence": "X信号五", "lofter_evidence": "LOFTER信号五", "x_source_urls": ["https://x.com/example/status/packet-weekly-5"],
+        "observed_at": "2026-08-10T09:04:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+        "image_provenance": "human_original", "topic_features": {"event_signal": false, "relationship_signal": false, "visual_signal": true}, "sustainability_note": "持续性判断五"
+      }
+    ],
+    "authorizations": []
+  },
+  "media_curation": {
+    "column": "media_curation",
+    "ip_pool": [
+      {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
+      {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
+      {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
+      {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
+      {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
+    ],
+    "candidate": {
+      "id": "packet-media-1", "title": "示例独立媒体策展", "ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising",
+      "characters": ["角色G"], "tags": ["角色G"], "x_growth": 25, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+      "x_evidence": "X视觉创作增长", "lofter_evidence": "LOFTER视觉讨论活跃", "x_source_urls": ["https://x.com/example/status/packet-media-1"],
+      "observed_at": "2026-08-10T09:10:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+      "image_provenance": "ai_assisted_original",
+      "topic_features": {"event_signal": false, "relationship_signal": false, "visual_signal": true}
+    },
+    "authorization": null
+  },
+  "fanfic": {
+    "column": "fanfic",
+    "ip_pool": [
+      {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
+      {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
+      {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
+      {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
+      {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
+    ],
+    "candidate": {
+      "id": "packet-fanfic-1", "title": "示例已观察同人选题", "ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term",
+      "characters": ["角色C", "角色D"], "tags": ["角色C", "角色D"], "x_growth": 25, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+      "x_evidence": "X角色关系讨论增长", "lofter_evidence": "LOFTER观察文获得有效反馈", "x_source_urls": ["https://x.com/example/status/packet-fanfic-1"],
+      "observed_at": "2026-08-10T09:20:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+      "image_provenance": "human_original",
+      "topic_features": {"event_signal": false, "relationship_signal": true, "visual_signal": false}
+    },
+    "authorization": null,
+    "research": {
+      "world_verified": true, "characters_verified": true, "relationships_verified": true,
+      "cp_conventions_verified": true, "fandom_risks_verified": true
+    },
+    "observation_url": "https://example.lofter.com/post/packet-fanfic-observation",
+    "observation_published_at": "2026-08-09T12:00:00+08:00",
+    "fanfic_qualification": {"phase": "weeks_1_2", "baseline_policy_selected": true}
+  }
+}

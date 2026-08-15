@@ -1,0 +1,5 @@
+Task 1: complete (commits 6860872..575bb44, review clean)
+Task 2: complete (commits 575bb44..f9d554b, review clean)
+Task 3: complete (commits f9d554b..c3d1792, review clean)
+Task 4: complete (commits c3d1792..96944b1, review clean)
+Task 5: complete (commits 96944b1..16333b1, review clean; minor: historical temporary-fixture note retained in scratch report)

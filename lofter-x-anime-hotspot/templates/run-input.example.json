@@ -1,0 +1,77 @@
+{
+  "ip_pool": [
+    {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
+    {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
+    {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
+    {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
+    {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
+  ],
+  "windows": {
+    "24": {
+      "x_sources": [
+        "https://x.com/authorized_artist/status/example-adapted",
+        "https://x.com/authorized_artist/status/example-original"
+      ],
+      "lofter_sources": ["https://example.lofter.com/post/example-24"],
+      "candidates": [
+        {
+          "id": "example-hotspot-adapted-1",
+          "title": "示例角色纪念日创作增长",
+          "ip_id": "rising-1",
+          "ip_name": "示例上升IP甲",
+          "ip_slot": "rising",
+          "characters": ["角色A", "角色B"],
+          "tags": ["示例上升IP甲", "角色A"],
+          "x_growth": 27,
+          "lofter_activity": 24,
+          "ip_match": 15,
+          "authorization": 15,
+          "story_potential": 8,
+          "x_evidence": "近24小时相关公开帖互动与创作数量集中增长",
+          "lofter_evidence": "对应标签出现持续更新和有效互动",
+          "x_source_urls": ["https://x.com/authorized_artist/status/example-adapted"],
+          "observed_at": "2026-08-10T08:00:00+08:00",
+          "asset_id": "example-asset-adapted-1",
+          "requested_usage": "ai_adaptation",
+          "commercial_intent": false,
+          "image_provenance": "authorized_ai_adaptation",
+          "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false},
+          "sustainability_note": "纪念日后仍有连续二创，预计短期保持热度"
+        }
+      ]
+    },
+    "72": {
+      "x_sources": [
+        "https://x.com/example/status/independent-ai",
+        "https://x.com/example/status/rising-2"
+      ],
+      "lofter_sources": ["https://example.lofter.com/post/example-72"],
+      "candidates": [
+        {
+          "id": "example-hotspot-independent-ai-1",
+          "title": "示例长线剧情节点回顾热度",
+          "ip_id": "long-term-1",
+          "ip_name": "示例长线IP甲",
+          "ip_slot": "long_term",
+          "characters": ["角色E", "角色F"],
+          "tags": ["示例长线IP甲", "角色E"],
+          "x_growth": 25,
+          "lofter_activity": 23,
+          "ip_match": 15,
+          "authorization": 12,
+          "story_potential": 9,
+          "x_evidence": "关键剧情节点引发公开帖回顾",
+          "lofter_evidence": "剧情标签出现连续创作和评论互动",
+          "x_source_urls": ["https://x.com/example/status/independent-ai"],
+          "observed_at": "2026-08-10T08:10:00+08:00",
+          "asset_id": null,
+          "requested_usage": "independent",
+          "commercial_intent": false,
+          "image_provenance": "ai_assisted_original",
+          "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false},
+          "sustainability_note": "剧情节点可形成系列回顾，具备延续性"
+        }
+      ]
+    }
+  }
+}
