@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "title": "模型更强，为什么生产力没变？",
+  "format": {"width": 1080, "height": 1920, "fps": 30},
+  "source": {"url": "https://x.com/PandaTalk8/status/2082782625513738531", "title": "模型越来越强，为什么你的生产力没有变？"},
+  "audio": {"path": "audio/narration-fish.mp3", "duration_seconds": 64.18, "voice": "中文科技知识讲解", "voice_id": "a48a402a-8f0c-48d6-b8da-e8f49706364d", "model_id": "fishaudio-s21pro-flash", "api_speed": 1.0, "postprocess_atempo": 1.42736},
+  "scenes": [
+    {"id":"scene-01","start":0,"end":6,"purpose":"hook","narration":"","headline":"模型更强，生产力却没变？","supporting_text":["一次好答案 ≠ 稳定完成一类任务"],"image":null,"image_focus":"","visual":"kinetic-question","transition":"cut","source_refs":["opening"]},
+    {"id":"scene-02","start":6,"end":13,"purpose":"problem","narration":"","headline":"关注 AI，不等于会用 AI","supporting_text":["时间是否减少","错误是否下降","经验能否复用"],"image":null,"image_focus":"","visual":"metric-cards","transition":"wipe","source_refs":["obsession-vs-productivity"]},
+    {"id":"scene-03","start":13,"end":20,"purpose":"thesis","narration":"","headline":"Prompt 工程 = 任务设计","supporting_text":["把模糊意图变成可执行、可验收的工作"],"image":null,"image_focus":"","visual":"signal-to-system","transition":"morph","source_refs":["prompt-is-task-design"]},
+    {"id":"scene-04","start":20,"end":28,"purpose":"concept","narration":"","headline":"01 任务定义","supporting_text":["谁使用？","完成什么？","怎样算成功？"],"image":null,"image_focus":"","visual":"layer-card","transition":"slide","source_refs":["task-definition"]},
+    {"id":"scene-05","start":28,"end":36,"purpose":"concept","narration":"","headline":"02 上下文组织","supporting_text":["不是越多越好","而是相关、可信、不过时"],"image":null,"image_focus":"","visual":"context-filter","transition":"slide","source_refs":["context-organization"]},
+    {"id":"scene-06","start":36,"end":44,"purpose":"concept","narration":"","headline":"03 执行契约","supporting_text":["约束 + 优先级","示例 + 输出格式","信息不足：不虚构"],"image":null,"image_focus":"","visual":"contract-grid","transition":"slide","source_refs":["execution-contract"]},
+    {"id":"scene-07","start":44,"end":52,"purpose":"concept","narration":"","headline":"04 评估闭环","supporting_text":["先定义怎样算好","再测试修复、退化与成本"],"image":null,"image_focus":"","visual":"eval-loop","transition":"slide","source_refs":["evaluation-loop"]},
+    {"id":"scene-08","start":52,"end":64.18,"purpose":"recap","narration":"","headline":"从一个重复任务开始","supporting_text":["对话 → Prompt → 资料 + 示例 + 检查","→ 工作流 → Skill / Agent","来源：Mr Panda @PandaTalk8"],"image":null,"image_focus":"","visual":"maturity-ladder","transition":"fade","source_refs":["path-to-productivity","start-with-real-task"]}
+  ]
+}

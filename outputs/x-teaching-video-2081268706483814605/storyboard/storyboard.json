@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "title": "Graph Engineering：从 Loop 到多 Agent 协作",
+  "format": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "source": {
+    "url": "https://x.com/AdrianPunk115/status/2081268706483814605",
+    "title": "Graph Engineering：从 0 到 1 小白完整教程"
+  },
+  "audio": {
+    "path": "audio/narration-fish.mp3",
+    "duration_seconds": 75.23
+  },
+  "scenes": [
+    {
+      "id": "scene-01",
+      "start": 0,
+      "end": 7.6,
+      "purpose": "hook",
+      "narration": "一个 AI 反复思考、执行、检查，叫 Loop。任务一复杂，真正需要的不是更长的循环，而是一张协作图。",
+      "headline": "Loop 不够用了？",
+      "supporting_text": [
+        "复杂任务，需要多节点协作"
+      ],
+      "image": "images/source-01.jpg",
+      "image_focus": "对比左侧循环和右侧协作图",
+      "visual": "kinetic-comparison",
+      "transition": "fade",
+      "source_refs": [
+        "section-01"
+      ]
+    },
+    {
+      "id": "scene-02",
+      "start": 7.6,
+      "end": 16.98,
+      "purpose": "definition",
+      "narration": "Graph Engineering，就是把复杂任务拆成节点，用边规定顺序和分支，让状态在节点之间流动。",
+      "headline": "Graph = 节点 + 边 + 状态",
+      "supporting_text": [
+        "节点负责执行",
+        "边负责连接",
+        "状态负责传递信息"
+      ],
+      "image": "images/source-02.jpg",
+      "image_focus": "完整展示三要素插图",
+      "visual": "image-focus",
+      "transition": "crossfade",
+      "source_refs": [
+        "section-02"
+      ]
+    },
+    {
+      "id": "scene-03",
+      "start": 16.98,
+      "end": 30.78,
+      "purpose": "example",
+      "narration": "写深度文章可以拆成研究、写作、审阅三个节点，共享资料与草稿；审阅不通过，就沿条件边退回修改。",
+      "headline": "最小 Graph",
+      "supporting_text": [
+        "研究 → 写作 → 审阅",
+        "不合格 → 退回"
+      ],
+      "image": null,
+      "image_focus": null,
+      "visual": "animated-flow",
+      "transition": "slide",
+      "source_refs": [
+        "section-02"
+      ]
+    },
+    {
+      "id": "scene-04",
+      "start": 30.78,
+      "end": 41.47,
+      "purpose": "decision",
+      "narration": "当任务需要不同角色、条件分支或并行处理时，一个 Loop 容易角色混乱、串行过慢，也很难复现决策。",
+      "headline": "什么时候升级？",
+      "supporting_text": [
+        "不同角色",
+        "条件分支",
+        "并行处理"
+      ],
+      "image": "images/source-03.jpg",
+      "image_focus": "展示 Loop 与 Graph 的角色数量差异",
+      "visual": "comparison-card",
+      "transition": "crossfade",
+      "source_refs": [
+        "section-03"
+      ]
+    },
+    {
+      "id": "scene-05",
+      "start": 41.47,
+      "end": 50.6,
+      "purpose": "clarification",
+      "narration": "Loop 并没有死。它只是 Graph 的特例：一个节点，加上一条指回自己的边。Graph 做的是把多个 Loop 连接起来。",
+      "headline": "Loop 是 Graph 的特例",
+      "supporting_text": [
+        "一个节点 + 自环",
+        "多个 Loop + 协调"
+      ],
+      "image": "images/source-01.jpg",
+      "image_focus": "再次强调从左到右的升级关系",
+      "visual": "image-focus",
+      "transition": "zoom",
+      "source_refs": [
+        "section-04"
+      ]
+    },
+    {
+      "id": "scene-06",
+      "start": 50.6,
+      "end": 59.63,
+      "purpose": "framework",
+      "narration": "真正的工程难点有四个：节点是否代表独立专长；状态是否结构化；路由是否可复现；审阅是否有独立证据。",
+      "headline": "4 个核心模块",
+      "supporting_text": [
+        "节点 · 状态",
+        "路由 · 审阅"
+      ],
+      "image": "images/source-04.jpg",
+      "image_focus": "完整展示四模块面板",
+      "visual": "image-focus",
+      "transition": "crossfade",
+      "source_refs": [
+        "section-06"
+      ]
+    },
+    {
+      "id": "scene-07",
+      "start": 59.63,
+      "end": 68.41,
+      "purpose": "principles",
+      "narration": "能用代码判断的路由就写死；需要语义判断时才让 AI 决定。读可以并行，但写入共享状态最好保持单一责任人。",
+      "headline": "两条关键原则",
+      "supporting_text": [
+        "确定逻辑 → 代码路由",
+        "共享写入 → 单一责任"
+      ],
+      "image": null,
+      "image_focus": null,
+      "visual": "rule-cards",
+      "transition": "slide",
+      "source_refs": [
+        "section-06"
+      ]
+    },
+    {
+      "id": "scene-08",
+      "start": 68.41,
+      "end": 75.23,
+      "purpose": "recap",
+      "narration": "从最小 Graph 开始：三个节点、一个共享状态、一个可验证出口。不是让更多 AI 开会，而是让协作可控、可追踪、可复现。",
+      "headline": "从最小 Graph 开始",
+      "supporting_text": [
+        "3 个节点",
+        "1 个共享状态",
+        "1 个验证出口"
+      ],
+      "image": null,
+      "image_focus": null,
+      "visual": "final-flow",
+      "transition": "fade",
+      "source_refs": [
+        "section-07",
+        "section-08"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "category": "kinetic-type",
+  "duration_s": 10,
+  "fps": 30,
+  "canvas": {
+    "w": 1920,
+    "h": 1080,
+    "aspect": "16:9"
+  },
+  "style": "High-contrast retro Chinese CRT broadcast: a near-black surround holds one centered 16:9 rounded television glass, with restrained barrel curvature, vignette, scanlines, monochrome grain and a faint red phosphor bloom. Typography is the only subject. Oversized dark-crimson brush-style words sit behind a highly legible warm-white Chinese headline. The one dominant motion motif is a hard camera punch-in that lands with a short horizontal shake; it repeats with increasing weight across three beats, then resolves into a clean final hold.",
+  "palette": [
+    "#050505",
+    "#101010",
+    "#A10F18",
+    "#E5222D",
+    "#F3EFE6"
+  ],
+  "font": "Noto Serif SC",
+  "beats": [
+    12,
+    96,
+    198,
+    252
+  ],
+  "export": "mp4",
+  "asset_needs": [],
+  "block": "caption-kinetic-slam",
+  "customize": {
+    "text": "AI时代，真正拉开差距的，不是工具，而是判断力。",
+    "emphasis_words": [
+      "AI时代",
+      "差距",
+      "工具",
+      "判断力"
+    ],
+    "palette": {
+      "surround": "#050505",
+      "screen": "#101010",
+      "brush_dark": "#A10F18",
+      "brush_hot": "#E5222D",
+      "headline": "#F3EFE6"
+    },
+    "font": "Noto Serif SC",
+    "layout": {
+      "safe_area": {
+        "x": 220,
+        "y": 132,
+        "w": 1480,
+        "h": 816
+      },
+      "crt_frame": {
+        "x": 150,
+        "y": 86,
+        "w": 1620,
+        "h": 908,
+        "corner_radius": 72,
+        "border": "2px solid rgba(243,239,230,0.13)"
+      },
+      "headline_max_width": 1360,
+      "headline_align": "center",
+      "headline_weight": 800,
+      "brush_word_scale": 2.15
+    },
+    "crt_treatment": {
+      "scanline_opacity": 0.13,
+      "grain_opacity": 0.18,
+      "vignette_strength": 0.72,
+      "chromatic_aberration_px": 1.5,
+      "flicker_amount": 0.025
+    },
+    "dominant_motif": "punch-in + shake",
+    "motion_rules": [
+      "slam",
+      "scale_punch",
+      "shake",
+      "scale_out"
+    ],
+    "pattern_interrupt": "At 6.6s, reverse the established foreground/background hierarchy for one landing: the red brush word becomes brighter and larger while the white headline contracts into a compact two-line lockup."
+  },
+  "content": {
+    "shot_brief": "The viewer looks into a dark, rounded CRT screen as the quote arrives in three forceful thought units. Each unit is announced by an enormous red brush word already looming behind the copy; the warm-white headline slams into focus through a fast punch-in and a brief lateral shake, then breathes long enough to read. The first beat establishes AI as the setting, the second rejects tools as the differentiator, and the final beat makes 判断力 the visual verdict. Grain and scanlines remain continuous, while the last 1.2 seconds settle into a stable, readable hero frame.",
+    "scenes": [
+      {
+        "id": "hook-ai-era",
+        "start": 0,
+        "end": 3,
+        "text": "AI时代，\n真正拉开差距的",
+        "background_word": "AI时代",
+        "emphasis_words": [
+          "AI时代",
+          "差距"
+        ],
+        "emotion": "provocative, immediate, ominous",
+        "motion": "Begin from black with the CRT phosphor flicking on over 0.18s. The red brush word is already oversized and cropped beyond the glass. The white line uses scale_punch from 0.72 to 1 with a 5-frame horizontal shake on landing, then a subtle hold_breath. At 2.72s the whole inner screen uses scale_out into the cut; the outer CRT surround does not move.",
+        "beats": [
+          0.4,
+          1.25,
+          2.72
+        ]
+      },
+      {
+        "id": "build-not-tools",
+        "start": 3,
+        "end": 6.6,
+        "text": "不是工具",
+        "background_word": "工具",
+        "emphasis_words": [
+          "不是",
+          "工具"
+        ],
+        "emotion": "corrective, sharp, confrontational",
+        "motion": "Cut on the outgoing scale. The giant brush word 工具 punches from 1.55 to 2.15 scale behind the copy while the white headline slams down 120px and lands with the same short lateral shake. Hold fully legible from 3.65s to 5.9s. On the last 0.3s, the white words separate left and right by 46px as the inner-screen camera accelerates forward into the final beat.",
+        "beats": [
+          3.12,
+          3.58,
+          6.3
+        ]
+      },
+      {
+        "id": "punch-judgment",
+        "start": 6.6,
+        "end": 10,
+        "text": "而是\n判断力。",
+        "background_word": "判断力",
+        "emphasis_words": [
+          "判断力"
+        ],
+        "emotion": "decisive, authoritative, resolved",
+        "motion": "Pattern interrupt: the red brush word blooms brighter and becomes the largest background form of the film while the white headline contracts into a compact centered lockup. Execute the strongest scale_punch and a 6-frame shake at 6.78s, then a restrained red glow pulse on 判断力 at 8.05s. All motion decays by 8.8s, leaving a clean final hold through 10s with only deterministic grain, scanlines and minimal CRT flicker.",
+        "beats": [
+          6.78,
+          8.05,
+          8.8
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" rx="44" fill="#07101d"/>
+  <text x="70" y="105" fill="#fff" font-size="48" font-weight="700" font-family="PingFang SC, sans-serif">从一次对话，到稳定生产力</text>
+  <text x="70" y="158" fill="#8db4d8" font-size="25" font-family="PingFang SC, sans-serif">每一级都在减少下一次“重新发明流程”的成本</text>
+  <g font-family="PingFang SC, sans-serif">
+    <path d="M115 710H305V610H495V500H685V380H875V245H1085" fill="none" stroke="#16446d" stroke-width="80" stroke-linejoin="round"/>
+    <g fill="#fff" font-size="30" font-weight="700">
+      <text x="125" y="685">临时对话</text><text x="315" y="585">可复用 Prompt</text><text x="505" y="475">资料＋示例</text><text x="695" y="355">固定工作流</text><text x="885" y="220">Skill / Agent</text>
+    </g>
+    <g fill="#91b7d5" font-size="22">
+      <text x="125" y="735">靠追问修正</text><text x="315" y="635">沉淀有效要求</text><text x="505" y="525">加入检查清单</text><text x="695" y="405">流程稳定复现</text><text x="885" y="270">自动执行重复部分</text>
+    </g>
+    <path d="M110 775C370 790 710 700 1055 330" fill="none" stroke="#2ca7ff" stroke-width="8" stroke-linecap="round"/>
+    <path d="M1055 330l-38 3 26 28" fill="none" stroke="#2ca7ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

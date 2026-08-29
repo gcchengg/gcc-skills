@@ -1,0 +1,16 @@
+{
+  "source_url":"https://x.com/Gorden_Sun/status/2071484947391823966",
+  "title":"Codex 如何应用于办公和知识场景",
+  "author":"Gorden Sun",
+  "author_handle":"Gorden_Sun",
+  "sections":[
+    {"id":"section-01","title":"Codex 是什么与五个核心概念","images":["images/source-02.jpg"]},
+    {"id":"section-02","title":"任务判断与工具连接优先级","images":["images/source-01.png"]},
+    {"id":"section-03","title":"五步工作循环","images":["images/source-03.jpg"]},
+    {"id":"section-04","title":"工作空间与关键规则文件","images":["images/source-05.png","images/source-06.jpg"]},
+    {"id":"section-05","title":"五级进阶路径","images":["images/source-04.jpg"]},
+    {"id":"section-06","title":"工作流模板、风险与七天计划","images":[]}
+  ],
+  "image_count":6,
+  "omitted_images":[]
+}

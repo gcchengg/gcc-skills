@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "title": "模型越来越强，为什么你的生产力没有变？",
+  "format": {"width": 1080, "height": 1920, "fps": 30},
+  "source": {
+    "url": "https://x.com/PandaTalk8/status/2082782625513738531",
+    "title": "模型越来越强，为什么你的生产力没有变？"
+  },
+  "scenes": [
+    {
+      "id": "scene-01",
+      "start": 0,
+      "end": 7,
+      "purpose": "hook",
+      "narration": "",
+      "headline": "模型更强了，你却没更高效？",
+      "supporting_text": ["答案很多，不等于工作被稳定接管"],
+      "visual": "productivity-gap",
+      "transition": "hard-cut",
+      "source_refs": ["opening"]
+    },
+    {
+      "id": "scene-02",
+      "start": 7,
+      "end": 16,
+      "purpose": "reframe",
+      "narration": "",
+      "headline": "会提问 ≠ Prompt 工程",
+      "supporting_text": ["聊天解决一次回答", "工程解决一类真实任务"],
+      "visual": "split-comparison",
+      "transition": "wipe",
+      "source_refs": ["prompt-engineering"]
+    },
+    {
+      "id": "scene-03",
+      "start": 16,
+      "end": 28,
+      "purpose": "framework",
+      "narration": "",
+      "headline": "生产力的四层框架",
+      "supporting_text": ["任务定义 · 上下文组织", "执行契约 · 评估闭环"],
+      "visual": "four-layer-stack",
+      "transition": "stack-build",
+      "source_refs": ["four-layers"]
+    },
+    {
+      "id": "scene-04",
+      "start": 28,
+      "end": 38,
+      "purpose": "concept",
+      "narration": "",
+      "headline": "01 任务定义",
+      "supporting_text": ["谁使用？用来做什么？", "什么变化代表成功？"],
+      "visual": "target-map",
+      "transition": "slide",
+      "source_refs": ["task-definition"]
+    },
+    {
+      "id": "scene-05",
+      "start": 38,
+      "end": 48,
+      "purpose": "concept",
+      "narration": "",
+      "headline": "02 上下文组织",
+      "supporting_text": ["不是给得越多", "而是给得越对"],
+      "visual": "context-filter",
+      "transition": "filter",
+      "source_refs": ["context-organization"]
+    },
+    {
+      "id": "scene-06",
+      "start": 48,
+      "end": 58,
+      "purpose": "concept",
+      "narration": "",
+      "headline": "03 执行契约",
+      "supporting_text": ["约束 · 优先级 · 示例 · 格式", "把期待变成边界"],
+      "visual": "contract-sheet",
+      "transition": "stamp",
+      "source_refs": ["execution-contract"]
+    },
+    {
+      "id": "scene-07",
+      "start": 58,
+      "end": 67,
+      "purpose": "concept",
+      "narration": "",
+      "headline": "04 评估闭环",
+      "supporting_text": ["先定义怎样算好", "再用真实案例反复测试"],
+      "visual": "evaluation-loop",
+      "transition": "orbit",
+      "source_refs": ["evaluation-loop"]
+    },
+    {
+      "id": "scene-08",
+      "start": 67,
+      "end": 76,
+      "purpose": "recap",
+      "narration": "",
+      "headline": "把一次对话，变成可复用流程",
+      "supporting_text": ["Prompt → 资料与示例 → 工作流", "最终沉淀为 Skill、脚本或 Agent"],
+      "visual": "maturity-path",
+      "transition": "resolve",
+      "source_refs": ["productivity-path", "closing"]
+    }
+  ]
+}

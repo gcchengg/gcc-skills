@@ -1,0 +1,52 @@
+{
+  "source_url": "https://x.com/AdrianPunk115/status/2081268706483814605",
+  "status_id": "2081268706483814605",
+  "article_id": "2081259739003207680",
+  "title": "Graph Engineering：从 0 到 1 小白完整教程",
+  "author": "Adrian Punk",
+  "author_handle": "AdrianPunk115",
+  "created_at": "2026-07-26T06:41:42.000Z",
+  "modified_at": "2026-07-26T06:41:42.000Z",
+  "block_count": 223,
+  "attribution": "Adrian Punk (@AdrianPunk115), X Article, 2026-07-26",
+  "sections": [
+    {"id":"section-01","title":"为什么需要 Graph Engineering","image":"images/source-01.jpg"},
+    {"id":"section-02","title":"Graph Engineering 到底是什么","image":"images/source-02.jpg"},
+    {"id":"section-03","title":"Loop 为什么不够用了","image":"images/source-03.jpg"},
+    {"id":"section-04","title":"Loop 和 Graph 的关系","image":"images/source-01.jpg"},
+    {"id":"section-05","title":"真正变化的是节点","image":null},
+    {"id":"section-06","title":"四个核心模块","image":"images/source-04.jpg"},
+    {"id":"section-07","title":"三个可复用模板","image":null},
+    {"id":"section-08","title":"学习路径","image":null}
+  ],
+  "images": [
+    {
+      "path": "images/source-01.jpg",
+      "url": "https://pbs.twimg.com/media/HOIjOvgbcAA60Et.jpg",
+      "width": 1536,
+      "height": 1024,
+      "media_id": "2081264713976213504"
+    },
+    {
+      "path": "images/source-02.jpg",
+      "url": "https://pbs.twimg.com/media/HOIlt6iaYAAZX5T.jpg",
+      "width": 1672,
+      "height": 941,
+      "media_id": "2081267448536522752"
+    },
+    {
+      "path": "images/source-03.jpg",
+      "url": "https://pbs.twimg.com/media/HOImZSRaIAAucv5.jpg",
+      "width": 1672,
+      "height": 941,
+      "media_id": "2081268193642029056"
+    },
+    {
+      "path": "images/source-04.jpg",
+      "url": "https://pbs.twimg.com/media/HOIhZV8bgAA97uu.jpg",
+      "width": 1672,
+      "height": 941,
+      "media_id": "2081262697069641728"
+    }
+  ]
+}

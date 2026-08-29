@@ -1,0 +1,10 @@
+{
+  "voiceId": "a48a402a-8f0c-48d6-b8da-e8f49706364d",
+  "provider": "fishaudio",
+  "status": "ready",
+  "billing": {
+    "creditsUsed": 2000,
+    "creditsRemaining": 16479
+  },
+  "requestId": "70e8fb8d-807a-47e8-8e0f-f0018db042fb"
+}

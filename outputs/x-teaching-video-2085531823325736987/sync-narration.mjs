@@ -1,0 +1,9 @@
+import fs from 'node:fs';
+const scenes=[['s1',0,10.2],['s2',10.2,8.456],['s3',18.656,8.344],['s4',27,8.52],['s5',35.52,7.98],['s6',43.5,9.099],['s7',52.599,10.351],['s8',62.95,5.047]];
+const hp=new URL('./index.html',import.meta.url);let h=fs.readFileSync(hp,'utf8');
+h=h.replace(/data-composition-id="main" data-start="0" data-duration="[^"]+"/,'data-composition-id="main" data-start="0" data-duration="67.997"');
+for(let i=0;i<scenes.length;i++){const[id,s,d]=scenes[i],t=`data-start="${s}" data-duration="${d}"`;h=h.replace(new RegExp(`(id="${id}"[^>]*?)data-start="[^"]+" data-duration="[^"]+"`),`$1${t}`);h=h.replace(new RegExp(`(id="c${i+1}"[^>]*?)data-start="[^"]+" data-duration="[^"]+"`),`$1${t}`)}
+if(!h.includes('id="narration-audio"'))h=h.replace('</div><script>window.__timelines=','<audio id="narration-audio" data-hf-id="audio-narration" src="audio/narration-fish.mp3" data-start="0" data-duration="67.997" data-track-index="10" data-volume="1"></audio>\n</div><script>window.__timelines=');
+h=h.replace(/duration:78,ease:/,'duration:67.997,ease:');fs.writeFileSync(hp,h);
+const sp=new URL('./storyboard/storyboard.json',import.meta.url),sb=JSON.parse(fs.readFileSync(sp,'utf8'));sb.audio={path:'audio/narration-fish.mp3',duration_seconds:67.997};for(let i=0;i<scenes.length;i++){sb.scenes[i].start=scenes[i][1];sb.scenes[i].end=Number((scenes[i][1]+scenes[i][2]).toFixed(3))}fs.writeFileSync(sp,JSON.stringify(sb,null,2)+'\n');
+const mp=new URL('./meta.json',import.meta.url),m=JSON.parse(fs.readFileSync(mp,'utf8'));m.duration_seconds=67.997;m.narration={service:'Fish Audio',voice_name:'中文科技知识讲解',voice_id:'a48a402a-8f0c-48d6-b8da-e8f49706364d',model_id:'fishaudio-s21pro-flash',format:'mp3',speed:1,request_id:'codex-teaching-video-825c1d4197a330e761d2e5aa'};fs.writeFileSync(mp,JSON.stringify(m,null,2)+'\n');

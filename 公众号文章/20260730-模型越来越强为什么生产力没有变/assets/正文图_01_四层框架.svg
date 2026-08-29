@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect width="1200" height="900" rx="44" fill="#06111f"/>
+  <text x="70" y="105" fill="#fff" font-size="48" font-weight="700" font-family="PingFang SC, sans-serif">Prompt 工程的四层任务系统</text>
+  <text x="70" y="158" fill="#8db4d8" font-size="25" font-family="PingFang SC, sans-serif">把模糊意图变成可执行、可验收、可复用的任务</text>
+  <g font-family="PingFang SC, sans-serif">
+    <g transform="translate(70 225)"><rect width="500" height="230" rx="26" fill="#0c2948" stroke="#2ca7ff" stroke-width="3"/><text x="34" y="62" fill="#5fc1ff" font-size="26">01</text><text x="34" y="112" fill="#fff" font-size="39" font-weight="700">任务定义</text><text x="34" y="158" fill="#c8d9e8" font-size="24">为谁做 · 用来做什么</text><text x="34" y="196" fill="#c8d9e8" font-size="24">什么变化代表成功</text></g>
+    <g transform="translate(630 225)"><rect width="500" height="230" rx="26" fill="#112849" stroke="#5a82ff" stroke-width="3"/><text x="34" y="62" fill="#829fff" font-size="26">02</text><text x="34" y="112" fill="#fff" font-size="39" font-weight="700">上下文组织</text><text x="34" y="158" fill="#c8d9e8" font-size="24">提供相关、可信、最新的资料</text><text x="34" y="196" fill="#c8d9e8" font-size="24">明确冲突时以什么为准</text></g>
+    <g transform="translate(70 510)"><rect width="500" height="230" rx="26" fill="#192442" stroke="#9f7cff" stroke-width="3"/><text x="34" y="62" fill="#b397ff" font-size="26">03</text><text x="34" y="112" fill="#fff" font-size="39" font-weight="700">执行契约</text><text x="34" y="158" fill="#c8d9e8" font-size="24">约束 · 优先级 · 示例</text><text x="34" y="196" fill="#c8d9e8" font-size="24">输出格式与风险边界</text></g>
+    <g transform="translate(630 510)"><rect width="500" height="230" rx="26" fill="#302036" stroke="#ffac55" stroke-width="3"/><text x="34" y="62" fill="#ffc178" font-size="26">04</text><text x="34" y="112" fill="#fff" font-size="39" font-weight="700">评估闭环</text><text x="34" y="158" fill="#c8d9e8" font-size="24">代表性案例 · 验收标准</text><text x="34" y="196" fill="#c8d9e8" font-size="24">回归测试 · 成本与收益</text></g>
+    <path d="M570 340h60M600 455v55" stroke="#5fc1ff" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <text x="600" y="825" text-anchor="middle" fill="#79bdf0" font-size="27" font-family="PingFang SC, sans-serif">目标清楚 → 信息充分 → 边界明确 → 结果可证</text>
+</svg>

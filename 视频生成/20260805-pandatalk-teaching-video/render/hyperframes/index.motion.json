@@ -1,0 +1,10 @@
+{
+  "duration": 76,
+  "maxStaticSec": 3,
+  "assertions": [
+    {"kind": "appearsBy", "selector": "#scene-01 .headline", "bySec": 1},
+    {"kind": "before", "a": "#scene-01 .headline", "b": "#scene-01 .caption"},
+    {"kind": "staysInFrame", "selector": "#scene-01 .caption"},
+    {"kind": "keepsMoving", "withinSelector": "#root", "maxStaticSec": 3}
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "title": "为什么视频号博主选 WorkBuddy？",
+  "format": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "source": {
+    "url": "https://x.com/ModengSir/status/2074312503618584610",
+    "title": "为什么放着 Codex 不用？视频号博主选 WorkBuddy 的真实理由"
+  },
+  "audio": {
+    "path": "audio/narration-fish.mp3",
+    "duration_seconds": 64.235
+  },
+  "scenes": [
+    {
+      "id": "scene-01",
+      "start": 0,
+      "end": 9.36,
+      "purpose": "hook",
+      "narration": "Codex 很强，为什么不少视频号博主却选择 WorkBuddy？答案不是模型参数，而是工作流贴合度。",
+      "headline": "强，不等于适合",
+      "supporting_text": [
+        "工具选择看工作流摩擦"
+      ],
+      "image": "images/source-02.jpg",
+      "image_focus": "WorkBuddy 承包运营杂事",
+      "visual": "hook-card",
+      "transition": "fade",
+      "source_refs": [
+        "intro"
+      ]
+    },
+    {
+      "id": "scene-02",
+      "start": 9.36,
+      "end": 19.27,
+      "purpose": "concept",
+      "narration": "第一项是迁移成本。素材、需求和灵感都在微信里，跨应用搬文件会把强大能力抵消掉。",
+      "headline": "1 · 迁移成本",
+      "supporting_text": [
+        "素材入口在哪里？",
+        "结果要送回哪里？"
+      ],
+      "image": "images/source-09.jpg",
+      "image_focus": "微信生态封闭工作区",
+      "visual": "image-focus",
+      "transition": "crossfade",
+      "source_refs": [
+        "reason-01"
+      ]
+    },
+    {
+      "id": "scene-03",
+      "start": 19.27,
+      "end": 27.76,
+      "purpose": "concept",
+      "narration": "第二项是学习成本。技术用户喜欢可配置，普通创作者更需要直接说人话、直接拿结果。",
+      "headline": "2 · 学习成本",
+      "supporting_text": [
+        "配置能力 ≠ 使用门槛低"
+      ],
+      "image": "images/source-05.jpg",
+      "image_focus": "不想学习提示词与代码",
+      "visual": "image-focus",
+      "transition": "slide",
+      "source_refs": [
+        "reason-02"
+      ]
+    },
+    {
+      "id": "scene-04",
+      "start": 27.76,
+      "end": 36.5,
+      "purpose": "concept",
+      "narration": "第三项是时间结构。创作者的工作被通勤、带娃和临时热点切碎，手机派活比坐在电脑前更重要。",
+      "headline": "3 · 时间结构",
+      "supporting_text": [
+        "碎片时间也能派活"
+      ],
+      "image": "images/source-08.jpg",
+      "image_focus": "碎片化工作时间",
+      "visual": "image-focus",
+      "transition": "crossfade",
+      "source_refs": [
+        "reason-03"
+      ]
+    },
+    {
+      "id": "scene-05",
+      "start": 36.5,
+      "end": 44.36,
+      "purpose": "concept",
+      "narration": "第四项是任务覆盖。真正耗时的是评论、字幕、数据、提醒和分发，而不只是写文案。",
+      "headline": "4 · 任务覆盖",
+      "supporting_text": [
+        "选题 · 评论 · 数据 · 分发"
+      ],
+      "image": "images/source-02.jpg",
+      "image_focus": "运营任务清单",
+      "visual": "image-focus",
+      "transition": "crossfade",
+      "source_refs": [
+        "reason-04"
+      ]
+    },
+    {
+      "id": "scene-06",
+      "start": 44.36,
+      "end": 52.68,
+      "purpose": "concept",
+      "narration": "第五项是稳定边界。能否直接访问、数据放在哪里、关键时刻会不会掉线，都属于生产力。",
+      "headline": "5 · 稳定边界",
+      "supporting_text": [
+        "可用性 · 数据 · 连续性"
+      ],
+      "image": "images/source-06.jpg",
+      "image_focus": "国内直接可用",
+      "visual": "image-focus",
+      "transition": "slide",
+      "source_refs": [
+        "reason-05"
+      ]
+    },
+    {
+      "id": "scene-07",
+      "start": 52.68,
+      "end": 58.62,
+      "purpose": "framework",
+      "narration": "所以别问哪个 AI 最强，要问它能否进入你的素材入口、沟通方式、时间节奏和交付出口。",
+      "headline": "换一个问题",
+      "supporting_text": [
+        "入口",
+        "沟通",
+        "节奏",
+        "出口"
+      ],
+      "image": "images/source-10.jpg",
+      "image_focus": "手机连接桌面端",
+      "visual": "framework-grid",
+      "transition": "crossfade",
+      "source_refs": [
+        "conclusion"
+      ]
+    },
+    {
+      "id": "scene-08",
+      "start": 58.62,
+      "end": 64.235,
+      "purpose": "recap",
+      "narration": "工具选择的本质不是参数崇拜，而是用更低摩擦完成真实工作。",
+      "headline": "低摩擦，才是生产力",
+      "supporting_text": [
+        "适合工作流 > 参数更强"
+      ],
+      "image": null,
+      "image_focus": null,
+      "visual": "final-card",
+      "transition": "fade",
+      "source_refs": [
+        "conclusion"
+      ]
+    }
+  ]
+}

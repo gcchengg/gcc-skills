@@ -1,0 +1,4 @@
+interface:
+  display_name: "小红书食材解剖"
+  short_description: "生成食材解剖图文、归档并通过内置浏览器发布小红书"
+  default_prompt: "Use $xiaohongshu-food-anatomy to generate and publish a complete Xiaohongshu anatomy post for one new ingredient."

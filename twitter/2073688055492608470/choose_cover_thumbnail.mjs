@@ -1,0 +1,14 @@
+import playwright from "/Users/apple/Documents/GitHub/gcc-skills/tools/browser-publisher/node_modules/playwright/index.js";
+const { chromium } = playwright;
+const browser = await chromium.connectOverCDP("http://127.0.0.1:9222");
+const page = browser.contexts()[0].pages()[0];
+const items = page.locator(".appmsg_content_img_item:visible");
+const count = await items.count();
+if (count !== 3) throw new Error(`正文图片数量异常：${count}`);
+await items.nth(2).click();
+const next = page.getByRole("button", {name: "下一步", exact: true});
+if (await next.count() !== 1) throw new Error(`“下一步”数量异常：${await next.count()}`);
+await next.click();
+await page.waitForTimeout(1500);
+await page.screenshot({path: "/Users/apple/Documents/GitHub/gcc-skills/twitter/2073688055492608470/封面裁剪界面.png", fullPage: false});
+console.log((await page.locator("body").innerText()).slice(-1200));
