@@ -1,21 +1,456 @@
-# Task 3 Report: Content Packet Generator
+# Task 3 Report: Draft and Media Manifest Validation
 
-## Completed
+## Outcome
 
-- Added `build_content_packet.py` with eligibility, fan-fiction research, and authorization gates.
-- Added packet formatting for daily hotspot, weekly trend, and fan-fiction columns.
-- Added the requested unit coverage for authorized media, research completeness, interaction question count, and independent-image fallback.
+Implemented the publishable-draft boundary for a persisted run. `build_draft`
+accepts only a run in `researching`, requires the Task 2 result in
+`hotspot-analysis.json`, validates the model-authored payload before any write,
+creates the four specified publication artifacts, and advances through exactly
+`researching → draft_ready → authorization_review`.
+
+Candidate X media (`x_original` and `ai_adaptation`) enters the ledger only as
+`pending`; `generated_original` enters as `independent`. Task 3 does not accept,
+infer, or expose authorization evidence and does not alter the existing
+authorization modules or legacy content-packet builder.
+
+## Files implemented
+
+- `lofter-x-anime-hotspot/scripts/build_publishable_draft.py`
+- `lofter-x-anime-hotspot/tests/test_build_publishable_draft.py`
+
+This report is intentionally not included in the Task 3 code commit.
+
+Task 3 commit: `098a23f` (`feat: build publish-ready LOFTER drafts`).
+
+## Validation implemented
+
+- Requires a valid persisted selection with a 24- or 72-hour window, one eligible
+  candidate, a supported content mode, and a non-blank selection reason.
+- Requires an 800–1500 non-whitespace-character article, exactly three unique
+  non-empty titles, and 8–12 unique non-empty tags.
+- Accepts one to three media records with exactly one cover.
+- Allows only `x_original`, `ai_adaptation`, and `generated_original`, with
+  kind-specific allowlisted fields.
+- Requires run-relative, non-URL local media paths that resolve to existing files
+  inside the run directory; traversal, absolute, Windows-drive, URL, and symlink
+  escapes are rejected.
+- Requires X-derived media to use a valid `https://x.com/` URL plus non-empty
+  source author and media ID. Generated images require a JSON-compatible
+  `generation_lineage` object.
+- Sanitizes public article, title, tag, and caption strings against authorization
+  evidence markers and absolute private paths.
+- Adds `图像经授权使用，含AI辅助创作｜#AI辅助#` exactly when both
+  `authorized_media_intent` and `ai_assistance` are true. A model-authored claim
+  without both flags is rejected.
+- Writes Markdown files with same-directory temporary replacement and writes the
+  media ledger through `run_state.write_json_atomic`.
+- Persists relative artifact paths, content mode, review-status counts, and the
+  required auditable window-expansion record for 72-hour selections.
 
 ## TDD evidence
 
-- The new test module first failed with `ModuleNotFoundError: No module named 'build_content_packet'`.
-- After implementation, the module's 4 tests passed.
+### RED
 
-## Verification
+Command:
 
-- `python3 -m unittest lofter-x-anime-hotspot/tests/test_build_content_packet.py -v` — 4 passed.
-- `python3 -m unittest discover -s lofter-x-anime-hotspot/tests -v` — 13 passed.
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest \
+  lofter-x-anime-hotspot/tests/test_build_publishable_draft.py -v
+```
 
-## Scope
+Observed before implementation:
 
-- Task implementation commit stages only the two Task 3 source/test files; this report remains uncommitted for orchestration records.
+```text
+ModuleNotFoundError: No module named 'build_publishable_draft'
+Ran 1 test in 0.000s
+FAILED (errors=1)
+```
+
+This was the expected missing-interface failure.
+
+### GREEN
+
+Command:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest \
+  lofter-x-anime-hotspot/tests/test_build_publishable_draft.py \
+  lofter-x-anime-hotspot/tests/test_validate_authorizations.py -v
+```
+
+Observed after implementation:
+
+```text
+Ran 22 tests in 0.037s
+OK
+```
+
+The focused run covers all Task 3 validation cases and confirms the existing
+authorization suite is unchanged.
+
+## Full-suite verification
+
+Command (run once after focused GREEN and self-review):
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover \
+  -s lofter-x-anime-hotspot/tests -p 'test_*.py' -v
+```
+
+Result:
+
+```text
+Ran 81 tests in 0.520s
+OK
+```
+
+## Self-review
+
+- All model-authored top-level and media fields are allowlisted; arbitrary input
+  is not spread into the ledger or public artifacts.
+- Validation completes before the first artifact write, so schema, provenance,
+  path, and disclosure failures leave the run in `researching` without partial
+  publication artifacts.
+- Resolved-path confinement covers lexical traversal and symlink escape, while
+  public publication order contains only relative run-local paths.
+- The state update uses Task 1's `transition` twice and does not set either first-
+  or final-publication confirmation.
+- The 72-hour path satisfies Task 1's persisted window-expansion invariant.
+- X media is never upgraded beyond `pending` in this task. Authorization review,
+  ledger-backed allow decisions, rejection, and replacement remain reserved for
+  Task 4.
+- Existing `validate_authorizations.py` and `build_content_packet.py` were not
+  modified.
+
+## Concerns and scope notes
+
+- Media acquisition is outside this deterministic builder. The orchestration
+  layer must first place files inside the run directory; Task 3 verifies those
+  local files and records them but performs no network download.
+- The worktree contains pre-existing modified `.superpowers/sdd` files, review
+  diff artifacts, and generated bytecode. They were not modified for Task 3 and
+  are excluded from the Task 3 commit.
+
+## Review Fix Wave: Render Safety, Transactionality, and Media Snapshots
+
+Review-fix commit: `d3b0698` (`fix: harden publishable draft transactions`).
+
+### Root causes
+
+The initial builder treated model-authored strings as generic prose even when
+they were interpolated into numbered Markdown rows and hashtag syntax. It also
+wrote each artifact directly before transitioning state, so an install or
+transition failure could leave a mixed artifact set. Media records referenced
+validated run-local inputs without taking canonical publication snapshots, and
+generation lineage accepted any JSON object rather than a meaningful typed
+schema.
+
+### RED evidence
+
+After adding the adversarial and failure-injection tests, this command reproduced
+the review findings:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest \
+  lofter-x-anime-hotspot/tests/test_build_publishable_draft.py -v
+```
+
+Initial result:
+
+```text
+Ran 17 tests in 0.106s
+FAILED (failures=37, errors=1)
+```
+
+The failures showed accepted newline/delimiter injection, model-authored
+disclosures, private paths after Unicode punctuation and backticks, permissive
+lineage, non-canonical media references, symlinked output parents, all six
+uninjected install boundaries, and artifact/state residue after transition
+failures. The one error came from a deliberately adversarial payload advancing a
+shared fixture; each adversarial case was then isolated in its own run before the
+implementation changed.
+
+A follow-up RED case expanded the private-path boundary beyond named home/temp
+roots:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest \
+  lofter-x-anime-hotspot/tests/test_build_publishable_draft.py \
+  -k private_paths_after_unicode -v
+```
+
+It failed on `` `/srv/project/build.json` `` with `ValueError not raised`, then
+passed after adding the generic absolute-POSIX-path detector.
+
+### Fixes implemented
+
+- Added render-context validation before Markdown interpolation. Titles, tags,
+  captions, local paths, roles, source authors, and media IDs reject CR/LF,
+  Unicode line separators, C0/C1 controls, and their field-specific delimiters.
+  Tags additionally reject whitespace and `#`/full-width `＃` injection.
+- Reserved the exact public disclosure across every model-authored public field.
+  Model input can never supply it; the builder alone appends it when both intent
+  flags are true.
+- Detects `file://`, named POSIX private roots, generic absolute POSIX paths,
+  Windows drive paths, and UNC paths after arbitrary Unicode punctuation or
+  backticks. HTTP(S) URLs are removed before local-path scanning, and ordinary
+  slash prose such as `A/B` and `角色/关系` remains valid.
+- Replaced arbitrary lineage JSON with an exact schema: non-empty string
+  `generator`, non-empty string `prompt`, and unique non-empty string
+  `source_media_ids`. `generated_original` requires an empty list;
+  `ai_adaptation` requires a non-empty list. Missing, unknown, non-string,
+  non-JSON, and non-finite values fail closed.
+- Resolves the real run root and rejects symlinked run directories, fixed output
+  parents, fixed targets, and media-input path components. Every source and
+  target must remain under the resolved run root.
+- Snapshots media into deterministic canonical files: `original-media/NN.ext`
+  for X originals and `generated-media/NN.ext` for adaptations/generated
+  originals. Unsafe suffixes become `.bin`; already-canonical inputs are copied
+  to staging before replacement and remain safe.
+- Separates validation, canonicalization, staging, install, and state transition.
+  Four artifacts and all media copies are first staged in a unique run-local
+  `.draft-stage-*` directory. Existing targets and the exact original
+  `status.json` are backed up before any install.
+- On any install or transition exception, every previous target and status file
+  is restored, every newly created target is removed, staging is deleted, and
+  the run remains cleanly rerunnable from `researching`.
+
+### Failure-injection coverage
+
+- Injected failure independently at all six install boundaries for the standard
+  two-image draft: article, titles/tags, publication order, media ledger, X-media
+  copy, and generated-media copy.
+- Injected failure at both state transitions, including restoration from the
+  intermediate `draft_ready` state.
+- Verified byte-for-byte restoration of pre-existing targets and `status.json`.
+- Verified removal of every newly created artifact/media copy and all staging
+  directories.
+- Retried every failed run successfully to `authorization_review`.
+
+### GREEN evidence
+
+Focused Task 3 plus unchanged authorization behavior:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest \
+  lofter-x-anime-hotspot/tests/test_build_publishable_draft.py \
+  lofter-x-anime-hotspot/tests/test_validate_authorizations.py -v
+```
+
+```text
+Ran 35 tests in 0.222s
+OK
+```
+
+Final full-suite gate:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover \
+  -s lofter-x-anime-hotspot/tests -p 'test_*.py' -v
+```
+
+```text
+Ran 94 tests in 0.592s
+OK
+```
+
+Scoped whitespace verification also passed:
+
+```bash
+git diff --check -- \
+  lofter-x-anime-hotspot/scripts/build_publishable_draft.py \
+  lofter-x-anime-hotspot/tests/test_build_publishable_draft.py
+```
+
+### Review-fix self-review
+
+- All payload, media, lineage, path, rendering, and output-layout validation is
+  complete before the staging directory is created.
+- The media ledger and publication order reference only canonical copied files,
+  never the mutable acquisition filenames.
+- Candidate X originals and AI adaptations still enter review only as `pending`;
+  generated originals remain `independent`.
+- The transaction restores the original byte representation of `status.json`,
+  rather than trying to synthesize a reverse state transition.
+- Task 1 transition invariants, Task 2 selection format, authorization modules,
+  and the legacy packet builder remain unchanged.
+- The exact Markdown artifact contents and 72-hour expansion evidence are covered
+  by tests.
+
+### Remaining concern
+
+This is a rollback transaction for one builder process, not a multi-writer lock.
+As documented by `run_state.write_json_atomic`, simultaneous writers require a
+separate locking protocol; Task 3 does not claim concurrent-writer serialization.
+
+## Final Focused Fix: URL Boundary Private-Path Bypass
+
+Final focused-fix commit: `5978ae3` (`fix: preserve private paths after URLs`).
+
+### Root cause
+
+The public-string scanner removed HTTP(S) spans with
+`https?://[^\s<>]+`. Chinese commas, semicolons, quotation marks, and the
+following local path contain no ASCII whitespace or angle brackets, so the
+matcher swallowed both the legitimate URL and the private path before the path
+detectors ran.
+
+### RED
+
+Added end-to-end caption cases including the exact reviewed payload:
+
+```text
+来源：https://x.com/artist/status/1，证据：/Users/reviewer/evidence.png
+```
+
+and Chinese quotation/semicolon variants followed by a Windows drive path and a
+`file://` path.
+
+Command:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest \
+  lofter-x-anime-hotspot/tests/test_build_publishable_draft.py \
+  -k 'url_followed_by_unicode_prose' -v
+```
+
+Observed before the fix:
+
+```text
+Ran 1 test in 0.014s
+FAILED (failures=3)
+```
+
+All three subcases failed with `ValueError not raised`, directly reproducing the
+private-path bypass.
+
+### Fix
+
+The HTTP(S) token matcher now stops at ASCII quoting delimiters and Chinese prose
+punctuation/quotation boundaries. Only the demonstrable URL span is excluded;
+the following original-text suffix remains available to the POSIX, Windows,
+UNC, and `file://` detectors.
+
+An explicit control test verifies that a URL-only caption remains accepted and
+that `https://x.com/artist/status/1` still passes the strict X `source_url`
+validator and is persisted unchanged.
+
+### GREEN
+
+Targeted URL/private-path regression:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest \
+  lofter-x-anime-hotspot/tests/test_build_publishable_draft.py -k 'url' -v
+```
+
+```text
+Ran 3 tests in 0.014s
+OK
+```
+
+Focused Task 3 and authorization suites:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest \
+  lofter-x-anime-hotspot/tests/test_build_publishable_draft.py \
+  lofter-x-anime-hotspot/tests/test_validate_authorizations.py -v
+```
+
+```text
+Ran 37 tests in 0.202s
+OK
+```
+
+Full suite:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover \
+  -s lofter-x-anime-hotspot/tests -p 'test_*.py' -v
+```
+
+```text
+Ran 96 tests in 0.649s
+OK
+```
+
+Scoped `git diff --check` also passed for both Task 3 files. No authorization,
+state-machine, legacy packet, or unrelated task file was changed.
+
+## Robust Final Fix: No HTTP Exemption for Private Markers
+
+Robust final-fix commit: `9de8768` (`fix: scan private paths inside URLs`).
+
+### Root cause and policy
+
+Even a punctuation-aware HTTP matcher still created a semantic exemption: a
+private marker located inside an HTTP URL path was removed before scanning. The
+final policy is deliberately fail closed. Public rendered text is scanned in its
+original form, and `/Users`, `/home`, `/private`, `/tmp`, generic absolute POSIX
+paths, `file://`, Windows drives, and UNC paths are rejected regardless of
+whether they appear before, after, or inside HTTP(S) text.
+
+The obsolete HTTP-removal regex was deleted. The only syntax-level exclusions
+are narrow protocol false-positive guards: `s:/` inside `https://` is not a
+Windows drive, and `//` immediately preceded by `:` is not a UNC prefix. These
+guards do not remove any text or exempt URL paths from the other detectors.
+
+### RED
+
+Added one adversarial test covering:
+
+- em dash and ellipsis separators;
+- ASCII comma and semicolon separators;
+- Unicode brackets;
+- an HTTP URL whose own path contains `/private/`;
+- `/Users` inside an HTTP path;
+- `file://`, Windows-drive, and UNC markers inside HTTP text.
+
+Command:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest \
+  lofter-x-anime-hotspot/tests/test_build_publishable_draft.py \
+  -k 'http_context_never_exempts' -v
+```
+
+Observed before direct scanning:
+
+```text
+Ran 1 test in 0.031s
+FAILED (failures=5)
+```
+
+The five embedded-URL-marker cases were accepted, directly proving the remaining
+exemption. After removing HTTP stripping, the legitimate URL control initially
+revealed that the Windows-drive and UNC regexes interpreted `https://` protocol
+syntax as paths. Match-span diagnostics identified `s:/` and `//x.com/artist`;
+the two narrow negative-lookbehind guards resolved those false positives without
+reintroducing URL subtraction.
+
+### GREEN
+
+Targeted fail-closed regression:
+
+```text
+Ran 1 test in 0.017s
+OK
+```
+
+Focused Task 3 plus authorization suites:
+
+```text
+Ran 38 tests in 0.224s
+OK
+```
+
+Full suite:
+
+```text
+Ran 97 tests in 0.608s
+OK
+```
+
+The ordinary caption `来源：https://x.com/artist/status/1` and strict X
+`source_url` field remain accepted and are covered explicitly. Scoped
+`git diff --check` passed for both Task 3 files.

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@tarojs/webpack5-runner": "^4.2.1"
+  }
+}

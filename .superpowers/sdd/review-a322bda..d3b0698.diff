@@ -1,0 +1,1353 @@
+# Review package: a322bda..d3b0698
+
+## Commits
+d3b0698 fix: harden publishable draft transactions
+098a23f feat: build publish-ready LOFTER drafts
+
+## Files changed
+ .../scripts/build_publishable_draft.py             | 608 +++++++++++++++++
+ .../tests/test_build_publishable_draft.py          | 721 +++++++++++++++++++++
+ 2 files changed, 1329 insertions(+)
+
+## Diff
+diff --git a/lofter-x-anime-hotspot/scripts/build_publishable_draft.py b/lofter-x-anime-hotspot/scripts/build_publishable_draft.py
+new file mode 100644
+index 0000000..a8141b3
+--- /dev/null
++++ b/lofter-x-anime-hotspot/scripts/build_publishable_draft.py
+@@ -0,0 +1,608 @@
++"""Validate and transactionally persist a LOFTER draft for local review."""
++
++import json
++import os
++import re
++import shutil
++import tempfile
++import unicodedata
++from pathlib import Path, PurePosixPath, PureWindowsPath
++from urllib.parse import urlparse
++
++from run_state import load_state, transition, write_json_atomic
++
++
++PUBLIC_DISCLOSURE = "图像经授权使用，含AI辅助创作｜#AI辅助#"
++
++_DRAFT_FIELDS = {
++    "article",
++    "titles",
++    "tags",
++    "media",
++    "authorized_media_intent",
++    "ai_assistance",
++}
++_MEDIA_KINDS = {"x_original", "ai_adaptation", "generated_original"}
++_MEDIA_ROLES = {"cover", "body"}
++_COMMON_MEDIA_FIELDS = {"kind", "role", "local_path", "caption"}
++_X_MEDIA_FIELDS = {"source_url", "source_author", "source_media_id"}
++_OPTIONAL_X_MEDIA_FIELDS = {"source_post_id", "fetched_at", "sha256"}
++_GENERATION_FIELDS = {"generation_lineage"}
++_LINEAGE_FIELDS = {"generator", "prompt", "source_media_ids"}
++_CONTENT_MODES = {"trend_analysis", "fanfic", "visual_curation"}
++_OUTPUT_PARENTS = ("sources", "original-media", "generated-media")
++_FILES = {
++    "hotspot_analysis": "hotspot-analysis.json",
++    "article": "article.md",
++    "titles_and_tags": "titles-and-tags.md",
++    "publication_order": "publication-order.md",
++    "media_ledger": "sources/media-ledger.json",
++}
++
++_HTTP_URL = re.compile(r"https?://[^\s<>]+", re.IGNORECASE)
++_FILE_URL = re.compile(r"file:(?://)?/", re.IGNORECASE)
++_POSIX_PRIVATE_PATH = re.compile(
++    r"/(?:Users|home|private|tmp|var(?:/folders)?|etc|root|usr|opt|Applications|Volumes)(?:/|$)",
++    re.IGNORECASE,
++)
++_GENERIC_POSIX_PATH = re.compile(
++    r"(?<![\w:/])/(?!/)(?:[A-Za-z0-9._-]+/)+[^\s/`|]+"
++)
++_WINDOWS_DRIVE_PATH = re.compile(r"[A-Za-z]:[\\/]")
++_WINDOWS_UNC_PATH = re.compile(r"(?:\\\\|//)[^\\/\s]+[\\/][^\\/\s]+")
++_SAFE_SUFFIX = re.compile(r"\.[a-z0-9]{1,10}")
++
++
++def _non_empty_string(value: object, field: str) -> str:
++    if type(value) is not str or not value.strip():
++        raise ValueError(f"{field} must be a non-empty string")
++    return value.strip()
++
++
++def _contains_forbidden_control(text: str, *, allow_newlines: bool) -> bool:
++    for character in text:
++        if allow_newlines and character == "\n":
++            continue
++        if unicodedata.category(character) == "Cc" or character in {
++            "\u2028",
++            "\u2029",
++        }:
++            return True
++    return False
++
++
++def _contains_private_path(text: str) -> bool:
++    without_web_urls = _HTTP_URL.sub("", text)
++    return bool(
++        _FILE_URL.search(without_web_urls)
++        or _POSIX_PRIVATE_PATH.search(without_web_urls)
++        or _GENERIC_POSIX_PATH.search(without_web_urls)
++        or _WINDOWS_DRIVE_PATH.search(without_web_urls)
++        or _WINDOWS_UNC_PATH.search(without_web_urls)
++    )
++
++
++def _validate_rendered_string(
++    value: object,
++    field: str,
++    *,
++    delimiters: str = "",
++    allow_newlines: bool = False,
++    check_private_path: bool = True,
++) -> str:
++    if type(value) is not str or not value.strip():
++        raise ValueError(f"{field} must be a non-empty string")
++    if _contains_forbidden_control(value, allow_newlines=allow_newlines):
++        raise ValueError(f"{field} contains control characters")
++    text = value.strip()
++    if PUBLIC_DISCLOSURE in text:
++        raise ValueError(f"{field} contains the reserved disclosure")
++    if "evidence_path" in text.casefold():
++        raise ValueError(f"{field} leaks private evidence")
++    if check_private_path and _contains_private_path(text):
++        raise ValueError(f"{field} leaks a private path")
++    if delimiters and any(delimiter in text for delimiter in delimiters):
++        raise ValueError(f"{field} contains a reserved delimiter")
++    return text
++
++
++def _validate_article(text: object) -> str:
++    article = _validate_rendered_string(text, "article", allow_newlines=True)
++    count = len("".join(article.split()))
++    if not 800 <= count <= 1500:
++        raise ValueError("article must contain 800–1500 non-whitespace characters")
++    return article
++
++
++def _validate_unique_strings(
++    values: object, field: str, minimum: int, maximum: int
++) -> list[str]:
++    if type(values) is not list or not minimum <= len(values) <= maximum:
++        if minimum == maximum == 3:
++            raise ValueError("titles must contain exactly three values")
++        raise ValueError(f"{field} must contain {minimum}–{maximum} values")
++    if any(type(value) is not str or not value.strip() for value in values):
++        raise ValueError(f"{field} must contain unique non-empty values")
++    delimiters = "|｜" if field == "titles" else "#＃|｜`"
++    result = [
++        _validate_rendered_string(value, field, delimiters=delimiters)
++        for value in values
++    ]
++    if field == "tags" and any(
++        any(character.isspace() for character in tag) for tag in result
++    ):
++        raise ValueError("tags contains a reserved delimiter")
++    normalized = [value.casefold() for value in result]
++    if len(set(normalized)) != len(normalized):
++        raise ValueError(f"{field} must contain unique non-empty values")
++    return result
++
++
++def _validate_generation_lineage(value: object, kind: str) -> dict:
++    if type(value) is not dict:
++        raise ValueError("generation_lineage must be an object")
++    unknown = sorted(set(value) - _LINEAGE_FIELDS)
++    if unknown:
++        raise ValueError(f"unknown generation_lineage field: {unknown[0]}")
++    missing = sorted(_LINEAGE_FIELDS - set(value))
++    if missing:
++        raise ValueError(f"generation_lineage missing field: {missing[0]}")
++    generator = _non_empty_string(value["generator"], "generation_lineage generator")
++    prompt = _non_empty_string(value["prompt"], "generation_lineage prompt")
++    source_media_ids = value["source_media_ids"]
++    if type(source_media_ids) is not list or any(
++        type(item) is not str or not item.strip() for item in source_media_ids
++    ):
++        raise ValueError("generation_lineage source_media_ids must be a list of strings")
++    source_media_ids = [item.strip() for item in source_media_ids]
++    if len(set(source_media_ids)) != len(source_media_ids):
++        raise ValueError("generation_lineage source_media_ids must be unique")
++    if kind == "generated_original" and source_media_ids:
++        raise ValueError(
++            "generated_original generation_lineage must use an empty source_media_ids list"
++        )
++    if kind == "ai_adaptation" and not source_media_ids:
++        raise ValueError(
++            "ai_adaptation generation_lineage requires non-empty source_media_ids"
++        )
++    return {
++        "generator": generator,
++        "prompt": prompt,
++        "source_media_ids": source_media_ids,
++    }
++
++
++def _validate_x_url(value: object) -> str:
++    source_url = _non_empty_string(value, "source_url")
++    if _contains_forbidden_control(source_url, allow_newlines=False):
++        raise ValueError("source_url contains control characters")
++    try:
++        parsed = urlparse(source_url)
++        valid = (
++            parsed.scheme == "https"
++            and (parsed.hostname or "").casefold() == "x.com"
++            and parsed.path.startswith("/")
++            and parsed.path != "/"
++            and parsed.username is None
++            and parsed.password is None
++            and parsed.port is None
++        )
++    except ValueError:
++        valid = False
++    if not valid:
++        raise ValueError("source_url must be a valid https://x.com/ URL")
++    return source_url
++
++
++def _is_within(path: Path, root: Path) -> bool:
++    try:
++        path.relative_to(root)
++    except ValueError:
++        return False
++    return True
++
++
++def _validate_output_target(root: Path, target: Path) -> None:
++    if target.is_symlink():
++        raise ValueError(f"output target must not be a symlink: {target.name}")
++    if not _is_within(target.parent.resolve(), root):
++        raise ValueError("output target must stay inside the run directory")
++    if target.exists() and not target.is_file():
++        raise ValueError(f"output target must be a regular file: {target.name}")
++
++
++def _validate_run_layout(run_dir: Path) -> Path:
++    requested = Path(run_dir)
++    if requested.is_symlink():
++        raise ValueError("run directory must not be a symlink")
++    try:
++        root = requested.resolve(strict=True)
++    except OSError as error:
++        raise ValueError("run directory does not exist") from error
++    if not root.is_dir():
++        raise ValueError("run directory must be a directory")
++    for name in _OUTPUT_PARENTS:
++        parent = root / name
++        if parent.is_symlink():
++            raise ValueError(f"output parent must not be a symlink: {name}")
++        if not parent.is_dir() or parent.resolve() != parent:
++            raise ValueError(f"output parent must stay inside the run directory: {name}")
++    status_path = root / "status.json"
++    if status_path.is_symlink() or not status_path.is_file():
++        raise ValueError("status.json must be a regular run-local file")
++    _validate_output_target(root, status_path)
++    for relative in (
++        _FILES["article"],
++        _FILES["titles_and_tags"],
++        _FILES["publication_order"],
++        _FILES["media_ledger"],
++    ):
++        _validate_output_target(root, root / relative)
++    return root
++
++
++def _has_symlink_component(root: Path, relative_path: PurePosixPath) -> bool:
++    current = root
++    for part in relative_path.parts:
++        current = current / part
++        if current.is_symlink():
++            return True
++    return False
++
++
++def _resolve_local_media(run_dir: Path, value: object) -> tuple[str, Path]:
++    local_path = _validate_rendered_string(
++        value,
++        "media local_path",
++        delimiters="|｜",
++        check_private_path=False,
++    )
++    posix_path = PurePosixPath(local_path)
++    windows_path = PureWindowsPath(local_path)
++    if (
++        posix_path.is_absolute()
++        or windows_path.is_absolute()
++        or windows_path.drive
++        or windows_path.root
++        or ".." in posix_path.parts
++        or ".." in windows_path.parts
++        or "\\" in local_path
++    ):
++        raise ValueError("media local_path must stay inside the run directory")
++    parsed = urlparse(local_path)
++    if parsed.scheme or parsed.netloc or local_path.startswith("//"):
++        raise ValueError("media local_path must not be a remote URL")
++    if _has_symlink_component(run_dir, posix_path):
++        raise ValueError("media local_path must stay inside the run directory")
++    resolved = (run_dir / Path(*posix_path.parts)).resolve()
++    if not _is_within(resolved, run_dir) or not resolved.is_file():
++        if not _is_within(resolved, run_dir):
++            raise ValueError("media local_path must stay inside the run directory")
++        raise ValueError(f"media file does not exist: {local_path}")
++    return posix_path.as_posix(), resolved
++
++
++def _canonical_media_path(kind: str, index: int, source_path: Path) -> str:
++    suffix = source_path.suffix.casefold()
++    if not _SAFE_SUFFIX.fullmatch(suffix):
++        suffix = ".bin"
++    directory = "original-media" if kind == "x_original" else "generated-media"
++    return f"{directory}/{index:02d}{suffix}"
++
++
++def _allowed_media_fields(kind: str) -> set[str]:
++    if kind == "x_original":
++        return _COMMON_MEDIA_FIELDS | _X_MEDIA_FIELDS | _OPTIONAL_X_MEDIA_FIELDS
++    if kind == "ai_adaptation":
++        return (
++            _COMMON_MEDIA_FIELDS
++            | _X_MEDIA_FIELDS
++            | _OPTIONAL_X_MEDIA_FIELDS
++            | _GENERATION_FIELDS
++        )
++    return _COMMON_MEDIA_FIELDS | _GENERATION_FIELDS
++
++
++def _validate_one_media(run_dir: Path, item: object, index: int) -> tuple[dict, Path]:
++    if type(item) is not dict:
++        raise ValueError("each media record must be an object")
++    kind = item.get("kind")
++    if kind not in _MEDIA_KINDS:
++        raise ValueError("invalid media kind")
++    unknown = sorted(set(item) - _allowed_media_fields(kind))
++    if unknown:
++        raise ValueError(f"unknown media field: {unknown[0]}")
++    missing = sorted(_COMMON_MEDIA_FIELDS - set(item))
++    if kind in {"x_original", "ai_adaptation"}:
++        missing.extend(sorted(_X_MEDIA_FIELDS - set(item)))
++    if kind in {"ai_adaptation", "generated_original"}:
++        missing.extend(sorted(_GENERATION_FIELDS - set(item)))
++    if missing:
++        raise ValueError(f"media record missing field: {missing[0]}")
++
++    role = item["role"]
++    if type(role) is not str or role not in _MEDIA_ROLES:
++        raise ValueError("media role must be cover or body")
++    local_path, source_path = _resolve_local_media(run_dir, item["local_path"])
++    caption = _validate_rendered_string(
++        item["caption"], "media caption", delimiters="|｜"
++    )
++    canonical_path = _canonical_media_path(kind, index, Path(local_path))
++    _validate_output_target(run_dir, run_dir / canonical_path)
++
++    result = {
++        "kind": kind,
++        "role": role,
++        "local_path": canonical_path,
++        "caption": caption,
++        "display_id": index,
++        "review_status": (
++            "pending" if kind in {"x_original", "ai_adaptation"} else "independent"
++        ),
++    }
++    if kind in {"x_original", "ai_adaptation"}:
++        result.update(
++            {
++                "source_url": _validate_x_url(item["source_url"]),
++                "source_author": _validate_rendered_string(
++                    item["source_author"], "source_author", delimiters="|｜"
++                ),
++                "source_media_id": _validate_rendered_string(
++                    item["source_media_id"], "source_media_id", delimiters="|｜"
++                ),
++            }
++        )
++        for field in sorted(_OPTIONAL_X_MEDIA_FIELDS & set(item)):
++            result[field] = _validate_rendered_string(
++                item[field], field, delimiters="|｜"
++            )
++    if kind in {"ai_adaptation", "generated_original"}:
++        result["generation_lineage"] = _validate_generation_lineage(
++            item["generation_lineage"], kind
++        )
++    return result, source_path
++
++
++def _validate_media(run_dir: Path, records: object) -> tuple[list[dict], list[Path]]:
++    if type(records) is not list or not 1 <= len(records) <= 3:
++        raise ValueError("media must contain one to three records")
++    validated = [
++        _validate_one_media(run_dir, item, index)
++        for index, item in enumerate(records, start=1)
++    ]
++    if sum(item[0]["role"] == "cover" for item in validated) != 1:
++        raise ValueError("media must contain exactly one cover")
++    return [item[0] for item in validated], [item[1] for item in validated]
++
++
++def _load_selection(run_dir: Path) -> dict:
++    selection_path = run_dir / "hotspot-analysis.json"
++    try:
++        selection = json.loads(selection_path.read_text(encoding="utf-8"))
++    except FileNotFoundError as error:
++        raise ValueError("hotspot-analysis.json is required") from error
++    except (OSError, json.JSONDecodeError) as error:
++        raise ValueError("hotspot-analysis.json must contain valid JSON") from error
++    if type(selection) is not dict:
++        raise ValueError("selection result must be an object")
++    required = {
++        "time_window_hours",
++        "candidate",
++        "content_mode",
++        "selection_reason",
++    }
++    if not required <= set(selection):
++        raise ValueError("selection result is incomplete")
++    if type(selection["time_window_hours"]) is not int or selection[
++        "time_window_hours"
++    ] not in {24, 72}:
++        raise ValueError("selection result has an invalid time window")
++    candidate = selection["candidate"]
++    if (
++        type(candidate) is not dict
++        or candidate.get("eligible") is not True
++        or type(candidate.get("id")) is not str
++        or not candidate["id"].strip()
++        or type(candidate.get("title")) is not str
++        or not candidate["title"].strip()
++    ):
++        raise ValueError("selection result must contain one eligible candidate")
++    if selection["content_mode"] not in _CONTENT_MODES:
++        raise ValueError("selection result has an invalid content mode")
++    _non_empty_string(selection["selection_reason"], "selection_reason")
++    return selection
++
++
++def _render_titles_and_tags(titles: list[str], tags: list[str]) -> str:
++    title_lines = [f"{index}. {title}" for index, title in enumerate(titles, start=1)]
++    return "\n".join(
++        [
++            "# 备选标题",
++            "",
++            *title_lines,
++            "",
++            "# 标签",
++            "",
++            " ".join(f"#{tag}#" for tag in tags),
++        ]
++    )
++
++
++def _render_publication_order(media: list[dict]) -> str:
++    lines = ["# 发布顺序", ""]
++    for item in media:
++        role = "封面" if item["role"] == "cover" else "正文图"
++        lines.append(
++            f"{item['display_id']}. {role}｜{item['local_path']}｜{item['caption']}"
++        )
++    return "\n".join(lines)
++
++
++def _validate_payload(payload: object) -> tuple[str, list[str], list[str], bool, bool]:
++    if type(payload) is not dict:
++        raise ValueError("draft payload must be an object")
++    unknown = sorted(set(payload) - _DRAFT_FIELDS)
++    if unknown:
++        raise ValueError(f"unknown draft field: {unknown[0]}")
++    missing = sorted(_DRAFT_FIELDS - set(payload))
++    if missing:
++        raise ValueError(f"draft payload missing field: {missing[0]}")
++    if type(payload["authorized_media_intent"]) is not bool:
++        raise ValueError("authorized_media_intent must be a boolean")
++    if type(payload["ai_assistance"]) is not bool:
++        raise ValueError("ai_assistance must be a boolean")
++    return (
++        _validate_article(payload["article"]),
++        _validate_unique_strings(payload["titles"], "titles", 3, 3),
++        _validate_unique_strings(payload["tags"], "tags", 8, 12),
++        payload["authorized_media_intent"],
++        payload["ai_assistance"],
++    )
++
++
++def _apply_disclosure(article: str, authorized_intent: bool, ai_assistance: bool) -> str:
++    if authorized_intent and ai_assistance:
++        article = f"{article}\n\n{PUBLIC_DISCLOSURE}"
++    count = len("".join(article.split()))
++    if not 800 <= count <= 1500:
++        raise ValueError("article must contain 800–1500 non-whitespace characters")
++    return article
++
++
++def _stage_text(path: Path, text: str) -> None:
++    path.write_text(text.rstrip() + "\n", encoding="utf-8")
++
++
++def _install_staged_file(staged: Path, target: Path) -> None:
++    staged.replace(target)
++
++
++def _rollback_install_set(
++    targets: list[Path],
++    backups: dict[Path, Path | None],
++    status_path: Path,
++    status_backup: Path,
++) -> None:
++    errors = []
++    for target in reversed(targets):
++        backup = backups[target]
++        try:
++            if backup is None:
++                target.unlink(missing_ok=True)
++            else:
++                os.replace(backup, target)
++        except OSError as error:
++            errors.append(error)
++    try:
++        os.replace(status_backup, status_path)
++    except OSError as error:
++        errors.append(error)
++    if errors:
++        raise RuntimeError("failed to roll back draft transaction") from errors[0]
++
++
++def _transactional_install(
++    run_dir: Path,
++    article: str,
++    titles_and_tags: str,
++    publication_order: str,
++    media: list[dict],
++    media_sources: list[Path],
++    selection: dict,
++) -> dict:
++    staging_dir = Path(tempfile.mkdtemp(prefix=".draft-stage-", dir=run_dir))
++    try:
++        install_dir = staging_dir / "install"
++        backup_dir = staging_dir / "backup"
++        install_dir.mkdir()
++        backup_dir.mkdir()
++
++        staged_article = install_dir / "article.md"
++        staged_titles = install_dir / "titles-and-tags.md"
++        staged_order = install_dir / "publication-order.md"
++        staged_ledger = install_dir / "media-ledger.json"
++        _stage_text(staged_article, article)
++        _stage_text(staged_titles, titles_and_tags)
++        _stage_text(staged_order, publication_order)
++        write_json_atomic(staged_ledger, media)
++
++        install_items = [
++            (staged_article, run_dir / _FILES["article"]),
++            (staged_titles, run_dir / _FILES["titles_and_tags"]),
++            (staged_order, run_dir / _FILES["publication_order"]),
++            (staged_ledger, run_dir / _FILES["media_ledger"]),
++        ]
++        for index, (record, source_path) in enumerate(
++            zip(media, media_sources, strict=True), start=1
++        ):
++            staged_media = (
++                install_dir
++                / f"media-{index:02d}{Path(record['local_path']).suffix}"
++            )
++            shutil.copyfile(source_path, staged_media)
++            install_items.append((staged_media, run_dir / record["local_path"]))
++
++        targets = [target for _, target in install_items]
++        backups: dict[Path, Path | None] = {}
++        for index, target in enumerate(targets, start=1):
++            if target.exists():
++                backup = backup_dir / f"target-{index:02d}.bak"
++                shutil.copyfile(target, backup)
++                backups[target] = backup
++            else:
++                backups[target] = None
++        status_path = run_dir / "status.json"
++        status_backup = backup_dir / "status.json"
++        shutil.copyfile(status_path, status_backup)
++
++        try:
++            for staged, target in install_items:
++                _install_staged_file(staged, target)
++
++            counts = {
++                status: sum(item["review_status"] == status for item in media)
++                for status in ("pending", "authorized", "rejected", "independent")
++            }
++            updates = {
++                "content_mode": selection["content_mode"],
++                "time_window_hours": selection["time_window_hours"],
++                "files": _FILES,
++                "media_review": counts,
++            }
++            if selection["time_window_hours"] == 72:
++                updates["window_expansion"] = {
++                    "from": 24,
++                    "to": 72,
++                    "insufficient_24h": True,
++                    "reason": "The 24-hour research window lacked sufficient cross-platform evidence.",
++                }
++            transition(run_dir, "researching", "draft_ready", **updates)
++            return transition(run_dir, "draft_ready", "authorization_review")
++        except Exception:
++            _rollback_install_set(targets, backups, status_path, status_backup)
++            raise
++    finally:
++        shutil.rmtree(staging_dir, ignore_errors=True)
++
++
++def build_draft(run_dir: Path, payload: dict) -> dict:
++    """Validate untrusted draft input, snapshot media, and enter review atomically."""
++    run_dir = _validate_run_layout(Path(run_dir))
++    state = load_state(run_dir)
++    if state["state"] != "researching":
++        raise ValueError(f"expected researching, found {state['state']}")
++    selection = _load_selection(run_dir)
++    article, titles, tags, authorized_intent, ai_assistance = _validate_payload(
++        payload
++    )
++    media, media_sources = _validate_media(run_dir, payload["media"])
++    article = _apply_disclosure(article, authorized_intent, ai_assistance)
++    return _transactional_install(
++        run_dir,
++        article,
++        _render_titles_and_tags(titles, tags),
++        _render_publication_order(media),
++        media,
++        media_sources,
++        selection,
++    )
+diff --git a/lofter-x-anime-hotspot/tests/test_build_publishable_draft.py b/lofter-x-anime-hotspot/tests/test_build_publishable_draft.py
+new file mode 100644
+index 0000000..25176c3
+--- /dev/null
++++ b/lofter-x-anime-hotspot/tests/test_build_publishable_draft.py
+@@ -0,0 +1,721 @@
++import json
++import sys
++import tempfile
++import unittest
++from datetime import datetime
++from pathlib import Path
++from unittest import mock
++
++
++SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
++sys.path.insert(0, str(SCRIPTS))
++
++import build_publishable_draft as draft_module
++from build_publishable_draft import PUBLIC_DISCLOSURE, build_draft
++from run_state import create_run, load_state, write_json_atomic
++
++
++FIXED_NOW = datetime(2026, 8, 11, 14, 30)
++
++
++def long_article() -> str:
++    return "这是用于验证可发布草稿长度与结构的原创中文正文。" * 50
++
++
++def valid_payload() -> dict:
++    return {
++        "article": long_article(),
++        "titles": ["备选标题一", "备选标题二", "备选标题三"],
++        "tags": [f"标签{number}" for number in range(1, 9)],
++        "authorized_media_intent": True,
++        "ai_assistance": True,
++        "media": [
++            {
++                "kind": "x_original",
++                "role": "cover",
++                "local_path": "original-media/candidate.webp",
++                "caption": "候选封面图",
++                "source_url": "https://x.com/artist/status/123",
++                "source_author": "@artist",
++                "source_media_id": "media-123",
++            },
++            {
++                "kind": "generated_original",
++                "role": "body",
++                "local_path": "generated-media/original.webp",
++                "caption": "独立原创配图",
++                "generation_lineage": {
++                    "generator": "test-image-model",
++                    "prompt": "an independent original composition",
++                    "source_media_ids": [],
++                },
++            },
++        ],
++    }
++
++
++class BuildPublishableDraftTest(unittest.TestCase):
++    def setUp(self):
++        self.temporary = tempfile.TemporaryDirectory()
++        self.addCleanup(self.temporary.cleanup)
++
++    def create_run_with_local_media(
++        self, slug: str = "selected-topic", hours: int = 24
++    ) -> Path:
++        run_dir, _ = create_run(Path(self.temporary.name), slug, FIXED_NOW)
++        (run_dir / "original-media/candidate.webp").write_bytes(b"candidate")
++        (run_dir / "generated-media/original.webp").write_bytes(b"generated")
++        write_json_atomic(
++            run_dir / "hotspot-analysis.json",
++            {
++                "time_window_hours": hours,
++                "candidate": {
++                    "id": slug,
++                    "title": "入选热点",
++                    "eligible": True,
++                },
++                "content_mode": "trend_analysis",
++                "selection_reason": "24小时窗口内综合评分最高：91/100",
++            },
++        )
++        return run_dir
++
++    def seed_existing_targets(self, run_dir: Path) -> dict[Path, bytes]:
++        values = {
++            run_dir / "article.md": b"old article\n",
++            run_dir / "titles-and-tags.md": b"old titles\n",
++            run_dir / "publication-order.md": b"old order\n",
++            run_dir / "sources/media-ledger.json": b"[]\n",
++            run_dir / "original-media/01.webp": b"old x media",
++            run_dir / "generated-media/02.webp": b"old generated media",
++        }
++        for path, content in values.items():
++            path.write_bytes(content)
++        return values
++
++    def test_builds_exact_publication_artifacts_and_enters_review(self):
++        run_dir = self.create_run_with_local_media()
++
++        result = build_draft(run_dir, valid_payload())
++
++        self.assertEqual(result["state"], "authorization_review")
++        for relative_path in (
++            "article.md",
++            "titles-and-tags.md",
++            "publication-order.md",
++            "sources/media-ledger.json",
++        ):
++            self.assertTrue((run_dir / relative_path).is_file(), relative_path)
++        ledger = json.loads(
++            (run_dir / "sources/media-ledger.json").read_text(encoding="utf-8")
++        )
++        self.assertEqual(
++            [item["review_status"] for item in ledger], ["pending", "independent"]
++        )
++        self.assertEqual([item["display_id"] for item in ledger], [1, 2])
++        self.assertEqual(
++            [item["local_path"] for item in ledger],
++            ["original-media/01.webp", "generated-media/02.webp"],
++        )
++        self.assertEqual((run_dir / "original-media/01.webp").read_bytes(), b"candidate")
++        self.assertEqual(
++            (run_dir / "generated-media/02.webp").read_bytes(), b"generated"
++        )
++        (run_dir / "original-media/candidate.webp").write_bytes(b"changed candidate")
++        (run_dir / "generated-media/original.webp").write_bytes(b"changed generated")
++        self.assertEqual((run_dir / "original-media/01.webp").read_bytes(), b"candidate")
++        self.assertEqual(
++            (run_dir / "generated-media/02.webp").read_bytes(), b"generated"
++        )
++        self.assertIn(PUBLIC_DISCLOSURE, (run_dir / "article.md").read_text())
++        self.assertEqual(
++            (run_dir / "article.md").read_text(encoding="utf-8"),
++            f"{long_article()}\n\n{PUBLIC_DISCLOSURE}\n",
++        )
++        self.assertEqual(
++            result["files"]["media_ledger"], "sources/media-ledger.json"
++        )
++        self.assertEqual(result["content_mode"], "trend_analysis")
++        self.assertEqual(
++            (run_dir / "titles-and-tags.md").read_text(encoding="utf-8"),
++            "# 备选标题\n\n1. 备选标题一\n2. 备选标题二\n3. 备选标题三\n\n"
++            "# 标签\n\n#标签1# #标签2# #标签3# #标签4# #标签5# #标签6# #标签7# #标签8#\n",
++        )
++        self.assertEqual(
++            (run_dir / "publication-order.md").read_text(encoding="utf-8"),
++            "# 发布顺序\n\n1. 封面｜original-media/01.webp｜候选封面图\n"
++            "2. 正文图｜generated-media/02.webp｜独立原创配图\n",
++        )
++
++    def test_rejects_wrong_article_length_title_count_or_tag_count(self):
++        run_dir = self.create_run_with_local_media()
++        for field, value, message in (
++            ("article", "太短", "800–1500"),
++            ("titles", ["一个标题"], "exactly three"),
++            ("tags", [f"标签{number}" for number in range(7)], "8–12"),
++        ):
++            with self.subTest(field=field):
++                payload = valid_payload()
++                payload[field] = value
++                with self.assertRaisesRegex(ValueError, message):
++                    build_draft(run_dir, payload)
++                self.assertEqual(load_state(run_dir)["state"], "researching")
++
++    def test_rejects_duplicate_or_empty_titles_and_tags(self):
++        run_dir = self.create_run_with_local_media()
++        cases = (
++            ("titles", ["重复", "重复", "第三个"], "unique non-empty"),
++            ("titles", ["第一个", " ", "第三个"], "unique non-empty"),
++            ("tags", ["重复"] * 8, "unique non-empty"),
++        )
++        for field, value, message in cases:
++            with self.subTest(field=field, value=value):
++                payload = valid_payload()
++                payload[field] = value
++                with self.assertRaisesRegex(ValueError, message):
++                    build_draft(run_dir, payload)
++
++    def test_rejects_markdown_row_and_tag_injection_in_scalar_fields(self):
++        cases = []
++
++        newline_title = valid_payload()
++        newline_title["titles"][0] = "安全标题\n4. 注入标题"
++        cases.append((newline_title, "titles.*control"))
++
++        delimiter_title = valid_payload()
++        delimiter_title["titles"][0] = "标题｜伪造列"
++        cases.append((delimiter_title, "titles.*delimiter"))
++
++        injected_tag = valid_payload()
++        injected_tag["tags"][0] = "标签# #额外标签"
++        cases.append((injected_tag, "tags.*delimiter"))
++
++        injected_caption = valid_payload()
++        injected_caption["media"][0]["caption"] = "说明\n2. 伪造顺序"
++        cases.append((injected_caption, "caption.*control"))
++
++        delimited_caption = valid_payload()
++        delimited_caption["media"][0]["caption"] = "说明｜伪造字段"
++        cases.append((delimited_caption, "caption.*delimiter"))
++
++        injected_filename = valid_payload()
++        injected_filename["media"][0]["local_path"] = (
++            "original-media/candidate.webp\n2. injected.webp"
++        )
++        cases.append((injected_filename, "local_path.*control"))
++
++        delimited_filename = valid_payload()
++        delimited_filename["media"][0]["local_path"] = (
++            "original-media/candidate.webp｜2. injected.webp"
++        )
++        cases.append((delimited_filename, "local_path.*delimiter"))
++
++        injected_role = valid_payload()
++        injected_role["media"][0]["role"] = "cover\nbody"
++        cases.append((injected_role, "role"))
++
++        injected_author = valid_payload()
++        injected_author["media"][0]["source_author"] = "@artist\rforged"
++        cases.append((injected_author, "source_author.*control"))
++
++        injected_media_id = valid_payload()
++        injected_media_id["media"][0]["source_media_id"] = "media-123\x00forged"
++        cases.append((injected_media_id, "source_media_id.*control"))
++
++        for index, (payload, message) in enumerate(cases):
++            with self.subTest(message=message):
++                run_dir = self.create_run_with_local_media(f"scalar-injection-{index}")
++                with self.assertRaisesRegex(ValueError, message):
++                    build_draft(run_dir, payload)
++                self.assertEqual(load_state(run_dir)["state"], "researching")
++
++    def test_reserves_builder_disclosure_across_every_public_input(self):
++        cases = []
++
++        article = valid_payload()
++        article["article"] += PUBLIC_DISCLOSURE
++        cases.append(article)
++
++        title = valid_payload()
++        title["titles"][0] = PUBLIC_DISCLOSURE
++        cases.append(title)
++
++        tag = valid_payload()
++        tag["tags"][0] = PUBLIC_DISCLOSURE
++        cases.append(tag)
++
++        caption = valid_payload()
++        caption["media"][0]["caption"] = PUBLIC_DISCLOSURE
++        cases.append(caption)
++
++        filename = valid_payload()
++        filename["media"][0]["local_path"] = (
++            f"original-media/{PUBLIC_DISCLOSURE}.webp"
++        )
++        cases.append(filename)
++
++        for index, payload in enumerate(cases):
++            with self.subTest(index=index):
++                run_dir = self.create_run_with_local_media(f"disclosure-input-{index}")
++                with self.assertRaisesRegex(ValueError, "reserved disclosure"):
++                    build_draft(run_dir, payload)
++                self.assertFalse((run_dir / "article.md").exists())
++
++    def test_rejects_private_paths_after_unicode_punctuation_and_backticks(self):
++        private_values = (
++            "说明：`/Users/reviewer/authorization/evidence.png`",
++            "说明（/home/reviewer/private/evidence.png）",
++            "证据—file:///private/tmp/authorization.txt",
++            "记录：C:\\Users\\reviewer\\secret.txt",
++            "记录：【\\\\server\\share\\authorization.txt】",
++            "缓存…/tmp/review/evidence.json",
++            "构建产物：`/srv/project/build.json`",
++        )
++        for index, value in enumerate(private_values):
++            with self.subTest(value=value):
++                run_dir = self.create_run_with_local_media(f"private-path-{index}")
++                payload = valid_payload()
++                payload["media"][1]["caption"] = value
++                with self.assertRaisesRegex(ValueError, "private path"):
++                    build_draft(run_dir, payload)
++
++        run_dir = self.create_run_with_local_media("ordinary-slashes")
++        payload = valid_payload()
++        payload["media"][1]["caption"] = "普通斜杠表达：A/B 与角色/关系"
++        build_draft(run_dir, payload)
++
++    def test_private_path_checks_cover_article_titles_tags_and_captions(self):
++        cases = []
++        article = valid_payload()
++        article["article"] += " 证据：`/Users/reviewer/evidence.txt`"
++        cases.append(article)
++        title = valid_payload()
++        title["titles"][0] = "标题（/home/reviewer/evidence.txt）"
++        cases.append(title)
++        tag = valid_payload()
++        tag["tags"][0] = "/tmp/private-tag"
++        cases.append(tag)
++        caption = valid_payload()
++        caption["media"][0]["caption"] = "证据 file:///private/evidence.txt"
++        cases.append(caption)
++
++        for index, payload in enumerate(cases):
++            with self.subTest(index=index):
++                run_dir = self.create_run_with_local_media(f"public-path-{index}")
++                with self.assertRaisesRegex(ValueError, "private path"):
++                    build_draft(run_dir, payload)
++
++    def test_rejects_missing_file_remote_url_and_private_evidence_leaks(self):
++        run_dir = self.create_run_with_local_media()
++        cases = []
++
++        missing = valid_payload()
++        missing["media"][0]["local_path"] = "original-media/missing.webp"
++        cases.append((missing, "does not exist"))
++
++        remote = valid_payload()
++        remote["media"][0]["local_path"] = "https://example.com/image.webp"
++        cases.append((remote, "remote URL"))
++
++        article_leak = valid_payload()
++        article_leak["article"] += " evidence_path=/private/authorization.txt"
++        cases.append((article_leak, "private evidence"))
++
++        caption_leak = valid_payload()
++        caption_leak["media"][1]["caption"] = "/Users/reviewer/private/evidence.png"
++        cases.append((caption_leak, "private path"))
++
++        for payload, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    build_draft(run_dir, payload)
++                self.assertFalse((run_dir / "article.md").exists())
++                self.assertEqual(load_state(run_dir)["state"], "researching")
++
++    def test_rejects_unsafe_media_paths_and_invalid_media_shape(self):
++        run_dir = self.create_run_with_local_media()
++        cases = []
++
++        traversal = valid_payload()
++        traversal["media"][0]["local_path"] = "../candidate.webp"
++        cases.append((traversal, "stay inside"))
++
++        windows = valid_payload()
++        windows["media"][0]["local_path"] = "C:\\private\\candidate.webp"
++        cases.append((windows, "stay inside"))
++
++        unc = valid_payload()
++        unc["media"][0]["local_path"] = "\\\\server\\share\\candidate.webp"
++        cases.append((unc, "stay inside"))
++
++        two_covers = valid_payload()
++        two_covers["media"][1]["role"] = "cover"
++        cases.append((two_covers, "exactly one cover"))
++
++        invalid_kind = valid_payload()
++        invalid_kind["media"][1]["kind"] = "remote_image"
++        cases.append((invalid_kind, "invalid media kind"))
++
++        too_many = valid_payload()
++        too_many["media"] = too_many["media"] * 2
++        cases.append((too_many, "one to three"))
++
++        for payload, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    build_draft(run_dir, payload)
++
++        outside = Path(self.temporary.name) / "outside.webp"
++        outside.write_bytes(b"outside")
++        (run_dir / "original-media/link.webp").symlink_to(outside)
++        payload = valid_payload()
++        payload["media"][0]["local_path"] = "original-media/link.webp"
++        with self.assertRaisesRegex(ValueError, "stay inside"):
++            build_draft(run_dir, payload)
++
++    def test_rejects_symlinked_fixed_output_parents(self):
++        for index, parent_name in enumerate(("sources", "original-media", "generated-media")):
++            with self.subTest(parent_name=parent_name):
++                run_dir = self.create_run_with_local_media(f"parent-link-{index}")
++                parent = run_dir / parent_name
++                for child in tuple(parent.iterdir()):
++                    child.unlink()
++                parent.rmdir()
++                escape = Path(self.temporary.name) / f"escape-{index}"
++                escape.mkdir()
++                parent.symlink_to(escape, target_is_directory=True)
++                payload = valid_payload()
++                if parent_name == "original-media":
++                    (escape / "candidate.webp").write_bytes(b"candidate")
++                if parent_name == "generated-media":
++                    (escape / "original.webp").write_bytes(b"generated")
++                with self.assertRaisesRegex(ValueError, "output parent.*symlink"):
++                    build_draft(run_dir, payload)
++                self.assertEqual(load_state(run_dir)["state"], "researching")
++
++    def test_rejects_symlinked_fixed_output_target_and_run_directory(self):
++        run_dir = self.create_run_with_local_media("target-link")
++        outside = Path(self.temporary.name) / "outside-article.md"
++        outside.write_text("outside", encoding="utf-8")
++        (run_dir / "article.md").symlink_to(outside)
++        with self.assertRaisesRegex(ValueError, "output target.*symlink"):
++            build_draft(run_dir, valid_payload())
++        self.assertEqual(outside.read_text(encoding="utf-8"), "outside")
++
++        linked_run = Path(self.temporary.name) / "linked-run"
++        linked_run.symlink_to(run_dir, target_is_directory=True)
++        with self.assertRaisesRegex(ValueError, "run directory.*symlink"):
++            build_draft(linked_run, valid_payload())
++
++    def test_validates_x_provenance_and_generated_lineage(self):
++        cases = []
++
++        wrong_host = valid_payload()
++        wrong_host["media"][0]["source_url"] = "https://example.com/status/123"
++        cases.append((wrong_host, "https://x.com/"))
++
++        missing_author = valid_payload()
++        missing_author["media"][0]["source_author"] = " "
++        cases.append((missing_author, "source_author"))
++
++        missing_media_id = valid_payload()
++        missing_media_id["media"][0]["source_media_id"] = ""
++        cases.append((missing_media_id, "source_media_id"))
++
++        invalid_lineage = valid_payload()
++        invalid_lineage["media"][1]["generation_lineage"] = []
++        cases.append((invalid_lineage, "generation_lineage"))
++
++        empty_lineage = valid_payload()
++        empty_lineage["media"][1]["generation_lineage"] = {}
++        cases.append((empty_lineage, "generation_lineage"))
++
++        unknown_lineage = valid_payload()
++        unknown_lineage["media"][1]["generation_lineage"]["model"] = "extra"
++        cases.append((unknown_lineage, "unknown generation_lineage"))
++
++        duplicate_sources = valid_payload()
++        duplicate_sources["media"][1]["generation_lineage"]["source_media_ids"] = [
++            "source-1",
++            "source-1",
++        ]
++        cases.append((duplicate_sources, "unique"))
++
++        generated_with_source = valid_payload()
++        generated_with_source["media"][1]["generation_lineage"][
++            "source_media_ids"
++        ] = ["source-1"]
++        cases.append((generated_with_source, "generated_original.*empty"))
++
++        non_finite = valid_payload()
++        non_finite["media"][1]["generation_lineage"]["generator"] = float("nan")
++        cases.append((non_finite, "generator.*non-empty string"))
++
++        non_json = valid_payload()
++        non_json["media"][1]["generation_lineage"]["prompt"] = {"set-value"}
++        cases.append((non_json, "prompt.*non-empty string"))
++
++        non_string_source = valid_payload()
++        non_string_source["media"][1]["generation_lineage"][
++            "source_media_ids"
++        ] = [1]
++        cases.append((non_string_source, "list of strings"))
++
++        for index, (payload, message) in enumerate(cases):
++            with self.subTest(message=message):
++                run_dir = self.create_run_with_local_media(f"lineage-case-{index}")
++                with self.assertRaisesRegex(ValueError, message):
++                    build_draft(run_dir, payload)
++
++    def test_ai_adaptation_requires_non_empty_generation_sources(self):
++        run_dir = self.create_run_with_local_media()
++        payload = valid_payload()
++        payload["media"][1] = {
++            "kind": "ai_adaptation",
++            "role": "body",
++            "local_path": "generated-media/original.webp",
++            "caption": "AI改编配图",
++            "source_url": "https://x.com/artist/status/456",
++            "source_author": "@artist",
++            "source_media_id": "media-456",
++            "generation_lineage": {
++                "generator": "test-image-model",
++                "prompt": "adapt the authorized source",
++                "source_media_ids": [],
++            },
++        }
++        with self.assertRaisesRegex(ValueError, "ai_adaptation.*non-empty"):
++            build_draft(run_dir, payload)
++
++        payload["media"][1]["generation_lineage"]["source_media_ids"] = [
++            "media-456"
++        ]
++        result = build_draft(run_dir, payload)
++        self.assertEqual(result["state"], "authorization_review")
++        ledger = json.loads(
++            (run_dir / "sources/media-ledger.json").read_text(encoding="utf-8")
++        )
++        self.assertEqual(ledger[1]["review_status"], "pending")
++        self.assertEqual(ledger[1]["local_path"], "generated-media/02.webp")
++
++    def test_media_already_at_canonical_targets_is_preserved_safely(self):
++        run_dir = self.create_run_with_local_media("canonical-inputs")
++        (run_dir / "original-media/01.webp").write_bytes(b"canonical candidate")
++        (run_dir / "generated-media/02.webp").write_bytes(b"canonical generated")
++        payload = valid_payload()
++        payload["media"][0]["local_path"] = "original-media/01.webp"
++        payload["media"][1]["local_path"] = "generated-media/02.webp"
++
++        build_draft(run_dir, payload)
++
++        self.assertEqual(
++            (run_dir / "original-media/01.webp").read_bytes(), b"canonical candidate"
++        )
++        self.assertEqual(
++            (run_dir / "generated-media/02.webp").read_bytes(), b"canonical generated"
++        )
++
++    def test_media_copy_uses_safe_fallback_for_untrusted_suffix(self):
++        run_dir = self.create_run_with_local_media("unsafe-suffix")
++        (run_dir / "original-media/candidate.wéb").write_bytes(b"unsafe suffix")
++        payload = valid_payload()
++        payload["media"][0]["local_path"] = "original-media/candidate.wéb"
++
++        build_draft(run_dir, payload)
++
++        ledger = json.loads(
++            (run_dir / "sources/media-ledger.json").read_text(encoding="utf-8")
++        )
++        self.assertEqual(ledger[0]["local_path"], "original-media/01.bin")
++        self.assertEqual((run_dir / "original-media/01.bin").read_bytes(), b"unsafe suffix")
++
++    def test_disclosure_is_present_only_when_both_intent_flags_are_true(self):
++        combinations = ((False, False), (True, False), (False, True), (True, True))
++        for index, (authorized_intent, ai_assistance) in enumerate(combinations):
++            with self.subTest(
++                authorized_intent=authorized_intent,
++                ai_assistance=ai_assistance,
++            ):
++                run_dir, _ = create_run(
++                    Path(self.temporary.name), f"disclosure-{index}", FIXED_NOW
++                )
++                (run_dir / "original-media/candidate.webp").write_bytes(b"candidate")
++                (run_dir / "generated-media/original.webp").write_bytes(b"generated")
++                write_json_atomic(
++                    run_dir / "hotspot-analysis.json",
++                    {
++                        "time_window_hours": 24,
++                        "candidate": {
++                            "id": f"disclosure-{index}",
++                            "title": "入选热点",
++                            "eligible": True,
++                        },
++                        "content_mode": "trend_analysis",
++                        "selection_reason": "综合评分最高",
++                    },
++                )
++                payload = valid_payload()
++                payload["authorized_media_intent"] = authorized_intent
++                payload["ai_assistance"] = ai_assistance
++
++                build_draft(run_dir, payload)
++
++                article = (run_dir / "article.md").read_text(encoding="utf-8")
++                self.assertEqual(
++                    PUBLIC_DISCLOSURE in article,
++                    authorized_intent and ai_assistance,
++                )
++
++    def test_requires_researching_run_and_persisted_selection(self):
++        run_dir = self.create_run_with_local_media()
++        (run_dir / "hotspot-analysis.json").unlink()
++        with self.assertRaisesRegex(ValueError, "hotspot-analysis.json"):
++            build_draft(run_dir, valid_payload())
++
++        write_json_atomic(run_dir / "hotspot-analysis.json", {"content_mode": "fanfic"})
++        with self.assertRaisesRegex(ValueError, "selection result"):
++            build_draft(run_dir, valid_payload())
++
++    def test_72_hour_selection_persists_compatible_expansion_evidence(self):
++        run_dir = self.create_run_with_local_media("expanded-topic", hours=72)
++        result = build_draft(run_dir, valid_payload())
++        self.assertEqual(result["state"], "authorization_review")
++        self.assertEqual(result["time_window_hours"], 72)
++        self.assertEqual(
++            result["window_expansion"],
++            {
++                "from": 24,
++                "to": 72,
++                "insufficient_24h": True,
++                "reason": "The 24-hour research window lacked sufficient cross-platform evidence.",
++            },
++        )
++
++    def test_rejects_untrusted_unknown_fields(self):
++        run_dir = self.create_run_with_local_media()
++        payload = valid_payload()
++        payload["authorization_evidence"] = "/private/evidence.txt"
++        with self.assertRaisesRegex(ValueError, "unknown draft field"):
++            build_draft(run_dir, payload)
++
++        payload = valid_payload()
++        del payload["titles"]
++        with self.assertRaisesRegex(ValueError, "missing field: titles"):
++            build_draft(run_dir, payload)
++
++        payload = valid_payload()
++        payload["media"][0]["evidence_path"] = "/private/evidence.txt"
++        with self.assertRaisesRegex(ValueError, "unknown media field: evidence_path"):
++            build_draft(run_dir, payload)
++
++        payload = valid_payload()
++        del payload["media"][0]["source_media_id"]
++        with self.assertRaisesRegex(ValueError, "missing field: source_media_id"):
++            build_draft(run_dir, payload)
++
++    def test_artifact_install_failures_restore_preexisting_set_and_state(self):
++        for failure_index in range(1, 7):
++            with self.subTest(failure_index=failure_index):
++                run_dir = self.create_run_with_local_media(f"install-fail-{failure_index}")
++                originals = self.seed_existing_targets(run_dir)
++                original_status = (run_dir / "status.json").read_bytes()
++                real_install = getattr(
++                    draft_module,
++                    "_install_staged_file",
++                    lambda staged, target: staged.replace(target),
++                )
++                calls = 0
++
++                def fail_one_install(staged, target):
++                    nonlocal calls
++                    calls += 1
++                    if calls == failure_index:
++                        raise OSError(f"injected install failure {failure_index}")
++                    return real_install(staged, target)
++
++                with mock.patch.object(
++                    draft_module,
++                    "_install_staged_file",
++                    side_effect=fail_one_install,
++                    create=True,
++                ):
++                    with self.assertRaisesRegex(OSError, "injected install failure"):
++                        build_draft(run_dir, valid_payload())
++
++                self.assertEqual(calls, failure_index)
++                self.assertEqual((run_dir / "status.json").read_bytes(), original_status)
++                for path, content in originals.items():
++                    self.assertEqual(path.read_bytes(), content, path)
++                self.assertFalse(tuple(run_dir.glob(".draft-stage-*")))
++                self.assertEqual(load_state(run_dir)["state"], "researching")
++
++                result = build_draft(run_dir, valid_payload())
++                self.assertEqual(result["state"], "authorization_review")
++
++    def test_transition_failures_restore_artifacts_status_and_allow_retry(self):
++        for failure_index in (1, 2):
++            with self.subTest(failure_index=failure_index):
++                run_dir = self.create_run_with_local_media(
++                    f"transition-fail-{failure_index}"
++                )
++                originals = self.seed_existing_targets(run_dir)
++                original_status = (run_dir / "status.json").read_bytes()
++                real_transition = draft_module.transition
++                calls = 0
++
++                def fail_one_transition(*args, **kwargs):
++                    nonlocal calls
++                    calls += 1
++                    if calls == failure_index:
++                        raise OSError(f"injected transition failure {failure_index}")
++                    return real_transition(*args, **kwargs)
++
++                with mock.patch.object(
++                    draft_module,
++                    "transition",
++                    side_effect=fail_one_transition,
++                ):
++                    with self.assertRaisesRegex(OSError, "injected transition failure"):
++                        build_draft(run_dir, valid_payload())
++
++                self.assertEqual(calls, failure_index)
++                self.assertEqual((run_dir / "status.json").read_bytes(), original_status)
++                for path, content in originals.items():
++                    self.assertEqual(path.read_bytes(), content, path)
++                self.assertFalse(tuple(run_dir.glob(".draft-stage-*")))
++                self.assertEqual(load_state(run_dir)["state"], "researching")
++
++                result = build_draft(run_dir, valid_payload())
++                self.assertEqual(result["state"], "authorization_review")
++
++    def test_transition_failure_removes_every_new_artifact_and_media_copy(self):
++        run_dir = self.create_run_with_local_media("new-output-rollback")
++        real_transition = draft_module.transition
++
++        with mock.patch.object(
++            draft_module,
++            "transition",
++            side_effect=OSError("injected first transition failure"),
++        ):
++            with self.assertRaisesRegex(OSError, "injected first transition failure"):
++                build_draft(run_dir, valid_payload())
++
++        for relative_path in (
++            "article.md",
++            "titles-and-tags.md",
++            "publication-order.md",
++            "sources/media-ledger.json",
++            "original-media/01.webp",
++            "generated-media/02.webp",
++        ):
++            self.assertFalse((run_dir / relative_path).exists(), relative_path)
++        self.assertEqual(load_state(run_dir)["state"], "researching")
++        self.assertFalse(tuple(run_dir.glob(".draft-stage-*")))
++
++        with mock.patch.object(draft_module, "transition", wraps=real_transition):
++            result = build_draft(run_dir, valid_payload())
++        self.assertEqual(result["state"], "authorization_review")
++
++
++if __name__ == "__main__":
++    unittest.main()

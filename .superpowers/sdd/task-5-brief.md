@@ -1,119 +1,77 @@
-### Task 5: Example Inputs and End-to-End Verification
+### Task 5: Self-Contained HTML Preview
 
 **Files:**
-- Create: `lofter-x-anime-hotspot/templates/candidates.example.json`
-- Create: `lofter-x-anime-hotspot/templates/authorizations.example.json`
+- Create: `lofter-x-anime-hotspot/scripts/render_preview.py`
+- Create: `lofter-x-anime-hotspot/tests/test_render_preview.py`
 
 **Interfaces:**
-- Consumes: the CLI commands from Tasks 1—3.
-- Produces: reproducible sample files and a verified content packet in a temporary directory.
+- Consumes: completed draft artifacts and media ledger
+- Produces: `render_preview(run_dir: Path) -> Path`
+- Produces: `preview.html` with no remote scripts, forms, network requests, or embedded private authorization evidence
 
-- [ ] **Step 1: Create the candidate example**
+- [ ] **Step 1: Write failing preview tests**
 
-```json
-[
-  {
-    "id": "example-hotspot-1",
-    "title": "示例角色纪念日创作增长",
-    "ip_name": "示例IP",
-    "ip_slot": "rising",
-    "characters": ["角色A", "角色B"],
-    "tags": ["示例IP", "角色A"],
-    "x_growth": 27,
-    "lofter_activity": 24,
-    "ip_match": 15,
-    "authorization": 15,
-    "story_potential": 8,
-    "x_evidence": "近24小时相关公开帖互动与创作数量集中增长",
-    "lofter_evidence": "对应标签出现持续更新和有效互动"
-  }
-]
+```python
+class RenderPreviewTest(unittest.TestCase):
+    def test_preview_contains_article_titles_tags_media_and_review_warning(self):
+        run_dir = prepared_review_run()
+        path = render_preview(run_dir)
+        html = path.read_text(encoding="utf-8")
+        self.assertIn("等待授权复核，尚不可发布", html)
+        self.assertIn("候选标题", html)
+        self.assertIn("X原图", html)
+        self.assertIn("第1张", html)
+        self.assertIn("热点依据", html)
+
+    def test_preview_is_local_and_does_not_leak_evidence(self):
+        run_dir = prepared_review_run()
+        html = render_preview(run_dir).read_text(encoding="utf-8")
+        self.assertNotIn("<script", html.lower())
+        self.assertNotIn("<form", html.lower())
+        self.assertNotIn("evidence_path", html)
+        self.assertNotIn("authorization-evidence", html)
 ```
 
-- [ ] **Step 2: Create the authorization example**
+- [ ] **Step 2: Run preview tests and verify failure**
 
-```json
-[
-  {
-    "asset_id": "example-asset-1",
-    "author_handle": "@authorized_artist",
-    "source_url": "https://x.com/authorized_artist/status/example",
-    "evidence_path": "authorizations/example-asset-1.png",
-    "lofter_redistribution": true,
-    "ai_adaptation": true,
-    "commercial_use": false
-  }
-]
+Run: `python3 -m unittest lofter-x-anime-hotspot/tests/test_render_preview.py -v`  
+Expected: FAIL with `ModuleNotFoundError: No module named 'render_preview'`.
+
+- [ ] **Step 3: Implement escaped, local-only preview rendering**
+
+```python
+def render_preview(run_dir: Path) -> Path:
+    state = load_state(run_dir)
+    if state["state"] not in {"authorization_review", "revisions_required", "approved"}:
+        raise ValueError("preview requires a completed draft")
+    article = (run_dir / "article.md").read_text(encoding="utf-8")
+    ledger = load_media_ledger(run_dir)
+    media_html = "\n".join(_media_figure(run_dir, item) for item in ledger)
+    body = TEMPLATE.format(
+        status=escape(_public_status(state["state"])),
+        topic=escape(state["topic"]),
+        analysis=escape((run_dir / "hotspot-analysis.json").read_text(encoding="utf-8")),
+        media=media_html,
+        article=_markdown_paragraphs(article),
+        titles_tags=escape((run_dir / "titles-and-tags.md").read_text(encoding="utf-8")),
+        order=escape((run_dir / "publication-order.md").read_text(encoding="utf-8")),
+    )
+    target = run_dir / "preview.html"
+    target.write_text(body, encoding="utf-8")
+    return target
 ```
 
-- [ ] **Step 3: Run all unit tests**
+Use `html.escape` for every user/model/source string, accept only relative image paths already present in the run directory, and render Markdown as escaped paragraphs rather than adding a dependency. Include compact responsive CSS directly in the file.
 
-Run:
+- [ ] **Step 4: Run preview and draft tests**
+
+Run: `python3 -m unittest lofter-x-anime-hotspot/tests/test_render_preview.py lofter-x-anime-hotspot/tests/test_build_publishable_draft.py -v`  
+Expected: all tests PASS and `preview.html` opens without network access.
+
+- [ ] **Step 5: Commit Task 5**
 
 ```bash
-python3 -m unittest discover -s lofter-x-anime-hotspot/tests -p 'test_*.py' -v
+git add lofter-x-anime-hotspot/scripts/render_preview.py lofter-x-anime-hotspot/tests/test_render_preview.py
+git commit -m "feat: render LOFTER draft previews"
 ```
 
-Expected: `Ran 11 tests` and `OK`.
-
-- [ ] **Step 4: Run the scoring and authorization smoke test**
-
-Run:
-
-```bash
-tmp_dir="$(mktemp -d)"
-python3 lofter-x-anime-hotspot/scripts/score_candidates.py \
-  lofter-x-anime-hotspot/templates/candidates.example.json \
-  --output "$tmp_dir/ranked.json"
-python3 lofter-x-anime-hotspot/scripts/validate_authorizations.py \
-  lofter-x-anime-hotspot/templates/authorizations.example.json \
-  example-asset-1 --usage ai_adaptation > "$tmp_dir/asset.json"
-python3 - "$tmp_dir" <<'PY'
-import json
-import sys
-from pathlib import Path
-
-root = Path(sys.argv[1])
-candidate = json.loads((root / "ranked.json").read_text(encoding="utf-8"))[0]
-asset = json.loads((root / "asset.json").read_text(encoding="utf-8"))
-payload = {
-    "candidate": candidate,
-    "column": "daily_hotspot",
-    "research": {},
-    "asset": asset,
-}
-(root / "packet-input.json").write_text(
-    json.dumps(payload, ensure_ascii=False, indent=2),
-    encoding="utf-8",
-)
-PY
-python3 lofter-x-anime-hotspot/scripts/build_content_packet.py \
-  "$tmp_dir/packet-input.json" --output "$tmp_dir/packet.md"
-rg -n "总分：89/100|#AI辅助#|互动问题：" "$tmp_dir/packet.md"
-```
-
-Expected: three matching lines, including `总分：89/100`, `互动问题：`, and `#AI辅助#`.
-
-- [ ] **Step 5: Commit examples and run final verification**
-
-```bash
-git add lofter-x-anime-hotspot/templates
-git commit -m "test: add LOFTER hotspot workflow examples"
-python3 -m unittest discover -s lofter-x-anime-hotspot/tests -p 'test_*.py' -v
-git status --short
-```
-
-Expected: all 11 tests pass. `git status --short` may show pre-existing unrelated user changes, but none of the paths under `lofter-x-anime-hotspot/` are modified or untracked.
-
----
-
-## Deferred Work
-
-The following items are intentionally excluded until the 30-day account test establishes real value and platform-safe operating data:
-
-- Automated X or LOFTER scraping;
-- Automatic LOFTER login or publishing;
-- Automatic image downloading or image-to-image generation;
-- Automatic CP selection without human verification;
-- Monetization, paywall, advertising, or commercial-use workflows;
-- Dashboarding beyond JSON and Markdown artifacts.

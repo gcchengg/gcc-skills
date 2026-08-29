@@ -1,0 +1,1195 @@
+{
+  "verificationDate": "2026-08-28",
+  "remediation": "The prior 20 openai/skills records were removed after review found the frozen README marks that collection deprecated. The 20 active HyperFrames records below replace them one-for-one; no deprecated source contributes to acceptedSkillCount.",
+  "acceptanceRule": "Accept only a non-deprecated collection with a current pinned README, an independently useful commit-pinned SKILL.md, explicit input/action/output instructions sufficient to tag, and a reachable frozen source URL. Grades A are official maintained vendor sources; B is the maintained community Baoyu collection.",
+  "repositories": [
+    {
+      "repository": "JimLiu/baoyu-skills",
+      "repositoryUrl": "https://github.com/JimLiu/baoyu-skills",
+      "commit": "6b7a2e417500561a5ecdd0b168332f4142584617",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "qualityDecision": "B: Active community collection with individual SKILL.md workflows.",
+      "decision": "accepted",
+      "sourceMethod": "GitHub REST tree/commit inspection plus pinned README and individual SKILL.md review"
+    },
+    {
+      "repository": "anthropics/skills",
+      "repositoryUrl": "https://github.com/anthropics/skills",
+      "commit": "3b3fad96af16a10759d930941b4520ba0c40edae",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "qualityDecision": "A: Official active collection; README and individual SKILL.md files describe self-contained workflows.",
+      "decision": "accepted",
+      "sourceMethod": "GitHub REST tree/commit inspection plus pinned README and individual SKILL.md review"
+    },
+    {
+      "repository": "heygen-com/hyperframes",
+      "repositoryUrl": "https://github.com/heygen-com/hyperframes",
+      "commit": "af1cb1c10da33bade100db8233435c7591b7c0bc",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "qualityDecision": "A: Active official HyperFrames repository; its pinned README calls it an open-source HTML-to-video framework for agents and documents installing 20 skills.",
+      "decision": "accepted",
+      "sourceMethod": "GitHub REST tree/commit inspection plus pinned README and individual SKILL.md review"
+    }
+  ],
+  "acceptedSkills": [
+    {
+      "id": "baoyu-article-illustrator",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "content_authoring",
+        "visual_design"
+      ],
+      "industryIds": [
+        "media",
+        "marketing"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-article-illustrator/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "分析文章结构，在合适位置生成匹配主题与调色的辅助插画。",
+      "riskNote": "生成图需复核事实、版权与品牌一致性。"
+    },
+    {
+      "id": "baoyu-comic",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "content_authoring",
+        "visual_design"
+      ],
+      "industryIds": [
+        "education",
+        "media"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-comic/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "把知识主题拆成分镜并生成多风格教育漫画。",
+      "riskNote": "角色与画面文字需人工校对。"
+    },
+    {
+      "id": "baoyu-compress-image",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "image_processing"
+      ],
+      "industryIds": [
+        "ecommerce",
+        "media"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-compress-image/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "将图片压缩为 WebP 或 PNG，并在体积与清晰度间选择处理方案。",
+      "riskNote": "压缩前应保留原始文件。"
+    },
+    {
+      "id": "baoyu-cover-image",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "image_generation",
+        "brand_management"
+      ],
+      "industryIds": [
+        "media",
+        "marketing"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-cover-image/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "按类型、配色、渲染、文字和情绪生成文章封面。",
+      "riskNote": "封面文案和商标使用需要人工审核。"
+    },
+    {
+      "id": "baoyu-gemini-web",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "content_authoring",
+        "image_generation"
+      ],
+      "industryIds": [
+        "marketing",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-danger-gemini-web/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "通过配置的 Gemini Web 接口生成文本或图片，并支持基于输入图的编辑。",
+      "riskNote": "依赖第三方接口；不得提交敏感数据。"
+    },
+    {
+      "id": "baoyu-x-to-markdown",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "data_extraction",
+        "content_research"
+      ],
+      "industryIds": [
+        "media",
+        "research"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-danger-x-to-markdown/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "将 X 帖子和文章提取为带 YAML 元数据的 Markdown 归档。",
+      "riskNote": "遵守平台条款，并核验提取内容。"
+    },
+    {
+      "id": "baoyu-diagram",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "diagramming",
+        "visual_design"
+      ],
+      "industryIds": [
+        "consulting",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-diagram/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "把架构、流程或结构说明转成深色专业 SVG 图表。",
+      "riskNote": "图表关系和数据标签需人工复核。"
+    },
+    {
+      "id": "baoyu-electron-extract",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "data_extraction"
+      ],
+      "industryIds": [
+        "research",
+        "operations"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-electron-extract/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "从 Electron 桌面应用中提取可访问内容，供后续结构化处理。",
+      "riskNote": "仅处理获授权的本地应用和数据。"
+    },
+    {
+      "id": "baoyu-format-markdown",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "document_authoring",
+        "web_publishing"
+      ],
+      "industryIds": [
+        "media",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-format-markdown/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "为纯文本或 Markdown 补全结构、摘要、标题和常用排版。",
+      "riskNote": "格式化后仍需检查事实与链接。"
+    },
+    {
+      "id": "baoyu-image-gen",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "image_generation"
+      ],
+      "industryIds": [
+        "marketing",
+        "media"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-image-gen/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "根据提示词调用支持的图像模型，生成或编辑营销与内容图片。",
+      "riskNote": "模型输出可能涉及风格和版权风险。"
+    },
+    {
+      "id": "baoyu-infographic",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "diagramming",
+        "visual_design"
+      ],
+      "industryIds": [
+        "consulting",
+        "media"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-infographic/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "从内容中选择布局和视觉风格，生成专业信息图。",
+      "riskNote": "图中数字、比例和来源必须校验。"
+    },
+    {
+      "id": "baoyu-markdown-to-html",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "document_authoring",
+        "web_publishing"
+      ],
+      "industryIds": [
+        "media",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-markdown-to-html/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "将 Markdown 转为带主题、代码高亮和数学公式的 HTML。",
+      "riskNote": "发布前在目标平台预览样式。"
+    },
+    {
+      "id": "baoyu-post-to-wechat",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "social_publishing",
+        "content_authoring"
+      ],
+      "industryIds": [
+        "marketing",
+        "media"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-post-to-wechat/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "通过 API 或浏览器流程把文章内容发布到微信公众号。",
+      "riskNote": "属于外部发布操作，需确认账号和最终文稿。"
+    },
+    {
+      "id": "baoyu-post-to-weibo",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "social_publishing"
+      ],
+      "industryIds": [
+        "marketing",
+        "media"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-post-to-weibo/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "将文字、图片、视频或头条文章发布到微博。",
+      "riskNote": "属于外部发布操作，需确认受众与合规性。"
+    },
+    {
+      "id": "baoyu-post-to-x",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "social_publishing"
+      ],
+      "industryIds": [
+        "marketing",
+        "media"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-post-to-x/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "将帖子、媒体或长文发布到 X 平台。",
+      "riskNote": "属于外部发布操作，需确认平台政策。"
+    },
+    {
+      "id": "baoyu-slide-deck",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "presentation_design",
+        "visual_design"
+      ],
+      "industryIds": [
+        "consulting",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-slide-deck/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "根据内容规划专业演示文稿，并生成逐页幻灯片图像。",
+      "riskNote": "数据和演讲叙事需由作者把关。"
+    },
+    {
+      "id": "baoyu-translate",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "translation_localization",
+        "document_authoring"
+      ],
+      "industryIds": [
+        "media",
+        "international_trade"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-translate/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "以快速、常规或深度模式翻译文章和文档。",
+      "riskNote": "专业术语与法律文字需要人工审校。"
+    },
+    {
+      "id": "baoyu-url-to-markdown",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "data_extraction",
+        "content_research"
+      ],
+      "industryIds": [
+        "research",
+        "media"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-url-to-markdown/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "抓取 URL 内容并转换为保留元数据的 Markdown。",
+      "riskNote": "网页可访问性与转载许可需另行确认。"
+    },
+    {
+      "id": "baoyu-wechat-summary",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "community_operations",
+        "knowledge_management"
+      ],
+      "industryIds": [
+        "operations",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-wechat-summary/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "把指定时间范围的群聊整理为结构化摘要，并支持画像回溯。",
+      "riskNote": "群聊含个人信息，应取得授权并最小化留存。"
+    },
+    {
+      "id": "baoyu-xhs-images",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "social_publishing",
+        "visual_design"
+      ],
+      "industryIds": [
+        "marketing",
+        "media"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-xhs-images/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "把内容拆成多张小红书风格的信息卡并生成图片。",
+      "riskNote": "平台规范和图中文字需人工复核。"
+    },
+    {
+      "id": "baoyu-youtube-transcript",
+      "repository": "JimLiu/baoyu-skills",
+      "lastActivityAt": "2026-07-04T16:25:18Z",
+      "qualityDecision": "B",
+      "taskTags": [
+        "data_extraction",
+        "video_production"
+      ],
+      "industryIds": [
+        "education",
+        "media"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/skills/baoyu-youtube-transcript/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/JimLiu/baoyu-skills/blob/6b7a2e417500561a5ecdd0b168332f4142584617/README.md",
+      "evidenceSummary": "按 URL 或视频 ID 下载字幕、转写内容和封面图。",
+      "riskNote": "确认版权、字幕准确性和使用许可。"
+    },
+    {
+      "id": "anthropic-academy-guide",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "product_planning",
+        "knowledge_management"
+      ],
+      "industryIds": [
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/academy-guide/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "围绕 Academy 课程结构引导学习、练习与结果检查。",
+      "riskNote": "课程材料和学习结论应由学习者确认。"
+    },
+    {
+      "id": "anthropic-algorithmic-art",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "visual_design",
+        "image_generation"
+      ],
+      "industryIds": [
+        "media",
+        "design"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/algorithmic-art/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "用可重复的算法过程生成可调参数的视觉艺术作品。",
+      "riskNote": "输出风格与素材来源需符合授权要求。"
+    },
+    {
+      "id": "anthropic-brand-guidelines",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "brand_management",
+        "document_authoring"
+      ],
+      "industryIds": [
+        "marketing",
+        "enterprise"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/brand-guidelines/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "读取品牌资产和约束，产出符合既定品牌规范的内容。",
+      "riskNote": "以组织当前品牌规范为准。"
+    },
+    {
+      "id": "anthropic-canvas-design",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "visual_design",
+        "interactive_prototyping"
+      ],
+      "industryIds": [
+        "design",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/canvas-design/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "在画布上组织视觉元素，形成可迭代的设计产物。",
+      "riskNote": "需要核对可读性和最终导出格式。"
+    },
+    {
+      "id": "anthropic-claude-api",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "api_development"
+      ],
+      "industryIds": [
+        "software"
+      ],
+      "softwareDevelopmentOnly": true,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/claude-api/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "根据官方接口约束设计并实现 Claude API 集成。",
+      "riskNote": "密钥、成本和模型行为需要独立评估。"
+    },
+    {
+      "id": "anthropic-discernment-nudge",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "content_research",
+        "knowledge_management"
+      ],
+      "industryIds": [
+        "education",
+        "consulting"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/discernment-nudge/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "用提问和检查点帮助用户评估信息、假设和决策。",
+      "riskNote": "不应替代专业诊断或高风险决策。"
+    },
+    {
+      "id": "anthropic-doc-coauthoring",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "document_authoring"
+      ],
+      "industryIds": [
+        "consulting",
+        "enterprise"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/doc-coauthoring/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "通过访谈、提纲和迭代反馈共同完成结构化文档。",
+      "riskNote": "作者必须核验事实、署名和机密内容。"
+    },
+    {
+      "id": "anthropic-docx",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "document_authoring"
+      ],
+      "industryIds": [
+        "legal",
+        "enterprise"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/docx/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "创建、编辑和检查 DOCX 文档中的内容与版式。",
+      "riskNote": "复杂版式须在 Word 中复核。"
+    },
+    {
+      "id": "anthropic-frontend-design",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "web_design",
+        "interactive_prototyping"
+      ],
+      "industryIds": [
+        "software",
+        "ecommerce"
+      ],
+      "softwareDevelopmentOnly": true,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/frontend-design/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "将产品需求转成高质量、可实现的前端界面设计。",
+      "riskNote": "需进行可用性、无障碍和浏览器测试。"
+    },
+    {
+      "id": "anthropic-internal-comms",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "internal_communications",
+        "document_authoring"
+      ],
+      "industryIds": [
+        "enterprise",
+        "hr"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/internal-comms/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "依据受众与场景起草内部公告、更新和沟通材料。",
+      "riskNote": "组织政策与敏感信息需批准后发布。"
+    },
+    {
+      "id": "anthropic-mcp-builder",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "agent_authoring",
+        "api_development"
+      ],
+      "industryIds": [
+        "software"
+      ],
+      "softwareDevelopmentOnly": true,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/mcp-builder/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "设计、实现和测试向智能体暴露工具的 MCP 服务。",
+      "riskNote": "服务权限、输入校验和密钥处理需安全审查。"
+    },
+    {
+      "id": "anthropic-pdf",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "pdf_processing",
+        "document_authoring"
+      ],
+      "industryIds": [
+        "legal",
+        "finance"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/pdf/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "读取、创建、检查和渲染 PDF，并关注视觉版式。",
+      "riskNote": "正式文件须复核签名、页码和版式。"
+    },
+    {
+      "id": "anthropic-pptx",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "presentation_design"
+      ],
+      "industryIds": [
+        "consulting",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/pptx/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "创建、编辑并检查 PPTX 演示文稿及其页面布局。",
+      "riskNote": "图表数值和演示适配需人工复查。"
+    },
+    {
+      "id": "anthropic-skill-creator",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "agent_authoring",
+        "development_planning"
+      ],
+      "industryIds": [
+        "software",
+        "enterprise"
+      ],
+      "softwareDevelopmentOnly": true,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/skill-creator/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "定义技能元数据、说明和配套资源，并评估其触发效果。",
+      "riskNote": "避免将不可信指令或秘密纳入技能包。"
+    },
+    {
+      "id": "anthropic-slack-gif-creator",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "internal_communications"
+      ],
+      "industryIds": [
+        "enterprise",
+        "marketing"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/slack-gif-creator/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "为 Slack 场景设计并生成短循环动图。",
+      "riskNote": "发布前核对品牌、可访问性和受众。"
+    },
+    {
+      "id": "anthropic-theme-factory",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "visual_design",
+        "brand_management"
+      ],
+      "industryIds": [
+        "design",
+        "marketing"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/theme-factory/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "从设计线索生成可复用的主题、色彩和排版方案。",
+      "riskNote": "应检查色彩对比度和品牌适配。"
+    },
+    {
+      "id": "anthropic-web-artifacts-builder",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "interactive_prototyping",
+        "web_design"
+      ],
+      "industryIds": [
+        "education",
+        "consulting"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/web-artifacts-builder/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "根据需求构建可运行的网页交互、演示或工具。",
+      "riskNote": "上线前须测试交互与数据处理。"
+    },
+    {
+      "id": "anthropic-webapp-testing",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "browser_testing",
+        "code_quality"
+      ],
+      "industryIds": [
+        "software",
+        "ecommerce"
+      ],
+      "softwareDevelopmentOnly": true,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/webapp-testing/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "使用浏览器自动化检查网页应用流程并报告问题。",
+      "riskNote": "测试环境不得包含生产敏感数据。"
+    },
+    {
+      "id": "anthropic-xlsx",
+      "repository": "anthropics/skills",
+      "lastActivityAt": "2026-08-21T17:10:55Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "spreadsheet_analysis",
+        "data_analysis"
+      ],
+      "industryIds": [
+        "finance",
+        "operations"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/skills/xlsx/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/anthropics/skills/blob/3b3fad96af16a10759d930941b4520ba0c40edae/README.md",
+      "evidenceSummary": "创建、编辑、分析并核验 XLSX 工作簿与公式。",
+      "riskNote": "关键公式和财务结果需双重复核。"
+    },
+    {
+      "id": "hyperframes-embedded-captions",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "visual_design"
+      ],
+      "industryIds": [
+        "media",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/embedded-captions/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "为口播视频叠加按时间编排的字幕，并选择可读的视觉样式。",
+      "riskNote": "字幕内容、可读性与语音同步需要复核。"
+    },
+    {
+      "id": "hyperframes-faceless-explainer",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "content_authoring"
+      ],
+      "industryIds": [
+        "education",
+        "marketing"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/faceless-explainer/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "将文章、笔记或主题拆成旁白和场景，渲染短讲解视频。",
+      "riskNote": "事实、配音授权和画面素材必须审核。"
+    },
+    {
+      "id": "hyperframes-figma",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "visual_design",
+        "video_production"
+      ],
+      "industryIds": [
+        "design",
+        "marketing"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/figma/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "读取 Figma 设计上下文与素材，用作视频和动效创作的视觉输入。",
+      "riskNote": "确认设计文件权限与资产使用范围。"
+    },
+    {
+      "id": "hyperframes-general-video",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "content_authoring"
+      ],
+      "industryIds": [
+        "media",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/general-video/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "把内容大纲转为多场景 HyperFrames 视频，并控制时长和转场。",
+      "riskNote": "渲染前需确认脚本、配乐和素材许可。"
+    },
+    {
+      "id": "hyperframes-animation",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "visual_design"
+      ],
+      "industryIds": [
+        "design",
+        "media"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/hyperframes-animation/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "为 HyperFrames 场景定义原子动效、分段节奏和场景过渡。",
+      "riskNote": "高频动效须评估可访问性和观看舒适度。"
+    },
+    {
+      "id": "hyperframes-audio",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "audio_production",
+        "video_production"
+      ],
+      "industryIds": [
+        "media",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/hyperframes-audio/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "为视频生成、编辑和对齐旁白、背景音乐与音效。",
+      "riskNote": "不得使用无授权音乐或误导性合成声音。"
+    },
+    {
+      "id": "hyperframes-cli",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production"
+      ],
+      "industryIds": [
+        "media",
+        "marketing"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/hyperframes-cli/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "使用 HyperFrames CLI 初始化、检查、捕获和渲染视频项目。",
+      "riskNote": "渲染命令应在隔离项目目录中执行。"
+    },
+    {
+      "id": "hyperframes-core",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "interactive_prototyping"
+      ],
+      "industryIds": [
+        "media",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/hyperframes-core/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "按时间与数据属性组织一个可渲染的 HyperFrames 合成项目。",
+      "riskNote": "时间轴和输入数据应通过预览核验。"
+    },
+    {
+      "id": "hyperframes-creative",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "visual_design",
+        "video_production"
+      ],
+      "industryIds": [
+        "marketing",
+        "media"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/hyperframes-creative/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "制定视频的调色、字体、镜头和视觉方向，并形成设计规范。",
+      "riskNote": "需符合品牌规范并复核字体授权。"
+    },
+    {
+      "id": "hyperframes-keyframes",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "visual_design"
+      ],
+      "industryIds": [
+        "media",
+        "design"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/hyperframes-keyframes/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "为场景中的元素定义关键帧与时序，产出可控的运动效果。",
+      "riskNote": "预览关键帧，避免闪烁和运动不适。"
+    },
+    {
+      "id": "hyperframes-registry",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "visual_design"
+      ],
+      "industryIds": [
+        "media",
+        "marketing"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/hyperframes-registry/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "安装并接入可复用的视频组件和区块到 HyperFrames 合成。",
+      "riskNote": "接入前检查第三方组件的许可证和兼容性。"
+    },
+    {
+      "id": "hyperframes-workflow",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "project_management"
+      ],
+      "industryIds": [
+        "media",
+        "marketing"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/hyperframes/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "根据视频目标选择合适的 HyperFrames 工作流并协调后续技能。",
+      "riskNote": "需求不清时先确认视频受众、渠道和时长。"
+    },
+    {
+      "id": "hyperframes-media-use",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "audio_production"
+      ],
+      "industryIds": [
+        "media",
+        "marketing"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/media-use/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "解析视频所需的图片、图标、音乐和音效，并固化本地资产记录。",
+      "riskNote": "资产来源、许可和归档位置必须可追溯。"
+    },
+    {
+      "id": "hyperframes-motion-graphics",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "diagramming"
+      ],
+      "industryIds": [
+        "marketing",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/motion-graphics/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "把数字、文字和图形转成强调信息传达的短动效。",
+      "riskNote": "数据准确性和节奏可读性需人工检查。"
+    },
+    {
+      "id": "hyperframes-music-to-video",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "audio_production",
+        "video_production"
+      ],
+      "industryIds": [
+        "media",
+        "marketing"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/music-to-video/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "根据音乐轨道分析节拍并生成同步的视觉视频。",
+      "riskNote": "音乐版权和节拍检测结果均需复核。"
+    },
+    {
+      "id": "hyperframes-pr-to-video",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "internal_communications"
+      ],
+      "industryIds": [
+        "software",
+        "enterprise"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/pr-to-video/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "将 GitHub 拉取请求的改动转成面向受众的功能或更新讲解视频。",
+      "riskNote": "视频必须准确反映已合并的代码变更。"
+    },
+    {
+      "id": "hyperframes-product-launch-video",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "social_publishing"
+      ],
+      "industryIds": [
+        "marketing",
+        "ecommerce"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/product-launch-video/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "将产品链接、脚本或卖点转成多镜头的发布宣传视频。",
+      "riskNote": "宣传陈述、定价和商标需批准后发布。"
+    },
+    {
+      "id": "hyperframes-remotion-port",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production"
+      ],
+      "industryIds": [
+        "media",
+        "design"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/remotion-to-hyperframes/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "将现有 Remotion 合成按映射规则迁移为 HyperFrames HTML 视频。",
+      "riskNote": "迁移后必须逐帧核验行为和渲染差异。"
+    },
+    {
+      "id": "hyperframes-slideshow",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "presentation_design",
+        "video_production"
+      ],
+      "industryIds": [
+        "education",
+        "consulting"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/slideshow/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "制作具有离散页面、片段和交互节奏的 HyperFrames 幻灯演示。",
+      "riskNote": "演示流程和内容准确性需排练验证。"
+    },
+    {
+      "id": "hyperframes-talking-head-recut",
+      "repository": "heygen-com/hyperframes",
+      "lastActivityAt": "2026-08-28T06:44:14Z",
+      "qualityDecision": "A",
+      "taskTags": [
+        "video_production",
+        "content_authoring"
+      ],
+      "industryIds": [
+        "media",
+        "education"
+      ],
+      "softwareDevelopmentOnly": false,
+      "sourceUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/skills/talking-head-recut/SKILL.md",
+      "repositoryReadmeUrl": "https://github.com/heygen-com/hyperframes/blob/af1cb1c10da33bade100db8233435c7591b7c0bc/README.md",
+      "evidenceSummary": "为访谈或播客画面叠加定时的图形卡片和重点信息。",
+      "riskNote": "不得改变受访者原意，字幕与引用需核准。"
+    }
+  ],
+  "rejectedCandidates": [
+    {
+      "url": "https://github.com/openai/skills",
+      "exclusionRationale": "Rejected during review remediation: the frozen repository README marks the collection deprecated. All 20 prior records were removed; deprecated sources are never counted."
+    },
+    {
+      "url": "https://github.com/obra/superpowers",
+      "exclusionRationale": "Active and high quality, but primarily software-development process content. Adding it would reduce cross-industry balance without being needed for the 60-record threshold."
+    },
+    {
+      "url": "https://github.com/arjunprabhulal/agent-skills",
+      "exclusionRationale": "Candidate advertises 60+ development lifecycle skills, but the complete pinned tree/content review was not part of this release batch; no unverified records were admitted."
+    },
+    {
+      "url": "https://github.com/claude-office-skills/skills",
+      "exclusionRationale": "Candidate is useful for office tasks, but it was not individually frozen and inspected in this batch; official Anthropic document skills already cover the need."
+    },
+    {
+      "url": "https://github.com/social-media-skills/skills",
+      "exclusionRationale": "Candidate has broad social coverage, but individual pinned source verification was not completed for this release."
+    },
+    {
+      "url": "https://github.com/vidual-labs/digital-marketing-skills",
+      "exclusionRationale": "Candidate was found in marketing/SEO research; it remains unverified for this frozen catalog."
+    },
+    {
+      "url": "https://github.com/SupercmoHQ/superCMO-skills",
+      "exclusionRationale": "Candidate was found in video and campaign research; it remains unverified for this frozen catalog."
+    }
+  ]
+}

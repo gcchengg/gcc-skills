@@ -1,0 +1,683 @@
+# Review package: a322bda..098a23f
+
+## Commits
+098a23f feat: build publish-ready LOFTER drafts
+
+## Files changed
+ .../scripts/build_publishable_draft.py             | 394 +++++++++++++++++++++
+ .../tests/test_build_publishable_draft.py          | 266 ++++++++++++++
+ 2 files changed, 660 insertions(+)
+
+## Diff
+diff --git a/lofter-x-anime-hotspot/scripts/build_publishable_draft.py b/lofter-x-anime-hotspot/scripts/build_publishable_draft.py
+new file mode 100644
+index 0000000..20877f7
+--- /dev/null
++++ b/lofter-x-anime-hotspot/scripts/build_publishable_draft.py
+@@ -0,0 +1,394 @@
++"""Validate and persist a publish-ready LOFTER draft for local review."""
++
++import json
++import math
++import re
++import tempfile
++from pathlib import Path, PurePosixPath, PureWindowsPath
++from urllib.parse import urlparse
++
++from run_state import load_state, transition, write_json_atomic
++
++
++PUBLIC_DISCLOSURE = "图像经授权使用，含AI辅助创作｜#AI辅助#"
++
++_DRAFT_FIELDS = {
++    "article",
++    "titles",
++    "tags",
++    "media",
++    "authorized_media_intent",
++    "ai_assistance",
++}
++_MEDIA_KINDS = {"x_original", "ai_adaptation", "generated_original"}
++_MEDIA_ROLES = {"cover", "body"}
++_COMMON_MEDIA_FIELDS = {"kind", "role", "local_path", "caption"}
++_X_MEDIA_FIELDS = {"source_url", "source_author", "source_media_id"}
++_OPTIONAL_X_MEDIA_FIELDS = {"source_post_id", "fetched_at", "sha256"}
++_GENERATION_FIELDS = {"generation_lineage"}
++_CONTENT_MODES = {"trend_analysis", "fanfic", "visual_curation"}
++
++_PRIVATE_PATH = re.compile(
++    r"(?:^|[\s='\"(])(?:/(?:Users|home|private|tmp|var/folders)/|[A-Za-z]:[\\/])",
++    re.IGNORECASE,
++)
++
++
++def _non_empty_string(value: object, field: str) -> str:
++    if type(value) is not str or not value.strip():
++        raise ValueError(f"{field} must be a non-empty string")
++    return value.strip()
++
++
++def _validate_public_string(value: object, field: str) -> str:
++    text = _non_empty_string(value, field)
++    if "evidence_path" in text.casefold():
++        raise ValueError(f"{field} leaks private evidence")
++    if _PRIVATE_PATH.search(text):
++        raise ValueError(f"{field} leaks a private path")
++    if "/private/" in text.casefold():
++        raise ValueError(f"{field} leaks private evidence")
++    return text
++
++
++def _validate_article(text: object) -> str:
++    if type(text) is not str:
++        raise ValueError("article must be a string")
++    count = len("".join(text.split()))
++    if not 800 <= count <= 1500:
++        raise ValueError("article must contain 800–1500 non-whitespace characters")
++    return _validate_public_string(text, "article")
++
++
++def _validate_unique_strings(
++    values: object, field: str, minimum: int, maximum: int
++) -> list[str]:
++    if type(values) is not list or not minimum <= len(values) <= maximum:
++        if minimum == maximum == 3:
++            raise ValueError("titles must contain exactly three values")
++        raise ValueError(f"{field} must contain {minimum}–{maximum} values")
++    if any(type(value) is not str or not value.strip() for value in values):
++        raise ValueError(f"{field} must contain unique non-empty values")
++    result = [_validate_public_string(value, field) for value in values]
++    normalized = [value.casefold() for value in result]
++    if len(set(normalized)) != len(normalized):
++        raise ValueError(f"{field} must contain unique non-empty values")
++    return result
++
++
++def _validate_json_value(value: object, field: str) -> None:
++    if value is None or type(value) in {bool, int, str}:
++        return
++    if type(value) is float:
++        if math.isfinite(value):
++            return
++        raise ValueError(f"{field} must contain JSON-compatible values")
++    if type(value) is list:
++        for nested in value:
++            _validate_json_value(nested, field)
++        return
++    if type(value) is dict:
++        for key, nested in value.items():
++            if type(key) is not str:
++                raise ValueError(f"{field} must contain JSON-compatible values")
++            _validate_json_value(nested, field)
++        return
++    raise ValueError(f"{field} must contain JSON-compatible values")
++
++
++def _validate_generation_lineage(value: object) -> dict:
++    if type(value) is not dict:
++        raise ValueError("generation_lineage must be an object")
++    _validate_json_value(value, "generation_lineage")
++    return value.copy()
++
++
++def _validate_x_url(value: object) -> str:
++    source_url = _non_empty_string(value, "source_url")
++    parsed = urlparse(source_url)
++    if (
++        parsed.scheme != "https"
++        or (parsed.hostname or "").casefold() != "x.com"
++        or not parsed.path.startswith("/")
++        or parsed.path == "/"
++        or parsed.username is not None
++        or parsed.password is not None
++        or parsed.port is not None
++    ):
++        raise ValueError("source_url must be a valid https://x.com/ URL")
++    return source_url
++
++
++def _resolve_local_media(run_dir: Path, value: object) -> tuple[str, Path]:
++    local_path = _non_empty_string(value, "media local_path")
++    parsed = urlparse(local_path)
++    if parsed.scheme or parsed.netloc or local_path.startswith("//"):
++        raise ValueError("media local_path must not be a remote URL")
++    posix_path = PurePosixPath(local_path)
++    windows_path = PureWindowsPath(local_path)
++    if (
++        posix_path.is_absolute()
++        or windows_path.is_absolute()
++        or windows_path.drive
++        or windows_path.root
++        or ".." in posix_path.parts
++        or ".." in windows_path.parts
++        or "\\" in local_path
++    ):
++        raise ValueError("media local_path must stay inside the run directory")
++
++    root = Path(run_dir).resolve()
++    resolved = (root / Path(*posix_path.parts)).resolve()
++    try:
++        resolved.relative_to(root)
++    except ValueError as error:
++        raise ValueError("media local_path must stay inside the run directory") from error
++    if not resolved.is_file():
++        raise ValueError(f"media file does not exist: {local_path}")
++    return posix_path.as_posix(), resolved
++
++
++def _allowed_media_fields(kind: str) -> set[str]:
++    if kind == "x_original":
++        return _COMMON_MEDIA_FIELDS | _X_MEDIA_FIELDS | _OPTIONAL_X_MEDIA_FIELDS
++    if kind == "ai_adaptation":
++        return (
++            _COMMON_MEDIA_FIELDS
++            | _X_MEDIA_FIELDS
++            | _OPTIONAL_X_MEDIA_FIELDS
++            | _GENERATION_FIELDS
++        )
++    return _COMMON_MEDIA_FIELDS | _GENERATION_FIELDS
++
++
++def _validate_one_media(run_dir: Path, item: object, index: int) -> dict:
++    if type(item) is not dict:
++        raise ValueError("each media record must be an object")
++    kind = item.get("kind")
++    if kind not in _MEDIA_KINDS:
++        raise ValueError("invalid media kind")
++    unknown = sorted(set(item) - _allowed_media_fields(kind))
++    if unknown:
++        raise ValueError(f"unknown media field: {unknown[0]}")
++    missing = sorted(_COMMON_MEDIA_FIELDS - set(item))
++    if kind in {"x_original", "ai_adaptation"}:
++        missing.extend(sorted(_X_MEDIA_FIELDS - set(item)))
++    if kind in {"ai_adaptation", "generated_original"}:
++        missing.extend(sorted(_GENERATION_FIELDS - set(item)))
++    if missing:
++        raise ValueError(f"media record missing field: {missing[0]}")
++
++    role = item["role"]
++    if role not in _MEDIA_ROLES:
++        raise ValueError("media role must be cover or body")
++    local_path, _ = _resolve_local_media(run_dir, item["local_path"])
++    caption = _validate_public_string(item["caption"], "media caption")
++
++    result = {
++        "kind": kind,
++        "role": role,
++        "local_path": local_path,
++        "caption": caption,
++        "display_id": index,
++        "review_status": (
++            "pending" if kind in {"x_original", "ai_adaptation"} else "independent"
++        ),
++    }
++    if kind in {"x_original", "ai_adaptation"}:
++        result.update(
++            {
++                "source_url": _validate_x_url(item["source_url"]),
++                "source_author": _non_empty_string(
++                    item["source_author"], "source_author"
++                ),
++                "source_media_id": _non_empty_string(
++                    item["source_media_id"], "source_media_id"
++                ),
++            }
++        )
++        for field in sorted(_OPTIONAL_X_MEDIA_FIELDS & set(item)):
++            result[field] = _non_empty_string(item[field], field)
++    if kind in {"ai_adaptation", "generated_original"}:
++        result["generation_lineage"] = _validate_generation_lineage(
++            item["generation_lineage"]
++        )
++    return result
++
++
++def _validate_media(run_dir: Path, records: object) -> list[dict]:
++    if type(records) is not list or not 1 <= len(records) <= 3:
++        raise ValueError("media must contain one to three records")
++    if (
++        sum(
++            item.get("role") == "cover"
++            for item in records
++            if type(item) is dict
++        )
++        != 1
++    ):
++        raise ValueError("media must contain exactly one cover")
++    return [
++        _validate_one_media(Path(run_dir), item, index)
++        for index, item in enumerate(records, start=1)
++    ]
++
++
++def _load_selection(run_dir: Path) -> dict:
++    selection_path = Path(run_dir) / "hotspot-analysis.json"
++    try:
++        selection = json.loads(selection_path.read_text(encoding="utf-8"))
++    except FileNotFoundError as error:
++        raise ValueError("hotspot-analysis.json is required") from error
++    except (OSError, json.JSONDecodeError) as error:
++        raise ValueError("hotspot-analysis.json must contain valid JSON") from error
++    if type(selection) is not dict:
++        raise ValueError("selection result must be an object")
++    required = {
++        "time_window_hours",
++        "candidate",
++        "content_mode",
++        "selection_reason",
++    }
++    if not required <= set(selection):
++        raise ValueError("selection result is incomplete")
++    if type(selection["time_window_hours"]) is not int or selection[
++        "time_window_hours"
++    ] not in {24, 72}:
++        raise ValueError("selection result has an invalid time window")
++    candidate = selection["candidate"]
++    if (
++        type(candidate) is not dict
++        or candidate.get("eligible") is not True
++        or type(candidate.get("id")) is not str
++        or not candidate["id"].strip()
++        or type(candidate.get("title")) is not str
++        or not candidate["title"].strip()
++    ):
++        raise ValueError("selection result must contain one eligible candidate")
++    if selection["content_mode"] not in _CONTENT_MODES:
++        raise ValueError("selection result has an invalid content mode")
++    _non_empty_string(selection["selection_reason"], "selection_reason")
++    return selection
++
++
++def _write_text_atomic(path: Path, text: str) -> None:
++    temporary: Path | None = None
++    try:
++        path.parent.mkdir(parents=True, exist_ok=True)
++        with tempfile.NamedTemporaryFile(
++            mode="w",
++            encoding="utf-8",
++            dir=path.parent,
++            prefix=f".{path.name}.",
++            suffix=".tmp",
++            delete=False,
++        ) as file:
++            temporary = Path(file.name)
++            file.write(text.rstrip() + "\n")
++        temporary.replace(path)
++    finally:
++        if temporary is not None:
++            temporary.unlink(missing_ok=True)
++
++
++def _render_titles_and_tags(titles: list[str], tags: list[str]) -> str:
++    title_lines = [f"{index}. {title}" for index, title in enumerate(titles, start=1)]
++    return "\n".join(
++        ["# 备选标题", "", *title_lines, "", "# 标签", "", " ".join(f"#{tag}#" for tag in tags)]
++    )
++
++
++def _render_publication_order(media: list[dict]) -> str:
++    lines = ["# 发布顺序", ""]
++    for item in media:
++        role = "封面" if item["role"] == "cover" else "正文图"
++        lines.append(
++            f"{item['display_id']}. {role}｜{item['local_path']}｜{item['caption']}"
++        )
++    return "\n".join(lines)
++
++
++def _validate_payload(payload: object) -> tuple[str, list[str], list[str], bool, bool]:
++    if type(payload) is not dict:
++        raise ValueError("draft payload must be an object")
++    unknown = sorted(set(payload) - _DRAFT_FIELDS)
++    if unknown:
++        raise ValueError(f"unknown draft field: {unknown[0]}")
++    missing = sorted(_DRAFT_FIELDS - set(payload))
++    if missing:
++        raise ValueError(f"draft payload missing field: {missing[0]}")
++    if type(payload["authorized_media_intent"]) is not bool:
++        raise ValueError("authorized_media_intent must be a boolean")
++    if type(payload["ai_assistance"]) is not bool:
++        raise ValueError("ai_assistance must be a boolean")
++    article = _validate_article(payload["article"])
++    titles = _validate_unique_strings(payload["titles"], "titles", 3, 3)
++    tags = _validate_unique_strings(payload["tags"], "tags", 8, 12)
++    return (
++        article,
++        titles,
++        tags,
++        payload["authorized_media_intent"],
++        payload["ai_assistance"],
++    )
++
++
++def _apply_disclosure(article: str, authorized_intent: bool, ai_assistance: bool) -> str:
++    should_disclose = authorized_intent and ai_assistance
++    disclosure_count = article.count(PUBLIC_DISCLOSURE)
++    if disclosure_count > 1 or (disclosure_count and not should_disclose):
++        raise ValueError("authorized AI disclosure requires both intent flags")
++    if should_disclose and disclosure_count == 0:
++        article = f"{article}\n\n{PUBLIC_DISCLOSURE}"
++    count = len("".join(article.split()))
++    if not 800 <= count <= 1500:
++        raise ValueError("article must contain 800–1500 non-whitespace characters")
++    return article
++
++
++def build_draft(run_dir: Path, payload: dict) -> dict:
++    """Validate a model-authored draft, persist local artifacts, and enter review."""
++    run_dir = Path(run_dir)
++    state = load_state(run_dir)
++    if state["state"] != "researching":
++        raise ValueError(f"expected researching, found {state['state']}")
++    selection = _load_selection(run_dir)
++    article, titles, tags, authorized_intent, ai_assistance = _validate_payload(payload)
++    media = _validate_media(run_dir, payload["media"])
++    article = _apply_disclosure(article, authorized_intent, ai_assistance)
++
++    files = {
++        "hotspot_analysis": "hotspot-analysis.json",
++        "article": "article.md",
++        "titles_and_tags": "titles-and-tags.md",
++        "publication_order": "publication-order.md",
++        "media_ledger": "sources/media-ledger.json",
++    }
++    _write_text_atomic(run_dir / files["article"], article)
++    _write_text_atomic(
++        run_dir / files["titles_and_tags"], _render_titles_and_tags(titles, tags)
++    )
++    _write_text_atomic(
++        run_dir / files["publication_order"], _render_publication_order(media)
++    )
++    write_json_atomic(run_dir / files["media_ledger"], media)
++
++    counts = {
++        status: sum(item["review_status"] == status for item in media)
++        for status in ("pending", "authorized", "rejected", "independent")
++    }
++    updates = {
++        "content_mode": selection["content_mode"],
++        "time_window_hours": selection["time_window_hours"],
++        "files": files,
++        "media_review": counts,
++    }
++    if selection["time_window_hours"] == 72:
++        updates["window_expansion"] = {
++            "from": 24,
++            "to": 72,
++            "insufficient_24h": True,
++            "reason": "The 24-hour research window lacked sufficient cross-platform evidence.",
++        }
++    transition(run_dir, "researching", "draft_ready", **updates)
++    return transition(run_dir, "draft_ready", "authorization_review")
+diff --git a/lofter-x-anime-hotspot/tests/test_build_publishable_draft.py b/lofter-x-anime-hotspot/tests/test_build_publishable_draft.py
+new file mode 100644
+index 0000000..9fc3ca5
+--- /dev/null
++++ b/lofter-x-anime-hotspot/tests/test_build_publishable_draft.py
+@@ -0,0 +1,266 @@
++import json
++import sys
++import tempfile
++import unittest
++from datetime import datetime
++from pathlib import Path
++
++
++SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
++sys.path.insert(0, str(SCRIPTS))
++
++from build_publishable_draft import PUBLIC_DISCLOSURE, build_draft
++from run_state import create_run, load_state, write_json_atomic
++
++
++FIXED_NOW = datetime(2026, 8, 11, 14, 30)
++
++
++def long_article() -> str:
++    return "这是用于验证可发布草稿长度与结构的原创中文正文。" * 50
++
++
++def valid_payload() -> dict:
++    return {
++        "article": long_article(),
++        "titles": ["备选标题一", "备选标题二", "备选标题三"],
++        "tags": [f"标签{number}" for number in range(1, 9)],
++        "authorized_media_intent": True,
++        "ai_assistance": True,
++        "media": [
++            {
++                "kind": "x_original",
++                "role": "cover",
++                "local_path": "original-media/candidate.webp",
++                "caption": "候选封面图",
++                "source_url": "https://x.com/artist/status/123",
++                "source_author": "@artist",
++                "source_media_id": "media-123",
++            },
++            {
++                "kind": "generated_original",
++                "role": "body",
++                "local_path": "generated-media/original.webp",
++                "caption": "独立原创配图",
++                "generation_lineage": {
++                    "prompt": "an independent original composition",
++                    "model": "test-image-model",
++                    "source_media_ids": [],
++                },
++            },
++        ],
++    }
++
++
++class BuildPublishableDraftTest(unittest.TestCase):
++    def setUp(self):
++        self.temporary = tempfile.TemporaryDirectory()
++        self.addCleanup(self.temporary.cleanup)
++
++    def create_run_with_local_media(self) -> Path:
++        run_dir, _ = create_run(Path(self.temporary.name), "selected-topic", FIXED_NOW)
++        (run_dir / "original-media/candidate.webp").write_bytes(b"candidate")
++        (run_dir / "generated-media/original.webp").write_bytes(b"generated")
++        write_json_atomic(
++            run_dir / "hotspot-analysis.json",
++            {
++                "time_window_hours": 24,
++                "candidate": {
++                    "id": "selected-topic",
++                    "title": "入选热点",
++                    "eligible": True,
++                },
++                "content_mode": "trend_analysis",
++                "selection_reason": "24小时窗口内综合评分最高：91/100",
++            },
++        )
++        return run_dir
++
++    def test_builds_exact_publication_artifacts_and_enters_review(self):
++        run_dir = self.create_run_with_local_media()
++
++        result = build_draft(run_dir, valid_payload())
++
++        self.assertEqual(result["state"], "authorization_review")
++        for relative_path in (
++            "article.md",
++            "titles-and-tags.md",
++            "publication-order.md",
++            "sources/media-ledger.json",
++        ):
++            self.assertTrue((run_dir / relative_path).is_file(), relative_path)
++        ledger = json.loads(
++            (run_dir / "sources/media-ledger.json").read_text(encoding="utf-8")
++        )
++        self.assertEqual(
++            [item["review_status"] for item in ledger], ["pending", "independent"]
++        )
++        self.assertEqual([item["display_id"] for item in ledger], [1, 2])
++        self.assertIn(PUBLIC_DISCLOSURE, (run_dir / "article.md").read_text())
++        self.assertEqual(
++            result["files"]["media_ledger"], "sources/media-ledger.json"
++        )
++        self.assertEqual(result["content_mode"], "trend_analysis")
++
++    def test_rejects_wrong_article_length_title_count_or_tag_count(self):
++        run_dir = self.create_run_with_local_media()
++        for field, value, message in (
++            ("article", "太短", "800–1500"),
++            ("titles", ["一个标题"], "exactly three"),
++            ("tags", [f"标签{number}" for number in range(7)], "8–12"),
++        ):
++            with self.subTest(field=field):
++                payload = valid_payload()
++                payload[field] = value
++                with self.assertRaisesRegex(ValueError, message):
++                    build_draft(run_dir, payload)
++                self.assertEqual(load_state(run_dir)["state"], "researching")
++
++    def test_rejects_duplicate_or_empty_titles_and_tags(self):
++        run_dir = self.create_run_with_local_media()
++        cases = (
++            ("titles", ["重复", "重复", "第三个"], "unique non-empty"),
++            ("titles", ["第一个", " ", "第三个"], "unique non-empty"),
++            ("tags", ["重复"] * 8, "unique non-empty"),
++        )
++        for field, value, message in cases:
++            with self.subTest(field=field, value=value):
++                payload = valid_payload()
++                payload[field] = value
++                with self.assertRaisesRegex(ValueError, message):
++                    build_draft(run_dir, payload)
++
++    def test_rejects_missing_file_remote_url_and_private_evidence_leaks(self):
++        run_dir = self.create_run_with_local_media()
++        cases = []
++
++        missing = valid_payload()
++        missing["media"][0]["local_path"] = "original-media/missing.webp"
++        cases.append((missing, "does not exist"))
++
++        remote = valid_payload()
++        remote["media"][0]["local_path"] = "https://example.com/image.webp"
++        cases.append((remote, "remote URL"))
++
++        article_leak = valid_payload()
++        article_leak["article"] += " evidence_path=/private/authorization.txt"
++        cases.append((article_leak, "private evidence"))
++
++        caption_leak = valid_payload()
++        caption_leak["media"][1]["caption"] = "/Users/reviewer/private/evidence.png"
++        cases.append((caption_leak, "private path"))
++
++        for payload, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    build_draft(run_dir, payload)
++                self.assertFalse((run_dir / "article.md").exists())
++                self.assertEqual(load_state(run_dir)["state"], "researching")
++
++    def test_rejects_unsafe_media_paths_and_invalid_media_shape(self):
++        run_dir = self.create_run_with_local_media()
++        cases = []
++
++        traversal = valid_payload()
++        traversal["media"][0]["local_path"] = "../candidate.webp"
++        cases.append((traversal, "stay inside"))
++
++        two_covers = valid_payload()
++        two_covers["media"][1]["role"] = "cover"
++        cases.append((two_covers, "exactly one cover"))
++
++        invalid_kind = valid_payload()
++        invalid_kind["media"][1]["kind"] = "remote_image"
++        cases.append((invalid_kind, "invalid media kind"))
++
++        too_many = valid_payload()
++        too_many["media"] = too_many["media"] * 2
++        cases.append((too_many, "one to three"))
++
++        for payload, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    build_draft(run_dir, payload)
++
++    def test_validates_x_provenance_and_generated_lineage(self):
++        run_dir = self.create_run_with_local_media()
++        cases = []
++
++        wrong_host = valid_payload()
++        wrong_host["media"][0]["source_url"] = "https://example.com/status/123"
++        cases.append((wrong_host, "https://x.com/"))
++
++        missing_author = valid_payload()
++        missing_author["media"][0]["source_author"] = " "
++        cases.append((missing_author, "source_author"))
++
++        missing_media_id = valid_payload()
++        missing_media_id["media"][0]["source_media_id"] = ""
++        cases.append((missing_media_id, "source_media_id"))
++
++        invalid_lineage = valid_payload()
++        invalid_lineage["media"][1]["generation_lineage"] = []
++        cases.append((invalid_lineage, "generation_lineage"))
++
++        for payload, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    build_draft(run_dir, payload)
++
++    def test_disclosure_is_present_only_when_both_intent_flags_are_true(self):
++        combinations = ((False, False), (True, False), (False, True), (True, True))
++        for index, (authorized_intent, ai_assistance) in enumerate(combinations):
++            with self.subTest(
++                authorized_intent=authorized_intent,
++                ai_assistance=ai_assistance,
++            ):
++                run_dir, _ = create_run(
++                    Path(self.temporary.name), f"disclosure-{index}", FIXED_NOW
++                )
++                (run_dir / "original-media/candidate.webp").write_bytes(b"candidate")
++                (run_dir / "generated-media/original.webp").write_bytes(b"generated")
++                write_json_atomic(
++                    run_dir / "hotspot-analysis.json",
++                    {
++                        "time_window_hours": 24,
++                        "candidate": {
++                            "id": f"disclosure-{index}",
++                            "title": "入选热点",
++                            "eligible": True,
++                        },
++                        "content_mode": "trend_analysis",
++                        "selection_reason": "综合评分最高",
++                    },
++                )
++                payload = valid_payload()
++                payload["authorized_media_intent"] = authorized_intent
++                payload["ai_assistance"] = ai_assistance
++
++                build_draft(run_dir, payload)
++
++                article = (run_dir / "article.md").read_text(encoding="utf-8")
++                self.assertEqual(
++                    PUBLIC_DISCLOSURE in article,
++                    authorized_intent and ai_assistance,
++                )
++
++    def test_requires_researching_run_and_persisted_selection(self):
++        run_dir = self.create_run_with_local_media()
++        (run_dir / "hotspot-analysis.json").unlink()
++        with self.assertRaisesRegex(ValueError, "hotspot-analysis.json"):
++            build_draft(run_dir, valid_payload())
++
++        write_json_atomic(run_dir / "hotspot-analysis.json", {"content_mode": "fanfic"})
++        with self.assertRaisesRegex(ValueError, "selection result"):
++            build_draft(run_dir, valid_payload())
++
++    def test_rejects_untrusted_unknown_fields(self):
++        run_dir = self.create_run_with_local_media()
++        payload = valid_payload()
++        payload["authorization_evidence"] = "/private/evidence.txt"
++        with self.assertRaisesRegex(ValueError, "unknown draft field"):
++            build_draft(run_dir, payload)
++
++
++if __name__ == "__main__":
++    unittest.main()

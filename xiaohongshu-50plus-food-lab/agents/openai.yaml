@@ -1,0 +1,4 @@
+interface:
+  display_name: "50+食物奇境实验室"
+  short_description: "为45—65岁人群制作可收藏的饮食清单、时间表与3D食物奇境图"
+  default_prompt: "使用 $xiaohongshu-50plus-food-lab 从30天计划中选择下一篇，先给我经校验的内容包和 Image 2 提示词。"

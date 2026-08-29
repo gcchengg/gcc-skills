@@ -1,168 +1,114 @@
-### Task 1: Weighted Hotspot Scoring
+### Task 1: Persistent Run State and Legal Transitions
 
 **Files:**
-- Create: `lofter-x-anime-hotspot/scripts/score_candidates.py`
-- Create: `lofter-x-anime-hotspot/tests/test_score_candidates.py`
+- Create: `lofter-x-anime-hotspot/scripts/run_state.py`
+- Create: `lofter-x-anime-hotspot/tests/test_run_state.py`
+- Modify: `lofter-x-anime-hotspot/.gitignore`
 
 **Interfaces:**
-- Consumes: candidate dictionaries with `id`, `title`, `ip_slot`, `x_growth`, `lofter_activity`, `ip_match`, `authorization`, and `story_potential`.
-- Produces: `score_candidate(candidate: dict) -> dict` and `rank_candidates(candidates: list[dict], threshold: int = 70) -> list[dict]`.
+- Produces: `create_run(runs_root: Path, topic_slug: str, now: datetime | None = None) -> tuple[Path, dict]`
+- Produces: `load_state(run_dir: Path) -> dict`
+- Produces: `transition(run_dir: Path, expected: str, target: str, **updates) -> dict`
+- Produces: `write_json_atomic(path: Path, payload: object) -> None`
+- State values: `researching`, `draft_ready`, `authorization_review`, `revisions_required`, `approved`, `publishing`, `published`
 
-- [ ] **Step 1: Write the failing scorer tests**
-
-```python
-# lofter-x-anime-hotspot/tests/test_score_candidates.py
-import sys
-import unittest
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).parents[1] / "scripts"))
-
-from score_candidates import rank_candidates, score_candidate
-
-
-class ScoreCandidatesTest(unittest.TestCase):
-    def test_weighted_total_and_eligibility(self):
-        candidate = {
-            "id": "topic-1",
-            "title": "Example CP spike",
-            "ip_slot": "rising",
-            "x_growth": 26,
-            "lofter_activity": 24,
-            "ip_match": 15,
-            "authorization": 10,
-            "story_potential": 8,
-        }
-        result = score_candidate(candidate)
-        self.assertEqual(result["total_score"], 83)
-        self.assertTrue(result["eligible"])
-
-    def test_rejects_out_of_range_dimension(self):
-        candidate = {
-            "id": "bad",
-            "title": "Bad score",
-            "ip_slot": "experiment",
-            "x_growth": 31,
-            "lofter_activity": 0,
-            "ip_match": 0,
-            "authorization": 0,
-            "story_potential": 0,
-        }
-        with self.assertRaisesRegex(ValueError, "x_growth must be between 0 and 30"):
-            score_candidate(candidate)
-
-    def test_rank_filters_and_orders(self):
-        candidates = [
-            {"id": "low", "title": "Low", "ip_slot": "experiment", "x_growth": 20, "lofter_activity": 20, "ip_match": 10, "authorization": 0, "story_potential": 5},
-            {"id": "high", "title": "High", "ip_slot": "long_term", "x_growth": 30, "lofter_activity": 28, "ip_match": 15, "authorization": 15, "story_potential": 9},
-            {"id": "mid", "title": "Mid", "ip_slot": "rising", "x_growth": 25, "lofter_activity": 23, "ip_match": 15, "authorization": 0, "story_potential": 8},
-        ]
-        ranked = rank_candidates(candidates)
-        self.assertEqual([item["id"] for item in ranked], ["high", "mid"])
-        self.assertEqual(ranked[1]["media_instruction"], "create_independent_image")
-
-
-if __name__ == "__main__":
-    unittest.main()
-```
-
-- [ ] **Step 2: Run the tests and verify failure**
-
-Run:
-
-```bash
-python3 -m unittest lofter-x-anime-hotspot/tests/test_score_candidates.py -v
-```
-
-Expected: `ModuleNotFoundError: No module named 'score_candidates'`.
-
-- [ ] **Step 3: Implement the scorer**
+- [ ] **Step 1: Write failing state tests**
 
 ```python
-# lofter-x-anime-hotspot/scripts/score_candidates.py
-import argparse
-import json
-from pathlib import Path
+class RunStateTest(unittest.TestCase):
+    def test_create_run_writes_private_resumable_layout(self):
+        with tempfile.TemporaryDirectory() as value:
+            run_dir, state = create_run(
+                Path(value), "frieren-cafe", datetime(2026, 8, 11, 14, 30)
+            )
+            self.assertEqual(run_dir.name, "20260811-143000-frieren-cafe")
+            self.assertEqual(state["state"], "researching")
+            self.assertEqual(state["confirmations"], {"fill": False, "submit": False})
+            self.assertTrue((run_dir / "sources").is_dir())
+            self.assertTrue((run_dir / "original-media").is_dir())
+            self.assertTrue((run_dir / "generated-media").is_dir())
 
+    def test_transition_rejects_skip_and_stale_writer(self):
+        with tempfile.TemporaryDirectory() as value:
+            run_dir, _ = create_run(Path(value), "topic")
+            with self.assertRaisesRegex(ValueError, "illegal state transition"):
+                transition(run_dir, "researching", "approved")
+            transition(run_dir, "researching", "draft_ready")
+            with self.assertRaisesRegex(ValueError, "expected researching"):
+                transition(run_dir, "researching", "authorization_review")
 
-LIMITS = {
-    "x_growth": 30,
-    "lofter_activity": 30,
-    "ip_match": 15,
-    "authorization": 15,
-    "story_potential": 10,
+    def test_state_rejects_secrets(self):
+        with tempfile.TemporaryDirectory() as value:
+            run_dir, _ = create_run(Path(value), "topic")
+            with self.assertRaisesRegex(ValueError, "forbidden secret field"):
+                transition(run_dir, "researching", "draft_ready", cookie="secret")
+```
+
+- [ ] **Step 2: Run the state tests and verify failure**
+
+Run: `python3 -m unittest lofter-x-anime-hotspot/tests/test_run_state.py -v`  
+Expected: FAIL with `ModuleNotFoundError: No module named 'run_state'`.
+
+- [ ] **Step 3: Implement atomic state storage and transition validation**
+
+```python
+STATES = (
+    "researching", "draft_ready", "authorization_review",
+    "revisions_required", "approved", "publishing", "published",
+)
+ALLOWED = {
+    "researching": {"draft_ready"},
+    "draft_ready": {"authorization_review"},
+    "authorization_review": {"revisions_required", "approved"},
+    "revisions_required": {"authorization_review"},
+    "approved": {"publishing"},
+    "publishing": {"published", "approved"},
+    "published": set(),
 }
-VALID_IP_SLOTS = {"long_term", "rising", "experiment"}
+FORBIDDEN_KEYS = {"password", "cookie", "cookies", "verification_code", "captcha"}
 
-
-def score_candidate(candidate: dict) -> dict:
-    required = {"id", "title", "ip_slot", *LIMITS.keys()}
-    missing = sorted(required - candidate.keys())
-    if missing:
-        raise ValueError(f"missing fields: {', '.join(missing)}")
-    if candidate["ip_slot"] not in VALID_IP_SLOTS:
-        raise ValueError("ip_slot must be long_term, rising, or experiment")
-    for field, maximum in LIMITS.items():
-        value = candidate[field]
-        if not isinstance(value, int) or isinstance(value, bool):
-            raise ValueError(f"{field} must be an integer")
-        if not 0 <= value <= maximum:
-            raise ValueError(f"{field} must be between 0 and {maximum}")
-    total = sum(candidate[field] for field in LIMITS)
-    return {
-        **candidate,
-        "total_score": total,
-        "eligible": total >= 70,
-        "media_instruction": (
-            "use_authorized_media"
-            if candidate["authorization"] > 0
-            else "create_independent_image"
-        ),
-    }
-
-
-def rank_candidates(candidates: list[dict], threshold: int = 70) -> list[dict]:
-    scored = [score_candidate(candidate) for candidate in candidates]
-    return sorted(
-        (item for item in scored if item["total_score"] >= threshold),
-        key=lambda item: (-item["total_score"], item["id"]),
+def write_json_atomic(path: Path, payload: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
+    temporary.replace(path)
 
-
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("input", type=Path)
-    parser.add_argument("--output", type=Path)
-    args = parser.parse_args()
-    candidates = json.loads(args.input.read_text(encoding="utf-8"))
-    result = rank_candidates(candidates)
-    payload = json.dumps(result, ensure_ascii=False, indent=2) + "\n"
-    if args.output:
-        args.output.write_text(payload, encoding="utf-8")
-    else:
-        print(payload, end="")
-
-
-if __name__ == "__main__":
-    main()
+def transition(run_dir: Path, expected: str, target: str, **updates) -> dict:
+    state = load_state(run_dir)
+    if state["state"] != expected:
+        raise ValueError(f"expected {expected}, found {state['state']}")
+    if target not in ALLOWED[expected]:
+        raise ValueError(f"illegal state transition: {expected} -> {target}")
+    lowered = {key.lower() for key in updates}
+    forbidden = sorted(lowered & FORBIDDEN_KEYS)
+    if forbidden:
+        raise ValueError(f"forbidden secret field: {forbidden[0]}")
+    state.update(updates)
+    state["state"] = target
+    state["updated_at"] = datetime.now(timezone.utc).isoformat()
+    write_json_atomic(run_dir / "status.json", state)
+    return state
 ```
 
-- [ ] **Step 4: Run the scorer tests and verify success**
+Implement `create_run` with a sanitized lowercase ASCII slug, collision rejection, the three directories shown in the test, and the initial fields `run_id`, `state`, `topic`, `time_window_hours`, `content_mode`, `files`, `media_review`, `confirmations`, `publication`, `errors`, `created_at`, and `updated_at`. Implement `load_state` with exact-type validation for these fields and rejection of unknown state names.
 
-Run:
+- [ ] **Step 4: Ignore operational runs and run tests**
+
+Add exactly this line to `.gitignore`:
+
+```gitignore
+runs/
+```
+
+Run: `python3 -m unittest lofter-x-anime-hotspot/tests/test_run_state.py -v`  
+Expected: all `RunStateTest` tests PASS.
+
+- [ ] **Step 5: Commit Task 1**
 
 ```bash
-python3 -m unittest lofter-x-anime-hotspot/tests/test_score_candidates.py -v
+git add lofter-x-anime-hotspot/.gitignore lofter-x-anime-hotspot/scripts/run_state.py lofter-x-anime-hotspot/tests/test_run_state.py
+git commit -m "feat: add resumable LOFTER run state"
 ```
-
-Expected: `Ran 3 tests` and `OK`.
-
-- [ ] **Step 5: Commit the scorer**
-
-```bash
-git add lofter-x-anime-hotspot/scripts/score_candidates.py lofter-x-anime-hotspot/tests/test_score_candidates.py
-git commit -m "feat: add LOFTER hotspot scorer"
-```
-
----
 

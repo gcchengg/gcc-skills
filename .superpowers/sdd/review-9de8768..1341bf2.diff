@@ -1,0 +1,857 @@
+# Review package: 9de8768..1341bf2
+
+## Commits
+1341bf2 feat: review and replace LOFTER media
+
+## Files changed
+ .../scripts/build_publishable_draft.py             | 393 +++++++++++++++++++--
+ lofter-x-anime-hotspot/tests/test_media_review.py  | 355 +++++++++++++++++++
+ 2 files changed, 728 insertions(+), 20 deletions(-)
+
+## Diff
+diff --git a/lofter-x-anime-hotspot/scripts/build_publishable_draft.py b/lofter-x-anime-hotspot/scripts/build_publishable_draft.py
+index af93235..b8feddd 100644
+--- a/lofter-x-anime-hotspot/scripts/build_publishable_draft.py
++++ b/lofter-x-anime-hotspot/scripts/build_publishable_draft.py
+@@ -1,22 +1,25 @@
+ """Validate and transactionally persist a LOFTER draft for local review."""
+ 
+ import json
+ import os
+ import re
+ import shutil
+ import tempfile
+ import unicodedata
++from datetime import datetime, timezone
++from hashlib import sha256
+ from pathlib import Path, PurePosixPath, PureWindowsPath
+ from urllib.parse import urlparse
+ 
+ from run_state import load_state, transition, write_json_atomic
++from validate_authorizations import validate_authorization, validate_ledger
+ 
+ 
+ PUBLIC_DISCLOSURE = "图像经授权使用，含AI辅助创作｜#AI辅助#"
+ 
+ _DRAFT_FIELDS = {
+     "article",
+     "titles",
+     "tags",
+     "media",
+     "authorized_media_intent",
+@@ -492,20 +495,44 @@ def _rollback_install_set(
+         except OSError as error:
+             errors.append(error)
+     try:
+         os.replace(status_backup, status_path)
+     except OSError as error:
+         errors.append(error)
+     if errors:
+         raise RuntimeError("failed to roll back draft transaction") from errors[0]
+ 
+ 
++def _commit_install_set(
++    run_dir: Path, install_items: list[tuple[Path, Path]], backup_dir: Path, state_update
++):
++    targets = [target for _, target in install_items]
++    backups: dict[Path, Path | None] = {}
++    for index, target in enumerate(targets, start=1):
++        if target.exists():
++            backup = backup_dir / f"target-{index:02d}.bak"
++            shutil.copyfile(target, backup)
++            backups[target] = backup
++        else:
++            backups[target] = None
++    status_path = run_dir / "status.json"
++    status_backup = backup_dir / "status.json"
++    shutil.copyfile(status_path, status_backup)
++    try:
++        for staged, target in install_items:
++            _install_staged_file(staged, target)
++        return state_update()
++    except Exception:
++        _rollback_install_set(targets, backups, status_path, status_backup)
++        raise
++
++
+ def _transactional_install(
+     run_dir: Path,
+     article: str,
+     titles_and_tags: str,
+     publication_order: str,
+     media: list[dict],
+     media_sources: list[Path],
+     selection: dict,
+ ) -> dict:
+     staging_dir = Path(tempfile.mkdtemp(prefix=".draft-stage-", dir=run_dir))
+@@ -533,63 +560,389 @@ def _transactional_install(
+         for index, (record, source_path) in enumerate(
+             zip(media, media_sources, strict=True), start=1
+         ):
+             staged_media = (
+                 install_dir
+                 / f"media-{index:02d}{Path(record['local_path']).suffix}"
+             )
+             shutil.copyfile(source_path, staged_media)
+             install_items.append((staged_media, run_dir / record["local_path"]))
+ 
+-        targets = [target for _, target in install_items]
+-        backups: dict[Path, Path | None] = {}
+-        for index, target in enumerate(targets, start=1):
+-            if target.exists():
+-                backup = backup_dir / f"target-{index:02d}.bak"
+-                shutil.copyfile(target, backup)
+-                backups[target] = backup
+-            else:
+-                backups[target] = None
+-        status_path = run_dir / "status.json"
+-        status_backup = backup_dir / "status.json"
+-        shutil.copyfile(status_path, status_backup)
+-
+-        try:
+-            for staged, target in install_items:
+-                _install_staged_file(staged, target)
+-
++        def update_state():
+             counts = {
+                 status: sum(item["review_status"] == status for item in media)
+                 for status in ("pending", "authorized", "rejected", "independent")
+             }
+             updates = {
+                 "content_mode": selection["content_mode"],
+                 "time_window_hours": selection["time_window_hours"],
+                 "files": _FILES,
+                 "media_review": counts,
+             }
+             if selection["time_window_hours"] == 72:
+                 updates["window_expansion"] = {
+                     "from": 24,
+                     "to": 72,
+                     "insufficient_24h": True,
+                     "reason": "The 24-hour research window lacked sufficient cross-platform evidence.",
+                 }
+             transition(run_dir, "researching", "draft_ready", **updates)
+             return transition(run_dir, "draft_ready", "authorization_review")
+-        except Exception:
+-            _rollback_install_set(targets, backups, status_path, status_backup)
+-            raise
++
++        return _commit_install_set(run_dir, install_items, backup_dir, update_state)
++    finally:
++        shutil.rmtree(staging_dir, ignore_errors=True)
++
++
++def load_media_ledger(run_dir: Path) -> list[dict]:
++    """Load the private media ledger and reject malformed review records."""
++    run_dir = _validate_run_layout(Path(run_dir))
++    ledger_path = run_dir / _FILES["media_ledger"]
++    try:
++        ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
++    except FileNotFoundError as error:
++        raise ValueError("media ledger is required") from error
++    except (OSError, json.JSONDecodeError) as error:
++        raise ValueError("media ledger must contain valid JSON") from error
++    if type(ledger) is not list or not 1 <= len(ledger) <= 3:
++        raise ValueError("media ledger must contain one to three records")
++
++    for expected_id, media in enumerate(ledger, start=1):
++        if type(media) is not dict:
++            raise ValueError("each media ledger record must be an object")
++        if type(media.get("display_id")) is not int or media["display_id"] != expected_id:
++            raise ValueError("media ledger display_id values must be sequential integers")
++        if media.get("kind") not in _MEDIA_KINDS:
++            raise ValueError("invalid media kind")
++        if media.get("role") not in _MEDIA_ROLES:
++            raise ValueError("media role must be cover or body")
++        if media.get("review_status") not in {
++            "pending",
++            "authorized",
++            "rejected",
++            "independent",
++        }:
++            raise ValueError("invalid media review_status")
++        local_path, _ = _resolve_local_media(run_dir, media.get("local_path"))
++        expected_parent = (
++            "original-media"
++            if media["kind"] == "x_original"
++            else "generated-media"
++        )
++        if PurePosixPath(local_path).parts[0] != expected_parent:
++            raise ValueError("media local_path does not match media kind")
++        _validate_rendered_string(
++            media.get("caption"), "media caption", delimiters="|｜"
++        )
++        if media["kind"] in {"x_original", "ai_adaptation"}:
++            _validate_x_url(media.get("source_url"))
++            _validate_rendered_string(
++                media.get("source_author"), "source_author", delimiters="|｜"
++            )
++            _validate_rendered_string(
++                media.get("source_media_id"), "source_media_id", delimiters="|｜"
++            )
++        if media["kind"] in {"ai_adaptation", "generated_original"}:
++            _validate_generation_lineage(media.get("generation_lineage"), media["kind"])
++        authorization = media.get("authorization")
++        if media["review_status"] == "authorized":
++            if type(authorization) is not dict or authorization.get("allowed") is not True:
++                raise ValueError("authorized media requires a validated authorization")
++            if "authorization_ledger_path" in authorization:
++                raise ValueError("media ledger leaks an operational authorization path")
++        elif authorization is not None:
++            raise ValueError("only authorized media may store authorization")
++    if sum(media["role"] == "cover" for media in ledger) != 1:
++        raise ValueError("media ledger must contain exactly one cover")
++    return ledger
++
++
++def _find_media_with_index(ledger: list[dict], media_id: int) -> tuple[int, dict]:
++    if type(media_id) is not int or media_id < 1:
++        raise ValueError("media_id must be a positive integer")
++    matches = [
++        (index, media)
++        for index, media in enumerate(ledger)
++        if media.get("display_id") == media_id
++    ]
++    if len(matches) != 1:
++        raise ValueError(f"expected one media record for display_id {media_id}")
++    return matches[0]
++
++
++def _find_media(ledger: list[dict], media_id: int) -> dict:
++    return _find_media_with_index(ledger, media_id)[1]
++
++
++def _resolve_authorization_ledger(run_dir: Path, value: object) -> Path:
++    ledger_text = _non_empty_string(value, "authorization_ledger_path")
++    candidate = Path(ledger_text)
++    if not candidate.is_absolute():
++        posix_path = PurePosixPath(ledger_text)
++        windows_path = PureWindowsPath(ledger_text)
++        if (
++            windows_path.is_absolute()
++            or windows_path.drive
++            or windows_path.root
++            or ".." in posix_path.parts
++            or ".." in windows_path.parts
++            or "\\" in ledger_text
++        ):
++            raise ValueError("authorization_ledger_path must be run-local or absolute")
++        candidate = run_dir / Path(*posix_path.parts)
++        resolved = candidate.resolve()
++        if not _is_within(resolved, run_dir):
++            raise ValueError("authorization_ledger_path must stay inside the run directory")
++    else:
++        resolved = candidate.resolve()
++    if candidate.is_symlink() or not resolved.is_file():
++        raise ValueError("authorization ledger cannot be read")
++    return resolved
++
++
++def _revalidate_media_decision(
++    run_dir: Path, media: dict, authorization: dict
++) -> dict:
++    if type(authorization) is not dict:
++        raise ValueError("authorized media requires a ledger-backed allow decision")
++    supplied = authorization.copy()
++    try:
++        ledger_path = _resolve_authorization_ledger(
++            run_dir, supplied.pop("authorization_ledger_path")
++        )
++        if supplied.get("allowed") is not True:
++            raise ValueError("decision is not allowed")
++        requested_usage = (
++            "original" if media["kind"] == "x_original" else "ai_adaptation"
++        )
++        if supplied.get("requested_usage") != requested_usage:
++            raise ValueError("authorization usage does not match media")
++        if supplied.get("asset_id") != media["source_media_id"]:
++            raise ValueError("authorization asset_id does not match media")
++        if supplied.get("source_url") != media["source_url"]:
++            raise ValueError("authorization source_url does not match media")
++        if supplied.get("author_handle") != media["source_author"]:
++            raise ValueError("authorization author_handle does not match media")
++        commercial = supplied.get("commercial_intent")
++        operations = supplied.get("requested_operations")
++        if type(commercial) is not bool or type(operations) is not list:
++            raise ValueError("authorization request scope is malformed")
++        records = json.loads(ledger_path.read_text(encoding="utf-8"))
++        indexed = validate_ledger(records, evidence_root=ledger_path.parent)
++        asset_id = media["source_media_id"]
++        if asset_id not in indexed:
++            raise ValueError("authorization asset_id is not present in the ledger")
++        regenerated = validate_authorization(
++            indexed[asset_id],
++            requested_usage,
++            commercial,
++            operations=operations,
++            evidence_root=ledger_path.parent,
++        )
++    except (KeyError, OSError, json.JSONDecodeError, ValueError) as error:
++        raise ValueError(
++            f"authorized media requires a ledger-backed allow decision: {error}"
++        ) from error
++    if regenerated != supplied:
++        raise ValueError(
++            "authorized media requires a ledger-backed allow decision: "
++            "decision does not exactly match regenerated ledger output"
++        )
++    return regenerated
++
++
++def _review_counts(ledger: list[dict]) -> dict[str, int]:
++    return {
++        status: sum(media["review_status"] == status for media in ledger)
++        for status in ("pending", "authorized", "rejected", "independent")
++    }
++
++
++def _transactional_review_update(
++    run_dir: Path,
++    staged_values: list[tuple[Path, bytes]],
++    expected_state: str,
++    target_state: str,
++    ledger: list[dict],
++) -> dict:
++    staging_dir = Path(tempfile.mkdtemp(prefix=".review-stage-", dir=run_dir))
++    try:
++        install_dir = staging_dir / "install"
++        backup_dir = staging_dir / "backup"
++        install_dir.mkdir()
++        backup_dir.mkdir()
++        install_items = []
++        for index, (target, content) in enumerate(staged_values, start=1):
++            staged = install_dir / f"artifact-{index:02d}"
++            staged.write_bytes(content)
++            install_items.append((staged, target))
++
++        def update_state():
++            return transition(
++                run_dir,
++                expected_state,
++                target_state,
++                media_review=_review_counts(ledger),
++            )
++
++        return _commit_install_set(run_dir, install_items, backup_dir, update_state)
++    finally:
++        shutil.rmtree(staging_dir, ignore_errors=True)
++
++
++def _serialized_json(value: object) -> bytes:
++    return (
++        json.dumps(value, ensure_ascii=False, indent=2, allow_nan=False) + "\n"
++    ).encode("utf-8")
++
++
++def _transactional_review_status_update(run_dir: Path, ledger: list[dict]) -> None:
++    staging_dir = Path(tempfile.mkdtemp(prefix=".review-stage-", dir=run_dir))
++    try:
++        backup_dir = staging_dir / "backup"
++        backup_dir.mkdir()
++        staged_ledger = staging_dir / "media-ledger.json"
++        staged_ledger.write_bytes(_serialized_json(ledger))
++        ledger_path = run_dir / _FILES["media_ledger"]
++        status_path = run_dir / "status.json"
++        state = load_state(run_dir)
++        state["media_review"] = _review_counts(ledger)
++        state["updated_at"] = datetime.now(timezone.utc).isoformat()
++
++        def update_state():
++            write_json_atomic(status_path, state)
++
++        _commit_install_set(
++            run_dir, [(staged_ledger, ledger_path)], backup_dir, update_state
++        )
+     finally:
+         shutil.rmtree(staging_dir, ignore_errors=True)
+ 
+ 
++def record_media_review(
++    run_dir: Path,
++    media_id: int,
++    authorized: bool,
++    authorization: dict | None = None,
++) -> dict:
++    """Record one human authorization decision without persisting evidence paths."""
++    if type(authorized) is not bool:
++        raise ValueError("authorized must be a boolean")
++    run_dir = _validate_run_layout(Path(run_dir))
++    state = load_state(run_dir)
++    if state["state"] != "authorization_review":
++        raise ValueError("run is not awaiting authorization review")
++    ledger = load_media_ledger(run_dir)
++    media = _find_media(ledger, media_id)
++    if media["review_status"] != "pending":
++        raise ValueError("media is not awaiting review")
++    if authorized:
++        regenerated = _revalidate_media_decision(run_dir, media, authorization)
++        media["review_status"] = "authorized"
++        media["authorization"] = regenerated
++        _transactional_review_status_update(run_dir, ledger)
++    else:
++        if authorization is not None:
++            raise ValueError("rejected media must not include authorization")
++        media["review_status"] = "rejected"
++        media.pop("authorization", None)
++        _transactional_review_update(
++            run_dir,
++            [(run_dir / _FILES["media_ledger"], _serialized_json(ledger))],
++            "authorization_review",
++            "revisions_required",
++            ledger,
++        )
++    return media
++
++
++def _validate_replacement(
++    run_dir: Path, media_id: int, current: dict, replacement: object
++) -> tuple[dict, Path]:
++    if type(replacement) is not dict or replacement.get("kind") != "generated_original":
++        raise ValueError("replacement must be generated_original")
++    allowed = {"kind", "local_path", "caption", "generation_lineage"}
++    unknown = sorted(set(replacement) - allowed)
++    if unknown:
++        raise ValueError(f"unknown replacement field: {unknown[0]}")
++    lineage = replacement.get("generation_lineage")
++    if type(lineage) is not dict or lineage.get("source_media_ids") != []:
++        raise ValueError("replacement must not derive from rejected source media")
++    candidate = {**replacement, "role": current["role"]}
++    validated, source_path = _validate_one_media(run_dir, candidate, media_id)
++    _, rejected_path = _resolve_local_media(run_dir, current["local_path"])
++    if source_path == rejected_path or sha256(source_path.read_bytes()).digest() == sha256(
++        rejected_path.read_bytes()
++    ).digest():
++        raise ValueError("replacement must not reuse rejected media path or bytes")
++    return validated, source_path
++
++
++def replace_rejected_media(
++    run_dir: Path,
++    media_id: int,
++    replacement: dict,
++    article: str,
++    captions: list[str],
++) -> list[dict]:
++    """Install an independent replacement and rewrite only affected public copy."""
++    run_dir = _validate_run_layout(Path(run_dir))
++    state = load_state(run_dir)
++    if state["state"] != "revisions_required":
++        raise ValueError("run is not awaiting rejected-media revisions")
++    ledger = load_media_ledger(run_dir)
++    index, current = _find_media_with_index(ledger, media_id)
++    if current["review_status"] != "rejected":
++        raise ValueError("only rejected media can be replaced")
++    validated, source_path = _validate_replacement(
++        run_dir, media_id, current, replacement
++    )
++    revised_article = _validate_article(article)
++    if type(captions) is not list or len(captions) != len(ledger):
++        raise ValueError("captions must contain one value per media record")
++    revised_captions = [
++        _validate_rendered_string(value, "media caption", delimiters="|｜")
++        for value in captions
++    ]
++    for other_index, media in enumerate(ledger):
++        if other_index != index and revised_captions[other_index] != media["caption"]:
++            raise ValueError("replacement may change only affected media copy")
++    if revised_captions[index] != validated["caption"]:
++        raise ValueError("replacement caption must match affected copy")
++
++    ledger[index] = {
++        **validated,
++        "caption": revised_captions[index],
++        "display_id": media_id,
++        "role": current["role"],
++        "review_status": "independent",
++        "replaces_media_id": media_id,
++    }
++    target_path = run_dir / ledger[index]["local_path"]
++    _transactional_review_update(
++        run_dir,
++        [
++            (run_dir / _FILES["article"], (revised_article + "\n").encode("utf-8")),
++            (
++                run_dir / _FILES["publication_order"],
++                (_render_publication_order(ledger) + "\n").encode("utf-8"),
++            ),
++            (run_dir / _FILES["media_ledger"], _serialized_json(ledger)),
++            (target_path, source_path.read_bytes()),
++        ],
++        "revisions_required",
++        "authorization_review",
++        ledger,
++    )
++    return ledger
++
++
+ def build_draft(run_dir: Path, payload: dict) -> dict:
+     """Validate untrusted draft input, snapshot media, and enter review atomically."""
+     run_dir = _validate_run_layout(Path(run_dir))
+     state = load_state(run_dir)
+     if state["state"] != "researching":
+         raise ValueError(f"expected researching, found {state['state']}")
+     selection = _load_selection(run_dir)
+     article, titles, tags, authorized_intent, ai_assistance = _validate_payload(
+         payload
+     )
+diff --git a/lofter-x-anime-hotspot/tests/test_media_review.py b/lofter-x-anime-hotspot/tests/test_media_review.py
+new file mode 100644
+index 0000000..fe5fba2
+--- /dev/null
++++ b/lofter-x-anime-hotspot/tests/test_media_review.py
+@@ -0,0 +1,355 @@
++import json
++import sys
++import tempfile
++import unittest
++from datetime import datetime
++from pathlib import Path
++from unittest import mock
++
++
++SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
++sys.path.insert(0, str(SCRIPTS))
++
++import build_publishable_draft as draft_module
++from build_publishable_draft import (
++    build_draft,
++    record_media_review,
++    replace_rejected_media,
++)
++from run_state import create_run, load_state, write_json_atomic
++from validate_authorizations import validate_authorization, validate_ledger
++
++
++FIXED_NOW = datetime(2026, 8, 11, 14, 30)
++
++
++def long_article(prefix: str = "这是用于复核替换流程的原创中文正文。") -> str:
++    return prefix * 60
++
++
++def authorization_record(**overrides) -> dict:
++    value = {
++        "asset_id": "media-123",
++        "author_handle": "@artist",
++        "source_url": "https://x.com/artist/status/123",
++        "evidence_path": "evidence/media-123.txt",
++        "lofter_redistribution": True,
++        "ai_adaptation": True,
++        "commercial_use": False,
++        "translation": True,
++        "crop": True,
++        "layout": True,
++        "allowed_platforms": ["LOFTER"],
++        "attribution_mode": "public",
++        "original_asset_id": None,
++        "derived_asset_ids": [],
++        "publication_history": [],
++        "example_only": False,
++    }
++    value.update(overrides)
++    return value
++
++
++class MediaReviewTest(unittest.TestCase):
++    def setUp(self):
++        self.temporary = tempfile.TemporaryDirectory()
++        self.addCleanup(self.temporary.cleanup)
++        self.root = Path(self.temporary.name)
++
++    def prepared_review_run(self, slug: str = "review-topic") -> Path:
++        run_dir, _ = create_run(self.root / "runs", slug, FIXED_NOW)
++        (run_dir / "original-media/candidate.webp").write_bytes(b"rejected-candidate")
++        (run_dir / "generated-media/original.webp").write_bytes(b"existing-original")
++        write_json_atomic(
++            run_dir / "hotspot-analysis.json",
++            {
++                "time_window_hours": 24,
++                "candidate": {"id": slug, "title": "入选热点", "eligible": True},
++                "content_mode": "trend_analysis",
++                "selection_reason": "24小时窗口内综合评分最高：91/100",
++            },
++        )
++        build_draft(
++            run_dir,
++            {
++                "article": long_article(),
++                "titles": ["备选标题一", "备选标题二", "备选标题三"],
++                "tags": [f"标签{number}" for number in range(1, 9)],
++                "authorized_media_intent": False,
++                "ai_assistance": False,
++                "media": [
++                    {
++                        "kind": "x_original",
++                        "role": "cover",
++                        "local_path": "original-media/candidate.webp",
++                        "caption": "候选封面图",
++                        "source_url": "https://x.com/artist/status/123",
++                        "source_author": "@artist",
++                        "source_media_id": "media-123",
++                    },
++                    {
++                        "kind": "generated_original",
++                        "role": "body",
++                        "local_path": "generated-media/original.webp",
++                        "caption": "独立原创配图",
++                        "generation_lineage": {
++                            "generator": "test-image-model",
++                            "prompt": "an independent original composition",
++                            "source_media_ids": [],
++                        },
++                    },
++                ],
++            },
++        )
++        return run_dir
++
++    def authorization_envelope(self, run_dir: Path, **record_overrides) -> dict:
++        evidence = run_dir / "private-authorization/evidence/media-123.txt"
++        evidence.parent.mkdir(parents=True)
++        evidence.write_text("real operational evidence", encoding="utf-8")
++        ledger_path = run_dir / "private-authorization/authorizations.json"
++        record = authorization_record(**record_overrides)
++        write_json_atomic(ledger_path, [record])
++        decision = validate_authorization(
++            record,
++            "original",
++            evidence_root=ledger_path.parent,
++        )
++        return {**decision, "authorization_ledger_path": str(ledger_path)}
++
++    def valid_independent_replacement(self, run_dir: Path) -> dict:
++        path = run_dir / "generated-media/replacement.webp"
++        path.write_bytes(b"independent-replacement")
++        return {
++            "kind": "generated_original",
++            "local_path": "generated-media/replacement.webp",
++            "caption": "新封面图",
++            "generation_lineage": {
++                "generator": "test-image-model",
++                "prompt": "new independent composition without source image input",
++                "source_media_ids": [],
++            },
++        }
++
++    @staticmethod
++    def load_media_ledger(run_dir: Path) -> list[dict]:
++        return json.loads(
++            (run_dir / "sources/media-ledger.json").read_text(encoding="utf-8")
++        )
++
++    def test_authorized_x_media_requires_exact_ledger_backed_decision(self):
++        run_dir = self.prepared_review_run()
++        with self.assertRaisesRegex(ValueError, "ledger-backed"):
++            record_media_review(run_dir, 1, True, {"allowed": True})
++
++    def test_exact_ledger_backed_decision_is_persisted_without_transport_path(self):
++        run_dir = self.prepared_review_run()
++        envelope = self.authorization_envelope(run_dir)
++        operational_path = envelope["authorization_ledger_path"]
++
++        result = record_media_review(run_dir, 1, True, envelope)
++
++        self.assertEqual(result["review_status"], "authorized")
++        self.assertNotIn("authorization_ledger_path", result["authorization"])
++        self.assertEqual(
++            load_state(run_dir)["media_review"],
++            {"pending": 0, "authorized": 1, "rejected": 0, "independent": 1},
++        )
++        for relative_path in (
++            "sources/media-ledger.json",
++            "article.md",
++            "publication-order.md",
++            "status.json",
++        ):
++            self.assertNotIn(
++                operational_path,
++                (run_dir / relative_path).read_text(encoding="utf-8"),
++                relative_path,
++            )
++
++    def test_forged_complete_decision_fails_closed(self):
++        run_dir = self.prepared_review_run()
++        envelope = self.authorization_envelope(run_dir)
++        envelope["attribution_mode"] = "anonymous_allowed"
++        before = self.load_media_ledger(run_dir)
++
++        with self.assertRaisesRegex(ValueError, "exactly match"):
++            record_media_review(run_dir, 1, True, envelope)
++
++        self.assertEqual(self.load_media_ledger(run_dir), before)
++        self.assertEqual(load_state(run_dir)["state"], "authorization_review")
++
++    def test_missing_or_unreadable_ledger_path_fails_closed(self):
++        for case in ("missing", "unreadable"):
++            with self.subTest(case=case):
++                run_dir = self.prepared_review_run(f"path-{case}")
++                envelope = self.authorization_envelope(run_dir)
++                if case == "missing":
++                    envelope.pop("authorization_ledger_path")
++                else:
++                    envelope["authorization_ledger_path"] = str(
++                        run_dir / "private-authorization/missing.json"
++                    )
++                before = self.load_media_ledger(run_dir)
++
++                with self.assertRaisesRegex(ValueError, "ledger-backed"):
++                    record_media_review(run_dir, 1, True, envelope)
++
++                self.assertEqual(self.load_media_ledger(run_dir), before)
++                self.assertEqual(load_state(run_dir)["state"], "authorization_review")
++
++    def test_example_only_ledger_fails_closed(self):
++        run_dir = self.prepared_review_run()
++        evidence = run_dir / "private-authorization/evidence/media-123.txt"
++        evidence.parent.mkdir(parents=True)
++        evidence.write_text("example evidence", encoding="utf-8")
++        ledger_path = run_dir / "private-authorization/authorizations.json"
++        record = authorization_record(example_only=True)
++        write_json_atomic(ledger_path, [record])
++        indexed = validate_ledger(
++            [record], evidence_root=ledger_path.parent, allow_example_only=True
++        )
++        decision = validate_authorization(
++            indexed["media-123"],
++            "original",
++            evidence_root=ledger_path.parent,
++            smoke_only=True,
++        )
++
++        with self.assertRaisesRegex(ValueError, "example-only"):
++            record_media_review(
++                run_dir,
++                1,
++                True,
++                {**decision, "authorization_ledger_path": str(ledger_path)},
++            )
++
++        self.assertEqual(self.load_media_ledger(run_dir)[0]["review_status"], "pending")
++
++    def test_rejection_requires_generated_independent_replacement(self):
++        run_dir = self.prepared_review_run()
++        record_media_review(run_dir, 1, False)
++        replacement = {
++            "kind": "ai_adaptation",
++            "local_path": "generated-media/replacement.webp",
++            "generation_lineage": {
++                "prompt": "new composition",
++                "source_media_ids": ["media-123"],
++            },
++        }
++        with self.assertRaisesRegex(ValueError, "generated_original"):
++            replace_rejected_media(
++                run_dir,
++                1,
++                replacement,
++                long_article("这是修改后的正文。"),
++                ["新图", "独立原创配图"],
++            )
++
++    def test_independent_replacement_requires_exact_empty_source_lineage(self):
++        for source_media_ids in (None, ["media-123"], [1]):
++            with self.subTest(source_media_ids=source_media_ids):
++                run_dir = self.prepared_review_run(f"lineage-{source_media_ids}")
++                record_media_review(run_dir, 1, False)
++                replacement = self.valid_independent_replacement(run_dir)
++                if source_media_ids is None:
++                    replacement["generation_lineage"].pop("source_media_ids")
++                else:
++                    replacement["generation_lineage"]["source_media_ids"] = source_media_ids
++
++                with self.assertRaisesRegex(ValueError, "must not derive"):
++                    replace_rejected_media(
++                        run_dir,
++                        1,
++                        replacement,
++                        long_article("这是修改后的正文。"),
++                        ["新封面图", "独立原创配图"],
++                    )
++
++    def test_replacement_cannot_reuse_rejected_path_or_bytes(self):
++        for case in ("path", "bytes"):
++            with self.subTest(case=case):
++                run_dir = self.prepared_review_run(f"reuse-{case}")
++                record_media_review(run_dir, 1, False)
++                replacement = self.valid_independent_replacement(run_dir)
++                if case == "path":
++                    replacement["local_path"] = "original-media/01.webp"
++                else:
++                    (run_dir / replacement["local_path"]).write_bytes(
++                        (run_dir / "original-media/01.webp").read_bytes()
++                    )
++
++                with self.assertRaisesRegex(ValueError, "path or bytes"):
++                    replace_rejected_media(
++                        run_dir,
++                        1,
++                        replacement,
++                        long_article("这是修改后的正文。"),
++                        ["新封面图", "独立原创配图"],
++                    )
++
++    def test_replacement_changes_only_rejected_media_and_affected_copy(self):
++        run_dir = self.prepared_review_run()
++        before = self.load_media_ledger(run_dir)
++        unchanged_media_bytes = (run_dir / before[1]["local_path"]).read_bytes()
++        unchanged_titles = (run_dir / "titles-and-tags.md").read_bytes()
++
++        record_media_review(run_dir, 1, False)
++        replacement = self.valid_independent_replacement(run_dir)
++        revised_article = long_article("这是仅针对替换图调整的正文。")
++        result = replace_rejected_media(
++            run_dir,
++            1,
++            replacement,
++            revised_article,
++            ["新封面图", before[1]["caption"]],
++        )
++
++        self.assertEqual(result[1], before[1])
++        self.assertEqual(result[0]["kind"], "generated_original")
++        self.assertEqual(result[0]["review_status"], "independent")
++        self.assertEqual(result[0]["replaces_media_id"], 1)
++        self.assertEqual(result[0]["generation_lineage"]["source_media_ids"], [])
++        self.assertEqual((run_dir / result[0]["local_path"]).read_bytes(), b"independent-replacement")
++        self.assertEqual((run_dir / before[1]["local_path"]).read_bytes(), unchanged_media_bytes)
++        self.assertEqual((run_dir / "titles-and-tags.md").read_bytes(), unchanged_titles)
++        self.assertEqual((run_dir / "article.md").read_text(encoding="utf-8"), revised_article + "\n")
++        self.assertEqual(load_state(run_dir)["state"], "authorization_review")
++
++    def test_replacement_transition_failure_rolls_back_all_artifacts_and_state(self):
++        run_dir = self.prepared_review_run()
++        record_media_review(run_dir, 1, False)
++        replacement = self.valid_independent_replacement(run_dir)
++        tracked = {
++            path: path.read_bytes()
++            for path in (
++                run_dir / "article.md",
++                run_dir / "publication-order.md",
++                run_dir / "sources/media-ledger.json",
++                run_dir / "status.json",
++            )
++        }
++        replacement_target = run_dir / "generated-media/01.webp"
++        self.assertFalse(replacement_target.exists())
++
++        with mock.patch.object(
++            draft_module, "transition", side_effect=OSError("injected transition failure")
++        ):
++            with self.assertRaisesRegex(OSError, "injected transition failure"):
++                replace_rejected_media(
++                    run_dir,
++                    1,
++                    replacement,
++                    long_article(),
++                    ["新封面图", "独立原创配图"],
++                )
++
++        for path, content in tracked.items():
++            self.assertEqual(path.read_bytes(), content, path)
++        self.assertFalse(replacement_target.exists())
++        self.assertEqual(load_state(run_dir)["state"], "revisions_required")
++        self.assertFalse(tuple(run_dir.glob(".review-stage-*")))
++
++
++if __name__ == "__main__":
++    unittest.main()

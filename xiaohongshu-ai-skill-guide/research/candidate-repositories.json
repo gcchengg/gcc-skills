@@ -1,0 +1,115 @@
+{
+  "verificationDate": "2026-08-28",
+  "focusedSearches": [
+    {
+      "scope": "coding, code review, debugging, and testing",
+      "query": "GitHub SKILL.md coding review debugging testing skills repository",
+      "resultUrls": [
+        "https://github.com/arjunprabhulal/agent-skills",
+        "https://github.com/obra/superpowers",
+        "https://github.com/anthropics/skills"
+      ]
+    },
+    {
+      "scope": "UI/product, research/writing, documents, spreadsheets, PDFs, and presentations",
+      "query": "GitHub SKILL.md UI product research writing documents spreadsheets PDF presentations skills",
+      "resultUrls": [
+        "https://github.com/claude-office-skills/skills",
+        "https://github.com/anthropics/skills",
+        "https://github.com/heygen-com/hyperframes"
+      ]
+    },
+    {
+      "scope": "marketing, SEO, social content, video, and image generation",
+      "query": "GitHub SKILL.md marketing SEO social media video image generation skills repository",
+      "resultUrls": [
+        "https://github.com/social-media-skills/skills",
+        "https://github.com/vidual-labs/digital-marketing-skills",
+        "https://github.com/SupercmoHQ/superCMO-skills",
+        "https://github.com/heygen-com/hyperframes",
+        "https://github.com/JimLiu/baoyu-skills"
+      ]
+    },
+    {
+      "scope": "education, finance, legal, manufacturing, supply chain, HR, scientific research, entrepreneurship, and job search",
+      "query": "GitHub SKILL.md education finance legal manufacturing supply chain HR scientific research entrepreneurship job search skills",
+      "resultUrls": [
+        "https://github.com/anthropics/skills",
+        "https://github.com/claude-office-skills/skills",
+        "https://github.com/social-media-skills/skills"
+      ],
+      "resultNote": "The focused result set did not provide a maintained, individually inspected source appropriate for adding a new record in every named specialty. No unverified specialty record was admitted."
+    },
+    {
+      "scope": "Baoyu discovery",
+      "query": "GitHub JimLiu baoyu-skills SKILL.md",
+      "resultUrls": [
+        "https://github.com/JimLiu/baoyu-skills"
+      ],
+      "resultNote": "The collection was also cross-checked against installed local Baoyu skills, then accepted only after its public GitHub tree and frozen sources were verified."
+    }
+  ],
+  "candidateRepositories": [
+    {
+      "url": "https://github.com/JimLiu/baoyu-skills",
+      "decision": "accepted",
+      "acceptedSkillCount": 21,
+      "reason": "Public tree at the frozen commit contains individual SKILL.md files for publishing, media, translation, visual content, and extraction."
+    },
+    {
+      "url": "https://github.com/anthropics/skills",
+      "decision": "accepted",
+      "acceptedSkillCount": 19,
+      "reason": "Official, active collection with separately addressable SKILL.md workflows spanning documents, analysis, communication, education, design, and limited development."
+    },
+    {
+      "url": "https://github.com/heygen-com/hyperframes",
+      "decision": "accepted",
+      "acceptedSkillCount": 20,
+      "reason": "Active official repository (pushed 2026-08-28); the pinned README documents agent skill installation and an individual-SKILL.md tree supplies video, audio, presentation, and creative workflows."
+    },
+    {
+      "url": "https://github.com/openai/skills",
+      "decision": "rejected",
+      "acceptedSkillCount": 0,
+      "reason": "Rejected during review remediation: the frozen repository README marks the collection deprecated. All 20 prior records were removed; deprecated sources are never counted."
+    },
+    {
+      "url": "https://github.com/obra/superpowers",
+      "decision": "rejected",
+      "acceptedSkillCount": 0,
+      "reason": "Active and high quality, but primarily software-development process content. Adding it would reduce cross-industry balance without being needed for the 60-record threshold."
+    },
+    {
+      "url": "https://github.com/arjunprabhulal/agent-skills",
+      "decision": "rejected",
+      "acceptedSkillCount": 0,
+      "reason": "Candidate advertises 60+ development lifecycle skills, but the complete pinned tree/content review was not part of this release batch; no unverified records were admitted."
+    },
+    {
+      "url": "https://github.com/claude-office-skills/skills",
+      "decision": "rejected",
+      "acceptedSkillCount": 0,
+      "reason": "Candidate is useful for office tasks, but it was not individually frozen and inspected in this batch; official Anthropic document skills already cover the need."
+    },
+    {
+      "url": "https://github.com/social-media-skills/skills",
+      "decision": "rejected",
+      "acceptedSkillCount": 0,
+      "reason": "Candidate has broad social coverage, but individual pinned source verification was not completed for this release."
+    },
+    {
+      "url": "https://github.com/vidual-labs/digital-marketing-skills",
+      "decision": "rejected",
+      "acceptedSkillCount": 0,
+      "reason": "Candidate was found in marketing/SEO research; it remains unverified for this frozen catalog."
+    },
+    {
+      "url": "https://github.com/SupercmoHQ/superCMO-skills",
+      "decision": "rejected",
+      "acceptedSkillCount": 0,
+      "reason": "Candidate was found in video and campaign research; it remains unverified for this frozen catalog."
+    }
+  ],
+  "method": "Focused GitHub searches were recorded above. Public GitHub REST tree and commit endpoints enumerated the accepted SKILL.md paths and immutable commits. Pinned repository README and SKILL.md source links were inspected for the active accepted collections. Local installed Baoyu copies were used only as a description cross-check, never as acceptance evidence."
+}

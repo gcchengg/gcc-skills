@@ -178,3 +178,23 @@ git diff --check -- lofter-x-anime-hotspot docs/superpowers/plans/2026-08-10-lof
 The earlier temporary PyYAML-path concern is resolved: validation now uses the pinned, ignored project-local `.dev-deps/` directory. Unrelated worktree changes and pre-existing cache directories remain untouched and excluded from the scoped commit.
 
 Scoped re-review commit: `a41db3c0` (`fix: make LOFTER examples smoke-only`).
+
+## Publish-ready final integration wave (2026-08-11)
+
+- Authorization publication semantics now use the user's exact `确认发布` as a timestamped, run-specific media-rights attestation. Pending/rejected and known smoke-only/publication-forbidden records remain blocked; no independent evidence-verification claim is made.
+- Upload manifests bind canonical media SHA-256 and byte size. Platform observations provide title/body/tags and ordered media identities; the gate canonicalizes and digests them locally, then recomputes the current local manifest at final submit.
+- Preview analysis is projected through a strict public whitelist. Publication revalidates public copy and canonical run-local media.
+- The selector validates typed, platform-specific source URLs/timestamps, requires a checked 24-hour window before 72 hours, and produces the exact structured expansion record persisted by drafting.
+- Added rollback-safe `revise_draft` for article/title/tag/caption changes and read-only `resolve_uncertain_publication` without a second submit.
+
+Focused evidence (full discovery intentionally skipped under the approved fast scope): selector, draft, media-review, and preview tests passed in the narrowed run; after correcting the attestation field name, publication-gate and end-to-end workflow tests passed 18/18. The six affected files contain 78 test methods in total.
+
+Official validator:
+
+```text
+Skill is valid!
+```
+
+Concern: the broad full-discovery suite was not run by explicit fast-scope instruction. Existing unrelated worktree changes and cache files were preserved and excluded from staging.
+
+Scoped commit: `13f7c6d` (`fix: harden LOFTER publish integration`).

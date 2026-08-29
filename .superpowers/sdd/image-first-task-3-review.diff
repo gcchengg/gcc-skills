@@ -1,0 +1,194 @@
+# Review package: 5aedf8b..47f9ed2
+
+## Commits
+47f9ed2 docs(lofter): report image-first task 3 verification
+1b4f6bc feat(lofter): enforce cover-first browser publishing
+
+## Files changed
+ .superpowers/sdd/image-first-task-3-report.md      | 86 ++++++++++++++++++++++
+ lofter-x-anime-hotspot/SKILL.md                    |  2 +-
+ .../references/browser-publishing.md               |  6 +-
+ .../tests/test_skill_contract.py                   | 12 +++
+ 4 files changed, 102 insertions(+), 4 deletions(-)
+
+## Diff
+diff --git a/.superpowers/sdd/image-first-task-3-report.md b/.superpowers/sdd/image-first-task-3-report.md
+new file mode 100644
+index 0000000..e463018
+--- /dev/null
++++ b/.superpowers/sdd/image-first-task-3-report.md
+@@ -0,0 +1,86 @@
++# Image-First Task 3 Report: Browser and Skill Contract
++
++## Outcome
++
++Bound the browser publication procedure to the image-first gate. The procedure
++uploads the manifest cover before any article body entry, immediately observes
++the cover as the first effective content node, uploads body images only after
++text, and fails safely through repositioning or a user pause. A login or draft
++recovery must repeat the cover-first observation before final preview evidence.
++
++The first-confirmation route in `SKILL.md` now summarizes the same invariant and
++requires the observed `first_content_is_cover: true` value when form-fill
++evidence is persisted.
++
++## Files changed
++
++- `lofter-x-anime-hotspot/references/browser-publishing.md`
++- `lofter-x-anime-hotspot/SKILL.md`
++- `lofter-x-anime-hotspot/tests/test_skill_contract.py`
++
++## TDD evidence
++
++### RED
++
++Added `test_browser_protocol_requires_cover_first_and_rechecks_after_recovery`,
++then ran:
++
++```bash
++python3 -m unittest lofter-x-anime-hotspot/tests/test_skill_contract.py -v
++```
++
++The new test failed as intended because the old browser protocol did not contain
++the required `cover image first` contract.
++
++### GREEN
++
++Updated the browser protocol and first-confirmation summary, then re-ran the
++contract test. Result: 9 tests passed.
++
++## Final verification
++
++```bash
++python3 -m unittest \
++  lofter-x-anime-hotspot/tests/test_render_preview.py \
++  lofter-x-anime-hotspot/tests/test_publication_gate.py \
++  lofter-x-anime-hotspot/tests/test_publishable_workflow.py \
++  lofter-x-anime-hotspot/tests/test_skill_contract.py -v
++```
++
++Result: 31 tests passed.
++
++```bash
++PYTHONPATH="lofter-x-anime-hotspot/.dev-deps${PYTHONPATH:+:$PYTHONPATH}" \
++  python3 "${CODEX_HOME:-${HOME}/.codex}/skills/.system/skill-creator/scripts/quick_validate.py" \
++  lofter-x-anime-hotspot
++```
++
++Result: `Skill is valid!`
++
++`git diff --check` on the three scoped source/test files passed with no
++whitespace errors.
++
++## Self-review
++
++- The protocol uses the manifest's cover, without allowing an unlisted upload or
++  media reorder.
++- Recovery recheck comes before final preview evidence and pauses on an
++  unambiguous editor failure.
++- `first_content_is_cover: true` remains an observed value supplied to the
++  existing deterministic form-fill gate.
++- No installed `~/.codex` copy was changed.
++
++## Concerns
++
++The shared worktree contains unrelated pre-existing modified reports, metadata,
++review artifacts, and bytecode; none are included in the Task 3 commit.
++
++The required repository-wide `git diff --check` exits 2 only because unrelated,
++pre-existing edits in `.superpowers/sdd/task-1-brief.md` through
++`task-5-brief.md` contain trailing whitespace (and `task-5-brief.md` has a new
++blank line at EOF). A scoped `git diff --check` for the three Task 3 files is
++clean. These unrelated files were left untouched.
++
++The Task 3 implementation is commit
++`1b4f6bcc3cf1397c8d3dba32e142abc5f977fe61`. Per the task-specific instruction,
++the installed Skill was not synced and nothing under `~/.codex` was modified.
+diff --git a/lofter-x-anime-hotspot/SKILL.md b/lofter-x-anime-hotspot/SKILL.md
+index da7d4c1..68003ca 100644
+--- a/lofter-x-anime-hotspot/SKILL.md
++++ b/lofter-x-anime-hotspot/SKILL.md
+@@ -31,21 +31,21 @@ For a repository checkout, set `LOFTER_SKILL_DIR` to the absolute directory cont
+ ### New draft
+ 
+ Create a run under `runs/` with `run_state.create_run`. Research 24 hours first and expand to 72 hours only when `select_publishable_topic.select_topic` reports insufficient 24-hour evidence. Persist the selector result and private research ledger in `hotspot-analysis.json` with `run_state.write_json_atomic`, validate the draft with `build_publishable_draft.build_draft`, then call `render_preview.render_preview`. Show the absolute `preview.html` path and stop in `authorization_review`; do not open LOFTER.
+ 
+ ### Resume or revise
+ 
+ Load the named run, or the latest unfinished run when unambiguous, with `run_state.load_state`. Do not reselect the topic. Apply article/title/tag/caption changes with `build_publishable_draft.revise_draft`; it preserves unspecified fields, resets publication confirmations, and refreshes the preview transactionally. For rejected media, call `build_publishable_draft.record_media_review`, generate an independent replacement under the research protocol, then call `build_publishable_draft.replace_rejected_media`. Show the refreshed preview path and stop for review.
+ 
+ ### First confirmation: `确认发布`
+ 
+-Accept only the exact phrase bound to the reviewed run. It attests that every run media item is authorized for LOFTER; reject pending/rejected and known smoke-only/publication-forbidden media. Call `publication_gate.approve_form_fill`, then `publication_gate.build_upload_manifest`. Persist that exact public object as run-local `upload-manifest.json` with `run_state.write_json_atomic`. Follow `references/browser-publishing.md` to fill LOFTER from that manifest and persist the observed title, body, tags, and ordered media identities with `publication_gate.mark_form_filled`. Stop before submit and request `确认最终提交`.
++Accept only the exact phrase bound to the reviewed run. It attests that every run media item is authorized for LOFTER; reject pending/rejected and known smoke-only/publication-forbidden media. Call `publication_gate.approve_form_fill`, then `publication_gate.build_upload_manifest`. Persist that exact public object as run-local `upload-manifest.json` with `run_state.write_json_atomic`. Follow `references/browser-publishing.md` to fill LOFTER from that manifest: the cover image must be uploaded first and observed as the first effective content node before body entry; record `first_content_is_cover: true` with the observed title, body, tags, and ordered media identities in `publication_gate.mark_form_filled`. Stop before submit and request `确认最终提交`.
+ 
+ ### Login resume: `已登录`
+ 
+ Accept this message only for an approved run paused on the LOFTER login page. Reload that run and its locked `upload-manifest.json`, then follow `references/browser-publishing.md` to reacquire the existing Codex in-app browser tabs and resume in the same LOFTER tab only after an authenticated editor is unambiguous. Do not repeat the first confirmation, rebuild or change the manifest, create a new run, or treat `已登录` as final-submit approval.
+ 
+ ### Final confirmation: `确认最终提交`
+ 
+ Reload the same run and final platform preview. Immediately call `publication_gate.approve_final_submit`, click submit once, verify the result, and call `publication_gate.record_publication`. Preserve the published run as the archive. Never click the final submit button without this fresh exact confirmation. For an uncertain result, perform read-only verification and call `resolve_uncertain_publication`; never submit again.
+ 
+ ## Deterministic boundaries
+diff --git a/lofter-x-anime-hotspot/references/browser-publishing.md b/lofter-x-anime-hotspot/references/browser-publishing.md
+index 8645151..406ad15 100644
+--- a/lofter-x-anime-hotspot/references/browser-publishing.md
++++ b/lofter-x-anime-hotspot/references/browser-publishing.md
+@@ -1,16 +1,16 @@
+ # Browser publication protocol
+ 
+ Use this protocol only after the first exact confirmation has passed the publication gate.
+ 
+ 1. Do not open the LOFTER editor until `publication_gate.approve_form_fill(run_dir, "确认发布")` succeeds, `build_upload_manifest` returns the approved manifest, and that exact object is atomically saved as run-local `upload-manifest.json`.
+ 2. **REQUIRED SUB-SKILL:** Read `browser:control-in-app-browser` completely before any browser action. Follow that Skill for all page inspection, navigation, typing, uploads, and evidence capture. Publishing uses only the Codex in-app browser selected with `agent.browsers.get("iab")`. Do not automatically switch to Chrome, Edge, another external browser, or another browser session when login is missing.
+ 3. Open or reuse a LOFTER editor tab bound to this run in the Codex in-app browser. If it shows a login page, stop all form filling and ask the user to manually log in on that page, then reply with the exact message `已登录`. Never read, fill, or store credentials, including phone numbers, email addresses, passwords, verification codes, cookies, localStorage, sessionStorage, request headers, or browser configuration. If CAPTCHA, risk control, account verification, an ambiguous editor, or an unexpected page appears, stop for the user. Never bypass or guess through it.
+-4. After `已登录`, reacquire the existing tabs from `agent.browsers.get("iab")` and preferentially resume the same LOFTER tab. Continue only when that tab unambiguously shows the authenticated editor. If it still shows login, CAPTCHA, risk control, account verification, or ambiguous state, remain paused. Resume with the same run and locked `upload-manifest.json`; do not repeat the first confirmation, rebuild or change the manifest, or create a new run. Treat the tab ID only as an in-memory reference for this execution and never persist it.
+-5. Fill only from `upload-manifest.json`/the exact object returned by `build_upload_manifest`. Do not improvise content, reorder media, or upload any file absent from the manifest.
+-6. Verify title, full body, tags, image count, and image order against the approved manifest. Capture final platform preview evidence with the submit button visible. Pass the observed capture time, title, full body, tags, ordered media display IDs/SHA-256/sizes, and `submit_button_visible: true` to `mark_form_filled`; it computes the observation digest locally and rejects caller-supplied digests.
++4. After `已登录`, reacquire the existing tabs from `agent.browsers.get("iab")` and preferentially resume the same LOFTER tab. Continue only when that tab unambiguously shows the authenticated editor. If it still shows login, CAPTCHA, risk control, account verification, or ambiguous state, remain paused. Resume with the same run and locked `upload-manifest.json`; do not repeat the first confirmation, rebuild or change the manifest, or create a new run. Treat the tab ID only as an in-memory reference for this execution and never persist it. Before any further filling, repeat cover-first check after login/draft recovery: the manifest cover must still be the first effective content node. If it is not, reposition it before continuing; if the editor cannot make that unambiguous, pause for the user.
++5. Fill only from `upload-manifest.json`/the exact object returned by `build_upload_manifest`. Do not improvise content, reorder media, or upload any file absent from the manifest. Upload the cover image first and immediately observe that it is the first effective content node before entering the article body. If the cover is not first, reposition it and re-observe; if repositioning cannot establish that state, pause rather than continuing.
++6. After the cover-first observation succeeds, enter the title and full body, then upload every body image only after the text in its manifest order. Verify title, full body, tags, image count, image order, and that the observed first effective content node is the cover against the approved manifest. Capture final platform preview evidence with the submit button visible. Pass the observed capture time, title, full body, tags, ordered media display IDs/SHA-256/sizes, `first_content_is_cover: true`, and `submit_button_visible: true` to `mark_form_filled`; it computes the observation digest locally and rejects caller-supplied digests.
+ 7. Stop before the final submit button. Show the final platform preview to the user and request the exact phrase `确认最终提交`. Never treat `确认发布`, `已登录`, a paraphrase, a prior message, or generic approval as the second confirmation.
+ 8. After receiving `确认最终提交`, re-load the run state and platform preview. Run `approve_final_submit` immediately before clicking submit. If either revalidation fails or the page changed, stop without clicking.
+ 9. Click submit exactly once. If success is clear, record the HTTPS LOFTER URL and timezone-aware publication time with `record_publication`. Preserve the final article, title, tags, manifest, source ledger, and result evidence in the run archive.
+ 10. If the result is uncertain, record `{"result": "uncertain"}`, inspect the LOFTER profile or drafts read-only, and do not click submit again. If the exact LOFTER URL, observed title, approved manifest digest, and check time match, archive via `resolve_uncertain_publication`. Do not retry, refresh into a second submission, or infer failure from a slow response.
+ 
+ If upload or page structure fails before submit, use the safe pre-submit pause and report only a non-secret error. Never store passwords, cookies, session values, verification codes, CAPTCHA data, or authorization evidence in browser/publication state.
+diff --git a/lofter-x-anime-hotspot/tests/test_skill_contract.py b/lofter-x-anime-hotspot/tests/test_skill_contract.py
+index 7b14646..e6314a6 100644
+--- a/lofter-x-anime-hotspot/tests/test_skill_contract.py
++++ b/lofter-x-anime-hotspot/tests/test_skill_contract.py
+@@ -78,20 +78,32 @@ class SkillContractTest(unittest.TestCase):
+         ).read_text(encoding="utf-8")
+         self.assertIn('agent.browsers.get("iab")', protocol)
+         self.assertIn("已登录", protocol)
+         self.assertIn("same LOFTER tab", protocol)
+         self.assertIn("locked `upload-manifest.json`", protocol)
+         self.assertIn("manually log in", protocol)
+         self.assertIn("Never read, fill, or store credentials", protocol)
+         self.assertIn("Do not automatically switch to Chrome", protocol)
+         self.assertIn("do not repeat the first confirmation", protocol)
+ 
++    def test_browser_protocol_requires_cover_first_and_rechecks_after_recovery(self):
++        protocol = (
++            SKILL_DIR / "references" / "browser-publishing.md"
++        ).read_text(encoding="utf-8")
++        self.assertIn("cover image first", protocol)
++        self.assertIn("first effective content node", protocol)
++        self.assertIn("first_content_is_cover", protocol)
++        self.assertLess(
++            protocol.index("repeat cover-first check after login/draft recovery"),
++            protocol.index("final platform preview evidence"),
++        )
++
+     def test_portable_validator_setup_is_pinned_and_ignored(self):
+         requirements = (SKILL_DIR / "requirements-dev.txt").read_text(encoding="utf-8")
+         ignores = (SKILL_DIR / ".gitignore").read_text(encoding="utf-8")
+         skill = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+         plan = PLAN_PATH.read_text(encoding="utf-8")
+         self.assertEqual(requirements.strip(), "PyYAML==6.0.3")
+         self.assertIn(".dev-deps/", ignores.splitlines())
+         self.assertIn("requirements-dev.txt", skill)
+         self.assertIn(".dev-deps", skill)
+         forbidden_home = "/Users" + "/guocc"

@@ -1,0 +1,596 @@
+# Review package: b1ee55e..70616b2
+
+## Commits
+70616b2 feat: gate LOFTER publishing twice
+
+## Files changed
+ lofter-x-anime-hotspot/scripts/publication_gate.py | 279 +++++++++++++++++++
+ .../tests/test_publication_gate.py                 | 294 +++++++++++++++++++++
+ 2 files changed, 573 insertions(+)
+
+## Diff
+diff --git a/lofter-x-anime-hotspot/scripts/publication_gate.py b/lofter-x-anime-hotspot/scripts/publication_gate.py
+new file mode 100644
+index 0000000..7ae83ce
+--- /dev/null
++++ b/lofter-x-anime-hotspot/scripts/publication_gate.py
+@@ -0,0 +1,279 @@
++"""Persist two explicit human confirmations around LOFTER publication."""
++
++import re
++from datetime import datetime, timezone
++from pathlib import Path
++from urllib.parse import urlparse
++
++from build_publishable_draft import load_media_ledger
++from run_state import load_state, transition, write_json_atomic
++
++
++FIRST_CONFIRMATION = "确认发布"
++SECOND_CONFIRMATION = "确认最终提交"
++PUBLISHABLE_MEDIA = {"authorized", "independent"}
++
++_PREVIEW_FIELDS = {
++    "captured_at",
++    "title",
++    "media_count",
++    "submit_button_visible",
++}
++_PUBLIC_MEDIA_FIELDS = ("display_id", "role", "local_path", "review_status")
++_SUCCESS_RESULT_FIELDS = {"lofter_url", "published_at"}
++_UNCERTAIN_RESULT = {
++    "result": "uncertain",
++    "verification_required": "read_only_lofter_profile_or_drafts",
++}
++_PRIVATE_ERROR_MARKERS = (
++    "authorization",
++    "bearer",
++    "credential",
++    "apikey",
++    "token",
++    "password",
++    "cookie",
++    "captcha",
++    "session",
++    "secret",
++    "file://",
++    "/users/",
++    "/home/",
++    "/private/",
++    "/tmp/",
++)
++
++
++def _parse_iso_datetime(value: object, field: str) -> datetime:
++    if type(value) is not str or not value.strip() or "T" not in value:
++        raise ValueError(f"{field} must be a timezone-aware ISO-8601 datetime")
++    try:
++        parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
++    except ValueError as error:
++        raise ValueError(
++            f"{field} must be a timezone-aware ISO-8601 datetime"
++        ) from error
++    if parsed.tzinfo is None or parsed.utcoffset() is None:
++        raise ValueError(f"{field} must be a timezone-aware ISO-8601 datetime")
++    return parsed
++
++
++def _titles_and_tags(run_dir: Path) -> tuple[str, list[str]]:
++    try:
++        content = (run_dir / "titles-and-tags.md").read_text(encoding="utf-8")
++    except OSError as error:
++        raise ValueError("titles and tags are required") from error
++    match = re.fullmatch(
++        r"# 备选标题\n\n"
++        r"1\. ([^\n]+)\n2\. ([^\n]+)\n3\. ([^\n]+)\n\n"
++        r"# 标签\n\n([^\n]+)\n?",
++        content,
++    )
++    if match is None:
++        raise ValueError("titles and tags must use the publishable draft format")
++    title = match.group(1).strip()
++    tag_line = match.group(4)
++    tags = re.findall(r"#([^#\n]+)#", tag_line)
++    if (
++        not title
++        or not 8 <= len(tags) <= 12
++        or len(set(tags)) != len(tags)
++        or any(not tag.strip() for tag in tags)
++        or tag_line != " ".join(f"#{tag}#" for tag in tags)
++    ):
++        raise ValueError("titles and tags must use the publishable draft format")
++    return title, tags
++
++
++def _selected_title(run_dir: Path) -> str:
++    return _titles_and_tags(run_dir)[0]
++
++
++def approve_form_fill(run_dir: Path, confirmation: str) -> dict:
++    """Record the first exact confirmation after all media pass review."""
++    if confirmation != FIRST_CONFIRMATION:
++        raise ValueError("exact confirmation required: 确认发布")
++    run_dir = Path(run_dir)
++    state = load_state(run_dir)
++    if state["state"] != "authorization_review":
++        raise ValueError("run is not awaiting authorization review")
++    ledger = load_media_ledger(run_dir)
++    if not ledger or any(
++        item["review_status"] not in PUBLISHABLE_MEDIA for item in ledger
++    ):
++        raise ValueError("media review incomplete")
++    return transition(
++        run_dir,
++        "authorization_review",
++        "approved",
++        confirmations={"fill": True, "submit": False},
++    )
++
++
++def build_upload_manifest(run_dir: Path) -> dict:
++    """Build a public-only, run-local upload manifest after first approval."""
++    run_dir = Path(run_dir)
++    state = load_state(run_dir)
++    if state["state"] != "approved" or state["confirmations"]["fill"] is not True:
++        raise ValueError("first publication confirmation is missing")
++    ledger = load_media_ledger(run_dir)
++    if not ledger or any(
++        item["review_status"] not in PUBLISHABLE_MEDIA for item in ledger
++    ):
++        raise ValueError("media review incomplete")
++    try:
++        article = (run_dir / "article.md").read_text(encoding="utf-8")
++    except OSError as error:
++        raise ValueError("article is required") from error
++    title, tags = _titles_and_tags(run_dir)
++    return {
++        "title": title,
++        "article": article,
++        "tags": tags,
++        "media": [
++            {field: item[field] for field in _PUBLIC_MEDIA_FIELDS}
++            for item in ledger
++        ],
++    }
++
++
++def _validate_platform_preview(run_dir: Path, value: object) -> dict:
++    if type(value) is not dict or set(value) != _PREVIEW_FIELDS:
++        raise ValueError("final platform preview is incomplete")
++    try:
++        _parse_iso_datetime(value["captured_at"], "captured_at")
++    except ValueError as error:
++        raise ValueError("final platform preview is incomplete") from error
++    title = _selected_title(run_dir)
++    ledger = load_media_ledger(run_dir)
++    if not ledger or any(
++        item["review_status"] not in PUBLISHABLE_MEDIA for item in ledger
++    ):
++        raise ValueError("media review incomplete")
++    valid = (
++        type(value["title"]) is str
++        and value["title"] == title
++        and type(value["media_count"]) is int
++        and value["media_count"] == len(ledger)
++        and value["submit_button_visible"] is True
++    )
++    if not valid:
++        raise ValueError("final platform preview is incomplete")
++    return value.copy()
++
++
++def mark_form_filled(run_dir: Path, platform_preview: dict) -> dict:
++    """Persist typed final-form evidence before the second confirmation."""
++    run_dir = Path(run_dir)
++    preview = _validate_platform_preview(run_dir, platform_preview)
++    return transition(
++        run_dir,
++        "approved",
++        "publishing",
++        platform_preview=preview,
++    )
++
++
++def approve_final_submit(run_dir: Path, confirmation: str) -> dict:
++    """Record the second exact confirmation without claiming publication."""
++    if confirmation != SECOND_CONFIRMATION:
++        raise ValueError("exact confirmation required: 确认最终提交")
++    run_dir = Path(run_dir)
++    state = load_state(run_dir)
++    if state["state"] != "publishing" or not state.get("platform_preview"):
++        raise ValueError("final platform preview is required")
++    _validate_platform_preview(run_dir, state["platform_preview"])
++    if state["publication"].get("result") == "uncertain":
++        raise ValueError(
++            "read-only LOFTER profile/drafts check is required before further action"
++        )
++    if state["confirmations"]["submit"] is True:
++        raise ValueError("final submission confirmation has already been recorded")
++    state["confirmations"]["submit"] = True
++    state["updated_at"] = datetime.now(timezone.utc).isoformat()
++    write_json_atomic(run_dir / "status.json", state)
++    return load_state(run_dir)
++
++
++def _validate_lofter_url(value: object) -> str:
++    if type(value) is not str or not value.strip():
++        raise ValueError("lofter_url must be an HTTPS LOFTER URL")
++    try:
++        parsed = urlparse(value)
++        host = (parsed.hostname or "").casefold()
++        valid = (
++            parsed.scheme == "https"
++            and (host == "lofter.com" or host.endswith(".lofter.com"))
++            and bool(parsed.path.strip("/"))
++            and parsed.username is None
++            and parsed.password is None
++            and parsed.port is None
++        )
++    except ValueError:
++        valid = False
++    if not valid:
++        raise ValueError("lofter_url must be an HTTPS LOFTER URL")
++    return value
++
++
++def _validate_publication_result(result: object) -> dict:
++    if type(result) is not dict or set(result) != _SUCCESS_RESULT_FIELDS:
++        raise ValueError("publication result is incomplete")
++    _validate_lofter_url(result["lofter_url"])
++    _parse_iso_datetime(result["published_at"], "published_at")
++    return result.copy()
++
++
++def record_publication(run_dir: Path, result: dict) -> dict:
++    """Record a verified URL, or freeze an uncertain post-submit outcome."""
++    run_dir = Path(run_dir)
++    state = load_state(run_dir)
++    if state["state"] != "publishing" or state["confirmations"]["submit"] is not True:
++        raise ValueError("final submission confirmation is missing")
++    if state["publication"].get("result") == "uncertain":
++        raise ValueError(
++            "read-only LOFTER profile/drafts check is required before further action"
++        )
++    if type(result) is dict and result == {"result": "uncertain"}:
++        state["publication"] = _UNCERTAIN_RESULT.copy()
++        state["updated_at"] = datetime.now(timezone.utc).isoformat()
++        write_json_atomic(run_dir / "status.json", state)
++        return load_state(run_dir)
++    publication = _validate_publication_result(result)
++    return transition(
++        run_dir,
++        "publishing",
++        "published",
++        publication=publication,
++    )
++
++
++def _validate_safe_error(value: object) -> str:
++    if type(value) is not str or not value.strip():
++        raise ValueError("safe pause error must be a non-empty string")
++    error = value.strip()
++    folded = error.casefold()
++    if any(marker in folded for marker in _PRIVATE_ERROR_MARKERS) or any(
++        ord(character) < 32 for character in error
++    ):
++        raise ValueError("safe pause error must not contain secret data")
++    return error
++
++
++def pause_before_submit(run_dir: Path, error: str) -> dict:
++    """Return to approval only before submit, retaining a non-secret error."""
++    run_dir = Path(run_dir)
++    state = load_state(run_dir)
++    if (
++        state["state"] != "publishing"
++        or state["confirmations"]["submit"] is not False
++        or state["publication"]
++    ):
++        raise ValueError("safe pause is allowed only before final submit")
++    safe_error = _validate_safe_error(error)
++    return transition(
++        run_dir,
++        "publishing",
++        "approved",
++        errors=[*state["errors"], safe_error],
++    )
+diff --git a/lofter-x-anime-hotspot/tests/test_publication_gate.py b/lofter-x-anime-hotspot/tests/test_publication_gate.py
+new file mode 100644
+index 0000000..2e6d392
+--- /dev/null
++++ b/lofter-x-anime-hotspot/tests/test_publication_gate.py
+@@ -0,0 +1,294 @@
++import json
++import sys
++import tempfile
++import unittest
++from datetime import datetime
++from pathlib import Path
++
++
++SCRIPTS = Path(__file__).resolve().parents[1] / "scripts"
++sys.path.insert(0, str(SCRIPTS))
++
++from build_publishable_draft import build_draft, record_media_review
++from publication_gate import (
++    approve_final_submit,
++    approve_form_fill,
++    build_upload_manifest,
++    mark_form_filled,
++    pause_before_submit,
++    record_publication,
++)
++from run_state import create_run, load_state, write_json_atomic
++from validate_authorizations import validate_authorization, validate_ledger
++
++
++FIXED_NOW = datetime(2026, 8, 11, 14, 30)
++
++
++def _article() -> str:
++    return "这是用于验证两次确认发布门禁的原创中文正文。" * 50
++
++
++class PublicationGateTest(unittest.TestCase):
++    def setUp(self):
++        self.temporary = tempfile.TemporaryDirectory()
++        self.addCleanup(self.temporary.cleanup)
++        self.root = Path(self.temporary.name)
++
++    def prepared_review_run(
++        self, slug: str = "publication-gate", *, include_x_media: bool = False
++    ) -> Path:
++        run_dir, _ = create_run(self.root / "runs", slug, FIXED_NOW)
++        media = []
++        if include_x_media:
++            (run_dir / "original-media/candidate.webp").write_bytes(b"candidate")
++            media.append(
++                {
++                    "kind": "x_original",
++                    "role": "cover",
++                    "local_path": "original-media/candidate.webp",
++                    "caption": "已授权候选封面图",
++                    "source_url": "https://x.com/artist/status/123",
++                    "source_author": "@artist",
++                    "source_media_id": "media-123",
++                }
++            )
++        (run_dir / "generated-media/original.webp").write_bytes(b"generated")
++        media.append(
++            {
++                "kind": "generated_original",
++                "role": "body" if include_x_media else "cover",
++                "local_path": "generated-media/original.webp",
++                "caption": "独立原创配图",
++                "generation_lineage": {
++                    "generator": "test-image-model",
++                    "prompt": "an independent original composition",
++                    "source_media_ids": [],
++                },
++            }
++        )
++        write_json_atomic(
++            run_dir / "hotspot-analysis.json",
++            {
++                "time_window_hours": 24,
++                "candidate": {
++                    "id": slug,
++                    "title": "入选热点",
++                    "eligible": True,
++                },
++                "content_mode": "trend_analysis",
++                "selection_reason": "24小时窗口内综合评分最高：91/100",
++            },
++        )
++        build_draft(
++            run_dir,
++            {
++                "article": _article(),
++                "titles": ["备选标题一", "备选标题二", "备选标题三"],
++                "tags": [f"标签{number}" for number in range(1, 9)],
++                "authorized_media_intent": include_x_media,
++                "ai_assistance": True,
++                "media": media,
++            },
++        )
++        return run_dir
++
++    def fully_reviewed_run(
++        self, slug: str = "fully-reviewed", *, include_authorized: bool = False
++    ) -> Path:
++        run_dir = self.prepared_review_run(slug, include_x_media=include_authorized)
++        if include_authorized:
++            ledger_path = run_dir / "private-authorization/authorizations.json"
++            evidence_path = ledger_path.parent / "evidence/media-123.txt"
++            evidence_path.parent.mkdir(parents=True)
++            evidence_path.write_text("real operational evidence", encoding="utf-8")
++            record = {
++                "asset_id": "media-123",
++                "author_handle": "@artist",
++                "source_url": "https://x.com/artist/status/123",
++                "evidence_path": "evidence/media-123.txt",
++                "lofter_redistribution": True,
++                "ai_adaptation": True,
++                "commercial_use": False,
++                "translation": True,
++                "crop": True,
++                "layout": True,
++                "allowed_platforms": ["LOFTER"],
++                "attribution_mode": "public",
++                "original_asset_id": None,
++                "derived_asset_ids": [],
++                "publication_history": [],
++                "example_only": False,
++            }
++            write_json_atomic(ledger_path, [record])
++            indexed = validate_ledger([record], evidence_root=ledger_path.parent)
++            decision = validate_authorization(
++                indexed["media-123"], "original", evidence_root=ledger_path.parent
++            )
++            record_media_review(
++                run_dir,
++                1,
++                True,
++                {**decision, "authorization_ledger_path": str(ledger_path)},
++            )
++        return run_dir
++
++    def filled_form_run(self, slug: str = "filled-form") -> Path:
++        run_dir = self.fully_reviewed_run(slug)
++        approve_form_fill(run_dir, "确认发布")
++        mark_form_filled(
++            run_dir,
++            {
++                "captured_at": "2026-08-11T15:55:00+08:00",
++                "title": "备选标题一",
++                "media_count": 1,
++                "submit_button_visible": True,
++            },
++        )
++        return run_dir
++
++    def test_first_confirmation_requires_all_media_publishable(self):
++        run_dir = self.prepared_review_run(include_x_media=True)
++
++        with self.assertRaisesRegex(ValueError, "media review incomplete"):
++            approve_form_fill(run_dir, "确认发布")
++
++        self.assertEqual(load_state(run_dir)["state"], "authorization_review")
++
++    def test_wrong_or_reused_confirmation_cannot_advance(self):
++        run_dir = self.fully_reviewed_run()
++        with self.assertRaisesRegex(ValueError, "exact confirmation"):
++            approve_form_fill(run_dir, "可以发布")
++
++        approve_form_fill(run_dir, "确认发布")
++        with self.assertRaisesRegex(ValueError, "exact confirmation"):
++            approve_final_submit(run_dir, "确认发布")
++        with self.assertRaisesRegex(ValueError, "final platform preview"):
++            approve_final_submit(run_dir, "确认最终提交")
++
++        self.assertEqual(load_state(run_dir)["state"], "approved")
++        self.assertFalse(load_state(run_dir)["confirmations"]["submit"])
++
++    def test_manifest_contains_only_authorized_or_independent_local_media(self):
++        run_dir = self.fully_reviewed_run(include_authorized=True)
++        approve_form_fill(run_dir, "确认发布")
++
++        manifest = build_upload_manifest(run_dir)
++
++        self.assertEqual(manifest["title"], "备选标题一")
++        self.assertEqual(manifest["tags"], [f"标签{number}" for number in range(1, 9)])
++        self.assertEqual(
++            {item["review_status"] for item in manifest["media"]},
++            {"authorized", "independent"},
++        )
++        self.assertTrue(
++            all(
++                set(item) == {"display_id", "role", "local_path", "review_status"}
++                for item in manifest["media"]
++            )
++        )
++        serialized = json.dumps(manifest, ensure_ascii=False)
++        self.assertNotIn("authorization", serialized)
++        self.assertNotIn("evidence_path", serialized)
++        self.assertNotIn("ledger", serialized)
++
++    def test_form_preview_is_typed_and_must_match_upload_contents(self):
++        run_dir = self.fully_reviewed_run()
++        approve_form_fill(run_dir, "确认发布")
++        invalid_previews = (
++            {"captured_at": "bad", "title": "备选标题一", "media_count": 1, "submit_button_visible": True},
++            {"captured_at": "2026-08-11T15:55:00+08:00", "title": "错误标题", "media_count": 1, "submit_button_visible": True},
++            {"captured_at": "2026-08-11T15:55:00+08:00", "title": "备选标题一", "media_count": True, "submit_button_visible": True},
++            {"captured_at": "2026-08-11T15:55:00+08:00", "title": "备选标题一", "media_count": 1, "submit_button_visible": False},
++        )
++
++        for preview in invalid_previews:
++            with self.subTest(preview=preview):
++                with self.assertRaisesRegex(ValueError, "final platform preview"):
++                    mark_form_filled(run_dir, preview)
++
++        self.assertEqual(load_state(run_dir)["state"], "approved")
++
++    def test_second_confirmation_and_result_are_separate_events(self):
++        run_dir = self.filled_form_run()
++
++        state = approve_final_submit(run_dir, "确认最终提交")
++        self.assertEqual(state["state"], "publishing")
++        self.assertEqual(state["publication"], {})
++        state = record_publication(
++            run_dir,
++            {
++                "lofter_url": "https://example.lofter.com/post/abc",
++                "published_at": "2026-08-11T16:00:00+08:00",
++            },
++        )
++
++        self.assertEqual(state["state"], "published")
++
++    def test_second_confirmation_revalidates_persisted_typed_preview(self):
++        run_dir = self.filled_form_run("tampered-preview")
++        state = load_state(run_dir)
++        state["platform_preview"] = {"captured_at": "2026-08-11T15:55:00+08:00"}
++        write_json_atomic(run_dir / "status.json", state)
++
++        with self.assertRaisesRegex(ValueError, "final platform preview"):
++            approve_final_submit(run_dir, "确认最终提交")
++
++        self.assertFalse(load_state(run_dir)["confirmations"]["submit"])
++
++    def test_publication_result_requires_lofter_url_and_timezone_aware_datetime(self):
++        run_dir = self.filled_form_run("invalid-result")
++        approve_final_submit(run_dir, "确认最终提交")
++
++        for result in (
++            {
++                "lofter_url": "https://example.com/post/abc",
++                "published_at": "2026-08-11T16:00:00+08:00",
++            },
++            {
++                "lofter_url": "https://example.lofter.com/post/abc",
++                "published_at": "2026-08-11T16:00:00",
++            },
++        ):
++            with self.subTest(result=result):
++                with self.assertRaises(ValueError):
++                    record_publication(run_dir, result)
++
++        self.assertEqual(load_state(run_dir)["state"], "publishing")
++
++    def test_safe_pause_is_only_available_before_final_submit(self):
++        run_dir = self.filled_form_run("safe-pause")
++
++        state = pause_before_submit(run_dir, "platform preview expired")
++
++        self.assertEqual(state["state"], "approved")
++        self.assertIn("platform preview expired", state["errors"])
++        run_dir = self.filled_form_run("unsafe-pause")
++        approve_final_submit(run_dir, "确认最终提交")
++        with self.assertRaisesRegex(ValueError, "before final submit"):
++            pause_before_submit(run_dir, "browser closed")
++
++    def test_uncertain_submit_stays_publishing_and_blocks_further_writes(self):
++        run_dir = self.filled_form_run("uncertain-submit")
++        approve_final_submit(run_dir, "确认最终提交")
++
++        state = record_publication(run_dir, {"result": "uncertain"})
++
++        self.assertEqual(state["state"], "publishing")
++        self.assertEqual(state["publication"]["result"], "uncertain")
++        self.assertEqual(
++            state["publication"]["verification_required"],
++            "read_only_lofter_profile_or_drafts",
++        )
++        with self.assertRaisesRegex(ValueError, "read-only LOFTER profile/drafts"):
++            record_publication(
++                run_dir,
++                {
++                    "lofter_url": "https://example.lofter.com/post/abc",
++                    "published_at": "2026-08-11T16:00:00+08:00",
++                },
++            )
++
++
++if __name__ == "__main__":
++    unittest.main()

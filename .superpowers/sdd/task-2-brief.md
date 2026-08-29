@@ -1,149 +1,130 @@
-### Task 2: Authorization Ledger Gate
+### Task 2: Research Sufficiency, Topic Selection, and Content Mode
 
 **Files:**
-- Create: `lofter-x-anime-hotspot/scripts/validate_authorizations.py`
-- Create: `lofter-x-anime-hotspot/tests/test_validate_authorizations.py`
+- Modify: `lofter-x-anime-hotspot/scripts/score_candidates.py`
+- Create: `lofter-x-anime-hotspot/scripts/select_publishable_topic.py`
+- Create: `lofter-x-anime-hotspot/tests/test_select_publishable_topic.py`
+- Create: `lofter-x-anime-hotspot/templates/run-input.example.json`
+- Modify: `lofter-x-anime-hotspot/templates/candidates.example.json`
+- Modify: `lofter-x-anime-hotspot/templates/packet-inputs.example.json`
+- Modify: `lofter-x-anime-hotspot/tests/test_score_candidates.py`
 
 **Interfaces:**
-- Consumes: authorization records with `asset_id`, `author_handle`, `source_url`, `evidence_path`, `lofter_redistribution`, `ai_adaptation`, and `commercial_use`.
-- Produces: `validate_authorization(record: dict, usage: str, commercial: bool = False) -> dict`; `usage` is `original` or `ai_adaptation`.
+- Consumes: `score_candidates.rank_candidates(candidates: list[dict], ip_pool: list[dict]) -> list[dict]`
+- Produces: `select_topic(payload: dict) -> dict` with keys `time_window_hours`, `candidate`, `content_mode`, `selection_reason`
+- Content modes: `trend_analysis`, `fanfic`, `visual_curation`
+- Research payload contains `ip_pool`, `windows.24`, and optional `windows.72`; each window contains `x_sources`, `lofter_sources`, and `candidates`
 
-- [ ] **Step 1: Write the failing authorization tests**
-
-```python
-# lofter-x-anime-hotspot/tests/test_validate_authorizations.py
-import sys
-import unittest
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).parents[1] / "scripts"))
-
-from validate_authorizations import validate_authorization
-
-
-BASE = {
-    "asset_id": "asset-1",
-    "author_handle": "@artist",
-    "source_url": "https://x.com/artist/status/1",
-    "evidence_path": "authorizations/asset-1.png",
-    "lofter_redistribution": True,
-    "ai_adaptation": True,
-    "commercial_use": False,
-}
-
-
-class AuthorizationTest(unittest.TestCase):
-    def test_ai_adaptation_is_allowed(self):
-        result = validate_authorization(BASE, "ai_adaptation")
-        self.assertTrue(result["allowed"])
-        self.assertEqual(result["asset_id"], "asset-1")
-
-    def test_ai_adaptation_requires_explicit_scope(self):
-        record = {**BASE, "ai_adaptation": False}
-        with self.assertRaisesRegex(ValueError, "AI adaptation is not authorized"):
-            validate_authorization(record, "ai_adaptation")
-
-    def test_commercial_use_defaults_to_denied(self):
-        with self.assertRaisesRegex(ValueError, "commercial use is not authorized"):
-            validate_authorization(BASE, "original", commercial=True)
-
-    def test_original_requires_lofter_permission(self):
-        record = {**BASE, "lofter_redistribution": False}
-        with self.assertRaisesRegex(ValueError, "LOFTER redistribution is not authorized"):
-            validate_authorization(record, "original")
-
-
-if __name__ == "__main__":
-    unittest.main()
-```
-
-- [ ] **Step 2: Run the tests and verify failure**
-
-Run:
-
-```bash
-python3 -m unittest lofter-x-anime-hotspot/tests/test_validate_authorizations.py -v
-```
-
-Expected: `ModuleNotFoundError: No module named 'validate_authorizations'`.
-
-- [ ] **Step 3: Implement the authorization validator**
+- [ ] **Step 1: Write failing selection tests**
 
 ```python
-# lofter-x-anime-hotspot/scripts/validate_authorizations.py
-import argparse
-import json
-from pathlib import Path
+class SelectPublishableTopicTest(unittest.TestCase):
+    def test_uses_24_hours_when_sources_and_candidates_are_sufficient(self):
+        payload = fixture_payload()
+        result = select_topic(payload)
+        self.assertEqual(result["time_window_hours"], 24)
+        self.assertEqual(result["candidate"]["id"], "high-score")
 
+    def test_expands_to_72_hours_when_24_hours_are_insufficient(self):
+        payload = fixture_payload()
+        payload["windows"]["24"]["lofter_sources"] = []
+        result = select_topic(payload)
+        self.assertEqual(result["time_window_hours"], 72)
 
-REQUIRED = {
-    "asset_id",
-    "author_handle",
-    "source_url",
-    "evidence_path",
-    "lofter_redistribution",
-    "ai_adaptation",
-    "commercial_use",
+    def test_refuses_to_draft_without_two_platforms_and_eligible_topic(self):
+        payload = fixture_payload()
+        payload["windows"]["24"]["candidates"] = []
+        payload["windows"]["72"]["candidates"] = []
+        with self.assertRaisesRegex(ValueError, "no publishable topic"):
+            select_topic(payload)
+
+    def test_mode_is_derived_from_evidence_features(self):
+        payload = fixture_payload()
+        payload["windows"]["24"]["candidates"][0]["topic_features"] = {
+            "event_signal": False,
+            "relationship_signal": True,
+            "visual_signal": False,
+        }
+        self.assertEqual(select_topic(payload)["content_mode"], "fanfic")
+```
+
+- [ ] **Step 2: Run the selection tests and verify failure**
+
+Run: `python3 -m unittest lofter-x-anime-hotspot/tests/test_select_publishable_topic.py -v`  
+Expected: FAIL with `ModuleNotFoundError: No module named 'select_publishable_topic'`.
+
+- [ ] **Step 3: Implement deterministic sufficiency and mode selection**
+
+```python
+def _window_is_sufficient(window: dict, ranked: list[dict]) -> bool:
+    return (
+        isinstance(window.get("x_sources"), list)
+        and len(window["x_sources"]) >= 2
+        and isinstance(window.get("lofter_sources"), list)
+        and len(window["lofter_sources"]) >= 1
+        and bool(ranked)
+    )
+
+def _content_mode(candidate: dict) -> str:
+    features = candidate.get("topic_features")
+    if not isinstance(features, dict):
+        raise ValueError("topic_features must be an object")
+    values = {name: features.get(name) for name in (
+        "event_signal", "relationship_signal", "visual_signal"
+    )}
+    if any(type(value) is not bool for value in values.values()):
+        raise ValueError("topic feature signals must be booleans")
+    if values["event_signal"]:
+        return "trend_analysis"
+    if values["relationship_signal"]:
+        return "fanfic"
+    if values["visual_signal"]:
+        return "visual_curation"
+    raise ValueError("topic has no supported content mode")
+
+def select_topic(payload: dict) -> dict:
+    ip_pool = payload["ip_pool"]
+    for hours in (24, 72):
+        window = payload.get("windows", {}).get(str(hours))
+        if window is None:
+            continue
+        ranked = rank_candidates(window.get("candidates"), ip_pool)
+        if _window_is_sufficient(window, ranked):
+            winner = ranked[0]
+            return {
+                "time_window_hours": hours,
+                "candidate": winner,
+                "content_mode": _content_mode(winner),
+                "selection_reason": (
+                    f"{hours}小时窗口内综合评分最高：{winner['total_score']}/100"
+                ),
+            }
+    raise ValueError("no publishable topic in 24-hour or 72-hour window")
+```
+
+Extend candidate validation in `score_candidates.py` to require a `topic_features` object with the three strict booleans. Update existing candidate fixtures, `candidates.example.json`, and every embedded candidate in `packet-inputs.example.json` with values that preserve their current ranking and media semantics.
+
+- [ ] **Step 4: Add the complete non-authorizing input example and run tests**
+
+The example must contain the exact top-level shape below, populated with the existing five-IP example pool and valid candidate objects copied from `candidates.example.json`; it must not contain authorization decisions or evidence paths:
+
+```json
+{
+  "ip_pool": [],
+  "windows": {
+    "24": {"x_sources": [], "lofter_sources": [], "candidates": []},
+    "72": {"x_sources": [], "lofter_sources": [], "candidates": []}
+  }
 }
-
-
-def validate_authorization(record: dict, usage: str, commercial: bool = False) -> dict:
-    missing = sorted(REQUIRED - record.keys())
-    if missing:
-        raise ValueError(f"missing fields: {', '.join(missing)}")
-    if usage not in {"original", "ai_adaptation"}:
-        raise ValueError("usage must be original or ai_adaptation")
-    if not record["lofter_redistribution"]:
-        raise ValueError("LOFTER redistribution is not authorized")
-    if usage == "ai_adaptation" and not record["ai_adaptation"]:
-        raise ValueError("AI adaptation is not authorized")
-    if commercial and not record["commercial_use"]:
-        raise ValueError("commercial use is not authorized")
-    return {
-        "asset_id": record["asset_id"],
-        "allowed": True,
-        "usage": usage,
-        "commercial": commercial,
-        "author_handle": record["author_handle"],
-        "source_url": record["source_url"],
-    }
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("ledger", type=Path)
-    parser.add_argument("asset_id")
-    parser.add_argument("--usage", choices=("original", "ai_adaptation"), required=True)
-    parser.add_argument("--commercial", action="store_true")
-    args = parser.parse_args()
-    records = json.loads(args.ledger.read_text(encoding="utf-8"))
-    matches = [record for record in records if record.get("asset_id") == args.asset_id]
-    if len(matches) != 1:
-        raise SystemExit(f"expected one authorization record for {args.asset_id}")
-    result = validate_authorization(matches[0], args.usage, args.commercial)
-    print(json.dumps(result, ensure_ascii=False, indent=2))
-
-
-if __name__ == "__main__":
-    main()
 ```
 
-- [ ] **Step 4: Run authorization tests and verify success**
+Run: `python3 -m unittest lofter-x-anime-hotspot/tests/test_score_candidates.py lofter-x-anime-hotspot/tests/test_select_publishable_topic.py -v`  
+Expected: all scoring and selection tests PASS with unchanged eligible ordering.
 
-Run:
+- [ ] **Step 5: Commit Task 2**
 
 ```bash
-python3 -m unittest lofter-x-anime-hotspot/tests/test_validate_authorizations.py -v
+git add lofter-x-anime-hotspot/scripts/score_candidates.py lofter-x-anime-hotspot/scripts/select_publishable_topic.py lofter-x-anime-hotspot/templates/candidates.example.json lofter-x-anime-hotspot/templates/packet-inputs.example.json lofter-x-anime-hotspot/templates/run-input.example.json lofter-x-anime-hotspot/tests/test_score_candidates.py lofter-x-anime-hotspot/tests/test_select_publishable_topic.py
+git commit -m "feat: select one publishable hotspot"
 ```
-
-Expected: `Ran 4 tests` and `OK`.
-
-- [ ] **Step 5: Commit the authorization gate**
-
-```bash
-git add lofter-x-anime-hotspot/scripts/validate_authorizations.py lofter-x-anime-hotspot/tests/test_validate_authorizations.py
-git commit -m "feat: validate LOFTER media authorization"
-```
-
----
 

@@ -1,0 +1,516 @@
+# Review package: 65dc4823d0bb214fc1d3403e1ea290d1f14e6718..6f1f543
+
+## Commits
+6f1f543 fix(lofter): bypass cover upload on draft recovery
+4a75eee fix(lofter): distinguish cover-first resume states
+47f9ed2 docs(lofter): report image-first task 3 verification
+1b4f6bc feat(lofter): enforce cover-first browser publishing
+5aedf8b feat(lofter): require cover-first preview evidence
+e00226f fix: render LOFTER cover first
+366d9d6 feat: render LOFTER cover before article
+
+## Files changed
+ .superpowers/sdd/image-first-task-1-report.md      | 82 ++++++++++++++++++++++
+ lofter-x-anime-hotspot/SKILL.md                    |  4 +-
+ .../references/browser-publishing.md               |  6 +-
+ lofter-x-anime-hotspot/scripts/publication_gate.py |  3 +
+ lofter-x-anime-hotspot/scripts/render_preview.py   |  7 +-
+ .../tests/test_publication_gate.py                 |  7 ++
+ .../tests/test_publishable_workflow.py             |  1 +
+ .../tests/test_render_preview.py                   | 49 ++++++++++++-
+ .../tests/test_skill_contract.py                   | 28 ++++++++
+ 9 files changed, 180 insertions(+), 7 deletions(-)
+
+## Diff
+diff --git a/.superpowers/sdd/image-first-task-1-report.md b/.superpowers/sdd/image-first-task-1-report.md
+new file mode 100644
+index 0000000..37b2298
+--- /dev/null
++++ b/.superpowers/sdd/image-first-task-1-report.md
+@@ -0,0 +1,82 @@
++# Image-first Task 1 Report
++
++## Scope
++
++- `lofter-x-anime-hotspot/scripts/render_preview.py`
++- `lofter-x-anime-hotspot/tests/test_render_preview.py`
++- `.superpowers/sdd/image-first-task-1-report.md`
++
++## RED
++
++Command:
++
++```sh
++python3 -m unittest lofter-x-anime-hotspot/tests/test_render_preview.py -v
++```
++
++Result: failed as expected in
++`test_preview_renders_cover_before_article_and_body_media_afterward`.
++The cover path index was `1896`, after the unique article marker at `1746`.
++
++## GREEN
++
++Implemented the minimal renderer split: reject an empty ledger or one whose first
++item is not the cover; render the first item in a cover media section before the
++article; render the remaining items in the existing media section after the
++article. Existing escaping, local paths, captions, and responsive inline CSS are
++unchanged.
++
++Command:
++
++```sh
++python3 -m unittest lofter-x-anime-hotspot/tests/test_render_preview.py -v
++```
++
++Result: passed — 4 tests run, 0 failures.
++
++## Self-review
++
++- Confirmed the new test checks the cover path before the article marker and the
++  body-media path after it.
++- Confirmed `build_preview_html` requires a non-empty ledger beginning with role
++  `cover`, matching the validated-ledger interface.
++- Confirmed only `ledger[0]` is rendered before `.article`; `ledger[1:]` remains
++  after it in the existing publication-order section.
++- Confirmed focused diff whitespace check passes for the implementation and test
++  files.
++
++## Commit
++
++This report is committed with the Task 1 renderer change as
++`feat: render LOFTER cover before article`; use `git log -1 --oneline` to obtain
++the immutable commit identifier.
++
++## Critical review fix
++
++The cover section originally followed the topic/status and hotspot-evidence
++sections, so it was not the first visible child of `<main>`.
++
++### Regression RED
++
++After adding assertions that the cover path precedes the unique status marker
++`等待授权复核，尚不可发布` and analysis marker `测试图片优先顺序`, ran:
++
++```sh
++python3 -m unittest lofter-x-anime-hotspot/tests/test_render_preview.py -v
++```
++
++Result: failed as expected in
++`test_preview_renders_cover_before_article_and_body_media_afterward`:
++the cover path index was `1767`, after the status marker at `1379`.
++
++### Fix and GREEN
++
++Moved `<section class="cover">` to be the first child of `<main>`, before the
++topic/status and hotspot-evidence sections. The focused test was rerun:
++
++```sh
++python3 -m unittest lofter-x-anime-hotspot/tests/test_render_preview.py -v
++```
++
++Result: passed — 4 tests run, 0 failures. A focused `git diff --check` for the
++renderer and test files also passed.
+diff --git a/lofter-x-anime-hotspot/SKILL.md b/lofter-x-anime-hotspot/SKILL.md
+index da7d4c1..c35c775 100644
+--- a/lofter-x-anime-hotspot/SKILL.md
++++ b/lofter-x-anime-hotspot/SKILL.md
+@@ -31,25 +31,25 @@ For a repository checkout, set `LOFTER_SKILL_DIR` to the absolute directory cont
+ ### New draft
+ 
+ Create a run under `runs/` with `run_state.create_run`. Research 24 hours first and expand to 72 hours only when `select_publishable_topic.select_topic` reports insufficient 24-hour evidence. Persist the selector result and private research ledger in `hotspot-analysis.json` with `run_state.write_json_atomic`, validate the draft with `build_publishable_draft.build_draft`, then call `render_preview.render_preview`. Show the absolute `preview.html` path and stop in `authorization_review`; do not open LOFTER.
+ 
+ ### Resume or revise
+ 
+ Load the named run, or the latest unfinished run when unambiguous, with `run_state.load_state`. Do not reselect the topic. Apply article/title/tag/caption changes with `build_publishable_draft.revise_draft`; it preserves unspecified fields, resets publication confirmations, and refreshes the preview transactionally. For rejected media, call `build_publishable_draft.record_media_review`, generate an independent replacement under the research protocol, then call `build_publishable_draft.replace_rejected_media`. Show the refreshed preview path and stop for review.
+ 
+ ### First confirmation: `确认发布`
+ 
+-Accept only the exact phrase bound to the reviewed run. It attests that every run media item is authorized for LOFTER; reject pending/rejected and known smoke-only/publication-forbidden media. Call `publication_gate.approve_form_fill`, then `publication_gate.build_upload_manifest`. Persist that exact public object as run-local `upload-manifest.json` with `run_state.write_json_atomic`. Follow `references/browser-publishing.md` to fill LOFTER from that manifest and persist the observed title, body, tags, and ordered media identities with `publication_gate.mark_form_filled`. Stop before submit and request `确认最终提交`.
++Accept only the exact phrase bound to the reviewed run. It attests that every run media item is authorized for LOFTER; reject pending/rejected and known smoke-only/publication-forbidden media. Call `publication_gate.approve_form_fill`, then `publication_gate.build_upload_manifest`. Persist that exact public object as run-local `upload-manifest.json` with `run_state.write_json_atomic`. Follow `references/browser-publishing.md` to fill LOFTER from that manifest: the cover image must be uploaded first and observed as the first effective content node before body entry; record `first_content_is_cover: true` with the observed title, body, tags, and ordered media identities in `publication_gate.mark_form_filled`. Stop before submit and request `确认最终提交`.
+ 
+ ### Login resume: `已登录`
+ 
+-Accept this message only for an approved run paused on the LOFTER login page. Reload that run and its locked `upload-manifest.json`, then follow `references/browser-publishing.md` to reacquire the existing Codex in-app browser tabs and resume in the same LOFTER tab only after an authenticated editor is unambiguous. Do not repeat the first confirmation, rebuild or change the manifest, create a new run, or treat `已登录` as final-submit approval.
++Accept this message only for an approved run paused on the LOFTER login page. Reload that run and its locked `upload-manifest.json`, then follow `references/browser-publishing.md` to reacquire the existing Codex in-app browser tabs and resume in the same LOFTER tab only after an authenticated editor is unambiguous. An empty editor must upload and observe the locked manifest cover first before body entry; a recovered filled draft must recheck its existing first content node and reposition or pause if it is not the cover. Do not repeat the first confirmation, rebuild or change the manifest, create a new run, or treat `已登录` as final-submit approval.
+ 
+ ### Final confirmation: `确认最终提交`
+ 
+ Reload the same run and final platform preview. Immediately call `publication_gate.approve_final_submit`, click submit once, verify the result, and call `publication_gate.record_publication`. Preserve the published run as the archive. Never click the final submit button without this fresh exact confirmation. For an uncertain result, perform read-only verification and call `resolve_uncertain_publication`; never submit again.
+ 
+ ## Deterministic boundaries
+ 
+ Use the Task 1–6 scripts rather than recreating state, scoring, authorization, draft, preview, or gate logic. Fail closed on invalid state, missing evidence, media mismatch, uncertain browser state, or no publishable topic.
+ 
+ Legacy packet generation remains available for compatibility:
+diff --git a/lofter-x-anime-hotspot/references/browser-publishing.md b/lofter-x-anime-hotspot/references/browser-publishing.md
+index 8645151..32da198 100644
+--- a/lofter-x-anime-hotspot/references/browser-publishing.md
++++ b/lofter-x-anime-hotspot/references/browser-publishing.md
+@@ -1,16 +1,16 @@
+ # Browser publication protocol
+ 
+ Use this protocol only after the first exact confirmation has passed the publication gate.
+ 
+ 1. Do not open the LOFTER editor until `publication_gate.approve_form_fill(run_dir, "确认发布")` succeeds, `build_upload_manifest` returns the approved manifest, and that exact object is atomically saved as run-local `upload-manifest.json`.
+ 2. **REQUIRED SUB-SKILL:** Read `browser:control-in-app-browser` completely before any browser action. Follow that Skill for all page inspection, navigation, typing, uploads, and evidence capture. Publishing uses only the Codex in-app browser selected with `agent.browsers.get("iab")`. Do not automatically switch to Chrome, Edge, another external browser, or another browser session when login is missing.
+ 3. Open or reuse a LOFTER editor tab bound to this run in the Codex in-app browser. If it shows a login page, stop all form filling and ask the user to manually log in on that page, then reply with the exact message `已登录`. Never read, fill, or store credentials, including phone numbers, email addresses, passwords, verification codes, cookies, localStorage, sessionStorage, request headers, or browser configuration. If CAPTCHA, risk control, account verification, an ambiguous editor, or an unexpected page appears, stop for the user. Never bypass or guess through it.
+-4. After `已登录`, reacquire the existing tabs from `agent.browsers.get("iab")` and preferentially resume the same LOFTER tab. Continue only when that tab unambiguously shows the authenticated editor. If it still shows login, CAPTCHA, risk control, account verification, or ambiguous state, remain paused. Resume with the same run and locked `upload-manifest.json`; do not repeat the first confirmation, rebuild or change the manifest, or create a new run. Treat the tab ID only as an in-memory reference for this execution and never persist it.
+-5. Fill only from `upload-manifest.json`/the exact object returned by `build_upload_manifest`. Do not improvise content, reorder media, or upload any file absent from the manifest.
+-6. Verify title, full body, tags, image count, and image order against the approved manifest. Capture final platform preview evidence with the submit button visible. Pass the observed capture time, title, full body, tags, ordered media display IDs/SHA-256/sizes, and `submit_button_visible: true` to `mark_form_filled`; it computes the observation digest locally and rejects caller-supplied digests.
++4. After `已登录`, reacquire the existing tabs from `agent.browsers.get("iab")` and preferentially resume the same LOFTER tab. Continue only when that tab unambiguously shows the authenticated editor. If it still shows login, CAPTCHA, risk control, account verification, or ambiguous state, remain paused. Resume with the same run and locked `upload-manifest.json`; do not repeat the first confirmation, rebuild or change the manifest, or create a new run. Treat the tab ID only as an in-memory reference for this execution and never persist it. Distinguish the observed editor state before continuing: for an initial login resume with an empty editor, upload the locked manifest cover first and immediately observe it as the first effective content node before entering any title or body; then continue at step 6. For a recovered previously filled draft, recheck that the existing cover is the first effective content node before any further filling or final platform preview evidence. If the existing cover is not first, reposition it and re-observe; if the editor state or ordering cannot be made unambiguous, pause for the user. After a successful recheck or reposition and re-observation, never execute step 5's fresh cover upload; continue at step 6 using the recovered content.
++5. Fill only from `upload-manifest.json`/the exact object returned by `build_upload_manifest`. Do not improvise content, reorder media, or upload any file absent from the manifest. Upload the cover image first and immediately observe that it is the first effective content node before entering the article body. If the cover is not first, reposition it and re-observe; if repositioning cannot establish that state, pause rather than continuing.
++6. After the cover-first observation succeeds, enter the title and full body, then upload every body image only after the text in its manifest order. Verify title, full body, tags, image count, image order, and that the observed first effective content node is the cover against the approved manifest. Capture final platform preview evidence with the submit button visible. Pass the observed capture time, title, full body, tags, ordered media display IDs/SHA-256/sizes, `first_content_is_cover: true`, and `submit_button_visible: true` to `mark_form_filled`; it computes the observation digest locally and rejects caller-supplied digests.
+ 7. Stop before the final submit button. Show the final platform preview to the user and request the exact phrase `确认最终提交`. Never treat `确认发布`, `已登录`, a paraphrase, a prior message, or generic approval as the second confirmation.
+ 8. After receiving `确认最终提交`, re-load the run state and platform preview. Run `approve_final_submit` immediately before clicking submit. If either revalidation fails or the page changed, stop without clicking.
+ 9. Click submit exactly once. If success is clear, record the HTTPS LOFTER URL and timezone-aware publication time with `record_publication`. Preserve the final article, title, tags, manifest, source ledger, and result evidence in the run archive.
+ 10. If the result is uncertain, record `{"result": "uncertain"}`, inspect the LOFTER profile or drafts read-only, and do not click submit again. If the exact LOFTER URL, observed title, approved manifest digest, and check time match, archive via `resolve_uncertain_publication`. Do not retry, refresh into a second submission, or infer failure from a slow response.
+ 
+ If upload or page structure fails before submit, use the safe pre-submit pause and report only a non-secret error. Never store passwords, cookies, session values, verification codes, CAPTCHA data, or authorization evidence in browser/publication state.
+diff --git a/lofter-x-anime-hotspot/scripts/publication_gate.py b/lofter-x-anime-hotspot/scripts/publication_gate.py
+index c0531b9..e831380 100644
+--- a/lofter-x-anime-hotspot/scripts/publication_gate.py
++++ b/lofter-x-anime-hotspot/scripts/publication_gate.py
+@@ -15,20 +15,21 @@ FIRST_CONFIRMATION = "确认发布"
+ SECOND_CONFIRMATION = "确认最终提交"
+ PUBLISHABLE_MEDIA = {"authorized", "independent"}
+ 
+ _OBSERVED_PREVIEW_FIELDS = {
+     "captured_at",
+     "title",
+     "article",
+     "tags",
+     "media",
+     "submit_button_visible",
++    "first_content_is_cover",
+ }
+ _PERSISTED_PREVIEW_FIELDS = _OBSERVED_PREVIEW_FIELDS | {"observed_manifest_sha256"}
+ _PUBLIC_MEDIA_FIELDS = ("display_id", "role", "local_path", "review_status")
+ _SUCCESS_RESULT_FIELDS = {"lofter_url", "published_at"}
+ _UNCERTAIN_RESULT = {
+     "result": "uncertain",
+     "verification_required": "read_only_lofter_profile_or_drafts",
+ }
+ _PRIVATE_ERROR_MARKERS = (
+     "authorization",
+@@ -220,20 +221,22 @@ def _validate_platform_preview(
+     observed = {field: value[field] for field in _OBSERVED_PREVIEW_FIELDS}
+     try:
+         _parse_iso_datetime(observed["captured_at"], "captured_at")
+     except ValueError as error:
+         raise ValueError("final platform preview is incomplete") from error
+     state = load_state(run_dir)
+     manifest, _ = _require_unchanged_manifest(run_dir, state)
+     projection = _platform_projection(manifest)
+     if observed["submit_button_visible"] is not True:
+         raise ValueError("final platform preview is incomplete")
++    if observed["first_content_is_cover"] is not True:
++        raise ValueError("final platform preview is incomplete")
+     candidate = {
+         "title": observed["title"],
+         "article": observed["article"],
+         "tags": observed["tags"],
+         "media": observed["media"],
+     }
+     try:
+         observed_digest = _manifest_digest(candidate)
+         expected_digest = _manifest_digest(projection)
+     except (TypeError, ValueError) as error:
+diff --git a/lofter-x-anime-hotspot/scripts/render_preview.py b/lofter-x-anime-hotspot/scripts/render_preview.py
+index a0e197d..4ff1626 100644
+--- a/lofter-x-anime-hotspot/scripts/render_preview.py
++++ b/lofter-x-anime-hotspot/scripts/render_preview.py
+@@ -40,20 +40,21 @@ _TEMPLATE = """<!doctype html>
+   .media {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }}
+   figure {{ margin: 0; }}
+   img {{ width: 100%; height: auto; display: block; border-radius: 8px; background: #e5e7eb; }}
+   figcaption, .note {{ margin-top: 8px; color: #4b5563; font-size: .9rem; }}
+   pre {{ white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; line-height: 1.6; }}
+   @media (max-width: 480px) {{ main {{ padding: 16px 12px 32px; }} section {{ padding: 14px; }} }}
+ </style>
+ </head>
+ <body>
+ <main>
++  <section class="cover"><div class="media">{cover}</div></section>
+   <section><h1>{topic}</h1><p class="status">{status}</p></section>
+   <section><h2>热点依据</h2><pre>{analysis}</pre></section>
+   <section class="article"><h2>正文</h2>{article}</section>
+   <section><h2>候选标题与标签</h2><pre>{titles_tags}</pre></section>
+   <section><h2>配图与发布顺序</h2><div class="media">{media}</div><pre>{order}</pre></section>
+ </main>
+ </body>
+ </html>
+ """
+ 
+@@ -144,28 +145,32 @@ def _public_analysis(state: dict, analysis: dict) -> dict:
+ 
+ def build_preview_html(
+     state: dict,
+     analysis: dict,
+     article: str,
+     titles_tags: str,
+     order: str,
+     ledger: list[dict],
+ ) -> str:
+     """Build preview bytes from explicit validated artifacts."""
++    if not ledger or ledger[0].get("role") != "cover":
++        raise ValueError("media ledger must start with a cover")
+     public_analysis = json.dumps(
+         _public_analysis(state, analysis), ensure_ascii=False, indent=2, allow_nan=False
+     )
+-    media_html = "\n".join(_media_figure(item) for item in ledger)
++    cover_html = _media_figure(ledger[0])
++    media_html = "\n".join(_media_figure(item) for item in ledger[1:])
+     return _TEMPLATE.format(
+         status=escape(_public_status(state["state"])),
+         topic=escape(state["topic"]),
+         analysis=escape(public_analysis),
++        cover=cover_html,
+         media=media_html,
+         article=_markdown_paragraphs(article),
+         titles_tags=escape(titles_tags),
+         order=escape(order),
+     )
+ 
+ 
+ def render_preview(run_dir: Path) -> Path:
+     """Write and return a self-contained, local-only draft preview."""
+     run_dir = Path(run_dir)
+diff --git a/lofter-x-anime-hotspot/tests/test_publication_gate.py b/lofter-x-anime-hotspot/tests/test_publication_gate.py
+index 2271b37..0b15846 100644
+--- a/lofter-x-anime-hotspot/tests/test_publication_gate.py
++++ b/lofter-x-anime-hotspot/tests/test_publication_gate.py
+@@ -177,20 +177,21 @@ class PublicationGateTest(unittest.TestCase):
+                 "tags": manifest["tags"],
+                 "media": [
+                     {
+                         "display_id": item["display_id"],
+                         "sha256": item["sha256"],
+                         "size": item["size"],
+                     }
+                     for item in manifest["media"]
+                 ],
+                 "submit_button_visible": True,
++                "first_content_is_cover": True,
+             },
+         )
+         return run_dir
+ 
+     def test_first_confirmation_requires_all_media_publishable(self):
+         run_dir = self.prepared_review_run(include_x_media=True)
+ 
+         with self.assertRaisesRegex(ValueError, "media review incomplete"):
+             approve_form_fill(run_dir, "确认发布")
+ 
+@@ -257,28 +258,33 @@ class PublicationGateTest(unittest.TestCase):
+         valid = {
+             "captured_at": "2026-08-11T15:55:00+08:00",
+             "title": manifest["title"],
+             "article": manifest["article"],
+             "tags": manifest["tags"],
+             "media": [
+                 {"display_id": item["display_id"], "sha256": item["sha256"], "size": item["size"]}
+                 for item in manifest["media"]
+             ],
+             "submit_button_visible": True,
++            "first_content_is_cover": True,
+         }
+         invalid_previews = (
+             {**valid, "captured_at": "bad"},
+             {**valid, "title": "错误标题"},
+             {**valid, "article": "错误正文"},
+             {**valid, "tags": [*manifest["tags"][:-1], "错误标签"]},
+             {**valid, "media": [{**valid["media"][0], "sha256": "0" * 64}]},
+             {**valid, "submit_button_visible": False},
++            {key: value for key, value in valid.items() if key != "first_content_is_cover"},
++            {**valid, "first_content_is_cover": False},
++            {**valid, "first_content_is_cover": 1},
++            {**valid, "first_content_is_cover": "true"},
+         )
+ 
+         for preview in invalid_previews:
+             with self.subTest(preview=preview):
+                 with self.assertRaisesRegex(ValueError, "final platform preview"):
+                     mark_form_filled(run_dir, preview)
+ 
+         self.assertEqual(load_state(run_dir)["state"], "approved")
+ 
+     def test_caller_supplied_preview_manifest_digest_is_rejected(self):
+@@ -292,20 +298,21 @@ class PublicationGateTest(unittest.TestCase):
+                 {
+                     "captured_at": "2026-08-11T15:55:00+08:00",
+                     "title": manifest["title"],
+                     "article": manifest["article"],
+                     "tags": manifest["tags"],
+                     "media": [
+                         {"display_id": item["display_id"], "sha256": item["sha256"], "size": item["size"]}
+                         for item in manifest["media"]
+                     ],
+                     "submit_button_visible": True,
++                    "first_content_is_cover": True,
+                     "manifest_sha256": "0" * 64,
+                 },
+             )
+ 
+         self.assertEqual(load_state(run_dir)["state"], "approved")
+ 
+     def test_media_bytes_are_bound_to_approval_and_final_submit(self):
+         run_dir = self.fully_reviewed_run("byte-bound")
+         approve_form_fill(run_dir, "确认发布")
+         approved = load_state(run_dir)["approved_manifest_digest"]
+diff --git a/lofter-x-anime-hotspot/tests/test_publishable_workflow.py b/lofter-x-anime-hotspot/tests/test_publishable_workflow.py
+index c0db622..03c3403 100644
+--- a/lofter-x-anime-hotspot/tests/test_publishable_workflow.py
++++ b/lofter-x-anime-hotspot/tests/test_publishable_workflow.py
+@@ -149,20 +149,21 @@ def valid_platform_preview(manifest: dict) -> dict:
+     return {
+         "captured_at": "2026-08-11T15:55:00+08:00",
+         "title": manifest["title"],
+         "article": manifest["article"],
+         "tags": manifest["tags"],
+         "media": [
+             {"display_id": item["display_id"], "sha256": item["sha256"], "size": item["size"]}
+             for item in manifest["media"]
+         ],
+         "submit_button_visible": True,
++        "first_content_is_cover": True,
+     }
+ 
+ 
+ def valid_publication_result() -> dict:
+     return {
+         "lofter_url": "https://example.lofter.com/post/abc",
+         "published_at": "2026-08-11T16:00:00+08:00",
+     }
+ 
+ 
+diff --git a/lofter-x-anime-hotspot/tests/test_render_preview.py b/lofter-x-anime-hotspot/tests/test_render_preview.py
+index 791afab..aebad5e 100644
+--- a/lofter-x-anime-hotspot/tests/test_render_preview.py
++++ b/lofter-x-anime-hotspot/tests/test_render_preview.py
+@@ -73,25 +73,72 @@ class RenderPreviewTest(unittest.TestCase):
+                 "time_window_hours": 168,
+                 "candidate": {"title": "七天热点"},
+                 "content_mode": "trend_analysis",
+                 "selection_reason": "七天窗口内综合评分最高",
+                 "x_sources": [],
+                 "lofter_sources": [],
+             },
+             "正文",
+             "标题与标签",
+             "发布顺序",
+-            [],
++            [
++                {
++                    "kind": "generated_original",
++                    "role": "cover",
++                    "local_path": "generated-media/cover.webp",
++                    "caption": "封面",
++                    "display_id": 1,
++                }
++            ],
+         )
+ 
+         self.assertIn('&quot;time_window_hours&quot;: 168', html)
+ 
++    def test_preview_renders_cover_before_article_and_body_media_afterward(self):
++        cover_path = "original-media/cover.webp"
++        body_path = "generated-media/body.webp"
++        article_marker = "封面和正文配图之间的唯一正文句子。"
++
++        html = build_preview_html(
++            {"state": "authorization_review", "topic": "图片优先预览"},
++            {
++                "time_window_hours": 24,
++                "candidate": {"title": "图片优先预览"},
++                "content_mode": "trend_analysis",
++                "selection_reason": "测试图片优先顺序",
++            },
++            article_marker,
++            "标题与标签",
++            "发布顺序",
++            [
++                {
++                    "kind": "x_original",
++                    "role": "cover",
++                    "local_path": cover_path,
++                    "caption": "封面",
++                    "display_id": 1,
++                },
++                {
++                    "kind": "generated_original",
++                    "role": "body",
++                    "local_path": body_path,
++                    "caption": "正文配图",
++                    "display_id": 2,
++                },
++            ],
++        )
++
++        self.assertLess(html.index(cover_path), html.index(article_marker))
++        self.assertLess(html.index(article_marker), html.index(body_path))
++        self.assertLess(html.index(cover_path), html.index("等待授权复核，尚不可发布"))
++        self.assertLess(html.index(cover_path), html.index("测试图片优先顺序"))
++
+     def setUp(self):
+         self.temporary = tempfile.TemporaryDirectory()
+         self.addCleanup(self.temporary.cleanup)
+ 
+     def test_preview_contains_article_titles_tags_media_and_review_warning(self):
+         run_dir = prepared_review_run(Path(self.temporary.name))
+ 
+         path = render_preview(run_dir)
+ 
+         html = path.read_text(encoding="utf-8")
+diff --git a/lofter-x-anime-hotspot/tests/test_skill_contract.py b/lofter-x-anime-hotspot/tests/test_skill_contract.py
+index 7b14646..52af222 100644
+--- a/lofter-x-anime-hotspot/tests/test_skill_contract.py
++++ b/lofter-x-anime-hotspot/tests/test_skill_contract.py
+@@ -78,20 +78,48 @@ class SkillContractTest(unittest.TestCase):
+         ).read_text(encoding="utf-8")
+         self.assertIn('agent.browsers.get("iab")', protocol)
+         self.assertIn("已登录", protocol)
+         self.assertIn("same LOFTER tab", protocol)
+         self.assertIn("locked `upload-manifest.json`", protocol)
+         self.assertIn("manually log in", protocol)
+         self.assertIn("Never read, fill, or store credentials", protocol)
+         self.assertIn("Do not automatically switch to Chrome", protocol)
+         self.assertIn("do not repeat the first confirmation", protocol)
+ 
++    def test_browser_protocol_requires_cover_first_and_rechecks_after_recovery(self):
++        protocol = (
++            SKILL_DIR / "references" / "browser-publishing.md"
++        ).read_text(encoding="utf-8")
++        self.assertIn("cover image first", protocol)
++        self.assertIn("first effective content node", protocol)
++        self.assertIn("first_content_is_cover", protocol)
++        initial_resume = "initial login resume with an empty editor"
++        upload_locked_cover = "upload the locked manifest cover first"
++        observe_before_body = "observe it as the first effective content node"
++        recovered_draft = "recovered previously filled draft"
++        recheck_existing_cover = "recheck that the existing cover is the first effective content node"
++        bypass_fresh_upload = "never execute step 5's fresh cover upload"
++        recovered_continue = "continue at step 6"
++        self.assertIn(initial_resume, protocol)
++        self.assertIn(recovered_draft, protocol)
++        self.assertIn(bypass_fresh_upload, protocol)
++        self.assertLess(protocol.index(initial_resume), protocol.index(upload_locked_cover))
++        self.assertLess(protocol.index(upload_locked_cover), protocol.index(observe_before_body))
++        self.assertLess(protocol.index(observe_before_body), protocol.index("enter the title and full body"))
++        self.assertLess(protocol.index(recovered_draft), protocol.index(recheck_existing_cover))
++        self.assertLess(protocol.index(recheck_existing_cover), protocol.index(bypass_fresh_upload))
++        self.assertLess(protocol.index(bypass_fresh_upload), protocol.index(recovered_continue, protocol.index(recovered_draft)))
++        self.assertLess(
++            protocol.index(recheck_existing_cover),
++            protocol.index("final platform preview evidence"),
++        )
++
+     def test_portable_validator_setup_is_pinned_and_ignored(self):
+         requirements = (SKILL_DIR / "requirements-dev.txt").read_text(encoding="utf-8")
+         ignores = (SKILL_DIR / ".gitignore").read_text(encoding="utf-8")
+         skill = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
+         plan = PLAN_PATH.read_text(encoding="utf-8")
+         self.assertEqual(requirements.strip(), "PyYAML==6.0.3")
+         self.assertIn(".dev-deps/", ignores.splitlines())
+         self.assertIn("requirements-dev.txt", skill)
+         self.assertIn(".dev-deps", skill)
+         forbidden_home = "/Users" + "/guocc"

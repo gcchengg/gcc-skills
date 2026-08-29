@@ -1,0 +1,239 @@
+# Review package: 65dc4823d0bb214fc1d3403e1ea290d1f14e6718..e00226f20d118d60c7bd19fb91128bea10fd5405
+
+## Commits
+e00226f fix: render LOFTER cover first
+366d9d6 feat: render LOFTER cover before article
+
+## Files changed
+ .superpowers/sdd/image-first-task-1-report.md      | 82 ++++++++++++++++++++++
+ lofter-x-anime-hotspot/scripts/render_preview.py   |  7 +-
+ .../tests/test_render_preview.py                   | 49 ++++++++++++-
+ 3 files changed, 136 insertions(+), 2 deletions(-)
+
+## Diff
+diff --git a/.superpowers/sdd/image-first-task-1-report.md b/.superpowers/sdd/image-first-task-1-report.md
+new file mode 100644
+index 0000000..37b2298
+--- /dev/null
++++ b/.superpowers/sdd/image-first-task-1-report.md
+@@ -0,0 +1,82 @@
++# Image-first Task 1 Report
++
++## Scope
++
++- `lofter-x-anime-hotspot/scripts/render_preview.py`
++- `lofter-x-anime-hotspot/tests/test_render_preview.py`
++- `.superpowers/sdd/image-first-task-1-report.md`
++
++## RED
++
++Command:
++
++```sh
++python3 -m unittest lofter-x-anime-hotspot/tests/test_render_preview.py -v
++```
++
++Result: failed as expected in
++`test_preview_renders_cover_before_article_and_body_media_afterward`.
++The cover path index was `1896`, after the unique article marker at `1746`.
++
++## GREEN
++
++Implemented the minimal renderer split: reject an empty ledger or one whose first
++item is not the cover; render the first item in a cover media section before the
++article; render the remaining items in the existing media section after the
++article. Existing escaping, local paths, captions, and responsive inline CSS are
++unchanged.
++
++Command:
++
++```sh
++python3 -m unittest lofter-x-anime-hotspot/tests/test_render_preview.py -v
++```
++
++Result: passed — 4 tests run, 0 failures.
++
++## Self-review
++
++- Confirmed the new test checks the cover path before the article marker and the
++  body-media path after it.
++- Confirmed `build_preview_html` requires a non-empty ledger beginning with role
++  `cover`, matching the validated-ledger interface.
++- Confirmed only `ledger[0]` is rendered before `.article`; `ledger[1:]` remains
++  after it in the existing publication-order section.
++- Confirmed focused diff whitespace check passes for the implementation and test
++  files.
++
++## Commit
++
++This report is committed with the Task 1 renderer change as
++`feat: render LOFTER cover before article`; use `git log -1 --oneline` to obtain
++the immutable commit identifier.
++
++## Critical review fix
++
++The cover section originally followed the topic/status and hotspot-evidence
++sections, so it was not the first visible child of `<main>`.
++
++### Regression RED
++
++After adding assertions that the cover path precedes the unique status marker
++`等待授权复核，尚不可发布` and analysis marker `测试图片优先顺序`, ran:
++
++```sh
++python3 -m unittest lofter-x-anime-hotspot/tests/test_render_preview.py -v
++```
++
++Result: failed as expected in
++`test_preview_renders_cover_before_article_and_body_media_afterward`:
++the cover path index was `1767`, after the status marker at `1379`.
++
++### Fix and GREEN
++
++Moved `<section class="cover">` to be the first child of `<main>`, before the
++topic/status and hotspot-evidence sections. The focused test was rerun:
++
++```sh
++python3 -m unittest lofter-x-anime-hotspot/tests/test_render_preview.py -v
++```
++
++Result: passed — 4 tests run, 0 failures. A focused `git diff --check` for the
++renderer and test files also passed.
+diff --git a/lofter-x-anime-hotspot/scripts/render_preview.py b/lofter-x-anime-hotspot/scripts/render_preview.py
+index a0e197d..4ff1626 100644
+--- a/lofter-x-anime-hotspot/scripts/render_preview.py
++++ b/lofter-x-anime-hotspot/scripts/render_preview.py
+@@ -40,20 +40,21 @@ _TEMPLATE = """<!doctype html>
+   .media {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }}
+   figure {{ margin: 0; }}
+   img {{ width: 100%; height: auto; display: block; border-radius: 8px; background: #e5e7eb; }}
+   figcaption, .note {{ margin-top: 8px; color: #4b5563; font-size: .9rem; }}
+   pre {{ white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; line-height: 1.6; }}
+   @media (max-width: 480px) {{ main {{ padding: 16px 12px 32px; }} section {{ padding: 14px; }} }}
+ </style>
+ </head>
+ <body>
+ <main>
++  <section class="cover"><div class="media">{cover}</div></section>
+   <section><h1>{topic}</h1><p class="status">{status}</p></section>
+   <section><h2>热点依据</h2><pre>{analysis}</pre></section>
+   <section class="article"><h2>正文</h2>{article}</section>
+   <section><h2>候选标题与标签</h2><pre>{titles_tags}</pre></section>
+   <section><h2>配图与发布顺序</h2><div class="media">{media}</div><pre>{order}</pre></section>
+ </main>
+ </body>
+ </html>
+ """
+ 
+@@ -144,28 +145,32 @@ def _public_analysis(state: dict, analysis: dict) -> dict:
+ 
+ def build_preview_html(
+     state: dict,
+     analysis: dict,
+     article: str,
+     titles_tags: str,
+     order: str,
+     ledger: list[dict],
+ ) -> str:
+     """Build preview bytes from explicit validated artifacts."""
++    if not ledger or ledger[0].get("role") != "cover":
++        raise ValueError("media ledger must start with a cover")
+     public_analysis = json.dumps(
+         _public_analysis(state, analysis), ensure_ascii=False, indent=2, allow_nan=False
+     )
+-    media_html = "\n".join(_media_figure(item) for item in ledger)
++    cover_html = _media_figure(ledger[0])
++    media_html = "\n".join(_media_figure(item) for item in ledger[1:])
+     return _TEMPLATE.format(
+         status=escape(_public_status(state["state"])),
+         topic=escape(state["topic"]),
+         analysis=escape(public_analysis),
++        cover=cover_html,
+         media=media_html,
+         article=_markdown_paragraphs(article),
+         titles_tags=escape(titles_tags),
+         order=escape(order),
+     )
+ 
+ 
+ def render_preview(run_dir: Path) -> Path:
+     """Write and return a self-contained, local-only draft preview."""
+     run_dir = Path(run_dir)
+diff --git a/lofter-x-anime-hotspot/tests/test_render_preview.py b/lofter-x-anime-hotspot/tests/test_render_preview.py
+index 791afab..aebad5e 100644
+--- a/lofter-x-anime-hotspot/tests/test_render_preview.py
++++ b/lofter-x-anime-hotspot/tests/test_render_preview.py
+@@ -73,25 +73,72 @@ class RenderPreviewTest(unittest.TestCase):
+                 "time_window_hours": 168,
+                 "candidate": {"title": "七天热点"},
+                 "content_mode": "trend_analysis",
+                 "selection_reason": "七天窗口内综合评分最高",
+                 "x_sources": [],
+                 "lofter_sources": [],
+             },
+             "正文",
+             "标题与标签",
+             "发布顺序",
+-            [],
++            [
++                {
++                    "kind": "generated_original",
++                    "role": "cover",
++                    "local_path": "generated-media/cover.webp",
++                    "caption": "封面",
++                    "display_id": 1,
++                }
++            ],
+         )
+ 
+         self.assertIn('&quot;time_window_hours&quot;: 168', html)
+ 
++    def test_preview_renders_cover_before_article_and_body_media_afterward(self):
++        cover_path = "original-media/cover.webp"
++        body_path = "generated-media/body.webp"
++        article_marker = "封面和正文配图之间的唯一正文句子。"
++
++        html = build_preview_html(
++            {"state": "authorization_review", "topic": "图片优先预览"},
++            {
++                "time_window_hours": 24,
++                "candidate": {"title": "图片优先预览"},
++                "content_mode": "trend_analysis",
++                "selection_reason": "测试图片优先顺序",
++            },
++            article_marker,
++            "标题与标签",
++            "发布顺序",
++            [
++                {
++                    "kind": "x_original",
++                    "role": "cover",
++                    "local_path": cover_path,
++                    "caption": "封面",
++                    "display_id": 1,
++                },
++                {
++                    "kind": "generated_original",
++                    "role": "body",
++                    "local_path": body_path,
++                    "caption": "正文配图",
++                    "display_id": 2,
++                },
++            ],
++        )
++
++        self.assertLess(html.index(cover_path), html.index(article_marker))
++        self.assertLess(html.index(article_marker), html.index(body_path))
++        self.assertLess(html.index(cover_path), html.index("等待授权复核，尚不可发布"))
++        self.assertLess(html.index(cover_path), html.index("测试图片优先顺序"))
++
+     def setUp(self):
+         self.temporary = tempfile.TemporaryDirectory()
+         self.addCleanup(self.temporary.cleanup)
+ 
+     def test_preview_contains_article_titles_tags_media_and_review_warning(self):
+         run_dir = prepared_review_run(Path(self.temporary.name))
+ 
+         path = render_preview(run_dir)
+ 
+         html = path.read_text(encoding="utf-8")

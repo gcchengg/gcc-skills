@@ -1,4 +1,4 @@
 interface:
   display_name: "LOFTER × X 二次元热点"
-  short_description: "研究双平台热点，生成可审核LOFTER图文并守门发布"
-  default_prompt: "Use $lofter-x-anime-hotspot to create one illustrated LOFTER preview and enable guarded publishing only after my confirmations."
+  short_description: "研究近期热点，生成可审核的 LOFTER 图文草稿"
+  default_prompt: "使用 $lofter-x-anime-hotspot 研究近期二次元热点并生成一篇可预览的 LOFTER 图文草稿，不要自动发布。"

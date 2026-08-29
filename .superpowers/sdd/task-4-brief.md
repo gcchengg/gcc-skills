@@ -1,157 +1,109 @@
-### Task 4: Skill Instructions and Operating References
+### Task 4: Authorization Review and Independent Replacement
 
 **Files:**
-- Create: `lofter-x-anime-hotspot/SKILL.md`
-- Create: `lofter-x-anime-hotspot/agents/openai.yaml`
-- Create: `lofter-x-anime-hotspot/references/content-templates.md`
-- Create: `lofter-x-anime-hotspot/references/operating-rules.md`
+- Modify: `lofter-x-anime-hotspot/scripts/build_publishable_draft.py`
+- Create: `lofter-x-anime-hotspot/tests/test_media_review.py`
 
 **Interfaces:**
-- Consumes: the three scripts created in Tasks 1—3.
-- Produces: a discoverable Skill workflow that routes hotspot analysis, authorization checks, background research, and content-packet generation.
+- Produces: `record_media_review(run_dir: Path, media_id: int, authorized: bool, authorization: dict | None = None) -> dict`
+- Produces: `replace_rejected_media(run_dir: Path, media_id: int, replacement: dict, article: str, captions: list[str]) -> dict`
+- Consumes real authorization decisions regenerated from `authorization_ledger_path` through `validate_authorizations.validate_ledger` and `validate_authorization`
 
-- [ ] **Step 1: Create the Skill entry point**
+- [ ] **Step 1: Write failing review and replacement tests**
 
-```markdown
----
-name: lofter-x-anime-hotspot
-description: Analyze current anime, game, character, and CP hotspots across X and LOFTER, rank candidates, verify media authorization, and create Chinese LOFTER trend or fan-fiction content packets. Use when the user wants hotspot-driven LOFTER anime content, X-to-LOFTER curation, or a 30-day LOFTER growth workflow.
----
+```python
+class MediaReviewTest(unittest.TestCase):
+    def test_authorized_x_media_requires_exact_ledger_backed_decision(self):
+        run_dir = prepared_review_run()
+        with self.assertRaisesRegex(ValueError, "ledger-backed"):
+            record_media_review(run_dir, 1, True, {"allowed": True})
 
-# LOFTER × X Anime Hotspot
+    def test_rejection_requires_generated_independent_replacement(self):
+        run_dir = prepared_review_run()
+        record_media_review(run_dir, 1, False)
+        replacement = {
+            "kind": "ai_adaptation",
+            "local_path": "generated-media/replacement.webp",
+            "generation_lineage": {"prompt": "new composition", "source_media_ids": [1]},
+        }
+        with self.assertRaisesRegex(ValueError, "generated_original"):
+            replace_rejected_media(run_dir, 1, replacement, long_article(), ["新图"])
 
-Use Chinese when communicating with the user.
-
-## Workflow
-
-1. Collect current 24—72 hour X and LOFTER evidence for candidate topics.
-2. Maintain 2 `long_term`, 2 `rising`, and 1 `experiment` IP slots.
-3. Save candidate values using `templates/candidates.example.json` as the schema.
-4. Run `python3 scripts/score_candidates.py INPUT --output ranked.json`.
-5. Reject candidates below 70. A candidate with authorization score 0 may use only an independently created image.
-6. For original or AI-adapted X images, record authorization using `templates/authorizations.example.json`, then run `python3 scripts/validate_authorizations.py LEDGER ASSET_ID --usage original|ai_adaptation`.
-7. Before fan fiction, verify world, characters, relationships, CP conventions, and fandom risks. If any check is incomplete, produce hotspot analysis instead.
-8. Generate the Markdown brief with `python3 scripts/build_content_packet.py INPUT --output packet.md`.
-9. Human-review facts, tags, labels, image scope, and the single interaction question before publication.
-10. Never publish automatically.
-
-## Required Rules
-
-- Read `references/operating-rules.md` before ranking or scheduling.
-- Read `references/content-templates.md` before drafting public copy.
-- Do not treat a public X post as permission.
-- AI adaptation requires explicit AI adaptation authorization.
-- Commercial use is false unless the authorization record says true.
-- Keep authorization evidence in the private ledger; do not expose private evidence in public copy.
-- For authorized AI-assisted images, end public copy with `图像经授权使用，含AI辅助创作｜#AI辅助#`.
-- Do not add irrelevant trending tags or hard paywall cliffhangers during the first 30 days.
+    def test_replacement_changes_only_rejected_media_and_affected_copy(self):
+        run_dir = prepared_review_run()
+        before = load_media_ledger(run_dir)
+        record_media_review(run_dir, 1, False)
+        replacement = valid_independent_replacement(run_dir)
+        result = replace_rejected_media(run_dir, 1, replacement, revised_article(), revised_captions())
+        self.assertEqual(result[1], before[1])
+        self.assertEqual(result[0]["kind"], "generated_original")
+        self.assertEqual(result[0]["review_status"], "independent")
 ```
 
-- [ ] **Step 2: Create display metadata**
+- [ ] **Step 2: Run review tests and verify failure**
 
-```yaml
-# lofter-x-anime-hotspot/agents/openai.yaml
-interface:
-  display_name: "LOFTER × X 二次元热点"
-  short_description: "双平台热点选题、授权校验与LOFTER内容包"
-  default_prompt: "分析当前 X 与 LOFTER 的二次元交叉热点，按规则评分并生成可审核的 LOFTER 内容包。"
+Run: `python3 -m unittest lofter-x-anime-hotspot/tests/test_media_review.py -v`  
+Expected: FAIL because `record_media_review` and `replace_rejected_media` are undefined.
+
+- [ ] **Step 3: Implement fail-closed review and replacement**
+
+```python
+def record_media_review(run_dir, media_id, authorized, authorization=None):
+    if type(authorized) is not bool:
+        raise ValueError("authorized must be a boolean")
+    ledger = load_media_ledger(run_dir)
+    media = _find_media(ledger, media_id)
+    if media["review_status"] not in {"pending", "rejected"}:
+        raise ValueError("media is not awaiting review")
+    if authorized:
+        if not isinstance(authorization, dict) or authorization.get("allowed") is not True:
+            raise ValueError("authorized media requires a ledger-backed allow decision")
+        _revalidate_media_decision(run_dir, media, authorization)
+        media["review_status"] = "authorized"
+        media["authorization"] = authorization
+    else:
+        media["review_status"] = "rejected"
+        media.pop("authorization", None)
+    write_json_atomic(run_dir / "sources/media-ledger.json", ledger)
+    if not authorized:
+        transition(run_dir, "authorization_review", "revisions_required")
+    return media
+
+def replace_rejected_media(run_dir, media_id, replacement, article, captions):
+    ledger = load_media_ledger(run_dir)
+    index, current = _find_media_with_index(ledger, media_id)
+    if current["review_status"] != "rejected":
+        raise ValueError("only rejected media can be replaced")
+    if replacement.get("kind") != "generated_original":
+        raise ValueError("replacement must be generated_original")
+    lineage = replacement.get("generation_lineage")
+    if not isinstance(lineage, dict) or lineage.get("source_media_ids"):
+        raise ValueError("replacement must not derive from rejected source media")
+    replacement = _validate_one_local_media(run_dir, replacement)
+    ledger[index] = {
+        **replacement,
+        "display_id": media_id,
+        "role": current["role"],
+        "review_status": "independent",
+        "replaces_media_id": media_id,
+    }
+    _rewrite_copy_artifacts(run_dir, _validate_article(article), captions)
+    write_json_atomic(run_dir / "sources/media-ledger.json", ledger)
+    transition(run_dir, "revisions_required", "authorization_review")
+    return ledger
 ```
 
-- [ ] **Step 3: Write exact public content templates**
+The lineage check must require `source_media_ids == []`; prompt text and model metadata are stored, but the rejected image path and bytes are never supplied to the image-generation call described in Task 7.
 
-```markdown
-# Content Templates
+- [ ] **Step 4: Run media, draft, and authorization suites**
 
-## 今日热度异动
+Run: `python3 -m unittest lofter-x-anime-hotspot/tests/test_media_review.py lofter-x-anime-hotspot/tests/test_build_publishable_draft.py lofter-x-anime-hotspot/tests/test_validate_authorizations.py -v`  
+Expected: all tests PASS, including forged-decision rejection.
 
-标题：`【IP/角色】过去24小时为什么突然升温？`
-
-结构：100字内说明事件；给出X增长信号；说明LOFTER讨论差异；提供一个原创判断；结尾只问一个选择题式问题。
-
-## 本周二次元趋势
-
-标题：`本周二次元趋势｜5个正在升温的角色与CP`
-
-结构：先给结论；按热度列5项；每项包含X信号、LOFTER信号和持续性判断；结尾询问下周希望跟踪哪一项。
-
-## 热点脑洞实验室
-
-标题：`【IP｜CP】一句冲突或悬念`
-
-结构：前100字建立冲突；正文保持核验后的人设与关系；提供完整首篇体验；不设置强付费截断；结尾询问是否继续该分支。
-
-## 极简声明
-
-授权AI辅助图：`图像经授权使用，含AI辅助创作｜#AI辅助#`
-
-独立原创图：按实际AI参与情况使用平台要求的 `#AI辅助#` 或 `#AI生成#` 标识，不写“经授权使用”。
-```
-
-- [ ] **Step 4: Write the operating rules**
-
-```markdown
-# Operating Rules
-
-## IP Pool
-
-- `long_term`: 2 slots, evaluate monthly, observe at least four weeks.
-- `rising`: 2 slots, evaluate weekly, replace after two weeks below the account median.
-- `experiment`: 1 slot, replace weekly based on events and results.
-
-## Weekly Cadence
-
-- 3 daily hotspot observations.
-- 2 authorized image-curation or meaningful AI-adaptation posts.
-- 1 weekly trend report.
-- 1 verified fan-fiction short.
-- Publish one post per day; allow at most one extra breaking-hotspot post.
-
-## Fan-fiction Gate
-
-All five checks must be true: world, characters, relationships, CP conventions, and fandom risks. Otherwise publish only analysis.
-
-## Review Metrics
-
-Weeks 1—2 establish the account baseline. From week 3, calculate relative performance using follow conversion 35%, save rate 25%, comment rate 20%, and like rate 20%. Top-40% hotspots may become fan fiction; top-20% fan-fiction posts may become collections.
-
-## Publication Review
-
-Confirm score ≥70, accurate tags, one interaction question, no hard paywall, valid authorization for reused media, correct AI label, and no unsupported factual claim.
-```
-
-- [ ] **Step 5: Validate the Skill files and commit**
-
-Run:
+- [ ] **Step 5: Commit Task 4**
 
 ```bash
-python3 - <<'PY'
-from pathlib import Path
-
-root = Path("lofter-x-anime-hotspot")
-required = [
-    root / "SKILL.md",
-    root / "agents/openai.yaml",
-    root / "references/content-templates.md",
-    root / "references/operating-rules.md",
-]
-missing = [str(path) for path in required if not path.is_file()]
-assert not missing, missing
-skill = (root / "SKILL.md").read_text(encoding="utf-8")
-assert "name: lofter-x-anime-hotspot" in skill
-assert "Never publish automatically" in skill
-assert "图像经授权使用，含AI辅助创作｜#AI辅助#" in skill
-print("skill files valid")
-PY
+git add lofter-x-anime-hotspot/scripts/build_publishable_draft.py lofter-x-anime-hotspot/tests/test_media_review.py
+git commit -m "feat: review and replace LOFTER media"
 ```
-
-Expected: `skill files valid`.
-
-Commit:
-
-```bash
-git add lofter-x-anime-hotspot/SKILL.md lofter-x-anime-hotspot/agents/openai.yaml lofter-x-anime-hotspot/references
-git commit -m "feat: add LOFTER anime hotspot skill workflow"
-```
-
----
 

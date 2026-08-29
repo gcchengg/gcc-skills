@@ -1,0 +1,57 @@
+{
+  "id": "D01-PM",
+  "topic": "完美煮蛋时间表",
+  "content_type": "cooking-time",
+  "scene_template": "time-spiral",
+  "title": "完美煮蛋时间表",
+  "subtitle": "6种熟度·1张图讲清楚",
+  "visual_nodes": [
+    "6分钟 流心蛋",
+    "7分钟 溏心蛋",
+    "8分钟 嫩心蛋",
+    "10分钟 软熟蛋",
+    "12分钟 全熟蛋",
+    "15分钟 老熟蛋"
+  ],
+  "body_copy": "本图按大号冷藏蛋轻放入沸水、保持稳定微沸并从入锅开始计时，出锅立即冰水冷却；蛋重、初温、锅具、水量与海拔都会改变结果。六档仅为条件化口感参考，不是食品安全保证。",
+  "safety_note": "食品安全以蛋黄、蛋白凝固为准；中老年人、孕妇及免疫力较弱者建议选择全熟蛋。",
+  "tags": [
+    "中老年饮食",
+    "煮鸡蛋",
+    "饮食说明书",
+    "早餐",
+    "烹饪技巧",
+    "鸡蛋",
+    "健康饮食",
+    "生活常识",
+    "收藏",
+    "爸妈饮食"
+  ],
+  "source_notes": [
+    {
+      "label": "Epicurious：大号冷藏蛋入沸水、稳定微沸、6—14分钟熟度与冰水冷却",
+      "url": "https://www.epicurious.com/ingredients/whats-the-best-way-to-boil-an-egg-article",
+      "checked_at": "2026-08-18"
+    },
+    {
+      "label": "Good Food：室温大号蛋入沸水的6—10分钟熟度对照",
+      "url": "https://www.bbcgoodfood.com/howto/guide/how-boil-egg-perfectly",
+      "checked_at": "2026-08-18"
+    },
+    {
+      "label": "American Egg Board：蛋大小影响全熟时间并建议立即冷水或冰水冷却",
+      "url": "https://www.incredibleegg.org/recipes/cooking-school/how-to-hard-boil-eggs/",
+      "checked_at": "2026-08-18"
+    },
+    {
+      "label": "Egg Farmers of Canada：软熟4—6分钟、全熟10—12分钟及过久加热的质地代价",
+      "url": "https://eggs.ca/eggs101/how-to-make-the-perfect-hard-boiled-egg/",
+      "checked_at": "2026-08-18"
+    },
+    {
+      "label": "美国食品药品监督管理局：高风险人群与蛋黄蛋白凝固的安全建议",
+      "url": "https://www.fda.gov/food/buy-store-serve-safe-food/what-you-need-know-about-egg-safety",
+      "checked_at": "2026-08-18"
+    }
+  ]
+}

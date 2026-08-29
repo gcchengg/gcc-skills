@@ -1,0 +1,852 @@
+# Review package: 6bebb6d..a322bda
+
+## Commits
+a322bda feat: select one publishable hotspot
+
+## Files changed
+ .superpowers/sdd/task-2-report.md                  |  94 ++++++++++++++-----
+ lofter-x-anime-hotspot/scripts/score_candidates.py |  19 ++++
+ .../scripts/select_publishable_topic.py            |  50 +++++++++++
+ .../templates/candidates.example.json              |   7 ++
+ .../templates/packet-inputs.example.json           |  19 ++--
+ .../templates/run-input.example.json               |  77 ++++++++++++++++
+ .../tests/test_build_content_packet.py             |   5 ++
+ .../tests/test_score_candidates.py                 |  33 +++++++
+ .../tests/test_select_publishable_topic.py         | 100 +++++++++++++++++++++
+ 9 files changed, 372 insertions(+), 32 deletions(-)
+
+## Diff
+diff --git a/.superpowers/sdd/task-2-report.md b/.superpowers/sdd/task-2-report.md
+index 2fc6c88..3f692a4 100644
+--- a/.superpowers/sdd/task-2-report.md
++++ b/.superpowers/sdd/task-2-report.md
+@@ -1,37 +1,83 @@
+-# Task 2 Report: Authorization Ledger Gate
++# Task 2 Report: Research Sufficiency, Topic Selection, and Content Mode
+ 
+-## Files added
++## Implementation
+ 
+-- `lofter-x-anime-hotspot/scripts/validate_authorizations.py`
+-- `lofter-x-anime-hotspot/tests/test_validate_authorizations.py`
++- Added `select_publishable_topic.select_topic(payload)`, a pure selector that
++  checks the 24-hour window before the optional 72-hour window. A window requires
++  at least two X sources, one LOFTER source, and at least one eligible ranked
++  candidate.
++- The returned result contains the chosen window, ranked candidate, deterministic
++  content mode, and Chinese score-based selection reason. No run state is read or
++  modified.
++- Extended candidate validation with required `topic_features` and strict boolean
++  `event_signal`, `relationship_signal`, and `visual_signal` values. Mode priority
++  is event/trend analysis, relationship/fanfic, then visual/curation.
++- Updated every candidate in the scoring and packet examples without changing any
++  score, IP pool, requested usage, authorization, or provenance fields.
++- Added `run-input.example.json` with only `ip_pool` and the 24/72 research-window
++  inputs; it contains no authorization decision or authorization evidence-path
++  fields.
+ 
+-## Implementation
++## Files changed
++
++- `lofter-x-anime-hotspot/scripts/score_candidates.py`
++- `lofter-x-anime-hotspot/scripts/select_publishable_topic.py`
++- `lofter-x-anime-hotspot/templates/candidates.example.json`
++- `lofter-x-anime-hotspot/templates/packet-inputs.example.json`
++- `lofter-x-anime-hotspot/templates/run-input.example.json`
++- `lofter-x-anime-hotspot/tests/test_score_candidates.py`
++- `lofter-x-anime-hotspot/tests/test_select_publishable_topic.py`
++- `lofter-x-anime-hotspot/tests/test_build_content_packet.py` (fixture-only
++  compatibility update required because it invokes shared candidate validation)
++
++## TDD evidence
++
++### RED
++
++1. Added the four required selection tests, then ran:
++
++   `python3 -m unittest lofter-x-anime-hotspot/tests/test_select_publishable_topic.py -v`
++
++   It failed as intended with `ModuleNotFoundError: No module named
++   'select_publishable_topic'`.
++
++2. Added strict feature-validation cases, then ran:
++
++   `python3 -m unittest lofter-x-anime-hotspot/tests/test_score_candidates.py -v`
++
++   The new test failed as intended because invalid `topic_features` values did not
++   raise `ValueError`.
+ 
+-Added `validate_authorization(record, usage, commercial=False)`, which checks all
+-required authorization-ledger fields; enforces LOFTER redistribution, AI-adaptation,
+-and commercial-use scopes; and returns a compact allow decision. The script also
+-provides a JSON-ledger command-line entry point that requires exactly one matching
+-asset record.
++### GREEN
+ 
+-## Test-driven development record
++`python3 -m unittest lofter-x-anime-hotspot/tests/test_score_candidates.py lofter-x-anime-hotspot/tests/test_select_publishable_topic.py -v`
+ 
+-1. Wrote the four specified unit tests.
+-2. Ran `python3 -m unittest lofter-x-anime-hotspot/tests/test_validate_authorizations.py -v` before implementation. It failed as expected with `ModuleNotFoundError: No module named 'validate_authorizations'`.
+-3. Implemented the validator.
+-4. Re-ran the Task 2 suite: 4 tests passed.
++Result: 17 tests passed. Eligible ordering remains score-descending then ID, as
++covered by the existing ranking tests.
+ 
+-## Verification commands and results
++## Final verification
+ 
+-- `python3 -m unittest lofter-x-anime-hotspot/tests/test_validate_authorizations.py -v` — 4 tests, OK.
+-- `python3 -m unittest lofter-x-anime-hotspot/tests/test_score_candidates.py -v` — 5 tests, OK.
+-- `git diff --check -- lofter-x-anime-hotspot/scripts/validate_authorizations.py lofter-x-anime-hotspot/tests/test_validate_authorizations.py` — no Task 2 whitespace errors.
+-- Manual source/diff review — interface, required fields, denial messages, and CLI record cardinality match the task brief.
++- `python3 -m unittest discover -s lofter-x-anime-hotspot/tests -v` — 72 tests
++  passed.
++- `python3 -m json.tool` against all three modified/added JSON templates — valid
++  JSON.
++- `git diff --check -- lofter-x-anime-hotspot` — no whitespace errors on Task 2
++  paths.
+ 
+-## Commit
++## Self-review
+ 
+-`f9d554b feat: validate LOFTER media authorization`
++- `select_topic` delegates ranking to the existing scorer and does not mutate its
++  input or run state.
++- Eligibility threshold, five-IP validation, requested-usage/media provenance,
++  and existing score ordering are unchanged.
++- The candidate feature validator rejects non-objects, missing feature fields, and
++  truthy non-booleans. The selector remains defensive about malformed feature
++  values and topics lacking a supported mode.
++- Packet fixtures and their direct test helper contain the new required field, so
++  legacy packet construction continues to exercise the same media semantics.
+ 
+ ## Concerns
+ 
+-- The repository contains unrelated pre-existing modified and untracked files. They were not staged or changed by this task.
+-- A repository-wide `git diff --check` reports a pre-existing trailing-whitespace issue in an unrelated Chinese prompt file; the Task 2 paths are clean.
++- The repository has unrelated pre-existing `.superpowers/sdd` edits, review diff
++  artifacts, and generated Python bytecode changes. They are intentionally not
++  part of the Task 2 commit.
+diff --git a/lofter-x-anime-hotspot/scripts/score_candidates.py b/lofter-x-anime-hotspot/scripts/score_candidates.py
+index 8fa95d8..a293e1a 100644
+--- a/lofter-x-anime-hotspot/scripts/score_candidates.py
++++ b/lofter-x-anime-hotspot/scripts/score_candidates.py
+@@ -19,37 +19,43 @@ INDEPENDENT_PROVENANCE = {
+     "human_original",
+     "ai_assisted_original",
+     "ai_generated_original",
+ }
+ IMAGE_PROVENANCE = {
+     "authorized_original",
+     "authorized_ai_adaptation",
+     *INDEPENDENT_PROVENANCE,
+ }
+ REQUESTED_USAGE = {"original", "ai_adaptation", "independent"}
++TOPIC_FEATURE_FIELDS = {
++    "event_signal",
++    "relationship_signal",
++    "visual_signal",
++}
+ CANDIDATE_FIELDS = {
+     "id",
+     "title",
+     "ip_id",
+     "ip_name",
+     "ip_slot",
+     "characters",
+     "tags",
+     *SCORE_LIMITS.keys(),
+     "x_evidence",
+     "lofter_evidence",
+     "x_source_urls",
+     "observed_at",
+     "asset_id",
+     "requested_usage",
+     "commercial_intent",
+     "image_provenance",
++    "topic_features",
+ }
+ 
+ 
+ def _non_empty_string(value, field: str) -> str:
+     if not isinstance(value, str) or not value.strip():
+         raise ValueError(f"{field} must be a non-empty string")
+     return value.strip()
+ 
+ 
+ def _enum_string(value, field: str, allowed) -> str:
+@@ -74,20 +80,32 @@ def _string_list(value, field: str, *, non_empty: bool) -> list[str]:
+ def _iso_datetime(value, field: str) -> str:
+     if not isinstance(value, str) or not value.strip() or "T" not in value:
+         raise ValueError(f"{field} must be ISO-8601")
+     try:
+         datetime.fromisoformat(value.replace("Z", "+00:00"))
+     except ValueError as error:
+         raise ValueError(f"{field} must be ISO-8601") from error
+     return value
+ 
+ 
++def _topic_features(value) -> dict:
++    if not isinstance(value, dict):
++        raise ValueError("topic_features must be an object")
++    missing = sorted(TOPIC_FEATURE_FIELDS - value.keys())
++    if missing:
++        raise ValueError("topic_features missing fields: " + ", ".join(missing))
++    for field in sorted(TOPIC_FEATURE_FIELDS):
++        if type(value[field]) is not bool:
++            raise ValueError(f"topic_features.{field} must be a boolean")
++    return value
++
++
+ def _https_x_url(value, field: str) -> str:
+     _non_empty_string(value, field)
+     parsed = urlparse(value)
+     host = (parsed.hostname or "").lower()
+     if parsed.scheme != "https" or not (host == "x.com" or host.endswith(".x.com")):
+         raise ValueError(f"{field} must be an HTTPS X URL")
+     return value
+ 
+ 
+ def validate_ip_pool(ip_pool: list[dict]) -> dict[str, dict]:
+@@ -132,20 +150,21 @@ def _validate_candidate(candidate: dict, pool: dict[str, dict]) -> None:
+         raise ValueError(f"missing fields: {', '.join(missing)}")
+ 
+     for field in ("id", "title", "ip_id", "ip_name", "x_evidence", "lofter_evidence"):
+         _non_empty_string(candidate[field], field)
+     _string_list(candidate["characters"], "characters", non_empty=True)
+     _string_list(candidate["tags"], "tags", non_empty=False)
+     urls = _string_list(candidate["x_source_urls"], "x_source_urls", non_empty=True)
+     for index, url in enumerate(urls):
+         _https_x_url(url, f"x_source_urls[{index}]")
+     _iso_datetime(candidate["observed_at"], "observed_at")
++    _topic_features(candidate["topic_features"])
+ 
+     ip_id = candidate["ip_id"]
+     if ip_id not in pool:
+         raise ValueError(f"unknown ip_id: {ip_id}")
+     pool_entry = pool[ip_id]
+     if candidate["ip_name"] != pool_entry["ip_name"]:
+         raise ValueError("ip_name does not match IP pool")
+     candidate_slot = _enum_string(candidate["ip_slot"], "ip_slot", IP_SLOT_COUNTS)
+     if candidate_slot != pool_entry["ip_slot"]:
+         raise ValueError("ip_slot does not match IP pool")
+diff --git a/lofter-x-anime-hotspot/scripts/select_publishable_topic.py b/lofter-x-anime-hotspot/scripts/select_publishable_topic.py
+new file mode 100644
+index 0000000..aa7059c
+--- /dev/null
++++ b/lofter-x-anime-hotspot/scripts/select_publishable_topic.py
+@@ -0,0 +1,50 @@
++from score_candidates import rank_candidates
++
++
++def _window_is_sufficient(window: dict, ranked: list[dict]) -> bool:
++    return (
++        isinstance(window.get("x_sources"), list)
++        and len(window["x_sources"]) >= 2
++        and isinstance(window.get("lofter_sources"), list)
++        and len(window["lofter_sources"]) >= 1
++        and bool(ranked)
++    )
++
++
++def _content_mode(candidate: dict) -> str:
++    features = candidate.get("topic_features")
++    if not isinstance(features, dict):
++        raise ValueError("topic_features must be an object")
++    values = {
++        name: features.get(name)
++        for name in ("event_signal", "relationship_signal", "visual_signal")
++    }
++    if any(type(value) is not bool for value in values.values()):
++        raise ValueError("topic feature signals must be booleans")
++    if values["event_signal"]:
++        return "trend_analysis"
++    if values["relationship_signal"]:
++        return "fanfic"
++    if values["visual_signal"]:
++        return "visual_curation"
++    raise ValueError("topic has no supported content mode")
++
++
++def select_topic(payload: dict) -> dict:
++    ip_pool = payload["ip_pool"]
++    for hours in (24, 72):
++        window = payload.get("windows", {}).get(str(hours))
++        if window is None:
++            continue
++        ranked = rank_candidates(window.get("candidates"), ip_pool)
++        if _window_is_sufficient(window, ranked):
++            winner = ranked[0]
++            return {
++                "time_window_hours": hours,
++                "candidate": winner,
++                "content_mode": _content_mode(winner),
++                "selection_reason": (
++                    f"{hours}小时窗口内综合评分最高：{winner['total_score']}/100"
++                ),
++            }
++    raise ValueError("no publishable topic in 24-hour or 72-hour window")
+diff --git a/lofter-x-anime-hotspot/templates/candidates.example.json b/lofter-x-anime-hotspot/templates/candidates.example.json
+index 3515cb7..eeff76f 100644
+--- a/lofter-x-anime-hotspot/templates/candidates.example.json
++++ b/lofter-x-anime-hotspot/templates/candidates.example.json
+@@ -13,20 +13,21 @@
+     "authorization": 15,
+     "story_potential": 8,
+     "x_evidence": "近24小时相关公开帖互动与创作数量集中增长",
+     "lofter_evidence": "对应标签出现持续更新和有效互动",
+     "x_source_urls": ["https://x.com/authorized_artist/status/example-adapted"],
+     "observed_at": "2026-08-10T08:00:00+08:00",
+     "asset_id": "example-asset-adapted-1",
+     "requested_usage": "ai_adaptation",
+     "commercial_intent": false,
+     "image_provenance": "authorized_ai_adaptation",
++    "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false},
+     "sustainability_note": "纪念日后仍有连续二创，预计短期保持热度"
+   },
+   {
+     "id": "example-hotspot-original-1",
+     "title": "示例长线角色剧情讨论升温",
+     "ip_id": "long-term-1",
+     "ip_name": "示例长线IP甲",
+     "ip_slot": "long_term",
+     "characters": ["角色C", "角色D"],
+     "tags": ["示例长线IP甲", "角色C"],
+@@ -36,20 +37,21 @@
+     "authorization": 15,
+     "story_potential": 8,
+     "x_evidence": "剧情解析与角色讨论持续增长",
+     "lofter_evidence": "角色标签持续有高质量二创更新",
+     "x_source_urls": ["https://x.com/authorized_artist/status/example-original"],
+     "observed_at": "2026-08-10T08:05:00+08:00",
+     "asset_id": "example-asset-original-1",
+     "requested_usage": "original",
+     "commercial_intent": false,
+     "image_provenance": "authorized_original",
++    "topic_features": {"event_signal": false, "relationship_signal": true, "visual_signal": false},
+     "sustainability_note": "长线角色讨论稳定，适合继续观察"
+   },
+   {
+     "id": "example-hotspot-independent-ai-1",
+     "title": "示例长线剧情节点回顾热度",
+     "ip_id": "long-term-1",
+     "ip_name": "示例长线IP甲",
+     "ip_slot": "long_term",
+     "characters": ["角色E", "角色F"],
+     "tags": ["示例长线IP甲", "角色E"],
+@@ -59,20 +61,21 @@
+     "authorization": 12,
+     "story_potential": 9,
+     "x_evidence": "关键剧情节点引发公开帖回顾",
+     "lofter_evidence": "剧情标签出现连续创作和评论互动",
+     "x_source_urls": ["https://x.com/example/status/independent-ai"],
+     "observed_at": "2026-08-10T08:10:00+08:00",
+     "asset_id": null,
+     "requested_usage": "independent",
+     "commercial_intent": false,
+     "image_provenance": "ai_assisted_original",
++    "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false},
+     "sustainability_note": "剧情节点可形成系列回顾，具备延续性"
+   },
+   {
+     "id": "example-hotspot-rising-2",
+     "title": "示例新角色二创关注上升",
+     "ip_id": "rising-2",
+     "ip_name": "示例上升IP乙",
+     "ip_slot": "rising",
+     "characters": ["角色G", "角色H"],
+     "tags": ["示例上升IP乙", "角色G"],
+@@ -82,20 +85,21 @@
+     "authorization": 12,
+     "story_potential": 9,
+     "x_evidence": "新角色相关公开帖转发与创作分享增加",
+     "lofter_evidence": "新角色标签新增图文二创并获得有效互动",
+     "x_source_urls": ["https://x.com/example/status/rising-2"],
+     "observed_at": "2026-08-10T08:15:00+08:00",
+     "asset_id": null,
+     "requested_usage": "independent",
+     "commercial_intent": false,
+     "image_provenance": "human_original",
++    "topic_features": {"event_signal": false, "relationship_signal": false, "visual_signal": true},
+     "sustainability_note": "新角色后续仍有官方活动，热度可能延续"
+   },
+   {
+     "id": "example-hotspot-long-2",
+     "title": "示例长线IP乙版本讨论",
+     "ip_id": "long-term-2",
+     "ip_name": "示例长线IP乙",
+     "ip_slot": "long_term",
+     "characters": ["角色I", "角色J"],
+     "tags": ["示例长线IP乙", "角色I"],
+@@ -105,20 +109,21 @@
+     "authorization": 12,
+     "story_potential": 9,
+     "x_evidence": "版本内容带动角色讨论稳定增加",
+     "lofter_evidence": "版本标签下出现多种二创方向",
+     "x_source_urls": ["https://x.com/example/status/long-2"],
+     "observed_at": "2026-08-10T08:20:00+08:00",
+     "asset_id": null,
+     "requested_usage": "independent",
+     "commercial_intent": false,
+     "image_provenance": "ai_generated_original",
++    "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false},
+     "sustainability_note": "版本周期内仍有内容释放，预计持续两周"
+   },
+   {
+     "id": "example-hotspot-experiment-1",
+     "title": "示例实验向设定讨论出现",
+     "ip_id": "experiment-1",
+     "ip_name": "示例实验IP",
+     "ip_slot": "experiment",
+     "characters": ["角色K", "角色L"],
+     "tags": ["示例实验IP", "角色K"],
+@@ -128,20 +133,21 @@
+     "authorization": 12,
+     "story_potential": 10,
+     "x_evidence": "实验向设定在公开讨论中获得初步关注",
+     "lofter_evidence": "小众设定标签出现连续创作尝试",
+     "x_source_urls": ["https://x.com/example/status/experiment-1"],
+     "observed_at": "2026-08-10T08:25:00+08:00",
+     "asset_id": null,
+     "requested_usage": "independent",
+     "commercial_intent": false,
+     "image_provenance": "human_original",
++    "topic_features": {"event_signal": false, "relationship_signal": false, "visual_signal": true},
+     "sustainability_note": "需要一周数据确认是否从实验位升级"
+   },
+   {
+     "id": "example-hotspot-extra-topic",
+     "title": "同一上升IP的第二个合格话题",
+     "ip_id": "rising-1",
+     "ip_name": "示例上升IP甲",
+     "ip_slot": "rising",
+     "characters": ["角色A"],
+     "tags": ["示例上升IP甲", "角色A"],
+@@ -151,13 +157,14 @@
+     "authorization": 10,
+     "story_potential": 9,
+     "x_evidence": "同一IP出现第二条独立增长信号",
+     "lofter_evidence": "另一角色标签也出现有效互动",
+     "x_source_urls": ["https://x.com/example/status/extra-topic"],
+     "observed_at": "2026-08-10T08:30:00+08:00",
+     "asset_id": null,
+     "requested_usage": "independent",
+     "commercial_intent": false,
+     "image_provenance": "human_original",
++    "topic_features": {"event_signal": false, "relationship_signal": true, "visual_signal": false},
+     "sustainability_note": "与主热点不同，可独立跟踪"
+   }
+ ]
+diff --git a/lofter-x-anime-hotspot/templates/packet-inputs.example.json b/lofter-x-anime-hotspot/templates/packet-inputs.example.json
+index 724b548..c23e01a 100644
+--- a/lofter-x-anime-hotspot/templates/packet-inputs.example.json
++++ b/lofter-x-anime-hotspot/templates/packet-inputs.example.json
+@@ -7,105 +7,108 @@
+       {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
+       {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
+       {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
+     ],
+     "candidate": {
+       "id": "packet-daily-1", "title": "示例今日热点", "ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising",
+       "characters": ["角色A"], "tags": ["示例上升IP甲", "角色A"],
+       "x_growth": 25, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+       "x_evidence": "X近24小时创作增加", "lofter_evidence": "LOFTER标签出现有效讨论",
+       "x_source_urls": ["https://x.com/example/status/packet-daily-1"], "observed_at": "2026-08-10T09:00:00+08:00",
+-      "asset_id": null, "requested_usage": "independent", "commercial_intent": false, "image_provenance": "human_original"
++      "asset_id": null, "requested_usage": "independent", "commercial_intent": false, "image_provenance": "human_original",
++      "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false}
+     },
+     "authorization": null
+   },
+   "weekly_trend": {
+     "column": "weekly_trend",
+     "ip_pool": [
+       {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
+       {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
+       {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
+       {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
+       {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
+     ],
+     "candidates": [
+       {
+         "id": "packet-weekly-1", "title": "本周热点一", "ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term",
+         "characters": ["角色A"], "tags": ["角色A"], "x_growth": 25, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+         "x_evidence": "X信号一", "lofter_evidence": "LOFTER信号一", "x_source_urls": ["https://x.com/example/status/packet-weekly-1"],
+         "observed_at": "2026-08-10T09:00:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+-        "image_provenance": "human_original", "sustainability_note": "持续性判断一"
++        "image_provenance": "human_original", "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false}, "sustainability_note": "持续性判断一"
+       },
+       {
+         "id": "packet-weekly-2", "title": "本周热点二", "ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term",
+         "characters": ["角色B"], "tags": ["角色B"], "x_growth": 24, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+         "x_evidence": "X信号二", "lofter_evidence": "LOFTER信号二", "x_source_urls": ["https://x.com/example/status/packet-weekly-2"],
+         "observed_at": "2026-08-10T09:01:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+-        "image_provenance": "human_original", "sustainability_note": "持续性判断二"
++        "image_provenance": "human_original", "topic_features": {"event_signal": false, "relationship_signal": true, "visual_signal": false}, "sustainability_note": "持续性判断二"
+       },
+       {
+         "id": "packet-weekly-3", "title": "本周热点三", "ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising",
+         "characters": ["角色C"], "tags": ["角色C"], "x_growth": 23, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+         "x_evidence": "X信号三", "lofter_evidence": "LOFTER信号三", "x_source_urls": ["https://x.com/example/status/packet-weekly-3"],
+         "observed_at": "2026-08-10T09:02:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+-        "image_provenance": "ai_assisted_original", "sustainability_note": "持续性判断三"
++        "image_provenance": "ai_assisted_original", "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false}, "sustainability_note": "持续性判断三"
+       },
+       {
+         "id": "packet-weekly-4", "title": "本周热点四", "ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising",
+         "characters": ["角色D"], "tags": ["角色D"], "x_growth": 22, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+         "x_evidence": "X信号四", "lofter_evidence": "LOFTER信号四", "x_source_urls": ["https://x.com/example/status/packet-weekly-4"],
+         "observed_at": "2026-08-10T09:03:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+-        "image_provenance": "ai_generated_original", "sustainability_note": "持续性判断四"
++        "image_provenance": "ai_generated_original", "topic_features": {"event_signal": false, "relationship_signal": false, "visual_signal": true}, "sustainability_note": "持续性判断四"
+       },
+       {
+         "id": "packet-weekly-5", "title": "本周热点五", "ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment",
+         "characters": ["角色E"], "tags": ["角色E"], "x_growth": 21, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+         "x_evidence": "X信号五", "lofter_evidence": "LOFTER信号五", "x_source_urls": ["https://x.com/example/status/packet-weekly-5"],
+         "observed_at": "2026-08-10T09:04:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+-        "image_provenance": "human_original", "sustainability_note": "持续性判断五"
++        "image_provenance": "human_original", "topic_features": {"event_signal": false, "relationship_signal": false, "visual_signal": true}, "sustainability_note": "持续性判断五"
+       }
+     ],
+     "authorizations": []
+   },
+   "media_curation": {
+     "column": "media_curation",
+     "ip_pool": [
+       {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
+       {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
+       {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
+       {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
+       {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
+     ],
+     "candidate": {
+       "id": "packet-media-1", "title": "示例独立媒体策展", "ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising",
+       "characters": ["角色G"], "tags": ["角色G"], "x_growth": 25, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+       "x_evidence": "X视觉创作增长", "lofter_evidence": "LOFTER视觉讨论活跃", "x_source_urls": ["https://x.com/example/status/packet-media-1"],
+       "observed_at": "2026-08-10T09:10:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+-      "image_provenance": "ai_assisted_original"
++      "image_provenance": "ai_assisted_original",
++      "topic_features": {"event_signal": false, "relationship_signal": false, "visual_signal": true}
+     },
+     "authorization": null
+   },
+   "fanfic": {
+     "column": "fanfic",
+     "ip_pool": [
+       {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
+       {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
+       {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
+       {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
+       {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
+     ],
+     "candidate": {
+       "id": "packet-fanfic-1", "title": "示例已观察同人选题", "ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term",
+       "characters": ["角色C", "角色D"], "tags": ["角色C", "角色D"], "x_growth": 25, "lofter_activity": 25, "ip_match": 15, "authorization": 5, "story_potential": 10,
+       "x_evidence": "X角色关系讨论增长", "lofter_evidence": "LOFTER观察文获得有效反馈", "x_source_urls": ["https://x.com/example/status/packet-fanfic-1"],
+       "observed_at": "2026-08-10T09:20:00+08:00", "asset_id": null, "requested_usage": "independent", "commercial_intent": false,
+-      "image_provenance": "human_original"
++      "image_provenance": "human_original",
++      "topic_features": {"event_signal": false, "relationship_signal": true, "visual_signal": false}
+     },
+     "authorization": null,
+     "research": {
+       "world_verified": true, "characters_verified": true, "relationships_verified": true,
+       "cp_conventions_verified": true, "fandom_risks_verified": true
+     },
+     "observation_url": "https://example.lofter.com/post/packet-fanfic-observation",
+     "observation_published_at": "2026-08-09T12:00:00+08:00",
+     "fanfic_qualification": {"phase": "weeks_1_2", "baseline_policy_selected": true}
+   }
+diff --git a/lofter-x-anime-hotspot/templates/run-input.example.json b/lofter-x-anime-hotspot/templates/run-input.example.json
+new file mode 100644
+index 0000000..d046100
+--- /dev/null
++++ b/lofter-x-anime-hotspot/templates/run-input.example.json
+@@ -0,0 +1,77 @@
++{
++  "ip_pool": [
++    {"ip_id": "long-term-1", "ip_name": "示例长线IP甲", "ip_slot": "long_term"},
++    {"ip_id": "long-term-2", "ip_name": "示例长线IP乙", "ip_slot": "long_term"},
++    {"ip_id": "rising-1", "ip_name": "示例上升IP甲", "ip_slot": "rising"},
++    {"ip_id": "rising-2", "ip_name": "示例上升IP乙", "ip_slot": "rising"},
++    {"ip_id": "experiment-1", "ip_name": "示例实验IP", "ip_slot": "experiment"}
++  ],
++  "windows": {
++    "24": {
++      "x_sources": [
++        "https://x.com/authorized_artist/status/example-adapted",
++        "https://x.com/authorized_artist/status/example-original"
++      ],
++      "lofter_sources": ["https://example.lofter.com/post/example-24"],
++      "candidates": [
++        {
++          "id": "example-hotspot-adapted-1",
++          "title": "示例角色纪念日创作增长",
++          "ip_id": "rising-1",
++          "ip_name": "示例上升IP甲",
++          "ip_slot": "rising",
++          "characters": ["角色A", "角色B"],
++          "tags": ["示例上升IP甲", "角色A"],
++          "x_growth": 27,
++          "lofter_activity": 24,
++          "ip_match": 15,
++          "authorization": 15,
++          "story_potential": 8,
++          "x_evidence": "近24小时相关公开帖互动与创作数量集中增长",
++          "lofter_evidence": "对应标签出现持续更新和有效互动",
++          "x_source_urls": ["https://x.com/authorized_artist/status/example-adapted"],
++          "observed_at": "2026-08-10T08:00:00+08:00",
++          "asset_id": "example-asset-adapted-1",
++          "requested_usage": "ai_adaptation",
++          "commercial_intent": false,
++          "image_provenance": "authorized_ai_adaptation",
++          "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false},
++          "sustainability_note": "纪念日后仍有连续二创，预计短期保持热度"
++        }
++      ]
++    },
++    "72": {
++      "x_sources": [
++        "https://x.com/example/status/independent-ai",
++        "https://x.com/example/status/rising-2"
++      ],
++      "lofter_sources": ["https://example.lofter.com/post/example-72"],
++      "candidates": [
++        {
++          "id": "example-hotspot-independent-ai-1",
++          "title": "示例长线剧情节点回顾热度",
++          "ip_id": "long-term-1",
++          "ip_name": "示例长线IP甲",
++          "ip_slot": "long_term",
++          "characters": ["角色E", "角色F"],
++          "tags": ["示例长线IP甲", "角色E"],
++          "x_growth": 25,
++          "lofter_activity": 23,
++          "ip_match": 15,
++          "authorization": 12,
++          "story_potential": 9,
++          "x_evidence": "关键剧情节点引发公开帖回顾",
++          "lofter_evidence": "剧情标签出现连续创作和评论互动",
++          "x_source_urls": ["https://x.com/example/status/independent-ai"],
++          "observed_at": "2026-08-10T08:10:00+08:00",
++          "asset_id": null,
++          "requested_usage": "independent",
++          "commercial_intent": false,
++          "image_provenance": "ai_assisted_original",
++          "topic_features": {"event_signal": true, "relationship_signal": false, "visual_signal": false},
++          "sustainability_note": "剧情节点可形成系列回顾，具备延续性"
++        }
++      ]
++    }
++  }
++}
+diff --git a/lofter-x-anime-hotspot/tests/test_build_content_packet.py b/lofter-x-anime-hotspot/tests/test_build_content_packet.py
+index 11aeedc..70465ed 100644
+--- a/lofter-x-anime-hotspot/tests/test_build_content_packet.py
++++ b/lofter-x-anime-hotspot/tests/test_build_content_packet.py
+@@ -53,20 +53,25 @@ def raw_candidate(candidate_id="topic-1", **overrides):
+         "authorization": 10,
+         "story_potential": 8,
+         "x_evidence": "X近24小时相关创作集中增长",
+         "lofter_evidence": "LOFTER标签出现新讨论",
+         "x_source_urls": [f"https://x.com/example/status/{candidate_id}"],
+         "observed_at": "2026-08-10T08:00:00+08:00",
+         "asset_id": None,
+         "requested_usage": "independent",
+         "commercial_intent": False,
+         "image_provenance": "human_original",
++        "topic_features": {
++            "event_signal": True,
++            "relationship_signal": False,
++            "visual_signal": False,
++        },
+     }
+     value.update(overrides)
+     return value
+ 
+ 
+ def ranked_candidate(candidate_id="topic-1", **overrides):
+     return score_candidate(raw_candidate(candidate_id, **overrides), IP_POOL)
+ 
+ 
+ def authorization_decision(
+diff --git a/lofter-x-anime-hotspot/tests/test_score_candidates.py b/lofter-x-anime-hotspot/tests/test_score_candidates.py
+index 966d164..96bdfb3 100644
+--- a/lofter-x-anime-hotspot/tests/test_score_candidates.py
++++ b/lofter-x-anime-hotspot/tests/test_score_candidates.py
+@@ -36,20 +36,25 @@ def candidate(candidate_id="topic-1", **overrides):
+         "authorization": 10,
+         "story_potential": 8,
+         "x_evidence": "近24小时相关创作增长",
+         "lofter_evidence": "对应标签出现有效讨论",
+         "x_source_urls": ["https://x.com/example/status/1"],
+         "observed_at": "2026-08-10T08:00:00+08:00",
+         "asset_id": None,
+         "requested_usage": "independent",
+         "commercial_intent": False,
+         "image_provenance": "human_original",
++        "topic_features": {
++            "event_signal": True,
++            "relationship_signal": False,
++            "visual_signal": False,
++        },
+     }
+     value.update(overrides)
+     return value
+ 
+ 
+ class IpPoolTest(unittest.TestCase):
+     def test_accepts_exactly_five_unique_ip_entries(self):
+         indexed = validate_ip_pool(IP_POOL)
+         self.assertEqual(set(indexed), {item["ip_id"] for item in IP_POOL})
+ 
+@@ -180,13 +185,41 @@ class ScoreCandidatesTest(unittest.TestCase):
+         cases = (
+             (candidate(ip_slot=[]), "ip_slot must be a string"),
+             (candidate(requested_usage={}), "requested_usage must be a string"),
+             (candidate(image_provenance=[]), "image_provenance must be a string"),
+         )
+         for value, message in cases:
+             with self.subTest(message=message):
+                 with self.assertRaisesRegex(ValueError, message):
+                     score_candidate(value, IP_POOL)
+ 
++    def test_requires_strict_topic_feature_signals(self):
++        cases = (
++            (candidate(topic_features=None), "topic_features must be an object"),
++            (
++                candidate(
++                    topic_features={
++                        "event_signal": True,
++                        "relationship_signal": False,
++                    }
++                ),
++                "topic_features missing fields: visual_signal",
++            ),
++            (
++                candidate(
++                    topic_features={
++                        "event_signal": 1,
++                        "relationship_signal": False,
++                        "visual_signal": False,
++                    }
++                ),
++                "topic_features.event_signal must be a boolean",
++            ),
++        )
++        for value, message in cases:
++            with self.subTest(message=message):
++                with self.assertRaisesRegex(ValueError, message):
++                    score_candidate(value, IP_POOL)
++
+ 
+ if __name__ == "__main__":
+     unittest.main()
+diff --git a/lofter-x-anime-hotspot/tests/test_select_publishable_topic.py b/lofter-x-anime-hotspot/tests/test_select_publishable_topic.py
+new file mode 100644
+index 0000000..6f0e58e
+--- /dev/null
++++ b/lofter-x-anime-hotspot/tests/test_select_publishable_topic.py
+@@ -0,0 +1,100 @@
++import sys
++import unittest
++from pathlib import Path
++
++sys.path.insert(0, str(Path(__file__).parents[1] / "scripts"))
++
++from select_publishable_topic import select_topic
++
++
++IP_POOL = [
++    {"ip_id": "long-1", "ip_name": "长线一", "ip_slot": "long_term"},
++    {"ip_id": "long-2", "ip_name": "长线二", "ip_slot": "long_term"},
++    {"ip_id": "rise-1", "ip_name": "上升一", "ip_slot": "rising"},
++    {"ip_id": "rise-2", "ip_name": "上升二", "ip_slot": "rising"},
++    {"ip_id": "exp-1", "ip_name": "实验一", "ip_slot": "experiment"},
++]
++
++
++def candidate(candidate_id="high-score", **overrides):
++    value = {
++        "id": candidate_id,
++        "title": f"选题 {candidate_id}",
++        "ip_id": "rise-1",
++        "ip_name": "上升一",
++        "ip_slot": "rising",
++        "characters": ["角色A", "角色B"],
++        "tags": ["上升一", "角色A"],
++        "x_growth": 26,
++        "lofter_activity": 24,
++        "ip_match": 15,
++        "authorization": 10,
++        "story_potential": 8,
++        "x_evidence": "近24小时相关创作增长",
++        "lofter_evidence": "对应标签出现有效讨论",
++        "x_source_urls": ["https://x.com/example/status/1"],
++        "observed_at": "2026-08-10T08:00:00+08:00",
++        "asset_id": None,
++        "requested_usage": "independent",
++        "commercial_intent": False,
++        "image_provenance": "human_original",
++        "topic_features": {
++            "event_signal": True,
++            "relationship_signal": False,
++            "visual_signal": False,
++        },
++    }
++    value.update(overrides)
++    return value
++
++
++def fixture_payload():
++    return {
++        "ip_pool": IP_POOL,
++        "windows": {
++            "24": {
++                "x_sources": ["https://x.com/example/status/1", "https://x.com/example/status/2"],
++                "lofter_sources": ["https://example.lofter.com/post/1"],
++                "candidates": [candidate()],
++            },
++            "72": {
++                "x_sources": ["https://x.com/example/status/3", "https://x.com/example/status/4"],
++                "lofter_sources": ["https://example.lofter.com/post/2"],
++                "candidates": [candidate("fallback")],
++            },
++        },
++    }
++
++
++class SelectPublishableTopicTest(unittest.TestCase):
++    def test_uses_24_hours_when_sources_and_candidates_are_sufficient(self):
++        payload = fixture_payload()
++        result = select_topic(payload)
++        self.assertEqual(result["time_window_hours"], 24)
++        self.assertEqual(result["candidate"]["id"], "high-score")
++
++    def test_expands_to_72_hours_when_24_hours_are_insufficient(self):
++        payload = fixture_payload()
++        payload["windows"]["24"]["lofter_sources"] = []
++        result = select_topic(payload)
++        self.assertEqual(result["time_window_hours"], 72)
++
++    def test_refuses_to_draft_without_two_platforms_and_eligible_topic(self):
++        payload = fixture_payload()
++        payload["windows"]["24"]["candidates"] = []
++        payload["windows"]["72"]["candidates"] = []
++        with self.assertRaisesRegex(ValueError, "no publishable topic"):
++            select_topic(payload)
++
++    def test_mode_is_derived_from_evidence_features(self):
++        payload = fixture_payload()
++        payload["windows"]["24"]["candidates"][0]["topic_features"] = {
++            "event_signal": False,
++            "relationship_signal": True,
++            "visual_signal": False,
++        }
++        self.assertEqual(select_topic(payload)["content_mode"], "fanfic")
++
++
++if __name__ == "__main__":
++    unittest.main()
