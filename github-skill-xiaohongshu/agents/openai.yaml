@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Skill 小红书拆解器"
+  short_description: "发现并拆解热门 Agent Skill，生成六图小红书内容包"
+  default_prompt: "使用 $github-skill-xiaohongshu 生成今天的 GitHub Skill 小红书内容包。"

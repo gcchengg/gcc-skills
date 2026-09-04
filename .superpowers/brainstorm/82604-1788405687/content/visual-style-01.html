@@ -1,0 +1,46 @@
+<style>
+  .style-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:24px}
+  .style-card{border:2px solid #d7dce4;border-radius:18px;overflow:hidden;background:#fff;cursor:pointer;transition:.2s;box-shadow:0 12px 30px rgba(12,25,44,.08)}
+  .style-card:hover,.style-card.selected{transform:translateY(-4px);border-color:#315cff;box-shadow:0 18px 40px rgba(49,92,255,.18)}
+  .poster{aspect-ratio:3/4;padding:18px;position:relative;overflow:hidden}
+  .poster h4{margin:0;font-size:21px;line-height:1.12}.poster small{font-size:9px;letter-spacing:.08em}.style-copy{padding:16px}.style-copy h3{margin:0 0 7px}.style-copy p{font-size:13px;line-height:1.55;margin:0;color:#536071}
+  .a{background:#efe8d7;color:#241d16;font-family:Georgia,'Songti SC',serif}.a:before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 15px,rgba(75,52,30,.055) 16px);pointer-events:none}.a .map{position:absolute;left:24px;right:24px;top:92px;bottom:45px;border:1px solid #564432;background:#f7f0df;transform:rotate(-1.5deg)}.a .belt{position:absolute;height:12px;background:#32312d;border-radius:8px;box-shadow:0 50px 0 #32312d,0 100px 0 #32312d,0 150px 0 #32312d;left:18px;right:18px;top:50px;transform:skewY(-9deg)}.a .case{position:absolute;width:34px;height:25px;background:#e6a423;border:2px solid #3a2c1b;left:40%;top:42%;transform:rotate(-8deg);z-index:3}.a .scribble{position:absolute;border:2px solid #ad2d26;border-radius:50%;width:62px;height:38px;left:30%;top:36%;transform:rotate(-12deg);z-index:4}.a .note{position:absolute;bottom:15px;right:14px;font-size:10px;transform:rotate(-3deg)}
+  .b{background:#14110f;color:#f4ead6;font-family:'Songti SC',Georgia,serif}.b h4{font-size:25px}.b .stage{position:absolute;left:0;right:0;top:86px;bottom:0;background:linear-gradient(90deg,#201914 0 32%,#3b1e13 32% 35%,#181b19 35% 67%,#724f1c 67% 70%,#171312 70%)}.b .slice{position:absolute;left:13%;right:12%;height:44px;border:1px solid #d4bd8c;background:rgba(238,218,179,.08);transform:skewX(-12deg)}.b .s1{top:22%}.b .s2{top:38%}.b .s3{top:54%}.b .s4{top:70%}.b .case{position:absolute;width:38px;height:29px;background:#f0b52b;box-shadow:0 0 25px #f0b52b;left:52%;top:48%;z-index:4}.b .numbers{position:absolute;left:13px;top:110px;font-size:11px;line-height:3.8;color:#e77e42}.b .quote{position:absolute;bottom:18px;left:18px;right:18px;font-size:12px;border-top:1px solid #d4bd8c;padding-top:8px}
+  .c{background:#f5f4ee;color:#111;font-family:Arial,'Heiti SC',sans-serif}.c h4{font-size:24px;text-transform:uppercase}.c .stamp{position:absolute;right:14px;top:14px;border:3px solid #ee3a2d;color:#ee3a2d;padding:3px 7px;font-weight:900;transform:rotate(7deg);font-size:11px}.c .grid{position:absolute;left:16px;right:16px;top:88px;bottom:18px;display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:1fr 1fr;gap:8px}.c .panel{border:3px solid #111;padding:9px;position:relative;background:#fff}.c .hero{grid-row:1/3;background:#ffd82e}.c .hero:after{content:'🧳';font-size:66px;position:absolute;left:30%;top:35%;transform:rotate(-8deg)}.c .arrow{font-size:35px;font-weight:900;line-height:1}.c .label{font-size:11px;font-weight:900;text-transform:uppercase;color:#111}.c .red{background:#ef3c2f;color:white}.c .blue{background:#315cff;color:white}
+  @media(max-width:900px){.style-grid{grid-template-columns:1fr}.poster{max-height:520px}}
+</style>
+
+<h2>同一个题目，哪一种视觉世界值得拥有？</h2>
+<p class="subtitle">不是换配色，而是更换媒介、构图逻辑和叙事语法。点击选择最有账号辨识度的一种。</p>
+
+<div class="style-grid">
+  <div class="style-card" data-choice="a-archive" onclick="toggleSelect(this)">
+    <div class="poster a">
+      <small>AIRPORT SYSTEM / FIELD NOTES 07</small>
+      <h4>一只行李箱的<br>地下旅行</h4>
+      <div class="map"><div class="belt"></div><div class="case"></div><div class="scribble"></div><div class="note">扫描不是终点<br>是一次次确认</div></div>
+    </div>
+    <div class="style-copy"><h3>A｜工程师手稿档案</h3><p>旧机场蓝图、铅笔测绘、红色批注、纸张痕迹。像偶然拿到的一份内部技术档案，知识可信且不完美。</p></div>
+  </div>
+
+  <div class="style-card" data-choice="b-cinema" onclick="toggleSelect(this)">
+    <div class="poster b">
+      <small>THE INVISIBLE JOURNEY</small>
+      <h4>你的行李<br>消失之后</h4>
+      <div class="stage"><div class="slice s1"></div><div class="slice s2"></div><div class="slice s3"></div><div class="slice s4"></div><div class="case"></div><div class="numbers">01<br>02<br>03<br>04</div></div>
+      <div class="quote">把系统拍成一部地下冒险电影</div>
+    </div>
+    <div class="style-copy"><h3>B｜电影式地下剧场</h3><p>黑色舞台、剖面切片、聚光灯和一只发光行李箱。信息减少，但情绪、悬念和封面点击力最强。</p></div>
+  </div>
+
+  <div class="style-card" data-choice="c-zine" onclick="toggleSelect(this)">
+    <div class="poster c">
+      <div class="stamp">BAG 0231</div><small>HOW IT REALLY WORKS</small>
+      <h4>行李凭什么<br>不会坐错飞机？</h4>
+      <div class="grid"><div class="panel hero"><span class="label">THE HERO OBJECT</span></div><div class="panel red"><span class="label">SCAN</span><div class="arrow">→</div><b>识别它</b></div><div class="panel blue"><span class="label">ROUTE</span><div class="arrow">↘</div><b>送对路</b></div></div>
+    </div>
+    <div class="style-copy"><h3>C｜实验杂志拼贴</h3><p>粗边框、实物切片、档案编号、荧光色块和不对称网格。年轻、直接、可形成连续栏目，但技术细节承载量较低。</p></div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:22px"><p><strong>判断标准：</strong>不要选“最漂亮”的，选你连续发 30 篇后，用户仍能一眼认出是你的那一种。</p></div>
