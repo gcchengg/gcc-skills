@@ -1,0 +1,18 @@
+提示词越写越乱？用这个Skill
+提示词一长，最容易出现的不是“不够会写”，而是背景、数据、任务和限制全挤在一起。
+
+prompt-engineering 是 CodeAlive-AI 的开源 Agent Skill：它把提示词创作、审计、重写和跨模型迁移变成可复用流程。
+
+它会做什么？
+①用 XML 标签分开上下文、指令、数据和输出
+②锁定长度、格式、范围和不确定性
+③按 8 个维度审计：清晰度、结构、安全、事实性、上下文、可维护性、模型适配、评测准备度
+④输出问题等级、修复建议和重写版
+
+最小案例：把“用这些数据写 Q2 投资人报告，要专业”交给它，预期会拆成背景、数据、指标、行动项与展望格式，而不是只换几个形容词。
+
+安装：npx skills add CodeAlive-AI/ai-driven-development --skill prompt-engineering
+
+如果你经常反复改 prompt、多人维护指令、换模型就失效，它值得试。只写一次性简单问题的人没必要装。它也不替代 eval、红队测试和人工审核。
+
+#AI工具 #AgentSkill #GitHub开源 #提示词 #PromptEngineering #AI工程 #效率工具 #开发者工具 #Codex #ClaudeCode
